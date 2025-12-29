@@ -11,7 +11,7 @@ import { LEVEL_THRESHOLDS } from "../types";
 export default function Navbar() {
     const pathname = usePathname();
     const { gameState } = useGameState();
-    const { user, loading } = useAuth();
+    const { user, loading, signOut } = useAuth();
     const [showLeagueModal, setShowLeagueModal] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
@@ -103,6 +103,15 @@ export default function Navbar() {
                                     </div>
                                     <span className="hidden md:inline max-w-[100px] truncate">{userName}</span>
                                 </Link>
+
+                                {/* Logout Button */}
+                                <button
+                                    onClick={() => signOut()}
+                                    className="px-2 py-1.5 bg-slate-800 hover:bg-rose-900/50 border border-slate-700 hover:border-rose-600/50 text-slate-400 hover:text-rose-400 text-xs font-medium rounded-lg transition-all"
+                                    title="Çıkış Yap"
+                                >
+                                    Çıkış
+                                </button>
                             </div>
                         ) : (
                             <Link
