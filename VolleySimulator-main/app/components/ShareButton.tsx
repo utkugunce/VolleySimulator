@@ -94,8 +94,7 @@ export default function ShareButton({ targetRef, championName, className = "" }:
                 </>
             ) : (
                 <>
-                    <span>📸</span>
-                    <span>Senaryomu Paylaş</span>
+                    <span>Paylaş</span>
                 </>
             )}
         </button>

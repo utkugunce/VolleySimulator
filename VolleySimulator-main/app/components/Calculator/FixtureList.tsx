@@ -7,9 +7,10 @@ interface FixtureListProps {
     overrides: Record<string, string>;
     onScoreChange: (matchId: string, score: string) => void;
     teamRanks?: Map<string, number>;
+    totalTeams?: number; // Total teams in group for relegation calculation
 }
 
-export default function FixtureList({ matches, overrides, onScoreChange, teamRanks }: FixtureListProps) {
+export default function FixtureList({ matches, overrides, onScoreChange, teamRanks, totalTeams = 8 }: FixtureListProps) {
     const [activeTab, setActiveTab] = useState<'upcoming' | 'past'>('upcoming');
 
     // Helper to get team rank
@@ -19,6 +20,36 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
         const normalized = normalizeTeamName(teamName);
         for (const [key, rank] of teamRanks.entries()) {
             if (normalizeTeamName(key) === normalized) return rank;
+        }
+        return null;
+    };
+
+    // Determine match importance based on team positions
+    const getMatchImportance = (homeRank: number | null, awayRank: number | null): { label: string; color: string } | null => {
+        if (!homeRank || !awayRank) return null;
+
+        const playoffBoundary = 2; // Top 2 go to playoff
+        const relegationBoundary = totalTeams - 1; // Last 2 relegated
+
+        // Both in playoff zone
+        if (homeRank <= playoffBoundary && awayRank <= playoffBoundary) {
+            return { label: 'Playoff Karşılaşması', color: 'from-emerald-600/80 to-emerald-500/60 text-emerald-200' };
+        }
+        // One in playoff, one fighting for it
+        if ((homeRank <= playoffBoundary && awayRank <= 4) || (awayRank <= playoffBoundary && homeRank <= 4)) {
+            return { label: 'Playoff Mücadelesi', color: 'from-blue-600/80 to-blue-500/60 text-blue-200' };
+        }
+        // Both in relegation zone
+        if (homeRank >= relegationBoundary && awayRank >= relegationBoundary) {
+            return { label: 'Küme Düşme Finali', color: 'from-rose-600/80 to-rose-500/60 text-rose-200' };
+        }
+        // One in relegation zone
+        if (homeRank >= relegationBoundary || awayRank >= relegationBoundary) {
+            return { label: 'Küme Düşme Tehlikesi', color: 'from-orange-600/80 to-orange-500/60 text-orange-200' };
+        }
+        // Mid-table clash
+        if (homeRank > 4 && homeRank < relegationBoundary && awayRank > 4 && awayRank < relegationBoundary) {
+            return { label: 'Orta Sıra', color: 'from-slate-600/60 to-slate-500/40 text-slate-300' };
         }
         return null;
     };
@@ -58,13 +89,15 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
             : dateB.getTime() - dateA.getTime(); // Most recent first
     });
 
-    // Format date for display
+    // Format date for display with day name
     const formatDateDisplay = (dateStr: string): string => {
         if (dateStr === 'Tarih Belirtilmemiş') return dateStr;
         const parts = dateStr.split('.');
         if (parts.length !== 3) return dateStr;
-        const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
-        return `${parseInt(parts[0])} ${months[parseInt(parts[1]) - 1]} ${parts[2]}`;
+        const days = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
+        const date = new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
+        const dayName = days[date.getDay()];
+        return `${parts[0]}/${parts[1]}/${parts[2]} ${dayName}`;
     };
 
     return (
@@ -75,8 +108,8 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                     <button
                         onClick={() => setActiveTab('upcoming')}
                         className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'upcoming'
-                                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20'
-                                : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
+                            ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20'
+                            : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
                             }`}
                     >
                         <span>📅</span>
@@ -86,8 +119,8 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                     <button
                         onClick={() => setActiveTab('past')}
                         className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'past'
-                                ? 'bg-slate-600 text-white shadow-lg'
-                                : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
+                            ? 'bg-slate-600 text-white shadow-lg'
+                            : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
                             }`}
                     >
                         <span>✅</span>
@@ -116,10 +149,12 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                 const isPlayed = match.isPlayed;
                                 const homeRank = getTeamRank(match.homeTeam);
                                 const awayRank = getTeamRank(match.awayTeam);
+                                const matchImportance = getMatchImportance(homeRank, awayRank);
 
                                 return (
                                     <div
                                         key={matchId}
+                                        id={`match-${match.homeTeam}-${match.awayTeam}`}
                                         className={`p-3 rounded-lg border transition-all ${isPlayed
                                             ? 'bg-slate-950/50 border-slate-800/50'
                                             : currentScore
@@ -127,6 +162,13 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                                 : 'bg-slate-800 border-slate-700 hover:border-slate-600'
                                             }`}
                                     >
+                                        {/* Match Importance Badge */}
+                                        {matchImportance && !isPlayed && (
+                                            <div className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-t-md -mx-3 -mt-3 mb-2 text-center bg-gradient-to-r ${matchImportance.color}`}>
+                                                {matchImportance.label}
+                                            </div>
+                                        )}
+
                                         <div className="flex items-center justify-between text-xs mb-2">
                                             <div className={`flex-1 text-right font-semibold truncate pr-2 flex items-center justify-end gap-1 ${currentScore && getScoreWinner(currentScore) === 'home' ? 'text-emerald-400' : 'text-slate-300'}`}>
                                                 {homeRank && (
