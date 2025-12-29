@@ -1,0 +1,56 @@
+"use client";
+
+interface TeamAvatarProps {
+    name: string;
+    size?: 'sm' | 'md' | 'lg';
+    showName?: boolean;
+    position?: number;
+}
+
+export default function TeamAvatar({ name, size = 'md', showName = false, position }: TeamAvatarProps) {
+    // Generate consistent color from team name
+    const stringToColor = (str: string) => {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            hash = str.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        const hue = hash % 360;
+        return `hsl(${hue}, 60%, 40%)`;
+    };
+
+    const getInitials = (name: string) => {
+        const words = name.split(' ');
+        if (words.length >= 2) {
+            return words[0][0] + words[1][0];
+        }
+        return name.slice(0, 2);
+    };
+
+    const sizes = {
+        sm: 'w-6 h-6 text-[10px]',
+        md: 'w-8 h-8 text-xs',
+        lg: 'w-12 h-12 text-sm'
+    };
+
+    const positionColors: Record<number, string> = {
+        1: 'ring-2 ring-amber-400',
+        2: 'ring-2 ring-slate-300',
+        3: 'ring-2 ring-amber-700'
+    };
+
+    return (
+        <div className="flex items-center gap-2">
+            <div
+                className={`${sizes[size]} rounded-full flex items-center justify-center font-bold text-white uppercase ${position ? positionColors[position] || '' : ''}`}
+                // eslint-disable-next-line react-dom/no-unsafe-target-blank
+                style={{ backgroundColor: stringToColor(name) }}
+                title={name}
+            >
+                {getInitials(name)}
+            </div>
+            {showName && (
+                <span className="text-sm text-white truncate">{name}</span>
+            )}
+        </div>
+    );
+}
