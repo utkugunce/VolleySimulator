@@ -1,17 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useGameState } from "../utils/gameState";
 import { useToast } from "../components/Toast";
 import TutorialModal from "../components/TutorialModal";
 
+// Theme handling inline since we need to update document
+function useLocalTheme() {
+    const [theme, setThemeState] = useState<'dark' | 'light'>('dark');
+
+    useEffect(() => {
+        const saved = localStorage.getItem('theme') as 'dark' | 'light' | null;
+        if (saved) {
+            setThemeState(saved);
+        }
+    }, []);
+
+    const setTheme = (newTheme: 'dark' | 'light') => {
+        setThemeState(newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.documentElement.setAttribute('data-theme', newTheme);
+    };
+
+    return { theme, setTheme };
+}
+
 export default function AyarlarPage() {
     const { user } = useAuth();
     const { gameState, toggleSound } = useGameState();
     const { showToast } = useToast();
+    const { theme, setTheme } = useLocalTheme();
 
-    const [theme, setTheme] = useState("dark");
     const [notifications, setNotifications] = useState(true);
     const [showTutorial, setShowTutorial] = useState(false);
 
@@ -90,11 +110,11 @@ export default function AyarlarPage() {
                         </div>
                         <select
                             value={theme}
-                            onChange={(e) => setTheme(e.target.value)}
+                            onChange={(e) => setTheme(e.target.value as 'dark' | 'light')}
                             className="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white"
                         >
                             <option value="dark">Koyu</option>
-                            <option value="light" disabled>Açık (Yakında)</option>
+                            <option value="light">Açık</option>
                         </select>
                     </div>
 
