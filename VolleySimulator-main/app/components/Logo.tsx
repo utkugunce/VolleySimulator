@@ -1,9 +1,9 @@
 export default function Logo({ className = "", size = "md" }: { className?: string; size?: "sm" | "md" | "lg" | "xl" }) {
     const sizeClasses = {
-        sm: "w-8 h-8 text-xs",
-        md: "w-10 h-10 text-sm",
-        lg: "w-16 h-16 text-xl",
-        xl: "w-32 h-32 text-4xl"
+        sm: "w-8 h-8 text-sm",
+        md: "w-10 h-10 text-base",
+        lg: "w-16 h-16 text-2xl",
+        xl: "w-32 h-32 text-5xl"
     };
 
     return (
@@ -15,7 +15,7 @@ export default function Logo({ className = "", size = "md" }: { className?: stri
             <div className="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] bg-gradient-to-br from-transparent via-white/10 to-transparent rotate-45 animate-pulse"></div>
 
             {/* Letters */}
-            <div className="relative z-10 font-black italic tracking-tighter leading-none flex items-center justify-center">
+            <div className="relative z-10 font-black italic leading-none flex items-center justify-center px-0.5">
                 <span className="bg-clip-text text-transparent bg-gradient-to-br from-emerald-400 to-cyan-400 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
                     VS
                 </span>
