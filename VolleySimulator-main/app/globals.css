@@ -3,6 +3,24 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Premium Color Palette */
+  --color-primary: #10b981;
+  --color-primary-light: #34d399;
+  --color-primary-dark: #059669;
+  --color-accent: #f59e0b;
+  --color-accent-light: #fbbf24;
+  --color-accent-dark: #d97706;
+
+  /* Glow Colors */
+  --glow-primary: rgba(16, 185, 129, 0.4);
+  --glow-accent: rgba(245, 158, 11, 0.4);
+  --glow-blue: rgba(59, 130, 246, 0.4);
+
+  /* Surface Colors */
+  --surface-dark: rgba(15, 23, 42, 0.8);
+  --surface-glass: rgba(255, 255, 255, 0.05);
+  --border-subtle: rgba(255, 255, 255, 0.1);
 }
 
 @theme inline {
@@ -23,6 +41,47 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ============================================================================
+   PREMIUM GRADIENT TEXT
+   ============================================================================ */
+
+.gradient-text-primary {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-accent {
+  background: linear-gradient(135deg, var(--color-accent) 0%, #f97316 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-animated {
+  background: linear-gradient(90deg, var(--color-primary), #06b6d4, var(--color-primary));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% center;
+  }
+
+  50% {
+    background-position: 100% center;
+  }
+
+  100% {
+    background-position: 0% center;
+  }
 }
 
 /* ============================================================================
@@ -368,9 +427,11 @@ body {
     transform: translateX(-50%) scale(0.5);
     opacity: 0;
   }
+
   50% {
     transform: translateX(-50%) scale(1.1);
   }
+
   100% {
     transform: translateX(-50%) scale(1);
     opacity: 1;
@@ -382,6 +443,7 @@ body {
     transform: translateY(0) scale(1);
     opacity: 1;
   }
+
   100% {
     transform: translateY(-30px) scale(1.2);
     opacity: 0;
@@ -393,10 +455,12 @@ body {
     transform: scale(1);
     filter: brightness(1);
   }
+
   50% {
     transform: scale(1.3);
     filter: brightness(1.5);
   }
+
   100% {
     transform: scale(1);
     filter: brightness(1);
@@ -416,7 +480,7 @@ body {
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }
