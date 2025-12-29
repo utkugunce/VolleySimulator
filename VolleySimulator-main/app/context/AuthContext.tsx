@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { User, Session } from '@supabase/supabase-js';
+import { User, Session, SupabaseClient } from '@supabase/supabase-js';
 import { createClient } from '../utils/supabase';
 
 interface AuthContextType {
@@ -20,25 +20,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
     const [session, setSession] = useState<Session | null>(null);
     const [loading, setLoading] = useState(true);
+    const [supabase, setSupabase] = useState<SupabaseClient | null>(null);
 
-    const supabase = createClient();
-
+    // Initialize Supabase client only in browser
     useEffect(() => {
-        // Get initial session
-        supabase.auth.getSession().then(({ data: { session } }) => {
-            setSession(session);
-            setUser(session?.user ?? null);
-        }).catch((err) => {
-            console.warn("Auth check failed:", err);
-            // Non-critical error, just proceed as logged-out
-        }).finally(() => {
+        const client = createClient();
+        setSupabase(client);
+
+        if (!client) {
             setLoading(false);
-        });
+            return;
+        }
+
+        const initAuth = async () => {
+            try {
+                const { data } = await client.auth.getSession();
+                setSession(data.session);
+                setUser(data.session?.user ?? null);
+            } catch (err) {
+                console.warn("Auth check failed:", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        initAuth();
 
         // Listen for auth changes
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-            setSession(session);
-            setUser(session?.user ?? null);
+        const { data: { subscription } } = client.auth.onAuthStateChange((_event: string, currentSession: Session | null) => {
+            setSession(currentSession);
+            setUser(currentSession?.user ?? null);
             setLoading(false);
         });
 
@@ -46,6 +57,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }, []);
 
     const signUp = async (email: string, password: string, metadata?: { name?: string }) => {
+        if (!supabase) {
+            return { error: new Error('Supabase is not configured') };
+        }
         const { error } = await supabase.auth.signUp({
             email,
             password,
@@ -57,6 +71,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
 
     const signIn = async (email: string, password: string) => {
+        if (!supabase) {
+            return { error: new Error('Supabase is not configured') };
+        }
         const { error } = await supabase.auth.signInWithPassword({
             email,
             password
@@ -65,10 +82,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
 
     const signOut = async () => {
+        if (!supabase) return;
         await supabase.auth.signOut();
     };
 
     const signInWithGoogle = async () => {
+        if (!supabase) return;
         await supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {

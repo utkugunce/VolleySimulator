@@ -1,6 +1,9 @@
 "use client";
 
-import { useState } from "react";
+// Prevent static prerendering - this page requires auth context
+export const dynamic = 'force-dynamic';
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
@@ -15,8 +18,13 @@ export default function LoginPage() {
     const [error, setError] = useState("");
 
     // Redirect if already logged in
+    useEffect(() => {
+        if (user) {
+            router.push('/anasayfa');
+        }
+    }, [user, router]);
+
     if (user) {
-        router.push('/profile');
         return null;
     }
 

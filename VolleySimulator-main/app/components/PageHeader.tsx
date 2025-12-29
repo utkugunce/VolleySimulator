@@ -63,7 +63,6 @@ export default function PageHeader({
                     onClick={() => router.back()}
                     className="flex-1 sm:flex-none px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded text-xs font-bold border border-slate-700 transition-colors flex items-center justify-center gap-1.5"
                 >
-                    <span>⬅️</span>
                     <span className="hidden sm:inline">Geri</span>
                 </button>
 
@@ -81,7 +80,6 @@ export default function PageHeader({
                             className="px-2 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded text-xs font-bold border border-blue-500 transition-colors flex items-center justify-center gap-1 shadow-lg shadow-blue-500/20 cursor-pointer"
                             title="Senaryo Yükle"
                         >
-                            <span>📂</span>
                             <span className="hidden sm:inline">Yükle</span>
                         </label>
                     </>
@@ -93,7 +91,6 @@ export default function PageHeader({
                         className="px-2 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded text-xs font-bold border border-emerald-500 transition-colors flex items-center justify-center gap-1 shadow-lg shadow-emerald-500/20"
                         title="Tüm Senaryoları Kaydet (İndir)"
                     >
-                        <span>💾</span>
                         <span className="hidden sm:inline">Kaydet</span>
                     </button>
                 )}
@@ -104,8 +101,7 @@ export default function PageHeader({
                 </Link>
 
                 <Link href={`${leaguePrefix}/groups`} className={getLinkClass(`${leaguePrefix}/groups`)}>
-                    <span>🏐</span>
-                    <span className="hidden sm:inline">Gruplar</span>
+                    <span className="hidden sm:inline">Güncel Durum</span>
                 </Link>
 
                 {/* Stats link for both leagues */}

@@ -4,7 +4,7 @@ import { useEffect, useState, useRef, Suspense, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { TeamStats, Match, Achievement } from "../../types";
 import PageHeader from "../../components/PageHeader";
-import { useToast, XPBar, AchievementToast, AchievementsPanel, TeamLoyaltySelector, QuestPanel } from "../../components";
+import { useToast, AchievementToast, AchievementsPanel } from "../../components";
 import StandingsTable from "../../components/Calculator/StandingsTable";
 import FixtureList from "../../components/Calculator/FixtureList";
 import ShareButton from "../../components/ShareButton";
@@ -302,8 +302,8 @@ function CalculatorContent() {
 
                 {/* Header */}
                 <PageHeader
-                    title="Tahmin Oyunu"
-                    subtitle="İnteraktif Lig Simülasyonu"
+                    title="Kadınlar 2. Lig"
+                    subtitle="Tahmin Oyunu"
                     onExport={handleSaveAllScenarios}
                     onImport={handleImportAllScenarios}
                 />
@@ -327,38 +327,25 @@ function CalculatorContent() {
                         ))}
                     </div>
 
-                    {/* XP Bar + Actions */}
+                    {/* Actions */}
                     <div className="flex items-center gap-2 flex-shrink-0">
-                        <XPBar compact />
-                        <button
-                            onClick={() => setShowAchievements(true)}
-                            className="px-2 py-1 bg-amber-900/40 hover:bg-amber-800/60 text-amber-500 hover:text-amber-200 text-[10px] font-bold rounded transition-all border border-amber-900/50 flex items-center gap-1"
-                            title="Başarılar"
-                        >
-                            <span>🏆</span>
-                            <span className="hidden sm:inline">{gameState.achievements.length}</span>
-                        </button>
                         <button
                             onClick={handleScrollToNextMatch}
-                            className="px-2 py-1 bg-amber-900/40 hover:bg-amber-800/60 text-amber-500 hover:text-amber-200 text-[10px] font-bold rounded transition-all border border-amber-900/50 flex items-center gap-1"
+                            className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700"
                             title="Son kaldığım maça git"
                         >
-                            <span>📍</span>
-                            <span className="hidden sm:inline">Kaldığım Yer</span>
+                            Kaldığım Yer
                         </button>
                         <button
                             onClick={handleReset}
-                            className="px-2 py-1 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 text-[10px] font-bold rounded transition-all border border-slate-700 flex items-center gap-1"
+                            className="px-2 py-1 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 text-xs font-bold rounded-lg transition-all border border-slate-700"
                         >
-                            <span>🗑️</span>
-                            <span className="hidden sm:inline">Sıfırla</span>
+                            Sıfırla
                         </button>
                         <ShareButton
                             targetRef={standingsRef}
                             championName={liveStandings[0]?.name}
-                            className="!px-2 !py-1 !text-[10px] !rounded"
                         />
-                        <TeamLoyaltySelector teams={activeTeams} />
                     </div>
                 </div>
 

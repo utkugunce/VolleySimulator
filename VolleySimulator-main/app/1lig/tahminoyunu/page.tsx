@@ -4,7 +4,7 @@ import { useEffect, useState, useRef, Suspense, useMemo, useCallback } from "rea
 import { useSearchParams } from "next/navigation";
 import { TeamStats, Match, Achievement } from "../../types";
 import PageHeader from "../../components/PageHeader";
-import { useToast, XPBar, AchievementToast, AchievementsPanel, TeamLoyaltySelector, QuestPanel } from "../../components";
+import { useToast, AchievementToast, AchievementsPanel } from "../../components";
 import StandingsTable from "../../components/Calculator/StandingsTable";
 import FixtureList from "../../components/Calculator/FixtureList";
 import ShareButton from "../../components/ShareButton";
@@ -276,8 +276,8 @@ function CalculatorContent() {
             <div className="w-full max-w-7xl mx-auto flex flex-col h-full gap-2">
 
                 <PageHeader
-                    title="Tahmin Oyunu"
-                    subtitle="Kadınlar 1. Ligi Simülasyonu"
+                    title="Arabica Coffee House"
+                    subtitle="Kadınlar Voleybol 1.Ligi"
                     onExport={handleSaveAllScenarios}
                     onImport={handleImportAllScenarios}
                 />
@@ -301,37 +301,25 @@ function CalculatorContent() {
                         ))}
                     </div>
 
-                    {/* XP Bar + Actions */}
-                    <div className="flex items-center gap-3">
-                        <XPBar compact />
-                        <button
-                            onClick={() => setShowAchievements(true)}
-                            className="px-2 py-1 bg-amber-900/40 hover:bg-amber-800/60 text-amber-500 hover:text-amber-200 text-[10px] sm:text-xs font-bold rounded-lg transition-all border border-amber-900/50 flex items-center gap-1"
-                            title="Başarılar"
-                        >
-                            <span>🏆</span>
-                            <span className="hidden sm:inline">{gameState.achievements.length}</span>
-                        </button>
+                    {/* Actions */}
+                    <div className="flex items-center gap-2">
                         <button
                             onClick={handleScrollToNextMatch}
-                            className="px-2 py-1 bg-amber-900/40 hover:bg-amber-800/60 text-amber-500 hover:text-amber-200 text-[10px] sm:text-xs font-bold rounded-lg transition-all border border-amber-900/50 flex items-center gap-1"
+                            className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700"
                             title="Son kaldığım maça git"
                         >
-                            <span>📍</span>
-                            <span className="hidden sm:inline">Kaldığım Yer</span>
+                            Kaldığım Yer
                         </button>
                         <button
                             onClick={handleReset}
-                            className="px-3 py-1.5 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 text-[10px] sm:text-xs font-bold rounded-lg transition-all border border-slate-700 flex items-center gap-2"
+                            className="px-2 py-1 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 text-xs font-bold rounded-lg transition-all border border-slate-700"
                         >
-                            <span>🗑️</span>
-                            <span className="hidden sm:inline">Sıfırla</span>
+                            Sıfırla
                         </button>
                         <ShareButton
                             targetRef={standingsRef}
                             championName={liveStandings[0]?.name}
                         />
-                        <TeamLoyaltySelector teams={activeTeams} />
                     </div>
                 </div>
 

@@ -14,12 +14,12 @@ function ConsentContent() {
     useEffect(() => {
         // Check if there's an auth code to exchange
         const code = searchParams.get('code');
-        if (code) {
+        if (code && supabase) {
             supabase.auth.exchangeCodeForSession(code).then(() => {
                 router.push('/profile');
             });
         }
-    }, [searchParams, router]);
+    }, [searchParams, router, supabase]);
 
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4">
