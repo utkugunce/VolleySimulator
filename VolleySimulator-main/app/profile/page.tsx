@@ -9,7 +9,6 @@ export default function ProfilePage() {
     const router = useRouter();
     const { user, loading: authLoading, signOut } = useAuth();
     const { gameState, toggleSound, setFavoriteTeam } = useGameState();
-    const { progress, required, percentage } = getXPProgress(gameState);
 
     function getXPProgress(state: typeof gameState) {
         const currentLevelXP = LEVEL_THRESHOLDS[state.level - 1] || 0;
@@ -19,7 +18,7 @@ export default function ProfilePage() {
         return { progress, required, percentage: (progress / required) * 100 };
     }
 
-    // Calculate accuracy
+    const { progress, required, percentage } = getXPProgress(gameState);
     const accuracy = gameState.stats.totalPredictions > 0
         ? Math.round((gameState.stats.correctPredictions / gameState.stats.totalPredictions) * 100)
         : 0;
@@ -35,218 +34,163 @@ export default function ProfilePage() {
     if (authLoading) {
         return (
             <main className="min-h-screen bg-slate-950 flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500"></div>
             </main>
         );
     }
 
     return (
-        <main className="min-h-screen bg-slate-950 text-slate-100 p-4 font-sans">
-            <div className="max-w-4xl mx-auto space-y-6">
+        <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">
+            <div className="max-w-2xl mx-auto space-y-3 sm:space-y-4">
 
-                {/* Header */}
-                <div className="text-center mb-8">
-                    <h1 className="text-3xl font-black bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-                        Oyuncu Profili
-                    </h1>
-                    <p className="text-slate-400 text-sm mt-1">
-                        {user ? user.email : 'Giriş yapmadınız'}
-                    </p>
+                {/* Compact Header Card */}
+                <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl border border-slate-700 p-3 sm:p-4 shadow-xl">
+                    <div className="flex items-center gap-3 sm:gap-4">
+                        {/* Level Badge */}
+                        <div className="relative shrink-0">
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30">
+                                <span className="text-2xl sm:text-3xl font-black text-white">{gameState.level}</span>
+                            </div>
+                        </div>
+
+                        {/* Info */}
+                        <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 flex-wrap">
+                                <h1 className="font-bold text-white text-lg sm:text-xl truncate">
+                                    {user?.user_metadata?.name || 'Oyuncu'}
+                                </h1>
+                                <span className="text-[10px] sm:text-xs bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full font-bold">
+                                    {getLevelTitle(gameState.level)}
+                                </span>
+                            </div>
+                            <p className="text-[11px] sm:text-xs text-slate-500 truncate">
+                                {user?.email || 'Giriş yapılmamış'}
+                            </p>
+
+                            {/* XP Mini Bar */}
+                            <div className="mt-2">
+                                <div className="h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                                    <div
+                                        className="h-full bg-gradient-to-r from-amber-400 to-orange-400 transition-all"
+                                        style={{ width: `${Math.min(percentage, 100)}%` }}
+                                    />
+                                </div>
+                                <div className="flex justify-between text-[10px] text-slate-500 mt-0.5">
+                                    <span>{gameState.xp.toLocaleString()} XP</span>
+                                    <span>{progress}/{required}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Sign Out */}
+                        {user && (
+                            <button
+                                onClick={handleSignOut}
+                                className="shrink-0 px-2 sm:px-3 py-1.5 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 text-xs font-bold rounded-lg transition-all"
+                            >
+                                Çıkış
+                            </button>
+                        )}
+                    </div>
                 </div>
 
-                {/* Auth Status */}
-                {user ? (
-                    <div className="bg-emerald-900/20 border border-emerald-600/30 rounded-xl p-4 flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold">
-                                {user.user_metadata?.name?.[0]?.toUpperCase() || user.email?.[0]?.toUpperCase()}
-                            </div>
+                {/* Stats Grid - More Compact */}
+                <div className="grid grid-cols-4 gap-2">
+                    <StatMini icon="🎯" value={gameState.stats.totalPredictions} label="Tahmin" color="blue" />
+                    <StatMini icon="✓" value={gameState.stats.correctPredictions} label="Doğru" color="emerald" />
+                    <StatMini icon="📊" value={`${accuracy}%`} label="İsabet" color="amber" />
+                    <StatMini icon="🔥" value={gameState.stats.bestStreak} label="Seri" color="orange" />
+                </div>
+
+                {/* Favorite Team - Compact */}
+                {gameState.favoriteTeam && (
+                    <div className="bg-gradient-to-r from-rose-900/20 to-pink-900/20 rounded-xl border border-rose-600/30 p-2 sm:p-3 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                            <span className="text-lg">❤️</span>
                             <div>
-                                <div className="font-bold text-white">{user.user_metadata?.name || 'Oyuncu'}</div>
-                                <div className="text-xs text-emerald-400">{user.email}</div>
+                                <div className="text-[10px] text-rose-400/80 uppercase tracking-wider">Favori</div>
+                                <div className="text-sm font-bold text-white truncate">{gameState.favoriteTeam}</div>
                             </div>
                         </div>
                         <button
-                            onClick={handleSignOut}
-                            className="px-4 py-2 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 text-sm font-bold rounded-lg transition-all"
+                            onClick={() => setFavoriteTeam(null)}
+                            className="text-rose-400/60 hover:text-rose-400 text-xs"
                         >
-                            Çıkış Yap
+                            ✕
                         </button>
                     </div>
-                ) : (
-                    <div className="bg-amber-900/20 border border-amber-600/30 rounded-xl p-4 flex items-center justify-between">
-                        <div className="text-amber-400 text-sm">
-                            Giriş yaparak ilerlemenizi kaydedin!
+                )}
+
+                {/* Quick Settings */}
+                <div className="bg-slate-900 rounded-xl border border-slate-800 p-3">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                            <span className="text-slate-500">🔊</span>
+                            <span className="text-sm text-slate-300">Ses</span>
                         </div>
-                        <a
-                            href="/login"
-                            className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold rounded-lg transition-all"
+                        <button
+                            onClick={toggleSound}
+                            className={`w-10 h-5 rounded-full transition-all relative ${gameState.soundEnabled ? 'bg-emerald-600' : 'bg-slate-700'}`}
                         >
-                            Giriş Yap
-                        </a>
-                    </div>
-                )}
-
-                {/* Main Stats Card */}
-                <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl border border-slate-700 p-6 shadow-xl">
-                    <div className="flex flex-col md:flex-row items-center gap-6">
-
-                        {/* Avatar & Level */}
-                        <div className="flex flex-col items-center">
-                            <div className="relative">
-                                <div className="w-28 h-28 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-xl shadow-amber-500/30">
-                                    <span className="text-5xl font-black text-white">{gameState.level}</span>
-                                </div>
-                                {gameState.favoriteTeam && (
-                                    <div className="absolute -bottom-2 -right-2 bg-rose-600 rounded-full p-1.5 border-4 border-slate-900">
-                                        <span className="text-sm">❤️</span>
-                                    </div>
-                                )}
-                            </div>
-                            <div className="mt-3 text-center">
-                                <div className="text-lg font-black text-amber-400">{getLevelTitle(gameState.level)}</div>
-                                <div className="text-xs text-slate-500">Seviye {gameState.level}</div>
-                            </div>
-                        </div>
-
-                        {/* Stats Grid */}
-                        <div className="flex-1 grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
-                            <StatBox icon="⚡" label="Toplam XP" value={gameState.xp.toLocaleString()} color="amber" />
-                            <StatBox icon="🎯" label="Tahmin" value={gameState.stats.totalPredictions} color="blue" />
-                            <StatBox icon="📈" label="İsabet" value={`${accuracy}%`} color="emerald" />
-                            <StatBox icon="🔥" label="En İyi Seri" value={gameState.stats.bestStreak} color="orange" />
-                        </div>
-                    </div>
-
-                    {/* XP Progress */}
-                    <div className="mt-6">
-                        <div className="flex justify-between text-xs text-slate-400 mb-1">
-                            <span>Seviye {gameState.level}</span>
-                            <span>Seviye {gameState.level + 1}</span>
-                        </div>
-                        <div className="h-4 bg-slate-700 rounded-full overflow-hidden">
-                            <div
-                                className="h-full bg-gradient-to-r from-amber-400 via-orange-400 to-red-400 transition-all duration-700 relative"
-                                style={{ width: `${Math.min(percentage, 100)}%` }}
-                            >
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
-                            </div>
-                        </div>
-                        <div className="text-center mt-2 text-sm text-slate-500">
-                            {progress.toLocaleString()} / {required.toLocaleString()} XP
-                        </div>
+                            <div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform ${gameState.soundEnabled ? 'translate-x-5' : 'translate-x-0.5'}`} />
+                        </button>
                     </div>
                 </div>
 
-                {/* Favorite Team */}
-                {gameState.favoriteTeam && (
-                    <div className="bg-gradient-to-r from-rose-900/30 to-pink-900/30 rounded-xl border border-rose-600/30 p-4 flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                            <span className="text-2xl">❤️</span>
-                            <div>
-                                <div className="text-xs text-rose-400 uppercase tracking-wider font-bold">Favori Takım</div>
-                                <div className="text-lg font-bold text-white">{gameState.favoriteTeam}</div>
-                            </div>
-                        </div>
-                        <div className="bg-amber-500 text-black text-xs font-black px-3 py-1 rounded-full">
-                            +20% XP
-                        </div>
-                    </div>
-                )}
-
-                {/* Detailed Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="bg-slate-900/80 rounded-xl border border-slate-700 p-4">
-                        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
-                            <span>📊</span> İstatistikler
+                {/* Achievements - Compact Grid */}
+                <div className="bg-slate-900 rounded-xl border border-slate-800 p-3">
+                    <div className="flex items-center justify-between mb-3">
+                        <h3 className="text-sm font-bold text-slate-300 flex items-center gap-2">
+                            🏆 Başarılar
                         </h3>
-                        <div className="space-y-3">
-                            <StatRow label="Toplam Tahmin" value={gameState.stats.totalPredictions} />
-                            <StatRow label="Doğru Tahmin" value={gameState.stats.correctPredictions} />
-                            <StatRow label="Mevcut Seri" value={gameState.stats.currentStreak} highlight={gameState.stats.currentStreak > 0} />
-                            <StatRow label="En İyi Seri" value={gameState.stats.bestStreak} />
-                        </div>
-                    </div>
-
-                    <div className="bg-slate-900/80 rounded-xl border border-slate-700 p-4">
-                        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
-                            <span>⚙️</span> Ayarlar
-                        </h3>
-                        <div className="space-y-3">
-                            <div className="flex items-center justify-between p-2 rounded-lg hover:bg-slate-800/50 transition-colors">
-                                <span className="text-sm text-slate-300">Ses Efektleri</span>
-                                <button
-                                    onClick={toggleSound}
-                                    className={`w-12 h-6 rounded-full transition-all ${gameState.soundEnabled
-                                            ? 'bg-emerald-600'
-                                            : 'bg-slate-700'
-                                        }`}
-                                >
-                                    <div className={`w-5 h-5 bg-white rounded-full shadow-md transition-transform ${gameState.soundEnabled ? 'translate-x-6' : 'translate-x-0.5'
-                                        }`} />
-                                </button>
-                            </div>
-                            {gameState.favoriteTeam && (
-                                <button
-                                    onClick={() => setFavoriteTeam(null)}
-                                    className="w-full p-2 text-sm text-rose-400 hover:bg-rose-900/30 rounded-lg transition-colors text-left"
-                                >
-                                    ❌ Favori takımı kaldır
-                                </button>
-                            )}
-                        </div>
-                    </div>
-                </div>
-
-                {/* Achievements Grid */}
-                <div className="bg-slate-900/80 rounded-xl border border-slate-700 p-4">
-                    <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
-                            <span>🏆</span> Başarılar
-                        </h3>
-                        <span className="text-xs bg-amber-500/20 text-amber-400 px-2 py-1 rounded-full font-bold">
+                        <span className="text-xs bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full font-bold">
                             {unlockedCount}/{allAchievements.length}
                         </span>
                     </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div className="grid grid-cols-4 gap-1.5 sm:gap-2">
                         {allAchievements.map(achievement => {
                             const isUnlocked = gameState.achievements.some(a => a.id === achievement.id);
-                            const unlockedData = gameState.achievements.find(a => a.id === achievement.id);
-
                             return (
                                 <div
                                     key={achievement.id}
-                                    className={`p-3 rounded-xl border text-center transition-all ${isUnlocked
-                                            ? 'bg-gradient-to-br from-amber-900/30 to-orange-900/30 border-amber-600/50'
-                                            : 'bg-slate-800/50 border-slate-700/50 opacity-50'
+                                    className={`p-2 rounded-lg border text-center transition-all ${isUnlocked
+                                        ? 'bg-gradient-to-br from-amber-900/30 to-orange-900/30 border-amber-600/40'
+                                        : 'bg-slate-800/30 border-slate-700/30 opacity-40'
                                         }`}
+                                    title={`${achievement.name}: ${achievement.description}`}
                                 >
-                                    <div className={`text-3xl mb-2 ${!isUnlocked && 'grayscale'}`}>
+                                    <div className={`text-xl ${!isUnlocked && 'grayscale'}`}>
                                         {achievement.icon}
                                     </div>
-                                    <div className="text-xs font-bold text-white truncate">{achievement.name}</div>
-                                    <div className="text-[10px] text-amber-400 font-bold mt-1">
-                                        +{achievement.xpReward} XP
-                                    </div>
-                                    {isUnlocked && unlockedData?.unlockedAt && (
-                                        <div className="text-[8px] text-slate-500 mt-1">
-                                            {new Date(unlockedData.unlockedAt).toLocaleDateString('tr-TR')}
-                                        </div>
-                                    )}
+                                    <div className="text-[9px] font-bold text-white truncate mt-1">{achievement.name}</div>
+                                    <div className="text-[8px] text-amber-400/70">+{achievement.xpReward}</div>
                                 </div>
                             );
                         })}
                     </div>
                 </div>
 
-                {/* Back Button */}
-                <div className="text-center">
+                {/* Auth Card - Only if not logged in */}
+                {!user && (
+                    <div className="bg-amber-900/20 border border-amber-600/30 rounded-xl p-3 flex items-center justify-between">
+                        <span className="text-amber-400 text-sm">Giriş yaparak ilerlemenizi kaydedin</span>
+                        <a
+                            href="/login"
+                            className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg transition-all"
+                        >
+                            Giriş Yap
+                        </a>
+                    </div>
+                )}
+
+                {/* Back to Game */}
+                <div className="text-center pb-4">
                     <a
-                        href="/1lig/tahminoyunu"
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-emerald-600/20"
+                        href="/anasayfa"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-sm font-bold rounded-lg transition-all"
                     >
-                        <span>🎮</span> Tahmin Oyununa Dön
+                        ← Ana Sayfa
                     </a>
                 </div>
 
@@ -255,29 +199,20 @@ export default function ProfilePage() {
     );
 }
 
-// Helper Components
-function StatBox({ icon, label, value, color }: { icon: string; label: string; value: string | number; color: string }) {
-    const colorClasses: Record<string, string> = {
-        amber: 'from-amber-900/40 to-amber-800/20 border-amber-600/30',
-        blue: 'from-blue-900/40 to-blue-800/20 border-blue-600/30',
-        emerald: 'from-emerald-900/40 to-emerald-800/20 border-emerald-600/30',
-        orange: 'from-orange-900/40 to-orange-800/20 border-orange-600/30',
+// Compact stat mini component
+function StatMini({ icon, value, label, color }: { icon: string; value: string | number; label: string; color: string }) {
+    const colors: Record<string, string> = {
+        blue: 'from-blue-900/30 to-blue-800/20 border-blue-600/30 text-blue-400',
+        emerald: 'from-emerald-900/30 to-emerald-800/20 border-emerald-600/30 text-emerald-400',
+        amber: 'from-amber-900/30 to-amber-800/20 border-amber-600/30 text-amber-400',
+        orange: 'from-orange-900/30 to-orange-800/20 border-orange-600/30 text-orange-400',
     };
 
     return (
-        <div className={`bg-gradient-to-br ${colorClasses[color]} rounded-xl border p-3 text-center`}>
-            <div className="text-xl mb-1">{icon}</div>
-            <div className="text-xl font-black text-white">{value}</div>
-            <div className="text-[10px] text-slate-400 uppercase tracking-wider">{label}</div>
-        </div>
-    );
-}
-
-function StatRow({ label, value, highlight = false }: { label: string; value: string | number; highlight?: boolean }) {
-    return (
-        <div className="flex justify-between items-center p-2 rounded-lg bg-slate-800/30">
-            <span className="text-sm text-slate-400">{label}</span>
-            <span className={`font-bold ${highlight ? 'text-orange-400' : 'text-white'}`}>{value}</span>
+        <div className={`bg-gradient-to-br ${colors[color]} rounded-xl border p-2 text-center`}>
+            <div className="text-sm">{icon}</div>
+            <div className="text-lg sm:text-xl font-bold text-white">{value}</div>
+            <div className="text-[9px] text-slate-400 uppercase">{label}</div>
         </div>
     );
 }
