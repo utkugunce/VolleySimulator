@@ -17,11 +17,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport = {
+  themeColor: "#0f172a",
+};
+
 export const metadata: Metadata = {
   title: "VolleySimulator",
   description: "Voleybol simülasyon ve tahmin platformu",
   manifest: "/manifest.json",
-  themeColor: "#0f172a",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
