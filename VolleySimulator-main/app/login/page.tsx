@@ -43,119 +43,196 @@ export default function LoginPage() {
     };
 
     return (
-        <main className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4">
-            <div className="w-full max-w-md">
-                {/* Header */}
-                <div className="text-center mb-8">
-                    <Link href="/" className="inline-block mb-4">
-                        <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200">
-                            VolleySimulator
-                        </span>
-                    </Link>
-                    <h1 className="text-3xl font-black text-white">Giriş Yap</h1>
-                    <p className="text-slate-400 text-sm mt-2">Hesabına giriş yap ve tahminlerine devam et</p>
+        <main className="min-h-screen relative flex flex-col items-center justify-center p-4 overflow-hidden">
+            {/* Background with Modern Gradient & Pattern */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-[#0a0a1a] to-black -z-20"></div>
+            <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20 -z-10"></div>
+
+            {/* Ambient Light Effects */}
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-[128px] -z-10"></div>
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-[128px] -z-10"></div>
+
+            <div className="w-full max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
+
+                {/* Left Side: Brand & Features (Desktop) */}
+                <div className="hidden lg:block space-y-8 animate-fade-in-left">
+                    <div className="space-y-2">
+                        <Link href="/" className="inline-block">
+                            <span className="text-4xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400">
+                                VolleySimulator
+                            </span>
+                        </Link>
+                        <h2 className="text-2xl font-light text-slate-300">
+                            Voleybol Tutkunları İçin <br />
+                            <span className="font-semibold text-white">Yeni Nesil Simülasyon</span>
+                        </h2>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 p-4 rounded-2xl">
+                            <div className="text-3xl mb-2">🏆</div>
+                            <h3 className="font-bold text-white mb-1">Tahmin Oyunu</h3>
+                            <p className="text-sm text-slate-400">Maç skorlarını tahmin et, puanları topla ve liderliğe yüksel.</p>
+                        </div>
+                        <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 p-4 rounded-2xl">
+                            <div className="text-3xl mb-2">📊</div>
+                            <h3 className="font-bold text-white mb-1">Detaylı Analiz</h3>
+                            <p className="text-sm text-slate-400">Takım form durumları ve yapay zeka destekli maç analizleri.</p>
+                        </div>
+                        <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 p-4 rounded-2xl">
+                            <div className="text-3xl mb-2">⚡</div>
+                            <h3 className="font-bold text-white mb-1">Canlı Skor</h3>
+                            <p className="text-sm text-slate-400">Maç sonuçlarını anlık takip et, ligdeki gelişmeleri kaçırma.</p>
+                        </div>
+                        <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 p-4 rounded-2xl">
+                            <div className="text-3xl mb-2">🌍</div>
+                            <h3 className="font-bold text-white mb-1">Topluluk</h3>
+                            <p className="text-sm text-slate-400">Diğer voleybol severlerle yarış ve sıralamada yerini al.</p>
+                        </div>
+                    </div>
                 </div>
 
-                {/* Login Form */}
-                <form onSubmit={handleSubmit} className="bg-slate-900/80 rounded-2xl border border-slate-700 p-6 space-y-4">
-                    {error && (
-                        <div className="bg-rose-900/30 border border-rose-600/50 rounded-lg p-3 text-rose-400 text-sm">
-                            {error}
+                {/* Right Side: Login Card */}
+                <div className="w-full max-w-md mx-auto lg:ml-auto">
+                    <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 shadow-2xl rounded-3xl p-8 animate-fade-in-up">
+
+                        {/* Mobile Header (Visible only on mobile) */}
+                        <div className="text-center mb-8 lg:hidden">
+                            <Link href="/" className="inline-block mb-2">
+                                <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200">
+                                    VolleySimulator
+                                </span>
+                            </Link>
+                            <h1 className="text-2xl font-bold text-white">Hoş Geldiniz</h1>
                         </div>
-                    )}
 
-                    <div>
-                        <label className="block text-sm font-bold text-slate-300 mb-2">E-posta</label>
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
-                            placeholder="ornek@email.com"
-                            required
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-bold text-slate-300 mb-2">Şifre</label>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
-                            placeholder="••••••••"
-                            required
-                        />
-                    </div>
-
-                    <div className="flex items-center justify-between text-sm">
-                        <label className="flex items-center gap-2 text-slate-400 cursor-pointer">
-                            <input type="checkbox" className="w-4 h-4 rounded border-slate-600 bg-slate-800 text-emerald-500 focus:ring-emerald-500" />
-                            Beni hatırla
-                        </label>
-                        <a href="#" className="text-emerald-400 hover:text-emerald-300 transition-colors">
-                            Şifremi unuttum
-                        </a>
-                    </div>
-
-                    <button
-                        type="submit"
-                        disabled={isLoading}
-                        className="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                    >
-                        {isLoading ? (
-                            <>
-                                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                                Giriş yapılıyor...
-                            </>
-                        ) : (
-                            <>
-                                <span>🔐</span> Giriş Yap
-                            </>
-                        )}
-                    </button>
-
-                    {/* Divider */}
-                    <div className="relative my-6">
-                        <div className="absolute inset-0 flex items-center">
-                            <div className="w-full border-t border-slate-700"></div>
+                        <div className="text-center mb-6 hidden lg:block">
+                            <h1 className="text-2xl font-bold text-white">Giriş Yap</h1>
+                            <p className="text-slate-400 text-sm">Hesabınıza erişmek için bilgilerinizi girin</p>
                         </div>
-                        <div className="relative flex justify-center text-sm">
-                            <span className="px-4 bg-slate-900 text-slate-500">veya</span>
+
+                        {/* Login Form */}
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                            {error && (
+                                <div className="bg-rose-500/10 border border-rose-500/20 rounded-xl p-3 text-rose-400 text-sm text-center">
+                                    {error}
+                                </div>
+                            )}
+
+                            <div>
+                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">E-posta</label>
+                                <div className="relative group">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl opacity-0 group-focus-within:opacity-20 transition-opacity"></div>
+                                    <input
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className="w-full px-4 py-3 bg-slate-950/50 border border-slate-700 rounded-xl text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 transition-all relative z-10"
+                                        placeholder="ornek@email.com"
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div>
+                                <div className="flex items-center justify-between mb-2">
+                                    <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider">Şifre</label>
+                                    <a href="#" className="text-xs text-emerald-400 hover:text-emerald-300 transition-colors">
+                                        Unuttum?
+                                    </a>
+                                </div>
+                                <div className="relative group">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl opacity-0 group-focus-within:opacity-20 transition-opacity"></div>
+                                    <input
+                                        type="password"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        className="w-full px-4 py-3 bg-slate-950/50 border border-slate-700 rounded-xl text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 transition-all relative z-10"
+                                        placeholder="••••••••"
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <button
+                                type="submit"
+                                disabled={isLoading}
+                                className="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-2"
+                            >
+                                {isLoading ? (
+                                    <>
+                                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                    </>
+                                ) : (
+                                    <>
+                                        Giriş Yap
+                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        </svg>
+                                    </>
+                                )}
+                            </button>
+                        </form>
+
+                        <div className="relative my-8">
+                            <div className="absolute inset-0 flex items-center">
+                                <div className="w-full border-t border-slate-700/50"></div>
+                            </div>
+                            <div className="relative flex justify-center text-xs uppercase tracking-widest">
+                                <span className="px-4 bg-[#0a0f1e] text-slate-500 rounded-full">veya</span>
+                            </div>
+                        </div>
+
+                        <button
+                            type="button"
+                            onClick={handleGoogleLogin}
+                            className="w-full py-3 bg-white text-slate-900 font-bold rounded-xl hover:bg-slate-100 transition-all flex items-center justify-center gap-3"
+                        >
+                            <svg className="w-5 h-5" viewBox="0 0 24 24">
+                                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+                            </svg>
+                            Google ile devam et
+                        </button>
+
+                        <div className="mt-8 text-center text-sm">
+                            <span className="text-slate-400">Hesabın yok mu? </span>
+                            <Link href="/register" className="text-emerald-400 font-bold hover:text-emerald-300 transition-colors">
+                                Hemen Kayıt Ol
+                            </Link>
                         </div>
                     </div>
 
-                    {/* Social Login */}
-                    <button
-                        type="button"
-                        onClick={handleGoogleLogin}
-                        className="w-full py-3 bg-slate-800 border border-slate-700 text-slate-300 font-medium rounded-xl hover:bg-slate-700 transition-all flex items-center justify-center gap-2"
-                    >
-                        <svg className="w-5 h-5" viewBox="0 0 24 24">
-                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
-                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-                        </svg>
-                        Google ile Giriş Yap
-                    </button>
-                </form>
-
-                {/* Register Link */}
-                <p className="text-center mt-6 text-slate-400">
-                    Hesabın yok mu?{" "}
-                    <Link href="/register" className="text-emerald-400 font-bold hover:text-emerald-300 transition-colors">
-                        Kayıt Ol
-                    </Link>
-                </p>
-
-                {/* Skip Link */}
-                <p className="text-center mt-4">
-                    <Link href="/1lig/tahminoyunu" className="text-slate-500 text-sm hover:text-slate-300 transition-colors">
-                        Giriş yapmadan devam et →
-                    </Link>
-                </p>
+                    {/* Skip Link (Subtle) */}
+                    <div className="text-center mt-6">
+                        <Link href="/1lig/tahminoyunu" className="text-slate-500 text-xs hover:text-slate-300 transition-colors flex items-center justify-center gap-1 group">
+                            Giriş yapmadan siteye göz at
+                            <span className="group-hover:translate-x-1 transition-transform">→</span>
+                        </Link>
+                    </div>
+                </div>
             </div>
+
+            <style jsx>{`
+                @keyframes fade-in-up {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                @keyframes fade-in-left {
+                    from { opacity: 0; transform: translateX(-20px); }
+                    to { opacity: 1; transform: translateX(0); }
+                }
+                .animate-fade-in-up {
+                    animation: fade-in-up 0.6s ease-out forwards;
+                }
+                .animate-fade-in-left {
+                    animation: fade-in-left 0.6s ease-out forwards;
+                    animation-delay: 0.2s;
+                    opacity: 0;
+                }
+            `}</style>
         </main>
     );
 }
