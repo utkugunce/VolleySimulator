@@ -71,6 +71,96 @@ body {
 }
 
 /* ============================================================================
+   LIGHT THEME OVERRIDES - Force light colors on dark-themed Tailwind classes
+   ============================================================================ */
+
+/* Light theme - Main backgrounds */
+[data-theme="light"] .bg-slate-950,
+[data-theme="light"] .bg-slate-900,
+.light .bg-slate-950,
+.light .bg-slate-900 {
+  background-color: #f8fafc !important;
+}
+
+[data-theme="light"] .bg-slate-900\/95,
+.light .bg-slate-900\/95 {
+  background-color: rgba(248, 250, 252, 0.95) !important;
+}
+
+[data-theme="light"] .bg-slate-900\/80,
+.light .bg-slate-900\/80 {
+  background-color: rgba(248, 250, 252, 0.8) !important;
+}
+
+[data-theme="light"] .bg-slate-900\/50,
+[data-theme="light"] .bg-slate-900\/40,
+[data-theme="light"] .bg-slate-900\/30,
+.light .bg-slate-900\/50,
+.light .bg-slate-900\/40,
+.light .bg-slate-900\/30 {
+  background-color: rgba(241, 245, 249, 0.5) !important;
+}
+
+[data-theme="light"] .bg-slate-800,
+[data-theme="light"] .bg-slate-800\/50,
+.light .bg-slate-800,
+.light .bg-slate-800\/50 {
+  background-color: #e2e8f0 !important;
+}
+
+/* Light theme - Text colors */
+[data-theme="light"] .text-slate-100,
+[data-theme="light"] .text-slate-200,
+[data-theme="light"] .text-white,
+.light .text-slate-100,
+.light .text-slate-200,
+.light .text-white {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .text-slate-300,
+[data-theme="light"] .text-slate-400,
+.light .text-slate-300,
+.light .text-slate-400 {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .text-slate-500,
+[data-theme="light"] .text-slate-600,
+.light .text-slate-500,
+.light .text-slate-600 {
+  color: #64748b !important;
+}
+
+/* Light theme - Borders */
+[data-theme="light"] .border-slate-700,
+[data-theme="light"] .border-slate-800,
+.light .border-slate-700,
+.light .border-slate-800 {
+  border-color: #cbd5e1 !important;
+}
+
+/* Light theme - Bottom navigation */
+[data-theme="light"] nav.fixed.bottom-0,
+.light nav.fixed.bottom-0 {
+  background-color: rgba(248, 250, 252, 0.95) !important;
+  border-top-color: #e2e8f0 !important;
+}
+
+/* Light theme - Cards with gradient backgrounds */
+[data-theme="light"] .from-slate-900,
+.light .from-slate-900 {
+  --tw-gradient-from: #f1f5f9 !important;
+}
+
+[data-theme="light"] .to-slate-950,
+[data-theme="light"] .to-slate-900,
+.light .to-slate-950,
+.light .to-slate-900 {
+  --tw-gradient-to: #ffffff !important;
+}
+
+/* ============================================================================
    PREMIUM GRADIENT TEXT
    ============================================================================ */
 

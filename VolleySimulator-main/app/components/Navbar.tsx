@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useGameState, getLevelTitle, getXPForNextLevel } from "../utils/gameState";
@@ -67,62 +68,66 @@ export default function Navbar() {
                         </span>
                     </Link>
 
-                    {/* User Info or Login Button */}
-                    {!loading && (
-                        user ? (
-                            <div className="flex items-center gap-3">
-                                {/* Achievements Badge */}
-                                <div className="hidden sm:flex items-center gap-1 text-xs text-amber-400 bg-amber-500/20 px-2 py-1 rounded-full border border-amber-500/30">
-                                    <span>🏆</span>
-                                    <span className="font-bold">{gameState.achievements.length}</span>
-                                </div>
+                    {/* Theme Toggle + User Info or Login Button */}
+                    <div className="flex items-center gap-2">
+                        <ThemeToggle />
 
-                                {/* Level + XP Bar */}
-                                <div className="flex items-center gap-2">
-                                    <div className="hidden sm:block">
-                                        <div className="w-20 h-1.5 bg-slate-700 rounded-full overflow-hidden">
-                                            <div
-                                                className="h-full bg-gradient-to-r from-amber-400 to-orange-400 transition-all"
-                                                style={{ width: `${xpProgress}%` }}
-                                            />
-                                        </div>
+                        {!loading && (
+                            user ? (
+                                <div className="flex items-center gap-3">
+                                    {/* Achievements Badge */}
+                                    <div className="hidden sm:flex items-center gap-1 text-xs text-amber-400 bg-amber-500/20 px-2 py-1 rounded-full border border-amber-500/30">
+                                        <span>🏆</span>
+                                        <span className="font-bold">{gameState.achievements.length}</span>
                                     </div>
-                                    <span className="text-xs font-bold text-amber-400 bg-amber-500/20 px-2 py-0.5 rounded-full border border-amber-500/30">
-                                        Lv.{gameState.level}
-                                    </span>
-                                </div>
 
-                                {/* User Name */}
+                                    {/* Level + XP Bar */}
+                                    <div className="flex items-center gap-2">
+                                        <div className="hidden sm:block">
+                                            <div className="w-20 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                                                <div
+                                                    className="h-full bg-gradient-to-r from-amber-400 to-orange-400 transition-all"
+                                                    style={{ width: `${xpProgress}%` }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <span className="text-xs font-bold text-amber-400 bg-amber-500/20 px-2 py-0.5 rounded-full border border-amber-500/30">
+                                            Lv.{gameState.level}
+                                        </span>
+                                    </div>
+
+                                    {/* User Name */}
+                                    <Link
+                                        href="/profile"
+                                        className="flex items-center gap-2 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-sm font-medium rounded-lg transition-all"
+                                        prefetch={true}
+                                    >
+                                        <div className="w-6 h-6 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                                            {userName[0].toUpperCase()}
+                                        </div>
+                                        <span className="hidden md:inline max-w-[100px] truncate">{userName}</span>
+                                    </Link>
+
+                                    {/* Logout Button */}
+                                    <button
+                                        onClick={() => signOut()}
+                                        className="px-2 py-1.5 bg-slate-800 hover:bg-rose-900/50 border border-slate-700 hover:border-rose-600/50 text-slate-400 hover:text-rose-400 text-xs font-medium rounded-lg transition-all"
+                                        title="Çıkış Yap"
+                                    >
+                                        Çıkış
+                                    </button>
+                                </div>
+                            ) : (
                                 <Link
-                                    href="/profile"
-                                    className="flex items-center gap-2 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-sm font-medium rounded-lg transition-all"
+                                    href="/login"
+                                    className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-sm font-bold rounded-lg shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:scale-105 active:scale-95 transition-all duration-200"
                                     prefetch={true}
                                 >
-                                    <div className="w-6 h-6 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                                        {userName[0].toUpperCase()}
-                                    </div>
-                                    <span className="hidden md:inline max-w-[100px] truncate">{userName}</span>
+                                    <span>Giriş Yap</span>
                                 </Link>
-
-                                {/* Logout Button */}
-                                <button
-                                    onClick={() => signOut()}
-                                    className="px-2 py-1.5 bg-slate-800 hover:bg-rose-900/50 border border-slate-700 hover:border-rose-600/50 text-slate-400 hover:text-rose-400 text-xs font-medium rounded-lg transition-all"
-                                    title="Çıkış Yap"
-                                >
-                                    Çıkış
-                                </button>
-                            </div>
-                        ) : (
-                            <Link
-                                href="/login"
-                                className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-sm font-bold rounded-lg shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:scale-105 active:scale-95 transition-all duration-200"
-                                prefetch={true}
-                            >
-                                <span>Giriş Yap</span>
-                            </Link>
-                        )
-                    )}
+                            )
+                        )}
+                    </div>
                 </div>
             </nav>
 
