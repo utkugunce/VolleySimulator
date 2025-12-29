@@ -14,107 +14,141 @@ export default function LandingPage() {
   if (!mounted) return null;
 
   return (
-    <main className="min-h-screen bg-slate-950 text-white font-sans flex flex-col items-center justify-center p-4">
+    <main className="min-h-screen relative flex flex-col items-center justify-center p-4 overflow-hidden">
+      {/* Background with Modern Gradient & Pattern (Matches Login Page) */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-[#0a0a1a] to-black -z-20"></div>
+      <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20 -z-10"></div>
+
+      {/* Ambient Light Effects */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-[128px] -z-10"></div>
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-[128px] -z-10"></div>
+
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center relative overflow-hidden w-full max-w-4xl py-20 px-4">
-        {/* Background Effects */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-emerald-500/20 rounded-full blur-[80px] sm:blur-[100px] -z-0 pointer-events-none"></div>
-        <div className="absolute top-0 right-0 w-[200px] h-[200px] sm:w-[400px] sm:h-[400px] bg-indigo-500/10 rounded-full blur-[80px] sm:blur-[100px] -z-0 pointer-events-none"></div>
+      <section className="relative z-10 flex flex-col items-center text-center w-full max-w-5xl">
+        <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-bold tracking-widest uppercase mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+          ✨ 2025/2026 Sezonu Hazır
+        </div>
 
-        <div className="z-10 w-full space-y-8">
-          <div className="inline-block px-4 py-1.5 bg-slate-900/50 border border-slate-800 rounded-full text-xs font-bold text-emerald-400 mb-2 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            ✨ İnteraktif Voleybol Simülasyonu
-          </div>
+        <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-6 animate-in fade-in zoom-in-95 duration-700 delay-100">
+          <span className="block text-white">VOLEYBOL LİGİ</span>
+          <span className="block bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-teal-200 to-cyan-400">
+            KADERİ SEN YAZ
+          </span>
+        </h1>
 
-          <h1 className="text-5xl sm:text-8xl font-black tracking-tighter animate-in fade-in zoom-in-95 duration-700 delay-100 uppercase italic">
-            <span className="bg-clip-text text-transparent bg-gradient-to-br from-white via-slate-200 to-slate-500 block">Voleybol Ligi</span>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500">Kaderi Sen Yaz!</span>
-          </h1>
+        <p className="text-lg md:text-2xl text-slate-400 max-w-2xl mx-auto mb-10 font-light leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+          Gerçek fikstür üzerinden maçları tahmin et, puan durumunu anlık gör.
+          <span className="text-white font-medium"> Şampiyonluk</span> ve <span className="text-white font-medium">Küme Düşme</span> senaryolarını saniyeler içinde hesapla.
+        </p>
 
-          <p className="text-base sm:text-xl text-slate-400 max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 font-medium">
-            Oynanmamış maçlara skor gir, canlı puan tablosunu anlık izle.
-            Şampiyonluk ve küme düşme senaryolarını saniyeler içinde oluştur ve paylaş!
-          </p>
+        <div className="flex flex-col sm:flex-row gap-5 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+          <button
+            onClick={() => setShowModal(true)}
+            className="group relative px-8 py-4 bg-white text-slate-950 font-black text-lg rounded-2xl overflow-hidden hover:scale-105 transition-transform"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors">
+              HESAPLAMAYA BAŞLA
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+            </span>
+          </button>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-            <button
-              onClick={() => setShowModal(true)}
-              className="px-10 py-5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white rounded-2xl font-black text-xl shadow-2xl shadow-emerald-500/30 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-3 group border-b-4 border-emerald-800"
-            >
-              <span>HESAPLAMAYA BAŞLA</span>
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </button>
-          </div>
+          <Link href="/login" className="px-8 py-4 bg-slate-900/50 backdrop-blur-sm border border-slate-700 text-white font-bold text-lg rounded-2xl hover:bg-slate-800 transition-colors flex items-center gap-2">
+            <span>GİRİŞ YAP</span>
+          </Link>
         </div>
       </section>
 
-      {/* Feature Grid - Minimal */}
-      <section className="w-full max-w-7xl mx-auto py-12 px-4 grid grid-cols-1 md:grid-cols-3 gap-6 z-10 opacity-70">
-        <FeatureCard icon="⚡" title="Canlı Hesaplama" />
-        <FeatureCard icon="🎲" title="Senaryo Modu" />
-        <FeatureCard icon="💾" title="Kayıt & Paylaş" />
-      </section>
+      {/* Feature Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20 w-full max-w-5xl z-10 opacity-80">
+        <FeatureCard
+          icon="⚡"
+          title="Canlı Simülasyon"
+          desc="Maç skorlarını gir, puan tablosunun değişimini anında izle."
+        />
+        <FeatureCard
+          icon="🏆"
+          title="Play-Off Analizi"
+          desc="Sultanlar Ligi'ne kim çıkacak? Olasılıkları hesapla."
+        />
+        <FeatureCard
+          icon="📉"
+          title="Düşme Hattı"
+          desc="Ligden düşme ihtimali olan takımların kaderini belirle."
+        />
+      </div>
 
-      {/* League Selection Modal */}
+      {/* Glassmorphism Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md animate-in fade-in duration-300">
-          <div className="bg-slate-900 border border-slate-800 p-8 rounded-3xl shadow-2xl max-w-md w-full space-y-8 animate-in zoom-in-95 duration-300 relative">
-            <button
-              onClick={() => setShowModal(false)}
-              className="absolute top-4 right-4 text-slate-500 hover:text-white text-2xl transition-colors"
-            >
-              ✕
-            </button>
-            <div className="text-center space-y-2">
-              <h2 className="text-3xl font-black text-white italic uppercase tracking-tight">Hangi Lig?</h2>
-              <p className="text-slate-400 text-sm font-medium">Senaryo oluşturmak istediğiniz ligi seçin</p>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-lg animate-in fade-in duration-300">
+          <div
+            className="relative w-full max-w-xl bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-[2rem] p-8 shadow-2xl animate-in zoom-in-95 duration-300 overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Decorative gradients inside modal */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/20 rounded-full blur-[64px] -z-10"></div>
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-indigo-500/20 rounded-full blur-[64px] -z-10"></div>
+
+            <div className="flex justify-between items-start mb-8">
+              <div>
+                <h2 className="text-3xl font-black text-white mb-2">LİGİNİ SEÇ</h2>
+                <p className="text-slate-400">Hangi lig üzerinde tahmin yapmak istiyorsun?</p>
+              </div>
+              <button
+                onClick={() => setShowModal(false)}
+                className="p-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors text-slate-400 hover:text-white"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
             </div>
-            <div className="grid grid-cols-1 gap-4">
+
+            <div className="grid gap-4">
               <Link
                 href="/1lig/tahminoyunu"
-                className="group relative overflow-hidden p-6 bg-gradient-to-br from-indigo-600 to-blue-700 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98] border-b-4 border-indigo-900"
+                className="group relative p-6 bg-gradient-to-br from-indigo-900/50 to-slate-900/50 border border-indigo-500/30 hover:border-indigo-400 rounded-2xl transition-all hover:shadow-[0_0_30px_rgba(99,102,241,0.3)] hover:-translate-y-1"
               >
-                <div className="relative z-10 flex items-center justify-between">
-                  <div className="flex flex-col items-start">
-                    <span className="text-white/70 text-xs font-bold uppercase tracking-widest mb-1">KADINLAR</span>
-                    <span className="text-white text-3xl font-black italic uppercase">1. LİG</span>
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-col">
+                    <span className="text-emerald-400 text-xs font-bold tracking-widest uppercase mb-1">2025/2026</span>
+                    <span className="text-2xl font-black text-white group-hover:text-indigo-300 transition-colors">1. LİG KADINLAR</span>
                   </div>
-                  <span className="text-4xl group-hover:translate-x-2 transition-transform">🏐</span>
+                  <span className="text-4xl grayscale group-hover:grayscale-0 transition-all scale-90 group-hover:scale-110">🏐</span>
                 </div>
-                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </Link>
 
               <Link
                 href="/2lig/tahminoyunu"
-                className="group relative overflow-hidden p-6 bg-gradient-to-br from-emerald-600 to-teal-700 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98] border-b-4 border-emerald-900"
+                className="group relative p-6 bg-gradient-to-br from-emerald-900/50 to-slate-900/50 border border-emerald-500/30 hover:border-emerald-400 rounded-2xl transition-all hover:shadow-[0_0_30px_rgba(16,185,129,0.3)] hover:-translate-y-1"
               >
-                <div className="relative z-10 flex items-center justify-between">
-                  <div className="flex flex-col items-start">
-                    <span className="text-white/70 text-xs font-bold uppercase tracking-widest mb-1">KADINLAR</span>
-                    <span className="text-white text-3xl font-black italic uppercase">2. LİG</span>
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-col">
+                    <span className="text-teal-400 text-xs font-bold tracking-widest uppercase mb-1">2025/2026</span>
+                    <span className="text-2xl font-black text-white group-hover:text-emerald-300 transition-colors">2. LİG KADINLAR</span>
                   </div>
-                  <span className="text-4xl group-hover:translate-x-2 transition-transform">🏐</span>
+                  <span className="text-4xl grayscale group-hover:grayscale-0 transition-all scale-90 group-hover:scale-110">🏐</span>
                 </div>
-                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </Link>
             </div>
           </div>
+          {/* Click outside to close */}
+          <div className="absolute inset-0 z-[-1]" onClick={() => setShowModal(false)}></div>
         </div>
       )}
 
-      {/* Footer */}
-      <footer className="w-full mt-auto py-8 text-center text-slate-700 text-[10px] font-bold uppercase tracking-widest">
-        <p>© 2025 LigTahmin - İnteraktif Voleybol Simülasyonu</p>
+      {/* Simple Footer */}
+      <footer className="fixed bottom-4 text-center text-slate-600 text-[10px] font-bold uppercase tracking-widest mix-blend-plus-lighter">
+        VolleySimulator 2025
       </footer>
     </main>
   );
 }
 
-function FeatureCard({ icon, title }: { icon: string, title: string }) {
+function FeatureCard({ icon, title, desc }: { icon: string, title: string, desc: string }) {
   return (
-    <div className="p-4 bg-slate-900/30 border border-slate-800/50 rounded-xl flex items-center justify-center gap-3 grayscale hover:grayscale-0 transition-all cursor-default">
-      <span className="text-2xl">{icon}</span>
-      <h3 className="text-sm font-bold text-slate-300 uppercase italic tracking-tight">{title}</h3>
+    <div className="p-6 bg-slate-900/30 backdrop-blur-sm border border-white/5 rounded-2xl hover:bg-slate-900/50 transition-colors">
+      <div className="text-3xl mb-3">{icon}</div>
+      <h3 className="text-lg font-bold text-white mb-1">{title}</h3>
+      <p className="text-sm text-slate-400 leading-snug">{desc}</p>
     </div>
   );
 }
