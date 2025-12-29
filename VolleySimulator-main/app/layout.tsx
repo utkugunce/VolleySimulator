@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { ToastProvider } from "./components/Toast";
 import ScrollToTop from "./components/ScrollToTop";
@@ -75,6 +76,7 @@ export default function RootLayout({
           }}
         />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
