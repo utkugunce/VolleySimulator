@@ -122,6 +122,19 @@ export default function Navbar() {
                         <span className="text-[10px] font-bold relative z-10">Ligler</span>
                     </button>
 
+                    {/* Anasayfa */}
+                    <Link
+                        href={user ? "/1lig/anasayfa" : "/"}
+                        className={`flex flex-col items-center gap-0.5 px-6 py-2 rounded-lg transition-all ${pathname === '/' || pathname === '/1lig/anasayfa' || pathname === '/2lig/anasayfa'
+                            ? 'text-emerald-400 bg-emerald-500/10'
+                            : 'text-slate-400 hover:text-white'
+                            }`}
+                        prefetch={true}
+                    >
+                        <span className="text-xl">🏠</span>
+                        <span className="text-[10px] font-bold">Anasayfa</span>
+                    </Link>
+
                     {/* Profil */}
                     <Link
                         href={user ? "/profile" : "/login"}
