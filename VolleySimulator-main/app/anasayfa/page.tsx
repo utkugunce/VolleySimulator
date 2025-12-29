@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useGameState, getLevelTitle, getXPForNextLevel } from "../utils/gameState";
 import { LEVEL_THRESHOLDS } from "../types";
+import TutorialModal, { useTutorial } from "../components/TutorialModal";
 
 interface Team {
     name: string;
@@ -39,6 +40,7 @@ const sortStandings = (teams: Team[]): Team[] => {
 export default function AnasayfaPage() {
     const { user } = useAuth();
     const { gameState } = useGameState();
+    const { showTutorial, closeTutorial } = useTutorial();
 
     const [lig1Teams, setLig1Teams] = useState<Team[]>([]);
     const [lig1Matches, setLig1Matches] = useState<Match[]>([]);
@@ -263,6 +265,9 @@ export default function AnasayfaPage() {
                     </div>
                 </div>
             </div>
+
+            {/* Tutorial Modal */}
+            <TutorialModal isOpen={showTutorial} onClose={closeTutorial} />
         </div>
     );
 }

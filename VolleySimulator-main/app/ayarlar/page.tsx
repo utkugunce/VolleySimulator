@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useGameState } from "../utils/gameState";
 import { useToast } from "../components/Toast";
+import TutorialModal from "../components/TutorialModal";
 
 export default function AyarlarPage() {
     const { user } = useAuth();
@@ -12,6 +13,7 @@ export default function AyarlarPage() {
 
     const [theme, setTheme] = useState("dark");
     const [notifications, setNotifications] = useState(true);
+    const [showTutorial, setShowTutorial] = useState(false);
 
     const handleResetData = () => {
         if (confirm("Tüm oyun verileriniz (XP, seviye, başarımlar, tahminler) silinecek. Bu işlem geri alınamaz. Emin misiniz?")) {
@@ -141,6 +143,38 @@ export default function AyarlarPage() {
                     </div>
                 </div>
 
+                {/* Help Section */}
+                <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+                    <h2 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Yardım</h2>
+
+                    <div className="space-y-3">
+                        <button
+                            onClick={() => setShowTutorial(true)}
+                            className="w-full flex items-center justify-between p-3 bg-gradient-to-r from-emerald-900/30 to-emerald-800/10 hover:from-emerald-800/40 hover:to-emerald-700/20 border border-emerald-600/30 hover:border-emerald-500/50 rounded-lg transition-all group"
+                        >
+                            <div className="text-left">
+                                <div className="font-medium text-white group-hover:text-emerald-300">Uygulama Rehberi</div>
+                                <div className="text-xs text-slate-500">Nasıl kullanılacağını öğrenin</div>
+                            </div>
+                            <span className="text-emerald-400">İ</span>
+                        </button>
+
+                        <button
+                            onClick={() => {
+                                localStorage.removeItem('tutorialCompleted');
+                                setShowTutorial(true);
+                            }}
+                            className="w-full flex items-center justify-between p-3 bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors"
+                        >
+                            <div className="text-left">
+                                <div className="font-medium text-white">Rehberi Sıfırla</div>
+                                <div className="text-xs text-slate-500">Rehberi baştan göster</div>
+                            </div>
+                            <span className="text-cyan-400">↻</span>
+                        </button>
+                    </div>
+                </div>
+
                 {/* Account Info */}
                 <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
                     <h2 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Hesap</h2>
@@ -175,6 +209,9 @@ export default function AyarlarPage() {
                     <div className="text-slate-600 text-xs mt-1">© 2025 Tüm hakları saklıdır</div>
                 </div>
             </div>
+
+            {/* Tutorial Modal */}
+            <TutorialModal isOpen={showTutorial} onClose={() => setShowTutorial(false)} />
         </div>
     );
 }
