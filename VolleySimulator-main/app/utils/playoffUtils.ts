@@ -359,8 +359,8 @@ export function applyOverridesToTeams(
 
         const homeTeam = match.homeTeam;
         const awayTeam = match.awayTeam;
-        const hSets = parseInt(match.homeScore);
-        const aSets = parseInt(match.awayScore);
+        const hSets = Number(match.homeScore);
+        const aSets = Number(match.awayScore);
 
         if (!teamPoints[homeTeam] || !teamPoints[awayTeam]) return;
 
