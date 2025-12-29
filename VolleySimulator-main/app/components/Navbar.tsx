@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useGameState } from "../utils/gameState";
@@ -25,9 +26,14 @@ export default function Navbar() {
                 <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
                     {/* Brand + Level */}
                     <Link href="/" className="flex items-center gap-3 group p-1 h-full" prefetch={true}>
-                        <span className="text-lg md:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200">
-                            VolleySimulator
-                        </span>
+                        <Image
+                            src="/logo.png"
+                            alt="VolleySimulator Logo"
+                            width={160}
+                            height={40}
+                            className="h-8 md:h-10 w-auto object-contain"
+                            priority
+                        />
                         {!loading && user && (
                             <div className="flex items-center gap-2">
                                 <span className="text-xs font-bold text-amber-400 bg-amber-500/20 px-2 py-0.5 rounded-full border border-amber-500/30">
@@ -75,8 +81,8 @@ export default function Navbar() {
                     <Link
                         href="/"
                         className={`flex flex-col items-center gap-0.5 px-6 py-2 rounded-lg transition-all ${pathname === '/'
-                                ? 'text-emerald-400 bg-emerald-500/10'
-                                : 'text-slate-400 hover:text-white'
+                            ? 'text-emerald-400 bg-emerald-500/10'
+                            : 'text-slate-400 hover:text-white'
                             }`}
                         prefetch={true}
                     >
@@ -88,8 +94,8 @@ export default function Navbar() {
                     <button
                         onClick={() => setShowLeagueModal(true)}
                         className={`flex flex-col items-center gap-0.5 px-6 py-2 rounded-lg transition-all ${isInLeague
-                                ? 'text-indigo-400 bg-indigo-500/10'
-                                : 'text-slate-400 hover:text-white'
+                            ? 'text-indigo-400 bg-indigo-500/10'
+                            : 'text-slate-400 hover:text-white'
                             }`}
                     >
                         <span className="text-xl">🏐</span>
@@ -100,8 +106,8 @@ export default function Navbar() {
                     <Link
                         href={user ? "/profile" : "/login"}
                         className={`flex flex-col items-center gap-0.5 px-6 py-2 rounded-lg transition-all ${pathname === '/profile' || pathname === '/login'
-                                ? 'text-amber-400 bg-amber-500/10'
-                                : 'text-slate-400 hover:text-white'
+                            ? 'text-amber-400 bg-amber-500/10'
+                            : 'text-slate-400 hover:text-white'
                             }`}
                         prefetch={true}
                     >

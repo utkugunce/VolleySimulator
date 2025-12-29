@@ -25,6 +25,10 @@ export const metadata: Metadata = {
   title: "VolleySimulator",
   description: "Voleybol simülasyon ve tahmin platformu",
   manifest: "/manifest.json",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
