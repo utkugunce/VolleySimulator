@@ -28,6 +28,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         supabase.auth.getSession().then(({ data: { session } }) => {
             setSession(session);
             setUser(session?.user ?? null);
+        }).catch((err) => {
+            console.warn("Auth check failed:", err);
+            // Non-critical error, just proceed as logged-out
+        }).finally(() => {
             setLoading(false);
         });
 
