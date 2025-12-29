@@ -197,44 +197,104 @@ export default function Navbar() {
             {/* League Selection Modal */}
             {showLeagueModal && (
                 <div
-                    className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-end justify-center"
+                    className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-md flex items-center justify-center p-4"
                     onClick={() => setShowLeagueModal(false)}
                 >
                     <div
-                        className="bg-slate-900 border-t border-slate-800 rounded-t-3xl w-full max-w-lg p-6 pb-8 animate-slide-up"
+                        className="bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-700/50 rounded-3xl w-full max-w-md shadow-2xl shadow-black/50 animate-scale-in overflow-hidden"
                         onClick={e => e.stopPropagation()}
                     >
-                        <div className="w-12 h-1 bg-slate-700 rounded-full mx-auto mb-6"></div>
-                        <h2 className="text-lg font-bold text-center text-white mb-6">Lig Seçin</h2>
-
-                        <div className="grid grid-cols-2 gap-4">
-                            <Link
-                                href={getLeagueUrl('1lig')}
-                                onClick={() => setShowLeagueModal(false)}
-                                className="bg-gradient-to-br from-amber-600 to-orange-700 rounded-2xl p-6 text-center shadow-xl shadow-amber-500/20 hover:shadow-amber-500/40 hover:scale-105 active:scale-95 transition-all duration-200 card-shine"
-                            >
-                                <div className="text-4xl mb-3 animate-float-slow">🥇</div>
-                                <div className="font-bold text-white text-lg">1. Lig</div>
-                                <div className="text-xs text-white/60 mt-1">Kadınlar</div>
-                            </Link>
-
-                            <Link
-                                href={getLeagueUrl('2lig')}
-                                onClick={() => setShowLeagueModal(false)}
-                                className="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-2xl p-6 text-center shadow-xl shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:scale-105 active:scale-95 transition-all duration-200 card-shine"
-                            >
-                                <div className="text-4xl mb-3 animate-float-slow delay-500">🥈</div>
-                                <div className="font-bold text-white text-lg">2. Lig</div>
-                                <div className="text-xs text-white/60 mt-1">Kadınlar</div>
-                            </Link>
+                        {/* Header */}
+                        <div className="bg-gradient-to-r from-emerald-600/20 via-transparent to-amber-600/20 p-6 border-b border-slate-800">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <h2 className="text-xl font-bold text-white">Lig Seçin</h2>
+                                    <p className="text-xs text-slate-400 mt-1">Takip etmek istediğiniz ligi seçin</p>
+                                </div>
+                                <button
+                                    onClick={() => setShowLeagueModal(false)}
+                                    className="w-8 h-8 bg-slate-800 hover:bg-slate-700 rounded-full flex items-center justify-center text-slate-400 hover:text-white transition-colors"
+                                >
+                                    ✕
+                                </button>
+                            </div>
                         </div>
 
-                        <button
-                            onClick={() => setShowLeagueModal(false)}
-                            className="w-full mt-4 py-3 text-slate-400 text-sm font-medium"
-                        >
-                            İptal
-                        </button>
+                        {/* Content */}
+                        <div className="p-4 max-h-[60vh] overflow-y-auto">
+                            {/* Turkey Section */}
+                            <div className="mb-4">
+                                <div className="flex items-center gap-2 mb-3 px-1">
+                                    <span className="text-2xl">🇹🇷</span>
+                                    <span className="text-sm font-bold text-slate-300 uppercase tracking-wider">Türkiye</span>
+                                    <div className="flex-1 h-px bg-gradient-to-r from-slate-700 to-transparent"></div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    {/* 1. Lig */}
+                                    <Link
+                                        href={getLeagueUrl('1lig')}
+                                        onClick={() => setShowLeagueModal(false)}
+                                        className="group flex items-center gap-4 p-4 bg-gradient-to-r from-amber-900/30 to-amber-800/10 hover:from-amber-800/40 hover:to-amber-700/20 rounded-2xl border border-amber-600/30 hover:border-amber-500/50 transition-all duration-300"
+                                    >
+                                        <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30 group-hover:scale-110 transition-transform">
+                                            <span className="text-2xl">🥇</span>
+                                        </div>
+                                        <div className="flex-1">
+                                            <div className="font-bold text-white group-hover:text-amber-300 transition-colors">Arabica Coffee House 1. Lig</div>
+                                            <div className="text-xs text-amber-400/70">Kadınlar Voleybol • 2024-25</div>
+                                        </div>
+                                        <div className="text-amber-500/50 group-hover:text-amber-400 group-hover:translate-x-1 transition-all">→</div>
+                                    </Link>
+
+                                    {/* 2. Lig */}
+                                    <Link
+                                        href={getLeagueUrl('2lig')}
+                                        onClick={() => setShowLeagueModal(false)}
+                                        className="group flex items-center gap-4 p-4 bg-gradient-to-r from-emerald-900/30 to-emerald-800/10 hover:from-emerald-800/40 hover:to-emerald-700/20 rounded-2xl border border-emerald-600/30 hover:border-emerald-500/50 transition-all duration-300"
+                                    >
+                                        <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform">
+                                            <span className="text-2xl">🥈</span>
+                                        </div>
+                                        <div className="flex-1">
+                                            <div className="font-bold text-white group-hover:text-emerald-300 transition-colors">Kadınlar 2. Lig</div>
+                                            <div className="text-xs text-emerald-400/70">Kadınlar Voleybol • 2024-25</div>
+                                        </div>
+                                        <div className="text-emerald-500/50 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all">→</div>
+                                    </Link>
+                                </div>
+                            </div>
+
+                            {/* Coming Soon Section */}
+                            <div className="mt-6 pt-4 border-t border-slate-800">
+                                <div className="flex items-center gap-2 mb-3 px-1">
+                                    <span className="text-lg">🌍</span>
+                                    <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">Yakında Eklenecek</span>
+                                </div>
+
+                                <div className="grid grid-cols-3 gap-2">
+                                    <div className="flex flex-col items-center gap-1 p-3 bg-slate-800/30 rounded-xl opacity-50">
+                                        <span className="text-xl grayscale">🇮🇹</span>
+                                        <span className="text-[10px] text-slate-500">İtalya</span>
+                                    </div>
+                                    <div className="flex flex-col items-center gap-1 p-3 bg-slate-800/30 rounded-xl opacity-50">
+                                        <span className="text-xl grayscale">🇵🇱</span>
+                                        <span className="text-[10px] text-slate-500">Polonya</span>
+                                    </div>
+                                    <div className="flex flex-col items-center gap-1 p-3 bg-slate-800/30 rounded-xl opacity-50">
+                                        <span className="text-xl grayscale">🇧🇷</span>
+                                        <span className="text-[10px] text-slate-500">Brezilya</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Footer */}
+                        <div className="p-4 border-t border-slate-800 bg-slate-900/50">
+                            <p className="text-center text-xs text-slate-500">
+                                Daha fazla lig için takipte kalın!
+                            </p>
+                        </div>
                     </div>
                 </div>
             )}
@@ -252,6 +312,19 @@ export default function Navbar() {
                 }
                 .animate-slide-up {
                     animation: slide-up 0.3s ease-out forwards;
+                }
+                @keyframes scale-in {
+                    from {
+                        transform: scale(0.9);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: scale(1);
+                        opacity: 1;
+                    }
+                }
+                .animate-scale-in {
+                    animation: scale-in 0.25s ease-out forwards;
                 }
             `}</style>
         </>
