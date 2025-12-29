@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import Logo from "./Logo";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useGameState } from "../utils/gameState";
@@ -38,27 +39,16 @@ export default function Navbar() {
                 }`}>
                 <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
                     {/* Brand + Level */}
-                    <Link href="/" className="flex items-center gap-3 group p-1 h-full" prefetch={true}>
-                        <Image
-                            src="/logo.png"
-                            alt="VolleySimulator Logo"
-                            width={160}
-                            height={40}
-                            className="h-8 md:h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
-                            priority
-                        />
+                    <Link href="/" className="flex items-center gap-2 group p-1 h-full" prefetch={true}>
+                        <Logo size="md" className="group-hover:scale-110 transition-transform duration-300" />
+                        <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400">
+                            VolleySimulator
+                        </span>
                         {!loading && user && (
-                            <div className="flex items-center gap-2">
-                                <span className="text-xs font-bold text-amber-400 bg-amber-500/20 px-2 py-0.5 rounded-full border border-amber-500/30 animate-pulse">
+                            <div className="flex items-center gap-2 ml-1">
+                                <span className="text-[10px] font-bold text-amber-400 bg-amber-500/20 px-2 py-0.5 rounded-full border border-amber-500/30">
                                     Lv.{gameState.level}
                                 </span>
-                                <div className="w-16 h-1.5 bg-slate-800 rounded-full overflow-hidden hidden sm:block relative">
-                                    <div
-                                        className="h-full bg-gradient-to-r from-amber-500 to-orange-500 transition-all duration-500 ease-out"
-                                        style={{ width: `${xpProgress}%` }}
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
-                                </div>
                             </div>
                         )}
                     </Link>
