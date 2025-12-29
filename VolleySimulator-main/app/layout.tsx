@@ -28,8 +28,8 @@ export const metadata: Metadata = {
   description: "Voleybol simülasyon ve tahmin platformu",
   manifest: "/manifest.json",
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
+    icon: "/favicon.svg",
+    apple: "/favicon.svg",
   },
   appleWebApp: {
     capable: true,
