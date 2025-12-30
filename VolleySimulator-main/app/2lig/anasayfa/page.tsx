@@ -122,7 +122,7 @@ export default function Lig2Anasayfa() {
                         <h3 className="font-bold text-white flex items-center gap-2">
                             <span className="text-emerald-400">📊</span> Puan Durumu
                         </h3>
-                        <Link href="/2lig/groups" className="text-xs text-emerald-400 hover:underline">
+                        <Link href="/2lig/gunceldurum" className="text-xs text-emerald-400 hover:underline">
                             Tümünü Gör →
                         </Link>
                     </div>
@@ -170,7 +170,7 @@ export default function Lig2Anasayfa() {
                 {/* Other Actions */}
                 <div className="grid grid-cols-2 gap-3">
                     <Link
-                        href="/2lig/groups"
+                        href="/2lig/gunceldurum"
                         className="bg-slate-900 border border-slate-800 rounded-xl p-4 text-center hover:border-slate-600 transition-all"
                     >
                         <div className="text-2xl mb-2">📋</div>

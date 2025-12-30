@@ -163,7 +163,7 @@ export default function AnasayfaPage() {
                         <h2 className="font-bold text-white flex items-center gap-2">
                             <span>🥇</span> Arabica Coffee House 1. Lig
                         </h2>
-                        <Link href="/1lig/groups" className="text-xs text-white/80 hover:text-white">
+                        <Link href="/1lig/gunceldurum" className="text-xs text-white/80 hover:text-white">
                             Tümünü Gör →
                         </Link>
                     </div>
@@ -207,7 +207,7 @@ export default function AnasayfaPage() {
                         <h2 className="font-bold text-white flex items-center gap-2">
                             <span>🥈</span> Kadınlar 2. Lig
                         </h2>
-                        <Link href="/2lig/groups" className="text-xs text-white/80 hover:text-white">
+                        <Link href="/2lig/gunceldurum" className="text-xs text-white/80 hover:text-white">
                             Tümünü Gör →
                         </Link>
                     </div>

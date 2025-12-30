@@ -59,7 +59,7 @@ export default function PageHeader({
                     <span className="hidden sm:inline">Tahmin Oyunu</span>
                 </Link>
 
-                <Link href={`${leaguePrefix}/groups`} className={getLinkClass(`${leaguePrefix}/groups`)}>
+                <Link href={`${leaguePrefix}/gunceldurum`} className={getLinkClass(`${leaguePrefix}/gunceldurum`)}>
                     <span className="hidden sm:inline">Güncel Durum</span>
                 </Link>
 
