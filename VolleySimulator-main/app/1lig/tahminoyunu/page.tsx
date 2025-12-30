@@ -363,7 +363,7 @@ function CalculatorContent() {
                             <StandingsTable
                                 teams={liveStandings}
                                 playoffSpots={4}
-                                relegationSpots={activeGroup === 'B' ? 2 : 0}
+                                relegationSpots={activeGroup.includes('B') ? 2 : 0}
                                 initialRanks={initialRanks}
                                 compact={true}
                             />
@@ -378,7 +378,7 @@ function CalculatorContent() {
                             onScoreChange={handleScoreChange}
                             teamRanks={currentRanks}
                             totalTeams={activeTeams.length}
-                            relegationSpots={activeGroup === 'B' ? 2 : 0}
+                            relegationSpots={activeGroup.includes('B') ? 2 : 0}
                         />
                     </div>
 

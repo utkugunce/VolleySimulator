@@ -56,13 +56,26 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
         return null;
     };
 
-    // Parse date from DD.MM.YYYY format
+    // Parse date from DD.MM.YYYY or YYYY-MM-DD format
     const parseDate = (dateStr: string | undefined): Date | null => {
         if (!dateStr) return null;
-        const parts = dateStr.split('.');
-        if (parts.length === 3) {
-            return new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
+
+        // Try DD.MM.YYYY
+        if (dateStr.includes('.')) {
+            const parts = dateStr.split('.');
+            if (parts.length === 3) {
+                return new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
+            }
         }
+
+        // Try YYYY-MM-DD
+        if (dateStr.includes('-')) {
+            const parts = dateStr.split('-');
+            if (parts.length === 3) {
+                return new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+            }
+        }
+
         return null;
     };
 
@@ -94,12 +107,19 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
     // Format date for display with day name
     const formatDateDisplay = (dateStr: string): string => {
         if (dateStr === 'Tarih Belirtilmemiş') return dateStr;
-        const parts = dateStr.split('.');
-        if (parts.length !== 3) return dateStr;
+
+        const date = parseDate(dateStr);
+        if (!date) return dateStr;
+
         const days = ['PAZAR', 'PAZARTESİ', 'SALI', 'ÇARŞAMBA', 'PERŞEMBE', 'CUMA', 'CUMARTESİ'];
-        const date = new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
         const dayName = days[date.getDay()];
-        return `${parts[0]}/${parts[1]}/${parts[2]} ${dayName}`;
+
+        // Format as DD/MM/YYYY
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+
+        return `${day}/${month}/${year} ${dayName}`;
     };
 
     return (
