@@ -8,6 +8,7 @@ import StandingsTable from "../../components/Calculator/StandingsTable";
 import FixtureList from "../../components/Calculator/FixtureList";
 import ShareButton from "../../components/ShareButton";
 import { calculateLiveStandings } from "../../utils/calculatorUtils";
+import { calculateElo } from "../../utils/eloCalculator";
 import { useGameState, ACHIEVEMENTS } from "../../utils/gameState";
 import { sounds } from "../../utils/sounds";
 
@@ -198,6 +199,76 @@ function CalculatorContent() {
         e.target.value = '';
     }
 
+    // Auto Simulation Logic
+    const handleSimulateSmart = () => {
+        if (!confirm("Oynanmamış tüm maçlar güncel güç dengelerine göre otomatik doldurulacak. Onaylıyor musunuz?")) return;
+
+        const newOverrides = { ...overrides };
+        let count = 0;
+
+        // Calculate Elo ratings based on played matches
+        const eloRatings = calculateElo(allTeams, allMatches.filter(m => m.isPlayed));
+
+        allMatches.forEach(match => {
+            // Skip if played or already overridden
+            if (match.isPlayed || newOverrides[`${match.homeTeam}-${match.awayTeam}`]) return;
+
+            const homeElo = eloRatings.get(match.homeTeam) || 1200;
+            const awayElo = eloRatings.get(match.awayTeam) || 1200;
+
+            // Expected win probability for home team
+            // 1 / (1 + 10 ^ ((Rb - Ra) / 400))
+            const winProb = 1 / (1 + Math.pow(10, (awayElo - homeElo) / 400));
+
+            // Determine score based on win probability
+            let score = "0-0";
+            if (winProb > 0.65) score = "3-0";
+            else if (winProb > 0.55) score = "3-1";
+            else if (winProb > 0.50) score = "3-2";
+            else if (winProb > 0.45) score = "2-3";
+            else if (winProb > 0.35) score = "1-3";
+            else score = "0-3";
+
+            newOverrides[`${match.homeTeam}-${match.awayTeam}`] = score;
+            count++;
+        });
+
+        setOverrides(newOverrides);
+        if (count > 0) {
+            sounds.levelUp(); // Fun sound for mass update
+            showToast(`${count} maç güç dengelerine göre tahmin edildi! 🧠`, "success");
+            addXP(count * 2); // Reduced XP for auto-fill to encourage manual play
+        } else {
+            showToast("Doldurulacak maç bulunamadı.", "info");
+        }
+    };
+
+    const handleSimulateRandom = () => {
+        if (!confirm("Oynanmamış tüm maçlar RASTGELE skorlarla doldurulacak. Onaylıyor musunuz?")) return;
+
+        const newOverrides = { ...overrides };
+        let count = 0;
+        const scores = ["3-0", "3-1", "3-2", "2-3", "1-3", "0-3"];
+
+        allMatches.forEach(match => {
+            if (match.isPlayed || newOverrides[`${match.homeTeam}-${match.awayTeam}`]) return;
+
+            // Pick completely random score
+            const randomScore = scores[Math.floor(Math.random() * scores.length)];
+            newOverrides[`${match.homeTeam}-${match.awayTeam}`] = randomScore;
+            count++;
+        });
+
+        setOverrides(newOverrides);
+        if (count > 0) {
+            sounds.levelUp();
+            showToast(`${count} maç rastgele tahmin edildi! 🎲`, "success");
+            addXP(count * 2);
+        } else {
+            showToast("Doldurulacak maç bulunamadı.", "info");
+        }
+    };
+
     if (loading) {
         return (
             <div className="h-[calc(100vh-64px)] flex items-center justify-center text-slate-400">
@@ -221,6 +292,37 @@ function CalculatorContent() {
                     <div className="flex items-center gap-2 w-full sm:w-auto overflow-x-auto no-scrollbar pb-1 sm:pb-0 justify-end">
                         {/* Import/Export buttons */}
                         <div className="flex items-center gap-2 shrink-0">
+                            {/* Auto Simulate Dropdown */}
+                            <div className="relative group">
+                                <button className="px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-1 shadow-lg shadow-amber-500/20">
+                                    <span>⚡</span>
+                                    <span className="hidden sm:inline">Otomatik</span>
+                                    <span className="text-[8px] ml-0.5">▼</span>
+                                </button>
+                                <div className="absolute top-full right-0 mt-2 w-48 bg-slate-900 border border-slate-700 rounded-xl shadow-xl overflow-hidden hidden group-hover:block z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                                    <button
+                                        onClick={handleSimulateSmart}
+                                        className="w-full text-left px-4 py-3 hover:bg-slate-800 transition-colors flex items-center gap-3 border-b border-slate-800"
+                                    >
+                                        <div className="w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-lg">🧠</div>
+                                        <div>
+                                            <div className="text-xs font-bold text-white">Güç Dengelerine Göre</div>
+                                            <div className="text-[9px] text-slate-400">Takım güçlerine göre gerçekçi tahmin</div>
+                                        </div>
+                                    </button>
+                                    <button
+                                        onClick={handleSimulateRandom}
+                                        className="w-full text-left px-4 py-3 hover:bg-slate-800 transition-colors flex items-center gap-3"
+                                    >
+                                        <div className="w-8 h-8 rounded-full bg-fuchsia-500/20 text-fuchsia-400 flex items-center justify-center text-lg">🎲</div>
+                                        <div>
+                                            <div className="text-xs font-bold text-white">Rastgele Dağıt</div>
+                                            <div className="text-[9px] text-slate-400">Tamamen şansa dayalı sonuçlar</div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
                             <input
                                 type="file"
                                 accept=".json"
