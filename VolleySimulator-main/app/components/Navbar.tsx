@@ -32,7 +32,7 @@ export default function Navbar() {
     const required = nextLevelXP - currentLevelXP;
     const xpProgress = Math.min((progress / required) * 100, 100);
 
-    const isInLeague = pathname?.startsWith('/1lig') || pathname?.startsWith('/2lig') || pathname?.startsWith('/vsl');
+    const isInLeague = pathname?.startsWith('/1lig') || pathname?.startsWith('/2lig') || pathname?.startsWith('/vsl') || pathname?.startsWith('/cev-cl');
     const isAnasayfa = pathname === '/' || pathname === '/anasayfa';
     const isAyarlar = pathname === '/ayarlar';
     const isProfile = pathname === '/profile' || pathname === '/login' || pathname === '/register';
@@ -283,6 +283,33 @@ export default function Navbar() {
                                             <div className="text-xs text-emerald-400/70">Kadınlar Voleybol • 2025-26</div>
                                         </div>
                                         <div className="text-emerald-500/50 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all">→</div>
+                                    </Link>
+                                </div>
+                            </div>
+
+                            {/* Europe Section */}
+                            <div className="mt-6 pt-4 border-t border-slate-800">
+                                <div className="flex items-center gap-2 mb-3 px-1">
+                                    <span className="text-2xl">🇪🇺</span>
+                                    <span className="text-sm font-bold text-slate-300 uppercase tracking-wider">Avrupa</span>
+                                    <div className="flex-1 h-px bg-gradient-to-r from-slate-700 to-transparent"></div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    {/* CEV Champions League */}
+                                    <Link
+                                        href="/cev-cl/anasayfa"
+                                        onClick={() => setShowLeagueModal(false)}
+                                        className="group flex items-center gap-4 p-4 bg-gradient-to-r from-blue-900/30 to-indigo-800/10 hover:from-blue-800/40 hover:to-indigo-700/20 rounded-2xl border border-blue-600/30 hover:border-blue-500/50 transition-all duration-300"
+                                    >
+                                        <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform">
+                                            <span className="text-2xl">⭐</span>
+                                        </div>
+                                        <div className="flex-1">
+                                            <div className="font-bold text-white group-hover:text-blue-300 transition-colors">CEV Şampiyonlar Ligi</div>
+                                            <div className="text-xs text-blue-400/70">Kadınlar • Grup Aşaması 2025-26</div>
+                                        </div>
+                                        <div className="text-blue-500/50 group-hover:text-blue-400 group-hover:translate-x-1 transition-all">→</div>
                                     </Link>
                                 </div>
                             </div>
