@@ -144,6 +144,7 @@ export default function VSLDetailedPage() {
                                 <StandingsTable
                                     teams={teams}
                                     playoffSpots={4}
+                                    secondaryPlayoffSpots={4}
                                     relegationSpots={2}
                                     compact={true}
                                 />

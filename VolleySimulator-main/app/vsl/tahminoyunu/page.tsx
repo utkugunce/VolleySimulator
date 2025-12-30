@@ -281,6 +281,7 @@ function CalculatorContent() {
                             <StandingsTable
                                 teams={liveStandings}
                                 playoffSpots={4}
+                                secondaryPlayoffSpots={4}
                                 relegationSpots={2}
                                 initialRanks={initialRanks}
                                 compact={true}

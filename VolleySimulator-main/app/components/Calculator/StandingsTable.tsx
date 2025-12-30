@@ -4,6 +4,7 @@ import { TeamDiff } from "../../utils/scenarioUtils";
 interface StandingsTableProps {
     teams: TeamStats[];
     playoffSpots?: number;
+    secondaryPlayoffSpots?: number; // For 5-8 playoff zone (VSL)
     relegationSpots?: number;
     initialRanks?: Map<string, number>; // For showing rank changes
     compact?: boolean;
@@ -14,6 +15,7 @@ interface StandingsTableProps {
 export default function StandingsTable({
     teams,
     playoffSpots = 2,
+    secondaryPlayoffSpots = 0,
     relegationSpots = 2,
     initialRanks,
     compact = false,
@@ -49,11 +51,17 @@ export default function StandingsTable({
 
             {/* Legend - Only show if not compact, or show simplified */}
             {!compact && (
-                <div className="px-4 py-2 bg-slate-900/50 border-b border-slate-800 flex gap-4 text-[10px]">
+                <div className="px-4 py-2 bg-slate-900/50 border-b border-slate-800 flex gap-4 text-[10px] flex-wrap">
                     <div className="flex items-center gap-1">
                         <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
                         <span className="text-slate-400">Play-off (İlk {playoffSpots})</span>
                     </div>
+                    {secondaryPlayoffSpots > 0 && (
+                        <div className="flex items-center gap-1">
+                            <span className="w-3 h-3 rounded-full bg-amber-500"></span>
+                            <span className="text-slate-400">5-8 Play-off ({playoffSpots + 1}-{playoffSpots + secondaryPlayoffSpots})</span>
+                        </div>
+                    )}
                     <div className="flex items-center gap-1">
                         <span className="w-3 h-3 rounded-full bg-rose-500"></span>
                         <span className="text-slate-400">Küme Düşme (Son {relegationSpots})</span>
@@ -80,6 +88,7 @@ export default function StandingsTable({
                             const currentRank = idx + 1;
                             const isChampion = idx === 0;
                             const isPlayoff = idx < playoffSpots;
+                            const isSecondaryPlayoff = secondaryPlayoffSpots > 0 && idx >= playoffSpots && idx < playoffSpots + secondaryPlayoffSpots;
                             const isRelegation = idx >= teams.length - relegationSpots;
                             const losses = team.played - team.wins;
 
@@ -113,13 +122,14 @@ export default function StandingsTable({
                             }
 
                             return (
-                                <tr key={team.name} className={`hover:bg-slate-800/30 transition-colors ${isChampion ? 'bg-gradient-to-r from-amber-900/30 to-amber-800/20' : isPlayoff ? 'bg-emerald-900/15' : isRelegation ? 'bg-rose-900/15' : ''}`}>
+                                <tr key={team.name} className={`hover:bg-slate-800/30 transition-colors ${isChampion ? 'bg-gradient-to-r from-amber-900/30 to-amber-800/20' : isPlayoff ? 'bg-emerald-900/15' : isSecondaryPlayoff ? 'bg-amber-900/15' : isRelegation ? 'bg-rose-900/15' : ''}`}>
                                     <td className={`${rowClass} text-center font-mono`}>
                                         <div className="flex items-center justify-center gap-0.5">
                                             <div className={`${rankSize} flex items-center justify-center rounded-full font-bold ${isChampion ? 'bg-gradient-to-b from-amber-400 to-amber-600 text-white shadow-amber-500/50 shadow-lg' :
                                                 isPlayoff ? 'bg-emerald-500 text-white shadow-emerald-500/30 shadow-lg' :
-                                                    isRelegation ? 'bg-rose-500 text-white shadow-rose-500/30 shadow-lg' :
-                                                        'bg-slate-800 text-slate-400'
+                                                    isSecondaryPlayoff ? 'bg-amber-500 text-white shadow-amber-500/30 shadow-lg' :
+                                                        isRelegation ? 'bg-rose-500 text-white shadow-rose-500/30 shadow-lg' :
+                                                            'bg-slate-800 text-slate-400'
                                                 }`}>
                                                 {isChampion ? '👑' : currentRank}
                                             </div>
@@ -127,7 +137,7 @@ export default function StandingsTable({
                                         </div>
                                     </td>
                                     <td className={`${rowClass} font-medium`}>
-                                        <span className={`block ${isPlayoff ? 'text-emerald-300' : isRelegation ? 'text-rose-300' : 'text-slate-300'}`}>{team.name}</span>
+                                        <span className={`block ${isPlayoff ? 'text-emerald-300' : isSecondaryPlayoff ? 'text-amber-300' : isRelegation ? 'text-rose-300' : 'text-slate-300'}`}>{team.name}</span>
                                     </td>
                                     <td className={`${rowClass} text-center text-slate-400`}>{team.played}</td>
                                     <td className={`${rowClass} text-center text-emerald-400 font-medium`}>{team.wins}</td>
