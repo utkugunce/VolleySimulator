@@ -314,15 +314,10 @@ function CalculatorContent() {
                         <select
                             value={activeGroup}
                             onChange={(e) => setSelectedGroup(e.target.value)}
-                            className="px-3 py-1.5 bg-emerald-600 text-white text-xs font-bold rounded-lg border-0 outline-none cursor-pointer appearance-none pr-8 relative"
-                            style={{
-                                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
-                                backgroundRepeat: 'no-repeat',
-                                backgroundPosition: 'right 8px center'
-                            }}
+                            className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-lg border border-slate-700 hover:border-slate-600 outline-none cursor-pointer transition-all focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500"
                         >
                             {groups.map(groupName => (
-                                <option key={groupName} value={groupName} className="bg-slate-900 text-white">
+                                <option key={groupName} value={groupName} className="bg-slate-900 text-white py-2">
                                     {groupName}
                                 </option>
                             ))}
