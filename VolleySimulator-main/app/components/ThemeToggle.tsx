@@ -42,8 +42,8 @@ export default function ThemeToggle() {
         <button
             onClick={toggleTheme}
             className={`p-2 rounded-lg transition-all duration-300 ${theme === 'dark'
-                    ? 'bg-slate-800 hover:bg-slate-700 text-amber-400'
-                    : 'bg-slate-200 hover:bg-slate-300 text-amber-600'
+                ? 'bg-slate-800 hover:bg-slate-700 text-amber-400'
+                : 'bg-stone-100 hover:bg-stone-200 text-orange-600 border border-stone-200'
                 }`}
             title={theme === 'dark' ? 'Açık Temaya Geç' : 'Koyu Temaya Geç'}
             aria-label="Toggle theme"
