@@ -22,7 +22,10 @@ export default function TwoLigDetailedGroupsPage() {
                 const data = await res.json();
 
                 const teamsData = data.teams || [];
-                const fixtureData = data.fixture || [];
+                const fixtureData = (data.fixture || []).map((m: any) => ({
+                    ...m,
+                    matchDate: m.date // Map 'date' from JSON to 'matchDate' expected by Match type
+                }));
                 setAllTeams(teamsData);
                 setAllMatches(fixtureData);
 
@@ -173,22 +176,43 @@ export default function TwoLigDetailedGroupsPage() {
                                         }
 
                                         // Turkish day names
-                                        const dayNames = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
+                                        const dayNames = ['PAZAR', 'PAZARTESİ', 'SALI', 'ÇARŞAMBA', 'PERŞEMBE', 'CUMA', 'CUMARTESİ'];
+
+                                        // Helper: Parse DD.MM.YYYY
+                                        const parseDDMMYYYY = (dateStr: string) => {
+                                            const parts = dateStr.split('.');
+                                            if (parts.length === 3) {
+                                                const day = parseInt(parts[0], 10);
+                                                const month = parseInt(parts[1], 10) - 1; // JS months 0-11
+                                                const year = parseInt(parts[2], 10);
+                                                return new Date(year, month, day);
+                                            }
+                                            return null;
+                                        };
 
                                         // Format date as DD/MM/YYYY + Day
                                         const formatDate = (dateStr?: string) => {
-                                            if (!dateStr) return { formatted: 'Tarih Belirsiz', sortKey: '9999-99-99' };
-                                            try {
-                                                const date = new Date(dateStr);
-                                                if (isNaN(date.getTime())) return { formatted: 'Tarih Belirsiz', sortKey: '9999-99-99' };
-                                                const day = String(date.getDate()).padStart(2, '0');
-                                                const month = String(date.getMonth() + 1).padStart(2, '0');
-                                                const year = date.getFullYear();
-                                                const dayName = dayNames[date.getDay()];
-                                                return { formatted: `${day}/${month}/${year} ${dayName}`, sortKey: dateStr };
-                                            } catch {
-                                                return { formatted: 'Tarih Belirsiz', sortKey: '9999-99-99' };
+                                            if (!dateStr || dateStr.trim() === '') return { formatted: 'TARİH BELİRSİZ', sortKey: '9999-99-99' };
+
+                                            let date: Date | null = null;
+                                            // Check for DD.MM.YYYY format first
+                                            if (dateStr.includes('.')) {
+                                                date = parseDDMMYYYY(dateStr);
+                                            } else {
+                                                date = new Date(dateStr);
                                             }
+
+                                            if (!date || isNaN(date.getTime())) return { formatted: 'TARİH BELİRSİZ', sortKey: '9999-99-99' };
+
+                                            const day = String(date.getDate()).padStart(2, '0');
+                                            const month = String(date.getMonth() + 1).padStart(2, '0');
+                                            const year = date.getFullYear();
+                                            const dayName = dayNames[date.getDay()];
+
+                                            // sortKey needs to be ISO format for string sorting
+                                            const sortKey = `${year}-${month}-${day}`;
+
+                                            return { formatted: `${day}/${month}/${year} ${dayName}`, sortKey };
                                         };
 
                                         // Group matches by date

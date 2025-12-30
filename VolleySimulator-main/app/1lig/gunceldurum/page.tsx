@@ -22,7 +22,11 @@ export default function OneLigDetailedGroupsPage() {
                 const data = await res.json();
 
                 setAllTeams(data.teams || []);
-                setAllMatches(data.fixture || []);
+                const mappedMatches = (data.fixture || []).map((m: any) => ({
+                    ...m,
+                    matchDate: m.date // Map 'date' from JSON to 'matchDate' expected by Match type
+                }));
+                setAllMatches(mappedMatches);
 
                 const uniqueGroups = [...new Set(data.teams.map((t: any) => t.groupName))].sort();
                 setGroups(uniqueGroups as string[]);
@@ -176,21 +180,22 @@ export default function OneLigDetailedGroupsPage() {
                                         }
 
                                         // Turkish day names
-                                        const dayNames = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
+                                        // Turkish day names
+                                        const dayNames = ['PAZAR', 'PAZARTESİ', 'SALI', 'ÇARŞAMBA', 'PERŞEMBE', 'CUMA', 'CUMARTESİ'];
 
                                         // Format date as DD/MM/YYYY + Day
                                         const formatDate = (dateStr?: string) => {
-                                            if (!dateStr) return { formatted: 'Tarih Belirsiz', sortKey: '9999-99-99' };
+                                            if (!dateStr || dateStr.trim() === '') return { formatted: 'TARİH BELİRSİZ', sortKey: '9999-99-99' };
                                             try {
                                                 const date = new Date(dateStr);
-                                                if (isNaN(date.getTime())) return { formatted: 'Tarih Belirsiz', sortKey: '9999-99-99' };
+                                                if (isNaN(date.getTime())) return { formatted: 'TARİH BELİRSİZ', sortKey: '9999-99-99' };
                                                 const day = String(date.getDate()).padStart(2, '0');
                                                 const month = String(date.getMonth() + 1).padStart(2, '0');
                                                 const year = date.getFullYear();
                                                 const dayName = dayNames[date.getDay()];
                                                 return { formatted: `${day}/${month}/${year} ${dayName}`, sortKey: dateStr };
                                             } catch {
-                                                return { formatted: 'Tarih Belirsiz', sortKey: '9999-99-99' };
+                                                return { formatted: 'TARİH BELİRSİZ', sortKey: '9999-99-99' };
                                             }
                                         };
 

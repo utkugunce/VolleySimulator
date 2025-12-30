@@ -23,10 +23,10 @@ const RELEGATED_TEAMS = [
 
 export async function GET() {
     try {
-        const dataPath = path.join(process.cwd(), 'data', 'tvf-data.json');
+        const dataPath = path.join(process.cwd(), 'data', '2lig-data.json');
 
         if (!fs.existsSync(dataPath)) {
-            throw new Error("Cached data not found. Please run 'node scripts/update-data.js'");
+            throw new Error("Cached data not found. Please run 'node scripts/scrape-tvf-live.js'");
         }
 
         const fileContent = fs.readFileSync(dataPath, 'utf-8');
