@@ -135,7 +135,7 @@ const fixture = data.filter(r => (r['A TAKIMI'] || r['Home']) && (r['B TAKIMI'] 
 // 4. Output Data
 const outputData = {
     league: 'Vodafone Sultanlar Ligi',
-    season: '2024-2025',
+    season: '2025-2026',
     teams: teamsData,
     fixture,
     lastUpdated: new Date().toISOString()

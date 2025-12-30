@@ -253,7 +253,7 @@ export default function PlayoffsPage() {
                                     <div className="text-8xl animate-bounce">🏆</div>
                                     <div className="text-center">
                                         <div className="text-lg font-bold text-white mb-1">Turnuva Özeti</div>
-                                        <div className="text-sm text-slate-400">2. Lig Play-Off 2024-25</div>
+                                        <div className="text-sm text-slate-400">2. Lig Play-Off 2025-26</div>
                                     </div>
 
                                     <div className="grid grid-cols-3 gap-4 w-full mt-2">

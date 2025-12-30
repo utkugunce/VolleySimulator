@@ -240,7 +240,7 @@ export default function Playoffs1LigPage() {
                                     <div className="text-8xl animate-bounce">🏆</div>
                                     <div className="text-center">
                                         <div className="text-lg font-bold text-white mb-1">Turnuva Tamamlandı</div>
-                                        <div className="text-sm text-slate-400">1. Lig Play-Off 2024-25</div>
+                                        <div className="text-sm text-slate-400">1. Lig Play-Off 2025-26</div>
                                     </div>
                                     <div className="text-xs text-slate-500 mt-2 text-center">
                                         🎊 Tebrikler! Sultanlar Ligi'ne yükselmeye hak kazandınız!

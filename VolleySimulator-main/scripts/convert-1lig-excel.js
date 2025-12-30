@@ -121,7 +121,7 @@ const fixture = data.map((row, idx) => {
 // Output final data
 const outputData = {
     league: '1. Lig Kadınlar',
-    season: '2024-2025',
+    season: '2025-2026',
     teams: teamsData,
     fixture,
     lastUpdated: new Date().toISOString()

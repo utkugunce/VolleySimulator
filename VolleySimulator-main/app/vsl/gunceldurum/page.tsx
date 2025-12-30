@@ -99,7 +99,7 @@ export default function VSLDetailedPage() {
             <div className="max-w-7xl mx-auto space-y-1 h-full flex flex-col">
                 <PageHeader
                     title="Vodafone Sultanlar Ligi"
-                    subtitle="2024-2025 Sezonu Puan Durumu ve Fikstür"
+                    subtitle="2025-2026 Sezonu Puan Durumu ve Fikstür"
                 />
 
                 {/* Main Content */}

@@ -247,7 +247,7 @@ export default function Navbar() {
                                         </div>
                                         <div className="flex-1">
                                             <div className="font-bold text-white group-hover:text-red-300 transition-colors">Vodafone Sultanlar Ligi</div>
-                                            <div className="text-xs text-red-400/70">Kadınlar Voleybol • 2024-25</div>
+                                            <div className="text-xs text-red-400/70">Kadınlar Voleybol • 2025-26</div>
                                         </div>
                                         <div className="text-red-500/50 group-hover:text-red-400 group-hover:translate-x-1 transition-all">→</div>
                                     </Link>
@@ -263,7 +263,7 @@ export default function Navbar() {
                                         </div>
                                         <div className="flex-1">
                                             <div className="font-bold text-white group-hover:text-amber-300 transition-colors">Arabica Coffee House 1. Lig</div>
-                                            <div className="text-xs text-amber-400/70">Kadınlar Voleybol • 2024-25</div>
+                                            <div className="text-xs text-amber-400/70">Kadınlar Voleybol • 2025-26</div>
                                         </div>
                                         <div className="text-amber-500/50 group-hover:text-amber-400 group-hover:translate-x-1 transition-all">→</div>
                                     </Link>
@@ -279,7 +279,7 @@ export default function Navbar() {
                                         </div>
                                         <div className="flex-1">
                                             <div className="font-bold text-white group-hover:text-emerald-300 transition-colors">Kadınlar 2. Lig</div>
-                                            <div className="text-xs text-emerald-400/70">Kadınlar Voleybol • 2024-25</div>
+                                            <div className="text-xs text-emerald-400/70">Kadınlar Voleybol • 2025-26</div>
                                         </div>
                                         <div className="text-emerald-500/50 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all">→</div>
                                     </Link>
