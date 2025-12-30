@@ -163,13 +163,12 @@ export default function VSLDetailedPage() {
                                         </div>
                                     ) : (
                                         <div className="space-y-2">
-                                            {Object.entries(groupedMatches).map(([date, matches]) => (
-                                                <div key={date} className="space-y-1">
-                                                    <div className="px-3 py-1.5 bg-slate-900/80 border-y border-slate-800 flex items-center justify-between sticky top-0 z-10 backdrop-blur-md">
-                                                        <div className="flex items-center gap-2">
-                                                            <span className="text-red-500 text-xs">📅</span>
-                                                            <span className="text-[10px] font-bold text-slate-300 uppercase tracking-wider">{date}</span>
-                                                        </div>
+                                            {Object.entries(groupedMatches).map(([date, matches], dateIdx) => (
+                                                <div key={date} className={dateIdx > 0 ? 'mt-3' : ''}>
+                                                    <div className="sticky top-0 bg-rose-600/20 px-2 py-1 rounded border border-rose-500/30 mb-2 z-10">
+                                                        <span className="text-[10px] font-bold text-rose-400 uppercase tracking-wide">
+                                                            {date}
+                                                        </span>
                                                     </div>
                                                     <div className="px-2 space-y-1">
                                                         {matches.map(match => (

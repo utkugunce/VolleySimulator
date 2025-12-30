@@ -137,13 +137,6 @@ export default function TwoLigDetailedGroupsPage() {
                                 <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
                                 <span className="text-[10px] font-bold text-emerald-400 uppercase">Otomatik Güncelleme</span>
                             </div>
-                            <a
-                                href={`/2lig/tahminoyunu?group=${encodeURIComponent(activeGroup)}`}
-                                className="px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-xs uppercase italic rounded-lg transition-all hover:scale-105 shadow-lg shadow-emerald-500/20 flex items-center gap-1.5"
-                            >
-                                <span>Simüle Et</span>
-                                <span>⚡</span>
-                            </a>
                         </div>
                     </div>
 

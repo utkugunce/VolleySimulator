@@ -205,56 +205,6 @@ export default function PlayoffsVSLPage() {
                     </div>
                 )}
 
-                {/* League Info Card */}
-                <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-6">
-                    <h2 className="text-lg font-bold text-rose-400 mb-4 flex items-center gap-2">
-                        <span>📜</span> Lig Etabı Kuralları
-                    </h2>
-                    <ul className="text-sm text-slate-300 space-y-2 list-disc list-inside">
-                        <li>2025-2026 sezonunda toplam <strong>14 takım</strong> mücadele edecektir.</li>
-                        <li>Takımlar maçlarını iki devreli deplasmanlı lig usulüne göre oynayacaktır.</li>
-                        <li><strong>I. Devre:</strong> 12 Ekim 2025 Pazar – 21 Aralık 2025 Pazar</li>
-                        <li><strong>II. Devre:</strong> 03 Ocak 2026 Cumartesi – 14 Mart 2026 Cumartesi</li>
-                        <li className="text-rose-300">Son 2 sıradaki takımlar (13. ve 14.) 1. Lig'e düşer.</li>
-                        <li className="text-emerald-300">1. sırada bitiren takım CEV Şampiyonlar Ligi'ne katılma hakkı kazanır.</li>
-                        <li>1-4. sıradaki takımlar Play-Off 1. Etap maçlarını oynar → Ligin 1-4.'sü belirlenir.</li>
-                        <li>5-8. sıradaki takımlar Play-Off 2. Etap maçlarını oynar → Ligin 5-8.'si belirlenir.</li>
-                    </ul>
-                </div>
-
-                {/* Current Standings Preview */}
-                <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-6">
-                    <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                        <span>🏆</span> Lig Sıralaması (İlk 8)
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                            <div className="text-xs font-bold text-rose-400 uppercase tracking-wider mb-2">1-4 Play-Off'a Kalanlar</div>
-                            {top4.map((team, idx) => (
-                                <div key={team.name} className="flex items-center justify-between bg-rose-500/10 rounded p-2 border border-rose-500/20">
-                                    <div className="flex items-center gap-2">
-                                        <span className="w-5 h-5 bg-rose-500 text-white rounded-full flex items-center justify-center text-[10px] font-bold">{idx + 1}</span>
-                                        <span className="text-sm text-white">{team.name}</span>
-                                    </div>
-                                    <span className="text-xs text-rose-300">{team.points} P</span>
-                                </div>
-                            ))}
-                        </div>
-                        <div className="space-y-2">
-                            <div className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">5-8 Play-Off'a Kalanlar</div>
-                            {teams5to8.map((team, idx) => (
-                                <div key={team.name} className="flex items-center justify-between bg-amber-500/10 rounded p-2 border border-amber-500/20">
-                                    <div className="flex items-center gap-2">
-                                        <span className="w-5 h-5 bg-amber-500 text-white rounded-full flex items-center justify-center text-[10px] font-bold">{idx + 5}</span>
-                                        <span className="text-sm text-white">{team.name}</span>
-                                    </div>
-                                    <span className="text-xs text-amber-300">{team.points} P</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
                 <div className="relative">
                     {!isGroupsComplete && (
                         <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm z-20 flex flex-col items-center justify-start pt-16 rounded-xl">
