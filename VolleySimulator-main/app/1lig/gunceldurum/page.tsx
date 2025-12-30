@@ -118,20 +118,19 @@ export default function OneLigDetailedGroupsPage() {
                             </div>
                         </div>
                         <div className="flex flex-wrap gap-2 items-center">
-                            {/* Group Selection IN Header */}
-                            <div className="flex gap-1 p-1 bg-slate-950/50 rounded-lg border border-slate-800 h-8 items-center overflow-hidden">
-                                {groups.map(groupName => (
-                                    <button
-                                        key={groupName}
-                                        onClick={() => setActiveGroup(groupName)}
-                                        className={`px-3 h-full flex items-center rounded-md text-[10px] uppercase font-black transition-all ${activeGroup === groupName
-                                            ? 'bg-amber-600/20 text-amber-500 border border-amber-500/30'
-                                            : 'text-slate-500 hover:text-slate-300'
-                                            }`}
-                                    >
-                                        {groupName.replace(" Grubu", "")}
-                                    </button>
-                                ))}
+                            {/* Group Selection - Dropdown like 2. Lig */}
+                            <div className="flex gap-1 p-1 bg-slate-950/50 rounded-lg border border-slate-800 h-full items-center">
+                                <select
+                                    value={activeGroup}
+                                    onChange={(e) => setActiveGroup(e.target.value)}
+                                    className="px-3 py-1 bg-amber-600/20 text-amber-500 text-[10px] uppercase font-black rounded-md border border-amber-500/30 outline-none cursor-pointer transition-all focus:ring-2 focus:ring-amber-500/50"
+                                >
+                                    {groups.map(groupName => (
+                                        <option key={groupName} value={groupName} className="bg-slate-900 text-white">
+                                            {groupName}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
 
                             {/* Leader Card - Hidden on Mobile */}
