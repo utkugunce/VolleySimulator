@@ -1,18 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { TeamStats, Match } from "../../types";
 import PageHeader from "../../components/PageHeader";
 import StandingsTable from "../../components/Calculator/StandingsTable";
 import { sortStandings } from "../../utils/calculatorUtils";
-import { useToast } from "../../components";
 
 export default function TwoLigDetailedGroupsPage() {
-    const router = useRouter();
-    const { showToast } = useToast();
     const [loading, setLoading] = useState(true);
-    const [loadingResults, setLoadingResults] = useState(false);
     const [allTeams, setAllTeams] = useState<TeamStats[]>([]);
     const [allMatches, setAllMatches] = useState<Match[]>([]);
     const [groups, setGroups] = useState<string[]>([]);
@@ -56,65 +51,6 @@ export default function TwoLigDetailedGroupsPage() {
             </div>
         );
     }
-
-    const handleLoadRealResults = async () => {
-        setLoadingResults(true);
-        try {
-            // Filter only played matches from the last 7 days
-            const today = new Date();
-            const sevenDaysAgo = new Date(today);
-            sevenDaysAgo.setDate(today.getDate() - 7);
-
-            const playedMatches = allMatches.filter(m => {
-                if (!m.isPlayed || !m.resultScore) return false;
-                if (m.matchDate) {
-                    // Parse DD.MM.YYYY format
-                    const parts = m.matchDate.split('.');
-                    if (parts.length === 3) {
-                        const matchDate = new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
-                        return matchDate >= sevenDaysAgo && matchDate <= today;
-                    }
-                }
-                return false;
-            });
-
-            if (playedMatches.length === 0) {
-                showToast("Son 7 günde oynanmış maç bulunamadı", "error");
-                return;
-            }
-
-            // Get existing scenarios
-            const saved = localStorage.getItem('groupScenarios');
-            const globalObj = saved ? JSON.parse(saved) : {};
-
-            // Add real results - save BOTH key combinations to handle fixture order differences
-            playedMatches.forEach(match => {
-                const groupName = match.groupName;
-                if (!globalObj[groupName]) globalObj[groupName] = {};
-
-                // Original key: HomeTeam-AwayTeam with original score
-                const matchId = `${match.homeTeam}-${match.awayTeam}`;
-                globalObj[groupName][matchId] = match.resultScore;
-
-                // Reversed key: AwayTeam-HomeTeam with flipped score
-                const [homeScore, awayScore] = match.resultScore!.split('-');
-                const reversedMatchId = `${match.awayTeam}-${match.homeTeam}`;
-                const reversedScore = `${awayScore}-${homeScore}`;
-                globalObj[groupName][reversedMatchId] = reversedScore;
-            });
-
-            localStorage.setItem('groupScenarios', JSON.stringify(globalObj));
-            showToast(`${playedMatches.length} gerçek sonuç yüklendi!`, "success");
-
-            // Navigate to prediction page
-            router.push(`/2lig/tahminoyunu?group=${encodeURIComponent(activeGroup)}`);
-        } catch (error) {
-            console.error(error);
-            showToast("Sonuçlar yüklenirken hata oluştu", "error");
-        } finally {
-            setLoadingResults(false);
-        }
-    };
 
     const groupTeams = sortStandings(allTeams.filter(t => t.groupName === activeGroup));
 
@@ -202,20 +138,10 @@ export default function TwoLigDetailedGroupsPage() {
                             <h2 className="text-xl font-black italic uppercase tracking-tighter text-emerald-400">
                                 {activeGroup}
                             </h2>
-                            <button
-                                onClick={handleLoadRealResults}
-                                disabled={loadingResults}
-                                className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition-all shadow shadow-indigo-600/20 flex items-center gap-1 disabled:opacity-50"
-                            >
-                                {loadingResults ? (
-                                    <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                                ) : (
-                                    <>
-                                        <span>📥</span>
-                                        <span>Gerçek Sonuçlar</span>
-                                    </>
-                                )}
-                            </button>
+                            <div className="px-3 py-1.5 bg-emerald-950/50 rounded-lg border border-emerald-800/50 flex items-center gap-2" title="Sonuçlar her gün saat 08:00'da otomatik güncellenir">
+                                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                                <span className="text-[9px] font-bold text-emerald-400 uppercase">Otomatik Güncelleme</span>
+                            </div>
                             <a
                                 href={`/2lig/tahminoyunu?group=${encodeURIComponent(activeGroup)}`}
                                 className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-all shadow shadow-emerald-600/20 flex items-center gap-1"

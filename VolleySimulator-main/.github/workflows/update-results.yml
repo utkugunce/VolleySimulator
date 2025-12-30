@@ -1,0 +1,65 @@
+name: Update Match Results
+
+on:
+  schedule:
+    # Run daily at 08:00 Turkey time (05:00 UTC)
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+    # Allow manual trigger
+
+jobs:
+  update-results:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: VolleySimulator-main/package-lock.json
+          
+      - name: Install dependencies
+        working-directory: VolleySimulator-main
+        run: npm ci
+        
+      - name: Update 2. Lig data from TVF
+        working-directory: VolleySimulator-main
+        run: node scripts/update-data.js
+        continue-on-error: true
+        
+      - name: Update 1. Lig data from Excel
+        working-directory: VolleySimulator-main
+        run: node scripts/convert-1lig-excel.js
+        continue-on-error: true
+        
+      - name: Check for changes
+        id: changes
+        working-directory: VolleySimulator-main
+        run: |
+          git diff --quiet data/ || echo "changed=true" >> $GITHUB_OUTPUT
+          
+      - name: Commit and push changes
+        if: steps.changes.outputs.changed == 'true'
+        working-directory: VolleySimulator-main
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/
+          git commit -m "🏐 Auto-update match results - $(date +'%Y-%m-%d %H:%M')"
+          git push
+          
+      - name: Trigger Vercel deployment
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -n "$VERCEL_DEPLOY_HOOK" ]; then
+            curl -X POST "$VERCEL_DEPLOY_HOOK"
+            echo "Triggered Vercel deployment"
+          else
+            echo "No deploy hook configured, skipping..."
+          fi

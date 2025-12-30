@@ -1,18 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { TeamStats, Match } from "../../types";
 import PageHeader from "../../components/PageHeader";
 import StandingsTable from "../../components/Calculator/StandingsTable";
 import { sortStandings } from "../../utils/calculatorUtils";
-import { useToast } from "../../components";
 
 export default function OneLigDetailedGroupsPage() {
-    const router = useRouter();
-    const { showToast } = useToast();
     const [loading, setLoading] = useState(true);
-    const [loadingResults, setLoadingResults] = useState(false);
     const [allTeams, setAllTeams] = useState<TeamStats[]>([]);
     const [allMatches, setAllMatches] = useState<Match[]>([]);
     const [groups, setGroups] = useState<string[]>([]);
@@ -50,65 +45,6 @@ export default function OneLigDetailedGroupsPage() {
             </div>
         );
     }
-
-    const handleLoadRealResults = async () => {
-        setLoadingResults(true);
-        try {
-            // Filter only played matches from the last 7 days
-            const today = new Date();
-            const sevenDaysAgo = new Date(today);
-            sevenDaysAgo.setDate(today.getDate() - 7);
-
-            const playedMatches = allMatches.filter(m => {
-                if (!m.isPlayed || !m.resultScore) return false;
-                if (m.matchDate) {
-                    // Parse DD.MM.YYYY format
-                    const parts = m.matchDate.split('.');
-                    if (parts.length === 3) {
-                        const matchDate = new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
-                        return matchDate >= sevenDaysAgo && matchDate <= today;
-                    }
-                }
-                return false;
-            });
-
-            if (playedMatches.length === 0) {
-                showToast("Son 7 günde oynanmış maç bulunamadı", "error");
-                return;
-            }
-
-            // Get existing scenarios
-            const saved = localStorage.getItem('1ligGroupScenarios');
-            const globalObj = saved ? JSON.parse(saved) : {};
-
-            // Add real results - save BOTH key combinations to handle fixture order differences
-            playedMatches.forEach(match => {
-                const groupName = match.groupName;
-                if (!globalObj[groupName]) globalObj[groupName] = {};
-
-                // Original key: HomeTeam-AwayTeam with original score
-                const matchId = `${match.homeTeam}-${match.awayTeam}`;
-                globalObj[groupName][matchId] = match.resultScore;
-
-                // Reversed key: AwayTeam-HomeTeam with flipped score
-                const [homeScore, awayScore] = match.resultScore!.split('-');
-                const reversedMatchId = `${match.awayTeam}-${match.homeTeam}`;
-                const reversedScore = `${awayScore}-${homeScore}`;
-                globalObj[groupName][reversedMatchId] = reversedScore;
-            });
-
-            localStorage.setItem('1ligGroupScenarios', JSON.stringify(globalObj));
-            showToast(`${playedMatches.length} gerçek sonuç yüklendi!`, "success");
-
-            // Navigate to prediction page
-            router.push(`/1lig/tahminoyunu?group=${encodeURIComponent(activeGroup)}`);
-        } catch (error) {
-            console.error(error);
-            showToast("Sonuçlar yüklenirken hata oluştu", "error");
-        } finally {
-            setLoadingResults(false);
-        }
-    };
 
     // Filter data for active group
     const groupTeams = sortStandings(allTeams.filter(t => t.groupName === activeGroup));
@@ -197,20 +133,10 @@ export default function OneLigDetailedGroupsPage() {
                                 <div className="text-[9px] font-bold text-slate-500 uppercase leading-none mb-0.5">Lider</div>
                                 <div className="text-xs font-bold text-white truncate max-w-[100px] leading-none">{groupTeams[0]?.name}</div>
                             </div>
-                            <button
-                                onClick={handleLoadRealResults}
-                                disabled={loadingResults}
-                                className="px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-black text-xs uppercase italic rounded-lg transition-all hover:scale-105 shadow-lg shadow-indigo-500/20 flex items-center gap-1.5 disabled:opacity-50"
-                            >
-                                {loadingResults ? (
-                                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                                ) : (
-                                    <>
-                                        <span>📥</span>
-                                        <span>Gerçek Sonuçlar</span>
-                                    </>
-                                )}
-                            </button>
+                            <div className="px-3 py-1.5 bg-emerald-950/50 rounded-lg border border-emerald-800/50 flex items-center gap-2" title="Sonuçlar her gün saat 08:00'da otomatik güncellenir">
+                                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                                <span className="text-[10px] font-bold text-emerald-400 uppercase">Otomatik Güncelleme</span>
+                            </div>
                             <a
                                 href={`/1lig/tahminoyunu?group=${encodeURIComponent(activeGroup)}`}
                                 className="px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-black text-xs uppercase italic rounded-lg transition-all hover:scale-105 shadow-lg shadow-amber-500/20 flex items-center gap-1.5"
