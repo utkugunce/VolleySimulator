@@ -119,7 +119,7 @@ export default function OneLigDetailedGroupsPage() {
                         </div>
                         <div className="flex flex-wrap gap-2 items-center">
                             {/* Group Selection IN Header */}
-                            <div className="flex gap-1 p-1 bg-slate-950/50 rounded-lg border border-slate-800 h-8 items-center">
+                            <div className="flex gap-1 p-1 bg-slate-950/50 rounded-lg border border-slate-800 h-8 items-center overflow-hidden">
                                 {groups.map(groupName => (
                                     <button
                                         key={groupName}

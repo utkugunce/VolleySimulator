@@ -9,6 +9,14 @@ export async function GET(req: NextRequest) {
         const jsonData = fs.readFileSync(dataPath, 'utf-8');
         const data = JSON.parse(jsonData);
 
+        // Filter out withdrawn teams (ligden çekilen takımlar)
+        const withdrawnTeams = ['Edremit Bld. Altınoluk', 'İzmirspor'];
+
+        data.teams = data.teams.filter((team: any) => !withdrawnTeams.includes(team.name));
+        data.fixture = data.fixture.filter((match: any) =>
+            !withdrawnTeams.includes(match.homeTeam) && !withdrawnTeams.includes(match.awayTeam)
+        );
+
         return NextResponse.json(data);
     } catch (error) {
         console.error('Error reading 1. Lig data:', error);

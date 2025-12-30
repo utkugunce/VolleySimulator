@@ -1,0 +1,388 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { TeamStats, Match } from "../../types";
+import Link from "next/link";
+import { sortStandings } from "../../utils/calculatorUtils";
+import PageHeader from "../../components/PageHeader";
+
+interface PlayoffBracketMatch {
+    id: string;
+    homeTeam: string | null;
+    awayTeam: string | null;
+    homeScore: number | null;
+    awayScore: number | null;
+    matchNumber: number;
+    round: 'semi' | 'final' | '3rd' | '5-8-semi' | '5-8-final' | '7th';
+    winnerTo?: string;
+}
+
+export default function PlayoffsVSLPage() {
+    const [loading, setLoading] = useState(true);
+    const [teams, setTeams] = useState<TeamStats[]>([]);
+    const [remainingMatches, setRemainingMatches] = useState(0);
+    const [playoffOverrides, setPlayoffOverrides] = useState<Record<string, string>>({});
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    // 1. Load Overrides
+    useEffect(() => {
+        const saved = localStorage.getItem('vslPlayoffScenarios');
+        if (saved) {
+            try {
+                setPlayoffOverrides(JSON.parse(saved));
+            } catch (e) { console.error(e); }
+        }
+        setIsLoaded(true);
+    }, []);
+
+    // 2. Fetch Base Data
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                setLoading(true);
+                const res = await fetch("/api/vsl");
+                if (!res.ok) throw new Error("Veri çekilemedi");
+                const data = await res.json();
+
+                const sortedTeams = sortStandings(data.teams || []);
+                setTeams(sortedTeams);
+
+                // Check remaining matches
+                let remaining = (data.fixture || []).filter((m: Match) => !m.isPlayed).length;
+                const savedScenarios = localStorage.getItem('vslGroupScenarios');
+                if (savedScenarios) {
+                    try {
+                        const allScenarios = JSON.parse(savedScenarios);
+                        remaining = Math.max(0, remaining - Object.keys(allScenarios).length);
+                    } catch (e) { }
+                }
+                setRemainingMatches(remaining);
+
+            } catch (err) {
+                console.error(err);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchData();
+    }, []);
+
+    // Save overrides when changed
+    useEffect(() => {
+        if (isLoaded) {
+            localStorage.setItem('vslPlayoffScenarios', JSON.stringify(playoffOverrides));
+        }
+    }, [playoffOverrides, isLoaded]);
+
+    const isGroupsComplete = remainingMatches === 0;
+
+    // Get playoff teams
+    const top4 = teams.slice(0, 4);
+    const teams5to8 = teams.slice(4, 8);
+
+    const handleScoreChange = (matchId: string, score: string) => {
+        const newOverrides = { ...playoffOverrides };
+        if (score) {
+            newOverrides[matchId] = score;
+        } else {
+            delete newOverrides[matchId];
+        }
+        setPlayoffOverrides(newOverrides);
+    };
+
+    const renderBracketMatch = (matchId: string, homeTeam: string | null, awayTeam: string | null, label: string) => {
+        const score = playoffOverrides[matchId];
+        const [homeScore, awayScore] = score ? score.split('-').map(Number) : [null, null];
+        const homeWin = homeScore !== null && awayScore !== null && homeScore > awayScore;
+        const awayWin = homeScore !== null && awayScore !== null && awayScore > homeScore;
+
+        return (
+            <div className="bg-slate-800 rounded-lg p-3 border border-slate-700 space-y-2 min-w-[200px]">
+                <div className="text-[10px] text-rose-400 font-bold uppercase tracking-wider">{label}</div>
+                <div className={`flex items-center justify-between p-2 rounded ${homeWin ? 'bg-emerald-500/20 border border-emerald-500/30' : 'bg-slate-900/50'}`}>
+                    <span className={`text-sm truncate flex-1 ${homeWin ? 'text-emerald-400 font-bold' : 'text-slate-300'}`}>
+                        {homeTeam || 'TBD'}
+                    </span>
+                    <span className={`text-sm ml-2 ${homeWin ? 'text-emerald-400 font-bold' : 'text-slate-400'}`}>{homeScore ?? '-'}</span>
+                </div>
+                <div className={`flex items-center justify-between p-2 rounded ${awayWin ? 'bg-emerald-500/20 border border-emerald-500/30' : 'bg-slate-900/50'}`}>
+                    <span className={`text-sm truncate flex-1 ${awayWin ? 'text-emerald-400 font-bold' : 'text-slate-300'}`}>
+                        {awayTeam || 'TBD'}
+                    </span>
+                    <span className={`text-sm ml-2 ${awayWin ? 'text-emerald-400 font-bold' : 'text-slate-400'}`}>{awayScore ?? '-'}</span>
+                </div>
+                {homeTeam && awayTeam && (
+                    <select
+                        value={score || ''}
+                        onChange={(e) => handleScoreChange(matchId, e.target.value)}
+                        className="w-full mt-2 p-2 bg-slate-900 border border-slate-600 rounded text-xs text-white"
+                    >
+                        <option value="">Skor Seç</option>
+                        <option value="3-0">3-0</option>
+                        <option value="3-1">3-1</option>
+                        <option value="3-2">3-2</option>
+                        <option value="2-3">2-3</option>
+                        <option value="1-3">1-3</option>
+                        <option value="0-3">0-3</option>
+                    </select>
+                )}
+            </div>
+        );
+    };
+
+    // Calculate winners for progression
+    const getWinner = (matchId: string, homeTeam: string | null, awayTeam: string | null): string | null => {
+        const score = playoffOverrides[matchId];
+        if (!score || !homeTeam || !awayTeam) return null;
+        const [homeScore, awayScore] = score.split('-').map(Number);
+        return homeScore > awayScore ? homeTeam : awayTeam;
+    };
+
+    const getLoser = (matchId: string, homeTeam: string | null, awayTeam: string | null): string | null => {
+        const score = playoffOverrides[matchId];
+        if (!score || !homeTeam || !awayTeam) return null;
+        const [homeScore, awayScore] = score.split('-').map(Number);
+        return homeScore > awayScore ? awayTeam : homeTeam;
+    };
+
+    // 1-4 Playoff bracket
+    // Semi 1: 1 vs 4, Semi 2: 2 vs 3
+    // Final: Winner S1 vs Winner S2
+    // 3/4'lük: Loser S1 vs Loser S2
+    const semi1Home = top4[0]?.name || null;
+    const semi1Away = top4[3]?.name || null;
+    const semi2Home = top4[1]?.name || null;
+    const semi2Away = top4[2]?.name || null;
+
+    const semi1Winner = getWinner('vsl-semi-1', semi1Home, semi1Away);
+    const semi1Loser = getLoser('vsl-semi-1', semi1Home, semi1Away);
+    const semi2Winner = getWinner('vsl-semi-2', semi2Home, semi2Away);
+    const semi2Loser = getLoser('vsl-semi-2', semi2Home, semi2Away);
+
+    const finalWinner = getWinner('vsl-final', semi1Winner, semi2Winner);
+    const thirdPlaceWinner = getWinner('vsl-3rd', semi1Loser, semi2Loser);
+
+    // 5-8 Playoff bracket
+    // Semi 5-8: 5 vs 8, 6 vs 7
+    // 5/6'lık (Final): Winner S1 vs Winner S2
+    // 7/8'lik: Loser S1 vs Loser S2
+    const semi58_1Home = teams5to8[0]?.name || null;
+    const semi58_1Away = teams5to8[3]?.name || null;
+    const semi58_2Home = teams5to8[1]?.name || null;
+    const semi58_2Away = teams5to8[2]?.name || null;
+
+    const semi58_1Winner = getWinner('vsl-58-semi-1', semi58_1Home, semi58_1Away);
+    const semi58_1Loser = getLoser('vsl-58-semi-1', semi58_1Home, semi58_1Away);
+    const semi58_2Winner = getWinner('vsl-58-semi-2', semi58_2Home, semi58_2Away);
+    const semi58_2Loser = getLoser('vsl-58-semi-2', semi58_2Home, semi58_2Away);
+
+    if (loading) {
+        return (
+            <main className="min-h-screen bg-slate-950 text-slate-100 p-8 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-rose-500"></div>
+            </main>
+        );
+    }
+
+    return (
+        <main className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-8 font-sans">
+            <div className="max-w-7xl mx-auto space-y-8">
+                <PageHeader
+                    title="Sultanlar Ligi Play-Off"
+                    subtitle="Şampiyonluk ve sıralama mücadelesi 2025-2026"
+                />
+
+                {!isGroupsComplete && (
+                    <div className="bg-rose-500/10 border border-rose-500/20 text-rose-200 p-4 rounded-lg flex items-center gap-3">
+                        <span className="text-2xl">⚠️</span>
+                        <div>
+                            <p className="font-bold text-sm">Lig Etabı Henüz Tamamlanmadı</p>
+                            <p className="text-xs opacity-70">
+                                Play-Off senaryoları mevcut sıralamaya göre hesaplanmaktadır.
+                                Kesin sonuçlar için önce lig maçlarını tamamlayın.
+                            </p>
+                        </div>
+                    </div>
+                )}
+
+                {/* League Info Card */}
+                <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-6">
+                    <h2 className="text-lg font-bold text-rose-400 mb-4 flex items-center gap-2">
+                        <span>📜</span> Lig Etabı Kuralları
+                    </h2>
+                    <ul className="text-sm text-slate-300 space-y-2 list-disc list-inside">
+                        <li>2025-2026 sezonunda toplam <strong>14 takım</strong> mücadele edecektir.</li>
+                        <li>Takımlar maçlarını iki devreli deplasmanlı lig usulüne göre oynayacaktır.</li>
+                        <li><strong>I. Devre:</strong> 12 Ekim 2025 Pazar – 21 Aralık 2025 Pazar</li>
+                        <li><strong>II. Devre:</strong> 03 Ocak 2026 Cumartesi – 14 Mart 2026 Cumartesi</li>
+                        <li className="text-rose-300">Son 2 sıradaki takımlar (13. ve 14.) 1. Lig'e düşer.</li>
+                        <li className="text-emerald-300">1. sırada bitiren takım CEV Şampiyonlar Ligi'ne katılma hakkı kazanır.</li>
+                        <li>1-4. sıradaki takımlar Play-Off 1. Etap maçlarını oynar → Ligin 1-4.'sü belirlenir.</li>
+                        <li>5-8. sıradaki takımlar Play-Off 2. Etap maçlarını oynar → Ligin 5-8.'si belirlenir.</li>
+                    </ul>
+                </div>
+
+                {/* Current Standings Preview */}
+                <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-6">
+                    <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                        <span>🏆</span> Lig Sıralaması (İlk 8)
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                            <div className="text-xs font-bold text-rose-400 uppercase tracking-wider mb-2">1-4 Play-Off'a Kalanlar</div>
+                            {top4.map((team, idx) => (
+                                <div key={team.name} className="flex items-center justify-between bg-rose-500/10 rounded p-2 border border-rose-500/20">
+                                    <div className="flex items-center gap-2">
+                                        <span className="w-5 h-5 bg-rose-500 text-white rounded-full flex items-center justify-center text-[10px] font-bold">{idx + 1}</span>
+                                        <span className="text-sm text-white">{team.name}</span>
+                                    </div>
+                                    <span className="text-xs text-rose-300">{team.points} P</span>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="space-y-2">
+                            <div className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">5-8 Play-Off'a Kalanlar</div>
+                            {teams5to8.map((team, idx) => (
+                                <div key={team.name} className="flex items-center justify-between bg-amber-500/10 rounded p-2 border border-amber-500/20">
+                                    <div className="flex items-center gap-2">
+                                        <span className="w-5 h-5 bg-amber-500 text-white rounded-full flex items-center justify-center text-[10px] font-bold">{idx + 5}</span>
+                                        <span className="text-sm text-white">{team.name}</span>
+                                    </div>
+                                    <span className="text-xs text-amber-300">{team.points} P</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                <div className="relative">
+                    {!isGroupsComplete && (
+                        <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm z-20 flex flex-col items-center justify-start pt-16 rounded-xl">
+                            <div className="text-6xl mb-4">🔒</div>
+                            <h3 className="text-xl font-bold text-white mb-2">Play-Off Kilitli</h3>
+                            <p className="text-slate-400 text-sm text-center max-w-md mb-4">
+                                Play-Off senaryolarını düzenleyebilmek için önce tüm lig maçlarını tahmin etmeniz gerekmektedir.
+                            </p>
+                            <p className="text-rose-400 font-medium">
+                                {remainingMatches} maç eksik
+                            </p>
+                            <Link href="/vsl/tahminoyunu" className="mt-4 px-4 py-2 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-lg transition-colors">
+                                Tahminleri Tamamla →
+                            </Link>
+                        </div>
+                    )}
+
+                    <div className={`${!isGroupsComplete ? 'opacity-30 pointer-events-none select-none' : ''} space-y-12`}>
+
+                        {/* 1-4 PLAYOFF */}
+                        <div className="bg-gradient-to-br from-rose-900/30 to-slate-900/50 border border-rose-500/20 rounded-xl p-6">
+                            <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                                <span className="w-3 h-3 rounded-full bg-rose-500"></span>
+                                Play-Off 1. Etap (1-4)
+                                <span className="text-xs text-rose-400 ml-auto">Şampiyonluk Mücadelesi</span>
+                            </h2>
+
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+                                {/* Semi Finals */}
+                                <div className="space-y-4">
+                                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Yarı Final (5 Maç)</div>
+                                    {renderBracketMatch('vsl-semi-1', semi1Home, semi1Away, '1. vs 4.')}
+                                    {renderBracketMatch('vsl-semi-2', semi2Home, semi2Away, '2. vs 3.')}
+                                    <div className="text-[10px] text-slate-500 mt-2 bg-slate-900/50 p-2 rounded">
+                                        ℹ️ İlk maç alt sırada tamamlayan takımın evinde, ikinci maç ve gerekirse üçüncü maç üst sırada tamamlayan takımın evinde oynanır. İki maç kazanan takım finale yükselir.
+                                    </div>
+                                </div>
+
+                                {/* Finals Area */}
+                                <div className="space-y-4">
+                                    <div className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">Final (5 Maç)</div>
+                                    {renderBracketMatch('vsl-final', semi1Winner, semi2Winner, 'ŞAMPİYONLUK FİNALİ')}
+
+                                    {finalWinner && (
+                                        <div className="bg-gradient-to-r from-amber-500/20 to-amber-600/10 border border-amber-500/30 rounded-lg p-4 text-center">
+                                            <div className="text-3xl mb-2">🏆</div>
+                                            <div className="text-xs text-amber-400 uppercase tracking-wider">Lig Şampiyonu</div>
+                                            <div className="text-lg font-bold text-white">{finalWinner}</div>
+                                        </div>
+                                    )}
+
+                                    <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
+                                        ℹ️ Final maçlarında ilk maç ligi alt sırada tamamlayan takımın evinde, ikinci ve üçüncü maç ligi üst sırada tamamlayan takımın evinde oynanır. Gerekirse dördüncü maç ligi alt sırada tamamlayan takımın, beşinci maç üst sırada tamamlayan takımın evinde oynanır. 3 maç kazanan takım lig şampiyonu olur.
+                                    </div>
+                                </div>
+
+                                {/* 3rd Place Match */}
+                                <div className="space-y-4">
+                                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">3/4'lük Maçı (3 Maç)</div>
+                                    {renderBracketMatch('vsl-3rd', semi1Loser, semi2Loser, '3. lük Mücadelesi')}
+
+                                    {thirdPlaceWinner && (
+                                        <div className="bg-slate-800/50 border border-slate-600/30 rounded-lg p-3 text-center">
+                                            <div className="text-xl mb-1">🥉</div>
+                                            <div className="text-xs text-slate-400">3. Sıra</div>
+                                            <div className="text-sm font-bold text-white">{thirdPlaceWinner}</div>
+                                        </div>
+                                    )}
+                                    <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
+                                        ℹ️ 3.'lük maçlarında ilk maç ligi alt sırada tamamlayan takımın evinde, ikinci maç ve gerekirse üçüncü maç ligi üst sırada tamamlayan takımın evinde oynanır. 2 maç kazanan takım ligi 3. sırada tamamlar.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* 5-8 PLAYOFF */}
+                        <div className="bg-gradient-to-br from-amber-900/30 to-slate-900/50 border border-amber-500/20 rounded-xl p-6">
+                            <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                                <span className="w-3 h-3 rounded-full bg-amber-500"></span>
+                                Play-Off 2. Etap (5-8)
+                                <span className="text-xs text-amber-400 ml-auto">Sıralama Mücadelesi</span>
+                            </h2>
+
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+                                {/* Semi Finals 5-8 */}
+                                <div className="space-y-4">
+                                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Yarı Final (5 Maç)</div>
+                                    {renderBracketMatch('vsl-58-semi-1', semi58_1Home, semi58_1Away, '5. vs 8.')}
+                                    {renderBracketMatch('vsl-58-semi-2', semi58_2Home, semi58_2Away, '6. vs 7.')}
+                                    <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
+                                        ℹ️ 5.'lik maçları, ilk maç ligi alt sırada tamamlayan takımın evinde, ikinci maç ve gerekirse üçüncü maç ligi üst sırada tamamlayan takımın evinde oynanır. 2 maç kazanan takım 5. sırada tamamlar.
+                                    </div>
+                                </div>
+
+                                {/* 5/6 Finals */}
+                                <div className="space-y-4">
+                                    <div className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">5/6'lık Maçı (3 Maç)</div>
+                                    {renderBracketMatch('vsl-58-final', semi58_1Winner, semi58_2Winner, '5. lük Mücadelesi')}
+                                    <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
+                                        ℹ️ 2 maç kazanan takım ligi 5. sırada tamamlar.
+                                    </div>
+                                </div>
+
+                                {/* 7/8 Match */}
+                                <div className="space-y-4">
+                                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">7/8'lik Maçı (3 Maç)</div>
+                                    {renderBracketMatch('vsl-58-7th', semi58_1Loser, semi58_2Loser, '7. lük Mücadelesi')}
+                                    <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
+                                        ℹ️ 7.'lik maçları, ilk maç ligi alt sırada tamamlayan takımın evinde, ikinci maç ve gerekirse üçüncü maç ligi üst sırada tamamlayan takımın evinde oynanır. 2 maç kazanan takım ligi 7. sırada tamamlar.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* European Competitions Info */}
+                        <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-6">
+                            <h2 className="text-lg font-bold text-emerald-400 mb-4 flex items-center gap-2">
+                                <span>🌍</span> Avrupa Kupaları Katılımı
+                            </h2>
+                            <p className="text-sm text-slate-300">
+                                Avrupa Kupalarına katılım (Şampiyonlar Ligi, CEV Cup, Challenge Cup ve Balkan Kupası),
+                                Play-Off 1. ve 2. Etap maçları sonucunda belirlenen sıralamaya göre yapılır.
+                                CEV Kontenjanına göre takımlar belirlenir.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    );
+}

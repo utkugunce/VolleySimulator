@@ -23,7 +23,8 @@ export default function PageHeader({
     // Detect which league we're in based on the pathname
     const is1Lig = pathname.startsWith('/1lig');
     const is2Lig = pathname.startsWith('/2lig');
-    const leaguePrefix = is1Lig ? '/1lig' : is2Lig ? '/2lig' : '';
+    const isVSL = pathname.startsWith('/vsl');
+    const leaguePrefix = is1Lig ? '/1lig' : is2Lig ? '/2lig' : isVSL ? '/vsl' : '';
 
     const getLinkClass = (path: string, isSpecial: boolean = false) => {
         const isActive = pathname === path || pathname.startsWith(path + '/');
@@ -63,16 +64,16 @@ export default function PageHeader({
                     <span className="hidden sm:inline">Güncel Durum</span>
                 </Link>
 
-                {/* Stats link for both leagues */}
-                {(is1Lig || is2Lig) && (
+                {/* Stats link for all leagues */}
+                {(is1Lig || is2Lig || isVSL) && (
                     <Link href={`${leaguePrefix}/stats`} className={getLinkClass(`${leaguePrefix}/stats`)}>
                         <span>📊</span>
                         <span className="hidden sm:inline">İstatistikler</span>
                     </Link>
                 )}
 
-                {/* Playoffs link for both leagues */}
-                {(is1Lig || is2Lig) && (
+                {/* Playoffs link for all leagues */}
+                {(is1Lig || is2Lig || isVSL) && (
                     <Link href={`${leaguePrefix}/playoffs`} className={getLinkClass(`${leaguePrefix}/playoffs`, true)}>
                         <span>🏆</span>
                         <span className="hidden sm:inline">Play-Off</span>

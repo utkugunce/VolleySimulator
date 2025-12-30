@@ -218,7 +218,7 @@ function CalculatorContent() {
                 {/* Action Bar */}
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-2 bg-slate-900/40 rounded-xl border border-slate-800">
                     {/* Actions */}
-                    <div className="flex items-center gap-2 w-full sm:w-auto overflow-x-auto no-scrollbar pb-1 sm:pb-0 justify-between sm:justify-end">
+                    <div className="flex items-center gap-2 w-full sm:w-auto overflow-x-auto no-scrollbar pb-1 sm:pb-0 justify-end">
                         {/* Import/Export buttons */}
                         <div className="flex items-center gap-2 shrink-0">
                             <input
