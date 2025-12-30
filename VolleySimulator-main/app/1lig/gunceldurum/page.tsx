@@ -279,6 +279,7 @@ export default function OneLigDetailedGroupsPage() {
                         </div>
                     </div>
                 </div>
+            </div>
         </main>
     );
 }
