@@ -42,6 +42,16 @@ export default function PageHeader({
             }`;
     };
 
+    // Detect current page type to preserve when switching leagues
+    const getCurrentPageType = () => {
+        if (pathname.includes('/gunceldurum')) return '/gunceldurum';
+        if (pathname.includes('/playoffs')) return '/playoffs';
+        if (pathname.includes('/stats')) return '/stats';
+        if (pathname.includes('/anasayfa')) return '/anasayfa';
+        return '/tahminoyunu'; // default
+    };
+    const currentPageType = getCurrentPageType();
+
     const getLeagueLinkClass = (leaguePath: string) => {
         const isActive = pathname.startsWith(leaguePath);
         return `px-2 py-1 rounded text-[10px] font-bold transition-all ${isActive
@@ -58,15 +68,15 @@ export default function PageHeader({
                     <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">{title}</h1>
                     <p className="text-[10px] text-slate-500 hidden sm:block">{subtitle}</p>
                 </div>
-                {/* League Navigation */}
+                {/* League Navigation - Links preserve current page type */}
                 <div className="hidden md:flex items-center gap-1 ml-2 px-2 py-1 bg-slate-800/50 rounded-lg border border-slate-700/50">
-                    <Link href="/vsl/tahminoyunu" className={getLeagueLinkClass('/vsl')}>
+                    <Link href={`/vsl${currentPageType}`} className={getLeagueLinkClass('/vsl')}>
                         <span className="text-rose-400">●</span> VSL
                     </Link>
-                    <Link href="/1lig/tahminoyunu" className={getLeagueLinkClass('/1lig')}>
+                    <Link href={`/1lig${currentPageType}`} className={getLeagueLinkClass('/1lig')}>
                         <span className="text-amber-400">●</span> 1.Lig
                     </Link>
-                    <Link href="/2lig/tahminoyunu" className={getLeagueLinkClass('/2lig')}>
+                    <Link href={`/2lig${currentPageType}`} className={getLeagueLinkClass('/2lig')}>
                         <span className="text-emerald-400">●</span> 2.Lig
                     </Link>
                 </div>
