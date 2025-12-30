@@ -11,6 +11,7 @@ const REMOVED_TEAMS = [
     'SMART HOLDİNG A.Ş. ÇAYELİ',
     'KAHRAMANMARAŞ ELBİSTAN FEDA',
     'VAN B.ŞEHİR BLD.',
+    'VAN B. ŞEHİR BLD.', // Exact match from data
     'VAN BÜYÜKŞEHIR BLD.' // Alternate spelling check
 ].map(t => t.toLocaleUpperCase('tr-TR'));
 
@@ -20,7 +21,8 @@ const PENALTY_TEAMS = [
     'RİZE ENDÜSTRİ MESLEK LİSESİ',
     'KAYSERİ CİMNASTİK SPOR',
     'HAKKARİ MAEMTAL',
-    '73 ŞIRNAK BLD'
+    '73 ŞIRNAK BLD',
+    '73 ŞIRNAK BLD.'
 ].map(t => t.toLocaleUpperCase('tr-TR'));
 
 const LEAGUES = [
