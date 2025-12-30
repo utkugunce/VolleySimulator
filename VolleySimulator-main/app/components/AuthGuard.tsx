@@ -9,7 +9,7 @@ interface AuthGuardProps {
 }
 
 // Public paths that don't require authentication
-const PUBLIC_PATHS = ["/", "/login", "/register", "/auth/callback", "/oauth"];
+const PUBLIC_PATHS = ["/", "/login", "/register", "/auth/callback", "/oauth", "/1lig/tahminoyunu", "/2lig/tahminoyunu"];
 
 export default function AuthGuard({ children }: AuthGuardProps) {
     const { user, loading } = useAuth();
