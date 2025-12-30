@@ -278,11 +278,9 @@ function CalculatorContent() {
                 <PageHeader
                     title="Arabica Coffee House"
                     subtitle="Kadınlar Voleybol 1.Ligi"
-                    onExport={handleSaveAllScenarios}
-                    onImport={handleImportAllScenarios}
                 />
 
-                {/* Action Bar (Group Selection + Reset/Share + XP) */}
+                {/* Action Bar (Group Selection + Actions) */}
                 <div className="flex flex-wrap items-center justify-between gap-4 p-2 bg-slate-900/40 rounded-xl border border-slate-800">
                     {/* Group Selection */}
                     <div className="flex gap-1 items-center">
@@ -303,6 +301,29 @@ function CalculatorContent() {
 
                     {/* Actions */}
                     <div className="flex items-center gap-2">
+                        {/* Import/Export buttons moved here */}
+                        <input
+                            type="file"
+                            accept=".json"
+                            onChange={handleImportAllScenarios}
+                            className="hidden"
+                            id="import-upload-1lig"
+                        />
+                        <label
+                            htmlFor="import-upload-1lig"
+                            className="px-2 py-1 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-all cursor-pointer"
+                            title="Senaryo Yükle"
+                        >
+                            Yükle
+                        </label>
+                        <button
+                            onClick={handleSaveAllScenarios}
+                            className="px-2 py-1 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg transition-all"
+                            title="Senaryoyu Kaydet"
+                        >
+                            Kaydet
+                        </button>
+                        <div className="w-px h-4 bg-slate-700 hidden sm:block"></div>
                         <button
                             onClick={handleScrollToNextMatch}
                             className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700"

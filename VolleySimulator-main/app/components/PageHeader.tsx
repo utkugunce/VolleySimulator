@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 interface PageHeaderProps {
     title: string;
@@ -9,8 +9,6 @@ interface PageHeaderProps {
     groups?: string[];
     selectedGroup?: string | null;
     onGroupChange?: (group: string | null) => void;
-    onExport?: () => void;
-    onImport?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function PageHeader({
@@ -18,12 +16,9 @@ export default function PageHeader({
     subtitle,
     groups = [],
     selectedGroup,
-    onGroupChange,
-    onExport,
-    onImport
+    onGroupChange
 }: PageHeaderProps) {
     const pathname = usePathname();
-    const router = useRouter();
 
     // Detect which league we're in based on the pathname
     const is1Lig = pathname.startsWith('/1lig');
@@ -58,42 +53,6 @@ export default function PageHeader({
 
             {/* Quick Actions */}
             <div className="flex items-center gap-2 w-full sm:w-auto flex-wrap justify-center">
-
-                <button
-                    onClick={() => router.back()}
-                    className="flex-1 sm:flex-none px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded text-xs font-bold border border-slate-700 transition-colors flex items-center justify-center gap-1.5"
-                >
-                    <span className="hidden sm:inline">Geri</span>
-                </button>
-
-                {onImport && (
-                    <>
-                        <input
-                            type="file"
-                            accept=".json"
-                            onChange={onImport}
-                            className="hidden"
-                            id="import-upload"
-                        />
-                        <label
-                            htmlFor="import-upload"
-                            className="px-2 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded text-xs font-bold border border-blue-500 transition-colors flex items-center justify-center gap-1 shadow-lg shadow-blue-500/20 cursor-pointer"
-                            title="Senaryo Yükle"
-                        >
-                            <span className="hidden sm:inline">Yükle</span>
-                        </label>
-                    </>
-                )}
-
-                {onExport && (
-                    <button
-                        onClick={onExport}
-                        className="px-2 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded text-xs font-bold border border-emerald-500 transition-colors flex items-center justify-center gap-1 shadow-lg shadow-emerald-500/20"
-                        title="Tüm Senaryoları Kaydet (İndir)"
-                    >
-                        <span className="hidden sm:inline">Kaydet</span>
-                    </button>
-                )}
 
                 <Link href={leaguePrefix ? `${leaguePrefix}/tahminoyunu` : '/'} className={getLinkClass(leaguePrefix ? `${leaguePrefix}/tahminoyunu` : '/')}>
                     <span>🏠</span>
