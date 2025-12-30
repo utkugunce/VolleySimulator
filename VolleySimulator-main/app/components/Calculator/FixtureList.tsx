@@ -8,9 +8,10 @@ interface FixtureListProps {
     onScoreChange: (matchId: string, score: string) => void;
     teamRanks?: Map<string, number>;
     totalTeams?: number; // Total teams in group for relegation calculation
+    relegationSpots?: number; // Number of teams to be relegated
 }
 
-export default function FixtureList({ matches, overrides, onScoreChange, teamRanks, totalTeams = 8 }: FixtureListProps) {
+export default function FixtureList({ matches, overrides, onScoreChange, teamRanks, totalTeams = 16, relegationSpots = 2 }: FixtureListProps) {
     const [activeTab, setActiveTab] = useState<'upcoming' | 'past'>('upcoming');
 
     // Helper to get team rank
@@ -27,28 +28,29 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
     // Determine match importance based on team positions
     const getMatchImportance = (homeRank: number | null, awayRank: number | null): { label: string; color: string } | null => {
         if (!homeRank || !awayRank) return null;
+        if (relegationSpots === 0) return null; // No relegation warning if spots is 0
 
-        const playoffBoundary = 2; // Top 2 go to playoff
-        const relegationBoundary = totalTeams - 1; // Last 2 relegated
+        const playoffBoundary = 4; // Top 4 go to playoff usually (adjusted based on needs)
+        const relegationBoundary = totalTeams - relegationSpots + 1; // e.g. 10 teams, 2 spots -> 9 and 10 are relegated. Boundary is 9.
 
         // Both in playoff zone
         if (homeRank <= playoffBoundary && awayRank <= playoffBoundary) {
             return { label: 'Playoff Karşılaşması', color: 'from-emerald-600/80 to-emerald-500/60 text-emerald-200' };
         }
         // One in playoff, one fighting for it
-        if ((homeRank <= playoffBoundary && awayRank <= 4) || (awayRank <= playoffBoundary && homeRank <= 4)) {
+        if ((homeRank <= playoffBoundary && awayRank <= playoffBoundary + 1) || (awayRank <= playoffBoundary && homeRank <= playoffBoundary + 1)) {
             return { label: 'Playoff Mücadelesi', color: 'from-blue-600/80 to-blue-500/60 text-blue-200' };
         }
         // Both in relegation zone
         if (homeRank >= relegationBoundary && awayRank >= relegationBoundary) {
-            return { label: 'Küme Düşme Finali', color: 'from-rose-600/80 to-rose-500/60 text-rose-200' };
+            return { label: '⚠️ KÜME DÜŞME HATTINDA KRİTİK MAÇ', color: 'from-rose-600/80 to-rose-500/60 text-rose-200' };
         }
         // One in relegation zone
         if (homeRank >= relegationBoundary || awayRank >= relegationBoundary) {
-            return { label: 'Küme Düşme Tehlikesi', color: 'from-orange-600/80 to-orange-500/60 text-orange-200' };
+            return { label: '⚠️ KÜME DÜŞME TEHLİKESİ', color: 'from-orange-600/80 to-orange-500/60 text-orange-200' };
         }
         // Mid-table clash
-        if (homeRank > 4 && homeRank < relegationBoundary && awayRank > 4 && awayRank < relegationBoundary) {
+        if (homeRank > playoffBoundary && homeRank < relegationBoundary && awayRank > playoffBoundary && awayRank < relegationBoundary) {
             return { label: 'Orta Sıra', color: 'from-slate-600/60 to-slate-500/40 text-slate-300' };
         }
         return null;
@@ -94,7 +96,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
         if (dateStr === 'Tarih Belirtilmemiş') return dateStr;
         const parts = dateStr.split('.');
         if (parts.length !== 3) return dateStr;
-        const days = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
+        const days = ['PAZAR', 'PAZARTESİ', 'SALI', 'ÇARŞAMBA', 'PERŞEMBE', 'CUMA', 'CUMARTESİ'];
         const date = new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
         const dayName = days[date.getDay()];
         return `${parts[0]}/${parts[1]}/${parts[2]} ${dayName}`;

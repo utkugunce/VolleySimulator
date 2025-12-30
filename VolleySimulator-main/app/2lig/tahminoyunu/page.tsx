@@ -386,6 +386,8 @@ function CalculatorContent() {
                             overrides={overrides}
                             onScoreChange={handleScoreChange}
                             teamRanks={currentRanks}
+                            totalTeams={activeTeams.length}
+                            relegationSpots={2}
                         />
                     </div>
 

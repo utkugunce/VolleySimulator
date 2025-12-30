@@ -350,7 +350,13 @@ function CalculatorContent() {
                     {/* Left Column: Standings (Sticky) */}
                     <div className="flex flex-col gap-4 relative">
                         <div ref={standingsRef} className="sticky top-14 z-10">
-                            <StandingsTable teams={liveStandings} playoffSpots={4} relegationSpots={0} initialRanks={initialRanks} compact={true} />
+                            <StandingsTable
+                                teams={liveStandings}
+                                playoffSpots={4}
+                                relegationSpots={activeGroup === 'B' ? 2 : 0}
+                                initialRanks={initialRanks}
+                                compact={true}
+                            />
                         </div>
                     </div>
 
@@ -361,6 +367,8 @@ function CalculatorContent() {
                             overrides={overrides}
                             onScoreChange={handleScoreChange}
                             teamRanks={currentRanks}
+                            totalTeams={activeTeams.length}
+                            relegationSpots={activeGroup === 'B' ? 2 : 0}
                         />
                     </div>
 
