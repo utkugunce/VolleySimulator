@@ -46,6 +46,8 @@ export default function AnasayfaPage() {
     const [lig1Matches, setLig1Matches] = useState<Match[]>([]);
     const [lig2Teams, setLig2Teams] = useState<Team[]>([]);
     const [lig2Matches, setLig2Matches] = useState<Match[]>([]);
+    const [vslTeams, setVslTeams] = useState<Team[]>([]);
+    const [vslMatches, setVslMatches] = useState<Match[]>([]);
     const [loading, setLoading] = useState(true);
 
     // XP Progress calculation
@@ -58,9 +60,10 @@ export default function AnasayfaPage() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const [res1, res2] = await Promise.all([
+                const [res1, res2, resVsl] = await Promise.all([
                     fetch("/api/1lig"),
-                    fetch("/api/calculate")
+                    fetch("/api/calculate"),
+                    fetch("/api/vsl")
                 ]);
 
                 if (res1.ok) {
@@ -73,6 +76,12 @@ export default function AnasayfaPage() {
                     const data2 = await res2.json();
                     setLig2Teams(data2.teams || []);
                     setLig2Matches(data2.fixture || []);
+                }
+
+                if (resVsl.ok) {
+                    const dataVsl = await resVsl.json();
+                    setVslTeams(dataVsl.teams || []);
+                    setVslMatches(dataVsl.fixture || []);
                 }
             } catch (err) {
                 console.error(err);
@@ -89,9 +98,11 @@ export default function AnasayfaPage() {
 
     const lig1TopTeams = sortStandings(lig1Teams.filter(t => t.groupName === lig1Groups[0])).slice(0, 3);
     const lig2TopTeams = sortStandings(lig2Teams.filter(t => t.groupName === lig2Groups[0])).slice(0, 3);
+    const vslTopTeams = sortStandings(vslTeams).slice(0, 3);
 
     const lig1UpcomingMatches = lig1Matches.filter(m => !m.isPlayed).slice(0, 3);
     const lig2UpcomingMatches = lig2Matches.filter(m => !m.isPlayed).slice(0, 3);
+    const vslUpcomingMatches = vslMatches.filter(m => !m.isPlayed).slice(0, 3);
 
     if (loading) {
         return (
@@ -138,7 +149,15 @@ export default function AnasayfaPage() {
             <div className="max-w-4xl mx-auto px-4 mt-4 space-y-6 pb-6">
 
                 {/* Quick Actions */}
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-3 gap-3">
+                    <Link
+                        href="/vsl/tahminoyunu"
+                        className="bg-gradient-to-br from-red-600 to-rose-700 rounded-2xl p-4 text-center shadow-xl shadow-red-500/20 hover:scale-[1.02] transition-all"
+                    >
+                        <div className="text-3xl mb-2">🏆</div>
+                        <div className="font-bold text-white">Sultanlar</div>
+                        <div className="text-xs text-white/60">Tahmin Oyunu</div>
+                    </Link>
                     <Link
                         href="/1lig/tahminoyunu"
                         className="bg-gradient-to-br from-amber-600 to-orange-700 rounded-2xl p-4 text-center shadow-xl shadow-amber-500/20 hover:scale-[1.02] transition-all"
@@ -190,6 +209,50 @@ export default function AnasayfaPage() {
                             <h3 className="text-xs font-bold text-slate-500 uppercase mb-2">Yaklaşan Maçlar</h3>
                             <div className="space-y-1">
                                 {lig1UpcomingMatches.map((match, i) => (
+                                    <div key={i} className="flex items-center gap-2 p-2 bg-slate-800/50 rounded-lg text-xs">
+                                        <span className="flex-1 text-slate-300 truncate text-right">{match.homeTeam}</span>
+                                        <span className="px-2 py-0.5 bg-slate-700 rounded text-slate-500">vs</span>
+                                        <span className="flex-1 text-slate-300 truncate">{match.awayTeam}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Vodafone Sultanlar Ligi Summary */}
+                <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+                    <div className="bg-gradient-to-r from-red-600 to-rose-600 px-4 py-3 flex items-center justify-between">
+                        <h2 className="font-bold text-white flex items-center gap-2">
+                            <span>🏆</span> Vodafone Sultanlar Ligi
+                        </h2>
+                        <Link href="/vsl/gunceldurum" className="text-xs text-white/80 hover:text-white">
+                            Tümünü Gör →
+                        </Link>
+                    </div>
+
+                    <div className="p-4 grid md:grid-cols-2 gap-4">
+                        {/* Standings Preview */}
+                        <div>
+                            <h3 className="text-xs font-bold text-slate-500 uppercase mb-2">Puan Durumu</h3>
+                            <div className="space-y-1">
+                                {vslTopTeams.map((team, i) => (
+                                    <div key={team.name} className="flex items-center gap-2 p-2 bg-slate-800/50 rounded-lg">
+                                        <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${i === 0 ? "bg-red-600 text-white" : "bg-slate-700 text-slate-400"
+                                            }`}>{i + 1}</div>
+                                        <span className="flex-1 text-sm text-slate-300 truncate">{team.name}</span>
+                                        <span className="text-xs text-slate-500">{team.played}M</span>
+                                        <span className="font-bold text-white text-sm">{team.points}P</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Upcoming Matches */}
+                        <div>
+                            <h3 className="text-xs font-bold text-slate-500 uppercase mb-2">Yaklaşan Maçlar</h3>
+                            <div className="space-y-1">
+                                {vslUpcomingMatches.map((match, i) => (
                                     <div key={i} className="flex items-center gap-2 p-2 bg-slate-800/50 rounded-lg text-xs">
                                         <span className="flex-1 text-slate-300 truncate text-right">{match.homeTeam}</span>
                                         <span className="px-2 py-0.5 bg-slate-700 rounded text-slate-500">vs</span>
