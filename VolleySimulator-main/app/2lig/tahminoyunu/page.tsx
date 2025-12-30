@@ -30,6 +30,7 @@ function CalculatorContent() {
     const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
     const [overrides, setOverrides] = useState<Record<string, string>>({});
     const [showAchievements, setShowAchievements] = useState(false);
+    const [showAutoMenu, setShowAutoMenu] = useState(false);
     const [newAchievement, setNewAchievement] = useState<Achievement | null>(null);
 
     // Game State
@@ -389,39 +390,48 @@ function CalculatorContent() {
                         </select>
                     </div>
 
-                    {/* Actions */}
-                    <div className="flex items-center gap-2 w-full sm:w-auto overflow-x-auto no-scrollbar pb-1 sm:pb-0 justify-between sm:justify-end">
+                    {/* Actions - Removed overflow-x-auto */}
+                    <div className="flex items-center gap-2 w-full sm:w-auto pb-1 sm:pb-0 justify-between sm:justify-end flex-wrap sm:flex-nowrap">
                         {/* Import/Export buttons */}
                         <div className="flex items-center gap-2 shrink-0">
                             {/* Auto Simulate Dropdown */}
-                            <div className="relative group">
-                                <button className="px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-1 shadow-lg shadow-amber-500/20">
+                            <div className="relative">
+                                <button
+                                    onClick={() => setShowAutoMenu(!showAutoMenu)}
+                                    className={`px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-1 shadow-lg shadow-amber-500/20 ${showAutoMenu ? 'ring-2 ring-amber-400' : ''}`}
+                                >
                                     <span>⚡</span>
                                     <span className="hidden sm:inline">Otomatik</span>
                                     <span className="text-[8px] ml-0.5">▼</span>
                                 </button>
-                                <div className="absolute top-full right-0 mt-2 w-48 bg-slate-900 border border-slate-700 rounded-xl shadow-xl overflow-hidden hidden group-hover:block z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                                    <button
-                                        onClick={handleSimulateSmart}
-                                        className="w-full text-left px-4 py-3 hover:bg-slate-800 transition-colors flex items-center gap-3 border-b border-slate-800"
-                                    >
-                                        <div className="w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-lg">🧠</div>
-                                        <div>
-                                            <div className="text-xs font-bold text-white">Güç Dengelerine Göre</div>
-                                            <div className="text-[9px] text-slate-400">Takım güçlerine göre gerçekçi tahmin</div>
+
+                                {showAutoMenu && (
+                                    <>
+                                        <div className="fixed inset-0 z-40" onClick={() => setShowAutoMenu(false)}></div>
+                                        <div className="absolute top-full left-0 sm:left-auto sm:right-0 mt-2 w-48 bg-slate-900 border border-slate-700 rounded-xl shadow-xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                                            <button
+                                                onClick={() => { handleSimulateSmart(); setShowAutoMenu(false); }}
+                                                className="w-full text-left px-4 py-3 hover:bg-slate-800 transition-colors flex items-center gap-3 border-b border-slate-800"
+                                            >
+                                                <div className="w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-lg">🧠</div>
+                                                <div>
+                                                    <div className="text-xs font-bold text-white">Güç Dengelerine Göre</div>
+                                                    <div className="text-[9px] text-slate-400">Takım güçlerine göre gerçekçi tahmin</div>
+                                                </div>
+                                            </button>
+                                            <button
+                                                onClick={() => { handleSimulateRandom(); setShowAutoMenu(false); }}
+                                                className="w-full text-left px-4 py-3 hover:bg-slate-800 transition-colors flex items-center gap-3"
+                                            >
+                                                <div className="w-8 h-8 rounded-full bg-fuchsia-500/20 text-fuchsia-400 flex items-center justify-center text-lg">🎲</div>
+                                                <div>
+                                                    <div className="text-xs font-bold text-white">Rastgele Dağıt</div>
+                                                    <div className="text-[9px] text-slate-400">Tamamen şansa dayalı sonuçlar</div>
+                                                </div>
+                                            </button>
                                         </div>
-                                    </button>
-                                    <button
-                                        onClick={handleSimulateRandom}
-                                        className="w-full text-left px-4 py-3 hover:bg-slate-800 transition-colors flex items-center gap-3"
-                                    >
-                                        <div className="w-8 h-8 rounded-full bg-fuchsia-500/20 text-fuchsia-400 flex items-center justify-center text-lg">🎲</div>
-                                        <div>
-                                            <div className="text-xs font-bold text-white">Rastgele Dağıt</div>
-                                            <div className="text-[9px] text-slate-400">Tamamen şansa dayalı sonuçlar</div>
-                                        </div>
-                                    </button>
-                                </div>
+                                    </>
+                                )}
                             </div>
 
                             <input
