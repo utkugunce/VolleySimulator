@@ -32,7 +32,7 @@ export default function Navbar() {
     const required = nextLevelXP - currentLevelXP;
     const xpProgress = Math.min((progress / required) * 100, 100);
 
-    const isInLeague = pathname?.startsWith('/1lig') || pathname?.startsWith('/2lig');
+    const isInLeague = pathname?.startsWith('/1lig') || pathname?.startsWith('/2lig') || pathname?.startsWith('/vsl');
     const isAnasayfa = pathname === '/' || pathname === '/anasayfa';
     const isAyarlar = pathname === '/ayarlar';
     const isProfile = pathname === '/profile' || pathname === '/login' || pathname === '/register';
@@ -236,6 +236,22 @@ export default function Navbar() {
                                 </div>
 
                                 <div className="space-y-2">
+                                    {/* Vodafone Sultanlar Ligi */}
+                                    <Link
+                                        href="/vsl/gunceldurum"
+                                        onClick={() => setShowLeagueModal(false)}
+                                        className="group flex items-center gap-4 p-4 bg-gradient-to-r from-red-900/30 to-red-800/10 hover:from-red-800/40 hover:to-red-700/20 rounded-2xl border border-red-600/30 hover:border-red-500/50 transition-all duration-300"
+                                    >
+                                        <div className="w-14 h-14 bg-gradient-to-br from-red-600 to-rose-700 rounded-xl flex items-center justify-center shadow-lg shadow-red-500/30 group-hover:scale-110 transition-transform">
+                                            <span className="text-2xl">🏆</span>
+                                        </div>
+                                        <div className="flex-1">
+                                            <div className="font-bold text-white group-hover:text-red-300 transition-colors">Vodafone Sultanlar Ligi</div>
+                                            <div className="text-xs text-red-400/70">Kadınlar Voleybol • 2024-25</div>
+                                        </div>
+                                        <div className="text-red-500/50 group-hover:text-red-400 group-hover:translate-x-1 transition-all">→</div>
+                                    </Link>
+
                                     {/* 1. Lig */}
                                     <Link
                                         href={getLeagueUrl('1lig')}
