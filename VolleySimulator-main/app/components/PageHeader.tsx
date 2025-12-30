@@ -42,13 +42,33 @@ export default function PageHeader({
             }`;
     };
 
+    const getLeagueLinkClass = (leaguePath: string) => {
+        const isActive = pathname.startsWith(leaguePath);
+        return `px-2 py-1 rounded text-[10px] font-bold transition-all ${isActive
+            ? 'bg-white/10 text-white border border-white/20'
+            : 'text-slate-400 hover:text-white hover:bg-white/5'
+            }`;
+    };
+
     return (
         <div className="flex flex-col sm:flex-row items-center justify-between bg-slate-900 border border-slate-800 rounded-lg p-3 shadow-sm flex-shrink-0 gap-3">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
                 <span className="text-2xl">🏐</span>
                 <div>
                     <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">{title}</h1>
                     <p className="text-[10px] text-slate-500 hidden sm:block">{subtitle}</p>
+                </div>
+                {/* League Navigation */}
+                <div className="hidden md:flex items-center gap-1 ml-2 px-2 py-1 bg-slate-800/50 rounded-lg border border-slate-700/50">
+                    <Link href="/vsl/tahminoyunu" className={getLeagueLinkClass('/vsl')}>
+                        <span className="text-rose-400">●</span> VSL
+                    </Link>
+                    <Link href="/1lig/tahminoyunu" className={getLeagueLinkClass('/1lig')}>
+                        <span className="text-amber-400">●</span> 1.Lig
+                    </Link>
+                    <Link href="/2lig/tahminoyunu" className={getLeagueLinkClass('/2lig')}>
+                        <span className="text-emerald-400">●</span> 2.Lig
+                    </Link>
                 </div>
             </div>
 
