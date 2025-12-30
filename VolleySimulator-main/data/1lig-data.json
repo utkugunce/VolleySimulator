@@ -48,15 +48,6 @@
       "setsLost": 15
     },
     {
-      "name": "EDREMİT BLD. ALTINOLUK",
-      "groupName": "A. Grup",
-      "played": 0,
-      "wins": 0,
-      "points": 0,
-      "setsWon": 0,
-      "setsLost": 0
-    },
-    {
       "name": "VAKIFBANK",
       "groupName": "A. Grup",
       "played": 12,
@@ -100,15 +91,6 @@
       "points": 25,
       "setsWon": 31,
       "setsLost": 14
-    },
-    {
-      "name": "İZMİRSPOR",
-      "groupName": "A. Grup",
-      "played": 0,
-      "wins": 0,
-      "points": 0,
-      "setsWon": 0,
-      "setsLost": 0
     },
     {
       "name": "BODRUM BLD. BODRUMSPOR",
@@ -257,7 +239,7 @@
   ],
   "fixture": [
     {
-      "id": 578802,
+      "id": 192959,
       "matchNo": "A.Grup-W1-FENERBAHÇEMEDICANA-ÇANAKKALEBLD.",
       "date": "2025-10-04",
       "matchTime": "12:30",
@@ -273,7 +255,7 @@
       "venue": "İstanbul-50.Yıl Deniz Esinduy"
     },
     {
-      "id": 279756,
+      "id": 974674,
       "matchNo": "A.Grup-W1-ECZACIBAŞI-DENİZLİB.ŞEHİRBLD.",
       "date": "2025-10-04",
       "matchTime": "13:30",
@@ -289,20 +271,7 @@
       "venue": "İstanbul-Eczacıbaşı Spor Salonu"
     },
     {
-      "id": 53612,
-      "matchNo": "A.Grup-W1-İBBSPORKULÜBÜ-EDREMİTBLD.ALTINOLUK",
-      "date": "2025-10-04",
-      "matchTime": "İptal",
-      "week": 1,
-      "groupName": "A. Grup",
-      "homeTeam": "İBB SPOR KULÜBÜ",
-      "awayTeam": "EDREMİT BLD. ALTINOLUK",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İstanbul-İbb Cebeci Spor Komp."
-    },
-    {
-      "id": 598666,
+      "id": 480996,
       "matchNo": "A.Grup-W1-VAKIFBANK-YEŞİLYURT",
       "date": "2025-10-04",
       "matchTime": "13:00",
@@ -318,7 +287,7 @@
       "venue": "İstanbul-Vakıfbank Spor Sarayı"
     },
     {
-      "id": 529818,
+      "id": 984558,
       "matchNo": "A.Grup-W1-ALTINORDU-ENDOKARŞIYAKA",
       "date": "2025-10-04",
       "matchTime": "17:00",
@@ -334,20 +303,7 @@
       "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
     },
     {
-      "id": 325941,
-      "matchNo": "A.Grup-W1-VESTELMANİSAB.ŞEHİRBLD.-İZMİRSPOR",
-      "date": "2025-10-04",
-      "matchTime": "İptal",
-      "week": 1,
-      "groupName": "A. Grup",
-      "homeTeam": "VESTEL MANİSA B.ŞEHİR BLD.",
-      "awayTeam": "İZMİRSPOR",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Manisa-Tarık Almış"
-    },
-    {
-      "id": 290782,
+      "id": 986901,
       "matchNo": "A.Grup-W1-BODRUMBLD.BODRUMSPOR-HAVRANBLD.",
       "date": "2025-10-04",
       "matchTime": "16:00",
@@ -363,20 +319,7 @@
       "venue": "Muğla-Bodrum Binnaz Karakaya"
     },
     {
-      "id": 448738,
-      "matchNo": "A.Grup-W2-EDREMİTBLD.ALTINOLUK-VAKIFBANK",
-      "date": "2025-10-11",
-      "matchTime": "İptal",
-      "week": 2,
-      "groupName": "A. Grup",
-      "homeTeam": "EDREMİT BLD. ALTINOLUK",
-      "awayTeam": "VAKIFBANK",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Balıkesir-Edremit"
-    },
-    {
-      "id": 125290,
+      "id": 335412,
       "matchNo": "A.Grup-W2-HAVRANBLD.-ALTINORDU",
       "date": "2025-10-11",
       "matchTime": "14:00",
@@ -392,7 +335,7 @@
       "venue": "Balıkesir-Havran-Kocaseyit Spor Salonu"
     },
     {
-      "id": 555799,
+      "id": 635531,
       "matchNo": "A.Grup-W2-ÇANAKKALEBLD.-BODRUMBLD.BODRUMSPOR",
       "date": "2025-10-11",
       "matchTime": "16:00",
@@ -408,7 +351,7 @@
       "venue": "Çanakkale-Çanakkale Sporcu Gelişim Merkezi"
     },
     {
-      "id": 756350,
+      "id": 211336,
       "matchNo": "A.Grup-W2-DENİZLİB.ŞEHİRBLD.-FENERBAHÇEMEDICANA",
       "date": "2025-10-11",
       "matchTime": "14:00",
@@ -424,7 +367,7 @@
       "venue": "Denizli-Pamukkale Üniv. Arena Spor Salonu"
     },
     {
-      "id": 982205,
+      "id": 693165,
       "matchNo": "A.Grup-W2-YEŞİLYURT-VESTELMANİSAB.ŞEHİRBLD.",
       "date": "2025-10-11",
       "matchTime": "17:00",
@@ -440,20 +383,7 @@
       "venue": "İstanbul-Yeşilyurt Spor Salonu"
     },
     {
-      "id": 906471,
-      "matchNo": "A.Grup-W2-İZMİRSPOR-ECZACIBAŞI",
-      "date": "2025-10-11",
-      "matchTime": "İptal",
-      "week": 2,
-      "groupName": "A. Grup",
-      "homeTeam": "İZMİRSPOR",
-      "awayTeam": "ECZACIBAŞI",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
-    },
-    {
-      "id": 431633,
+      "id": 759444,
       "matchNo": "A.Grup-W2-ENDOKARŞIYAKA-İBBSPORKULÜBÜ",
       "date": "2025-10-11",
       "matchTime": "16:00",
@@ -469,7 +399,7 @@
       "venue": "İzmir-Karşıyaka-Mustafa Kemal Atatürk"
     },
     {
-      "id": 111306,
+      "id": 194986,
       "matchNo": "A.Grup-W3-ÇANAKKALEBLD.-DENİZLİB.ŞEHİRBLD.",
       "date": "2025-10-18",
       "matchTime": "16:00",
@@ -485,20 +415,7 @@
       "venue": "Çanakkale-Çanakkale Sporcu Gelişim Merkezi"
     },
     {
-      "id": 914287,
-      "matchNo": "A.Grup-W3-FENERBAHÇEMEDICANA-İZMİRSPOR",
-      "date": "2025-10-18",
-      "matchTime": "İptal",
-      "week": 3,
-      "groupName": "A. Grup",
-      "homeTeam": "FENERBAHÇE MEDICANA",
-      "awayTeam": "İZMİRSPOR",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İstanbul-50.Yıl Deniz Esinduy"
-    },
-    {
-      "id": 925171,
+      "id": 313201,
       "matchNo": "A.Grup-W3-ECZACIBAŞI-YEŞİLYURT",
       "date": "2025-10-18",
       "matchTime": "13:30",
@@ -514,7 +431,7 @@
       "venue": "İstanbul-Eczacıbaşı Spor Salonu"
     },
     {
-      "id": 413025,
+      "id": 509356,
       "matchNo": "A.Grup-W3-İBBSPORKULÜBÜ-HAVRANBLD.",
       "date": "2025-10-18",
       "matchTime": "13:30",
@@ -530,7 +447,7 @@
       "venue": "İstanbul-İbb Cebeci Spor Komp."
     },
     {
-      "id": 53096,
+      "id": 184067,
       "matchNo": "A.Grup-W3-VAKIFBANK-ENDOKARŞIYAKA",
       "date": "2025-10-18",
       "matchTime": "13:00",
@@ -546,20 +463,7 @@
       "venue": "İstanbul-Vakıfbank Spor Sarayı"
     },
     {
-      "id": 899938,
-      "matchNo": "A.Grup-W3-VESTELMANİSAB.ŞEHİRBLD.-EDREMİTBLD.ALTINOLUK",
-      "date": "2025-10-18",
-      "matchTime": "İptal",
-      "week": 3,
-      "groupName": "A. Grup",
-      "homeTeam": "VESTEL MANİSA B.ŞEHİR BLD.",
-      "awayTeam": "EDREMİT BLD. ALTINOLUK",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Manisa-Tarık Almış"
-    },
-    {
-      "id": 189412,
+      "id": 936788,
       "matchNo": "A.Grup-W3-BODRUMBLD.BODRUMSPOR-ALTINORDU",
       "date": "2025-10-18",
       "matchTime": "16:00",
@@ -575,20 +479,7 @@
       "venue": "Muğla-Bodrum Binnaz Karakaya"
     },
     {
-      "id": 674680,
-      "matchNo": "A.Grup-W4-EDREMİTBLD.ALTINOLUK-ECZACIBAŞI",
-      "date": "2025-10-21",
-      "matchTime": "İptal",
-      "week": 4,
-      "groupName": "A. Grup",
-      "homeTeam": "EDREMİT BLD. ALTINOLUK",
-      "awayTeam": "ECZACIBAŞI",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Balıkesir-Edremit"
-    },
-    {
-      "id": 654973,
+      "id": 535391,
       "matchNo": "A.Grup-W4-HAVRANBLD.-VAKIFBANK",
       "date": "2025-10-21",
       "matchTime": "14:00",
@@ -604,7 +495,7 @@
       "venue": "Balıkesir-Havran-Kocaseyit Spor Salonu"
     },
     {
-      "id": 713548,
+      "id": 563370,
       "matchNo": "A.Grup-W4-DENİZLİB.ŞEHİRBLD.-BODRUMBLD.BODRUMSPOR",
       "date": "2025-10-21",
       "matchTime": "19:00",
@@ -620,7 +511,7 @@
       "venue": "Denizli-Pamukkale Üniv. Arena Spor Salonu"
     },
     {
-      "id": 563626,
+      "id": 749142,
       "matchNo": "A.Grup-W4-YEŞİLYURT-FENERBAHÇEMEDICANA",
       "date": "2025-10-21",
       "matchTime": "14:00",
@@ -636,20 +527,7 @@
       "venue": "İstanbul-Yeşilyurt Spor Salonu"
     },
     {
-      "id": 931673,
-      "matchNo": "A.Grup-W4-İZMİRSPOR-ÇANAKKALEBLD.",
-      "date": "2025-10-21",
-      "matchTime": "İptal",
-      "week": 4,
-      "groupName": "A. Grup",
-      "homeTeam": "İZMİRSPOR",
-      "awayTeam": "ÇANAKKALE BLD.",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
-    },
-    {
-      "id": 922875,
+      "id": 375524,
       "matchNo": "A.Grup-W4-ALTINORDU-İBBSPORKULÜBÜ",
       "date": "2025-10-21",
       "matchTime": "16:00",
@@ -665,7 +543,7 @@
       "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
     },
     {
-      "id": 993171,
+      "id": 457934,
       "matchNo": "A.Grup-W4-ENDOKARŞIYAKA-VESTELMANİSAB.ŞEHİRBLD.",
       "date": "2025-10-21",
       "matchTime": "19:00",
@@ -681,7 +559,7 @@
       "venue": "İzmir-Karşıyaka-Mustafa Kemal Atatürk"
     },
     {
-      "id": 346330,
+      "id": 301593,
       "matchNo": "A.Grup-W5-ÇANAKKALEBLD.-YEŞİLYURT",
       "date": "2025-10-25",
       "matchTime": "16:00",
@@ -697,33 +575,7 @@
       "venue": "Çanakkale-Çanakkale Sporcu Gelişim Merkezi"
     },
     {
-      "id": 50947,
-      "matchNo": "A.Grup-W5-DENİZLİB.ŞEHİRBLD.-İZMİRSPOR",
-      "date": "2025-10-25",
-      "matchTime": "İptal",
-      "week": 5,
-      "groupName": "A. Grup",
-      "homeTeam": "DENİZLİ B.ŞEHİR BLD.",
-      "awayTeam": "İZMİRSPOR",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Denizli-Pamukkale Üniv. Arena Spor Salonu"
-    },
-    {
-      "id": 674523,
-      "matchNo": "A.Grup-W5-FENERBAHÇEMEDICANA-EDREMİTBLD.ALTINOLUK",
-      "date": "2025-10-25",
-      "matchTime": "İptal",
-      "week": 5,
-      "groupName": "A. Grup",
-      "homeTeam": "FENERBAHÇE MEDICANA",
-      "awayTeam": "EDREMİT BLD. ALTINOLUK",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İstanbul-50.Yıl Deniz Esinduy"
-    },
-    {
-      "id": 882871,
+      "id": 886864,
       "matchNo": "A.Grup-W5-ECZACIBAŞI-ENDOKARŞIYAKA",
       "date": "2025-10-25",
       "matchTime": "13:30",
@@ -739,7 +591,7 @@
       "venue": "İstanbul-Eczacıbaşı Spor Salonu"
     },
     {
-      "id": 217118,
+      "id": 856975,
       "matchNo": "A.Grup-W5-VAKIFBANK-ALTINORDU",
       "date": "2025-10-25",
       "matchTime": "14:30",
@@ -755,7 +607,7 @@
       "venue": "İstanbul-Vakıfbank Spor Sarayı"
     },
     {
-      "id": 669565,
+      "id": 362323,
       "matchNo": "A.Grup-W5-VESTELMANİSAB.ŞEHİRBLD.-HAVRANBLD.",
       "date": "2025-10-25",
       "matchTime": "16:00",
@@ -771,7 +623,7 @@
       "venue": "Manisa-Tarık Almış"
     },
     {
-      "id": 970150,
+      "id": 692691,
       "matchNo": "A.Grup-W5-BODRUMBLD.BODRUMSPOR-İBBSPORKULÜBÜ",
       "date": "2025-10-25",
       "matchTime": "16:00",
@@ -787,20 +639,7 @@
       "venue": "Muğla-Bodrum Binnaz Karakaya"
     },
     {
-      "id": 720289,
-      "matchNo": "A.Grup-W6-EDREMİTBLD.ALTINOLUK-ÇANAKKALEBLD.",
-      "date": "2025-11-01",
-      "matchTime": "İptal",
-      "week": 6,
-      "groupName": "A. Grup",
-      "homeTeam": "EDREMİT BLD. ALTINOLUK",
-      "awayTeam": "ÇANAKKALE BLD.",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Balıkesir-Edremit"
-    },
-    {
-      "id": 930660,
+      "id": 643849,
       "matchNo": "A.Grup-W6-HAVRANBLD.-ECZACIBAŞI",
       "date": "2025-11-01",
       "matchTime": "14:00",
@@ -816,7 +655,7 @@
       "venue": "Balıkesir-Havran-Kocaseyit Spor Salonu"
     },
     {
-      "id": 384272,
+      "id": 657460,
       "matchNo": "A.Grup-W6-YEŞİLYURT-DENİZLİB.ŞEHİRBLD.",
       "date": "2025-11-01",
       "matchTime": "17:00",
@@ -832,20 +671,7 @@
       "venue": "İstanbul-Yeşilyurt Spor Salonu"
     },
     {
-      "id": 465259,
-      "matchNo": "A.Grup-W6-İZMİRSPOR-BODRUMBLD.BODRUMSPOR",
-      "date": "2025-11-01",
-      "matchTime": "İptal",
-      "week": 6,
-      "groupName": "A. Grup",
-      "homeTeam": "İZMİRSPOR",
-      "awayTeam": "BODRUM BLD. BODRUMSPOR",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
-    },
-    {
-      "id": 729962,
+      "id": 580183,
       "matchNo": "A.Grup-W6-ALTINORDU-VESTELMANİSAB.ŞEHİRBLD.",
       "date": "2025-11-01",
       "matchTime": "18:00",
@@ -861,7 +687,7 @@
       "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
     },
     {
-      "id": 213243,
+      "id": 549311,
       "matchNo": "A.Grup-W6-İBBSPORKULÜBÜ-VAKIFBANK",
       "date": "2025-11-25",
       "matchTime": "13:30",
@@ -877,7 +703,7 @@
       "venue": "İstanbul-İbb Cebeci Spor Komp."
     },
     {
-      "id": 356785,
+      "id": 580662,
       "matchNo": "A.Grup-W6-ENDOKARŞIYAKA-FENERBAHÇEMEDICANA",
       "date": "2025-11-25",
       "matchTime": "16:00",
@@ -893,20 +719,7 @@
       "venue": "İzmir-Karşıyaka-Mustafa Kemal Atatürk"
     },
     {
-      "id": 132291,
-      "matchNo": "A.Grup-W7-DENİZLİB.ŞEHİRBLD.-EDREMİTBLD.ALTINOLUK",
-      "date": "2025-11-08",
-      "matchTime": "İptal",
-      "week": 7,
-      "groupName": "A. Grup",
-      "homeTeam": "DENİZLİ B.ŞEHİR BLD.",
-      "awayTeam": "EDREMİT BLD. ALTINOLUK",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Denizli-Pamukkale Üniv. Arena Spor Salonu"
-    },
-    {
-      "id": 86062,
+      "id": 465779,
       "matchNo": "A.Grup-W7-FENERBAHÇEMEDICANA-HAVRANBLD.",
       "date": "2025-11-08",
       "matchTime": "12:30",
@@ -922,7 +735,7 @@
       "venue": "İstanbul-50.Yıl Deniz Esinduy"
     },
     {
-      "id": 312110,
+      "id": 405874,
       "matchNo": "A.Grup-W7-ECZACIBAŞI-ALTINORDU",
       "date": "2025-11-08",
       "matchTime": "13:30",
@@ -938,20 +751,7 @@
       "venue": "İstanbul-Eczacıbaşı Spor Salonu"
     },
     {
-      "id": 483006,
-      "matchNo": "A.Grup-W7-İZMİRSPOR-YEŞİLYURT",
-      "date": "2025-11-08",
-      "matchTime": "İptal",
-      "week": 7,
-      "groupName": "A. Grup",
-      "homeTeam": "İZMİRSPOR",
-      "awayTeam": "YEŞİLYURT",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
-    },
-    {
-      "id": 121878,
+      "id": 259512,
       "matchNo": "A.Grup-W7-BODRUMBLD.BODRUMSPOR-VAKIFBANK",
       "date": "2025-11-08",
       "matchTime": "16:00",
@@ -967,7 +767,7 @@
       "venue": "Muğla-Bodrum Binnaz Karakaya"
     },
     {
-      "id": 261421,
+      "id": 790986,
       "matchNo": "A.Grup-W7-VESTELMANİSAB.ŞEHİRBLD.-İBBSPORKULÜBÜ",
       "date": "2025-11-19",
       "matchTime": "17:30",
@@ -983,7 +783,7 @@
       "venue": "Manisa-Tarık Almış"
     },
     {
-      "id": 897933,
+      "id": 994305,
       "matchNo": "A.Grup-W7-ÇANAKKALEBLD.-ENDOKARŞIYAKA",
       "date": "2025-12-09",
       "matchTime": "16:00",
@@ -999,20 +799,7 @@
       "venue": "Çanakkale-Çanakkale Sporcu Gelişim Merkezi"
     },
     {
-      "id": 562152,
-      "matchNo": "A.Grup-W8-EDREMİTBLD.ALTINOLUK-İZMİRSPOR",
-      "date": "2025-11-15",
-      "matchTime": "İptal",
-      "week": 8,
-      "groupName": "A. Grup",
-      "homeTeam": "EDREMİT BLD. ALTINOLUK",
-      "awayTeam": "İZMİRSPOR",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Balıkesir-Edremit"
-    },
-    {
-      "id": 350596,
+      "id": 156110,
       "matchNo": "A.Grup-W8-HAVRANBLD.-ÇANAKKALEBLD.",
       "date": "2025-11-15",
       "matchTime": "14:00",
@@ -1028,7 +815,7 @@
       "venue": "Balıkesir-Havran-Kocaseyit Spor Salonu"
     },
     {
-      "id": 909781,
+      "id": 103092,
       "matchNo": "A.Grup-W8-İBBSPORKULÜBÜ-ECZACIBAŞI",
       "date": "2025-11-15",
       "matchTime": "13:30",
@@ -1044,7 +831,7 @@
       "venue": "İstanbul-İbb Cebeci Spor Komp."
     },
     {
-      "id": 772819,
+      "id": 742776,
       "matchNo": "A.Grup-W8-VAKIFBANK-VESTELMANİSAB.ŞEHİRBLD.",
       "date": "2025-11-15",
       "matchTime": "14:30",
@@ -1060,7 +847,7 @@
       "venue": "İstanbul-Vakıfbank Spor Sarayı"
     },
     {
-      "id": 227036,
+      "id": 79791,
       "matchNo": "A.Grup-W8-YEŞİLYURT-BODRUMBLD.BODRUMSPOR",
       "date": "2025-11-15",
       "matchTime": "17:00",
@@ -1076,7 +863,7 @@
       "venue": "İstanbul-Yeşilyurt Spor Salonu"
     },
     {
-      "id": 153243,
+      "id": 722367,
       "matchNo": "A.Grup-W8-ALTINORDU-FENERBAHÇEMEDICANA",
       "date": "2025-11-15",
       "matchTime": "17:00",
@@ -1092,7 +879,7 @@
       "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
     },
     {
-      "id": 702150,
+      "id": 709789,
       "matchNo": "A.Grup-W8-ENDOKARŞIYAKA-DENİZLİB.ŞEHİRBLD.",
       "date": "2025-11-15",
       "matchTime": "13:30",
@@ -1108,7 +895,7 @@
       "venue": "İzmir-Karşıyaka-Mustafa Kemal Atatürk"
     },
     {
-      "id": 675799,
+      "id": 672454,
       "matchNo": "A.Grup-W9-ÇANAKKALEBLD.-ALTINORDU",
       "date": "2025-11-22",
       "matchTime": "16:00",
@@ -1124,7 +911,7 @@
       "venue": "Çanakkale-Çanakkale Sporcu Gelişim Merkezi"
     },
     {
-      "id": 491811,
+      "id": 508785,
       "matchNo": "A.Grup-W9-DENİZLİB.ŞEHİRBLD.-HAVRANBLD.",
       "date": "2025-11-22",
       "matchTime": "14:00",
@@ -1140,7 +927,7 @@
       "venue": "Denizli-Pamukkale Üniv. Arena Spor Salonu"
     },
     {
-      "id": 616258,
+      "id": 913285,
       "matchNo": "A.Grup-W9-FENERBAHÇEMEDICANA-İBBSPORKULÜBÜ",
       "date": "2025-11-22",
       "matchTime": "12:30",
@@ -1156,7 +943,7 @@
       "venue": "İstanbul-50.Yıl Deniz Esinduy"
     },
     {
-      "id": 628479,
+      "id": 682539,
       "matchNo": "A.Grup-W9-ECZACIBAŞI-VAKIFBANK",
       "date": "2025-11-22",
       "matchTime": "13:30",
@@ -1172,33 +959,7 @@
       "venue": "İstanbul-Eczacıbaşı Spor Salonu"
     },
     {
-      "id": 234690,
-      "matchNo": "A.Grup-W9-YEŞİLYURT-EDREMİTBLD.ALTINOLUK",
-      "date": "2025-11-22",
-      "matchTime": "İptal",
-      "week": 9,
-      "groupName": "A. Grup",
-      "homeTeam": "YEŞİLYURT",
-      "awayTeam": "EDREMİT BLD. ALTINOLUK",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İstanbul-Yeşilyurt Spor Salonu"
-    },
-    {
-      "id": 66649,
-      "matchNo": "A.Grup-W9-İZMİRSPOR-ENDOKARŞIYAKA",
-      "date": "2025-11-22",
-      "matchTime": "İptal",
-      "week": 9,
-      "groupName": "A. Grup",
-      "homeTeam": "İZMİRSPOR",
-      "awayTeam": "ENDO KARŞIYAKA",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
-    },
-    {
-      "id": 862526,
+      "id": 32023,
       "matchNo": "A.Grup-W9-BODRUMBLD.BODRUMSPOR-VESTELMANİSAB.ŞEHİRBLD.",
       "date": "2025-11-22",
       "matchTime": "16:00",
@@ -1214,33 +975,7 @@
       "venue": "Muğla-Bodrum Binnaz Karakaya"
     },
     {
-      "id": 343033,
-      "matchNo": "A.Grup-W10-EDREMİTBLD.ALTINOLUK-BODRUMBLD.BODRUMSPOR",
-      "date": "2025-11-29",
-      "matchTime": "İptal",
-      "week": 10,
-      "groupName": "A. Grup",
-      "homeTeam": "EDREMİT BLD. ALTINOLUK",
-      "awayTeam": "BODRUM BLD. BODRUMSPOR",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Balıkesir-Edremit"
-    },
-    {
-      "id": 973945,
-      "matchNo": "A.Grup-W10-HAVRANBLD.-İZMİRSPOR",
-      "date": "2025-11-29",
-      "matchTime": "İptal",
-      "week": 10,
-      "groupName": "A. Grup",
-      "homeTeam": "HAVRAN BLD.",
-      "awayTeam": "İZMİRSPOR",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Balıkesir-Havran-Kocaseyit Spor Salonu"
-    },
-    {
-      "id": 632673,
+      "id": 150747,
       "matchNo": "A.Grup-W10-İBBSPORKULÜBÜ-ÇANAKKALEBLD.",
       "date": "2025-11-29",
       "matchTime": "13:30",
@@ -1256,7 +991,7 @@
       "venue": "İstanbul-İbb Cebeci Spor Komp."
     },
     {
-      "id": 748183,
+      "id": 353136,
       "matchNo": "A.Grup-W10-VAKIFBANK-FENERBAHÇEMEDICANA",
       "date": "2025-11-29",
       "matchTime": "18:00",
@@ -1272,7 +1007,7 @@
       "venue": "İstanbul-Vakıfbank Spor Sarayı"
     },
     {
-      "id": 589686,
+      "id": 833813,
       "matchNo": "A.Grup-W10-ENDOKARŞIYAKA-YEŞİLYURT",
       "date": "2025-11-29",
       "matchTime": "16:00",
@@ -1288,7 +1023,7 @@
       "venue": "İzmir-Karşıyaka-Mustafa Kemal Atatürk"
     },
     {
-      "id": 995366,
+      "id": 423900,
       "matchNo": "A.Grup-W10-ALTINORDU-DENİZLİB.ŞEHİRBLD.",
       "date": "2025-11-29",
       "matchTime": "17:30",
@@ -1304,7 +1039,7 @@
       "venue": "İzmir-TVF Atatürk Voleybol Salonu"
     },
     {
-      "id": 768483,
+      "id": 735799,
       "matchNo": "A.Grup-W10-VESTELMANİSAB.ŞEHİRBLD.-ECZACIBAŞI",
       "date": "2025-11-29",
       "matchTime": "16:00",
@@ -1320,20 +1055,7 @@
       "venue": "Manisa-Tarık Almış"
     },
     {
-      "id": 992408,
-      "matchNo": "A.Grup-W11-EDREMİTBLD.ALTINOLUK-ENDOKARŞIYAKA",
-      "date": "2025-12-02",
-      "matchTime": "İptal",
-      "week": 11,
-      "groupName": "A. Grup",
-      "homeTeam": "EDREMİT BLD. ALTINOLUK",
-      "awayTeam": "ENDO KARŞIYAKA",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Balıkesir-Edremit"
-    },
-    {
-      "id": 571425,
+      "id": 272543,
       "matchNo": "A.Grup-W11-DENİZLİB.ŞEHİRBLD.-İBBSPORKULÜBÜ",
       "date": "2025-12-02",
       "matchTime": "14:00",
@@ -1349,7 +1071,7 @@
       "venue": "Denizli-Vali Recep Yazıcıoğlu"
     },
     {
-      "id": 282375,
+      "id": 174070,
       "matchNo": "A.Grup-W11-FENERBAHÇEMEDICANA-VESTELMANİSAB.ŞEHİRBLD.",
       "date": "2025-12-02",
       "matchTime": "16:00",
@@ -1365,7 +1087,7 @@
       "venue": "İstanbul-50.Yıl Deniz Esinduy"
     },
     {
-      "id": 907577,
+      "id": 770769,
       "matchNo": "A.Grup-W11-YEŞİLYURT-HAVRANBLD.",
       "date": "2025-12-02",
       "matchTime": "14:00",
@@ -1381,20 +1103,7 @@
       "venue": "İstanbul-Yeşilyurt Spor Salonu"
     },
     {
-      "id": 546282,
-      "matchNo": "A.Grup-W11-İZMİRSPOR-ALTINORDU",
-      "date": "2025-12-02",
-      "matchTime": "İptal",
-      "week": 11,
-      "groupName": "A. Grup",
-      "homeTeam": "İZMİRSPOR",
-      "awayTeam": "ALTINORDU",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
-    },
-    {
-      "id": 773883,
+      "id": 319377,
       "matchNo": "A.Grup-W11-BODRUMBLD.BODRUMSPOR-ECZACIBAŞI",
       "date": "2025-12-02",
       "matchTime": "18:00",
@@ -1410,7 +1119,7 @@
       "venue": "Muğla-Bodrum Binnaz Karakaya"
     },
     {
-      "id": 318130,
+      "id": 615114,
       "matchNo": "A.Grup-W11-ÇANAKKALEBLD.-VAKIFBANK",
       "date": "2025-12-03",
       "matchTime": "18:00",
@@ -1426,20 +1135,7 @@
       "venue": "Çanakkale-Çanakkale Sporcu Gelişim Merkezi"
     },
     {
-      "id": 574962,
-      "matchNo": "A.Grup-W12-HAVRANBLD.-EDREMİTBLD.ALTINOLUK",
-      "date": "2025-12-06",
-      "matchTime": "İptal",
-      "week": 12,
-      "groupName": "A. Grup",
-      "homeTeam": "HAVRAN BLD.",
-      "awayTeam": "EDREMİT BLD. ALTINOLUK",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Balıkesir-Havran-Kocaseyit Spor Salonu"
-    },
-    {
-      "id": 35614,
+      "id": 34971,
       "matchNo": "A.Grup-W12-ECZACIBAŞI-FENERBAHÇEMEDICANA",
       "date": "2025-12-06",
       "matchTime": "13:30",
@@ -1455,20 +1151,7 @@
       "venue": "İstanbul-Eczacıbaşı Spor Salonu"
     },
     {
-      "id": 357108,
-      "matchNo": "A.Grup-W12-İBBSPORKULÜBÜ-İZMİRSPOR",
-      "date": "2025-12-06",
-      "matchTime": "İptal",
-      "week": 12,
-      "groupName": "A. Grup",
-      "homeTeam": "İBB SPOR KULÜBÜ",
-      "awayTeam": "İZMİRSPOR",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İstanbul-İbb Cebeci Spor Komp."
-    },
-    {
-      "id": 296349,
+      "id": 175077,
       "matchNo": "A.Grup-W12-VAKIFBANK-DENİZLİB.ŞEHİRBLD.",
       "date": "2025-12-06",
       "matchTime": "14:30",
@@ -1484,7 +1167,7 @@
       "venue": "İstanbul-Vakıfbank Spor Sarayı"
     },
     {
-      "id": 647938,
+      "id": 395509,
       "matchNo": "A.Grup-W12-ENDOKARŞIYAKA-BODRUMBLD.BODRUMSPOR",
       "date": "2025-12-06",
       "matchTime": "16:00",
@@ -1500,7 +1183,7 @@
       "venue": "İzmir-Karşıyaka-Mustafa Kemal Atatürk"
     },
     {
-      "id": 97968,
+      "id": 66836,
       "matchNo": "A.Grup-W12-ALTINORDU-YEŞİLYURT",
       "date": "2025-12-06",
       "matchTime": "17:30",
@@ -1516,7 +1199,7 @@
       "venue": "İzmir-TVF Atatürk Voleybol Salonu"
     },
     {
-      "id": 215289,
+      "id": 620945,
       "matchNo": "A.Grup-W12-VESTELMANİSAB.ŞEHİRBLD.-ÇANAKKALEBLD.",
       "date": "2025-12-06",
       "matchTime": "16:00",
@@ -1532,20 +1215,7 @@
       "venue": "Manisa-Tarık Almış"
     },
     {
-      "id": 928284,
-      "matchNo": "A.Grup-W13-EDREMİTBLD.ALTINOLUK-ALTINORDU",
-      "date": "2025-12-13",
-      "matchTime": "İptal",
-      "week": 13,
-      "groupName": "A. Grup",
-      "homeTeam": "EDREMİT BLD. ALTINOLUK",
-      "awayTeam": "ALTINORDU",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Balıkesir-Edremit"
-    },
-    {
-      "id": 610885,
+      "id": 862046,
       "matchNo": "A.Grup-W13-ÇANAKKALEBLD.-ECZACIBAŞI",
       "date": "2025-12-13",
       "matchTime": "16:00",
@@ -1561,7 +1231,7 @@
       "venue": "Çanakkale-Çanakkale Sporcu Gelişim Merkezi"
     },
     {
-      "id": 417364,
+      "id": 94002,
       "matchNo": "A.Grup-W13-DENİZLİB.ŞEHİRBLD.-VESTELMANİSAB.ŞEHİRBLD.",
       "date": "2025-12-13",
       "matchTime": "14:00",
@@ -1577,7 +1247,7 @@
       "venue": "Denizli-Pamukkale Üniv. Arena Spor Salonu"
     },
     {
-      "id": 127270,
+      "id": 170797,
       "matchNo": "A.Grup-W13-YEŞİLYURT-İBBSPORKULÜBÜ",
       "date": "2025-12-13",
       "matchTime": "17:00",
@@ -1593,20 +1263,7 @@
       "venue": "İstanbul-Yeşilyurt Spor Salonu"
     },
     {
-      "id": 363216,
-      "matchNo": "A.Grup-W13-İZMİRSPOR-VAKIFBANK",
-      "date": "2025-12-13",
-      "matchTime": "İptal",
-      "week": 13,
-      "groupName": "A. Grup",
-      "homeTeam": "İZMİRSPOR",
-      "awayTeam": "VAKIFBANK",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
-    },
-    {
-      "id": 600846,
+      "id": 909716,
       "matchNo": "A.Grup-W13-ENDOKARŞIYAKA-HAVRANBLD.",
       "date": "2025-12-13",
       "matchTime": "16:00",
@@ -1622,7 +1279,7 @@
       "venue": "İzmir-Karşıyaka-Mustafa Kemal Atatürk"
     },
     {
-      "id": 54295,
+      "id": 779054,
       "matchNo": "A.Grup-W13-BODRUMBLD.BODRUMSPOR-FENERBAHÇEMEDICANA",
       "date": "2025-12-13",
       "matchTime": "16:00",
@@ -1638,7 +1295,7 @@
       "venue": "Muğla-Bodrum Binnaz Karakaya"
     },
     {
-      "id": 167257,
+      "id": 772994,
       "matchNo": "A.Grup-W14-ENDOKARŞIYAKA-ALTINORDU",
       "date": "2025-12-19",
       "matchTime": "19:00",
@@ -1654,20 +1311,7 @@
       "venue": "İzmir-Karşıyaka-Mustafa Kemal Atatürk"
     },
     {
-      "id": 35781,
-      "matchNo": "A.Grup-W14-EDREMİTBLD.ALTINOLUK-İBBSPORKULÜBÜ",
-      "date": "2025-12-20",
-      "matchTime": "İptal",
-      "week": 14,
-      "groupName": "A. Grup",
-      "homeTeam": "EDREMİT BLD. ALTINOLUK",
-      "awayTeam": "İBB SPOR KULÜBÜ",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Balıkesir-Edremit"
-    },
-    {
-      "id": 905364,
+      "id": 960583,
       "matchNo": "A.Grup-W14-HAVRANBLD.-BODRUMBLD.BODRUMSPOR",
       "date": "2025-12-20",
       "matchTime": "14:00",
@@ -1683,7 +1327,7 @@
       "venue": "Balıkesir-Havran-Kocaseyit Spor Salonu"
     },
     {
-      "id": 125469,
+      "id": 537983,
       "matchNo": "A.Grup-W14-ÇANAKKALEBLD.-FENERBAHÇEMEDICANA",
       "date": "2025-12-20",
       "matchTime": "16:00",
@@ -1699,7 +1343,7 @@
       "venue": "Çanakkale-Çanakkale Sporcu Gelişim Merkezi"
     },
     {
-      "id": 434917,
+      "id": 206128,
       "matchNo": "A.Grup-W14-DENİZLİB.ŞEHİRBLD.-ECZACIBAŞI",
       "date": "2025-12-20",
       "matchTime": "14:00",
@@ -1715,7 +1359,7 @@
       "venue": "Denizli-Pamukkale Üniv. Arena Spor Salonu"
     },
     {
-      "id": 996231,
+      "id": 882822,
       "matchNo": "A.Grup-W14-YEŞİLYURT-VAKIFBANK",
       "date": "2025-12-20",
       "matchTime": "17:00",
@@ -1731,20 +1375,7 @@
       "venue": "İstanbul-Yeşilyurt Spor Salonu"
     },
     {
-      "id": 356295,
-      "matchNo": "A.Grup-W14-İZMİRSPOR-VESTELMANİSAB.ŞEHİRBLD.",
-      "date": "2025-12-20",
-      "matchTime": "İptal",
-      "week": 14,
-      "groupName": "A. Grup",
-      "homeTeam": "İZMİRSPOR",
-      "awayTeam": "VESTEL MANİSA B.ŞEHİR BLD.",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
-    },
-    {
-      "id": 581173,
+      "id": 189811,
       "matchNo": "A.Grup-W15-FENERBAHÇEMEDICANA-DENİZLİB.ŞEHİRBLD.",
       "date": "2026-01-11",
       "matchTime": "12:30",
@@ -1757,20 +1388,7 @@
       "venue": "İstanbul-50.Yıl Deniz Esinduy"
     },
     {
-      "id": 697518,
-      "matchNo": "A.Grup-W15-ECZACIBAŞI-İZMİRSPOR",
-      "date": "2026-01-11",
-      "matchTime": "İptal",
-      "week": 15,
-      "groupName": "A. Grup",
-      "homeTeam": "ECZACIBAŞI",
-      "awayTeam": "İZMİRSPOR",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İstanbul-Eczacıbaşı Spor Salonu"
-    },
-    {
-      "id": 401719,
+      "id": 793426,
       "matchNo": "A.Grup-W15-İBBSPORKULÜBÜ-ENDOKARŞIYAKA",
       "date": "2026-01-11",
       "matchTime": "13:30",
@@ -1783,20 +1401,7 @@
       "venue": "İstanbul-İbb Cebeci Spor Komp."
     },
     {
-      "id": 40177,
-      "matchNo": "A.Grup-W15-VAKIFBANK-EDREMİTBLD.ALTINOLUK",
-      "date": "2026-01-11",
-      "matchTime": "İptal",
-      "week": 15,
-      "groupName": "A. Grup",
-      "homeTeam": "VAKIFBANK",
-      "awayTeam": "EDREMİT BLD. ALTINOLUK",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İstanbul-Vakıfbank Spor Sarayı"
-    },
-    {
-      "id": 177561,
+      "id": 661386,
       "matchNo": "A.Grup-W15-ALTINORDU-HAVRANBLD.",
       "date": "2026-01-11",
       "matchTime": "19:00",
@@ -1809,7 +1414,7 @@
       "venue": "İzmir-TVF Atatürk Voleybol Salonu"
     },
     {
-      "id": 710349,
+      "id": 531701,
       "matchNo": "A.Grup-W15-VESTELMANİSAB.ŞEHİRBLD.-YEŞİLYURT",
       "date": "2026-01-11",
       "matchTime": "16:00",
@@ -1822,7 +1427,7 @@
       "venue": "Manisa-Tarık Almış"
     },
     {
-      "id": 308140,
+      "id": 180828,
       "matchNo": "A.Grup-W15-BODRUMBLD.BODRUMSPOR-ÇANAKKALEBLD.",
       "date": "2026-01-11",
       "matchTime": "16:00",
@@ -1835,20 +1440,7 @@
       "venue": "Muğla-Bodrum Binnaz Karakaya"
     },
     {
-      "id": 828308,
-      "matchNo": "A.Grup-W16-EDREMİTBLD.ALTINOLUK-VESTELMANİSAB.ŞEHİRBLD.",
-      "date": "2026-01-18",
-      "matchTime": "İptal",
-      "week": 16,
-      "groupName": "A. Grup",
-      "homeTeam": "EDREMİT BLD. ALTINOLUK",
-      "awayTeam": "VESTEL MANİSA B.ŞEHİR BLD.",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Balıkesir-Edremit"
-    },
-    {
-      "id": 804007,
+      "id": 226918,
       "matchNo": "A.Grup-W16-HAVRANBLD.-İBBSPORKULÜBÜ",
       "date": "2026-01-18",
       "matchTime": "14:00",
@@ -1861,7 +1453,7 @@
       "venue": "Balıkesir-Havran-Kocaseyit Spor Salonu"
     },
     {
-      "id": 117045,
+      "id": 27713,
       "matchNo": "A.Grup-W16-DENİZLİB.ŞEHİRBLD.-ÇANAKKALEBLD.",
       "date": "2026-01-18",
       "matchTime": "14:00",
@@ -1874,7 +1466,7 @@
       "venue": "Denizli-Pamukkale Üniv. Arena Spor Salonu"
     },
     {
-      "id": 273245,
+      "id": 867465,
       "matchNo": "A.Grup-W16-YEŞİLYURT-ECZACIBAŞI",
       "date": "2026-01-18",
       "matchTime": "17:00",
@@ -1887,20 +1479,7 @@
       "venue": "İstanbul-Yeşilyurt Spor Salonu"
     },
     {
-      "id": 509644,
-      "matchNo": "A.Grup-W16-İZMİRSPOR-FENERBAHÇEMEDICANA",
-      "date": "2026-01-18",
-      "matchTime": "İptal",
-      "week": 16,
-      "groupName": "A. Grup",
-      "homeTeam": "İZMİRSPOR",
-      "awayTeam": "FENERBAHÇE MEDICANA",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
-    },
-    {
-      "id": 26117,
+      "id": 876872,
       "matchNo": "A.Grup-W16-ENDOKARŞIYAKA-VAKIFBANK",
       "date": "2026-01-18",
       "matchTime": "16:00",
@@ -1913,7 +1492,7 @@
       "venue": "İzmir-Karşıyaka-Mustafa Kemal Atatürk"
     },
     {
-      "id": 192559,
+      "id": 572049,
       "matchNo": "A.Grup-W16-ALTINORDU-BODRUMBLD.BODRUMSPOR",
       "date": "2026-01-18",
       "matchTime": "17:00",
@@ -1926,20 +1505,7 @@
       "venue": "İzmir-TVF Atatürk Voleybol Salonu"
     },
     {
-      "id": 290001,
-      "matchNo": "A.Grup-W17-ÇANAKKALEBLD.-İZMİRSPOR",
-      "date": "2026-01-21",
-      "matchTime": "İptal",
-      "week": 17,
-      "groupName": "A. Grup",
-      "homeTeam": "ÇANAKKALE BLD.",
-      "awayTeam": "İZMİRSPOR",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Çanakkale-Çanakkale Sporcu Gelişim Merkezi"
-    },
-    {
-      "id": 398794,
+      "id": 508055,
       "matchNo": "A.Grup-W17-FENERBAHÇEMEDICANA-YEŞİLYURT",
       "date": "2026-01-21",
       "matchTime": "16:00",
@@ -1952,20 +1518,7 @@
       "venue": "İstanbul-50.Yıl Deniz Esinduy"
     },
     {
-      "id": 924382,
-      "matchNo": "A.Grup-W17-ECZACIBAŞI-EDREMİTBLD.ALTINOLUK",
-      "date": "2026-01-21",
-      "matchTime": "İptal",
-      "week": 17,
-      "groupName": "A. Grup",
-      "homeTeam": "ECZACIBAŞI",
-      "awayTeam": "EDREMİT BLD. ALTINOLUK",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İstanbul-Eczacıbaşı Spor Salonu"
-    },
-    {
-      "id": 571056,
+      "id": 398427,
       "matchNo": "A.Grup-W17-İBBSPORKULÜBÜ-ALTINORDU",
       "date": "2026-01-21",
       "matchTime": "13:30",
@@ -1978,7 +1531,7 @@
       "venue": "İstanbul-İbb Cebeci Spor Komp."
     },
     {
-      "id": 98747,
+      "id": 881836,
       "matchNo": "A.Grup-W17-VAKIFBANK-HAVRANBLD.",
       "date": "2026-01-21",
       "matchTime": "14:30",
@@ -1991,7 +1544,7 @@
       "venue": "İstanbul-Vakıfbank Spor Sarayı"
     },
     {
-      "id": 704784,
+      "id": 211375,
       "matchNo": "A.Grup-W17-VESTELMANİSAB.ŞEHİRBLD.-ENDOKARŞIYAKA",
       "date": "2026-01-21",
       "matchTime": "16:00",
@@ -2004,7 +1557,7 @@
       "venue": "Manisa-Tarık Almış"
     },
     {
-      "id": 97254,
+      "id": 693366,
       "matchNo": "A.Grup-W17-BODRUMBLD.BODRUMSPOR-DENİZLİB.ŞEHİRBLD.",
       "date": "2026-01-21",
       "matchTime": "18:00",
@@ -2017,20 +1570,7 @@
       "venue": "Muğla-Bodrum Binnaz Karakaya"
     },
     {
-      "id": 868593,
-      "matchNo": "A.Grup-W18-EDREMİTBLD.ALTINOLUK-FENERBAHÇEMEDICANA",
-      "date": "2026-01-25",
-      "matchTime": "İptal",
-      "week": 18,
-      "groupName": "A. Grup",
-      "homeTeam": "EDREMİT BLD. ALTINOLUK",
-      "awayTeam": "FENERBAHÇE MEDICANA",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Balıkesir-Edremit"
-    },
-    {
-      "id": 97959,
+      "id": 145830,
       "matchNo": "A.Grup-W18-HAVRANBLD.-VESTELMANİSAB.ŞEHİRBLD.",
       "date": "2026-01-25",
       "matchTime": "14:00",
@@ -2043,7 +1583,7 @@
       "venue": "Balıkesir-Havran-Kocaseyit Spor Salonu"
     },
     {
-      "id": 844378,
+      "id": 271596,
       "matchNo": "A.Grup-W18-İBBSPORKULÜBÜ-BODRUMBLD.BODRUMSPOR",
       "date": "2026-01-25",
       "matchTime": "13:30",
@@ -2056,7 +1596,7 @@
       "venue": "İstanbul-İbb Cebeci Spor Komp."
     },
     {
-      "id": 880326,
+      "id": 545481,
       "matchNo": "A.Grup-W18-YEŞİLYURT-ÇANAKKALEBLD.",
       "date": "2026-01-25",
       "matchTime": "17:00",
@@ -2069,20 +1609,7 @@
       "venue": "İstanbul-Yeşilyurt Spor Salonu"
     },
     {
-      "id": 739861,
-      "matchNo": "A.Grup-W18-İZMİRSPOR-DENİZLİB.ŞEHİRBLD.",
-      "date": "2026-01-25",
-      "matchTime": "İptal",
-      "week": 18,
-      "groupName": "A. Grup",
-      "homeTeam": "İZMİRSPOR",
-      "awayTeam": "DENİZLİ B.ŞEHİR BLD.",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
-    },
-    {
-      "id": 511589,
+      "id": 319071,
       "matchNo": "A.Grup-W18-ENDOKARŞIYAKA-ECZACIBAŞI",
       "date": "2026-01-25",
       "matchTime": "16:00",
@@ -2095,7 +1622,7 @@
       "venue": "İzmir-Karşıyaka-Mustafa Kemal Atatürk"
     },
     {
-      "id": 577807,
+      "id": 839187,
       "matchNo": "A.Grup-W18-ALTINORDU-VAKIFBANK",
       "date": "2026-01-25",
       "matchTime": "17:00",
@@ -2108,20 +1635,7 @@
       "venue": "İzmir-TVF Atatürk Voleybol Salonu"
     },
     {
-      "id": 354150,
-      "matchNo": "A.Grup-W19-ÇANAKKALEBLD.-EDREMİTBLD.ALTINOLUK",
-      "date": "2026-02-01",
-      "matchTime": "İptal",
-      "week": 19,
-      "groupName": "A. Grup",
-      "homeTeam": "ÇANAKKALE BLD.",
-      "awayTeam": "EDREMİT BLD. ALTINOLUK",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Çanakkale-Çanakkale Sporcu Gelişim Merkezi"
-    },
-    {
-      "id": 475225,
+      "id": 81285,
       "matchNo": "A.Grup-W19-DENİZLİB.ŞEHİRBLD.-YEŞİLYURT",
       "date": "2026-02-01",
       "matchTime": "14:00",
@@ -2134,7 +1648,7 @@
       "venue": "Denizli-Pamukkale Üniv. Arena Spor Salonu"
     },
     {
-      "id": 20389,
+      "id": 262503,
       "matchNo": "A.Grup-W19-FENERBAHÇEMEDICANA-ENDOKARŞIYAKA",
       "date": "2026-02-01",
       "matchTime": "16:00",
@@ -2147,7 +1661,7 @@
       "venue": "İstanbul-50.Yıl Deniz Esinduy"
     },
     {
-      "id": 686429,
+      "id": 189648,
       "matchNo": "A.Grup-W19-ECZACIBAŞI-HAVRANBLD.",
       "date": "2026-02-01",
       "matchTime": "13:30",
@@ -2160,7 +1674,7 @@
       "venue": "İstanbul-Eczacıbaşı Spor Salonu"
     },
     {
-      "id": 381817,
+      "id": 368058,
       "matchNo": "A.Grup-W19-VAKIFBANK-İBBSPORKULÜBÜ",
       "date": "2026-02-01",
       "matchTime": "14:30",
@@ -2173,7 +1687,7 @@
       "venue": "İstanbul-Vakıfbank Spor Sarayı"
     },
     {
-      "id": 340231,
+      "id": 89327,
       "matchNo": "A.Grup-W19-VESTELMANİSAB.ŞEHİRBLD.-ALTINORDU",
       "date": "2026-02-01",
       "matchTime": "16:00",
@@ -2186,33 +1700,7 @@
       "venue": "Manisa-Tarık Almış"
     },
     {
-      "id": 344036,
-      "matchNo": "A.Grup-W19-BODRUMBLD.BODRUMSPOR-İZMİRSPOR",
-      "date": "2026-02-01",
-      "matchTime": "İptal",
-      "week": 19,
-      "groupName": "A. Grup",
-      "homeTeam": "BODRUM BLD. BODRUMSPOR",
-      "awayTeam": "İZMİRSPOR",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Muğla-Bodrum Binnaz Karakaya"
-    },
-    {
-      "id": 621769,
-      "matchNo": "A.Grup-W20-EDREMİTBLD.ALTINOLUK-DENİZLİB.ŞEHİRBLD.",
-      "date": "2026-02-08",
-      "matchTime": "İptal",
-      "week": 20,
-      "groupName": "A. Grup",
-      "homeTeam": "EDREMİT BLD. ALTINOLUK",
-      "awayTeam": "DENİZLİ B.ŞEHİR BLD.",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Balıkesir-Edremit"
-    },
-    {
-      "id": 207189,
+      "id": 85011,
       "matchNo": "A.Grup-W20-HAVRANBLD.-FENERBAHÇEMEDICANA",
       "date": "2026-02-08",
       "matchTime": "14:00",
@@ -2225,7 +1713,7 @@
       "venue": "Balıkesir-Havran-Kocaseyit Spor Salonu"
     },
     {
-      "id": 171942,
+      "id": 155503,
       "matchNo": "A.Grup-W20-İBBSPORKULÜBÜ-VESTELMANİSAB.ŞEHİRBLD.",
       "date": "2026-02-08",
       "matchTime": "13:30",
@@ -2238,7 +1726,7 @@
       "venue": "İstanbul-İbb Cebeci Spor Komp."
     },
     {
-      "id": 646633,
+      "id": 318696,
       "matchNo": "A.Grup-W20-VAKIFBANK-BODRUMBLD.BODRUMSPOR",
       "date": "2026-02-08",
       "matchTime": "14:30",
@@ -2251,20 +1739,7 @@
       "venue": "İstanbul-Vakıfbank Spor Sarayı"
     },
     {
-      "id": 426737,
-      "matchNo": "A.Grup-W20-YEŞİLYURT-İZMİRSPOR",
-      "date": "2026-02-08",
-      "matchTime": "İptal",
-      "week": 20,
-      "groupName": "A. Grup",
-      "homeTeam": "YEŞİLYURT",
-      "awayTeam": "İZMİRSPOR",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İstanbul-Yeşilyurt Spor Salonu"
-    },
-    {
-      "id": 372667,
+      "id": 290806,
       "matchNo": "A.Grup-W20-ENDOKARŞIYAKA-ÇANAKKALEBLD.",
       "date": "2026-02-08",
       "matchTime": "16:00",
@@ -2277,7 +1752,7 @@
       "venue": "İzmir-Karşıyaka-Mustafa Kemal Atatürk"
     },
     {
-      "id": 197912,
+      "id": 543418,
       "matchNo": "A.Grup-W20-ALTINORDU-ECZACIBAŞI",
       "date": "2026-02-08",
       "matchTime": "17:00",
@@ -2290,7 +1765,7 @@
       "venue": "İzmir-TVF Atatürk Voleybol Salonu"
     },
     {
-      "id": 767457,
+      "id": 242520,
       "matchNo": "A.Grup-W21-ÇANAKKALEBLD.-HAVRANBLD.",
       "date": "2026-02-15",
       "matchTime": "16:00",
@@ -2303,7 +1778,7 @@
       "venue": "Çanakkale-Çanakkale Sporcu Gelişim Merkezi"
     },
     {
-      "id": 442570,
+      "id": 240486,
       "matchNo": "A.Grup-W21-DENİZLİB.ŞEHİRBLD.-ENDOKARŞIYAKA",
       "date": "2026-02-15",
       "matchTime": "14:00",
@@ -2316,7 +1791,7 @@
       "venue": "Denizli-Pamukkale Üniv. Arena Spor Salonu"
     },
     {
-      "id": 2576,
+      "id": 956187,
       "matchNo": "A.Grup-W21-FENERBAHÇEMEDICANA-ALTINORDU",
       "date": "2026-02-15",
       "matchTime": "16:00",
@@ -2329,7 +1804,7 @@
       "venue": "İstanbul-50.Yıl Deniz Esinduy"
     },
     {
-      "id": 471811,
+      "id": 412842,
       "matchNo": "A.Grup-W21-ECZACIBAŞI-İBBSPORKULÜBÜ",
       "date": "2026-02-15",
       "matchTime": "13:30",
@@ -2342,20 +1817,7 @@
       "venue": "İstanbul-Eczacıbaşı Spor Salonu"
     },
     {
-      "id": 273305,
-      "matchNo": "A.Grup-W21-İZMİRSPOR-EDREMİTBLD.ALTINOLUK",
-      "date": "2026-02-15",
-      "matchTime": "İptal",
-      "week": 21,
-      "groupName": "A. Grup",
-      "homeTeam": "İZMİRSPOR",
-      "awayTeam": "EDREMİT BLD. ALTINOLUK",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
-    },
-    {
-      "id": 254375,
+      "id": 8344,
       "matchNo": "A.Grup-W21-VESTELMANİSAB.ŞEHİRBLD.-VAKIFBANK",
       "date": "2026-02-15",
       "matchTime": "16:00",
@@ -2368,7 +1830,7 @@
       "venue": "Manisa-Tarık Almış"
     },
     {
-      "id": 239174,
+      "id": 498242,
       "matchNo": "A.Grup-W21-BODRUMBLD.BODRUMSPOR-YEŞİLYURT",
       "date": "2026-02-15",
       "matchTime": "16:00",
@@ -2381,20 +1843,7 @@
       "venue": "Muğla-Bodrum Binnaz Karakaya"
     },
     {
-      "id": 280697,
-      "matchNo": "A.Grup-W22-EDREMİTBLD.ALTINOLUK-YEŞİLYURT",
-      "date": "2026-02-22",
-      "matchTime": "İptal",
-      "week": 22,
-      "groupName": "A. Grup",
-      "homeTeam": "EDREMİT BLD. ALTINOLUK",
-      "awayTeam": "YEŞİLYURT",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Balıkesir-Edremit"
-    },
-    {
-      "id": 968295,
+      "id": 796196,
       "matchNo": "A.Grup-W22-HAVRANBLD.-DENİZLİB.ŞEHİRBLD.",
       "date": "2026-02-22",
       "matchTime": "14:00",
@@ -2407,7 +1856,7 @@
       "venue": "Balıkesir-Havran-Kocaseyit Spor Salonu"
     },
     {
-      "id": 70618,
+      "id": 623670,
       "matchNo": "A.Grup-W22-İBBSPORKULÜBÜ-FENERBAHÇEMEDICANA",
       "date": "2026-02-22",
       "matchTime": "13:30",
@@ -2420,7 +1869,7 @@
       "venue": "İstanbul-İbb Cebeci Spor Komp."
     },
     {
-      "id": 769783,
+      "id": 491848,
       "matchNo": "A.Grup-W22-VAKIFBANK-ECZACIBAŞI",
       "date": "2026-02-22",
       "matchTime": "14:30",
@@ -2433,20 +1882,7 @@
       "venue": "İstanbul-Vakıfbank Spor Sarayı"
     },
     {
-      "id": 907275,
-      "matchNo": "A.Grup-W22-ENDOKARŞIYAKA-İZMİRSPOR",
-      "date": "2026-02-22",
-      "matchTime": "İptal",
-      "week": 22,
-      "groupName": "A. Grup",
-      "homeTeam": "ENDO KARŞIYAKA",
-      "awayTeam": "İZMİRSPOR",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İzmir-Karşıyaka-Mustafa Kemal Atatürk"
-    },
-    {
-      "id": 968764,
+      "id": 630926,
       "matchNo": "A.Grup-W22-ALTINORDU-ÇANAKKALEBLD.",
       "date": "2026-02-22",
       "matchTime": "17:00",
@@ -2459,7 +1895,7 @@
       "venue": "İzmir-TVF Atatürk Voleybol Salonu"
     },
     {
-      "id": 318613,
+      "id": 739072,
       "matchNo": "A.Grup-W22-VESTELMANİSAB.ŞEHİRBLD.-BODRUMBLD.BODRUMSPOR",
       "date": "2026-02-22",
       "matchTime": "16:00",
@@ -2472,7 +1908,7 @@
       "venue": "Manisa-Tarık Almış"
     },
     {
-      "id": 188150,
+      "id": 666920,
       "matchNo": "A.Grup-W23-ÇANAKKALEBLD.-İBBSPORKULÜBÜ",
       "date": "2026-03-01",
       "matchTime": "16:00",
@@ -2485,7 +1921,7 @@
       "venue": "Çanakkale-Çanakkale Sporcu Gelişim Merkezi"
     },
     {
-      "id": 18287,
+      "id": 714890,
       "matchNo": "A.Grup-W23-DENİZLİB.ŞEHİRBLD.-ALTINORDU",
       "date": "2026-03-01",
       "matchTime": "14:00",
@@ -2498,7 +1934,7 @@
       "venue": "Denizli-Pamukkale Üniv. Arena Spor Salonu"
     },
     {
-      "id": 65559,
+      "id": 134381,
       "matchNo": "A.Grup-W23-FENERBAHÇEMEDICANA-VAKIFBANK",
       "date": "2026-03-01",
       "matchTime": "16:00",
@@ -2511,7 +1947,7 @@
       "venue": "İstanbul-50.Yıl Deniz Esinduy"
     },
     {
-      "id": 270578,
+      "id": 87976,
       "matchNo": "A.Grup-W23-ECZACIBAŞI-VESTELMANİSAB.ŞEHİRBLD.",
       "date": "2026-03-01",
       "matchTime": "13:30",
@@ -2524,7 +1960,7 @@
       "venue": "İstanbul-Eczacıbaşı Spor Salonu"
     },
     {
-      "id": 916308,
+      "id": 888024,
       "matchNo": "A.Grup-W23-YEŞİLYURT-ENDOKARŞIYAKA",
       "date": "2026-03-01",
       "matchTime": "17:00",
@@ -2537,33 +1973,7 @@
       "venue": "İstanbul-Yeşilyurt Spor Salonu"
     },
     {
-      "id": 389248,
-      "matchNo": "A.Grup-W23-İZMİRSPOR-HAVRANBLD.",
-      "date": "2026-03-01",
-      "matchTime": "İptal",
-      "week": 23,
-      "groupName": "A. Grup",
-      "homeTeam": "İZMİRSPOR",
-      "awayTeam": "HAVRAN BLD.",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
-    },
-    {
-      "id": 417323,
-      "matchNo": "A.Grup-W23-BODRUMBLD.BODRUMSPOR-EDREMİTBLD.ALTINOLUK",
-      "date": "2026-03-01",
-      "matchTime": "İptal",
-      "week": 23,
-      "groupName": "A. Grup",
-      "homeTeam": "BODRUM BLD. BODRUMSPOR",
-      "awayTeam": "EDREMİT BLD. ALTINOLUK",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Muğla-Bodrum Binnaz Karakaya"
-    },
-    {
-      "id": 645560,
+      "id": 827748,
       "matchNo": "A.Grup-W24-HAVRANBLD.-YEŞİLYURT",
       "date": "2026-03-04",
       "matchTime": "14:00",
@@ -2576,7 +1986,7 @@
       "venue": "Balıkesir-Havran-Kocaseyit Spor Salonu"
     },
     {
-      "id": 328114,
+      "id": 953329,
       "matchNo": "A.Grup-W24-ECZACIBAŞI-BODRUMBLD.BODRUMSPOR",
       "date": "2026-03-04",
       "matchTime": "13:30",
@@ -2589,7 +1999,7 @@
       "venue": "İstanbul-Eczacıbaşı Spor Salonu"
     },
     {
-      "id": 178883,
+      "id": 703401,
       "matchNo": "A.Grup-W24-İBBSPORKULÜBÜ-DENİZLİB.ŞEHİRBLD.",
       "date": "2026-03-04",
       "matchTime": "13:30",
@@ -2602,7 +2012,7 @@
       "venue": "İstanbul-İbb Cebeci Spor Komp."
     },
     {
-      "id": 922646,
+      "id": 873137,
       "matchNo": "A.Grup-W24-VAKIFBANK-ÇANAKKALEBLD.",
       "date": "2026-03-04",
       "matchTime": "14:30",
@@ -2615,33 +2025,7 @@
       "venue": "İstanbul-Vakıfbank Spor Sarayı"
     },
     {
-      "id": 49626,
-      "matchNo": "A.Grup-W24-ALTINORDU-İZMİRSPOR",
-      "date": "2026-03-04",
-      "matchTime": "İptal",
-      "week": 24,
-      "groupName": "A. Grup",
-      "homeTeam": "ALTINORDU",
-      "awayTeam": "İZMİRSPOR",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
-    },
-    {
-      "id": 501838,
-      "matchNo": "A.Grup-W24-ENDOKARŞIYAKA-EDREMİTBLD.ALTINOLUK",
-      "date": "2026-03-04",
-      "matchTime": "İptal",
-      "week": 24,
-      "groupName": "A. Grup",
-      "homeTeam": "ENDO KARŞIYAKA",
-      "awayTeam": "EDREMİT BLD. ALTINOLUK",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İzmir-Karşıyaka-Mustafa Kemal Atatürk"
-    },
-    {
-      "id": 313264,
+      "id": 753922,
       "matchNo": "A.Grup-W24-VESTELMANİSAB.ŞEHİRBLD.-FENERBAHÇEMEDICANA",
       "date": "2026-03-04",
       "matchTime": "16:00",
@@ -2654,20 +2038,7 @@
       "venue": "Manisa-Tarık Almış"
     },
     {
-      "id": 672059,
-      "matchNo": "A.Grup-W25-EDREMİTBLD.ALTINOLUK-HAVRANBLD.",
-      "date": "2026-03-08",
-      "matchTime": "İptal",
-      "week": 25,
-      "groupName": "A. Grup",
-      "homeTeam": "EDREMİT BLD. ALTINOLUK",
-      "awayTeam": "HAVRAN BLD.",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "Balıkesir-Edremit"
-    },
-    {
-      "id": 789138,
+      "id": 406636,
       "matchNo": "A.Grup-W25-ÇANAKKALEBLD.-VESTELMANİSAB.ŞEHİRBLD.",
       "date": "2026-03-08",
       "matchTime": "16:00",
@@ -2680,7 +2051,7 @@
       "venue": "Çanakkale-Çanakkale Sporcu Gelişim Merkezi"
     },
     {
-      "id": 594470,
+      "id": 739715,
       "matchNo": "A.Grup-W25-DENİZLİB.ŞEHİRBLD.-VAKIFBANK",
       "date": "2026-03-08",
       "matchTime": "14:00",
@@ -2693,7 +2064,7 @@
       "venue": "Denizli-Pamukkale Üniv. Arena Spor Salonu"
     },
     {
-      "id": 720065,
+      "id": 781726,
       "matchNo": "A.Grup-W25-FENERBAHÇEMEDICANA-ECZACIBAŞI",
       "date": "2026-03-08",
       "matchTime": "16:00",
@@ -2706,7 +2077,7 @@
       "venue": "İstanbul-50.Yıl Deniz Esinduy"
     },
     {
-      "id": 820067,
+      "id": 13102,
       "matchNo": "A.Grup-W25-YEŞİLYURT-ALTINORDU",
       "date": "2026-03-08",
       "matchTime": "17:00",
@@ -2719,20 +2090,7 @@
       "venue": "İstanbul-Yeşilyurt Spor Salonu"
     },
     {
-      "id": 265643,
-      "matchNo": "A.Grup-W25-İZMİRSPOR-İBBSPORKULÜBÜ",
-      "date": "2026-03-08",
-      "matchTime": "İptal",
-      "week": 25,
-      "groupName": "A. Grup",
-      "homeTeam": "İZMİRSPOR",
-      "awayTeam": "İBB SPOR KULÜBÜ",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
-    },
-    {
-      "id": 200935,
+      "id": 100646,
       "matchNo": "A.Grup-W25-BODRUMBLD.BODRUMSPOR-ENDOKARŞIYAKA",
       "date": "2026-03-08",
       "matchTime": "16:00",
@@ -2745,7 +2103,7 @@
       "venue": "Muğla-Bodrum Binnaz Karakaya"
     },
     {
-      "id": 326503,
+      "id": 297296,
       "matchNo": "A.Grup-W26-HAVRANBLD.-ENDOKARŞIYAKA",
       "date": "2026-03-15",
       "matchTime": "14:00",
@@ -2758,7 +2116,7 @@
       "venue": "Balıkesir-Havran-Kocaseyit Spor Salonu"
     },
     {
-      "id": 483307,
+      "id": 790165,
       "matchNo": "A.Grup-W26-FENERBAHÇEMEDICANA-BODRUMBLD.BODRUMSPOR",
       "date": "2026-03-15",
       "matchTime": "16:00",
@@ -2771,7 +2129,7 @@
       "venue": "İstanbul-50.Yıl Deniz Esinduy"
     },
     {
-      "id": 398453,
+      "id": 577251,
       "matchNo": "A.Grup-W26-ECZACIBAŞI-ÇANAKKALEBLD.",
       "date": "2026-03-15",
       "matchTime": "13:30",
@@ -2784,7 +2142,7 @@
       "venue": "İstanbul-Eczacıbaşı Spor Salonu"
     },
     {
-      "id": 875840,
+      "id": 596299,
       "matchNo": "A.Grup-W26-İBBSPORKULÜBÜ-YEŞİLYURT",
       "date": "2026-03-15",
       "matchTime": "13:30",
@@ -2797,33 +2155,7 @@
       "venue": "İstanbul-İbb Cebeci Spor Komp."
     },
     {
-      "id": 533948,
-      "matchNo": "A.Grup-W26-VAKIFBANK-İZMİRSPOR",
-      "date": "2026-03-15",
-      "matchTime": "İptal",
-      "week": 26,
-      "groupName": "A. Grup",
-      "homeTeam": "VAKIFBANK",
-      "awayTeam": "İZMİRSPOR",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İstanbul-Vakıfbank Spor Sarayı"
-    },
-    {
-      "id": 329701,
-      "matchNo": "A.Grup-W26-ALTINORDU-EDREMİTBLD.ALTINOLUK",
-      "date": "2026-03-15",
-      "matchTime": "İptal",
-      "week": 26,
-      "groupName": "A. Grup",
-      "homeTeam": "ALTINORDU",
-      "awayTeam": "EDREMİT BLD. ALTINOLUK",
-      "isPlayed": false,
-      "setResults": "",
-      "venue": "İzmir-Atatürk Voleybol Salonu Vestel Spor Komp."
-    },
-    {
-      "id": 4385,
+      "id": 476976,
       "matchNo": "A.Grup-W26-VESTELMANİSAB.ŞEHİRBLD.-DENİZLİB.ŞEHİRBLD.",
       "date": "2026-03-15",
       "matchTime": "16:00",
@@ -2836,7 +2168,7 @@
       "venue": "Manisa-Tarık Almış"
     },
     {
-      "id": 490032,
+      "id": 644230,
       "matchNo": "B.Grup-W1-KUZEYBORUMAXİPİPESPOR-SAKARYAVOLEYBOL",
       "date": "2025-10-04",
       "matchTime": "14:00",
@@ -2852,7 +2184,7 @@
       "venue": "Aksaray-Aksaray Spor Salonu"
     },
     {
-      "id": 989351,
+      "id": 805078,
       "matchNo": "B.Grup-W1-İLBANK-DİYARBAKIRB.ŞEHİRBLD.",
       "date": "2025-10-04",
       "matchTime": "13:00",
@@ -2868,7 +2200,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 578748,
+      "id": 386260,
       "matchNo": "B.Grup-W1-ALFEMOZERENSPOR-MERİNOSVOLEYBOL",
       "date": "2025-10-04",
       "matchTime": "15:00",
@@ -2884,7 +2216,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 597132,
+      "id": 155351,
       "matchNo": "B.Grup-W1-KARAYOLLARI-AFYONBLD.YÜNTAŞ",
       "date": "2025-10-04",
       "matchTime": "17:00",
@@ -2900,7 +2232,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 502788,
+      "id": 955543,
       "matchNo": "B.Grup-W1-TRENDYHOTELSMANAVGATBLD.-SİGORTASHOPMKEANKARAGÜCÜ",
       "date": "2025-10-04",
       "matchTime": "17:00",
@@ -2916,7 +2248,7 @@
       "venue": "Antalya-Manavgat-Mehmet Akif Ersoy"
     },
     {
-      "id": 363949,
+      "id": 236314,
       "matchNo": "B.Grup-W1-MURATPAŞABLD.AÇIKOLEJİ-PTT",
       "date": "2025-10-04",
       "matchTime": "15:00",
@@ -2932,7 +2264,7 @@
       "venue": "Antalya-Süleyman Evcilmen"
     },
     {
-      "id": 864561,
+      "id": 760775,
       "matchNo": "B.Grup-W1-FDMYAPIKONYAEREĞLİBLD.-İBAKİMYATEDANKARAKOLEJLİLER",
       "date": "2025-10-04",
       "matchTime": "15:00",
@@ -2948,7 +2280,7 @@
       "venue": "Konya-Ereğli-Atatürk"
     },
     {
-      "id": 844429,
+      "id": 98638,
       "matchNo": "B.Grup-W2-AFYONBLD.YÜNTAŞ-KUZEYBORUMAXİPİPESPOR",
       "date": "2025-10-11",
       "matchTime": "15:00",
@@ -2964,7 +2296,7 @@
       "venue": "Afyonkarahisar-Prof. Dr. Veysel Eroğlu"
     },
     {
-      "id": 868490,
+      "id": 917537,
       "matchNo": "B.Grup-W2-İBAKİMYATEDANKARAKOLEJLİLER-ALFEMOZERENSPOR",
       "date": "2025-10-11",
       "matchTime": "13:00",
@@ -2980,7 +2312,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 342390,
+      "id": 82478,
       "matchNo": "B.Grup-W2-PTT-TRENDYHOTELSMANAVGATBLD.",
       "date": "2025-10-11",
       "matchTime": "12:00",
@@ -2996,7 +2328,7 @@
       "venue": "Ankara-TVF Ziraat Bankkart Voleybol Salonu"
     },
     {
-      "id": 950907,
+      "id": 393750,
       "matchNo": "B.Grup-W2-SİGORTASHOPMKEANKARAGÜCÜ-FDMYAPIKONYAEREĞLİBLD.",
       "date": "2025-10-11",
       "matchTime": "14:00",
@@ -3012,7 +2344,7 @@
       "venue": "Ankara-TVF Ziraat Bankkart Voleybol Salonu"
     },
     {
-      "id": 468306,
+      "id": 922763,
       "matchNo": "B.Grup-W2-DİYARBAKIRB.ŞEHİRBLD.-KARAYOLLARI",
       "date": "2025-10-11",
       "matchTime": "13:00",
@@ -3028,7 +2360,7 @@
       "venue": "Diyarbakır-Şehit Polis Halit Gürsel"
     },
     {
-      "id": 229191,
+      "id": 786643,
       "matchNo": "B.Grup-W2-MERİNOSVOLEYBOL-İLBANK",
       "date": "2025-10-11",
       "matchTime": "17:00",
@@ -3044,7 +2376,7 @@
       "venue": "Gaziantep-Şahinbey"
     },
     {
-      "id": 697630,
+      "id": 877250,
       "matchNo": "B.Grup-W2-SAKARYAVOLEYBOL-MURATPAŞABLD.AÇIKOLEJİ",
       "date": "2025-10-11",
       "matchTime": "14:00",
@@ -3060,7 +2392,7 @@
       "venue": "Sakarya-Serdivan-Metehan Başar"
     },
     {
-      "id": 24472,
+      "id": 337248,
       "matchNo": "B.Grup-W3-AFYONBLD.YÜNTAŞ-DİYARBAKIRB.ŞEHİRBLD.",
       "date": "2025-10-18",
       "matchTime": "15:00",
@@ -3076,7 +2408,7 @@
       "venue": "Afyonkarahisar-Prof. Dr. Veysel Eroğlu"
     },
     {
-      "id": 423448,
+      "id": 193300,
       "matchNo": "B.Grup-W3-KUZEYBORUMAXİPİPESPOR-MURATPAŞABLD.AÇIKOLEJİ",
       "date": "2025-10-18",
       "matchTime": "13:00",
@@ -3092,7 +2424,7 @@
       "venue": "Aksaray-Aksaray Spor Salonu"
     },
     {
-      "id": 459270,
+      "id": 49112,
       "matchNo": "B.Grup-W3-İLBANK-İBAKİMYATEDANKARAKOLEJLİLER",
       "date": "2025-10-18",
       "matchTime": "13:00",
@@ -3108,7 +2440,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 419920,
+      "id": 573672,
       "matchNo": "B.Grup-W3-KARAYOLLARI-MERİNOSVOLEYBOL",
       "date": "2025-10-18",
       "matchTime": "15:00",
@@ -3124,7 +2456,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 503979,
+      "id": 693001,
       "matchNo": "B.Grup-W3-ALFEMOZERENSPOR-SİGORTASHOPMKEANKARAGÜCÜ",
       "date": "2025-10-18",
       "matchTime": "17:00",
@@ -3140,7 +2472,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 742024,
+      "id": 793754,
       "matchNo": "B.Grup-W3-TRENDYHOTELSMANAVGATBLD.-SAKARYAVOLEYBOL",
       "date": "2025-10-18",
       "matchTime": "17:00",
@@ -3156,7 +2488,7 @@
       "venue": "Antalya-Manavgat-Mehmet Akif Ersoy"
     },
     {
-      "id": 171371,
+      "id": 228444,
       "matchNo": "B.Grup-W3-FDMYAPIKONYAEREĞLİBLD.-PTT",
       "date": "2025-10-18",
       "matchTime": "15:00",
@@ -3172,7 +2504,7 @@
       "venue": "Konya-Ereğli-Atatürk"
     },
     {
-      "id": 297322,
+      "id": 2537,
       "matchNo": "B.Grup-W4-SİGORTASHOPMKEANKARAGÜCÜ-İLBANK",
       "date": "2025-10-21",
       "matchTime": "16:00",
@@ -3188,7 +2520,7 @@
       "venue": "Ankara-Beştepe Voleybol Salonu"
     },
     {
-      "id": 161221,
+      "id": 126680,
       "matchNo": "B.Grup-W4-İBAKİMYATEDANKARAKOLEJLİLER-KARAYOLLARI",
       "date": "2025-10-21",
       "matchTime": "16:00",
@@ -3204,7 +2536,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 36546,
+      "id": 494856,
       "matchNo": "B.Grup-W4-PTT-ALFEMOZERENSPOR",
       "date": "2025-10-21",
       "matchTime": "18:00",
@@ -3220,7 +2552,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 119380,
+      "id": 237556,
       "matchNo": "B.Grup-W4-MURATPAŞABLD.AÇIKOLEJİ-TRENDYHOTELSMANAVGATBLD.",
       "date": "2025-10-21",
       "matchTime": "17:00",
@@ -3236,7 +2568,7 @@
       "venue": "Antalya-Süleyman Evcilmen"
     },
     {
-      "id": 249199,
+      "id": 936252,
       "matchNo": "B.Grup-W4-DİYARBAKIRB.ŞEHİRBLD.-KUZEYBORUMAXİPİPESPOR",
       "date": "2025-10-21",
       "matchTime": "13:00",
@@ -3252,7 +2584,7 @@
       "venue": "Diyarbakır-Şehit Polis Halit Gürsel"
     },
     {
-      "id": 428264,
+      "id": 607783,
       "matchNo": "B.Grup-W4-MERİNOSVOLEYBOL-AFYONBLD.YÜNTAŞ",
       "date": "2025-10-21",
       "matchTime": "17:00",
@@ -3268,7 +2600,7 @@
       "venue": "Gaziantep-Şahinbey"
     },
     {
-      "id": 292301,
+      "id": 377001,
       "matchNo": "B.Grup-W4-SAKARYAVOLEYBOL-FDMYAPIKONYAEREĞLİBLD.",
       "date": "2025-10-21",
       "matchTime": "14:00",
@@ -3284,7 +2616,7 @@
       "venue": "Sakarya-Serdivan-Metehan Başar"
     },
     {
-      "id": 928583,
+      "id": 482322,
       "matchNo": "B.Grup-W5-AFYONBLD.YÜNTAŞ-İBAKİMYATEDANKARAKOLEJLİLER",
       "date": "2025-10-25",
       "matchTime": "15:00",
@@ -3300,7 +2632,7 @@
       "venue": "Afyonkarahisar-Prof. Dr. Veysel Eroğlu"
     },
     {
-      "id": 380532,
+      "id": 487617,
       "matchNo": "B.Grup-W5-KUZEYBORUMAXİPİPESPOR-TRENDYHOTELSMANAVGATBLD.",
       "date": "2025-10-25",
       "matchTime": "14:00",
@@ -3316,7 +2648,7 @@
       "venue": "Aksaray-Aksaray Spor Salonu"
     },
     {
-      "id": 711324,
+      "id": 836633,
       "matchNo": "B.Grup-W5-KARAYOLLARI-SİGORTASHOPMKEANKARAGÜCÜ",
       "date": "2025-10-25",
       "matchTime": "11:00",
@@ -3332,7 +2664,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 387467,
+      "id": 872421,
       "matchNo": "B.Grup-W5-İLBANK-PTT",
       "date": "2025-10-25",
       "matchTime": "13:00",
@@ -3348,7 +2680,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 745703,
+      "id": 659944,
       "matchNo": "B.Grup-W5-ALFEMOZERENSPOR-SAKARYAVOLEYBOL",
       "date": "2025-10-25",
       "matchTime": "15:00",
@@ -3364,7 +2696,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 406299,
+      "id": 812968,
       "matchNo": "B.Grup-W5-DİYARBAKIRB.ŞEHİRBLD.-MERİNOSVOLEYBOL",
       "date": "2025-10-25",
       "matchTime": "13:00",
@@ -3380,7 +2712,7 @@
       "venue": "Diyarbakır-Şehit Polis Halit Gürsel"
     },
     {
-      "id": 84001,
+      "id": 4795,
       "matchNo": "B.Grup-W5-FDMYAPIKONYAEREĞLİBLD.-MURATPAŞABLD.AÇIKOLEJİ",
       "date": "2025-10-25",
       "matchTime": "15:00",
@@ -3396,7 +2728,7 @@
       "venue": "Konya-Ereğli-Atatürk"
     },
     {
-      "id": 566669,
+      "id": 643678,
       "matchNo": "B.Grup-W6-İBAKİMYATEDANKARAKOLEJLİLER-DİYARBAKIRB.ŞEHİRBLD.",
       "date": "2025-11-01",
       "matchTime": "15:00",
@@ -3412,7 +2744,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 8794,
+      "id": 738106,
       "matchNo": "B.Grup-W6-SİGORTASHOPMKEANKARAGÜCÜ-AFYONBLD.YÜNTAŞ",
       "date": "2025-11-01",
       "matchTime": "17:00",
@@ -3428,7 +2760,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 284256,
+      "id": 971457,
       "matchNo": "B.Grup-W6-PTT-KARAYOLLARI",
       "date": "2025-11-01",
       "matchTime": "11:00",
@@ -3444,7 +2776,7 @@
       "venue": "Ankara-TVF Ziraat Bankkart Voleybol Salonu"
     },
     {
-      "id": 679293,
+      "id": 771225,
       "matchNo": "B.Grup-W6-TRENDYHOTELSMANAVGATBLD.-FDMYAPIKONYAEREĞLİBLD.",
       "date": "2025-11-01",
       "matchTime": "17:00",
@@ -3460,7 +2792,7 @@
       "venue": "Antalya-Manavgat-Mehmet Akif Ersoy"
     },
     {
-      "id": 998423,
+      "id": 46605,
       "matchNo": "B.Grup-W6-MURATPAŞABLD.AÇIKOLEJİ-ALFEMOZERENSPOR",
       "date": "2025-11-01",
       "matchTime": "17:00",
@@ -3476,7 +2808,7 @@
       "venue": "Antalya-Süleyman Evcilmen"
     },
     {
-      "id": 440426,
+      "id": 5460,
       "matchNo": "B.Grup-W6-MERİNOSVOLEYBOL-KUZEYBORUMAXİPİPESPOR",
       "date": "2025-11-01",
       "matchTime": "17:00",
@@ -3492,7 +2824,7 @@
       "venue": "Gaziantep-Şahinbey"
     },
     {
-      "id": 174940,
+      "id": 907567,
       "matchNo": "B.Grup-W6-SAKARYAVOLEYBOL-İLBANK",
       "date": "2025-11-02",
       "matchTime": "14:00",
@@ -3508,7 +2840,7 @@
       "venue": "Sakarya-Serdivan-Metehan Başar"
     },
     {
-      "id": 215391,
+      "id": 867931,
       "matchNo": "B.Grup-W7-AFYONBLD.YÜNTAŞ-PTT",
       "date": "2025-11-08",
       "matchTime": "15:00",
@@ -3524,7 +2856,7 @@
       "venue": "Afyonkarahisar-Prof. Dr. Veysel Eroğlu"
     },
     {
-      "id": 920499,
+      "id": 740277,
       "matchNo": "B.Grup-W7-KUZEYBORUMAXİPİPESPOR-FDMYAPIKONYAEREĞLİBLD.",
       "date": "2025-11-08",
       "matchTime": "14:00",
@@ -3540,7 +2872,7 @@
       "venue": "Aksaray-Aksaray Spor Salonu"
     },
     {
-      "id": 302525,
+      "id": 575302,
       "matchNo": "B.Grup-W7-KARAYOLLARI-SAKARYAVOLEYBOL",
       "date": "2025-11-08",
       "matchTime": "13:00",
@@ -3556,7 +2888,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 887376,
+      "id": 750899,
       "matchNo": "B.Grup-W7-ALFEMOZERENSPOR-TRENDYHOTELSMANAVGATBLD.",
       "date": "2025-11-08",
       "matchTime": "15:00",
@@ -3572,7 +2904,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 999982,
+      "id": 408890,
       "matchNo": "B.Grup-W7-İLBANK-MURATPAŞABLD.AÇIKOLEJİ",
       "date": "2025-11-08",
       "matchTime": "17:00",
@@ -3588,7 +2920,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 285479,
+      "id": 698456,
       "matchNo": "B.Grup-W7-DİYARBAKIRB.ŞEHİRBLD.-SİGORTASHOPMKEANKARAGÜCÜ",
       "date": "2025-11-08",
       "matchTime": "14:00",
@@ -3604,7 +2936,7 @@
       "venue": "Diyarbakır-Şehit Polis Halit Gürsel"
     },
     {
-      "id": 647735,
+      "id": 66772,
       "matchNo": "B.Grup-W7-MERİNOSVOLEYBOL-İBAKİMYATEDANKARAKOLEJLİLER",
       "date": "2025-11-08",
       "matchTime": "14:00",
@@ -3620,7 +2952,7 @@
       "venue": "Gaziantep-Şahinbey"
     },
     {
-      "id": 224712,
+      "id": 853031,
       "matchNo": "B.Grup-W8-İBAKİMYATEDANKARAKOLEJLİLER-KUZEYBORUMAXİPİPESPOR",
       "date": "2025-11-15",
       "matchTime": "16:00",
@@ -3636,7 +2968,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 634619,
+      "id": 292086,
       "matchNo": "B.Grup-W8-SİGORTASHOPMKEANKARAGÜCÜ-MERİNOSVOLEYBOL",
       "date": "2025-11-15",
       "matchTime": "11:00",
@@ -3652,7 +2984,7 @@
       "venue": "Ankara-TVF Ziraat Bankkart Voleybol Salonu"
     },
     {
-      "id": 3218,
+      "id": 278592,
       "matchNo": "B.Grup-W8-PTT-DİYARBAKIRB.ŞEHİRBLD.",
       "date": "2025-11-15",
       "matchTime": "13:00",
@@ -3668,7 +3000,7 @@
       "venue": "Ankara-TVF Ziraat Bankkart Voleybol Salonu"
     },
     {
-      "id": 517539,
+      "id": 761636,
       "matchNo": "B.Grup-W8-TRENDYHOTELSMANAVGATBLD.-İLBANK",
       "date": "2025-11-15",
       "matchTime": "14:00",
@@ -3684,7 +3016,7 @@
       "venue": "Antalya-Manavgat-Mehmet Akif Ersoy"
     },
     {
-      "id": 102587,
+      "id": 687045,
       "matchNo": "B.Grup-W8-MURATPAŞABLD.AÇIKOLEJİ-KARAYOLLARI",
       "date": "2025-11-15",
       "matchTime": "16:00",
@@ -3700,7 +3032,7 @@
       "venue": "Antalya-Süleyman Evcilmen"
     },
     {
-      "id": 978188,
+      "id": 963396,
       "matchNo": "B.Grup-W8-FDMYAPIKONYAEREĞLİBLD.-ALFEMOZERENSPOR",
       "date": "2025-11-15",
       "matchTime": "15:00",
@@ -3716,7 +3048,7 @@
       "venue": "Konya-Ereğli-Atatürk"
     },
     {
-      "id": 542278,
+      "id": 383791,
       "matchNo": "B.Grup-W8-SAKARYAVOLEYBOL-AFYONBLD.YÜNTAŞ",
       "date": "2025-11-15",
       "matchTime": "14:00",
@@ -3732,7 +3064,7 @@
       "venue": "Sakarya-Serdivan-Metehan Başar"
     },
     {
-      "id": 384934,
+      "id": 23755,
       "matchNo": "B.Grup-W9-AFYONBLD.YÜNTAŞ-MURATPAŞABLD.AÇIKOLEJİ",
       "date": "2025-11-22",
       "matchTime": "15:00",
@@ -3748,7 +3080,7 @@
       "venue": "Afyonkarahisar-Prof. Dr. Veysel Eroğlu"
     },
     {
-      "id": 822376,
+      "id": 538132,
       "matchNo": "B.Grup-W9-KUZEYBORUMAXİPİPESPOR-ALFEMOZERENSPOR",
       "date": "2025-11-22",
       "matchTime": "14:00",
@@ -3764,7 +3096,7 @@
       "venue": "Aksaray-Aksaray Spor Salonu"
     },
     {
-      "id": 697771,
+      "id": 318381,
       "matchNo": "B.Grup-W9-KARAYOLLARI-TRENDYHOTELSMANAVGATBLD.",
       "date": "2025-11-22",
       "matchTime": "16:00",
@@ -3780,7 +3112,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 875036,
+      "id": 257866,
       "matchNo": "B.Grup-W9-İBAKİMYATEDANKARAKOLEJLİLER-SİGORTASHOPMKEANKARAGÜCÜ",
       "date": "2025-11-22",
       "matchTime": "18:30",
@@ -3796,7 +3128,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 455118,
+      "id": 255530,
       "matchNo": "B.Grup-W9-İLBANK-FDMYAPIKONYAEREĞLİBLD.",
       "date": "2025-11-22",
       "matchTime": "11:00",
@@ -3812,7 +3144,7 @@
       "venue": "Ankara-TVF Ziraat Bankkart Voleybol Salonu"
     },
     {
-      "id": 510938,
+      "id": 753649,
       "matchNo": "B.Grup-W9-DİYARBAKIRB.ŞEHİRBLD.-SAKARYAVOLEYBOL",
       "date": "2025-11-22",
       "matchTime": "13:00",
@@ -3828,7 +3160,7 @@
       "venue": "Diyarbakır-Şehit Polis Halit Gürsel"
     },
     {
-      "id": 152547,
+      "id": 983627,
       "matchNo": "B.Grup-W9-MERİNOSVOLEYBOL-PTT",
       "date": "2025-11-22",
       "matchTime": "14:00",
@@ -3844,7 +3176,7 @@
       "venue": "Gaziantep-Şahinbey"
     },
     {
-      "id": 957055,
+      "id": 998869,
       "matchNo": "B.Grup-W10-ALFEMOZERENSPOR-İLBANK",
       "date": "2025-11-29",
       "matchTime": "18:30",
@@ -3860,7 +3192,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 277759,
+      "id": 371582,
       "matchNo": "B.Grup-W10-SİGORTASHOPMKEANKARAGÜCÜ-KUZEYBORUMAXİPİPESPOR",
       "date": "2025-11-29",
       "matchTime": "11:00",
@@ -3876,7 +3208,7 @@
       "venue": "Ankara-TVF Ziraat Bankkart Voleybol Salonu"
     },
     {
-      "id": 269342,
+      "id": 644605,
       "matchNo": "B.Grup-W10-PTT-İBAKİMYATEDANKARAKOLEJLİLER",
       "date": "2025-11-29",
       "matchTime": "13:00",
@@ -3892,7 +3224,7 @@
       "venue": "Ankara-TVF Ziraat Bankkart Voleybol Salonu"
     },
     {
-      "id": 54486,
+      "id": 349939,
       "matchNo": "B.Grup-W10-TRENDYHOTELSMANAVGATBLD.-AFYONBLD.YÜNTAŞ",
       "date": "2025-11-29",
       "matchTime": "15:00",
@@ -3908,7 +3240,7 @@
       "venue": "Antalya-Manavgat-Mehmet Akif Ersoy"
     },
     {
-      "id": 962413,
+      "id": 260129,
       "matchNo": "B.Grup-W10-MURATPAŞABLD.AÇIKOLEJİ-DİYARBAKIRB.ŞEHİRBLD.",
       "date": "2025-11-29",
       "matchTime": "17:00",
@@ -3924,7 +3256,7 @@
       "venue": "Antalya-Süleyman Evcilmen"
     },
     {
-      "id": 696967,
+      "id": 326882,
       "matchNo": "B.Grup-W10-FDMYAPIKONYAEREĞLİBLD.-KARAYOLLARI",
       "date": "2025-11-29",
       "matchTime": "15:00",
@@ -3940,7 +3272,7 @@
       "venue": "Konya-Ereğli-Atatürk"
     },
     {
-      "id": 689257,
+      "id": 258528,
       "matchNo": "B.Grup-W10-SAKARYAVOLEYBOL-MERİNOSVOLEYBOL",
       "date": "2025-11-29",
       "matchTime": "14:00",
@@ -3956,7 +3288,7 @@
       "venue": "Sakarya-Serdivan-Metehan Başar"
     },
     {
-      "id": 825798,
+      "id": 674903,
       "matchNo": "B.Grup-W11-AFYONBLD.YÜNTAŞ-FDMYAPIKONYAEREĞLİBLD.",
       "date": "2025-12-02",
       "matchTime": "15:00",
@@ -3972,7 +3304,7 @@
       "venue": "Afyonkarahisar-Prof. Dr. Veysel Eroğlu"
     },
     {
-      "id": 728599,
+      "id": 39546,
       "matchNo": "B.Grup-W11-KUZEYBORUMAXİPİPESPOR-İLBANK",
       "date": "2025-12-02",
       "matchTime": "14:00",
@@ -3988,7 +3320,7 @@
       "venue": "Aksaray-Aksaray Spor Salonu"
     },
     {
-      "id": 273582,
+      "id": 852659,
       "matchNo": "B.Grup-W11-İBAKİMYATEDANKARAKOLEJLİLER-SAKARYAVOLEYBOL",
       "date": "2025-12-02",
       "matchTime": "13:00",
@@ -4004,7 +3336,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 911339,
+      "id": 959209,
       "matchNo": "B.Grup-W11-KARAYOLLARI-ALFEMOZERENSPOR",
       "date": "2025-12-02",
       "matchTime": "15:00",
@@ -4020,7 +3352,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 312754,
+      "id": 82389,
       "matchNo": "B.Grup-W11-SİGORTASHOPMKEANKARAGÜCÜ-PTT",
       "date": "2025-12-02",
       "matchTime": "17:30",
@@ -4036,7 +3368,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 888823,
+      "id": 242186,
       "matchNo": "B.Grup-W11-DİYARBAKIRB.ŞEHİRBLD.-TRENDYHOTELSMANAVGATBLD.",
       "date": "2025-12-02",
       "matchTime": "13:00",
@@ -4052,7 +3384,7 @@
       "venue": "Diyarbakır-Şehit Polis Halit Gürsel"
     },
     {
-      "id": 57931,
+      "id": 650543,
       "matchNo": "B.Grup-W11-MERİNOSVOLEYBOL-MURATPAŞABLD.AÇIKOLEJİ",
       "date": "2025-12-02",
       "matchTime": "17:00",
@@ -4068,7 +3400,7 @@
       "venue": "Gaziantep-Şahinbey"
     },
     {
-      "id": 17204,
+      "id": 945946,
       "matchNo": "B.Grup-W12-ALFEMOZERENSPOR-AFYONBLD.YÜNTAŞ",
       "date": "2025-12-06",
       "matchTime": "13:30",
@@ -4084,7 +3416,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 229138,
+      "id": 706601,
       "matchNo": "B.Grup-W12-PTT-KUZEYBORUMAXİPİPESPOR",
       "date": "2025-12-06",
       "matchTime": "16:00",
@@ -4100,7 +3432,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 48063,
+      "id": 696301,
       "matchNo": "B.Grup-W12-İLBANK-KARAYOLLARI",
       "date": "2025-12-06",
       "matchTime": "11:00",
@@ -4116,7 +3448,7 @@
       "venue": "Ankara-TVF Ziraat Bankkart Voleybol Salonu"
     },
     {
-      "id": 44153,
+      "id": 168257,
       "matchNo": "B.Grup-W12-TRENDYHOTELSMANAVGATBLD.-MERİNOSVOLEYBOL",
       "date": "2025-12-06",
       "matchTime": "17:00",
@@ -4132,7 +3464,7 @@
       "venue": "Antalya-Manavgat-Mehmet Akif Ersoy"
     },
     {
-      "id": 135928,
+      "id": 604773,
       "matchNo": "B.Grup-W12-MURATPAŞABLD.AÇIKOLEJİ-İBAKİMYATEDANKARAKOLEJLİLER",
       "date": "2025-12-06",
       "matchTime": "15:00",
@@ -4148,7 +3480,7 @@
       "venue": "Antalya-Süleyman Evcilmen"
     },
     {
-      "id": 539451,
+      "id": 776344,
       "matchNo": "B.Grup-W12-FDMYAPIKONYAEREĞLİBLD.-DİYARBAKIRB.ŞEHİRBLD.",
       "date": "2025-12-06",
       "matchTime": "15:00",
@@ -4164,7 +3496,7 @@
       "venue": "Konya-Ereğli-Atatürk"
     },
     {
-      "id": 945166,
+      "id": 75548,
       "matchNo": "B.Grup-W12-SAKARYAVOLEYBOL-SİGORTASHOPMKEANKARAGÜCÜ",
       "date": "2025-12-06",
       "matchTime": "14:00",
@@ -4180,7 +3512,7 @@
       "venue": "Sakarya-Serdivan-Metehan Başar"
     },
     {
-      "id": 589360,
+      "id": 38783,
       "matchNo": "B.Grup-W13-AFYONBLD.YÜNTAŞ-İLBANK",
       "date": "2025-12-13",
       "matchTime": "15:00",
@@ -4196,7 +3528,7 @@
       "venue": "Afyonkarahisar-Prof. Dr. Veysel Eroğlu"
     },
     {
-      "id": 929625,
+      "id": 562625,
       "matchNo": "B.Grup-W13-KUZEYBORUMAXİPİPESPOR-KARAYOLLARI",
       "date": "2025-12-13",
       "matchTime": "14:00",
@@ -4212,7 +3544,7 @@
       "venue": "Aksaray-Aksaray Spor Salonu"
     },
     {
-      "id": 257988,
+      "id": 57777,
       "matchNo": "B.Grup-W13-İBAKİMYATEDANKARAKOLEJLİLER-TRENDYHOTELSMANAVGATBLD.",
       "date": "2025-12-13",
       "matchTime": "13:30",
@@ -4228,7 +3560,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 62001,
+      "id": 259183,
       "matchNo": "B.Grup-W13-SİGORTASHOPMKEANKARAGÜCÜ-MURATPAŞABLD.AÇIKOLEJİ",
       "date": "2025-12-13",
       "matchTime": "11:00",
@@ -4244,7 +3576,7 @@
       "venue": "Ankara-TVF Ziraat Bankkart Voleybol Salonu"
     },
     {
-      "id": 656826,
+      "id": 760556,
       "matchNo": "B.Grup-W13-PTT-SAKARYAVOLEYBOL",
       "date": "2025-12-13",
       "matchTime": "13:00",
@@ -4260,7 +3592,7 @@
       "venue": "Ankara-TVF Ziraat Bankkart Voleybol Salonu"
     },
     {
-      "id": 126822,
+      "id": 777390,
       "matchNo": "B.Grup-W13-DİYARBAKIRB.ŞEHİRBLD.-ALFEMOZERENSPOR",
       "date": "2025-12-13",
       "matchTime": "13:00",
@@ -4276,7 +3608,7 @@
       "venue": "Diyarbakır-Şehit Polis Halit Gürsel"
     },
     {
-      "id": 95568,
+      "id": 537357,
       "matchNo": "B.Grup-W13-MERİNOSVOLEYBOL-FDMYAPIKONYAEREĞLİBLD.",
       "date": "2025-12-13",
       "matchTime": "17:00",
@@ -4292,7 +3624,7 @@
       "venue": "Gaziantep-Şahinbey"
     },
     {
-      "id": 597625,
+      "id": 937088,
       "matchNo": "B.Grup-W14-AFYONBLD.YÜNTAŞ-KARAYOLLARI",
       "date": "2025-12-20",
       "matchTime": "15:00",
@@ -4308,7 +3640,7 @@
       "venue": "Afyonkarahisar-Prof. Dr. Veysel Eroğlu"
     },
     {
-      "id": 519008,
+      "id": 172916,
       "matchNo": "B.Grup-W14-İBAKİMYATEDANKARAKOLEJLİLER-FDMYAPIKONYAEREĞLİBLD.",
       "date": "2025-12-20",
       "matchTime": "16:00",
@@ -4324,7 +3656,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 652001,
+      "id": 697376,
       "matchNo": "B.Grup-W14-SİGORTASHOPMKEANKARAGÜCÜ-TRENDYHOTELSMANAVGATBLD.",
       "date": "2025-12-20",
       "matchTime": "18:30",
@@ -4340,7 +3672,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 138334,
+      "id": 219407,
       "matchNo": "B.Grup-W14-PTT-MURATPAŞABLD.AÇIKOLEJİ",
       "date": "2025-12-20",
       "matchTime": "11:00",
@@ -4356,7 +3688,7 @@
       "venue": "Ankara-TVF Ziraat Bankkart Voleybol Salonu"
     },
     {
-      "id": 524170,
+      "id": 737702,
       "matchNo": "B.Grup-W14-DİYARBAKIRB.ŞEHİRBLD.-İLBANK",
       "date": "2025-12-20",
       "matchTime": "13:00",
@@ -4372,7 +3704,7 @@
       "venue": "Diyarbakır-Şehit Polis Halit Gürsel"
     },
     {
-      "id": 167186,
+      "id": 355467,
       "matchNo": "B.Grup-W14-MERİNOSVOLEYBOL-ALFEMOZERENSPOR",
       "date": "2025-12-20",
       "matchTime": "17:00",
@@ -4388,7 +3720,7 @@
       "venue": "Gaziantep-Şahinbey"
     },
     {
-      "id": 175785,
+      "id": 434494,
       "matchNo": "B.Grup-W14-SAKARYAVOLEYBOL-KUZEYBORUMAXİPİPESPOR",
       "date": "2025-12-20",
       "matchTime": "14:00",
@@ -4404,7 +3736,7 @@
       "venue": "Sakarya-Serdivan-Metehan Başar"
     },
     {
-      "id": 308500,
+      "id": 733790,
       "matchNo": "B.Grup-W15-KUZEYBORUMAXİPİPESPOR-AFYONBLD.YÜNTAŞ",
       "date": "2026-01-10",
       "matchTime": "14:00",
@@ -4417,7 +3749,7 @@
       "venue": "Aksaray-Aksaray Spor Salonu"
     },
     {
-      "id": 560817,
+      "id": 845582,
       "matchNo": "B.Grup-W15-KARAYOLLARI-DİYARBAKIRB.ŞEHİRBLD.",
       "date": "2026-01-11",
       "matchTime": "13:30",
@@ -4430,7 +3762,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 874565,
+      "id": 914812,
       "matchNo": "B.Grup-W15-ALFEMOZERENSPOR-İBAKİMYATEDANKARAKOLEJLİLER",
       "date": "2026-01-11",
       "matchTime": "16:00",
@@ -4443,7 +3775,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 244006,
+      "id": 613130,
       "matchNo": "B.Grup-W15-İLBANK-MERİNOSVOLEYBOL",
       "date": "2026-01-11",
       "matchTime": "12:00",
@@ -4456,7 +3788,7 @@
       "venue": "Ankara-TVF Ziraat Bankkart Voleybol Salonu"
     },
     {
-      "id": 735176,
+      "id": 707750,
       "matchNo": "B.Grup-W15-TRENDYHOTELSMANAVGATBLD.-PTT",
       "date": "2026-01-11",
       "matchTime": "17:00",
@@ -4469,7 +3801,7 @@
       "venue": "Antalya-Manavgat-Mehmet Akif Ersoy"
     },
     {
-      "id": 787432,
+      "id": 852975,
       "matchNo": "B.Grup-W15-MURATPAŞABLD.AÇIKOLEJİ-SAKARYAVOLEYBOL",
       "date": "2026-01-11",
       "matchTime": "16:00",
@@ -4482,7 +3814,7 @@
       "venue": "Antalya-Süleyman Evcilmen"
     },
     {
-      "id": 218052,
+      "id": 690728,
       "matchNo": "B.Grup-W15-FDMYAPIKONYAEREĞLİBLD.-SİGORTASHOPMKEANKARAGÜCÜ",
       "date": "2026-01-11",
       "matchTime": "15:00",
@@ -4495,7 +3827,7 @@
       "venue": "Konya-Ereğli-Atatürk"
     },
     {
-      "id": 505817,
+      "id": 253843,
       "matchNo": "B.Grup-W16-SİGORTASHOPMKEANKARAGÜCÜ-ALFEMOZERENSPOR",
       "date": "2026-01-17",
       "matchTime": "19:00",
@@ -4508,7 +3840,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 622332,
+      "id": 392301,
       "matchNo": "B.Grup-W16-PTT-FDMYAPIKONYAEREĞLİBLD.",
       "date": "2026-01-17",
       "matchTime": "11:00",
@@ -4521,7 +3853,7 @@
       "venue": "Ankara-TVF Ziraat Bankkart Voleybol Salonu"
     },
     {
-      "id": 342092,
+      "id": 109861,
       "matchNo": "B.Grup-W16-İBAKİMYATEDANKARAKOLEJLİLER-İLBANK",
       "date": "2026-01-18",
       "matchTime": "18:30",
@@ -4534,7 +3866,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 747177,
+      "id": 575952,
       "matchNo": "B.Grup-W16-MURATPAŞABLD.AÇIKOLEJİ-KUZEYBORUMAXİPİPESPOR",
       "date": "2026-01-18",
       "matchTime": "18:00",
@@ -4547,7 +3879,7 @@
       "venue": "Antalya-Süleyman Evcilmen"
     },
     {
-      "id": 401244,
+      "id": 649606,
       "matchNo": "B.Grup-W16-DİYARBAKIRB.ŞEHİRBLD.-AFYONBLD.YÜNTAŞ",
       "date": "2026-01-18",
       "matchTime": "13:00",
@@ -4560,7 +3892,7 @@
       "venue": "Diyarbakır-Şehit Polis Halit Gürsel"
     },
     {
-      "id": 352030,
+      "id": 289215,
       "matchNo": "B.Grup-W16-MERİNOSVOLEYBOL-KARAYOLLARI",
       "date": "2026-01-18",
       "matchTime": "17:00",
@@ -4573,7 +3905,7 @@
       "venue": "Gaziantep-Şahinbey"
     },
     {
-      "id": 748080,
+      "id": 762358,
       "matchNo": "B.Grup-W16-SAKARYAVOLEYBOL-TRENDYHOTELSMANAVGATBLD.",
       "date": "2026-01-18",
       "matchTime": "14:00",
@@ -4586,7 +3918,7 @@
       "venue": "Sakarya-Serdivan-Metehan Başar"
     },
     {
-      "id": 136059,
+      "id": 497218,
       "matchNo": "B.Grup-W17-AFYONBLD.YÜNTAŞ-MERİNOSVOLEYBOL",
       "date": "2026-01-21",
       "matchTime": "15:00",
@@ -4599,7 +3931,7 @@
       "venue": "Afyonkarahisar-Prof. Dr. Veysel Eroğlu"
     },
     {
-      "id": 53366,
+      "id": 382543,
       "matchNo": "B.Grup-W17-KUZEYBORUMAXİPİPESPOR-DİYARBAKIRB.ŞEHİRBLD.",
       "date": "2026-01-21",
       "matchTime": "14:00",
@@ -4612,7 +3944,7 @@
       "venue": "Aksaray-Aksaray Spor Salonu"
     },
     {
-      "id": 241763,
+      "id": 524328,
       "matchNo": "B.Grup-W17-KARAYOLLARI-İBAKİMYATEDANKARAKOLEJLİLER",
       "date": "2026-01-21",
       "matchTime": "14:00",
@@ -4625,7 +3957,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 843945,
+      "id": 750222,
       "matchNo": "B.Grup-W17-ALFEMOZERENSPOR-PTT",
       "date": "2026-01-21",
       "matchTime": "16:30",
@@ -4638,7 +3970,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 349858,
+      "id": 648346,
       "matchNo": "B.Grup-W17-İLBANK-SİGORTASHOPMKEANKARAGÜCÜ",
       "date": "2026-01-21",
       "matchTime": "19:00",
@@ -4651,7 +3983,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 473011,
+      "id": 978656,
       "matchNo": "B.Grup-W17-TRENDYHOTELSMANAVGATBLD.-MURATPAŞABLD.AÇIKOLEJİ",
       "date": "2026-01-21",
       "matchTime": "17:00",
@@ -4664,7 +3996,7 @@
       "venue": "Antalya-Manavgat-Mehmet Akif Ersoy"
     },
     {
-      "id": 212236,
+      "id": 130701,
       "matchNo": "B.Grup-W17-FDMYAPIKONYAEREĞLİBLD.-SAKARYAVOLEYBOL",
       "date": "2026-01-21",
       "matchTime": "15:00",
@@ -4677,7 +4009,7 @@
       "venue": "Konya-Ereğli-Atatürk"
     },
     {
-      "id": 417699,
+      "id": 402571,
       "matchNo": "B.Grup-W18-İBAKİMYATEDANKARAKOLEJLİLER-AFYONBLD.YÜNTAŞ",
       "date": "2026-01-25",
       "matchTime": "16:00",
@@ -4690,7 +4022,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 716962,
+      "id": 959086,
       "matchNo": "B.Grup-W18-SİGORTASHOPMKEANKARAGÜCÜ-KARAYOLLARI",
       "date": "2026-01-25",
       "matchTime": "11:00",
@@ -4703,7 +4035,7 @@
       "venue": "Ankara-TVF Ziraat Bankkart Voleybol Salonu"
     },
     {
-      "id": 448702,
+      "id": 111669,
       "matchNo": "B.Grup-W18-PTT-İLBANK",
       "date": "2026-01-25",
       "matchTime": "13:00",
@@ -4716,7 +4048,7 @@
       "venue": "Ankara-TVF Ziraat Bankkart Voleybol Salonu"
     },
     {
-      "id": 529745,
+      "id": 36308,
       "matchNo": "B.Grup-W18-TRENDYHOTELSMANAVGATBLD.-KUZEYBORUMAXİPİPESPOR",
       "date": "2026-01-25",
       "matchTime": "17:00",
@@ -4729,7 +4061,7 @@
       "venue": "Antalya-Manavgat-Mehmet Akif Ersoy"
     },
     {
-      "id": 815760,
+      "id": 499193,
       "matchNo": "B.Grup-W18-MURATPAŞABLD.AÇIKOLEJİ-FDMYAPIKONYAEREĞLİBLD.",
       "date": "2026-01-25",
       "matchTime": "17:00",
@@ -4742,7 +4074,7 @@
       "venue": "Antalya-Süleyman Evcilmen"
     },
     {
-      "id": 964876,
+      "id": 989093,
       "matchNo": "B.Grup-W18-MERİNOSVOLEYBOL-DİYARBAKIRB.ŞEHİRBLD.",
       "date": "2026-01-25",
       "matchTime": "17:00",
@@ -4755,7 +4087,7 @@
       "venue": "Gaziantep-Şahinbey"
     },
     {
-      "id": 428770,
+      "id": 39181,
       "matchNo": "B.Grup-W18-SAKARYAVOLEYBOL-ALFEMOZERENSPOR",
       "date": "2026-01-25",
       "matchTime": "14:00",
@@ -4768,7 +4100,7 @@
       "venue": "Sakarya-Serdivan-Metehan Başar"
     },
     {
-      "id": 433169,
+      "id": 393147,
       "matchNo": "B.Grup-W19-AFYONBLD.YÜNTAŞ-SİGORTASHOPMKEANKARAGÜCÜ",
       "date": "2026-02-01",
       "matchTime": "15:00",
@@ -4781,7 +4113,7 @@
       "venue": "Afyonkarahisar-Prof. Dr. Veysel Eroğlu"
     },
     {
-      "id": 903983,
+      "id": 765099,
       "matchNo": "B.Grup-W19-KUZEYBORUMAXİPİPESPOR-MERİNOSVOLEYBOL",
       "date": "2026-02-01",
       "matchTime": "14:00",
@@ -4794,7 +4126,7 @@
       "venue": "Aksaray-Aksaray Spor Salonu"
     },
     {
-      "id": 91416,
+      "id": 35117,
       "matchNo": "B.Grup-W19-KARAYOLLARI-PTT",
       "date": "2026-02-01",
       "matchTime": "12:00",
@@ -4807,7 +4139,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 642539,
+      "id": 504113,
       "matchNo": "B.Grup-W19-ALFEMOZERENSPOR-MURATPAŞABLD.AÇIKOLEJİ",
       "date": "2026-02-01",
       "matchTime": "14:30",
@@ -4820,7 +4152,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 99265,
+      "id": 718477,
       "matchNo": "B.Grup-W19-İLBANK-SAKARYAVOLEYBOL",
       "date": "2026-02-01",
       "matchTime": "17:00",
@@ -4833,7 +4165,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 889198,
+      "id": 454545,
       "matchNo": "B.Grup-W19-DİYARBAKIRB.ŞEHİRBLD.-İBAKİMYATEDANKARAKOLEJLİLER",
       "date": "2026-02-01",
       "matchTime": "15:00",
@@ -4846,7 +4178,7 @@
       "venue": "Diyarbakır-Şehit Polis Halit Gürsel"
     },
     {
-      "id": 919687,
+      "id": 773117,
       "matchNo": "B.Grup-W19-FDMYAPIKONYAEREĞLİBLD.-TRENDYHOTELSMANAVGATBLD.",
       "date": "2026-02-01",
       "matchTime": "15:00",
@@ -4859,7 +4191,7 @@
       "venue": "Konya-Ereğli-Atatürk"
     },
     {
-      "id": 983844,
+      "id": 823453,
       "matchNo": "B.Grup-W20-İBAKİMYATEDANKARAKOLEJLİLER-MERİNOSVOLEYBOL",
       "date": "2026-02-08",
       "matchTime": "12:00",
@@ -4872,7 +4204,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 423170,
+      "id": 454024,
       "matchNo": "B.Grup-W20-SİGORTASHOPMKEANKARAGÜCÜ-DİYARBAKIRB.ŞEHİRBLD.",
       "date": "2026-02-08",
       "matchTime": "14:30",
@@ -4885,7 +4217,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 881982,
+      "id": 442494,
       "matchNo": "B.Grup-W20-PTT-AFYONBLD.YÜNTAŞ",
       "date": "2026-02-08",
       "matchTime": "17:00",
@@ -4898,7 +4230,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 863952,
+      "id": 944819,
       "matchNo": "B.Grup-W20-TRENDYHOTELSMANAVGATBLD.-ALFEMOZERENSPOR",
       "date": "2026-02-08",
       "matchTime": "17:00",
@@ -4911,7 +4243,7 @@
       "venue": "Antalya-Manavgat-Mehmet Akif Ersoy"
     },
     {
-      "id": 283412,
+      "id": 193328,
       "matchNo": "B.Grup-W20-MURATPAŞABLD.AÇIKOLEJİ-İLBANK",
       "date": "2026-02-08",
       "matchTime": "17:00",
@@ -4924,7 +4256,7 @@
       "venue": "Antalya-Süleyman Evcilmen"
     },
     {
-      "id": 759248,
+      "id": 242777,
       "matchNo": "B.Grup-W20-FDMYAPIKONYAEREĞLİBLD.-KUZEYBORUMAXİPİPESPOR",
       "date": "2026-02-08",
       "matchTime": "15:00",
@@ -4937,7 +4269,7 @@
       "venue": "Konya-Ereğli-Atatürk"
     },
     {
-      "id": 653968,
+      "id": 551411,
       "matchNo": "B.Grup-W20-SAKARYAVOLEYBOL-KARAYOLLARI",
       "date": "2026-02-08",
       "matchTime": "14:00",
@@ -4950,7 +4282,7 @@
       "venue": "Sakarya-Serdivan-Metehan Başar"
     },
     {
-      "id": 999535,
+      "id": 919934,
       "matchNo": "B.Grup-W21-AFYONBLD.YÜNTAŞ-SAKARYAVOLEYBOL",
       "date": "2026-02-15",
       "matchTime": "15:00",
@@ -4963,7 +4295,7 @@
       "venue": "Afyonkarahisar-Prof. Dr. Veysel Eroğlu"
     },
     {
-      "id": 136903,
+      "id": 201071,
       "matchNo": "B.Grup-W21-KUZEYBORUMAXİPİPESPOR-İBAKİMYATEDANKARAKOLEJLİLER",
       "date": "2026-02-15",
       "matchTime": "12:00",
@@ -4976,7 +4308,7 @@
       "venue": "Aksaray-Aksaray Spor Salonu"
     },
     {
-      "id": 957134,
+      "id": 473694,
       "matchNo": "B.Grup-W21-KARAYOLLARI-MURATPAŞABLD.AÇIKOLEJİ",
       "date": "2026-02-15",
       "matchTime": "12:00",
@@ -4989,7 +4321,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 278354,
+      "id": 636115,
       "matchNo": "B.Grup-W21-ALFEMOZERENSPOR-FDMYAPIKONYAEREĞLİBLD.",
       "date": "2026-02-15",
       "matchTime": "14:30",
@@ -5002,7 +4334,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 193275,
+      "id": 208029,
       "matchNo": "B.Grup-W21-İLBANK-TRENDYHOTELSMANAVGATBLD.",
       "date": "2026-02-15",
       "matchTime": "17:00",
@@ -5015,7 +4347,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 465716,
+      "id": 957669,
       "matchNo": "B.Grup-W21-DİYARBAKIRB.ŞEHİRBLD.-PTT",
       "date": "2026-02-15",
       "matchTime": "13:00",
@@ -5028,7 +4360,7 @@
       "venue": "Diyarbakır-Şehit Polis Halit Gürsel"
     },
     {
-      "id": 634108,
+      "id": 670651,
       "matchNo": "B.Grup-W21-MERİNOSVOLEYBOL-SİGORTASHOPMKEANKARAGÜCÜ",
       "date": "2026-02-15",
       "matchTime": "17:00",
@@ -5041,7 +4373,7 @@
       "venue": "Gaziantep-Şahinbey"
     },
     {
-      "id": 52438,
+      "id": 668232,
       "matchNo": "B.Grup-W22-PTT-MERİNOSVOLEYBOL",
       "date": "2026-02-22",
       "matchTime": "12:00",
@@ -5054,7 +4386,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 6811,
+      "id": 955964,
       "matchNo": "B.Grup-W22-SİGORTASHOPMKEANKARAGÜCÜ-İBAKİMYATEDANKARAKOLEJLİLER",
       "date": "2026-02-22",
       "matchTime": "14:30",
@@ -5067,7 +4399,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 840944,
+      "id": 232569,
       "matchNo": "B.Grup-W22-ALFEMOZERENSPOR-KUZEYBORUMAXİPİPESPOR",
       "date": "2026-02-22",
       "matchTime": "17:00",
@@ -5080,7 +4412,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 766206,
+      "id": 813717,
       "matchNo": "B.Grup-W22-TRENDYHOTELSMANAVGATBLD.-KARAYOLLARI",
       "date": "2026-02-22",
       "matchTime": "17:00",
@@ -5093,7 +4425,7 @@
       "venue": "Antalya-Manavgat-Mehmet Akif Ersoy"
     },
     {
-      "id": 70405,
+      "id": 224649,
       "matchNo": "B.Grup-W22-MURATPAŞABLD.AÇIKOLEJİ-AFYONBLD.YÜNTAŞ",
       "date": "2026-02-22",
       "matchTime": "17:00",
@@ -5106,7 +4438,7 @@
       "venue": "Antalya-Süleyman Evcilmen"
     },
     {
-      "id": 487048,
+      "id": 496744,
       "matchNo": "B.Grup-W22-FDMYAPIKONYAEREĞLİBLD.-İLBANK",
       "date": "2026-02-22",
       "matchTime": "15:00",
@@ -5119,7 +4451,7 @@
       "venue": "Konya-Ereğli-Atatürk"
     },
     {
-      "id": 251190,
+      "id": 169674,
       "matchNo": "B.Grup-W22-SAKARYAVOLEYBOL-DİYARBAKIRB.ŞEHİRBLD.",
       "date": "2026-02-22",
       "matchTime": "14:00",
@@ -5132,7 +4464,7 @@
       "venue": "Sakarya-Serdivan-Metehan Başar"
     },
     {
-      "id": 832023,
+      "id": 698601,
       "matchNo": "B.Grup-W23-AFYONBLD.YÜNTAŞ-TRENDYHOTELSMANAVGATBLD.",
       "date": "2026-03-01",
       "matchTime": "15:00",
@@ -5145,7 +4477,7 @@
       "venue": "Afyonkarahisar-Prof. Dr. Veysel Eroğlu"
     },
     {
-      "id": 812155,
+      "id": 66569,
       "matchNo": "B.Grup-W23-KUZEYBORUMAXİPİPESPOR-SİGORTASHOPMKEANKARAGÜCÜ",
       "date": "2026-03-01",
       "matchTime": "14:00",
@@ -5158,7 +4490,7 @@
       "venue": "Aksaray-Aksaray Spor Salonu"
     },
     {
-      "id": 778362,
+      "id": 426671,
       "matchNo": "B.Grup-W23-İBAKİMYATEDANKARAKOLEJLİLER-PTT",
       "date": "2026-03-01",
       "matchTime": "12:00",
@@ -5171,7 +4503,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 616049,
+      "id": 613043,
       "matchNo": "B.Grup-W23-İLBANK-ALFEMOZERENSPOR",
       "date": "2026-03-01",
       "matchTime": "14:30",
@@ -5184,7 +4516,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 231960,
+      "id": 730155,
       "matchNo": "B.Grup-W23-KARAYOLLARI-FDMYAPIKONYAEREĞLİBLD.",
       "date": "2026-03-01",
       "matchTime": "17:00",
@@ -5197,7 +4529,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 985845,
+      "id": 662863,
       "matchNo": "B.Grup-W23-DİYARBAKIRB.ŞEHİRBLD.-MURATPAŞABLD.AÇIKOLEJİ",
       "date": "2026-03-01",
       "matchTime": "13:00",
@@ -5210,7 +4542,7 @@
       "venue": "Diyarbakır-Şehit Polis Halit Gürsel"
     },
     {
-      "id": 772035,
+      "id": 854337,
       "matchNo": "B.Grup-W23-MERİNOSVOLEYBOL-SAKARYAVOLEYBOL",
       "date": "2026-03-01",
       "matchTime": "17:00",
@@ -5223,7 +4555,7 @@
       "venue": "Gaziantep-Şahinbey"
     },
     {
-      "id": 869357,
+      "id": 636178,
       "matchNo": "B.Grup-W24-İLBANK-KUZEYBORUMAXİPİPESPOR",
       "date": "2026-03-04",
       "matchTime": "16:00",
@@ -5236,7 +4568,7 @@
       "venue": "Ankara-Beştepe Voleybol Salonu"
     },
     {
-      "id": 677452,
+      "id": 969460,
       "matchNo": "B.Grup-W24-ALFEMOZERENSPOR-KARAYOLLARI",
       "date": "2026-03-04",
       "matchTime": "16:00",
@@ -5249,7 +4581,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 241346,
+      "id": 24432,
       "matchNo": "B.Grup-W24-PTT-SİGORTASHOPMKEANKARAGÜCÜ",
       "date": "2026-03-04",
       "matchTime": "18:30",
@@ -5262,7 +4594,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 232565,
+      "id": 351459,
       "matchNo": "B.Grup-W24-TRENDYHOTELSMANAVGATBLD.-DİYARBAKIRB.ŞEHİRBLD.",
       "date": "2026-03-04",
       "matchTime": "14:00",
@@ -5275,7 +4607,7 @@
       "venue": "Antalya-Manavgat-Mehmet Akif Ersoy"
     },
     {
-      "id": 110082,
+      "id": 693404,
       "matchNo": "B.Grup-W24-MURATPAŞABLD.AÇIKOLEJİ-MERİNOSVOLEYBOL",
       "date": "2026-03-04",
       "matchTime": "16:00",
@@ -5288,7 +4620,7 @@
       "venue": "Antalya-Süleyman Evcilmen"
     },
     {
-      "id": 110457,
+      "id": 55294,
       "matchNo": "B.Grup-W24-FDMYAPIKONYAEREĞLİBLD.-AFYONBLD.YÜNTAŞ",
       "date": "2026-03-04",
       "matchTime": "15:00",
@@ -5301,7 +4633,7 @@
       "venue": "Konya-Ereğli-Atatürk"
     },
     {
-      "id": 281054,
+      "id": 218305,
       "matchNo": "B.Grup-W24-SAKARYAVOLEYBOL-İBAKİMYATEDANKARAKOLEJLİLER",
       "date": "2026-03-04",
       "matchTime": "14:00",
@@ -5314,7 +4646,7 @@
       "venue": "Sakarya-Serdivan-Metehan Başar"
     },
     {
-      "id": 939174,
+      "id": 81371,
       "matchNo": "B.Grup-W25-AFYONBLD.YÜNTAŞ-ALFEMOZERENSPOR",
       "date": "2026-03-08",
       "matchTime": "15:00",
@@ -5327,7 +4659,7 @@
       "venue": "Afyonkarahisar-Prof. Dr. Veysel Eroğlu"
     },
     {
-      "id": 898658,
+      "id": 411627,
       "matchNo": "B.Grup-W25-KUZEYBORUMAXİPİPESPOR-PTT",
       "date": "2026-03-08",
       "matchTime": "14:00",
@@ -5340,7 +4672,7 @@
       "venue": "Aksaray-Aksaray Spor Salonu"
     },
     {
-      "id": 518254,
+      "id": 260879,
       "matchNo": "B.Grup-W25-İBAKİMYATEDANKARAKOLEJLİLER-MURATPAŞABLD.AÇIKOLEJİ",
       "date": "2026-03-08",
       "matchTime": "12:00",
@@ -5353,7 +4685,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 815075,
+      "id": 965960,
       "matchNo": "B.Grup-W25-SİGORTASHOPMKEANKARAGÜCÜ-SAKARYAVOLEYBOL",
       "date": "2026-03-08",
       "matchTime": "14:30",
@@ -5366,7 +4698,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 762584,
+      "id": 645025,
       "matchNo": "B.Grup-W25-KARAYOLLARI-İLBANK",
       "date": "2026-03-08",
       "matchTime": "17:00",
@@ -5379,7 +4711,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 681500,
+      "id": 856930,
       "matchNo": "B.Grup-W25-DİYARBAKIRB.ŞEHİRBLD.-FDMYAPIKONYAEREĞLİBLD.",
       "date": "2026-03-08",
       "matchTime": "15:00",
@@ -5392,7 +4724,7 @@
       "venue": "Diyarbakır-Şehit Polis Halit Gürsel"
     },
     {
-      "id": 867360,
+      "id": 72027,
       "matchNo": "B.Grup-W25-MERİNOSVOLEYBOL-TRENDYHOTELSMANAVGATBLD.",
       "date": "2026-03-08",
       "matchTime": "17:00",
@@ -5405,7 +4737,7 @@
       "venue": "Gaziantep-Şahinbey"
     },
     {
-      "id": 203189,
+      "id": 452499,
       "matchNo": "B.Grup-W26-KARAYOLLARI-KUZEYBORUMAXİPİPESPOR",
       "date": "2026-03-15",
       "matchTime": "12:00",
@@ -5418,7 +4750,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 373609,
+      "id": 712575,
       "matchNo": "B.Grup-W26-ALFEMOZERENSPOR-DİYARBAKIRB.ŞEHİRBLD.",
       "date": "2026-03-15",
       "matchTime": "14:30",
@@ -5431,7 +4763,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 7686,
+      "id": 524701,
       "matchNo": "B.Grup-W26-İLBANK-AFYONBLD.YÜNTAŞ",
       "date": "2026-03-15",
       "matchTime": "17:00",
@@ -5444,7 +4776,7 @@
       "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
     },
     {
-      "id": 279804,
+      "id": 377863,
       "matchNo": "B.Grup-W26-TRENDYHOTELSMANAVGATBLD.-İBAKİMYATEDANKARAKOLEJLİLER",
       "date": "2026-03-15",
       "matchTime": "17:00",
@@ -5457,7 +4789,7 @@
       "venue": "Antalya-Manavgat-Mehmet Akif Ersoy"
     },
     {
-      "id": 122178,
+      "id": 291171,
       "matchNo": "B.Grup-W26-MURATPAŞABLD.AÇIKOLEJİ-SİGORTASHOPMKEANKARAGÜCÜ",
       "date": "2026-03-15",
       "matchTime": "17:00",
@@ -5470,7 +4802,7 @@
       "venue": "Antalya-Süleyman Evcilmen"
     },
     {
-      "id": 913625,
+      "id": 4947,
       "matchNo": "B.Grup-W26-FDMYAPIKONYAEREĞLİBLD.-MERİNOSVOLEYBOL",
       "date": "2026-03-15",
       "matchTime": "15:00",
@@ -5483,7 +4815,7 @@
       "venue": "Konya-Ereğli-Atatürk"
     },
     {
-      "id": 411822,
+      "id": 797940,
       "matchNo": "B.Grup-W26-SAKARYAVOLEYBOL-PTT",
       "date": "2026-03-15",
       "matchTime": "14:00",

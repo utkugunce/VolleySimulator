@@ -2,6 +2,27 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
 
+const REMOVED_TEAMS = [
+    'İZMİRSPOR',
+    'EDREMİT BLD. ALTINOLUK',
+    'EDİRNE SPOR',
+    'KUŞADASI YAKAMOZ SPOR',
+    'DÜZİÇİ GENÇLİK',
+    'SMART HOLDİNG A.Ş. ÇAYELİ',
+    'KAHRAMANMARAŞ ELBİSTAN FEDA',
+    'VAN B.ŞEHİR BLD.',
+    'VAN BÜYÜKŞEHIR BLD.' // Alternate spelling check
+].map(t => t.toLocaleUpperCase('tr-TR'));
+
+const PENALTY_TEAMS = [
+    'TEKİRDAĞ VOLEYBOL İHTİSAS',
+    'TÜRKOĞLU SPOR KULÜBÜ',
+    'RİZE ENDÜSTRİ MESLEK LİSESİ',
+    'KAYSERİ CİMNASTİK SPOR',
+    'HAKKARİ MAEMTAL',
+    '73 ŞIRNAK BLD'
+].map(t => t.toLocaleUpperCase('tr-TR'));
+
 const LEAGUES = [
     {
         name: '1lig',
@@ -147,11 +168,27 @@ async function scrapeLeague(browser, leagueConfig) {
             });
         }
 
+        // --- FILTER REMOVED TEAMS ---
+        const validMatches = allMatches.filter(m => {
+            const h = m.homeTeam.toLocaleUpperCase('tr-TR');
+            const a = m.awayTeam.toLocaleUpperCase('tr-TR');
+            return !REMOVED_TEAMS.some(rt => h === rt || a === rt);
+        });
+
+        const validTeamsSet = new Set();
+        Array.from(allTeams).forEach(tStr => {
+            const t = JSON.parse(tStr);
+            const nameUpper = t.name.toLocaleUpperCase('tr-TR');
+            if (!REMOVED_TEAMS.some(rt => nameUpper === rt)) {
+                validTeamsSet.add(tStr);
+            }
+        });
+
         // Calculate Standings from Fixture
         const teamsMap = new Map();
 
         // Initialize teams map
-        Array.from(allTeams).forEach(tStr => {
+        Array.from(validTeamsSet).forEach(tStr => {
             const t = JSON.parse(tStr);
             teamsMap.set(t.name, {
                 name: t.name,
@@ -165,7 +202,7 @@ async function scrapeLeague(browser, leagueConfig) {
         });
 
         // Process matches
-        allMatches.forEach(match => {
+        validMatches.forEach(match => {
             if (match.isPlayed && match.homeScore !== undefined && match.awayScore !== undefined) {
                 const home = teamsMap.get(match.homeTeam);
                 const away = teamsMap.get(match.awayTeam);
@@ -201,13 +238,22 @@ async function scrapeLeague(browser, leagueConfig) {
             }
         });
 
+        // --- APPLY PENALTIES ---
+        teamsMap.forEach(team => {
+            const teamNameUpper = team.name.toLocaleUpperCase('tr-TR');
+            if (PENALTY_TEAMS.some(pt => teamNameUpper === pt)) {
+                console.log(`Applying penalty to ${team.name}: -3 points`);
+                team.points -= 3;
+            }
+        });
+
         const teamsArray = Array.from(teamsMap.values());
 
         const output = {
             league: leagueConfig.name === '1lig' ? '1. Lig Kadınlar' : '2. Lig Kadınlar',
             season: '2025-2026',
-            teams: teamsArray, // Note: These are empty stats!
-            fixture: allMatches
+            teams: teamsArray,
+            fixture: validMatches
         };
 
         const outputPath = path.join(__dirname, '..', 'data', leagueConfig.outputFile);
