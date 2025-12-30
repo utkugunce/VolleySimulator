@@ -308,21 +308,25 @@ function CalculatorContent() {
 
                 {/* Action Bar (Group Selection + Actions) */}
                 <div className="flex items-center justify-between gap-2 p-2 bg-slate-900/40 rounded-xl border border-slate-800">
-                    {/* Group Selection */}
-                    <div className="flex gap-1 items-center flex-wrap flex-1 justify-start">
-                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden sm:inline mr-1 whitespace-nowrap">GRUP:</span>
-                        {groups.map(groupName => (
-                            <button
-                                key={groupName}
-                                onClick={() => setSelectedGroup(groupName)}
-                                className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase transition-all whitespace-nowrap border ${activeGroup === groupName
-                                    ? 'bg-emerald-600 text-white shadow shadow-emerald-600/20 border-emerald-500'
-                                    : 'bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 border-slate-700'
-                                    }`}
-                            >
-                                {groupName.replace(' Grubu', '')}
-                            </button>
-                        ))}
+                    {/* Group Selection - Dropdown for 2. Lig (many groups) */}
+                    <div className="flex gap-2 items-center">
+                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden sm:inline whitespace-nowrap">GRUP:</span>
+                        <select
+                            value={activeGroup}
+                            onChange={(e) => setSelectedGroup(e.target.value)}
+                            className="px-3 py-1.5 bg-emerald-600 text-white text-xs font-bold rounded-lg border-0 outline-none cursor-pointer appearance-none pr-8 relative"
+                            style={{
+                                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'right 8px center'
+                            }}
+                        >
+                            {groups.map(groupName => (
+                                <option key={groupName} value={groupName} className="bg-slate-900 text-white">
+                                    {groupName}
+                                </option>
+                            ))}
+                        </select>
                     </div>
 
                     {/* Actions */}
