@@ -238,7 +238,7 @@ export default function Navbar() {
                                 <div className="space-y-2">
                                     {/* Vodafone Sultanlar Ligi */}
                                     <Link
-                                        href="/vsl/gunceldurum"
+                                        href="/vsl/tahminoyunu"
                                         onClick={() => setShowLeagueModal(false)}
                                         className="group flex items-center gap-4 p-4 bg-gradient-to-r from-red-900/30 to-red-800/10 hover:from-red-800/40 hover:to-red-700/20 rounded-2xl border border-red-600/30 hover:border-red-500/50 transition-all duration-300"
                                     >
