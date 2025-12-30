@@ -281,15 +281,15 @@ function CalculatorContent() {
                 />
 
                 {/* Action Bar (Group Selection + Actions) */}
-                <div className="flex flex-wrap items-center justify-between gap-4 p-2 bg-slate-900/40 rounded-xl border border-slate-800">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-2 bg-slate-900/40 rounded-xl border border-slate-800">
                     {/* Group Selection */}
-                    <div className="flex gap-1 items-center">
-                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden sm:inline mr-1">GRUP:</span>
+                    <div className="flex gap-1 items-center w-full sm:w-auto overflow-x-auto no-scrollbar pb-1 sm:pb-0">
+                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden sm:inline mr-1 shrink-0">GRUP:</span>
                         {groups.map(groupName => (
                             <button
                                 key={groupName}
                                 onClick={() => setSelectedGroup(groupName)}
-                                className={`px-4 py-1.5 rounded-lg text-xs font-black uppercase transition-all ${activeGroup === groupName
+                                className={`px-4 py-1.5 rounded-lg text-xs font-black uppercase transition-all shrink-0 ${activeGroup === groupName
                                     ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/20 scale-105'
                                     : 'bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700'
                                     }`}
@@ -300,47 +300,57 @@ function CalculatorContent() {
                     </div>
 
                     {/* Actions */}
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 w-full sm:w-auto overflow-x-auto no-scrollbar pb-1 sm:pb-0 justify-between sm:justify-end">
                         {/* Import/Export buttons moved here */}
-                        <input
-                            type="file"
-                            accept=".json"
-                            onChange={handleImportAllScenarios}
-                            className="hidden"
-                            id="import-upload-1lig"
-                        />
-                        <label
-                            htmlFor="import-upload-1lig"
-                            className="px-2 py-1 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-all cursor-pointer"
-                            title="Senaryo Yükle"
-                        >
-                            Yükle
-                        </label>
-                        <button
-                            onClick={handleSaveAllScenarios}
-                            className="px-2 py-1 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg transition-all"
-                            title="Senaryoyu Kaydet"
-                        >
-                            Kaydet
-                        </button>
-                        <div className="w-px h-4 bg-slate-700 hidden sm:block"></div>
-                        <button
-                            onClick={handleScrollToNextMatch}
-                            className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700"
-                            title="Son kaldığım maça git"
-                        >
-                            Kaldığım Yer
-                        </button>
-                        <button
-                            onClick={handleReset}
-                            className="px-2 py-1 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 text-xs font-bold rounded-lg transition-all border border-slate-700"
-                        >
-                            Sıfırla
-                        </button>
-                        <ShareButton
-                            targetRef={standingsRef}
-                            championName={liveStandings[0]?.name}
-                        />
+                        <div className="flex items-center gap-2 shrink-0">
+                            <input
+                                type="file"
+                                accept=".json"
+                                onChange={handleImportAllScenarios}
+                                className="hidden"
+                                id="import-upload-1lig"
+                            />
+                            <label
+                                htmlFor="import-upload-1lig"
+                                className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-all cursor-pointer flex items-center gap-1"
+                                title="Senaryo Yükle"
+                            >
+                                <span>📂</span>
+                                <span className="hidden sm:inline">Yükle</span>
+                            </label>
+                            <button
+                                onClick={handleSaveAllScenarios}
+                                className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-1"
+                                title="Senaryoyu Kaydet"
+                            >
+                                <span>💾</span>
+                                <span className="hidden sm:inline">Kaydet</span>
+                            </button>
+                        </div>
+
+                        <div className="w-px h-4 bg-slate-700 hidden sm:block shrink-0"></div>
+
+                        <div className="flex items-center gap-2 shrink-0">
+                            <button
+                                onClick={handleScrollToNextMatch}
+                                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700 flex items-center gap-1"
+                                title="Son kaldığım maça git"
+                            >
+                                <span>📍</span>
+                                <span className="hidden sm:inline">Kaldığım Yer</span>
+                            </button>
+                            <button
+                                onClick={handleReset}
+                                className="px-3 py-1.5 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 text-xs font-bold rounded-lg transition-all border border-slate-700 flex items-center gap-1"
+                            >
+                                <span>🗑️</span>
+                                <span className="hidden sm:inline">Sıfırla</span>
+                            </button>
+                            <ShareButton
+                                targetRef={standingsRef}
+                                championName={liveStandings[0]?.name}
+                            />
+                        </div>
                     </div>
                 </div>
 

@@ -104,27 +104,27 @@ export default function OneLigDetailedGroupsPage() {
 
                 {/* Active Group Content */}
                 <div className="space-y-3 bg-slate-900/40 p-3 rounded-2xl border border-slate-800/60 backdrop-blur-sm animate-in fade-in slide-in-from-bottom-4 duration-300 key={activeGroup}">
-                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-2 border-b border-slate-800 pb-2">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 border-b border-slate-800 pb-3">
                         <div className="space-y-0.5">
                             <h2 className="text-2xl font-black italic uppercase tracking-tighter text-amber-500 leading-none">
                                 {activeGroup}
                             </h2>
                             <div className="flex items-center gap-2">
                                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">İlerleme</span>
-                                <div className="w-24 h-1 bg-slate-800 rounded-full overflow-hidden">
+                                <div className="w-16 sm:w-24 h-1 bg-slate-800 rounded-full overflow-hidden">
                                     <div className="h-full bg-amber-500 transition-all duration-1000" style={{ width: `${completionRate}%` }}></div>
                                 </div>
                                 <span className="text-[9px] font-bold text-amber-400">%{completionRate}</span>
                             </div>
                         </div>
-                        <div className="flex gap-2 items-center">
+                        <div className="flex flex-wrap gap-2 items-center">
                             {/* Group Selection IN Header */}
-                            <div className="flex gap-1 p-1 bg-slate-950/50 rounded-lg border border-slate-800 h-full items-center">
+                            <div className="flex gap-1 p-1 bg-slate-950/50 rounded-lg border border-slate-800 h-8 items-center">
                                 {groups.map(groupName => (
                                     <button
                                         key={groupName}
                                         onClick={() => setActiveGroup(groupName)}
-                                        className={`px-3 py-1 rounded-md text-[10px] uppercase font-black transition-all ${activeGroup === groupName
+                                        className={`px-3 h-full flex items-center rounded-md text-[10px] uppercase font-black transition-all ${activeGroup === groupName
                                             ? 'bg-amber-600/20 text-amber-500 border border-amber-500/30'
                                             : 'text-slate-500 hover:text-slate-300'
                                             }`}
@@ -133,19 +133,26 @@ export default function OneLigDetailedGroupsPage() {
                                     </button>
                                 ))}
                             </div>
-                            <div className="bg-slate-950/50 px-3 py-1.5 rounded-lg border border-slate-800 text-center flex flex-col justify-center">
+
+                            {/* Leader Card - Hidden on Mobile */}
+                            <div className="hidden sm:flex bg-slate-950/50 px-3 py-1.5 rounded-lg border border-slate-800 text-center flex-col justify-center h-full min-h-[32px]">
                                 <div className="text-[9px] font-bold text-slate-500 uppercase leading-none mb-0.5">Lider</div>
                                 <div className="text-xs font-bold text-white truncate max-w-[100px] leading-none">{groupTeams[0]?.name}</div>
                             </div>
-                            <div className="px-3 py-1.5 bg-emerald-950/50 rounded-lg border border-emerald-800/50 flex items-center gap-2" title="Sonuçlar her gün saat 08:00'da otomatik güncellenir">
+
+                            {/* Auto Update Badge - Icon only on mobile */}
+                            <div className="px-3 h-8 bg-emerald-950/50 rounded-lg border border-emerald-800/50 flex items-center gap-2" title="Sonuçlar her gün saat 08:00'da otomatik güncellenir">
                                 <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                                <span className="text-[10px] font-bold text-emerald-400 uppercase">Otomatik Güncelleme</span>
+                                <span className="text-[10px] font-bold text-emerald-400 uppercase hidden sm:inline">Otomatik Güncelleme</span>
+                                <span className="text-[10px] font-bold text-emerald-400 uppercase sm:hidden">CANLI</span>
                             </div>
+
                             <a
                                 href={`/1lig/tahminoyunu?group=${encodeURIComponent(activeGroup)}`}
-                                className="px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-black text-xs uppercase italic rounded-lg transition-all hover:scale-105 shadow-lg shadow-amber-500/20 flex items-center gap-1.5"
+                                className="px-4 h-8 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-black text-xs uppercase italic rounded-lg transition-all hover:scale-105 shadow-lg shadow-amber-500/20 flex items-center gap-1.5"
                             >
-                                <span>Simüle Et</span>
+                                <span>Simüle</span>
+                                <span className="hidden sm:inline">Et</span>
                                 <span>⚡</span>
                             </a>
                         </div>
