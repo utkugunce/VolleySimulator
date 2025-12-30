@@ -165,26 +165,76 @@ export default function OneLigDetailedGroupsPage() {
                             </h3>
                             <div className="bg-slate-950/40 rounded-xl overflow-hidden border border-slate-800/50 flex-1 relative">
                                 <div className="absolute inset-0 overflow-y-auto p-2 space-y-2">
-                                    {groupMatches.filter(m => !m.isPlayed).length === 0 ? (
-                                        <div className="flex flex-col items-center justify-center h-full text-slate-500 text-xs italic">
-                                            Maç bulunamadı veya sezon tamamlandı.
-                                        </div>
-                                    ) : (
-                                        groupMatches.filter(m => !m.isPlayed).map((match, idx) => (
-                                            <div key={idx} className="flex items-center justify-between p-2 bg-slate-900/40 rounded border border-slate-800/50 hover:bg-slate-800/50 transition-colors">
-                                                <div className="flex flex-col flex-1 items-end gap-0.5">
-                                                    <span className="text-xs font-bold text-slate-300 text-right">{match.homeTeam}</span>
+                                    {(() => {
+                                        const upcomingMatches = groupMatches.filter(m => !m.isPlayed);
+                                        if (upcomingMatches.length === 0) {
+                                            return (
+                                                <div className="flex flex-col items-center justify-center h-full text-slate-500 text-xs italic">
+                                                    Maç bulunamadı veya sezon tamamlandı.
                                                 </div>
-                                                <div className="px-2 flex flex-col items-center">
-                                                    <span className="text-[10px] font-bold text-slate-600 bg-slate-950 px-1.5 py-0.5 rounded border border-slate-800">VS</span>
-                                                    <span className="text-[9px] text-slate-600 mt-0.5">{match.matchDate}</span>
+                                            );
+                                        }
+
+                                        // Turkish day names
+                                        const dayNames = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
+
+                                        // Format date as DD/MM/YYYY + Day
+                                        const formatDate = (dateStr?: string) => {
+                                            if (!dateStr) return { formatted: 'Tarih Belirsiz', sortKey: '9999-99-99' };
+                                            try {
+                                                const date = new Date(dateStr);
+                                                if (isNaN(date.getTime())) return { formatted: 'Tarih Belirsiz', sortKey: '9999-99-99' };
+                                                const day = String(date.getDate()).padStart(2, '0');
+                                                const month = String(date.getMonth() + 1).padStart(2, '0');
+                                                const year = date.getFullYear();
+                                                const dayName = dayNames[date.getDay()];
+                                                return { formatted: `${day}/${month}/${year} ${dayName}`, sortKey: dateStr };
+                                            } catch {
+                                                return { formatted: 'Tarih Belirsiz', sortKey: '9999-99-99' };
+                                            }
+                                        };
+
+                                        // Group matches by date
+                                        const matchesByDate: Record<string, { formatted: string; matches: Match[] }> = {};
+                                        upcomingMatches.forEach(match => {
+                                            const { formatted, sortKey } = formatDate(match.matchDate);
+                                            if (!matchesByDate[sortKey]) {
+                                                matchesByDate[sortKey] = { formatted, matches: [] };
+                                            }
+                                            matchesByDate[sortKey].matches.push(match);
+                                        });
+
+                                        // Sort by date
+                                        const sortedDates = Object.keys(matchesByDate).sort();
+
+                                        return sortedDates.map((dateKey, dateIdx) => (
+                                            <div key={dateKey} className={dateIdx > 0 ? 'mt-3' : ''}>
+                                                <div className="sticky top-0 bg-amber-600/20 px-2 py-1 rounded border border-amber-500/30 mb-2 z-10">
+                                                    <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wide">
+                                                        {matchesByDate[dateKey].formatted}
+                                                    </span>
                                                 </div>
-                                                <div className="flex flex-col flex-1 gap-0.5">
-                                                    <span className="text-xs font-bold text-slate-300 text-left">{match.awayTeam}</span>
+                                                <div className="space-y-1.5">
+                                                    {matchesByDate[dateKey].matches.map((match, idx) => (
+                                                        <div key={idx} className="flex items-center justify-between p-2 bg-slate-900/40 rounded border border-slate-800/50 hover:bg-slate-800/50 transition-colors">
+                                                            <div className="flex flex-col flex-1 items-end gap-0.5">
+                                                                <span className="text-xs font-bold text-slate-300 text-right">{match.homeTeam}</span>
+                                                            </div>
+                                                            <div className="px-2 flex flex-col items-center">
+                                                                <span className="text-[10px] font-bold text-slate-600 bg-slate-950 px-1.5 py-0.5 rounded border border-slate-800">VS</span>
+                                                                {match.matchTime && (
+                                                                    <span className="text-[9px] text-slate-500 mt-0.5">{match.matchTime}</span>
+                                                                )}
+                                                            </div>
+                                                            <div className="flex flex-col flex-1 gap-0.5">
+                                                                <span className="text-xs font-bold text-slate-300 text-left">{match.awayTeam}</span>
+                                                            </div>
+                                                        </div>
+                                                    ))}
                                                 </div>
                                             </div>
-                                        ))
-                                    )}
+                                        ));
+                                    })()}
                                 </div>
                             </div>
                         </div>
