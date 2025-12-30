@@ -17,6 +17,8 @@ export interface Match {
   resultScore?: string;
   matchDate?: string; // YYYY-MM-DD
   matchTime?: string; // HH:MM
+  id?: number;
+  venue?: string;
 }
 
 export interface ScenarioOverride {

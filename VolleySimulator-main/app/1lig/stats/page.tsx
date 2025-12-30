@@ -7,6 +7,8 @@ import PageHeader from "../../components/PageHeader";
 export default function Stats1LigPage() {
     const [loading, setLoading] = useState(true);
     const [allTeams, setAllTeams] = useState<TeamStats[]>([]);
+    const [activeTab, setActiveTab] = useState("GENEL");
+    const [groups, setGroups] = useState<string[]>([]);
 
     useEffect(() => {
         fetchData();
@@ -19,6 +21,10 @@ export default function Stats1LigPage() {
             if (!res.ok) throw new Error("Veri çekilemedi");
             const data = await res.json();
             setAllTeams(data.teams);
+
+            // Extract unique groups
+            const uniqueGroups = Array.from(new Set(data.teams.map((t: TeamStats) => t.groupName))).sort() as string[];
+            setGroups(uniqueGroups);
         } catch (err) {
             console.error(err);
         } finally {
@@ -34,7 +40,12 @@ export default function Stats1LigPage() {
         )
     }
 
-    const teamsWithStats = allTeams.map(t => ({
+    // Filter teams based on active tab
+    const filteredTeams = activeTab === "GENEL"
+        ? allTeams
+        : allTeams.filter(t => t.groupName === activeTab);
+
+    const teamsWithStats = filteredTeams.map(t => ({
         ...t,
         losses: t.played - t.wins,
         winRate: t.played > 0 ? Math.round((t.wins / t.played) * 100) : 0,
@@ -97,9 +108,9 @@ export default function Stats1LigPage() {
                         >
                             {/* Rank badge */}
                             <div className={`w-7 h-7 rounded-lg flex items-center justify-center font-bold text-sm ${idx === 0 ? 'bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-lg shadow-amber-500/30' :
-                                    idx === 1 ? 'bg-gradient-to-br from-slate-300 to-slate-400 text-slate-800' :
-                                        idx === 2 ? 'bg-gradient-to-br from-amber-600 to-amber-700 text-white' :
-                                            'bg-slate-800 text-slate-500'
+                                idx === 1 ? 'bg-gradient-to-br from-slate-300 to-slate-400 text-slate-800' :
+                                    idx === 2 ? 'bg-gradient-to-br from-amber-600 to-amber-700 text-white' :
+                                        'bg-slate-800 text-slate-500'
                                 }`}>
                                 {idx + 1}
                             </div>
@@ -133,6 +144,31 @@ export default function Stats1LigPage() {
                     title="1. Lig İstatistikleri"
                     subtitle="Kadınlar 1. Ligi İstatistik Merkezi"
                 />
+
+                {/* Tabs */}
+                <div className="flex bg-slate-900/50 p-1 rounded-xl border border-slate-800/50 overflow-x-auto">
+                    <button
+                        onClick={() => setActiveTab("GENEL")}
+                        className={`px-4 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${activeTab === "GENEL"
+                                ? "bg-amber-500 text-white shadow-lg shadow-amber-500/20"
+                                : "text-slate-400 hover:text-white hover:bg-slate-800"
+                            }`}
+                    >
+                        GENEL İSTATİSTİKLER
+                    </button>
+                    {groups.map(group => (
+                        <button
+                            key={group}
+                            onClick={() => setActiveTab(group)}
+                            className={`px-4 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ml-1 ${activeTab === group
+                                    ? "bg-amber-500 text-white shadow-lg shadow-amber-500/20"
+                                    : "text-slate-400 hover:text-white hover:bg-slate-800"
+                                }`}
+                        >
+                            {group} İSTATİSTİKLERİ
+                        </button>
+                    ))}
+                </div>
 
                 {/* Summary Cards */}
                 <div className="grid grid-cols-3 gap-2 sm:gap-4">

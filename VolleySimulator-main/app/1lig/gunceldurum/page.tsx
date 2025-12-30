@@ -158,7 +158,12 @@ export default function OneLigDetailedGroupsPage() {
                                 <span>📋</span> Puan Durumu Detayları
                             </h3>
                             <div className="bg-slate-950/40 rounded-xl overflow-hidden border border-slate-800/50 flex-1">
-                                <StandingsTable teams={groupTeams} playoffSpots={4} relegationSpots={2} compact={true} />
+                                <StandingsTable
+                                    teams={groupTeams}
+                                    playoffSpots={4}
+                                    relegationSpots={activeGroup.includes('B') ? 2 : 0}
+                                    compact={true}
+                                />
                             </div>
                         </div>
 
@@ -179,7 +184,6 @@ export default function OneLigDetailedGroupsPage() {
                                             );
                                         }
 
-                                        // Turkish day names
                                         // Turkish day names
                                         const dayNames = ['PAZAR', 'PAZARTESİ', 'SALI', 'ÇARŞAMBA', 'PERŞEMBE', 'CUMA', 'CUMARTESİ'];
 
@@ -209,43 +213,72 @@ export default function OneLigDetailedGroupsPage() {
                                             matchesByDate[sortKey].matches.push(match);
                                         });
 
+                                        // Identify Bottom 2 Teams for Relegation Warning
+                                        const bottomTwoTeams = groupTeams.slice(-2).map(t => t.name);
+
                                         // Sort by date
                                         const sortedDates = Object.keys(matchesByDate).sort();
+                                        const groupedMatches = sortedDates.reduce((acc, dateKey) => {
+                                            acc[matchesByDate[dateKey].formatted] = matchesByDate[dateKey].matches;
+                                            return acc;
+                                        }, {} as Record<string, Match[]>);
 
-                                        return sortedDates.map((dateKey, dateIdx) => (
-                                            <div key={dateKey} className={dateIdx > 0 ? 'mt-3' : ''}>
-                                                <div className="sticky top-0 bg-amber-600/20 px-2 py-1 rounded border border-amber-500/30 mb-2 z-10">
-                                                    <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wide">
-                                                        {matchesByDate[dateKey].formatted}
-                                                    </span>
-                                                </div>
-                                                <div className="space-y-1.5">
-                                                    {matchesByDate[dateKey].matches.map((match, idx) => (
-                                                        <div key={idx} className="flex items-center justify-between p-2 bg-slate-900/40 rounded border border-slate-800/50 hover:bg-slate-800/50 transition-colors">
-                                                            <div className="flex flex-col flex-1 items-end gap-0.5">
-                                                                <span className="text-xs font-bold text-slate-300 text-right">{match.homeTeam}</span>
-                                                            </div>
-                                                            <div className="px-2 flex flex-col items-center">
-                                                                <span className="text-[10px] font-bold text-slate-600 bg-slate-950 px-1.5 py-0.5 rounded border border-slate-800">VS</span>
-                                                                {match.matchTime && (
-                                                                    <span className="text-[9px] text-slate-500 mt-0.5">{match.matchTime}</span>
-                                                                )}
-                                                            </div>
-                                                            <div className="flex flex-col flex-1 gap-0.5">
-                                                                <span className="text-xs font-bold text-slate-300 text-left">{match.awayTeam}</span>
+
+                                        return (
+                                            <div className="space-y-2">
+                                                {Object.entries(groupedMatches).map(([date, matches]) => (
+                                                    <div key={date} className="space-y-1">
+                                                        <div className="px-3 py-1.5 bg-slate-900/80 border-y border-slate-800 flex items-center justify-between sticky top-0 z-10 backdrop-blur-md">
+                                                            <div className="flex items-center gap-2">
+                                                                <span className="text-amber-500 text-xs">📅</span>
+                                                                <span className="text-[10px] font-bold text-slate-300 uppercase tracking-wider">{date}</span>
                                                             </div>
                                                         </div>
-                                                    ))}
-                                                </div>
+                                                        <div className="px-2 space-y-1">
+                                                            {matches.map(match => {
+                                                                // Check if any team is in relegation zone (only for Group B as per request)
+                                                                const isRelegationBattle = activeGroup.includes('B') && (bottomTwoTeams.includes(match.homeTeam) || bottomTwoTeams.includes(match.awayTeam));
+
+                                                                return (
+                                                                    <div key={match.id || `${match.homeTeam}-${match.awayTeam}`} className={`bg-slate-900/30 border border-slate-800/50 rounded-lg p-2 hover:bg-slate-800/50 transition-colors group ${isRelegationBattle ? 'border-rose-900/50 bg-rose-900/5' : ''}`}>
+                                                                        <div className="flex items-center justify-between gap-2">
+                                                                            <div className="flex-1 text-right">
+                                                                                <div className="text-[11px] font-bold text-slate-200 truncate group-hover:text-amber-500 transition-colors">{match.homeTeam}</div>
+                                                                            </div>
+                                                                            <div className="px-2 py-0.5 bg-slate-950 rounded text-[9px] font-mono text-slate-500 font-bold whitespace-nowrap border border-slate-900 shadow-inner">
+                                                                                {match.matchTime && match.matchTime !== '00:00' ? match.matchTime : '20:00'}
+                                                                            </div>
+                                                                            <div className="flex-1 text-left">
+                                                                                <div className="text-[11px] font-bold text-slate-200 truncate group-hover:text-amber-500 transition-colors">{match.awayTeam}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        {/* Venue & Relegation Warning */}
+                                                                        <div className="mt-1.5 pt-1.5 border-t border-slate-800/50 flex justify-between items-center">
+                                                                            <div className="flex items-center gap-1 text-[9px] text-slate-500">
+                                                                                <span>📍</span>
+                                                                                <span className="truncate max-w-[120px]">{match.venue || 'Salon Belirtilmemiş'}</span>
+                                                                            </div>
+                                                                            {isRelegationBattle && (
+                                                                                <div className="flex items-center gap-1 px-1.5 py-0.5 bg-rose-950/50 border border-rose-900/50 rounded text-[8px] text-rose-400 font-bold animate-pulse">
+                                                                                    <span>⚠️</span>
+                                                                                    <span>KÜME DÜŞME HATTI</span>
+                                                                                </div>
+                                                                            )}
+                                                                        </div>
+                                                                    </div>
+                                                                )
+                                                            })}
+                                                        </div>
+                                                    </div>
+                                                ))}
                                             </div>
-                                        ));
+                                        );
                                     })()}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </main>
     );
 }
