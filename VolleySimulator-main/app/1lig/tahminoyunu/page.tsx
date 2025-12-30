@@ -282,12 +282,17 @@ function CalculatorContent() {
 
             const winProb = 1 / (1 + Math.pow(10, (awayElo - homeElo) / 400));
 
+            // Add randomness to avoid identical results for close teams (±7.5%)
+            // This prevents "all 3-2" scenarios when teams have similar Elo
+            const randomFactor = (Math.random() * 0.15) - 0.075;
+            const finalProb = winProb + randomFactor;
+
             let score = "0-0";
-            if (winProb > 0.65) score = "3-0";
-            else if (winProb > 0.55) score = "3-1";
-            else if (winProb > 0.50) score = "3-2";
-            else if (winProb > 0.45) score = "2-3";
-            else if (winProb > 0.35) score = "1-3";
+            if (finalProb > 0.60) score = "3-0";
+            else if (finalProb > 0.55) score = "3-1";
+            else if (finalProb > 0.50) score = "3-2";
+            else if (finalProb > 0.45) score = "2-3";
+            else if (finalProb > 0.40) score = "1-3";
             else score = "0-3";
 
             newOverrides[`${match.homeTeam}-${match.awayTeam}`] = score;
