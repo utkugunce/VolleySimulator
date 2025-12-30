@@ -151,19 +151,20 @@ export default function Navbar() {
                     </Link>
 
                     {/* Ligler */}
-                    <button
-                        onClick={() => setShowLeagueModal(true)}
-                        className={`relative flex flex-col items-center gap-0.5 px-5 py-2 rounded-xl transition-all duration-200 active:scale-95 ${isInLeague
+                    <Link
+                        href="/ligler"
+                        className={`relative flex flex-col items-center gap-0.5 px-5 py-2 rounded-xl transition-all duration-200 active:scale-95 ${isInLeague || pathname === '/ligler'
                             ? 'text-indigo-400'
                             : 'text-slate-400 hover:text-white'
                             }`}
+                        prefetch={true}
                     >
-                        {isInLeague && (
+                        {(isInLeague || pathname === '/ligler') && (
                             <div className="absolute inset-0 bg-indigo-500/15 rounded-xl border border-indigo-500/30"></div>
                         )}
                         <span className="text-xl relative z-10">🏐</span>
                         <span className="text-[10px] font-bold relative z-10">Ligler</span>
-                    </button>
+                    </Link>
 
                     {/* Ayarlar */}
                     <Link

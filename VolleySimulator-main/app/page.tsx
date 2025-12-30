@@ -43,10 +43,10 @@ export default function Home() {
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
             {user ? (
               <Link
-                href="/1lig/anasayfa"
+                href="/ligler"
                 className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-2xl shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2"
               >
-                <span>Lige Gir</span>
+                <span>Oyuna Başla</span>
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
