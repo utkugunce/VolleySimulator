@@ -24,7 +24,8 @@ export default function PageHeader({
     const is1Lig = pathname.startsWith('/1lig');
     const is2Lig = pathname.startsWith('/2lig');
     const isVSL = pathname.startsWith('/vsl');
-    const leaguePrefix = is1Lig ? '/1lig' : is2Lig ? '/2lig' : isVSL ? '/vsl' : '';
+    const isCL = pathname.startsWith('/cev-cl');
+    const leaguePrefix = is1Lig ? '/1lig' : is2Lig ? '/2lig' : isVSL ? '/vsl' : isCL ? '/cev-cl' : '';
 
     const getLinkClass = (path: string, isSpecial: boolean = false) => {
         const isActive = pathname === path || pathname.startsWith(path + '/');
@@ -79,6 +80,9 @@ export default function PageHeader({
                     <Link href={`/2lig${currentPageType}`} className={getLeagueLinkClass('/2lig')}>
                         <span className="text-emerald-400">●</span> 2.Lig
                     </Link>
+                    <Link href="/cev-cl/anasayfa" className={getLeagueLinkClass('/cev-cl')}>
+                        <span className="text-blue-500">●</span> Şampiyonlar Ligi
+                    </Link>
                 </div>
             </div>
 
@@ -95,7 +99,7 @@ export default function PageHeader({
                 </Link>
 
                 {/* Stats link for all leagues */}
-                {(is1Lig || is2Lig || isVSL) && (
+                {(is1Lig || is2Lig || isVSL || isCL) && (
                     <Link href={`${leaguePrefix}/stats`} className={getLinkClass(`${leaguePrefix}/stats`)}>
                         <span>📊</span>
                         <span className="hidden sm:inline">İstatistikler</span>
@@ -103,7 +107,7 @@ export default function PageHeader({
                 )}
 
                 {/* Playoffs link for all leagues */}
-                {(is1Lig || is2Lig || isVSL) && (
+                {(is1Lig || is2Lig || isVSL || isCL) && (
                     <Link href={`${leaguePrefix}/playoffs`} className={getLinkClass(`${leaguePrefix}/playoffs`, true)}>
                         <span>🏆</span>
                         <span className="hidden sm:inline">Play-Off</span>
