@@ -26,6 +26,10 @@ export default function PlayoffsVSLPage() {
     const [playoffOverrides, setPlayoffOverrides] = useState<Record<string, string>>({});
     const [isLoaded, setIsLoaded] = useState(false);
 
+    // Tab states
+    const [activeTab1_4, setActiveTab1_4] = useState<'semi' | 'final' | '3rd'>('semi');
+    const [activeTab5_8, setActiveTab5_8] = useState<'semi' | 'final' | '7th'>('semi');
+
     // 1. Load Overrides
     useEffect(() => {
         const savedPlayoff = localStorage.getItem('vslPlayoffScenarios');
@@ -267,51 +271,81 @@ export default function PlayoffsVSLPage() {
                                 <span className="text-xs text-rose-400 ml-auto">Şampiyonluk Mücadelesi</span>
                             </h2>
 
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-                                {/* Semi Finals */}
-                                <div className="space-y-4">
-                                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Yarı Final (5 Maç)</div>
-                                    {renderBracketMatch('vsl-semi-1', semi1Home, semi1Away, '1. vs 4.')}
-                                    {renderBracketMatch('vsl-semi-2', semi2Home, semi2Away, '2. vs 3.')}
-                                    <div className="text-[10px] text-slate-500 mt-2 bg-slate-900/50 p-2 rounded">
-                                        ℹ️ İlk maç alt sırada tamamlayan takımın evinde, ikinci maç ve gerekirse üçüncü maç üst sırada tamamlayan takımın evinde oynanır. İki maç kazanan takım finale yükselir.
-                                    </div>
-                                </div>
+                            <div className="flex gap-2 border-b border-rose-500/20 mb-6 overflow-x-auto pb-2">
+                                <button
+                                    onClick={() => setActiveTab1_4('semi')}
+                                    className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTab1_4 === 'semi' ? 'bg-rose-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                                >
+                                    Yarı Final
+                                </button>
+                                <button
+                                    onClick={() => setActiveTab1_4('final')}
+                                    className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTab1_4 === 'final' ? 'bg-amber-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                                >
+                                    Final
+                                </button>
+                                <button
+                                    onClick={() => setActiveTab1_4('3rd')}
+                                    className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTab1_4 === '3rd' ? 'bg-slate-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                                >
+                                    3.lük Maçı
+                                </button>
+                            </div>
 
-                                {/* Finals Area */}
-                                <div className="space-y-4">
-                                    <div className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">Final (5 Maç)</div>
-                                    {renderBracketMatch('vsl-final', semi1Winner, semi2Winner, 'ŞAMPİYONLUK FİNALİ')}
-
-                                    {finalWinner && (
-                                        <div className="bg-gradient-to-r from-amber-500/20 to-amber-600/10 border border-amber-500/30 rounded-lg p-4 text-center">
-                                            <div className="text-3xl mb-2">🏆</div>
-                                            <div className="text-xs text-amber-400 uppercase tracking-wider">Lig Şampiyonu</div>
-                                            <div className="text-lg font-bold text-white">{finalWinner}</div>
+                            <div className="min-h-[300px]">
+                                {activeTab1_4 === 'semi' && (
+                                    <div className="space-y-6">
+                                        <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Yarı Final (3 Maç Üzerinden)</div>
+                                        <div className="grid md:grid-cols-2 gap-6">
+                                            {renderBracketMatch('vsl-semi-1', semi1Home, semi1Away, '1. vs 4. (Yarı Final 1)')}
+                                            {renderBracketMatch('vsl-semi-2', semi2Home, semi2Away, '2. vs 3. (Yarı Final 2)')}
                                         </div>
-                                    )}
-
-                                    <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
-                                        ℹ️ Final maçlarında ilk maç ligi alt sırada tamamlayan takımın evinde, ikinci ve üçüncü maç ligi üst sırada tamamlayan takımın evinde oynanır. Gerekirse dördüncü maç ligi alt sırada tamamlayan takımın, beşinci maç üst sırada tamamlayan takımın evinde oynanır. 3 maç kazanan takım lig şampiyonu olur.
-                                    </div>
-                                </div>
-
-                                {/* 3rd Place Match */}
-                                <div className="space-y-4">
-                                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">3/4'lük Maçı (3 Maç)</div>
-                                    {renderBracketMatch('vsl-3rd', semi1Loser, semi2Loser, '3. lük Mücadelesi', 3)}
-
-                                    {thirdPlaceWinner && (
-                                        <div className="bg-slate-800/50 border border-slate-600/30 rounded-lg p-3 text-center">
-                                            <div className="text-xl mb-1">🥉</div>
-                                            <div className="text-xs text-slate-400">3. Sıra</div>
-                                            <div className="text-sm font-bold text-white">{thirdPlaceWinner}</div>
+                                        <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
+                                            ℹ️ İlk maç alt sırada tamamlayan takımın evinde, ikinci maç ve gerekirse üçüncü maç üst sırada tamamlayan takımın evinde oynanır. İki maç kazanan takım finale yükselir.
                                         </div>
-                                    )}
-                                    <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
-                                        ℹ️ 3.'lük maçlarında ilk maç ligi alt sırada tamamlayan takımın evinde, ikinci maç ve gerekirse üçüncü maç ligi üst sırada tamamlayan takımın evinde oynanır. 2 maç kazanan takım ligi 3. sırada tamamlar.
                                     </div>
-                                </div>
+                                )}
+
+                                {activeTab1_4 === 'final' && (
+                                    <div className="space-y-6">
+                                        <div className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">Şampiyonluk Finali (5 Maç Üzerinden)</div>
+                                        <div className="max-w-md">
+                                            {renderBracketMatch('vsl-final', semi1Winner, semi2Winner, 'FİNAL', 5)}
+                                        </div>
+
+                                        {finalWinner && (
+                                            <div className="bg-gradient-to-r from-amber-500/20 to-amber-600/10 border border-amber-500/30 rounded-lg p-6 text-center max-w-md animate-in fade-in zoom-in duration-500">
+                                                <div className="text-5xl mb-2">🏆</div>
+                                                <div className="text-sm text-amber-400 uppercase tracking-wider font-bold">2025-2026 Şampiyonu</div>
+                                                <div className="text-3xl font-black text-white mt-1">{finalWinner}</div>
+                                            </div>
+                                        )}
+
+                                        <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
+                                            ℹ️ Final maçlarında ilk maç ligi alt sırada tamamlayan takımın evinde, ikinci ve üçüncü maç ligi üst sırada tamamlayan takımın evinde oynanır. Gerekirse dördüncü maç ligi alt sırada tamamlayan takımın, beşinci maç üst sırada tamamlayan takımın evinde oynanır. 3 maç kazanan takım lig şampiyonu olur.
+                                        </div>
+                                    </div>
+                                )}
+
+                                {activeTab1_4 === '3rd' && (
+                                    <div className="space-y-6">
+                                        <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">3.lük Mücadelesi (3 Maç Üzerinden)</div>
+                                        <div className="max-w-md">
+                                            {renderBracketMatch('vsl-3rd', semi1Loser, semi2Loser, '3.lük Maçı', 3)}
+                                        </div>
+
+                                        {thirdPlaceWinner && (
+                                            <div className="bg-slate-800/50 border border-slate-600/30 rounded-lg p-4 text-center max-w-md">
+                                                <div className="text-2xl mb-1">🥉</div>
+                                                <div className="text-xs text-slate-400">3. Sıra</div>
+                                                <div className="text-xl font-bold text-white">{thirdPlaceWinner}</div>
+                                            </div>
+                                        )}
+                                        <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
+                                            ℹ️ 3.'lük maçlarında ilk maç ligi alt sırada tamamlayan takımın evinde, ikinci maç ve gerekirse üçüncü maç ligi üst sırada tamamlayan takımın evinde oynanır. 2 maç kazanan takım ligi 3. sırada tamamlar.
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
 
@@ -323,34 +357,64 @@ export default function PlayoffsVSLPage() {
                                 <span className="text-xs text-amber-400 ml-auto">Sıralama Mücadelesi</span>
                             </h2>
 
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-                                {/* Semi Finals 5-8 */}
-                                <div className="space-y-4">
-                                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Yarı Final (5 Maç)</div>
-                                    {renderBracketMatch('vsl-58-semi-1', semi58_1Home, semi58_1Away, '5. vs 8.')}
-                                    {renderBracketMatch('vsl-58-semi-2', semi58_2Home, semi58_2Away, '6. vs 7.')}
-                                    <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
-                                        ℹ️ 5.'lik maçları, ilk maç ligi alt sırada tamamlayan takımın evinde, ikinci maç ve gerekirse üçüncü maç ligi üst sırada tamamlayan takımın evinde oynanır. 2 maç kazanan takım 5. sırada tamamlar.
-                                    </div>
-                                </div>
+                            <div className="flex gap-2 border-b border-amber-500/20 mb-6 overflow-x-auto pb-2">
+                                <button
+                                    onClick={() => setActiveTab5_8('semi')}
+                                    className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTab5_8 === 'semi' ? 'bg-amber-700 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                                >
+                                    Yarı Final
+                                </button>
+                                <button
+                                    onClick={() => setActiveTab5_8('final')}
+                                    className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTab5_8 === 'final' ? 'bg-emerald-700 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                                >
+                                    5.lik Maçı
+                                </button>
+                                <button
+                                    onClick={() => setActiveTab5_8('7th')}
+                                    className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTab5_8 === '7th' ? 'bg-slate-700 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                                >
+                                    7.lik Maçı
+                                </button>
+                            </div>
 
-                                {/* 5/6 Finals */}
-                                <div className="space-y-4">
-                                    <div className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">5/6'lık Maçı (3 Maç)</div>
-                                    {renderBracketMatch('vsl-58-final', semi58_1Winner, semi58_2Winner, '5. lük Mücadelesi', 3)}
-                                    <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
-                                        ℹ️ 2 maç kazanan takım ligi 5. sırada tamamlar.
+                            <div className="min-h-[300px]">
+                                {activeTab5_8 === 'semi' && (
+                                    <div className="space-y-6">
+                                        <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Yarı Final (3 Maç Üzerinden)</div>
+                                        <div className="grid md:grid-cols-2 gap-6">
+                                            {renderBracketMatch('vsl-58-semi-1', semi58_1Home, semi58_1Away, '5. vs 8.')}
+                                            {renderBracketMatch('vsl-58-semi-2', semi58_2Home, semi58_2Away, '6. vs 7.')}
+                                        </div>
+                                        <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
+                                            ℹ️ 5.'lik maçları, ilk maç ligi alt sırada tamamlayan takımın evinde, ikinci maç ve gerekirse üçüncü maç ligi üst sırada tamamlayan takımın evinde oynanır. 2 maç kazanan takım 5. sırada tamamlar.
+                                        </div>
                                     </div>
-                                </div>
+                                )}
 
-                                {/* 7/8 Match */}
-                                <div className="space-y-4">
-                                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">7/8'lik Maçı (3 Maç)</div>
-                                    {renderBracketMatch('vsl-58-7th', semi58_1Loser, semi58_2Loser, '7. lük Mücadelesi', 3)}
-                                    <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
-                                        ℹ️ 7.'lik maçları, ilk maç ligi alt sırada tamamlayan takımın evinde, ikinci maç ve gerekirse üçüncü maç ligi üst sırada tamamlayan takımın evinde oynanır. 2 maç kazanan takım ligi 7. sırada tamamlar.
+                                {activeTab5_8 === 'final' && (
+                                    <div className="space-y-6">
+                                        <div className="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2">5.lik Mücadelesi (3 Maç Üzerinden)</div>
+                                        <div className="max-w-md">
+                                            {renderBracketMatch('vsl-58-final', semi58_1Winner, semi58_2Winner, '5.lik Maçı', 3)}
+                                        </div>
+                                        <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
+                                            ℹ️ 2 maç kazanan takım ligi 5. sırada tamamlar.
+                                        </div>
                                     </div>
-                                </div>
+                                )}
+
+                                {activeTab5_8 === '7th' && (
+                                    <div className="space-y-6">
+                                        <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">7.lik Mücadelesi (3 Maç Üzerinden)</div>
+                                        <div className="max-w-md">
+                                            {renderBracketMatch('vsl-58-7th', semi58_1Loser, semi58_2Loser, '7.lik Maçı', 3)}
+                                        </div>
+                                        <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
+                                            ℹ️ 7.'lik maçları, ilk maç ligi alt sırada tamamlayan takımın evinde, ikinci maç ve gerekirse üçüncü maç ligi üst sırada tamamlayan takımın evinde oynanır. 2 maç kazanan takım ligi 7. sırada tamamlar.
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
 

@@ -20,6 +20,9 @@ export default function CEVCLPlayoffsPage() {
     const [playoffOverrides, setPlayoffOverrides] = useState<Record<string, string>>({});
     const [isLoaded, setIsLoaded] = useState(false);
 
+    // Tab state
+    const [activeTabFF, setActiveTabFF] = useState<'semi' | 'final' | '3rd'>('semi');
+
     // Load Overrides
     useEffect(() => {
         const savedPlayoff = localStorage.getItem('cevclPlayoffScenarios');
@@ -399,41 +402,71 @@ export default function CEVCLPlayoffsPage() {
                                 Tek lokasyonda tekli maç formatında Yarı Final, 3.'lük ve Final
                             </p>
 
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-                                {/* Semifinals */}
-                                <div className="space-y-4">
-                                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Yarı Final (2 Mayıs)</div>
-                                    {renderBracketMatch('cevcl-sf-1', qf1_winner, qf2_winner, 'SF1: QF1 K. vs QF2 K.', '1match')}
-                                    {renderBracketMatch('cevcl-sf-2', qf3_winner, qf4_winner, 'SF2: QF3 K. vs QF4 K.', '1match')}
-                                </div>
+                            <div className="flex gap-2 border-b border-purple-500/20 mb-6 overflow-x-auto pb-2">
+                                <button
+                                    onClick={() => setActiveTabFF('semi')}
+                                    className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTabFF === 'semi' ? 'bg-purple-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                                >
+                                    Yarı Final
+                                </button>
+                                <button
+                                    onClick={() => setActiveTabFF('final')}
+                                    className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTabFF === 'final' ? 'bg-amber-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                                >
+                                    Super Final
+                                </button>
+                                <button
+                                    onClick={() => setActiveTabFF('3rd')}
+                                    className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTabFF === '3rd' ? 'bg-slate-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                                >
+                                    3.'lük Maçı
+                                </button>
+                            </div>
 
-                                {/* Final */}
-                                <div className="space-y-4">
-                                    <div className="text-xs font-bold text-amber-400 uppercase tracking-wider">Super Final (3 Mayıs)</div>
-                                    {renderBracketMatch('cevcl-final', sf1_winner, sf2_winner, '🏆 ŞAMPİYONLUK FİNALİ', '1match')}
-
-                                    {finalWinner && (
-                                        <div className="bg-gradient-to-r from-amber-500/20 to-amber-600/10 border border-amber-500/30 rounded-lg p-4 text-center">
-                                            <div className="text-4xl mb-2">🏆</div>
-                                            <div className="text-xs text-amber-400 uppercase tracking-wider">CEV Şampiyonlar Ligi Kazananı</div>
-                                            <div className="text-lg font-bold text-white">{finalWinner}</div>
+                            <div className="min-h-[250px]">
+                                {activeTabFF === 'semi' && (
+                                    <div className="space-y-6">
+                                        <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Yarı Final (2 Mayıs - Tek Maç)</div>
+                                        <div className="grid md:grid-cols-2 gap-6">
+                                            {renderBracketMatch('cevcl-sf-1', qf1_winner, qf2_winner, 'SF1: QF1 K. vs QF2 K.', '1match')}
+                                            {renderBracketMatch('cevcl-sf-2', qf3_winner, qf4_winner, 'SF2: QF3 K. vs QF4 K.', '1match')}
                                         </div>
-                                    )}
-                                </div>
+                                    </div>
+                                )}
 
-                                {/* 3rd Place */}
-                                <div className="space-y-4">
-                                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">3.'lük Maçı (3 Mayıs)</div>
-                                    {renderBracketMatch('cevcl-3rd', sf1_loser, sf2_loser, '🥉 3. lük Mücadelesi', '1match')}
-
-                                    {thirdPlaceWinner && (
-                                        <div className="bg-slate-800/50 border border-slate-600/30 rounded-lg p-3 text-center">
-                                            <div className="text-xl mb-1">🥉</div>
-                                            <div className="text-xs text-slate-400">3. Sıra</div>
-                                            <div className="text-sm font-bold text-white">{thirdPlaceWinner}</div>
+                                {activeTabFF === 'final' && (
+                                    <div className="space-y-6">
+                                        <div className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">Super Final (3 Mayıs - Tek Maç)</div>
+                                        <div className="max-w-md">
+                                            {renderBracketMatch('cevcl-final', sf1_winner, sf2_winner, '🏆 ŞAMPİYONLUK FİNALİ', '1match')}
                                         </div>
-                                    )}
-                                </div>
+
+                                        {finalWinner && (
+                                            <div className="bg-gradient-to-r from-amber-500/20 to-amber-600/10 border border-amber-500/30 rounded-lg p-6 text-center max-w-md animate-in fade-in zoom-in duration-500">
+                                                <div className="text-5xl mb-2">🏆</div>
+                                                <div className="text-sm text-amber-400 uppercase tracking-wider font-bold">CEV Şampiyonlar Ligi Kazananı</div>
+                                                <div className="text-3xl font-black text-white mt-1">{finalWinner}</div>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+
+                                {activeTabFF === '3rd' && (
+                                    <div className="space-y-6">
+                                        <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">3.'lük Maçı (3 Mayıs - Tek Maç)</div>
+                                        <div className="max-w-md">
+                                            {renderBracketMatch('cevcl-3rd', sf1_loser, sf2_loser, '🥉 3. lük Mücadelesi', '1match')}
+                                        </div>
+
+                                        {thirdPlaceWinner && (
+                                            <div className="bg-slate-800/50 border border-slate-600/30 rounded-lg p-4 text-center max-w-md">
+                                                <div className="text-2xl mb-1">🥉</div>
+                                                <div className="text-xs text-slate-400">3. Sıra</div>
+                                                <div className="text-xl font-bold text-white">{thirdPlaceWinner}</div>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
                             </div>
                         </div>
 
