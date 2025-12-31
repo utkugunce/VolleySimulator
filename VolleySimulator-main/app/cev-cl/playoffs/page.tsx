@@ -127,17 +127,52 @@ export default function CEVCLPlayoffsPage() {
         return homeScore > awayScore ? awayTeam : homeTeam;
     };
 
-    const renderBracketMatch = (matchId: string, homeTeam: string | null, awayTeam: string | null, label: string, legs: string = "2 Leg") => {
+    // matchFormat: '2leg' = 2-leg knockout (home & away), '1match' = single match
+    const renderBracketMatch = (matchId: string, homeTeam: string | null, awayTeam: string | null, label: string, matchFormat: '2leg' | '1match' = '2leg') => {
         const score = playoffOverrides[matchId];
         const [homeScore, awayScore] = score ? score.split('-').map(Number) : [null, null];
         const homeWin = homeScore !== null && awayScore !== null && homeScore > awayScore;
         const awayWin = homeScore !== null && awayScore !== null && awayScore > homeScore;
 
+        // For 2-leg: aggregate set scores (e.g., 6-2 means won by 6 sets to 2 over both legs)
+        // For 1 match: single match set scores (0-3 to 3-0)
+        const scoreOptions = matchFormat === '2leg'
+            ? [
+                // 2-0 aggregate (e.g., 3-0 + 3-0 = won both)
+                { value: '6-0', label: '2-0 (6-0 set)' },
+                { value: '6-1', label: '2-0 (6-1 set)' },
+                { value: '6-2', label: '2-0 (6-2 set)' },
+                { value: '6-3', label: '2-0 (6-3 set)' },
+                { value: '5-2', label: '2-0 (5-2 set)' },
+                { value: '5-3', label: '2-0 (5-3 set)' },
+                // 1-1 split but aggregate win
+                { value: '4-3', label: '1-1 (4-3 set)' },
+                { value: '4-4', label: '1-1 (Golden Set ile)' },
+                // Reverse
+                { value: '3-4', label: '1-1 (3-4 set)' },
+                { value: '3-5', label: '0-2 (3-5 set)' },
+                { value: '2-5', label: '0-2 (2-5 set)' },
+                { value: '3-6', label: '0-2 (3-6 set)' },
+                { value: '2-6', label: '0-2 (2-6 set)' },
+                { value: '1-6', label: '0-2 (1-6 set)' },
+                { value: '0-6', label: '0-2 (0-6 set)' },
+            ]
+            : [
+                { value: '3-0', label: '3-0' },
+                { value: '3-1', label: '3-1' },
+                { value: '3-2', label: '3-2' },
+                { value: '2-3', label: '2-3' },
+                { value: '1-3', label: '1-3' },
+                { value: '0-3', label: '0-3' },
+            ];
+
+        const formatLabel = matchFormat === '2leg' ? '2 Leg' : '1 Maç';
+
         return (
             <div className="bg-slate-800 rounded-lg p-3 border border-slate-700 space-y-2 min-w-[200px]">
                 <div className="flex items-center justify-between">
                     <span className="text-[10px] text-blue-400 font-bold uppercase tracking-wider">{label}</span>
-                    <span className="text-[9px] text-slate-500 bg-slate-900 px-1.5 py-0.5 rounded">{legs}</span>
+                    <span className="text-[9px] text-slate-500 bg-slate-900 px-1.5 py-0.5 rounded">{formatLabel}</span>
                 </div>
                 <div className={`flex items-center justify-between p-2 rounded ${homeWin ? 'bg-emerald-500/20 border border-emerald-500/30' : 'bg-slate-900/50'}`}>
                     <span className={`text-xs truncate flex-1 ${homeWin ? 'text-emerald-400 font-bold' : 'text-slate-300'}`}>
@@ -157,13 +192,10 @@ export default function CEVCLPlayoffsPage() {
                         onChange={(e) => handleScoreChange(matchId, e.target.value)}
                         className="w-full mt-2 p-2 bg-slate-900 border border-slate-600 rounded text-xs text-white"
                     >
-                        <option value="">Skor Seç</option>
-                        <option value="3-0">3-0</option>
-                        <option value="3-1">3-1</option>
-                        <option value="3-2">3-2</option>
-                        <option value="2-3">2-3</option>
-                        <option value="1-3">1-3</option>
-                        <option value="0-3">0-3</option>
+                        <option value="">{matchFormat === '2leg' ? '2 Leg Sonucu Seç' : 'Maç Sonucu Seç'}</option>
+                        {scoreOptions.map(opt => (
+                            <option key={opt.value} value={opt.value}>{opt.label}</option>
+                        ))}
                     </select>
                 )}
             </div>
@@ -349,14 +381,14 @@ export default function CEVCLPlayoffsPage() {
                                 {/* Semifinals */}
                                 <div className="space-y-4">
                                     <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Yarı Final (2 Mayıs)</div>
-                                    {renderBracketMatch('cevcl-sf-1', qf1_winner, qf2_winner, 'SF1: QF1 K. vs QF2 K.', '1 Maç')}
-                                    {renderBracketMatch('cevcl-sf-2', qf3_winner, qf4_winner, 'SF2: QF3 K. vs QF4 K.', '1 Maç')}
+                                    {renderBracketMatch('cevcl-sf-1', qf1_winner, qf2_winner, 'SF1: QF1 K. vs QF2 K.', '1match')}
+                                    {renderBracketMatch('cevcl-sf-2', qf3_winner, qf4_winner, 'SF2: QF3 K. vs QF4 K.', '1match')}
                                 </div>
 
                                 {/* Final */}
                                 <div className="space-y-4">
                                     <div className="text-xs font-bold text-amber-400 uppercase tracking-wider">Super Final (3 Mayıs)</div>
-                                    {renderBracketMatch('cevcl-final', sf1_winner, sf2_winner, '🏆 ŞAMPİYONLUK FİNALİ', '1 Maç')}
+                                    {renderBracketMatch('cevcl-final', sf1_winner, sf2_winner, '🏆 ŞAMPİYONLUK FİNALİ', '1match')}
 
                                     {finalWinner && (
                                         <div className="bg-gradient-to-r from-amber-500/20 to-amber-600/10 border border-amber-500/30 rounded-lg p-4 text-center">
@@ -370,7 +402,7 @@ export default function CEVCLPlayoffsPage() {
                                 {/* 3rd Place */}
                                 <div className="space-y-4">
                                     <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">3.'lük Maçı (3 Mayıs)</div>
-                                    {renderBracketMatch('cevcl-3rd', sf1_loser, sf2_loser, '🥉 3. lük Mücadelesi', '1 Maç')}
+                                    {renderBracketMatch('cevcl-3rd', sf1_loser, sf2_loser, '🥉 3. lük Mücadelesi', '1match')}
 
                                     {thirdPlaceWinner && (
                                         <div className="bg-slate-800/50 border border-slate-600/30 rounded-lg p-3 text-center">

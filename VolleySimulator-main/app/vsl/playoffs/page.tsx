@@ -90,11 +90,29 @@ export default function PlayoffsVSLPage() {
         setPlayoffOverrides(newOverrides);
     };
 
-    const renderBracketMatch = (matchId: string, homeTeam: string | null, awayTeam: string | null, label: string) => {
+    // seriesType: 5 = best of 5 (wins 3), 3 = best of 3 (wins 2)
+    const renderBracketMatch = (matchId: string, homeTeam: string | null, awayTeam: string | null, label: string, seriesType: 5 | 3 = 5) => {
         const score = playoffOverrides[matchId];
         const [homeScore, awayScore] = score ? score.split('-').map(Number) : [null, null];
         const homeWin = homeScore !== null && awayScore !== null && homeScore > awayScore;
         const awayWin = homeScore !== null && awayScore !== null && awayScore > homeScore;
+
+        // Score options based on series type
+        const scoreOptions = seriesType === 5
+            ? [
+                { value: '3-0', label: '3-0' },
+                { value: '3-1', label: '3-1' },
+                { value: '3-2', label: '3-2' },
+                { value: '2-3', label: '2-3' },
+                { value: '1-3', label: '1-3' },
+                { value: '0-3', label: '0-3' },
+            ]
+            : [
+                { value: '2-0', label: '2-0' },
+                { value: '2-1', label: '2-1' },
+                { value: '1-2', label: '1-2' },
+                { value: '0-2', label: '0-2' },
+            ];
 
         return (
             <div className="bg-slate-800 rounded-lg p-3 border border-slate-700 space-y-2 min-w-[200px]">
@@ -117,13 +135,10 @@ export default function PlayoffsVSLPage() {
                         onChange={(e) => handleScoreChange(matchId, e.target.value)}
                         className="w-full mt-2 p-2 bg-slate-900 border border-slate-600 rounded text-xs text-white"
                     >
-                        <option value="">Skor Seç</option>
-                        <option value="3-0">3-0</option>
-                        <option value="3-1">3-1</option>
-                        <option value="3-2">3-2</option>
-                        <option value="2-3">2-3</option>
-                        <option value="1-3">1-3</option>
-                        <option value="0-3">0-3</option>
+                        <option value="">Seri Sonucu Seç ({seriesType} Maç)</option>
+                        {scoreOptions.map(opt => (
+                            <option key={opt.value} value={opt.value}>{opt.label}</option>
+                        ))}
                     </select>
                 )}
             </div>
@@ -264,7 +279,7 @@ export default function PlayoffsVSLPage() {
                                 {/* 3rd Place Match */}
                                 <div className="space-y-4">
                                     <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">3/4'lük Maçı (3 Maç)</div>
-                                    {renderBracketMatch('vsl-3rd', semi1Loser, semi2Loser, '3. lük Mücadelesi')}
+                                    {renderBracketMatch('vsl-3rd', semi1Loser, semi2Loser, '3. lük Mücadelesi', 3)}
 
                                     {thirdPlaceWinner && (
                                         <div className="bg-slate-800/50 border border-slate-600/30 rounded-lg p-3 text-center">
@@ -302,7 +317,7 @@ export default function PlayoffsVSLPage() {
                                 {/* 5/6 Finals */}
                                 <div className="space-y-4">
                                     <div className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">5/6'lık Maçı (3 Maç)</div>
-                                    {renderBracketMatch('vsl-58-final', semi58_1Winner, semi58_2Winner, '5. lük Mücadelesi')}
+                                    {renderBracketMatch('vsl-58-final', semi58_1Winner, semi58_2Winner, '5. lük Mücadelesi', 3)}
                                     <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
                                         ℹ️ 2 maç kazanan takım ligi 5. sırada tamamlar.
                                     </div>
@@ -311,7 +326,7 @@ export default function PlayoffsVSLPage() {
                                 {/* 7/8 Match */}
                                 <div className="space-y-4">
                                     <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">7/8'lik Maçı (3 Maç)</div>
-                                    {renderBracketMatch('vsl-58-7th', semi58_1Loser, semi58_2Loser, '7. lük Mücadelesi')}
+                                    {renderBracketMatch('vsl-58-7th', semi58_1Loser, semi58_2Loser, '7. lük Mücadelesi', 3)}
                                     <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
                                         ℹ️ 7.'lik maçları, ilk maç ligi alt sırada tamamlayan takımın evinde, ikinci maç ve gerekirse üçüncü maç ligi üst sırada tamamlayan takımın evinde oynanır. 2 maç kazanan takım ligi 7. sırada tamamlar.
                                     </div>

@@ -281,11 +281,59 @@ export default function PlayoffsPage() {
                 })()}
 
                 {isGroupsComplete ? (
-                    <div className="space-y-12">
-                        {renderStageGroups('quarter', quarterGroups, 'Çeyrek Final', 'bg-amber-500')}
-                        {renderStageGroups('semi', semiGroups, 'Yarı Final', 'bg-blue-500')}
-                        {renderStageGroups('final', finalGroups, 'Final Grubu', 'bg-emerald-500')}
-                    </div>
+                    (() => {
+                        // Check if quarter finals are complete (4 groups * 6 matches = 24 matches)
+                        const quarterMatchCount = Object.keys(playoffOverrides).filter(k => k.startsWith('quarter-')).length;
+                        const isQuarterComplete = quarterMatchCount >= 24;
+
+                        // Check if semi finals are complete (4 groups * 6 matches = 24 matches)
+                        const semiMatchCount = Object.keys(playoffOverrides).filter(k => k.startsWith('semi-')).length;
+                        const isSemiComplete = semiMatchCount >= 24;
+
+                        return (
+                            <div className="space-y-12">
+                                {renderStageGroups('quarter', quarterGroups, 'Çeyrek Final', 'bg-amber-500')}
+
+                                {/* Semi Finals - Locked until Quarter is complete */}
+                                <div className="relative">
+                                    {!isQuarterComplete && (
+                                        <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm z-20 flex flex-col items-center justify-center rounded-xl py-8">
+                                            <div className="text-4xl mb-2">🔒</div>
+                                            <h3 className="text-lg font-bold text-white mb-1">Yarı Final Kilitli</h3>
+                                            <p className="text-slate-400 text-xs text-center max-w-sm">
+                                                Yarı Final gruplarını açmak için Çeyrek Final gruplarını tamamlayın.
+                                            </p>
+                                            <p className="text-amber-400 text-sm font-medium mt-2">
+                                                {24 - quarterMatchCount} / 24 maç eksik
+                                            </p>
+                                        </div>
+                                    )}
+                                    <div className={!isQuarterComplete ? 'opacity-30 pointer-events-none select-none' : ''}>
+                                        {renderStageGroups('semi', semiGroups, 'Yarı Final', 'bg-blue-500')}
+                                    </div>
+                                </div>
+
+                                {/* Final - Locked until Semi is complete */}
+                                <div className="relative">
+                                    {!isSemiComplete && (
+                                        <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm z-20 flex flex-col items-center justify-center rounded-xl py-8">
+                                            <div className="text-4xl mb-2">🔒</div>
+                                            <h3 className="text-lg font-bold text-white mb-1">Final Grubu Kilitli</h3>
+                                            <p className="text-slate-400 text-xs text-center max-w-sm">
+                                                Final grubunu açmak için Yarı Final gruplarını tamamlayın.
+                                            </p>
+                                            <p className="text-blue-400 text-sm font-medium mt-2">
+                                                {24 - semiMatchCount} / 24 maç eksik
+                                            </p>
+                                        </div>
+                                    )}
+                                    <div className={!isSemiComplete ? 'opacity-30 pointer-events-none select-none' : ''}>
+                                        {renderStageGroups('final', finalGroups, 'Final Grubu', 'bg-emerald-500')}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })()
                 ) : (
                     <div className="relative">
                         {/* Locked Overlay */}
