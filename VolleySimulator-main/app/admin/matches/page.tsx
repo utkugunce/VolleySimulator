@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import { useAuth } from "@/app/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { useFetch } from "@/app/utils/useFetch";
@@ -58,7 +60,9 @@ export default function MatchManagement() {
             // Checking useFetch signature from previous context... it likely returns void / relies on state.
             // Let's fallback to native fetch for data aggregation to be cleaner, using the auth headers.
 
-            const token = (await import("@/app/utils/supabase")).supabase.auth.getSession().then(({ data }) => data.session?.access_token);
+            const { createClient } = await import("@/app/utils/supabase");
+            const supabase = createClient();
+            const token = (await supabase?.auth.getSession())?.data.session?.access_token;
             // Wait, client side auth token retrieval.
 
             const headers = {
@@ -77,7 +81,7 @@ export default function MatchManagement() {
             let allMatches: Match[] = [];
 
             // Helper to process response
-            const process = (data: any, leagueName: string) => {
+            const processLeagueData = (data: any, leagueName: string) => {
                 if (!data || !data.matches) return;
                 data.matches.forEach((m: any) => {
                     // Need to flat map dates/weeks if structure varies. 
@@ -102,10 +106,10 @@ export default function MatchManagement() {
                 }
             };
 
-            process(res1Lig, "1. Lig");
-            process(resVSL, "Sultanlar Ligi");
-            process(res2Lig, "2. Lig");
-            process(resCEV, "Şampiyonlar Ligi");
+            processLeagueData(res1Lig, "1. Lig");
+            processLeagueData(resVSL, "Sultanlar Ligi");
+            processLeagueData(res2Lig, "2. Lig");
+            processLeagueData(resCEV, "Şampiyonlar Ligi");
 
             // Sort by date desc
             allMatches.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
