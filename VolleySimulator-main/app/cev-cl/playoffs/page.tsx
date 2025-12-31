@@ -194,6 +194,35 @@ export default function CEVCLPlayoffsPage() {
         return calculateLegacyResult(matchId, homeTeam, awayTeam, matchFormat).loser;
     };
 
+    // Randomize for CEV CL
+    const randomizeCEVMatch = (matchId: string, matchFormat: '2leg' | '1match') => {
+        const newOverrides = { ...playoffOverrides };
+        const possibleScores = ['3-0', '3-1', '3-2', '2-3', '1-3', '0-3'];
+
+        const s1 = possibleScores[Math.floor(Math.random() * possibleScores.length)];
+        newOverrides[`${matchId}-m1`] = s1;
+
+        if (matchFormat === '2leg') {
+            const s2 = possibleScores[Math.floor(Math.random() * possibleScores.length)];
+            newOverrides[`${matchId}-m2`] = s2;
+
+            // Should we add a golden set?
+            // Simple logic: check if randomized scores trigger it
+            const p1 = getMatchPoints(s1);
+            const p2 = getMatchPoints(s2);
+            if (p1 && p2) {
+                const totalHome = p1.home + p2.home;
+                const totalAway = p1.away + p2.away;
+                if (totalHome === totalAway) {
+                    newOverrides[`${matchId}-golden`] = Math.random() > 0.5 ? 'home' : 'away';
+                } else {
+                    delete newOverrides[`${matchId}-golden`];
+                }
+            }
+        }
+        setPlayoffOverrides(newOverrides);
+    };
+
     // matchFormat: '2leg' = 2-leg knockout (home & away), '1match' = single match
     const renderBracketMatch = (matchId: string, homeTeam: string | null, awayTeam: string | null, label: string, matchFormat: '2leg' | '1match' = '2leg') => {
         const result = calculateLegacyResult(matchId, homeTeam, awayTeam, matchFormat);
@@ -206,7 +235,18 @@ export default function CEVCLPlayoffsPage() {
         return (
             <div className="bg-slate-800 rounded-lg p-3 border border-slate-700 space-y-3 min-w-[200px]">
                 <div className="flex items-center justify-between border-b border-slate-700/50 pb-2">
-                    <span className="text-[10px] text-blue-400 font-bold uppercase tracking-wider">{label}</span>
+                    <div className="text-[10px] text-blue-400 font-bold uppercase tracking-wider flex items-center gap-2">
+                        {label}
+                        {homeTeam && awayTeam && (
+                            <button
+                                onClick={() => randomizeCEVMatch(matchId, matchFormat)}
+                                className="text-base hover:scale-110 transition-transform"
+                                title="Rastgele Oynat"
+                            >
+                                🎲
+                            </button>
+                        )}
+                    </div>
                     <span className="text-[9px] text-slate-500 bg-slate-900 px-1.5 py-0.5 rounded">{formatLabel}</span>
                 </div>
 
@@ -225,44 +265,56 @@ export default function CEVCLPlayoffsPage() {
                 </div>
 
                 {homeTeam && awayTeam && (
-                    <div className="bg-slate-900/50 p-2 rounded border border-slate-800 mt-2 space-y-2">
+                    <div className="bg-slate-900/50 p-2 rounded border border-slate-800 mt-2 space-y-3">
                         {/* Match 1 */}
                         <div className="flex flex-col gap-1">
                             <span className="text-[9px] text-slate-500 uppercase font-bold pl-1">
                                 {matchFormat === '1match' ? 'Maç Sonucu' : '1. Maç'}
                             </span>
-                            <select
-                                value={playoffOverrides[`${matchId}-m1`] || ''}
-                                onChange={(e) => handleScoreChange(`${matchId}-m1`, e.target.value)}
-                                className="w-full p-2 bg-slate-900 border border-slate-700/50 rounded text-xs text-white"
-                            >
-                                <option value="">Oynanmadı</option>
-                                <option value="3-0">3-0</option>
-                                <option value="3-1">3-1</option>
-                                <option value="3-2">3-2</option>
-                                <option value="2-3">2-3</option>
-                                <option value="1-3">1-3</option>
-                                <option value="0-3">0-3</option>
-                            </select>
+                            <div className="flex flex-wrap gap-1">
+                                {['3-0', '3-1', '3-2', '2-3', '1-3', '0-3'].map(score => {
+                                    const isSelected = playoffOverrides[`${matchId}-m1`] === score;
+                                    return (
+                                        <button
+                                            key={score}
+                                            onClick={() => handleScoreChange(`${matchId}-m1`, isSelected ? '' : score)}
+                                            className={`
+                                                px-1.5 py-0.5 text-[10px] rounded border transition-all
+                                                ${isSelected
+                                                    ? 'bg-blue-600 border-blue-400 text-white font-bold shadow-[0_0_10px_rgba(37,99,235,0.5)]'
+                                                    : 'bg-slate-900 border-slate-700 text-slate-500 hover:bg-slate-800 hover:border-slate-500'}
+                                            `}
+                                        >
+                                            {score}
+                                        </button>
+                                    );
+                                })}
+                            </div>
                         </div>
 
                         {/* Match 2 (Only for 2leg) */}
                         {matchFormat === '2leg' && (
                             <div className="flex flex-col gap-1">
                                 <span className="text-[9px] text-slate-500 uppercase font-bold pl-1">2. Maç</span>
-                                <select
-                                    value={playoffOverrides[`${matchId}-m2`] || ''}
-                                    onChange={(e) => handleScoreChange(`${matchId}-m2`, e.target.value)}
-                                    className="w-full p-2 bg-slate-900 border border-slate-700/50 rounded text-xs text-white"
-                                >
-                                    <option value="">Oynanmadı</option>
-                                    <option value="3-0">3-0</option>
-                                    <option value="3-1">3-1</option>
-                                    <option value="3-2">3-2</option>
-                                    <option value="2-3">2-3</option>
-                                    <option value="1-3">1-3</option>
-                                    <option value="0-3">0-3</option>
-                                </select>
+                                <div className="flex flex-wrap gap-1">
+                                    {['3-0', '3-1', '3-2', '2-3', '1-3', '0-3'].map(score => {
+                                        const isSelected = playoffOverrides[`${matchId}-m2`] === score;
+                                        return (
+                                            <button
+                                                key={score}
+                                                onClick={() => handleScoreChange(`${matchId}-m2`, isSelected ? '' : score)}
+                                                className={`
+                                                    px-1.5 py-0.5 text-[10px] rounded border transition-all
+                                                    ${isSelected
+                                                        ? 'bg-blue-600 border-blue-400 text-white font-bold shadow-[0_0_10px_rgba(37,99,235,0.5)]'
+                                                        : 'bg-slate-900 border-slate-700 text-slate-500 hover:bg-slate-800 hover:border-slate-500'}
+                                                `}
+                                            >
+                                                {score}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
                             </div>
                         )}
 
