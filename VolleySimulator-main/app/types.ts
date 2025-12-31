@@ -15,6 +15,8 @@ export interface Match {
   groupName: string; // [NEW]
   isPlayed: boolean;
   resultScore?: string;
+  homeScore?: number | null;
+  awayScore?: number | null;
   matchDate?: string; // YYYY-MM-DD
   matchTime?: string; // HH:MM
   id?: number;
