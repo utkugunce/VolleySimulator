@@ -79,7 +79,7 @@ export default function PageHeader({
                     <Link href={`/2lig${currentPageType}`} className={getLeagueLinkClass('/2lig')}>
                         <span className="text-emerald-400">●</span> 2.Lig
                     </Link>
-                    <Link href="/cev-cl/tahminoyunu" className={getLeagueLinkClass('/cev-cl')}>
+                    <Link href={`/cev-cl${currentPageType}`} className={getLeagueLinkClass('/cev-cl')}>
                         <span className="text-blue-500">●</span> Şampiyonlar Ligi
                     </Link>
                 </div>
