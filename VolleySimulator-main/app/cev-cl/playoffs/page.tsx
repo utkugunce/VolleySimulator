@@ -250,17 +250,23 @@ export default function CEVCLPlayoffsPage() {
                     <span className="text-[9px] text-slate-500 bg-slate-900 px-1.5 py-0.5 rounded">{formatLabel}</span>
                 </div>
 
-                <div className={`flex items-center justify-between p-2 rounded ${homeSeriesWin ? 'bg-emerald-500/20 border border-emerald-500/30' : 'bg-slate-900/50'}`}>
-                    <span className={`text-xs truncate flex-1 ${homeSeriesWin ? 'text-emerald-400 font-bold' : 'text-slate-300'}`}>
-                        {homeTeam || 'TBD'}
-                    </span>
+                <div className={`flex items-center justify-between p-2 rounded transition-colors ${homeSeriesWin ? 'bg-gradient-to-r from-emerald-900/40 to-slate-900/50 border border-emerald-500/30' : 'bg-slate-900/50'}`}>
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
+                        <TeamAvatar name={homeTeam || '?'} size="sm" />
+                        <span className={`text-xs truncate ${homeSeriesWin ? 'text-emerald-400 font-bold' : 'text-slate-300'}`}>
+                            {homeTeam || 'TBD'}
+                        </span>
+                    </div>
                     {homeSeriesWin && <span className="text-xs text-emerald-400 font-bold">Tur Atladı</span>}
                 </div>
 
-                <div className={`flex items-center justify-between p-2 rounded ${awaySeriesWin ? 'bg-emerald-500/20 border border-emerald-500/30' : 'bg-slate-900/50'}`}>
-                    <span className={`text-xs truncate flex-1 ${awaySeriesWin ? 'text-emerald-400 font-bold' : 'text-slate-300'}`}>
-                        {awayTeam || 'TBD'}
-                    </span>
+                <div className={`flex items-center justify-between p-2 rounded transition-colors ${awaySeriesWin ? 'bg-gradient-to-r from-emerald-900/40 to-slate-900/50 border border-emerald-500/30' : 'bg-slate-900/50'}`}>
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
+                        <TeamAvatar name={awayTeam || '?'} size="sm" />
+                        <span className={`text-xs truncate ${awaySeriesWin ? 'text-emerald-400 font-bold' : 'text-slate-300'}`}>
+                            {awayTeam || 'TBD'}
+                        </span>
+                    </div>
                     {awaySeriesWin && <span className="text-xs text-emerald-400 font-bold">Tur Atladı</span>}
                 </div>
 
