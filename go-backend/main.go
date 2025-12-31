@@ -33,7 +33,7 @@ func main() {
     // Middleware
     app.Use(logger.New())
     app.Use(cors.New(cors.Config{
-        AllowOrigins: "https://volleysimulator.com.tr,http://localhost:3000",
+        AllowOrigins: "https://volleysimulator.com.tr,https://www.volleysimulator.com.tr,http://localhost:3000",
         AllowHeaders: "Origin, Content-Type, Accept, Authorization",
     }))
 
