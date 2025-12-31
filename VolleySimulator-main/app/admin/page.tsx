@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "@/app/context/AuthContext";
 import { useRouter } from "next/navigation";
-import { useFetch } from "@/utils/useFetch";
+import { useFetch } from "@/app/utils/useFetch";
 import Link from "next/link";
 
 interface AdminStats {

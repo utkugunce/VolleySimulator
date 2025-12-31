@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "@/app/context/AuthContext";
 import { useRouter } from "next/navigation";
-import { useFetch } from "@/utils/useFetch";
+import { useFetch } from "@/app/utils/useFetch";
 import Link from "next/link";
 import toast from "react-hot-toast";
 
@@ -59,7 +58,7 @@ export default function MatchManagement() {
             // Checking useFetch signature from previous context... it likely returns void / relies on state.
             // Let's fallback to native fetch for data aggregation to be cleaner, using the auth headers.
 
-            const token = (await import("@/utils/supabase")).supabase.auth.getSession().then(({ data }) => data.session?.access_token);
+            const token = (await import("@/app/utils/supabase")).supabase.auth.getSession().then(({ data }) => data.session?.access_token);
             // Wait, client side auth token retrieval.
 
             const headers = {
