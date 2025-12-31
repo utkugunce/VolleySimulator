@@ -130,10 +130,24 @@ export default function MatchManagement() {
         try {
             const resultScore = `${scoreInput.home}-${scoreInput.away}`;
 
+            // Get token
+            const { createClient } = await import("@/app/utils/supabase");
+            const supabase = createClient();
+            const { data } = await supabase?.auth.getSession() || {};
+            const token = data?.session?.access_token;
+
+            if (!token) {
+                toast.error("Oturum süresi dolmuş");
+                return;
+            }
+
             // This is a protected route, need to use useFetch or authenticated fetch
-            // We'll use the updateMatch from useAuth/useFetch which handles token injection
             await updateMatch("/api/admin/match/update", {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
                 body: JSON.stringify({
                     matchId: selectedMatch.id,
                     league: selectedMatch.league,
