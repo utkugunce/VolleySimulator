@@ -116,72 +116,129 @@ export default function PlayoffsVSLPage() {
 
     // seriesType: 5 = best of 5 (wins 3), 3 = best of 3 (wins 2)
     const renderBracketMatch = (matchId: string, homeTeam: string | null, awayTeam: string | null, label: string, seriesType: 5 | 3 = 5) => {
-        const score = playoffOverrides[matchId];
-        const [homeScore, awayScore] = score ? score.split('-').map(Number) : [null, null];
-        const homeWin = homeScore !== null && awayScore !== null && homeScore > awayScore;
-        const awayWin = homeScore !== null && awayScore !== null && awayScore > homeScore;
+        const result = calculateSeriesResult(matchId, homeTeam, awayTeam, seriesType);
+        const homeSeriesWin = result.winner === homeTeam;
+        const awaySeriesWin = result.winner === awayTeam;
 
-        // Score options based on series type
-        const scoreOptions = seriesType === 5
-            ? [
-                { value: '3-0', label: '3-0' },
-                { value: '3-1', label: '3-1' },
-                { value: '3-2', label: '3-2' },
-                { value: '2-3', label: '2-3' },
-                { value: '1-3', label: '1-3' },
-                { value: '0-3', label: '0-3' },
-            ]
-            : [
-                { value: '2-0', label: '2-0' },
-                { value: '2-1', label: '2-1' },
-                { value: '1-2', label: '1-2' },
-                { value: '0-2', label: '0-2' },
-            ];
+        // Generate input fields for each potential match in the series
+        const matchInputs = [];
+        for (let i = 1; i <= seriesType; i++) {
+            // Determine who is "Home" for this specific match (Standard VSL logic: Lower Seed hosts Match 1, Higher hosts 2&3...)
+            // Logic:
+            // Match 1: Lower Seed (Away in this bracket context) is Home
+            // Match 2: Higher Seed (Home in this bracket context) is Home
+            // Match 3: Higher Seed is Home
+            // Match 4: Lower Seed is Home
+            // Match 5: Higher Seed is Home
+            // (Note: This is strictly simplified. Actual rules may vary, but typically alternating like H-A-H or A-H-H)
+
+            // NOTE: In our bracket `homeTeam` is the Higher Seed (1st, 2nd..). `awayTeam` is Lower (4th, 3rd..).
+            // VSL Rule (Standard): 
+            // 3 Matches: 1st Match @ Lower (AwayTeam's Home), 2nd @ Higher, 3rd @ Higher.
+            // 5 Matches: 1st @ Lower, 2nd @ Higher, 3rd @ Higher, 4th @ Lower, 5th @ Higher.
+
+            let isHigherSeedHome = true;
+            if (i === 1) isHigherSeedHome = false; // Lower seed hosts 1st match
+            if (i === 4) isHigherSeedHome = false; // Lower seed hosts 4th match
+
+            // UI Label to show who is hosting
+            const hostLabel = isHigherSeedHome ? (homeTeam || 'Üst') : (awayTeam || 'Alt');
+
+            matchInputs.push(
+                <div key={i} className="flex flex-col gap-1 mb-2">
+                    <span className="text-[9px] text-slate-500 uppercase font-bold pl-1">
+                        {i}. Maç (Ev: {hostLabel})
+                    </span>
+                    <select
+                        value={playoffOverrides[`${matchId}-m${i}`] || ''}
+                        onChange={(e) => handleScoreChange(`${matchId}-m${i}`, e.target.value)}
+                        className="w-full p-2 bg-slate-900 border border-slate-700/50 rounded text-xs text-white focus:border-rose-500 transition-colors"
+                    >
+                        <option value="">Oynanmadı</option>
+                        <option value="3-0">3-0</option>
+                        <option value="3-1">3-1</option>
+                        <option value="3-2">3-2</option>
+                        <option value="2-3">2-3</option>
+                        <option value="1-3">1-3</option>
+                        <option value="0-3">0-3</option>
+                    </select>
+                </div>
+            );
+        }
 
         return (
-            <div className="bg-slate-800 rounded-lg p-3 border border-slate-700 space-y-2 min-w-[200px]">
-                <div className="text-[10px] text-rose-400 font-bold uppercase tracking-wider">{label}</div>
-                <div className={`flex items-center justify-between p-2 rounded ${homeWin ? 'bg-emerald-500/20 border border-emerald-500/30' : 'bg-slate-900/50'}`}>
-                    <span className={`text-sm truncate flex-1 ${homeWin ? 'text-emerald-400 font-bold' : 'text-slate-300'}`}>
-                        {homeTeam || 'TBD'}
-                    </span>
-                    <span className={`text-sm ml-2 ${homeWin ? 'text-emerald-400 font-bold' : 'text-slate-400'}`}>{homeScore ?? '-'}</span>
+            <div className="bg-slate-800 rounded-lg p-3 border border-slate-700 space-y-3 min-w-[240px]">
+                <div className="flex justify-between items-center border-b border-slate-700/50 pb-2">
+                    <div className="text-[10px] text-rose-400 font-bold uppercase tracking-wider">{label}</div>
+                    <div className="text-xs font-bold text-slate-400 bg-slate-900 px-2 py-0.5 rounded">
+                        Seri: {result.homeWins}-{result.awayWins}
+                    </div>
                 </div>
-                <div className={`flex items-center justify-between p-2 rounded ${awayWin ? 'bg-emerald-500/20 border border-emerald-500/30' : 'bg-slate-900/50'}`}>
-                    <span className={`text-sm truncate flex-1 ${awayWin ? 'text-emerald-400 font-bold' : 'text-slate-300'}`}>
-                        {awayTeam || 'TBD'}
+
+                <div className={`flex items-center justify-between p-2 rounded transition-colors ${homeSeriesWin ? 'bg-emerald-500/20 border border-emerald-500/30' : 'bg-slate-900/30'}`}>
+                    <span className={`text-sm truncate flex-1 ${homeSeriesWin ? 'text-emerald-400 font-bold' : 'text-slate-300'}`}>
+                        {homeTeam || 'TBD (Üst Sıra)'}
                     </span>
-                    <span className={`text-sm ml-2 ${awayWin ? 'text-emerald-400 font-bold' : 'text-slate-400'}`}>{awayScore ?? '-'}</span>
+                    {homeSeriesWin && <span className="text-xs text-emerald-400">🏆</span>}
                 </div>
+
+                <div className={`flex items-center justify-between p-2 rounded transition-colors ${awaySeriesWin ? 'bg-emerald-500/20 border border-emerald-500/30' : 'bg-slate-900/30'}`}>
+                    <span className={`text-sm truncate flex-1 ${awaySeriesWin ? 'text-emerald-400 font-bold' : 'text-slate-300'}`}>
+                        {awayTeam || 'TBD (Alt Sıra)'}
+                    </span>
+                    {awaySeriesWin && <span className="text-xs text-emerald-400">🏆</span>}
+                </div>
+
                 {homeTeam && awayTeam && (
-                    <select
-                        value={score || ''}
-                        onChange={(e) => handleScoreChange(matchId, e.target.value)}
-                        className="w-full mt-2 p-2 bg-slate-900 border border-slate-600 rounded text-xs text-white"
-                    >
-                        <option value="">Seri Sonucu Seç ({seriesType} Maç)</option>
-                        {scoreOptions.map(opt => (
-                            <option key={opt.value} value={opt.value}>{opt.label}</option>
-                        ))}
-                    </select>
+                    <div className="bg-slate-900/50 p-2 rounded border border-slate-800 mt-2">
+                        <div className="text-[10px] text-slate-500 mb-2 font-bold text-center border-b border-slate-700 pb-1">MAÇ SKORLARI</div>
+                        <div className="grid grid-cols-2 gap-2">
+                            {matchInputs}
+                        </div>
+                    </div>
                 )}
             </div>
         );
     };
 
-    // Calculate winners for progression
-    const getWinner = (matchId: string, homeTeam: string | null, awayTeam: string | null): string | null => {
-        const score = playoffOverrides[matchId];
-        if (!score || !homeTeam || !awayTeam) return null;
-        const [homeScore, awayScore] = score.split('-').map(Number);
-        return homeScore > awayScore ? homeTeam : awayTeam;
+    // Helper to calculate series winner based on individual match scores
+    const calculateSeriesResult = (matchId: string, homeTeam: string | null, awayTeam: string | null, seriesLength: 3 | 5) => {
+        if (!homeTeam || !awayTeam) return { winner: null, loser: null, homeWins: 0, awayWins: 0 };
+
+        let homeWins = 0;
+        let awayWins = 0;
+        const requiredWins = seriesLength === 3 ? 2 : 3;
+
+        for (let i = 1; i <= seriesLength; i++) {
+            const score = playoffOverrides[`${matchId}-m${i}`];
+            if (score) {
+                const [h, a] = score.split('-').map(Number);
+                if (h > a) homeWins++;
+                else if (a > h) awayWins++;
+            }
+        }
+
+        let winner = null;
+        let loser = null;
+
+        if (homeWins >= requiredWins) {
+            winner = homeTeam;
+            loser = awayTeam;
+        } else if (awayWins >= requiredWins) {
+            winner = awayTeam;
+            loser = homeTeam;
+        }
+
+        return { winner, loser, homeWins, awayWins };
     };
 
-    const getLoser = (matchId: string, homeTeam: string | null, awayTeam: string | null): string | null => {
-        const score = playoffOverrides[matchId];
-        if (!score || !homeTeam || !awayTeam) return null;
-        const [homeScore, awayScore] = score.split('-').map(Number);
-        return homeScore > awayScore ? awayTeam : homeTeam;
+    // Calculate winners for progression
+    const getWinner = (matchId: string, homeTeam: string | null, awayTeam: string | null, seriesLength: 3 | 5 = 3): string | null => {
+        return calculateSeriesResult(matchId, homeTeam, awayTeam, seriesLength).winner;
+    };
+
+    const getLoser = (matchId: string, homeTeam: string | null, awayTeam: string | null, seriesLength: 3 | 5 = 3): string | null => {
+        return calculateSeriesResult(matchId, homeTeam, awayTeam, seriesLength).loser;
     };
 
     // 1-4 Playoff bracket
@@ -193,13 +250,13 @@ export default function PlayoffsVSLPage() {
     const semi2Home = top4[1]?.name || null;
     const semi2Away = top4[2]?.name || null;
 
-    const semi1Winner = getWinner('vsl-semi-1', semi1Home, semi1Away);
-    const semi1Loser = getLoser('vsl-semi-1', semi1Home, semi1Away);
-    const semi2Winner = getWinner('vsl-semi-2', semi2Home, semi2Away);
-    const semi2Loser = getLoser('vsl-semi-2', semi2Home, semi2Away);
+    const semi1Winner = getWinner('vsl-semi-1', semi1Home, semi1Away, 3);
+    const semi1Loser = getLoser('vsl-semi-1', semi1Home, semi1Away, 3);
+    const semi2Winner = getWinner('vsl-semi-2', semi2Home, semi2Away, 3);
+    const semi2Loser = getLoser('vsl-semi-2', semi2Home, semi2Away, 3);
 
-    const finalWinner = getWinner('vsl-final', semi1Winner, semi2Winner);
-    const thirdPlaceWinner = getWinner('vsl-3rd', semi1Loser, semi2Loser);
+    const finalWinner = getWinner('vsl-final', semi1Winner, semi2Winner, 5);
+    const thirdPlaceWinner = getWinner('vsl-3rd', semi1Loser, semi2Loser, 3);
 
     // 5-8 Playoff bracket
     // Semi 5-8: 5 vs 8, 6 vs 7
@@ -210,10 +267,10 @@ export default function PlayoffsVSLPage() {
     const semi58_2Home = teams5to8[1]?.name || null;
     const semi58_2Away = teams5to8[2]?.name || null;
 
-    const semi58_1Winner = getWinner('vsl-58-semi-1', semi58_1Home, semi58_1Away);
-    const semi58_1Loser = getLoser('vsl-58-semi-1', semi58_1Home, semi58_1Away);
-    const semi58_2Winner = getWinner('vsl-58-semi-2', semi58_2Home, semi58_2Away);
-    const semi58_2Loser = getLoser('vsl-58-semi-2', semi58_2Home, semi58_2Away);
+    const semi58_1Winner = getWinner('vsl-58-semi-1', semi58_1Home, semi58_1Away, 3);
+    const semi58_1Loser = getLoser('vsl-58-semi-1', semi58_1Home, semi58_1Away, 3);
+    const semi58_2Winner = getWinner('vsl-58-semi-2', semi58_2Home, semi58_2Away, 3);
+    const semi58_2Loser = getLoser('vsl-58-semi-2', semi58_2Home, semi58_2Away, 3);
 
     if (loading) {
         return (
@@ -297,8 +354,8 @@ export default function PlayoffsVSLPage() {
                                     <div className="space-y-6">
                                         <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Yarı Final (3 Maç Üzerinden)</div>
                                         <div className="grid md:grid-cols-2 gap-6">
-                                            {renderBracketMatch('vsl-semi-1', semi1Home, semi1Away, '1. vs 4. (Yarı Final 1)')}
-                                            {renderBracketMatch('vsl-semi-2', semi2Home, semi2Away, '2. vs 3. (Yarı Final 2)')}
+                                            {renderBracketMatch('vsl-semi-1', semi1Home, semi1Away, '1. vs 4. (Yarı Final 1)', 3)}
+                                            {renderBracketMatch('vsl-semi-2', semi2Home, semi2Away, '2. vs 3. (Yarı Final 2)', 3)}
                                         </div>
                                         <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
                                             ℹ️ İlk maç alt sırada tamamlayan takımın evinde, ikinci maç ve gerekirse üçüncü maç üst sırada tamamlayan takımın evinde oynanır. İki maç kazanan takım finale yükselir.
@@ -383,8 +440,8 @@ export default function PlayoffsVSLPage() {
                                     <div className="space-y-6">
                                         <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Yarı Final (3 Maç Üzerinden)</div>
                                         <div className="grid md:grid-cols-2 gap-6">
-                                            {renderBracketMatch('vsl-58-semi-1', semi58_1Home, semi58_1Away, '5. vs 8.')}
-                                            {renderBracketMatch('vsl-58-semi-2', semi58_2Home, semi58_2Away, '6. vs 7.')}
+                                            {renderBracketMatch('vsl-58-semi-1', semi58_1Home, semi58_1Away, '5. vs 8.', 3)}
+                                            {renderBracketMatch('vsl-58-semi-2', semi58_2Home, semi58_2Away, '6. vs 7.', 3)}
                                         </div>
                                         <div className="text-[10px] text-slate-500 bg-slate-900/50 p-2 rounded">
                                             ℹ️ 5.'lik maçları, ilk maç ligi alt sırada tamamlayan takımın evinde, ikinci maç ve gerekirse üçüncü maç ligi üst sırada tamamlayan takımın evinde oynanır. 2 maç kazanan takım 5. sırada tamamlar.

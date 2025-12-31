@@ -138,90 +138,156 @@ export default function CEVCLPlayoffsPage() {
         .sort((a, b) => b.points - a.points);
     const bestThird = rankedThirds[0]?.name || null;
 
-    const getWinner = (matchId: string, homeTeam: string | null, awayTeam: string | null): string | null => {
-        const score = playoffOverrides[matchId];
-        if (!score || !homeTeam || !awayTeam) return null;
-        const [homeScore, awayScore] = score.split('-').map(Number);
-        return homeScore > awayScore ? homeTeam : awayTeam;
+    // Calculate points for a match score
+    const getMatchPoints = (score: string | undefined): { home: number, away: number } | null => {
+        if (!score) return null;
+        const [h, a] = score.split('-').map(Number);
+
+        if (h === 3 && (a === 0 || a === 1)) return { home: 3, away: 0 };
+        if (h === 3 && a === 2) return { home: 2, away: 1 };
+        if (h === 2 && a === 3) return { home: 1, away: 2 };
+        if ((h === 0 || h === 1) && a === 3) return { home: 0, away: 3 };
+        return { home: 0, away: 0 }; // Should be unreachable for valid volleyball scores
     };
 
-    const getLoser = (matchId: string, homeTeam: string | null, awayTeam: string | null): string | null => {
-        const score = playoffOverrides[matchId];
-        if (!score || !homeTeam || !awayTeam) return null;
-        const [homeScore, awayScore] = score.split('-').map(Number);
-        return homeScore > awayScore ? awayTeam : homeTeam;
+    const calculateLegacyResult = (matchId: string, homeTeam: string | null, awayTeam: string | null, matchFormat: '2leg' | '1match') => {
+        if (!homeTeam || !awayTeam) return { winner: null, loser: null, goldenSetNeeded: false };
+
+        if (matchFormat === '1match') {
+            const score = playoffOverrides[`${matchId}-m1`];
+            if (!score) return { winner: null, loser: null };
+            const [h, a] = score.split('-').map(Number);
+            return h > a ? { winner: homeTeam, loser: awayTeam } : { winner: awayTeam, loser: homeTeam };
+        }
+
+        // 2 Leg Logic
+        const score1 = playoffOverrides[`${matchId}-m1`];
+        const score2 = playoffOverrides[`${matchId}-m2`];
+        const golden = playoffOverrides[`${matchId}-golden`];
+
+        if (!score1 || !score2) return { winner: null, loser: null, goldenSetNeeded: false };
+
+        const p1 = getMatchPoints(score1);
+        const p2 = getMatchPoints(score2);
+
+        if (!p1 || !p2) return { winner: null, loser: null };
+
+        const totalHome = p1.home + p2.home;
+        const totalAway = p1.away + p2.away;
+
+        if (totalHome > totalAway) return { winner: homeTeam, loser: awayTeam, goldenSetNeeded: false };
+        if (totalAway > totalHome) return { winner: awayTeam, loser: homeTeam, goldenSetNeeded: false };
+
+        // Equal points -> Golden Set
+        if (golden === 'home') return { winner: homeTeam, loser: awayTeam, goldenSetNeeded: true };
+        if (golden === 'away') return { winner: awayTeam, loser: homeTeam, goldenSetNeeded: true };
+
+        return { winner: null, loser: null, goldenSetNeeded: true };
+    };
+
+    const getWinner = (matchId: string, homeTeam: string | null, awayTeam: string | null, matchFormat: '2leg' | '1match' = '2leg'): string | null => {
+        return calculateLegacyResult(matchId, homeTeam, awayTeam, matchFormat).winner;
+    };
+
+    const getLoser = (matchId: string, homeTeam: string | null, awayTeam: string | null, matchFormat: '2leg' | '1match' = '2leg'): string | null => {
+        return calculateLegacyResult(matchId, homeTeam, awayTeam, matchFormat).loser;
     };
 
     // matchFormat: '2leg' = 2-leg knockout (home & away), '1match' = single match
     const renderBracketMatch = (matchId: string, homeTeam: string | null, awayTeam: string | null, label: string, matchFormat: '2leg' | '1match' = '2leg') => {
-        const score = playoffOverrides[matchId];
-        const [homeScore, awayScore] = score ? score.split('-').map(Number) : [null, null];
-        const homeWin = homeScore !== null && awayScore !== null && homeScore > awayScore;
-        const awayWin = homeScore !== null && awayScore !== null && awayScore > homeScore;
+        const result = calculateLegacyResult(matchId, homeTeam, awayTeam, matchFormat);
+        const homeSeriesWin = result.winner === homeTeam;
+        const awaySeriesWin = result.winner === awayTeam;
+        const showGoldenSet = result.goldenSetNeeded;
 
-        // For 2-leg: aggregate set scores (e.g., 6-2 means won by 6 sets to 2 over both legs)
-        // For 1 match: single match set scores (0-3 to 3-0)
-        const scoreOptions = matchFormat === '2leg'
-            ? [
-                // 2-0 aggregate (e.g., 3-0 + 3-0 = won both)
-                { value: '6-0', label: '2-0 (6-0 set)' },
-                { value: '6-1', label: '2-0 (6-1 set)' },
-                { value: '6-2', label: '2-0 (6-2 set)' },
-                { value: '6-3', label: '2-0 (6-3 set)' },
-                { value: '5-2', label: '2-0 (5-2 set)' },
-                { value: '5-3', label: '2-0 (5-3 set)' },
-                // 1-1 split but aggregate win
-                { value: '4-3', label: '1-1 (4-3 set)' },
-                { value: '4-4', label: '1-1 (Golden Set ile)' },
-                // Reverse
-                { value: '3-4', label: '1-1 (3-4 set)' },
-                { value: '3-5', label: '0-2 (3-5 set)' },
-                { value: '2-5', label: '0-2 (2-5 set)' },
-                { value: '3-6', label: '0-2 (3-6 set)' },
-                { value: '2-6', label: '0-2 (2-6 set)' },
-                { value: '1-6', label: '0-2 (1-6 set)' },
-                { value: '0-6', label: '0-2 (0-6 set)' },
-            ]
-            : [
-                { value: '3-0', label: '3-0' },
-                { value: '3-1', label: '3-1' },
-                { value: '3-2', label: '3-2' },
-                { value: '2-3', label: '2-3' },
-                { value: '1-3', label: '1-3' },
-                { value: '0-3', label: '0-3' },
-            ];
-
-        const formatLabel = matchFormat === '2leg' ? '2 Leg' : '1 Maç';
+        const formatLabel = matchFormat === '2leg' ? '2 Leg' : 'Tek Maç';
 
         return (
-            <div className="bg-slate-800 rounded-lg p-3 border border-slate-700 space-y-2 min-w-[200px]">
-                <div className="flex items-center justify-between">
+            <div className="bg-slate-800 rounded-lg p-3 border border-slate-700 space-y-3 min-w-[200px]">
+                <div className="flex items-center justify-between border-b border-slate-700/50 pb-2">
                     <span className="text-[10px] text-blue-400 font-bold uppercase tracking-wider">{label}</span>
                     <span className="text-[9px] text-slate-500 bg-slate-900 px-1.5 py-0.5 rounded">{formatLabel}</span>
                 </div>
-                <div className={`flex items-center justify-between p-2 rounded ${homeWin ? 'bg-emerald-500/20 border border-emerald-500/30' : 'bg-slate-900/50'}`}>
-                    <span className={`text-xs truncate flex-1 ${homeWin ? 'text-emerald-400 font-bold' : 'text-slate-300'}`}>
+
+                <div className={`flex items-center justify-between p-2 rounded ${homeSeriesWin ? 'bg-emerald-500/20 border border-emerald-500/30' : 'bg-slate-900/50'}`}>
+                    <span className={`text-xs truncate flex-1 ${homeSeriesWin ? 'text-emerald-400 font-bold' : 'text-slate-300'}`}>
                         {homeTeam || 'TBD'}
                     </span>
-                    <span className={`text-sm ml-2 ${homeWin ? 'text-emerald-400 font-bold' : 'text-slate-400'}`}>{homeScore ?? '-'}</span>
+                    {homeSeriesWin && <span className="text-xs text-emerald-400 font-bold">Tur Atladı</span>}
                 </div>
-                <div className={`flex items-center justify-between p-2 rounded ${awayWin ? 'bg-emerald-500/20 border border-emerald-500/30' : 'bg-slate-900/50'}`}>
-                    <span className={`text-xs truncate flex-1 ${awayWin ? 'text-emerald-400 font-bold' : 'text-slate-300'}`}>
+
+                <div className={`flex items-center justify-between p-2 rounded ${awaySeriesWin ? 'bg-emerald-500/20 border border-emerald-500/30' : 'bg-slate-900/50'}`}>
+                    <span className={`text-xs truncate flex-1 ${awaySeriesWin ? 'text-emerald-400 font-bold' : 'text-slate-300'}`}>
                         {awayTeam || 'TBD'}
                     </span>
-                    <span className={`text-sm ml-2 ${awayWin ? 'text-emerald-400 font-bold' : 'text-slate-400'}`}>{awayScore ?? '-'}</span>
+                    {awaySeriesWin && <span className="text-xs text-emerald-400 font-bold">Tur Atladı</span>}
                 </div>
+
                 {homeTeam && awayTeam && (
-                    <select
-                        value={score || ''}
-                        onChange={(e) => handleScoreChange(matchId, e.target.value)}
-                        className="w-full mt-2 p-2 bg-slate-900 border border-slate-600 rounded text-xs text-white"
-                    >
-                        <option value="">{matchFormat === '2leg' ? '2 Leg Sonucu Seç' : 'Maç Sonucu Seç'}</option>
-                        {scoreOptions.map(opt => (
-                            <option key={opt.value} value={opt.value}>{opt.label}</option>
-                        ))}
-                    </select>
+                    <div className="bg-slate-900/50 p-2 rounded border border-slate-800 mt-2 space-y-2">
+                        {/* Match 1 */}
+                        <div className="flex flex-col gap-1">
+                            <span className="text-[9px] text-slate-500 uppercase font-bold pl-1">
+                                {matchFormat === '1match' ? 'Maç Sonucu' : '1. Maç'}
+                            </span>
+                            <select
+                                value={playoffOverrides[`${matchId}-m1`] || ''}
+                                onChange={(e) => handleScoreChange(`${matchId}-m1`, e.target.value)}
+                                className="w-full p-2 bg-slate-900 border border-slate-700/50 rounded text-xs text-white"
+                            >
+                                <option value="">Oynanmadı</option>
+                                <option value="3-0">3-0</option>
+                                <option value="3-1">3-1</option>
+                                <option value="3-2">3-2</option>
+                                <option value="2-3">2-3</option>
+                                <option value="1-3">1-3</option>
+                                <option value="0-3">0-3</option>
+                            </select>
+                        </div>
+
+                        {/* Match 2 (Only for 2leg) */}
+                        {matchFormat === '2leg' && (
+                            <div className="flex flex-col gap-1">
+                                <span className="text-[9px] text-slate-500 uppercase font-bold pl-1">2. Maç</span>
+                                <select
+                                    value={playoffOverrides[`${matchId}-m2`] || ''}
+                                    onChange={(e) => handleScoreChange(`${matchId}-m2`, e.target.value)}
+                                    className="w-full p-2 bg-slate-900 border border-slate-700/50 rounded text-xs text-white"
+                                >
+                                    <option value="">Oynanmadı</option>
+                                    <option value="3-0">3-0</option>
+                                    <option value="3-1">3-1</option>
+                                    <option value="3-2">3-2</option>
+                                    <option value="2-3">2-3</option>
+                                    <option value="1-3">1-3</option>
+                                    <option value="0-3">0-3</option>
+                                </select>
+                            </div>
+                        )}
+
+                        {/* Golden Set Input */}
+                        {showGoldenSet && (
+                            <div className="flex flex-col gap-1 animate-in fade-in slide-in-from-top-2">
+                                <span className="text-[9px] text-amber-500 uppercase font-bold pl-1 flex items-center gap-1">
+                                    <span>🏆</span> Altın Set Kazananı
+                                </span>
+                                <div className="flex gap-2">
+                                    <button
+                                        onClick={() => handleScoreChange(`${matchId}-golden`, 'home')}
+                                        className={`flex-1 py-1.5 text-[10px] rounded border ${playoffOverrides[`${matchId}-golden`] === 'home' ? 'bg-amber-500/20 border-amber-500 text-amber-400' : 'bg-slate-800 border-slate-700 text-slate-400 hover:bg-slate-700'}`}
+                                    >
+                                        Ev Sahibi
+                                    </button>
+                                    <button
+                                        onClick={() => handleScoreChange(`${matchId}-golden`, 'away')}
+                                        className={`flex-1 py-1.5 text-[10px] rounded border ${playoffOverrides[`${matchId}-golden`] === 'away' ? 'bg-amber-500/20 border-amber-500 text-amber-400' : 'bg-slate-800 border-slate-700 text-slate-400 hover:bg-slate-700'}`}
+                                    >
+                                        Deplasman
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 )}
             </div>
         );
@@ -255,13 +321,13 @@ export default function CEVCLPlayoffsPage() {
     const qf4_winner = getWinner('cevcl-qf-4', qf4_home, qf4_away);
 
     // Final Four
-    const sf1_winner = getWinner('cevcl-sf-1', qf1_winner, qf2_winner);
-    const sf2_winner = getWinner('cevcl-sf-2', qf3_winner, qf4_winner);
-    const sf1_loser = getLoser('cevcl-sf-1', qf1_winner, qf2_winner);
-    const sf2_loser = getLoser('cevcl-sf-2', qf3_winner, qf4_winner);
+    const sf1_winner = getWinner('cevcl-sf-1', qf1_winner, qf2_winner, '1match');
+    const sf2_winner = getWinner('cevcl-sf-2', qf3_winner, qf4_winner, '1match');
+    const sf1_loser = getLoser('cevcl-sf-1', qf1_winner, qf2_winner, '1match');
+    const sf2_loser = getLoser('cevcl-sf-2', qf3_winner, qf4_winner, '1match');
 
-    const finalWinner = getWinner('cevcl-final', sf1_winner, sf2_winner);
-    const thirdPlaceWinner = getWinner('cevcl-3rd', sf1_loser, sf2_loser);
+    const finalWinner = getWinner('cevcl-final', sf1_winner, sf2_winner, '1match');
+    const thirdPlaceWinner = getWinner('cevcl-3rd', sf1_loser, sf2_loser, '1match');
 
     if (loading) {
         return (
