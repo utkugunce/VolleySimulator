@@ -5,6 +5,7 @@ import { TeamStats, Match } from "../../types";
 import Link from "next/link";
 import { sortStandings, calculateLiveStandings } from "../../utils/calculatorUtils";
 import PageHeader from "../../components/PageHeader";
+import TeamAvatar from "../../components/TeamAvatar";
 
 interface PlayoffBracketMatch {
     id: string;

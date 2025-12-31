@@ -4,6 +4,7 @@ import { useEffect, useState, useMemo } from "react";
 import { TeamStats, Match } from "../../types";
 import Link from "next/link";
 import PageHeader from "../../components/PageHeader";
+import TeamAvatar from "../../components/TeamAvatar";
 import { calculateLiveStandings } from "../../utils/calculatorUtils";
 
 interface PoolData {
