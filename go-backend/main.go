@@ -58,8 +58,14 @@ func main() {
     protected.Post("/predict-all", handlers.PredictAll)
 
     // Cron jobs
+
     api.Post("/results/sync", handlers.SyncResults)
     api.Post("/cron/update-results", handlers.UpdateResults)
+
+    // Admin endpoints
+    admin := api.Group("/admin", middleware.AuthRequired(), middleware.AdminOnly())
+    admin.Get("/stats", handlers.GetAdminStats)
+    admin.Post("/match/update", handlers.UpdateMatchResult)
 
     port := os.Getenv("PORT")
     if port == "" {

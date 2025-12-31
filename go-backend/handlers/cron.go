@@ -57,6 +57,7 @@ func SyncResults(c *fiber.Ctx) error {
     scoredPredictions := 0
     
     for _, res := range req.Results {
+        // Upsert result
         _, _, err := database.Client.From("match_results").Upsert(map[string]interface{}{
             "match_id": res.MatchID,
             "league": res.League,
@@ -68,24 +69,11 @@ func SyncResults(c *fiber.Ctx) error {
             "is_verified": true,
         }, "", "", "").Execute()
         
-        if err == nil { savedResults++ }
-        
-        var preds []map[string]interface{}
-        database.Client.From("predictions").
-            Select("*", "", false).
-            Eq("match_id", res.MatchID).
-            Eq("is_scored", "false").
-            ExecuteTo(&preds)
-            
-        for _, p := range preds {
-            predScore := p["predicted_score"].(string)
-            points := calculatePoints(predScore, res.ResultScore)
-            
-            database.Client.From("predictions").Update(map[string]interface{}{
-                "points_earned": points,
-                "is_scored": true,
-            }, "", "").Eq("id", p["id"].(string)).Execute()
-            scoredPredictions++
+        if err == nil { 
+            savedResults++
+            if count, err := processMatchResult(res.MatchID, res.ResultScore); err == nil {
+                scoredPredictions += count
+            }
         }
     }
 
@@ -95,6 +83,34 @@ func SyncResults(c *fiber.Ctx) error {
         "scoredPredictions": scoredPredictions,
     })
 }
+
+// processMatchResult calculates points for all pending predictions of a match
+func processMatchResult(matchID, resultScore string) (int, error) {
+    var preds []map[string]interface{}
+    _, err := database.Client.From("predictions").
+        Select("*", "", false).
+        Eq("match_id", matchID).
+        Eq("is_scored", "false").
+        ExecuteTo(&preds)
+    
+    if err != nil {
+        return 0, err
+    }
+        
+    scoredCount := 0
+    for _, p := range preds {
+        predScore := p["predicted_score"].(string)
+        points := calculatePoints(predScore, resultScore)
+        
+        database.Client.From("predictions").Update(map[string]interface{}{
+            "points_earned": points,
+            "is_scored": true,
+        }, "", "").Eq("id", p["id"].(string)).Execute()
+        scoredCount++
+    }
+    return scoredCount, nil
+}
+
 
 func UpdateResults(c *fiber.Ctx) error {
     return c.Status(501).JSON(fiber.Map{
