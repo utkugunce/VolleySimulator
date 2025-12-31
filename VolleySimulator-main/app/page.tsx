@@ -73,56 +73,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* League Cards */}
-        <div className="grid md:grid-cols-3 gap-6 animate-fade-in-up delay-200">
-          <Link
-            href="/vsl/tahminoyunu"
-            className="group bg-gradient-to-br from-red-600/20 to-rose-700/20 backdrop-blur-sm border border-red-500/30 rounded-3xl p-8 hover:border-red-400/50 hover:scale-[1.02] transition-all duration-300 card-shine"
-          >
-            <div className="flex items-center gap-4">
-              <div className="text-5xl group-hover:scale-110 transition-transform duration-300">🏆</div>
-              <div>
-                <h3 className="text-2xl font-bold text-white">Sultanlar</h3>
-                <p className="text-red-200/60">Kadınlar · 2025/2026</p>
-              </div>
-            </div>
-            <p className="mt-4 text-slate-300 text-sm">
-              Türkiye'nin en üst düzey kadınlar voleybol ligi
-            </p>
-          </Link>
-
-          <Link
-            href="/1lig/tahminoyunu"
-            className="group bg-gradient-to-br from-amber-600/20 to-orange-700/20 backdrop-blur-sm border border-amber-500/30 rounded-3xl p-8 hover:border-amber-400/50 hover:scale-[1.02] transition-all duration-300 card-shine"
-          >
-            <div className="flex items-center gap-4">
-              <div className="text-5xl group-hover:scale-110 transition-transform duration-300">🥇</div>
-              <div>
-                <h3 className="text-2xl font-bold text-white">1. Lig</h3>
-                <p className="text-amber-200/60">Kadınlar · 2025/2026</p>
-              </div>
-            </div>
-            <p className="mt-4 text-slate-300 text-sm">
-              Puan durumu, maç tahminleri ve play-off simülasyonları
-            </p>
-          </Link>
-
-          <Link
-            href="/2lig/tahminoyunu"
-            className="group bg-gradient-to-br from-emerald-600/20 to-teal-700/20 backdrop-blur-sm border border-emerald-500/30 rounded-3xl p-8 hover:border-emerald-400/50 hover:scale-[1.02] transition-all duration-300 card-shine"
-          >
-            <div className="flex items-center gap-4">
-              <div className="text-5xl group-hover:scale-110 transition-transform duration-300">🥈</div>
-              <div>
-                <h3 className="text-2xl font-bold text-white">2. Lig</h3>
-                <p className="text-emerald-200/60">Kadınlar · 2025/2026</p>
-              </div>
-            </div>
-            <p className="mt-4 text-slate-300 text-sm">
-              Grup bazlı analiz ve senaryo simülasyonları
-            </p>
-          </Link>
-        </div>
+        {/* League Cards removed as per request */}
 
         {/* Features Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 animate-fade-in-up delay-400">
