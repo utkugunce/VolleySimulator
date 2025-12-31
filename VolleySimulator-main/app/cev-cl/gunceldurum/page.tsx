@@ -165,6 +165,7 @@ export default function CEVCLGuncelDurum() {
 
                                         const matchesByDate: Record<string, { formatted: string; matches: Match[] }> = {};
                                         upcomingMatches.forEach(match => {
+                                            if (!match.matchDate) return;
                                             // Sort dates clearly
                                             const parts = match.matchDate.split(/[-.]/);
                                             // Handle both YYYY-MM-DD and DD.MM.YYYY
