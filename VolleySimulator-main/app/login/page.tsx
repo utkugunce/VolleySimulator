@@ -20,7 +20,7 @@ export default function LoginPage() {
     // Redirect if already logged in
     useEffect(() => {
         if (user) {
-            router.push('/anasayfa');
+            router.push('/ligler');
         }
     }, [user, router]);
 
@@ -42,7 +42,7 @@ export default function LoginPage() {
             );
             setIsLoading(false);
         } else {
-            router.push('/profile');
+            router.push('/ligler');
         }
     };
 

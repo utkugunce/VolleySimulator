@@ -76,7 +76,7 @@ export default function Home() {
         {/* League Cards */}
         <div className="grid md:grid-cols-3 gap-6 animate-fade-in-up delay-200">
           <Link
-            href="/vsl/anasayfa"
+            href="/vsl/tahminoyunu"
             className="group bg-gradient-to-br from-red-600/20 to-rose-700/20 backdrop-blur-sm border border-red-500/30 rounded-3xl p-8 hover:border-red-400/50 hover:scale-[1.02] transition-all duration-300 card-shine"
           >
             <div className="flex items-center gap-4">
@@ -92,7 +92,7 @@ export default function Home() {
           </Link>
 
           <Link
-            href="/1lig/anasayfa"
+            href="/1lig/tahminoyunu"
             className="group bg-gradient-to-br from-amber-600/20 to-orange-700/20 backdrop-blur-sm border border-amber-500/30 rounded-3xl p-8 hover:border-amber-400/50 hover:scale-[1.02] transition-all duration-300 card-shine"
           >
             <div className="flex items-center gap-4">
@@ -108,7 +108,7 @@ export default function Home() {
           </Link>
 
           <Link
-            href="/2lig/anasayfa"
+            href="/2lig/tahminoyunu"
             className="group bg-gradient-to-br from-emerald-600/20 to-teal-700/20 backdrop-blur-sm border border-emerald-500/30 rounded-3xl p-8 hover:border-emerald-400/50 hover:scale-[1.02] transition-all duration-300 card-shine"
           >
             <div className="flex items-center gap-4">

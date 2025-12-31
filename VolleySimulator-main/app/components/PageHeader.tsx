@@ -48,7 +48,6 @@ export default function PageHeader({
         if (pathname.includes('/gunceldurum')) return '/gunceldurum';
         if (pathname.includes('/playoffs')) return '/playoffs';
         if (pathname.includes('/stats')) return '/stats';
-        if (pathname.includes('/anasayfa')) return '/anasayfa';
         return '/tahminoyunu'; // default
     };
     const currentPageType = getCurrentPageType();
@@ -80,7 +79,7 @@ export default function PageHeader({
                     <Link href={`/2lig${currentPageType}`} className={getLeagueLinkClass('/2lig')}>
                         <span className="text-emerald-400">●</span> 2.Lig
                     </Link>
-                    <Link href="/cev-cl/anasayfa" className={getLeagueLinkClass('/cev-cl')}>
+                    <Link href="/cev-cl/tahminoyunu" className={getLeagueLinkClass('/cev-cl')}>
                         <span className="text-blue-500">●</span> Şampiyonlar Ligi
                     </Link>
                 </div>
