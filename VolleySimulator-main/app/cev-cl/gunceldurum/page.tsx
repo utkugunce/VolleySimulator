@@ -69,6 +69,9 @@ export default function CEVCLGuncelDurum() {
                 <PageHeader
                     title="CEV Şampiyonlar Ligi"
                     subtitle="Güncel Durum • 2025-2026"
+                    groups={pools}
+                    selectedGroup={activePool}
+                    onGroupChange={(g) => g && setActivePool(g)}
                 />
 
                 {/* Active Pool Content */}
@@ -89,20 +92,7 @@ export default function CEVCLGuncelDurum() {
                             </div>
                             <div className="flex gap-2 items-center flex-wrap">
                                 <div className="flex gap-2 items-center flex-wrap">
-                                    {/* Pool Selection moved to PageHeader actions ideally, but for now keeping it here as requested 'near auto button' */}
-                                    <div className="flex gap-1 p-1 bg-slate-950/50 rounded-lg border border-slate-800 h-full items-center">
-                                        <select
-                                            value={activePool}
-                                            onChange={(e) => setActivePool(e.target.value)}
-                                            className="px-3 py-1 bg-blue-600/20 text-blue-500 text-[10px] uppercase font-black rounded-md border border-blue-500/30 outline-none cursor-pointer transition-all focus:ring-2 focus:ring-blue-500/50"
-                                        >
-                                            {pools.map(poolName => (
-                                                <option key={poolName} value={poolName} className="bg-slate-900 text-white">
-                                                    {poolName}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
+                                    {/* Pool Selection moved to PageHeader actions */}
                                     <div className="bg-slate-950/50 px-3 py-1.5 rounded-lg border border-slate-800 text-center flex flex-col justify-center">
                                         <div className="text-[9px] font-bold text-slate-500 uppercase leading-none mb-0.5">Lider</div>
                                         <div className="text-xs font-bold text-white truncate max-w-[100px] leading-none">{poolTeams[0]?.name || "-"}</div>
