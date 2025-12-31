@@ -1,0 +1,19 @@
+# Go binaries
+/go-backend/main
+/go-backend/go-backend.exe
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Node modules
+node_modules/
+.next/
+out/
+build/
+dist/
+
+# OS specific files
+.DS_Store
+Thumbs.db

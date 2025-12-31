@@ -40,9 +40,14 @@ export function useFetch<T>(): UseFetchReturn<T> {
 
         let lastError: Error | null = null;
 
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+        const fullUrl = (apiUrl && url.startsWith('/api'))
+            ? url.replace('/api', apiUrl)
+            : url;
+
         for (let attempt = 0; attempt <= retries; attempt++) {
             try {
-                const response = await fetch(url, fetchOptions);
+                const response = await fetch(fullUrl, fetchOptions);
 
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -89,9 +94,14 @@ export async function fetchWithRetry<T>(
 
     let lastError: Error | null = null;
 
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const fullUrl = (apiUrl && url.startsWith('/api'))
+        ? url.replace('/api', apiUrl)
+        : url;
+
     for (let attempt = 0; attempt <= retries; attempt++) {
         try {
-            const response = await fetch(url, fetchOptions);
+            const response = await fetch(fullUrl, fetchOptions);
 
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}: ${response.statusText}`);
