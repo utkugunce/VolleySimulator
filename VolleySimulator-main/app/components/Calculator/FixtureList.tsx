@@ -214,7 +214,9 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                         {isPlayed ? (
                                             <div className="flex justify-center">
                                                 <span className="px-3 py-1 bg-slate-900 font-mono font-bold text-slate-400 rounded border border-slate-800 text-sm">
-                                                    {match.resultScore || "Oynandı"}
+                                                    {match.homeScore !== undefined && match.awayScore !== undefined
+                                                        ? `${match.homeScore} - ${match.awayScore}`
+                                                        : match.resultScore || "Oynandı"}
                                                 </span>
                                             </div>
                                         ) : (
