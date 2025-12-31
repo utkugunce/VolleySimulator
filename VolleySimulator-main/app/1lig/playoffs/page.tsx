@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { TeamStats, Match } from "../../types";
 import Link from "next/link";
 import {
@@ -12,14 +12,16 @@ import {
     generate1LigFinalGroups,
     applyOverridesToGroups
 } from "../../utils/playoffUtils";
+import { calculateLiveStandings } from "../../utils/calculatorUtils";
 import PageHeader from "../../components/PageHeader";
 
 export default function Playoffs1LigPage() {
     const [loading, setLoading] = useState(true);
 
     // Base Data
+    const [baseTeams, setBaseTeams] = useState<TeamStats[]>([]);
     const [originalFixture, setOriginalFixture] = useState<Match[]>([]);
-    const [baseStandings, setBaseStandings] = useState<GroupStanding[]>([]);
+    const [groupOverrides, setGroupOverrides] = useState<Record<string, string>>({});
 
     // Simulated State
     const [semiGroups, setSemiGroups] = useState<PlayoffGroup[]>([]);
@@ -31,12 +33,26 @@ export default function Playoffs1LigPage() {
 
     // 1. Load Overrides
     useEffect(() => {
-        const saved = localStorage.getItem('1ligPlayoffScenarios');
-        if (saved) {
+        const savedPlayoff = localStorage.getItem('1ligPlayoffScenarios');
+        if (savedPlayoff) {
             try {
-                setPlayoffOverrides(JSON.parse(saved));
+                setPlayoffOverrides(JSON.parse(savedPlayoff));
             } catch (e) { console.error(e); }
         }
+
+        // Load group predictions and flatten them
+        const savedGroup = localStorage.getItem('1ligGroupScenarios');
+        if (savedGroup) {
+            try {
+                const parsed = JSON.parse(savedGroup);
+                let flatOverrides: Record<string, string> = {};
+                Object.values(parsed).forEach((groupObj: any) => {
+                    flatOverrides = { ...flatOverrides, ...groupObj };
+                });
+                setGroupOverrides(flatOverrides);
+            } catch (e) { console.error(e); }
+        }
+
         setIsLoaded(true);
     }, []);
 
@@ -49,13 +65,11 @@ export default function Playoffs1LigPage() {
                 if (!res.ok) throw new Error("Veri çekilemedi");
                 const data = await res.json();
 
-                setOriginalFixture(data.fixture);
-                // Ensure calculateGroupStandings handles 1. Lig data correctly (assumes helper returns 'teams')
-                const standings = calculateGroupStandings(data.teams);
-                setBaseStandings(standings);
+                setBaseTeams(data.teams || []);
+                setOriginalFixture(data.fixture || []);
 
                 // Check remaining matches
-                let remaining = data.fixture.filter((m: Match) => !m.isPlayed).length;
+                let remaining = (data.fixture || []).filter((m: Match) => !m.isPlayed).length;
                 const savedScenarios = localStorage.getItem('1ligGroupScenarios');
                 if (savedScenarios) {
                     try {
@@ -77,6 +91,13 @@ export default function Playoffs1LigPage() {
         }
         fetchData();
     }, []);
+
+    // Calculate live standings using predictions
+    const baseStandings = useMemo(() => {
+        if (!baseTeams.length) return [];
+        const calculatedTeams = calculateLiveStandings(baseTeams, originalFixture, groupOverrides);
+        return calculateGroupStandings(calculatedTeams);
+    }, [baseTeams, originalFixture, groupOverrides]);
 
     // 3. Reactive Simulation Logic
     useEffect(() => {

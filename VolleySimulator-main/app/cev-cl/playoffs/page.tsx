@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { TeamStats, Match } from "../../types";
 import Link from "next/link";
 import PageHeader from "../../components/PageHeader";
+import { calculateLiveStandings } from "../../utils/calculatorUtils";
 
 interface PoolData {
     poolName: string;
@@ -12,19 +13,29 @@ interface PoolData {
 
 export default function CEVCLPlayoffsPage() {
     const [loading, setLoading] = useState(true);
-    const [pools, setPools] = useState<PoolData[]>([]);
+    const [baseTeams, setBaseTeams] = useState<TeamStats[]>([]);
+    const [allMatches, setAllMatches] = useState<Match[]>([]);
+    const [groupOverrides, setGroupOverrides] = useState<Record<string, string>>({});
     const [remainingMatches, setRemainingMatches] = useState(0);
     const [playoffOverrides, setPlayoffOverrides] = useState<Record<string, string>>({});
     const [isLoaded, setIsLoaded] = useState(false);
 
     // Load Overrides
     useEffect(() => {
-        const saved = localStorage.getItem('cevclPlayoffScenarios');
-        if (saved) {
+        const savedPlayoff = localStorage.getItem('cevclPlayoffScenarios');
+        if (savedPlayoff) {
             try {
-                setPlayoffOverrides(JSON.parse(saved));
+                setPlayoffOverrides(JSON.parse(savedPlayoff));
             } catch (e) { console.error(e); }
         }
+
+        const savedGroup = localStorage.getItem('cevclGroupScenarios');
+        if (savedGroup) {
+            try {
+                setGroupOverrides(JSON.parse(savedGroup));
+            } catch (e) { console.error(e); }
+        }
+
         setIsLoaded(true);
     }, []);
 
@@ -37,24 +48,15 @@ export default function CEVCLPlayoffsPage() {
                 if (!res.ok) throw new Error("Veri çekilemedi");
                 const data = await res.json();
 
-                // Group teams by pool and sort
-                const poolNames = ["Pool A", "Pool B", "Pool C", "Pool D", "Pool E"];
-                const groupedPools: PoolData[] = poolNames.map(poolName => {
-                    const poolTeams = (data.teams || [])
-                        .filter((t: TeamStats) => t.groupName === poolName)
-                        .sort((a: TeamStats, b: TeamStats) => {
-                            if (b.points !== a.points) return b.points - a.points;
-                            const aRatio = a.setsLost > 0 ? a.setsWon / a.setsLost : a.setsWon;
-                            const bRatio = b.setsLost > 0 ? b.setsWon / b.setsLost : b.setsWon;
-                            return bRatio - aRatio;
-                        });
-                    return { poolName, teams: poolTeams };
-                });
-
-                setPools(groupedPools);
+                setBaseTeams(data.teams || []);
+                const matches = (data.fixture || []).map((m: any) => ({
+                    ...m,
+                    matchDate: m.date
+                }));
+                setAllMatches(matches);
 
                 // Check remaining matches
-                let remaining = (data.fixture || []).filter((m: Match) => !m.isPlayed).length;
+                let remaining = matches.filter((m: Match) => !m.isPlayed).length;
                 const savedScenarios = localStorage.getItem('cevclGroupScenarios');
                 if (savedScenarios) {
                     try {
@@ -72,6 +74,26 @@ export default function CEVCLPlayoffsPage() {
         }
         fetchData();
     }, []);
+
+    // Calculate live standings using predictions and group by pool
+    const pools = useMemo(() => {
+        if (!baseTeams.length) return [];
+
+        const poolNames = ["Pool A", "Pool B", "Pool C", "Pool D", "Pool E"];
+        const calculatedTeams = calculateLiveStandings(baseTeams, allMatches, groupOverrides);
+
+        return poolNames.map(poolName => {
+            const poolTeams = calculatedTeams
+                .filter((t: TeamStats) => t.groupName === poolName)
+                .sort((a: TeamStats, b: TeamStats) => {
+                    if (b.points !== a.points) return b.points - a.points;
+                    const aRatio = a.setsLost > 0 ? a.setsWon / a.setsLost : a.setsWon;
+                    const bRatio = b.setsLost > 0 ? b.setsWon / b.setsLost : b.setsWon;
+                    return bRatio - aRatio;
+                });
+            return { poolName, teams: poolTeams };
+        });
+    }, [baseTeams, allMatches, groupOverrides]);
 
     // Save overrides when changed
     useEffect(() => {

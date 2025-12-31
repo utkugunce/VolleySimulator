@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { TeamStats, Match } from "../../types";
 import Link from "next/link";
-import { sortStandings } from "../../utils/calculatorUtils";
+import { sortStandings, calculateLiveStandings } from "../../utils/calculatorUtils";
 import PageHeader from "../../components/PageHeader";
 
 interface PlayoffBracketMatch {
@@ -19,19 +19,29 @@ interface PlayoffBracketMatch {
 
 export default function PlayoffsVSLPage() {
     const [loading, setLoading] = useState(true);
-    const [teams, setTeams] = useState<TeamStats[]>([]);
+    const [baseTeams, setBaseTeams] = useState<TeamStats[]>([]);
+    const [allMatches, setAllMatches] = useState<Match[]>([]);
+    const [groupOverrides, setGroupOverrides] = useState<Record<string, string>>({});
     const [remainingMatches, setRemainingMatches] = useState(0);
     const [playoffOverrides, setPlayoffOverrides] = useState<Record<string, string>>({});
     const [isLoaded, setIsLoaded] = useState(false);
 
     // 1. Load Overrides
     useEffect(() => {
-        const saved = localStorage.getItem('vslPlayoffScenarios');
-        if (saved) {
+        const savedPlayoff = localStorage.getItem('vslPlayoffScenarios');
+        if (savedPlayoff) {
             try {
-                setPlayoffOverrides(JSON.parse(saved));
+                setPlayoffOverrides(JSON.parse(savedPlayoff));
             } catch (e) { console.error(e); }
         }
+
+        const savedGroup = localStorage.getItem('vslGroupScenarios');
+        if (savedGroup) {
+            try {
+                setGroupOverrides(JSON.parse(savedGroup));
+            } catch (e) { console.error(e); }
+        }
+
         setIsLoaded(true);
     }, []);
 
@@ -44,11 +54,15 @@ export default function PlayoffsVSLPage() {
                 if (!res.ok) throw new Error("Veri çekilemedi");
                 const data = await res.json();
 
-                const sortedTeams = sortStandings(data.teams || []);
-                setTeams(sortedTeams);
+                setBaseTeams(data.teams || []);
+                const matches = (data.fixture || []).map((m: any) => ({
+                    ...m,
+                    matchDate: m.date
+                }));
+                setAllMatches(matches);
 
                 // Check remaining matches
-                let remaining = (data.fixture || []).filter((m: Match) => !m.isPlayed).length;
+                let remaining = matches.filter((m: Match) => !m.isPlayed).length;
                 const savedScenarios = localStorage.getItem('vslGroupScenarios');
                 if (savedScenarios) {
                     try {
@@ -67,6 +81,12 @@ export default function PlayoffsVSLPage() {
         fetchData();
     }, []);
 
+    // Calculate live standings using predictions
+    const teams = useMemo(() => {
+        if (!baseTeams.length || !allMatches.length) return [];
+        return calculateLiveStandings(baseTeams, allMatches, groupOverrides);
+    }, [baseTeams, allMatches, groupOverrides]);
+
     // Save overrides when changed
     useEffect(() => {
         if (isLoaded) {
@@ -76,7 +96,7 @@ export default function PlayoffsVSLPage() {
 
     const isGroupsComplete = remainingMatches === 0;
 
-    // Get playoff teams
+    // Get playoff teams from calculated standings
     const top4 = teams.slice(0, 4);
     const teams5to8 = teams.slice(4, 8);
 
