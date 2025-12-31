@@ -42,7 +42,7 @@
   --surface-dark: rgba(255, 255, 255, 0.95);
   --surface-glass: rgba(0, 0, 0, 0.03);
   --border-subtle: rgba(0, 0, 0, 0.08);
-  
+
   /* Light Theme Premium Colors - Adjusted for light bg */
   --color-primary: #0d9488;
   --color-primary-light: #14b8a6;
@@ -50,7 +50,7 @@
   --color-accent: #ea580c;
   --color-accent-light: #f97316;
   --color-accent-dark: #c2410c;
-  
+
   /* Light Theme Glow Colors - Subtle */
   --glow-primary: rgba(13, 148, 136, 0.15);
   --glow-accent: rgba(234, 88, 12, 0.15);
@@ -84,220 +84,163 @@ body {
 }
 
 /* ============================================================================
-   LIGHT THEME COMPREHENSIVE OVERRIDES
+   LIGHT THEME RE-ENGINEERED (Premium Sport UI)
    ============================================================================ */
 
-/* Light theme - Main backgrounds */
+[data-theme="light"] {
+  /* Core Variables */
+  --background: #f3f5f8;
+  /* Modern soft gray background */
+  --foreground: #0f172a;
+  /* Slate 900 */
+  --surface-primary: #ffffff;
+  --surface-secondary: #f8fafc;
+  --border-color: #e2e8f0;
+
+  /* Brand Colors - Adjusted for Light Mode Contrast */
+  --color-primary: #059669;
+  /* Emerald 600 */
+  --color-primary-light: #34d399;
+  --color-primary-dark: #047857;
+  --color-accent: #f59e0b;
+  /* Amber 500 */
+  --color-accent-light: #fbbf24;
+  --color-accent-dark: #d97706;
+
+  /* Shadows */
+  --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+}
+
+/* 
+   MAPPING STRATEGY: 
+   Dark Mode uses Slate-950 as background and Slate-900 as cards.
+   Light Mode flips this: Light Gray as background, White as cards.
+*/
+
+/* 1. Backgrounds */
 [data-theme="light"] .bg-slate-950 {
-  background-color: #faf9f7 !important;
+  background-color: #f3f5f8 !important;
+  /* Page Background */
 }
 
 [data-theme="light"] .bg-slate-900 {
   background-color: #ffffff !important;
+  /* Card Background */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e2e8f0;
 }
 
-[data-theme="light"] .bg-slate-900\/95 {
-  background-color: rgba(255, 255, 255, 0.95) !important;
-}
-
-[data-theme="light"] .bg-slate-900\/80 {
-  background-color: rgba(255, 255, 255, 0.85) !important;
-}
-
+[data-theme="light"] .bg-slate-900\/95,
+[data-theme="light"] .bg-slate-900\/80,
 [data-theme="light"] .bg-slate-900\/50,
-[data-theme="light"] .bg-slate-900\/40,
-[data-theme="light"] .bg-slate-900\/30 {
-  background-color: rgba(245, 243, 240, 0.7) !important;
+[data-theme="light"] .bg-slate-900\/40 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
 }
 
 [data-theme="light"] .bg-slate-950\/40,
 [data-theme="light"] .bg-slate-950\/50 {
-  background-color: rgba(250, 249, 247, 0.6) !important;
+  background-color: rgba(241, 245, 249, 0.8) !important;
+  /* Slate 100 with opacity */
 }
 
 [data-theme="light"] .bg-slate-800 {
-  background-color: #f5f3f0 !important;
+  background-color: #f8fafc !important;
+  /* Secondary elements */
+  border: 1px solid #e2e8f0;
 }
 
-[data-theme="light"] .bg-slate-800\/50 {
-  background-color: rgba(245, 243, 240, 0.5) !important;
+/* 2. Typography */
+[data-theme="light"] .text-white,
+[data-theme="light"] .text-slate-50,
+[data-theme="light"] .text-slate-100 {
+  color: #0f172a !important;
+  /* Deep Navy/Black for headers */
 }
 
-[data-theme="light"] .bg-slate-800\/40 {
-  background-color: rgba(245, 243, 240, 0.4) !important;
-}
-
-/* Light theme - Text colors */
-[data-theme="light"] .text-slate-100,
-[data-theme="light"] .text-white {
-  color: #1a1a1a !important;
-}
-
-[data-theme="light"] .text-slate-200 {
-  color: #2a2a2a !important;
-}
-
+[data-theme="light"] .text-slate-200,
 [data-theme="light"] .text-slate-300 {
-  color: #4a4a4a !important;
+  color: #334155 !important;
+  /* Slate 700 for body text */
 }
 
 [data-theme="light"] .text-slate-400 {
-  color: #5c5c5c !important;
+  color: #64748b !important;
+  /* Slate 500 for muted text */
 }
 
 [data-theme="light"] .text-slate-500 {
-  color: #7a7a7a !important;
+  color: #94a3b8 !important;
+  /* Slate 400 for even more muted */
 }
 
-[data-theme="light"] .text-slate-600 {
-  color: #8a8a8a !important;
-}
-
-/* Light theme - Borders */
+/* 3. Borders & Dividers */
 [data-theme="light"] .border-slate-700,
 [data-theme="light"] .border-slate-800 {
-  border-color: #e5e2dd !important;
+  border-color: #e2e8f0 !important;
+  /* Clean gray border */
 }
 
-[data-theme="light"] .border-slate-800\/50,
-[data-theme="light"] .border-slate-800\/60 {
-  border-color: rgba(229, 226, 221, 0.6) !important;
+[data-theme="light"] .divide-slate-800> :not([hidden])~ :not([hidden]) {
+  border-color: #e2e8f0 !important;
 }
 
-[data-theme="light"] .border-slate-700\/50 {
-  border-color: rgba(229, 226, 221, 0.5) !important;
-}
-
-/* Light theme - Accent colors adjusted for light bg */
+/* 4. Special Brand Colors (Keep them vibrant) */
 [data-theme="light"] .bg-emerald-600 {
-  background-color: #0d9488 !important;
-}
-
-[data-theme="light"] .bg-emerald-600:hover,
-[data-theme="light"] .hover\:bg-emerald-500:hover {
-  background-color: #0f766e !important;
-}
-
-[data-theme="light"] .bg-amber-600,
-[data-theme="light"] .bg-orange-600 {
-  background-color: #ea580c !important;
+  background-color: #10b981 !important;
+  /* Keeping original emerald */
 }
 
 [data-theme="light"] .text-emerald-400,
 [data-theme="light"] .text-emerald-500 {
-  color: #0d9488 !important;
+  color: #059669 !important;
+  /* Darker emerald for reading on white */
 }
 
-[data-theme="light"] .text-amber-400,
-[data-theme="light"] .text-amber-500 {
-  color: #ea580c !important;
-}
-
-[data-theme="light"] .text-rose-400,
-[data-theme="light"] .text-rose-500 {
-  color: #dc2626 !important;
-}
-
-/* Light theme - Team color backgrounds for standings */
 [data-theme="light"] .bg-emerald-950\/20,
 [data-theme="light"] .bg-emerald-950\/30 {
-  background-color: rgba(13, 148, 136, 0.08) !important;
+  background-color: rgba(16, 185, 129, 0.1) !important;
+  /* Light green tint */
 }
 
-[data-theme="light"] .bg-rose-950\/20,
-[data-theme="light"] .bg-rose-950\/30 {
-  background-color: rgba(220, 38, 38, 0.08) !important;
-}
-
-[data-theme="light"] .border-emerald-900\/30,
-[data-theme="light"] .border-emerald-500\/30 {
-  border-color: rgba(13, 148, 136, 0.2) !important;
-}
-
-[data-theme="light"] .border-rose-900\/30,
-[data-theme="light"] .border-rose-500\/30 {
-  border-color: rgba(220, 38, 38, 0.2) !important;
-}
-
-/* Light theme - Cards and containers */
+/* 5. Gradients adjustments */
 [data-theme="light"] .from-slate-900 {
   --tw-gradient-from: #ffffff !important;
 }
 
-[data-theme="light"] .to-slate-950,
-[data-theme="light"] .to-slate-900 {
-  --tw-gradient-to: #faf9f7 !important;
+[data-theme="light"] .to-slate-950 {
+  --tw-gradient-to: #f3f5f8 !important;
 }
 
-/* Light theme - Shadows - Softer for light mode */
-[data-theme="light"] .shadow-lg {
-  --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04) !important;
+/* 6. Navigation Bar Specific */
+[data-theme="light"] nav.fixed {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
-[data-theme="light"] .shadow-emerald-500\/20,
-[data-theme="light"] .shadow-emerald-600\/20 {
-  --tw-shadow-color: rgba(13, 148, 136, 0.12) !important;
+/* 7. Inputs */
+[data-theme="light"] input,
+[data-theme="light"] select,
+[data-theme="light"] textarea {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
 }
 
-[data-theme="light"] .shadow-amber-500\/20,
-[data-theme="light"] .shadow-amber-500\/30 {
-  --tw-shadow-color: rgba(234, 88, 12, 0.12) !important;
+[data-theme="light"] input:focus,
+[data-theme="light"] select:focus {
+  border-color: #10b981 !important;
+  ring-color: #10b981 !important;
 }
 
-/* Light theme - Scrollbar */
-[data-theme="light"] ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.03);
-}
 
-[data-theme="light"] ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.15);
-}
 
-[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.25);
-}
 
-/* Light theme - Bottom navigation */
-[data-theme="light"] nav.fixed.bottom-0 {
-  background-color: rgba(255, 255, 255, 0.95) !important;
-  border-top-color: #e5e2dd !important;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
-}
 
-/* Light theme - Special elements */
-[data-theme="light"] .bg-indigo-600 {
-  background-color: #4f46e5 !important;
-}
 
-[data-theme="light"] .hover\:bg-indigo-500:hover {
-  background-color: #6366f1 !important;
-}
-
-/* Light theme - Glass effects */
-[data-theme="light"] .glass {
-  background: rgba(255, 255, 255, 0.7) !important;
-  border: 1px solid rgba(0, 0, 0, 0.08) !important;
-}
-
-/* Light theme - Selection color */
-[data-theme="light"] ::selection {
-  background: #0d9488;
-  color: white;
-}
-
-/* Light theme - Ring colors */
-[data-theme="light"] .ring-slate-600 {
-  --tw-ring-color: #e5e2dd !important;
-}
-
-/* Light theme - Automatic update indicator */
-[data-theme="light"] .bg-emerald-950\/50 {
-  background-color: rgba(13, 148, 136, 0.1) !important;
-}
-
-[data-theme="light"] .border-emerald-800\/50 {
-  border-color: rgba(13, 148, 136, 0.2) !important;
-}
 
 /* ============================================================================
    PREMIUM GRADIENT TEXT
