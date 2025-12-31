@@ -824,34 +824,21 @@
         },
         {
             "id": 50,
-            "date": "2025-11-26",
-            "matchTime": "19:00",
+            "date": "2025-11-27",
+            "matchTime": "18:00",
             "round": "4th Round | Leg 1",
             "groupName": "Pool E",
             "homeTeam": "SSC Palmberg SCHWERIN",
-            "awayTeam": "Calcit VBK KAMNIK",
+            "awayTeam": "LEVALLOIS PARIS Saint Cloud",
             "homeScore": 3,
-            "awayScore": 2,
+            "awayScore": 1,
             "isPlayed": true,
-            "venue": "Palmberg Arena SCHWERIN"
+            "venue": "PALMBERG Arena SCHWERIN"
         },
         {
             "id": 51,
-            "date": "2025-12-03",
-            "matchTime": "18:00",
-            "round": "4th Round | Leg 2",
-            "groupName": "Pool E",
-            "homeTeam": "Calcit VBK KAMNIK",
-            "awayTeam": "KS Developres RZESZÓW",
-            "homeScore": 1,
-            "awayScore": 3,
-            "isPlayed": true,
-            "venue": "Sports Hall Kamnik"
-        },
-        {
-            "id": 52,
-            "date": "2025-12-04",
-            "matchTime": "18:00",
+            "date": "2025-12-02",
+            "matchTime": "18:30",
             "round": "4th Round | Leg 2",
             "groupName": "Pool E",
             "homeTeam": "Maritza PLOVDIV",
@@ -859,20 +846,33 @@
             "homeScore": 2,
             "awayScore": 3,
             "isPlayed": true,
-            "venue": "Kolodruma PLOVDIV"
+            "venue": "Kolodruma Sport Hall PLOVDIV"
+        },
+        {
+            "id": 52,
+            "date": "2025-12-04",
+            "matchTime": "20:00",
+            "round": "4th Round | Leg 2",
+            "groupName": "Pool E",
+            "homeTeam": "LEVALLOIS PARIS Saint Cloud",
+            "awayTeam": "KS Developres RZESZÓW",
+            "homeScore": 3,
+            "awayScore": 2,
+            "isPlayed": true,
+            "venue": "Palais des sports Marcel Cerdan LEVALLOIS PERRET"
         },
         {
             "id": 53,
             "date": "2026-01-07",
-            "matchTime": "18:00",
+            "matchTime": "18:30",
             "round": "4th Round | Leg 3",
             "groupName": "Pool E",
-            "homeTeam": "KS Developres RZESZÓW",
-            "awayTeam": "SSC Palmberg SCHWERIN",
+            "homeTeam": "Maritza PLOVDIV",
+            "awayTeam": "LEVALLOIS PARIS Saint Cloud",
             "homeScore": null,
             "awayScore": null,
             "isPlayed": false,
-            "venue": "RCWS Podpromie RZESZÓW"
+            "venue": "Kolodruma Sport Hall PLOVDIV"
         },
         {
             "id": 54,
@@ -880,64 +880,64 @@
             "matchTime": "18:00",
             "round": "4th Round | Leg 3",
             "groupName": "Pool E",
-            "homeTeam": "Maritza PLOVDIV",
-            "awayTeam": "Calcit VBK KAMNIK",
-            "homeScore": null,
-            "awayScore": null,
-            "isPlayed": false,
-            "venue": "Kolodruma PLOVDIV"
-        },
-        {
-            "id": 55,
-            "date": "2026-01-14",
-            "matchTime": "19:00",
-            "round": "4th Round | Leg 4",
-            "groupName": "Pool E",
             "homeTeam": "SSC Palmberg SCHWERIN",
             "awayTeam": "KS Developres RZESZÓW",
             "homeScore": null,
             "awayScore": null,
             "isPlayed": false,
-            "venue": "Palmberg Arena SCHWERIN"
+            "venue": "PALMBERG Arena SCHWERIN"
         },
         {
-            "id": 56,
+            "id": 55,
             "date": "2026-01-14",
             "matchTime": "18:00",
             "round": "4th Round | Leg 4",
             "groupName": "Pool E",
-            "homeTeam": "Calcit VBK KAMNIK",
-            "awayTeam": "Maritza PLOVDIV",
-            "homeScore": null,
-            "awayScore": null,
-            "isPlayed": false,
-            "venue": "Sports Hall Kamnik"
-        },
-        {
-            "id": 57,
-            "date": "2026-01-21",
-            "matchTime": "18:00",
-            "round": "4th Round | Leg 5",
-            "groupName": "Pool E",
             "homeTeam": "KS Developres RZESZÓW",
-            "awayTeam": "Calcit VBK KAMNIK",
+            "awayTeam": "LEVALLOIS PARIS Saint Cloud",
             "homeScore": null,
             "awayScore": null,
             "isPlayed": false,
             "venue": "RCWS Podpromie RZESZÓW"
         },
         {
-            "id": 58,
-            "date": "2026-01-21",
-            "matchTime": "19:00",
-            "round": "4th Round | Leg 5",
+            "id": 56,
+            "date": "2026-01-15",
+            "matchTime": "18:00",
+            "round": "4th Round | Leg 4",
             "groupName": "Pool E",
             "homeTeam": "SSC Palmberg SCHWERIN",
             "awayTeam": "Maritza PLOVDIV",
             "homeScore": null,
             "awayScore": null,
             "isPlayed": false,
-            "venue": "Palmberg Arena SCHWERIN"
+            "venue": "PALMBERG Arena SCHWERIN"
+        },
+        {
+            "id": 57,
+            "date": "2026-01-27",
+            "matchTime": "18:30",
+            "round": "4th Round | Leg 5",
+            "groupName": "Pool E",
+            "homeTeam": "Maritza PLOVDIV",
+            "awayTeam": "KS Developres RZESZÓW",
+            "homeScore": null,
+            "awayScore": null,
+            "isPlayed": false,
+            "venue": "Kolodruma Sport Hall PLOVDIV"
+        },
+        {
+            "id": 58,
+            "date": "2026-01-28",
+            "matchTime": "20:00",
+            "round": "4th Round | Leg 5",
+            "groupName": "Pool E",
+            "homeTeam": "LEVALLOIS PARIS Saint Cloud",
+            "awayTeam": "SSC Palmberg SCHWERIN",
+            "homeScore": null,
+            "awayScore": null,
+            "isPlayed": false,
+            "venue": "Palais des sports Marcel Cerdan LEVALLOIS PERRET"
         },
         {
             "id": 59,
@@ -945,26 +945,26 @@
             "matchTime": "18:00",
             "round": "4th Round | Leg 6",
             "groupName": "Pool E",
-            "homeTeam": "Maritza PLOVDIV",
-            "awayTeam": "KS Developres RZESZÓW",
-            "homeScore": null,
-            "awayScore": null,
-            "isPlayed": false,
-            "venue": "Kolodruma PLOVDIV"
-        },
-        {
-            "id": 60,
-            "date": "2026-02-04",
-            "matchTime": "18:00",
-            "round": "4th Round | Leg 6",
-            "groupName": "Pool E",
-            "homeTeam": "Calcit VBK KAMNIK",
+            "homeTeam": "KS Developres RZESZÓW",
             "awayTeam": "SSC Palmberg SCHWERIN",
             "homeScore": null,
             "awayScore": null,
             "isPlayed": false,
-            "venue": "Sports Hall Kamnik"
+            "venue": "RCWS Podpromie RZESZÓW"
+        },
+        {
+            "id": 60,
+            "date": "2026-02-04",
+            "matchTime": "20:00",
+            "round": "4th Round | Leg 6",
+            "groupName": "Pool E",
+            "homeTeam": "LEVALLOIS PARIS Saint Cloud",
+            "awayTeam": "Maritza PLOVDIV",
+            "homeScore": null,
+            "awayScore": null,
+            "isPlayed": false,
+            "venue": "Palais des sports Marcel Cerdan LEVALLOIS PERRET"
         }
     ],
-    "lastUpdated": "2025-12-30T21:15:00.000Z"
+    "lastUpdated": "2025-12-31T08:30:00.000Z"
 }
