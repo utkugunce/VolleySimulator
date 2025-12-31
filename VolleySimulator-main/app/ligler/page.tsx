@@ -50,7 +50,7 @@ export default function LiglerPage() {
                     </Link>
 
                     {/* Şampiyonlar Ligi */}
-                    <Link href="/cev-cl/anasayfa" className="group bg-slate-900 border border-blue-500/30 rounded-2xl p-8 hover:bg-slate-800 hover:border-blue-500/60 transition-all flex flex-col items-center text-center gap-4 shadow-lg hover:shadow-blue-900/20">
+                    <Link href="/cev-cl/tahminoyunu" className="group bg-slate-900 border border-blue-500/30 rounded-2xl p-8 hover:bg-slate-800 hover:border-blue-500/60 transition-all flex flex-col items-center text-center gap-4 shadow-lg hover:shadow-blue-900/20">
                         <span className="text-6xl group-hover:scale-110 transition-transform duration-300">🌍</span>
                         <div>
                             <h2 className="text-2xl font-bold text-white mb-2">CEV Şampiyonlar Ligi</h2>
