@@ -33,6 +33,34 @@ export async function getLeagueData(league: string): Promise<LeagueData> {
             if (data.matches) data.matches = filterMatches(data.matches);
         }
 
+        // Rename CEV CL teams
+        if (league === 'cev-cl') {
+            const teamNameMapping: Record<string, string> = {
+                'VakifBank ISTANBUL': 'VAKIFBANK',
+                'Fenerbahçe Medicana ISTANBUL': 'FENERBAHÇE MEDICANA',
+                'Eczacibasi ISTANBUL': 'ECZACIBAŞI DYNAVİT',
+                'ANKARA Zeren Spor Kulübü': 'ZEREN SPOR'
+            };
+
+            const renameTeam = (name: string) => teamNameMapping[name] || name;
+
+            if (data.teams) {
+                data.teams = data.teams.map((t: any) => ({
+                    ...t,
+                    name: renameTeam(t.name)
+                }));
+            }
+
+            const renameMatches = (matches: any[]) => matches.map((m: any) => ({
+                ...m,
+                homeTeam: renameTeam(m.homeTeam),
+                awayTeam: renameTeam(m.awayTeam)
+            }));
+
+            if (data.fixture) data.fixture = renameMatches(data.fixture);
+            if (data.matches) data.matches = renameMatches(data.matches);
+        }
+
         // Normalize fixture data
         let fixture = (data.fixture || data.matches || []).map((m: any) => ({
             ...m,
