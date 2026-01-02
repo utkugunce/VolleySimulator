@@ -1,5 +1,6 @@
 import { TeamStats } from "../../types";
 import { TeamDiff } from "../../utils/scenarioUtils";
+import TeamAvatar from "../../TeamAvatar";
 
 interface StandingsTableProps {
     teams: TeamStats[];
@@ -137,7 +138,10 @@ export default function StandingsTable({
                                         </div>
                                     </td>
                                     <td className={`${rowClass} font-medium`}>
-                                        <span className={`block ${isPlayoff ? 'text-emerald-600 dark:text-emerald-400' : isSecondaryPlayoff ? 'text-amber-600 dark:text-amber-400' : isRelegation ? 'text-rose-600 dark:text-rose-400' : 'text-text-primary'}`}>{team.name}</span>
+                                        <div className="flex items-center gap-2">
+                                            <TeamAvatar name={team.name} size={compact ? 'sm' : 'md'} />
+                                            <span className={`block truncate ${isPlayoff ? 'text-emerald-600 dark:text-emerald-400' : isSecondaryPlayoff ? 'text-amber-600 dark:text-amber-400' : isRelegation ? 'text-rose-600 dark:text-rose-400' : 'text-text-primary'}`}>{team.name}</span>
+                                        </div>
                                     </td>
                                     <td className={`${rowClass} text-center text-text-secondary`}>{team.played}</td>
                                     <td className={`${rowClass} text-center text-emerald-500 font-medium`}>{team.wins}</td>

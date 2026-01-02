@@ -1,5 +1,7 @@
 "use client";
 
+import TeamAvatar from "./TeamAvatar";
+
 interface BracketTeam {
     name: string;
     sourceGroup: string;
@@ -176,11 +178,12 @@ function BracketCard({
 
 function TeamSlot({ name, isWinner = false }: { name: string; isWinner?: boolean }) {
     return (
-        <div className={`text-xs px-2 py-1 rounded truncate ${isWinner
+        <div className={`text-xs px-2 py-1 rounded truncate flex items-center gap-2 ${isWinner
             ? 'bg-emerald-900/50 text-emerald-300 border border-emerald-700'
             : 'bg-slate-800/50 text-slate-400'
             }`}>
-            {name}
+            <TeamAvatar name={name} size="sm" />
+            <span className="truncate">{name}</span>
         </div>
     );
 }
