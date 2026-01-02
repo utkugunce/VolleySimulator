@@ -27,7 +27,7 @@ function CalculatorContent() {
     const [groups, setGroups] = useState<string[]>([]);
 
     // UI State
-    const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
+    const [selectedGroup, setSelectedGroup] = useState<string>("A GRUBU");
     const [overrides, setOverrides] = useState<Record<string, string>>({});
     const [showAchievements, setShowAchievements] = useState(false);
     const [showAutoMenu, setShowAutoMenu] = useState(false);
@@ -67,11 +67,21 @@ function CalculatorContent() {
             let matchesData: any[] = [];
 
             if (data.teams && Array.isArray(data.teams)) {
-                teamsData = data.teams;
+                teamsData = data.teams.map((t: any) => ({
+                    ...t,
+                    name: t.name.toLocaleUpperCase('tr-TR'),
+                    groupName: t.groupName.replace('Group ', '') + ' GRUBU'
+                }));
             }
 
             if (data.fixture && Array.isArray(data.fixture)) {
-                matchesData = data.fixture;
+                matchesData = data.fixture.map((m: any) => ({
+                    ...m,
+                    homeTeam: m.homeTeam.toLocaleUpperCase('tr-TR'),
+                    awayTeam: m.awayTeam.toLocaleUpperCase('tr-TR'),
+                    matchDate: m.date,
+                    groupName: m.groupName.replace('Group ', '') + ' GRUBU'
+                }));
             }
 
             setAllTeams(teamsData);
@@ -517,7 +527,6 @@ function CalculatorContent() {
                                 playoffSpots={4}
                                 relegationSpots={activeGroup.includes('B') ? 2 : 0}
                                 initialRanks={initialRanks}
-                                compact={true}
                             />
                         </div>
                     </div>

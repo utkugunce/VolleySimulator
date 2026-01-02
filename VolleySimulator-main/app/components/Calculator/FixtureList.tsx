@@ -136,7 +136,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                     >
                         <span>📅</span>
                         <span>Gelecek</span>
-                        <span className="bg-white/20 px-1.5 py-0.5 rounded text-[10px]">{upcomingMatches.length}</span>
+                        <span className="bg-white/20 px-1.5 py-0.5 rounded text-[9px]">{upcomingMatches.length}</span>
                     </button>
                     <button
                         onClick={() => setActiveTab('past')}
@@ -162,8 +162,9 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                         <div key={dateStr} className="space-y-2">
                             <div className="sticky top-0 z-5 bg-slate-950/90 backdrop-blur-sm py-2 px-3 rounded-lg border border-slate-800 flex items-center justify-between">
                                 <span className="text-sm font-bold text-indigo-400">📆 {formatDateDisplay(dateStr)}</span>
-                                <span className="text-xs text-slate-500 bg-slate-800/50 px-2 py-0.5 rounded">{dateMatches.length} maç</span>
+                                <span className="text-[10px] text-slate-500 bg-slate-800/50 px-2 py-0.5 rounded">{dateMatches.length} maç</span>
                             </div>
+
 
                             {dateMatches.map((match) => {
                                 const matchId = `${match.homeTeam}-${match.awayTeam}`;
@@ -177,7 +178,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                     <div
                                         key={matchId}
                                         id={`match-${match.homeTeam}-${match.awayTeam}`}
-                                        className={`p-3 rounded-lg border transition-all ${isPlayed
+                                        className={`p-2 rounded-lg border transition-all ${isPlayed
                                             ? 'bg-slate-950/50 border-slate-800/50'
                                             : currentScore
                                                 ? 'bg-slate-800 border-indigo-500/50 shadow-md ring-1 ring-indigo-500/20'
@@ -191,7 +192,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                             </div>
                                         )}
 
-                                        <div className="flex items-center justify-between text-xs mb-2">
+                                        <div className="flex items-center justify-between text-[10px] mb-1.5">
                                             <div className={`flex-1 text-right font-semibold truncate pr-2 flex items-center justify-end gap-1 ${currentScore && getScoreWinner(currentScore) === 'home' ? 'text-emerald-400' : 'text-slate-300'}`}>
                                                 {homeRank && (
                                                     <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${homeRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : homeRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-500'}`}>
@@ -229,7 +230,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                                         <button
                                                             key={score}
                                                             onClick={() => onScoreChange(matchId, isSelected ? '' : score)}
-                                                            className={`w-10 h-7 flex items-center justify-center rounded text-xs font-bold transition-all border ${isSelected
+                                                            className={`w-8 h-6 flex items-center justify-center rounded text-[10px] font-bold transition-all border ${isSelected
                                                                 ? homeWin
                                                                     ? 'bg-emerald-600 border-emerald-500 text-white shadow-emerald-500/30 shadow-md'
                                                                     : 'bg-rose-600 border-rose-500 text-white shadow-rose-500/30 shadow-md'

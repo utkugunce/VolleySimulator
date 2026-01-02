@@ -21,7 +21,7 @@ function CalculatorContent() {
     // Data State
     const [allTeams, setAllTeams] = useState<TeamStats[]>([]);
     const [allMatches, setAllMatches] = useState<Match[]>([]);
-    const [selectedPool, setSelectedPool] = useState<string>("A Grubu");
+    const [selectedPool, setSelectedPool] = useState<string>("A GRUBU");
 
     // UI State
     const [overrides, setOverrides] = useState<Record<string, string>>({});
@@ -33,7 +33,7 @@ function CalculatorContent() {
     // Game State
     const { gameState, addXP, recordPrediction, unlockAchievement, hasAchievement } = useGameState();
 
-    const pools = ["A Grubu", "B Grubu", "C Grubu", "D Grubu", "E Grubu"];
+    const pools = ["A GRUBU", "B GRUBU", "C GRUBU", "D GRUBU", "E GRUBU"];
 
     useEffect(() => {
         fetchData();
@@ -63,7 +63,8 @@ function CalculatorContent() {
             if (data.teams && Array.isArray(data.teams)) {
                 teamsData = data.teams.map((t: any) => ({
                     ...t,
-                    groupName: t.groupName.replace('Pool ', '') + ' Grubu'
+                    name: t.name.toLocaleUpperCase('tr-TR'),
+                    groupName: t.groupName.replace('Pool ', '') + ' GRUBU'
                 }));
             }
 
@@ -71,7 +72,9 @@ function CalculatorContent() {
                 matchesData = data.fixture.map((m: any) => ({
                     ...m,
                     matchDate: m.date,
-                    groupName: m.groupName.replace('Pool ', '') + ' Grubu'
+                    homeTeam: m.homeTeam.toLocaleUpperCase('tr-TR'),
+                    awayTeam: m.awayTeam.toLocaleUpperCase('tr-TR'),
+                    groupName: m.groupName.replace('Pool ', '') + ' GRUBU'
                 }));
             }
 
