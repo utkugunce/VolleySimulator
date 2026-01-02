@@ -7,13 +7,14 @@ import { useToast, AchievementToast, AchievementsPanel } from "../../components"
 import StandingsTable from "../../components/Calculator/StandingsTable";
 import FixtureList from "../../components/Calculator/FixtureList";
 import ShareButton from "../../components/ShareButton";
+import SwipeableTabs from "../../components/SwipeableTabs";
 import { calculateLiveStandings } from "../../utils/calculatorUtils";
 import { calculateElo } from "../../utils/eloCalculator";
 import { useGameState, ACHIEVEMENTS } from "../../utils/gameState";
 import { sounds } from "../../utils/sounds";
 
 function CalculatorContent() {
-    const { showToast } = useToast();
+    const { showToast, showUndoToast } = useToast();
 
     const [loading, setLoading] = useState(true);
     const standingsRef = useRef<HTMLDivElement>(null);
@@ -160,10 +161,13 @@ function CalculatorContent() {
     };
 
     const handleResetAll = () => {
-        if (!confirm("Tüm Şampiyonlar Ligi tahminleriniz silinecek. Emin misiniz?")) return;
+        const previousOverrides = { ...overrides };
         setOverrides({});
         localStorage.removeItem('cevclGroupScenarios');
-        showToast("Şampiyonlar Ligi tahminleri sıfırlandı", "success");
+        showUndoToast("Şampiyonlar Ligi tahminleri sıfırlandı", () => {
+            setOverrides(previousOverrides);
+            localStorage.setItem('cevclGroupScenarios', JSON.stringify(previousOverrides));
+        });
     };
 
     // Memoize standings calculations for current pool
@@ -334,20 +338,15 @@ function CalculatorContent() {
 
                 {/* Action Bar */}
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-2 bg-slate-900/40 rounded-xl border border-slate-800">
-                    {/* Pool Selection */}
+                    {/* Pool Selection - SwipeableTabs for mobile */}
                     <div className="flex gap-2 items-center w-full sm:w-auto">
                         <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden sm:inline whitespace-nowrap">GRUP:</span>
-                        <select
-                            value={selectedPool}
-                            onChange={(e) => setSelectedPool(e.target.value)}
-                            className="appearance-none bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-lg px-4 py-2 border border-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all outline-none cursor-pointer min-w-[120px]"
-                        >
-                            {pools.map(pool => (
-                                <option key={pool} value={pool} className="bg-slate-900">
-                                    {pool}
-                                </option>
-                            ))}
-                        </select>
+                        <SwipeableTabs
+                            tabs={pools.map(p => ({ id: p, label: p }))}
+                            activeTab={selectedPool}
+                            onChange={(id) => setSelectedPool(id)}
+                            className="flex-1 sm:flex-initial"
+                        />
                     </div>
                     <div className="flex items-center gap-2 w-full sm:w-auto pb-1 sm:pb-0 justify-end flex-wrap sm:flex-nowrap">
                         <div className="flex items-center gap-2 shrink-0">

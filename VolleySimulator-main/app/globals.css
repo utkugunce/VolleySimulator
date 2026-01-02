@@ -419,6 +419,12 @@ body {
   color: white;
 }
 
+.toast-undo {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  color: white;
+  cursor: default;
+}
+
 /* ============================================================================
    SPECIAL EFFECTS
    ============================================================================ */

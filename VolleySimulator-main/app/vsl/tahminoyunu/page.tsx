@@ -13,7 +13,7 @@ import { useGameState, ACHIEVEMENTS } from "../../utils/gameState";
 import { sounds } from "../../utils/sounds";
 
 function CalculatorContent() {
-    const { showToast } = useToast();
+    const { showToast, showUndoToast } = useToast();
 
     const [loading, setLoading] = useState(true);
     const standingsRef = useRef<HTMLDivElement>(null);
@@ -119,10 +119,19 @@ function CalculatorContent() {
     }, [overrides]);
 
     const handleReset = () => {
-        if (!confirm("Tüm Sultanlar Ligi tahminleriniz silinecek. Emin misiniz?")) return;
+        // Store previous state for undo
+        const previousOverrides = { ...overrides };
+
+        // Execute reset immediately
         setOverrides({});
         localStorage.removeItem('vslGroupScenarios');
-        showToast("Sultanlar Ligi tahminleri sıfırlandı", "success");
+
+        // Show undo toast
+        showUndoToast("Sultanlar Ligi tahminleri sıfırlandı", () => {
+            // Restore previous state on undo
+            setOverrides(previousOverrides);
+            localStorage.setItem('vslGroupScenarios', JSON.stringify(previousOverrides));
+        });
     };
 
     // Memoize standings calculations

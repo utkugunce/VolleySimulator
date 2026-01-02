@@ -13,6 +13,19 @@ interface FixtureListProps {
 
 export default function FixtureList({ matches, overrides, onScoreChange, teamRanks, totalTeams = 16, relegationSpots = 2 }: FixtureListProps) {
     const [activeTab, setActiveTab] = useState<'upcoming' | 'past'>('upcoming');
+    const [collapsedDates, setCollapsedDates] = useState<Set<string>>(new Set());
+
+    const toggleDateCollapse = (dateStr: string) => {
+        setCollapsedDates(prev => {
+            const newSet = new Set(prev);
+            if (newSet.has(dateStr)) {
+                newSet.delete(dateStr);
+            } else {
+                newSet.add(dateStr);
+            }
+            return newSet;
+        });
+    };
 
     // Helper to get team rank
     const getTeamRank = (teamName: string): number | null => {
@@ -158,100 +171,108 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                         {activeTab === 'upcoming' ? 'Gelecek maç bulunamadı' : 'Geçmiş maç bulunamadı'}
                     </div>
                 ) : (
-                    sortedDateGroups.map(([dateStr, dateMatches]) => (
-                        <div key={dateStr} className="space-y-2">
-                            <div className="sticky top-0 z-5 bg-slate-950/90 backdrop-blur-sm py-1 px-3 rounded-lg border border-slate-800 flex items-center justify-between">
-                                <span className="text-[10px] font-bold text-indigo-400">📆 {formatDateDisplay(dateStr)}</span>
-                                <span className="text-[9px] text-slate-500 bg-slate-800/50 px-2 py-0.5 rounded">{dateMatches.length} maç</span>
-                            </div>
+                    sortedDateGroups.map(([dateStr, dateMatches]) => {
+                        const isCollapsed = collapsedDates.has(dateStr);
+                        return (
+                            <div key={dateStr} className="space-y-2">
+                                <button
+                                    onClick={() => toggleDateCollapse(dateStr)}
+                                    className="sticky top-0 z-5 w-full bg-slate-950/90 backdrop-blur-sm py-1.5 px-3 rounded-lg border border-slate-800 flex items-center justify-between hover:bg-slate-900/90 transition-colors cursor-pointer"
+                                >
+                                    <span className="text-[10px] font-bold text-indigo-400 flex items-center gap-2">
+                                        <span className={`transition-transform duration-200 ${isCollapsed ? '' : 'rotate-90'}`}>▶</span>
+                                        📆 {formatDateDisplay(dateStr)}
+                                    </span>
+                                    <span className="text-[9px] text-slate-500 bg-slate-800/50 px-2 py-0.5 rounded">{dateMatches.length} maç</span>
+                                </button>
 
+                                {!isCollapsed && dateMatches.map((match) => {
+                                    const matchId = `${match.homeTeam}-${match.awayTeam}`;
+                                    const currentScore = overrides[matchId];
+                                    const isPlayed = match.isPlayed;
+                                    const homeRank = getTeamRank(match.homeTeam);
+                                    const awayRank = getTeamRank(match.awayTeam);
+                                    const matchImportance = getMatchImportance(homeRank, awayRank);
 
-                            {dateMatches.map((match) => {
-                                const matchId = `${match.homeTeam}-${match.awayTeam}`;
-                                const currentScore = overrides[matchId];
-                                const isPlayed = match.isPlayed;
-                                const homeRank = getTeamRank(match.homeTeam);
-                                const awayRank = getTeamRank(match.awayTeam);
-                                const matchImportance = getMatchImportance(homeRank, awayRank);
+                                    return (
+                                        <div
+                                            key={matchId}
+                                            id={`match-${match.homeTeam}-${match.awayTeam}`}
+                                            className={`p-2 rounded-lg border transition-all ${isPlayed
+                                                ? 'bg-slate-950/50 border-slate-800/50'
+                                                : currentScore
+                                                    ? 'bg-slate-800 border-indigo-500/50 shadow-md ring-1 ring-indigo-500/20'
+                                                    : 'bg-slate-800 border-slate-700 hover:border-slate-600'
+                                                }`}
+                                        >
+                                            {/* Match Importance Badge */}
+                                            {matchImportance && !isPlayed && (
+                                                <div className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-t-md -mx-3 -mt-3 mb-2 text-center bg-gradient-to-r ${matchImportance.color}`}>
+                                                    {matchImportance.label}
+                                                </div>
+                                            )}
 
-                                return (
-                                    <div
-                                        key={matchId}
-                                        id={`match-${match.homeTeam}-${match.awayTeam}`}
-                                        className={`p-2 rounded-lg border transition-all ${isPlayed
-                                            ? 'bg-slate-950/50 border-slate-800/50'
-                                            : currentScore
-                                                ? 'bg-slate-800 border-indigo-500/50 shadow-md ring-1 ring-indigo-500/20'
-                                                : 'bg-slate-800 border-slate-700 hover:border-slate-600'
-                                            }`}
-                                    >
-                                        {/* Match Importance Badge */}
-                                        {matchImportance && !isPlayed && (
-                                            <div className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-t-md -mx-3 -mt-3 mb-2 text-center bg-gradient-to-r ${matchImportance.color}`}>
-                                                {matchImportance.label}
+                                            <div className="flex items-center justify-between text-[10px] mb-1.5">
+                                                <div className={`flex-1 text-right font-semibold truncate pr-2 flex items-center justify-end gap-1 ${currentScore && getScoreWinner(currentScore) === 'home' ? 'text-emerald-400' : 'text-slate-300'}`}>
+                                                    {homeRank && (
+                                                        <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${homeRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : homeRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-500'}`}>
+                                                            {homeRank}.
+                                                        </span>
+                                                    )}
+                                                    <span className="truncate">{match.homeTeam}</span>
+                                                </div>
+                                                <div className="text-[10px] text-slate-600 font-mono shrink-0 px-1">v</div>
+                                                <div className={`flex-1 text-left font-semibold truncate pl-2 flex items-center gap-1 ${currentScore && getScoreWinner(currentScore) === 'away' ? 'text-emerald-400' : 'text-slate-300'}`}>
+                                                    <span className="truncate">{match.awayTeam}</span>
+                                                    {awayRank && (
+                                                        <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${awayRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : awayRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-500'}`}>
+                                                            {awayRank}.
+                                                        </span>
+                                                    )}
+                                                </div>
                                             </div>
-                                        )}
 
-                                        <div className="flex items-center justify-between text-[10px] mb-1.5">
-                                            <div className={`flex-1 text-right font-semibold truncate pr-2 flex items-center justify-end gap-1 ${currentScore && getScoreWinner(currentScore) === 'home' ? 'text-emerald-400' : 'text-slate-300'}`}>
-                                                {homeRank && (
-                                                    <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${homeRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : homeRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-500'}`}>
-                                                        {homeRank}.
+                                            {isPlayed ? (
+                                                <div className="flex justify-center">
+                                                    <span className="px-3 py-1 bg-slate-900 font-mono font-bold text-slate-400 rounded border border-slate-800 text-sm">
+                                                        {match.homeScore !== undefined && match.awayScore !== undefined
+                                                            ? `${match.homeScore} - ${match.awayScore}`
+                                                            : match.resultScore || "Oynandı"}
                                                     </span>
-                                                )}
-                                                <span className="truncate">{match.homeTeam}</span>
-                                            </div>
-                                            <div className="text-[10px] text-slate-600 font-mono shrink-0 px-1">v</div>
-                                            <div className={`flex-1 text-left font-semibold truncate pl-2 flex items-center gap-1 ${currentScore && getScoreWinner(currentScore) === 'away' ? 'text-emerald-400' : 'text-slate-300'}`}>
-                                                <span className="truncate">{match.awayTeam}</span>
-                                                {awayRank && (
-                                                    <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${awayRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : awayRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-500'}`}>
-                                                        {awayRank}.
-                                                    </span>
-                                                )}
-                                            </div>
+                                                </div>
+                                            ) : (
+                                                <div className="flex justify-center gap-1 flex-wrap">
+                                                    {SCORES.map(score => {
+                                                        const isSelected = currentScore === score;
+                                                        const [h, a] = score.split('-').map(Number);
+                                                        const homeWin = h > a;
+                                                        return (
+                                                            <button
+                                                                key={score}
+                                                                onClick={() => onScoreChange(matchId, isSelected ? '' : score)}
+                                                                className={`w-8 h-6 flex items-center justify-center rounded text-[10px] font-bold transition-all border ${isSelected
+                                                                    ? homeWin
+                                                                        ? 'bg-emerald-600 border-emerald-500 text-white shadow-emerald-500/30 shadow-md'
+                                                                        : 'bg-rose-600 border-rose-500 text-white shadow-rose-500/30 shadow-md'
+                                                                    : 'bg-slate-950 border-slate-700 text-slate-500 hover:bg-slate-800 hover:text-slate-300'
+                                                                    }`}
+                                                            >
+                                                                {score}
+                                                            </button>
+                                                        );
+                                                    })}
+                                                </div>
+                                            )}
+
+                                            {!isPlayed && currentScore && (
+                                                <div className="flex justify-center text-[10px] text-indigo-400 font-medium mt-2">✓ Tahmin Girildi</div>
+                                            )}
                                         </div>
-
-                                        {isPlayed ? (
-                                            <div className="flex justify-center">
-                                                <span className="px-3 py-1 bg-slate-900 font-mono font-bold text-slate-400 rounded border border-slate-800 text-sm">
-                                                    {match.homeScore !== undefined && match.awayScore !== undefined
-                                                        ? `${match.homeScore} - ${match.awayScore}`
-                                                        : match.resultScore || "Oynandı"}
-                                                </span>
-                                            </div>
-                                        ) : (
-                                            <div className="flex justify-center gap-1 flex-wrap">
-                                                {SCORES.map(score => {
-                                                    const isSelected = currentScore === score;
-                                                    const [h, a] = score.split('-').map(Number);
-                                                    const homeWin = h > a;
-                                                    return (
-                                                        <button
-                                                            key={score}
-                                                            onClick={() => onScoreChange(matchId, isSelected ? '' : score)}
-                                                            className={`w-8 h-6 flex items-center justify-center rounded text-[10px] font-bold transition-all border ${isSelected
-                                                                ? homeWin
-                                                                    ? 'bg-emerald-600 border-emerald-500 text-white shadow-emerald-500/30 shadow-md'
-                                                                    : 'bg-rose-600 border-rose-500 text-white shadow-rose-500/30 shadow-md'
-                                                                : 'bg-slate-950 border-slate-700 text-slate-500 hover:bg-slate-800 hover:text-slate-300'
-                                                                }`}
-                                                        >
-                                                            {score}
-                                                        </button>
-                                                    );
-                                                })}
-                                            </div>
-                                        )}
-
-                                        {!isPlayed && currentScore && (
-                                            <div className="flex justify-center text-[10px] text-indigo-400 font-medium mt-2">✓ Tahmin Girildi</div>
-                                        )}
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    ))
+                                    );
+                                })}
+                            </div>
+                        );
+                    })
                 )}
             </div>
         </div>
