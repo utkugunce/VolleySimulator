@@ -274,6 +274,37 @@ export default function PlayoffsVSLPage() {
     const semi58_2Winner = getWinner('vsl-58-semi-2', semi58_2Home, semi58_2Away, 3);
     const semi58_2Loser = getLoser('vsl-58-semi-2', semi58_2Home, semi58_2Away, 3);
 
+    // 5-8 Finals
+    const fifthPlaceWinner = getWinner('vsl-58-final', semi58_1Winner, semi58_2Winner, 3);
+    const fifthPlaceLoser = getLoser('vsl-58-final', semi58_1Winner, semi58_2Winner, 3);
+    const seventhPlaceWinner = getWinner('vsl-58-7th', semi58_1Loser, semi58_2Loser, 3);
+    const seventhPlaceLoser = getLoser('vsl-58-7th', semi58_1Loser, semi58_2Loser, 3);
+
+    // Calculate Final Loser (2nd place)
+    const finalLoser = getLoser('vsl-final', semi1Winner, semi2Winner, 5);
+    const thirdPlaceLoser = getLoser('vsl-3rd', semi1Loser, semi2Loser, 3);
+
+    // Check if all playoffs are complete
+    const allPlayoffsComplete = Boolean(
+        finalWinner && finalLoser &&
+        thirdPlaceWinner && thirdPlaceLoser &&
+        fifthPlaceWinner && fifthPlaceLoser &&
+        seventhPlaceWinner && seventhPlaceLoser
+    );
+
+    // Final Standings 1-8
+    const finalStandings = allPlayoffsComplete ? [
+        { rank: 1, team: finalWinner, badge: '🏆', color: 'text-amber-400', bgColor: 'bg-amber-500/20', borderColor: 'border-amber-500/30' },
+        { rank: 2, team: finalLoser, badge: '🥈', color: 'text-slate-300', bgColor: 'bg-slate-500/10', borderColor: 'border-slate-500/20' },
+        { rank: 3, team: thirdPlaceWinner, badge: '🥉', color: 'text-orange-400', bgColor: 'bg-orange-500/10', borderColor: 'border-orange-500/20' },
+        { rank: 4, team: thirdPlaceLoser, badge: '', color: 'text-slate-400', bgColor: 'bg-slate-800/50', borderColor: 'border-slate-700/50' },
+        { rank: 5, team: fifthPlaceWinner, badge: '', color: 'text-emerald-400', bgColor: 'bg-emerald-500/10', borderColor: 'border-emerald-500/20' },
+        { rank: 6, team: fifthPlaceLoser, badge: '', color: 'text-slate-400', bgColor: 'bg-slate-800/50', borderColor: 'border-slate-700/50' },
+        { rank: 7, team: seventhPlaceWinner, badge: '', color: 'text-slate-400', bgColor: 'bg-slate-800/50', borderColor: 'border-slate-700/50' },
+        { rank: 8, team: seventhPlaceLoser, badge: '', color: 'text-rose-400', bgColor: 'bg-rose-500/10', borderColor: 'border-rose-500/20' },
+    ] : [];
+
+
     if (loading) {
         return (
             <main className="min-h-screen bg-slate-950 text-slate-100 p-8 flex items-center justify-center">
@@ -488,6 +519,58 @@ export default function PlayoffsVSLPage() {
                                 CEV Kontenjanına göre takımlar belirlenir.
                             </p>
                         </div>
+
+                        {/* FINAL STANDINGS - Only show when all playoffs complete */}
+                        {allPlayoffsComplete && (
+                            <div className="bg-gradient-to-br from-amber-900/20 via-slate-900/50 to-emerald-900/20 border border-amber-500/30 rounded-xl p-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                                <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                                    <span className="text-3xl">🏅</span>
+                                    <div>
+                                        <div>Final Sıralaması</div>
+                                        <div className="text-xs font-normal text-slate-400">2025-2026 Sultanlar Ligi</div>
+                                    </div>
+                                </h2>
+
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                                    {finalStandings.map((item) => (
+                                        <div
+                                            key={item.rank}
+                                            className={`${item.bgColor} ${item.borderColor} border rounded-xl p-4 flex items-center gap-3 transition-all hover:scale-[1.02]`}
+                                        >
+                                            <div className={`text-3xl font-black ${item.color} min-w-[40px] text-center`}>
+                                                {item.badge || `${item.rank}.`}
+                                            </div>
+                                            <div className="flex-1 min-w-0">
+                                                <div className="text-xs text-slate-500 uppercase tracking-wider">
+                                                    {item.rank}. Sıra
+                                                </div>
+                                                <div className={`font-bold truncate ${item.color}`}>
+                                                    {item.team}
+                                                </div>
+                                            </div>
+                                            {item.rank <= 3 && (
+                                                <TeamAvatar name={item.team || ''} size="sm" />
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="mt-4 bg-slate-900/50 rounded-lg p-3 text-xs text-slate-400 flex flex-wrap gap-4">
+                                    <div className="flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+                                        1.-2. → CEV Şampiyonlar Ligi
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                        3.-5. → CEV Cup / Challenge Cup
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-rose-500"></span>
+                                        8. → Küme Düşme Riski
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
