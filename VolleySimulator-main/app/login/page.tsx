@@ -8,10 +8,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
 
+import LoginBackground from "../components/LoginBackground";
+
 export default function LoginPage() {
     const router = useRouter();
     const { signIn, signInWithGoogle, user } = useAuth();
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -52,13 +53,7 @@ export default function LoginPage() {
 
     return (
         <main className="min-h-screen relative flex flex-col items-center justify-center p-4 overflow-hidden">
-            {/* Background with Modern Gradient & Pattern */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-[#0a0a1a] to-black -z-20"></div>
-            <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20 -z-10"></div>
-
-            {/* Ambient Light Effects */}
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-[128px] -z-10"></div>
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-[128px] -z-10"></div>
+            <LoginBackground />
 
             <div className="w-full max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
 
@@ -136,7 +131,7 @@ export default function LoginPage() {
                                         type="email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="w-full px-4 py-3 bg-slate-950/50 border border-slate-700 rounded-xl text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 transition-all relative z-10"
+                                        className="w-full px-4 py-3 bg-slate-950/50 border border-slate-700 rounded-xl text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 transition-colors relative z-10"
                                         placeholder="ornek@email.com"
                                         required
                                     />
@@ -157,7 +152,7 @@ export default function LoginPage() {
                                         type="password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        className="w-full px-4 py-3 bg-slate-950/50 border border-slate-700 rounded-xl text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 transition-all relative z-10"
+                                        className="w-full px-4 py-3 bg-slate-950/50 border border-slate-700 rounded-xl text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 transition-colors relative z-10"
                                         placeholder="••••••••"
                                         required
                                     />
