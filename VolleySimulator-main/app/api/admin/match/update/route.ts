@@ -2,10 +2,29 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createServerSupabaseClient, createServiceRoleClient } from '../../../../utils/supabase-server';
 import { isAdmin } from '../../../../utils/admin';
 
+import { createClient } from '@supabase/supabase-js';
+
 export async function POST(request: NextRequest) {
     try {
+        let user = null;
+
+        // 1. Try Cookie Auth
         const supabase = await createServerSupabaseClient();
-        const { data: { user } } = await supabase.auth.getUser();
+        const { data: { user: cookieUser } } = await supabase.auth.getUser();
+        user = cookieUser;
+
+        // 2. Try Header Auth (Fallback)
+        if (!user) {
+            const authHeader = request.headers.get('Authorization');
+            if (authHeader) {
+                const token = authHeader.replace('Bearer ', '');
+                const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+                const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+                const jwtClient = createClient(supabaseUrl, supabaseAnonKey);
+                const { data: { user: headerUser } } = await jwtClient.auth.getUser(token);
+                user = headerUser;
+            }
+        }
 
         if (!user || !isAdmin(user.email)) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
