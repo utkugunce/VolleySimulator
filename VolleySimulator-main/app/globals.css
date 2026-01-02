@@ -30,31 +30,52 @@
 }
 
 /* Light Theme - Premium Warm Aesthetic */
+/* Light Theme - Premium Modern (Clean Slate) */
 [data-theme="light"] {
-  --background: #faf9f7;
-  --foreground: #1a1a1a;
+  --background: #f8fafc;
+  /* Slate 50 - Crisp Cool Base */
+  --foreground: #0f172a;
+  /* Slate 900 - Deep Sharp Text */
+
   --surface-primary: #ffffff;
-  --surface-secondary: #f5f3f0;
-  --border-color: #e5e2dd;
-  --text-primary: #1a1a1a;
-  --text-secondary: #5c5c5c;
-  --text-muted: #8a8a8a;
-  --surface-dark: rgba(255, 255, 255, 0.95);
-  --surface-glass: rgba(0, 0, 0, 0.03);
-  --border-subtle: rgba(0, 0, 0, 0.08);
+  /* Pure White - High Contrast Cards */
+  --surface-secondary: #f1f5f9;
+  /* Slate 100 - Subtle Separation */
 
-  /* Light Theme Premium Colors - Adjusted for light bg */
-  --color-primary: #0d9488;
-  --color-primary-light: #14b8a6;
-  --color-primary-dark: #0f766e;
-  --color-accent: #ea580c;
-  --color-accent-light: #f97316;
-  --color-accent-dark: #c2410c;
+  --border-color: #e2e8f0;
+  /* Slate 200 - Structure without harshness */
 
-  /* Light Theme Glow Colors - Subtle */
-  --glow-primary: rgba(13, 148, 136, 0.15);
-  --glow-accent: rgba(234, 88, 12, 0.15);
-  --glow-blue: rgba(37, 99, 235, 0.15);
+  --text-primary: #0f172a;
+  /* Slate 900 */
+  --text-secondary: #475569;
+  /* Slate 600 - Balanced secondary */
+  --text-muted: #94a3b8;
+  /* Slate 400 */
+
+  --surface-dark: rgba(255, 255, 255, 0.9);
+  --surface-glass: rgba(255, 255, 255, 0.7);
+  --border-subtle: #cbd5e1;
+  /* Slate 300 */
+
+  /* Light Theme Brand Colors - High Contrast */
+  --color-primary: #059669;
+  /* Emerald 600 - Readable on White */
+  --color-primary-light: #10b981;
+  /* Emerald 500 */
+  --color-primary-dark: #047857;
+  /* Emerald 700 */
+
+  --color-accent: #d97706;
+  /* Amber 600 - Richer for visibility */
+  --color-accent-light: #f59e0b;
+  /* Amber 500 */
+  --color-accent-dark: #b45309;
+  /* Amber 700 */
+
+  /* Light Theme Glow - More diffused for depth */
+  --glow-primary: rgba(5, 150, 105, 0.2);
+  --glow-accent: rgba(217, 119, 6, 0.2);
+  --glow-blue: rgba(37, 99, 235, 0.2);
 }
 
 /* Dark Theme (explicit) */

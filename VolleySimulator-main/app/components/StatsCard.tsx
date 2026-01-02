@@ -40,17 +40,17 @@ export default function StatsCard({
     };
 
     return (
-        <div className="bg-slate-900 rounded-lg border border-slate-800 overflow-hidden hover:border-slate-700 transition-all group">
+        <div className="bg-surface rounded-lg border border-border-main overflow-hidden shadow-sm hover:shadow-md transition-all group">
             <div className={`h-1 bg-gradient-to-r ${colors[color]}`} />
             <div className="p-4">
                 <div className="flex items-start justify-between">
                     <div>
-                        <p className="text-xs text-slate-400 mb-1">{title}</p>
-                        <p className="text-2xl font-bold text-white group-hover:scale-105 transition-transform origin-left">
+                        <p className="text-xs text-text-muted mb-1">{title}</p>
+                        <p className="text-2xl font-bold text-foreground group-hover:scale-105 transition-transform origin-left">
                             {value}
                         </p>
                         {subtitle && (
-                            <p className="text-xs text-slate-500 mt-1">{subtitle}</p>
+                            <p className="text-xs text-text-muted mt-1">{subtitle}</p>
                         )}
                     </div>
                     {icon && (

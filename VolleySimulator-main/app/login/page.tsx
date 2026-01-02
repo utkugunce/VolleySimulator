@@ -189,7 +189,7 @@ export default function LoginPage() {
                                 <div className="w-full border-t border-slate-700/50"></div>
                             </div>
                             <div className="relative flex justify-center text-xs uppercase tracking-widest">
-                                <span className="px-4 bg-[#0a0f1e] text-slate-500 rounded-full">veya</span>
+                                <span className="px-4 bg-[#0a0f1e] text-slate-400 rounded-full">veya</span>
                             </div>
                         </div>
 
