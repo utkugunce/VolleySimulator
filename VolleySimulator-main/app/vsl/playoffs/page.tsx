@@ -295,13 +295,13 @@ export default function PlayoffsVSLPage() {
     // Final Standings 1-8
     const finalStandings = allPlayoffsComplete ? [
         { rank: 1, team: finalWinner, badge: '🏆', color: 'text-amber-400', bgColor: 'bg-amber-500/20', borderColor: 'border-amber-500/30' },
-        { rank: 2, team: finalLoser, badge: '🥈', color: 'text-slate-300', bgColor: 'bg-slate-500/10', borderColor: 'border-slate-500/20' },
-        { rank: 3, team: thirdPlaceWinner, badge: '🥉', color: 'text-orange-400', bgColor: 'bg-orange-500/10', borderColor: 'border-orange-500/20' },
-        { rank: 4, team: thirdPlaceLoser, badge: '', color: 'text-slate-400', bgColor: 'bg-slate-800/50', borderColor: 'border-slate-700/50' },
+        { rank: 2, team: finalLoser, badge: '🥈', color: 'text-amber-300', bgColor: 'bg-amber-500/10', borderColor: 'border-amber-500/20' },
+        { rank: 3, team: thirdPlaceWinner, badge: '🥉', color: 'text-amber-200', bgColor: 'bg-amber-500/10', borderColor: 'border-amber-500/20' },
+        { rank: 4, team: thirdPlaceLoser, badge: '', color: 'text-blue-400', bgColor: 'bg-blue-500/10', borderColor: 'border-blue-500/20' },
         { rank: 5, team: fifthPlaceWinner, badge: '', color: 'text-emerald-400', bgColor: 'bg-emerald-500/10', borderColor: 'border-emerald-500/20' },
-        { rank: 6, team: fifthPlaceLoser, badge: '', color: 'text-slate-400', bgColor: 'bg-slate-800/50', borderColor: 'border-slate-700/50' },
+        { rank: 6, team: fifthPlaceLoser, badge: '', color: 'text-purple-400', bgColor: 'bg-purple-500/10', borderColor: 'border-purple-500/20' },
         { rank: 7, team: seventhPlaceWinner, badge: '', color: 'text-slate-400', bgColor: 'bg-slate-800/50', borderColor: 'border-slate-700/50' },
-        { rank: 8, team: seventhPlaceLoser, badge: '', color: 'text-rose-400', bgColor: 'bg-rose-500/10', borderColor: 'border-rose-500/20' },
+        { rank: 8, team: seventhPlaceLoser, badge: '', color: 'text-slate-400', bgColor: 'bg-slate-800/50', borderColor: 'border-slate-700/50' },
     ] : [];
 
 
@@ -555,18 +555,22 @@ export default function PlayoffsVSLPage() {
                                     ))}
                                 </div>
 
-                                <div className="mt-4 bg-slate-900/50 rounded-lg p-3 text-xs text-slate-400 flex flex-wrap gap-4">
+                                <div className="mt-4 bg-slate-900/50 rounded-lg p-3 text-xs text-slate-400 flex flex-col gap-2">
                                     <div className="flex items-center gap-2">
                                         <span className="w-2 h-2 rounded-full bg-amber-500"></span>
-                                        1.-2. → CEV Şampiyonlar Ligi
+                                        1.-3. → CEV Şampiyonlar Ligi
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                                        4. → CEV Kupası
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                        3.-5. → CEV Cup / Challenge Cup
+                                        5. → CEV Challenge Kupası
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <span className="w-2 h-2 rounded-full bg-rose-500"></span>
-                                        8. → Küme Düşme Riski
+                                        <span className="w-2 h-2 rounded-full bg-purple-500"></span>
+                                        6. → Balkan Kupası
                                     </div>
                                 </div>
                             </div>
