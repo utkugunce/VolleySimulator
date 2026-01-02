@@ -183,7 +183,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                         <span className={`transition-transform duration-200 ${isCollapsed ? '' : 'rotate-90'}`}>▶</span>
                                         📆 {formatDateDisplay(dateStr)}
                                     </span>
-                                    <span className="text-[9px] text-slate-500 bg-slate-800/50 px-2 py-0.5 rounded">{dateMatches.length} maç</span>
+                                    <span className="text-[9px] text-slate-400 bg-slate-800/50 px-2 py-0.5 rounded">{dateMatches.length} maç</span>
                                 </button>
 
                                 {!isCollapsed && dateMatches.map((match) => {
@@ -215,7 +215,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                             <div className="flex items-center justify-between text-[10px] mb-1.5">
                                                 <div className={`flex-1 text-right font-semibold truncate pr-2 flex items-center justify-end gap-1 ${currentScore && getScoreWinner(currentScore) === 'home' ? 'text-emerald-400' : 'text-slate-300'}`}>
                                                     {homeRank && (
-                                                        <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${homeRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : homeRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-500'}`}>
+                                                        <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${homeRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : homeRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-300'}`}>
                                                             {homeRank}.
                                                         </span>
                                                     )}
@@ -225,7 +225,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                                 <div className={`flex-1 text-left font-semibold truncate pl-2 flex items-center gap-1 ${currentScore && getScoreWinner(currentScore) === 'away' ? 'text-emerald-400' : 'text-slate-300'}`}>
                                                     <span className="truncate">{match.awayTeam}</span>
                                                     {awayRank && (
-                                                        <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${awayRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : awayRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-500'}`}>
+                                                        <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${awayRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : awayRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-300'}`}>
                                                             {awayRank}.
                                                         </span>
                                                     )}
@@ -253,7 +253,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                                                 className={`w-8 h-6 flex items-center justify-center rounded text-[10px] font-bold transition-all border ${isSelected
                                                                     ? homeWin
                                                                         ? 'bg-emerald-700 border-emerald-600 text-white shadow-emerald-600/30 shadow-md'
-                                                                        : 'bg-rose-600 border-rose-500 text-white shadow-rose-500/30 shadow-md'
+                                                                        : 'bg-rose-700 border-rose-600 text-white shadow-rose-600/30 shadow-md'
                                                                     : 'bg-slate-950 border-slate-700 text-slate-400 hover:bg-slate-800 hover:text-slate-300'
                                                                     }`}
                                                             >
