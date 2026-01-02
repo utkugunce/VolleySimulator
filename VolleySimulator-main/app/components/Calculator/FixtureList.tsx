@@ -1,6 +1,8 @@
 import { useState } from "react";
+import Link from "next/link";
 import { Match } from "../../types";
 import { SCORES, normalizeTeamName } from "../../utils/calculatorUtils";
+import { generateTeamSlug } from "../../utils/teamSlug";
 import TeamAvatar from "../TeamAvatar";
 
 interface FixtureListProps {
@@ -220,13 +222,13 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                                             {homeRank}.
                                                         </span>
                                                     )}
-                                                    <span className="truncate">{match.homeTeam}</span>
+                                                    <Link href={`/takimlar/${generateTeamSlug(match.homeTeam)}`} className="truncate hover:underline">{match.homeTeam}</Link>
                                                     <TeamAvatar name={match.homeTeam} size="sm" />
                                                 </div>
                                                 <div className="text-[10px] text-slate-600 font-mono shrink-0 px-1">v</div>
                                                 <div className={`flex-1 text-left font-semibold truncate pl-2 flex items-center gap-1 ${currentScore && getScoreWinner(currentScore) === 'away' ? 'text-emerald-400' : 'text-slate-300'}`}>
                                                     <TeamAvatar name={match.awayTeam} size="sm" />
-                                                    <span className="truncate">{match.awayTeam}</span>
+                                                    <Link href={`/takimlar/${generateTeamSlug(match.awayTeam)}`} className="truncate hover:underline">{match.awayTeam}</Link>
                                                     {awayRank && (
                                                         <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${awayRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : awayRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-300'}`}>
                                                             {awayRank}.

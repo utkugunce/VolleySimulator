@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { TeamStats } from "../../types";
 import { TeamDiff } from "../../utils/scenarioUtils";
+import { generateTeamSlug } from "../../utils/teamSlug";
 import TeamAvatar from "../TeamAvatar";
 
 interface StandingsTableProps {
@@ -138,10 +140,10 @@ export default function StandingsTable({
                                         </div>
                                     </td>
                                     <td className={`${rowClass} font-medium`}>
-                                        <div className="flex items-center gap-2">
+                                        <Link href={`/takimlar/${generateTeamSlug(team.name)}`} className="flex items-center gap-2 hover:opacity-80 transition-opacity group">
                                             <TeamAvatar name={team.name} size={compact ? 'sm' : 'md'} priority={idx < 5} />
-                                            <span className={`block truncate ${isPlayoff ? 'text-emerald-600 dark:text-emerald-400' : isSecondaryPlayoff ? 'text-amber-600 dark:text-amber-400' : isRelegation ? 'text-rose-600 dark:text-rose-400' : 'text-text-primary'}`}>{team.name}</span>
-                                        </div>
+                                            <span className={`block truncate group-hover:underline ${isPlayoff ? 'text-emerald-600 dark:text-emerald-400' : isSecondaryPlayoff ? 'text-amber-600 dark:text-amber-400' : isRelegation ? 'text-rose-600 dark:text-rose-400' : 'text-text-primary'}`}>{team.name}</span>
+                                        </Link>
                                     </td>
                                     <td className={`${rowClass} text-center text-text-secondary`}>{team.played}</td>
                                     <td className={`${rowClass} text-center text-emerald-500 font-medium`}>{team.wins}</td>
