@@ -160,9 +160,9 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                 ) : (
                     sortedDateGroups.map(([dateStr, dateMatches]) => (
                         <div key={dateStr} className="space-y-2">
-                            <div className="sticky top-0 z-5 bg-slate-950/90 backdrop-blur-sm py-2 px-3 rounded-lg border border-slate-800 flex items-center justify-between">
-                                <span className="text-sm font-bold text-indigo-400">📆 {formatDateDisplay(dateStr)}</span>
-                                <span className="text-[10px] text-slate-500 bg-slate-800/50 px-2 py-0.5 rounded">{dateMatches.length} maç</span>
+                            <div className="sticky top-0 z-5 bg-slate-950/90 backdrop-blur-sm py-1 px-3 rounded-lg border border-slate-800 flex items-center justify-between">
+                                <span className="text-[10px] font-bold text-indigo-400">📆 {formatDateDisplay(dateStr)}</span>
+                                <span className="text-[9px] text-slate-500 bg-slate-800/50 px-2 py-0.5 rounded">{dateMatches.length} maç</span>
                             </div>
 
 

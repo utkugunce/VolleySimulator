@@ -70,7 +70,7 @@ function CalculatorContent() {
                 teamsData = data.teams.map((t: any) => ({
                     ...t,
                     name: t.name.toLocaleUpperCase('tr-TR'),
-                    groupName: t.groupName.replace('Group ', '') + ' GRUBU'
+                    groupName: t.groupName.includes('A') ? 'A GRUBU' : 'B GRUBU'
                 }));
             }
 
@@ -80,7 +80,7 @@ function CalculatorContent() {
                     homeTeam: m.homeTeam.toLocaleUpperCase('tr-TR'),
                     awayTeam: m.awayTeam.toLocaleUpperCase('tr-TR'),
                     matchDate: m.date,
-                    groupName: m.groupName.replace('Group ', '') + ' GRUBU'
+                    groupName: m.groupName.includes('A') ? 'A GRUBU' : 'B GRUBU'
                 }));
             }
 
