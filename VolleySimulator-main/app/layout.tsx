@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import { AuthProvider } from "./context/AuthContext";
 import AuthGuard from "./components/AuthGuard";
 import { QueryProvider } from "./providers/QueryProvider";
+import AccessiBeWidget from "./components/AccessiBeWidget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -64,9 +65,9 @@ export default function RootLayout({
             </ToastProvider>
           </AuthProvider>
         </QueryProvider>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+        {/* Service Worker Registration */}
+        <Script id="sw-register" strategy="lazyOnload">
+          {`
               if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function() {
                   navigator.serviceWorker.register('/sw.js').then(function(registration) {
@@ -76,9 +77,9 @@ export default function RootLayout({
                   });
                 });
               }
-            `,
-          }}
-        />
+          `}
+        </Script>
+
         <Analytics />
         <SpeedInsights />
 
@@ -98,22 +99,7 @@ export default function RootLayout({
         </Script>
 
         {/* accessiBe Widget */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-            (function(){
-                var s    = document.createElement('script');
-                var h    = document.querySelector('head') || document.body;
-                s.src    = 'https://acsbapp.com/apps/app/dist/js/app.js';
-                s.async  = true;
-                s.onload = function(){
-                    acsbJS.init();
-                };
-                h.appendChild(s);
-            })();
-            `
-          }}
-        />
+        <AccessiBeWidget />
       </body>
     </html>
   );
