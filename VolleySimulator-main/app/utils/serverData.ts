@@ -80,7 +80,7 @@ export async function getLeagueData(league: string): Promise<LeagueData> {
                     // Start from scratch for correctness
                     const newTeams: Record<string, TeamStats> = {};
                     (data.teams || []).forEach((t: TeamStats) => {
-                        newTeams[t.name] = { ...t, played: 0, wins: 0, losses: 0, points: 0, setsWon: 0, setsLost: 0 };
+                        newTeams[t.name] = { ...t, played: 0, wins: 0, points: 0, setsWon: 0, setsLost: 0 };
                     });
 
                     fixture.forEach((m: Match) => {
