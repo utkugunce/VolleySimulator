@@ -63,18 +63,13 @@ export default function PageHeader({
     };
 
     return (
-        <div className="bg-bg-surface border-b border-white/10 p-4 sticky top-14 z-20 backdrop-blur-md bg-opacity-80">
-            <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                    <div className="w-1 h-12 bg-primary rounded-full shadow-[0_0_10px_var(--color-primary)]"></div>
-                    <div>
-                        <h1 className="text-2xl font-black italic tracking-tighter text-text-main uppercase"
-                            style={{ textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>
-                            {title}
-                        </h1>
-                        <p className="text-sm font-bold text-text-muted tracking-widest">{subtitle}</p>
-                    </div>
-                </div>{/* League Navigation - Links preserve current page type */}
+        <div className="flex flex-col sm:flex-row items-center justify-between bg-slate-900 border border-slate-800 rounded-lg p-3 shadow-sm flex-shrink-0 gap-3">
+            <div className="flex items-center gap-3">
+                <div>
+                    <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">{title}</h1>
+                    <p className="text-[10px] text-slate-500 hidden sm:block">{subtitle}</p>
+                </div>
+                {/* League Navigation - Links preserve current page type */}
                 {showLeagueLinks && (
                     <div className="hidden md:flex items-center gap-1 ml-2 px-2 py-1 bg-slate-800/50 rounded-lg border border-slate-700/50">
                         <Link href={`/vsl${currentPageType}`} className={getLeagueLinkClass('/vsl')}>

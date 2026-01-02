@@ -1,100 +1,239 @@
 @import "tailwindcss";
 
 :root {
-  /* --- DEFAULT: DARK MODE --- */
+  --background: #0f172a;
+  --foreground: #f1f5f9;
+  --surface-primary: #1e293b;
+  --surface-secondary: #334155;
+  --border-color: #475569;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
 
-  /* Zemin Renkleri */
-  --color-base: #0f172a;
-  /* Slate-900 */
-  --color-surface: #1e293b;
-  /* Slate-800 */
-  --color-surface-hover: #334155;
-  /* Slate-700 */
-
-  /* Metin Renkleri */
-  --color-text-main: #f8fafc;
-  /* Slate-50 */
-  --color-text-muted: #94a3b8;
-  /* Slate-400 */
-
-  /* Marka Renkleri */
+  /* Premium Color Palette */
   --color-primary: #10b981;
-  /* Emerald-500 */
+  --color-primary-light: #34d399;
+  --color-primary-dark: #059669;
   --color-accent: #f59e0b;
-  /* Amber-500 */
+  --color-accent-light: #fbbf24;
+  --color-accent-dark: #d97706;
 
-  /* Efektler */
-  --glass-bg: rgba(15, 23, 42, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glow-color: rgba(16, 185, 129, 0.5);
-  /* Primary Glow */
+  /* Glow Colors */
+  --glow-primary: rgba(16, 185, 129, 0.4);
+  --glow-accent: rgba(245, 158, 11, 0.4);
+  --glow-blue: rgba(59, 130, 246, 0.4);
+
+  /* Surface Colors */
+  --surface-dark: rgba(15, 23, 42, 0.8);
+  --surface-glass: rgba(255, 255, 255, 0.05);
+  --border-subtle: rgba(255, 255, 255, 0.1);
 }
 
-/* Light Mode Override */
-:root[data-theme="light"] {
-  /* --- LIGHT MODE --- */
+/* Light Theme - Premium Warm Aesthetic */
+[data-theme="light"] {
+  --background: #faf9f7;
+  --foreground: #1a1a1a;
+  --surface-primary: #ffffff;
+  --surface-secondary: #f5f3f0;
+  --border-color: #e5e2dd;
+  --text-primary: #1a1a1a;
+  --text-secondary: #5c5c5c;
+  --text-muted: #8a8a8a;
+  --surface-dark: rgba(255, 255, 255, 0.95);
+  --surface-glass: rgba(0, 0, 0, 0.03);
+  --border-subtle: rgba(0, 0, 0, 0.08);
 
-  /* Zemin */
-  --color-base: #f8fafc;
-  /* Slate-50 */
-  --color-surface: #ffffff;
-  /* White */
-  --color-surface-hover: #f1f5f9;
-  /* Slate-100 */
+  /* Light Theme Premium Colors - Adjusted for light bg */
+  --color-primary: #0d9488;
+  --color-primary-light: #14b8a6;
+  --color-primary-dark: #0f766e;
+  --color-accent: #ea580c;
+  --color-accent-light: #f97316;
+  --color-accent-dark: #c2410c;
 
-  /* Metin */
-  --color-text-main: #0f172a;
-  /* Slate-900 */
-  --color-text-muted: #64748b;
-  /* Slate-500 */
+  /* Light Theme Glow Colors - Subtle */
+  --glow-primary: rgba(13, 148, 136, 0.15);
+  --glow-accent: rgba(234, 88, 12, 0.15);
+  --glow-blue: rgba(37, 99, 235, 0.15);
+}
 
-  /* Marka */
-  --color-primary: #059669;
-  /* Emerald-600 */
-  --color-accent: #d97706;
-  /* Amber-600 */
-
-  /* Efektler */
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(15, 23, 42, 0.1);
-  --glow-color: rgba(5, 150, 105, 0.3);
+/* Dark Theme (explicit) */
+[data-theme="dark"] {
+  --background: #0f172a;
+  --foreground: #f1f5f9;
+  --surface-primary: #1e293b;
+  --surface-secondary: #334155;
+  --border-color: #475569;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
 }
 
 @theme inline {
-  /* Semantic Color Mapping */
-  --color-bg-base: var(--color-base);
-  --color-bg-surface: var(--color-surface);
-  --color-bg-surface-hover: var(--color-surface-hover);
-
-  --color-text-main: var(--color-text-main);
-  --color-text-muted: var(--color-text-muted);
-
-  --color-primary: var(--color-primary);
-  --color-accent: var(--color-accent);
-
-  /* Custom Utilities */
-  --font-sans: "Geist Sans", sans-serif;
-  --font-mono: "Geist Mono", monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--color-base);
-  color: var(--color-text-main);
-  font-family: var(--font-sans);
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Dynamic Glassmorphism */
-.glass {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
+/* ============================================================================
+   LIGHT THEME RE-ENGINEERED (Premium Sport UI)
+   ============================================================================ */
+
+[data-theme="light"] {
+  /* Core Variables */
+  --background: #f3f5f8;
+  /* Modern soft gray background */
+  --foreground: #0f172a;
+  /* Slate 900 */
+  --surface-primary: #ffffff;
+  --surface-secondary: #f8fafc;
+  --border-color: #e2e8f0;
+
+  /* Brand Colors - Adjusted for Light Mode Contrast */
+  --color-primary: #059669;
+  /* Emerald 600 */
+  --color-primary-light: #34d399;
+  --color-primary-dark: #047857;
+  --color-accent: #f59e0b;
+  /* Amber 500 */
+  --color-accent-light: #fbbf24;
+  --color-accent-dark: #d97706;
+
+  /* Shadows */
+  --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
 }
 
-/* Dynamic Glow */
-.glow-effect {
-  box-shadow: 0 0 15px var(--glow-color);
+/* 
+   MAPPING STRATEGY: 
+   Dark Mode uses Slate-950 as background and Slate-900 as cards.
+   Light Mode flips this: Light Gray as background, White as cards.
+*/
+
+/* 1. Backgrounds */
+[data-theme="light"] .bg-slate-950 {
+  background-color: #f3f5f8 !important;
+  /* Page Background */
+}
+
+[data-theme="light"] .bg-slate-900 {
+  background-color: #ffffff !important;
+  /* Card Background */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e2e8f0;
+}
+
+[data-theme="light"] .bg-slate-900\/95,
+[data-theme="light"] .bg-slate-900\/80,
+[data-theme="light"] .bg-slate-900\/50,
+[data-theme="light"] .bg-slate-900\/40 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+[data-theme="light"] .bg-slate-950\/40,
+[data-theme="light"] .bg-slate-950\/50 {
+  background-color: rgba(241, 245, 249, 0.8) !important;
+  /* Slate 100 with opacity */
+}
+
+[data-theme="light"] .bg-slate-800 {
+  background-color: #f8fafc !important;
+  /* Secondary elements */
+  border: 1px solid #e2e8f0;
+}
+
+/* 2. Typography */
+[data-theme="light"] .text-white,
+[data-theme="light"] .text-slate-50,
+[data-theme="light"] .text-slate-100 {
+  color: #0f172a !important;
+  /* Deep Navy/Black for headers */
+}
+
+[data-theme="light"] .text-slate-200,
+[data-theme="light"] .text-slate-300 {
+  color: #334155 !important;
+  /* Slate 700 for body text */
+}
+
+[data-theme="light"] .text-slate-400 {
+  color: #64748b !important;
+  /* Slate 500 for muted text */
+}
+
+[data-theme="light"] .text-slate-500 {
+  color: #94a3b8 !important;
+  /* Slate 400 for even more muted */
+}
+
+/* 3. Borders & Dividers */
+[data-theme="light"] .border-slate-700,
+[data-theme="light"] .border-slate-800 {
+  border-color: #e2e8f0 !important;
+  /* Clean gray border */
+}
+
+[data-theme="light"] .divide-slate-800> :not([hidden])~ :not([hidden]) {
+  border-color: #e2e8f0 !important;
+}
+
+/* 4. Special Brand Colors (Keep them vibrant) */
+[data-theme="light"] .bg-emerald-600 {
+  background-color: #10b981 !important;
+  /* Keeping original emerald */
+}
+
+[data-theme="light"] .text-emerald-400,
+[data-theme="light"] .text-emerald-500 {
+  color: #059669 !important;
+  /* Darker emerald for reading on white */
+}
+
+[data-theme="light"] .bg-emerald-950\/20,
+[data-theme="light"] .bg-emerald-950\/30 {
+  background-color: rgba(16, 185, 129, 0.1) !important;
+  /* Light green tint */
+}
+
+/* 5. Gradients adjustments */
+[data-theme="light"] .from-slate-900 {
+  --tw-gradient-from: #ffffff !important;
+}
+
+[data-theme="light"] .to-slate-950 {
+  --tw-gradient-to: #f3f5f8 !important;
+}
+
+/* 6. Navigation Bar Specific */
+[data-theme="light"] nav.fixed {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+/* 7. Inputs */
+[data-theme="light"] input,
+[data-theme="light"] select,
+[data-theme="light"] textarea {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] input:focus,
+[data-theme="light"] select:focus {
+  border-color: #10b981 !important;
+  ring-color: #10b981 !important;
 }
 
 
