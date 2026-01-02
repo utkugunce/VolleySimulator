@@ -316,10 +316,10 @@ function MatchCard({ match, teamName, isPending = false }: { match: Match; teamN
     const isHome = match.homeTeam?.toLowerCase().includes(teamName.toLowerCase()) ||
         teamName.toLowerCase().includes(match.homeTeam?.toLowerCase() || '');
 
-    const won = match.homeScore !== undefined && match.awayScore !== undefined &&
+    const won = match.homeScore != null && match.awayScore != null &&
         ((isHome && match.homeScore > match.awayScore) || (!isHome && match.awayScore > match.homeScore));
 
-    const lost = match.homeScore !== undefined && match.awayScore !== undefined &&
+    const lost = match.homeScore != null && match.awayScore != null &&
         ((isHome && match.homeScore < match.awayScore) || (!isHome && match.awayScore < match.homeScore));
 
     return (
