@@ -20,6 +20,19 @@ export async function getLeagueData(league: string): Promise<LeagueData> {
         const content = fs.readFileSync(filePath, 'utf8');
         const data = JSON.parse(content);
 
+        // Filter out withdrawn teams (ligden çekilen takımlar)
+        if (league === '1lig') {
+            const withdrawnTeams = ['Edremit Bld. Altınoluk', 'İzmirspor'];
+            if (data.teams) {
+                data.teams = data.teams.filter((t: any) => !withdrawnTeams.includes(t.name));
+            }
+            const filterMatches = (matches: any[]) => matches.filter((m: any) =>
+                !withdrawnTeams.includes(m.homeTeam) && !withdrawnTeams.includes(m.awayTeam)
+            );
+            if (data.fixture) data.fixture = filterMatches(data.fixture);
+            if (data.matches) data.matches = filterMatches(data.matches);
+        }
+
         // Normalize fixture data
         let fixture = (data.fixture || data.matches || []).map((m: any) => ({
             ...m,
