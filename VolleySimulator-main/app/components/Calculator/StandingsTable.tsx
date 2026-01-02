@@ -73,7 +73,7 @@ export default function StandingsTable({
                 <table className={`w-full text-left ${compact ? 'text-xs' : 'text-xs sm:text-sm'}`}>
                     <thead className="bg-slate-900/50 text-slate-400 tracking-wider font-semibold border-b border-slate-800 sticky top-0">
                         <tr>
-                            <th className={`${headClass} w-8 text-center`}>#</th>
+                            <th className={`${headClass} w-14 text-left pl-2`}>#</th>
                             <th className={headClass}>Takım</th>
                             <th className={`${headClass} w-8 text-center`} title="Oynanan Maç">OM</th>
                             <th className={`${headClass} w-8 text-center text-emerald-400`} title="Galibiyet">G</th>
@@ -124,8 +124,8 @@ export default function StandingsTable({
                             return (
                                 <tr key={team.name} className={`hover:bg-slate-800/30 transition-colors ${isChampion ? 'bg-gradient-to-r from-amber-900/30 to-amber-800/20' : isPlayoff ? 'bg-emerald-900/15' : isSecondaryPlayoff ? 'bg-amber-900/15' : isRelegation ? 'bg-rose-900/15' : ''}`}>
                                     <td className={`${rowClass} text-center font-mono`}>
-                                        <div className="flex items-center justify-center gap-0.5">
-                                            <div className={`${rankSize} flex items-center justify-center rounded-full font-bold ${isChampion ? 'bg-gradient-to-b from-amber-400 to-amber-600 text-white shadow-amber-500/50 shadow-lg' :
+                                        <div className="flex items-center justify-start gap-1 pl-1">
+                                            <div className={`${rankSize} flex-shrink-0 flex items-center justify-center rounded-full font-bold ${isChampion ? 'bg-gradient-to-b from-amber-400 to-amber-600 text-white shadow-amber-500/50 shadow-lg' :
                                                 isPlayoff ? 'bg-emerald-500 text-white shadow-emerald-500/30 shadow-lg' :
                                                     isSecondaryPlayoff ? 'bg-amber-500 text-white shadow-amber-500/30 shadow-lg' :
                                                         isRelegation ? 'bg-rose-500 text-white shadow-rose-500/30 shadow-lg' :
