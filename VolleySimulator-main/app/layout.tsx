@@ -9,6 +9,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Navbar from "./components/Navbar";
 import { AuthProvider } from "./context/AuthContext";
 import AuthGuard from "./components/AuthGuard";
+import { QueryProvider } from "./providers/QueryProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,17 +51,19 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-950`}
         suppressHydrationWarning
       >
-        <AuthProvider>
-          <ToastProvider>
-            <Navbar />
-            <div className="pt-12 pb-16 min-h-screen flex flex-col">
-              <AuthGuard>
-                {children}
-              </AuthGuard>
-              <ScrollToTop />
-            </div>
-          </ToastProvider>
-        </AuthProvider>
+        <QueryProvider>
+          <AuthProvider>
+            <ToastProvider>
+              <Navbar />
+              <div className="pt-12 pb-16 min-h-screen flex flex-col">
+                <AuthGuard>
+                  {children}
+                </AuthGuard>
+                <ScrollToTop />
+              </div>
+            </ToastProvider>
+          </AuthProvider>
+        </QueryProvider>
         <script
           dangerouslySetInnerHTML={{
             __html: `
