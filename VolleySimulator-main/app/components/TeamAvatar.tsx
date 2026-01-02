@@ -41,14 +41,29 @@ export default function TeamAvatar({ name, size = 'md', showName = false, positi
     return (
         <div className="flex items-center gap-2">
             <div
-                className={`${sizes[size]} rounded-full flex items-center justify-center font-bold text-white uppercase ${position ? positionColors[position] || '' : ''}`}
-                // eslint-disable-next-line react-dom/no-unsafe-target-blank
-                style={{ backgroundColor: stringToColor(name) }}
+                className={`${sizes[size]} rounded-full flex items-center justify-center font-bold text-white uppercase relative overflow-hidden bg-slate-800 ${position ? positionColors[position] || '' : ''}`}
                 title={name}
                 role="img"
                 aria-label={name}
             >
-                {getInitials(name)}
+                {/* Try to load image based on name */}
+                {/* First, try exact name match from public/logos */}
+                <img
+                    src={`/logos/${name}.png`}
+                    alt={name}
+                    className="w-full h-full object-contain p-0.5"
+                    onError={(e) => {
+                        // Fallback to initials if image fails
+                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                        e.currentTarget.parentElement!.style.backgroundColor = stringToColor(name);
+                    }}
+                />
+
+                {/* Fallback Initials (Hidden by default, shown on error) */}
+                <div className="hidden w-full h-full flex items-center justify-center absolute inset-0">
+                    {getInitials(name)}
+                </div>
             </div>
             {showName && (
                 <span className="text-sm text-white truncate">{name}</span>
