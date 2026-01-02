@@ -130,8 +130,8 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                     <button
                         onClick={() => setActiveTab('upcoming')}
                         className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'upcoming'
-                            ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20'
-                            : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
+                            ? 'bg-primary text-white shadow-lg shadow-primary/20'
+                            : 'bg-bg-surface text-text-muted hover:bg-bg-surface-hover'
                             }`}
                     >
                         <span>📅</span>
@@ -141,8 +141,8 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                     <button
                         onClick={() => setActiveTab('past')}
                         className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'past'
-                            ? 'bg-slate-600 text-white shadow-lg'
-                            : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
+                            ? 'bg-bg-surface commit-btn text-text-main shadow-lg'
+                            : 'bg-bg-surface text-text-muted hover:bg-bg-surface-hover'
                             }`}
                     >
                         <span>✅</span>
@@ -160,9 +160,9 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                 ) : (
                     sortedDateGroups.map(([dateStr, dateMatches]) => (
                         <div key={dateStr} className="space-y-2">
-                            <div className="sticky top-0 z-5 bg-slate-950/90 backdrop-blur-sm py-1 px-3 rounded-lg border border-slate-800 flex items-center justify-between">
-                                <span className="text-[10px] font-bold text-indigo-400">📆 {formatDateDisplay(dateStr)}</span>
-                                <span className="text-[9px] text-slate-500 bg-slate-800/50 px-2 py-0.5 rounded">{dateMatches.length} maç</span>
+                            <div className="sticky top-0 z-5 bg-bg-surface/90 backdrop-blur-sm py-1 px-3 rounded-lg border border-white/10 flex items-center justify-between shadow-sm">
+                                <span className="text-[10px] font-bold text-primary">📆 {formatDateDisplay(dateStr)}</span>
+                                <span className="text-[9px] text-text-muted bg-bg-base px-2 py-0.5 rounded border border-white/5">{dateMatches.length} maç</span>
                             </div>
 
 

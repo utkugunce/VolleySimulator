@@ -55,77 +55,78 @@ export default function Navbar() {
     return (
         <>
             {/* Top Header */}
-            <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b h-12 transition-all duration-300 ${scrolled
-                ? 'bg-slate-900/95 border-slate-700 shadow-lg'
-                : 'bg-slate-900/80 border-slate-800'
-                }`}>
-                <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
-                    {/* Brand */}
-                    <Link href="/" className="flex items-center gap-2 group p-1 h-full" prefetch={true}>
-                        <Logo size="md" className="group-hover:scale-110 transition-transform duration-300" />
-                        <span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400 hidden sm:inline">
-                            VolleySimulator
-                        </span>
-                    </Link>
+            <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${scrolled ? 'bg-bg-surface/90 border-white/10 backdrop-blur-md shadow-lg shadow-black/5' : 'bg-transparent border-transparent'}`}>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex items-center justify-between h-16">
+                        {/* Logo Section */}
+                        <Link href="/" className="flex items-center gap-2 group">
+                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-emerald-600 flex items-center justify-center text-white font-black italic transform group-hover:scale-110 transition-transform shadow-[0_0_15px_var(--glow-color)]">
+                                V
+                            </div>
+                            <span className="text-xl font-black italic tracking-tighter text-text-main group-hover:text-primary transition-colors">
+                                VOLLEY<span className="text-primary">SIM</span>
+                            </span>
+                        </Link>
 
-                    {/* Theme Toggle + User Info or Login Button */}
-                    <div className="flex items-center gap-2">
-                        <ThemeToggle />
+                        {/* Theme Toggle + User Info or Login Button */}
+                        <div className="flex items-center gap-2">
+                            <ThemeToggle />
 
-                        {!loading && (
-                            user ? (
-                                <div className="flex items-center gap-3">
-                                    {/* Achievements Badge */}
-                                    <div className="hidden sm:flex items-center gap-1 text-xs text-amber-400 bg-amber-500/20 px-2 py-1 rounded-full border border-amber-500/30">
-                                        <span className="font-bold">{gameState.achievements.length}</span>
-                                    </div>
-
-                                    {/* Level + XP Bar */}
-                                    <div className="flex items-center gap-2">
-                                        <div className="hidden sm:block">
-                                            <div className="w-20 h-1.5 bg-slate-700 rounded-full overflow-hidden">
-                                                <div
-                                                    className="h-full bg-gradient-to-r from-amber-400 to-orange-400 transition-all"
-                                                    style={{ width: `${xpProgress}%` }}
-                                                />
-                                            </div>
+                            {!loading && (
+                                user ? (
+                                    <div className="flex items-center gap-3">
+                                        {/* Achievements Badge */}
+                                        <div className="hidden sm:flex items-center gap-1 text-xs text-amber-400 bg-amber-500/20 px-2 py-1 rounded-full border border-amber-500/30">
+                                            <span className="font-bold">{gameState.achievements.length}</span>
                                         </div>
-                                        <span className="text-xs font-bold text-amber-400 bg-amber-500/20 px-2 py-0.5 rounded-full border border-amber-500/30">
-                                            Lv.{gameState.level}
-                                        </span>
-                                    </div>
 
-                                    {/* User Name */}
+                                        {/* Level + XP Bar */}
+                                        <div className="flex items-center gap-2">
+                                            <div className="hidden sm:block">
+                                                <div className="w-20 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                                                    <div
+                                                        className="h-full bg-gradient-to-r from-amber-400 to-orange-400 transition-all"
+                                                        style={{ width: `${xpProgress}%` }}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <span className="text-xs font-bold text-amber-400 bg-amber-500/20 px-2 py-0.5 rounded-full border border-amber-500/30">
+                                                Lv.{gameState.level}
+                                            </span>
+                                        </div>
+
+                                        {/* User Name */}
+                                        <Link
+                                            href="/profile"
+                                            className="flex items-center gap-2 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-sm font-medium rounded-lg transition-all"
+                                            prefetch={true}
+                                        >
+                                            <div className="w-6 h-6 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                                                {userName[0].toUpperCase()}
+                                            </div>
+                                            <span className="hidden md:inline max-w-[100px] truncate">{userName}</span>
+                                        </Link>
+
+                                        {/* Logout Button */}
+                                        <button
+                                            onClick={() => signOut()}
+                                            className="px-2 py-1.5 bg-slate-800 hover:bg-rose-900/50 border border-slate-700 hover:border-rose-600/50 text-slate-400 hover:text-rose-400 text-xs font-medium rounded-lg transition-all"
+                                            title="Çıkış Yap"
+                                        >
+                                            Çıkış
+                                        </button>
+                                    </div>
+                                ) : (
                                     <Link
-                                        href="/profile"
-                                        className="flex items-center gap-2 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-sm font-medium rounded-lg transition-all"
+                                        href="/login"
+                                        className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-sm font-bold rounded-lg shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:scale-105 active:scale-95 transition-all duration-200"
                                         prefetch={true}
                                     >
-                                        <div className="w-6 h-6 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                                            {userName[0].toUpperCase()}
-                                        </div>
-                                        <span className="hidden md:inline max-w-[100px] truncate">{userName}</span>
+                                        <span>Giriş Yap</span>
                                     </Link>
-
-                                    {/* Logout Button */}
-                                    <button
-                                        onClick={() => signOut()}
-                                        className="px-2 py-1.5 bg-slate-800 hover:bg-rose-900/50 border border-slate-700 hover:border-rose-600/50 text-slate-400 hover:text-rose-400 text-xs font-medium rounded-lg transition-all"
-                                        title="Çıkış Yap"
-                                    >
-                                        Çıkış
-                                    </button>
-                                </div>
-                            ) : (
-                                <Link
-                                    href="/login"
-                                    className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-sm font-bold rounded-lg shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:scale-105 active:scale-95 transition-all duration-200"
-                                    prefetch={true}
-                                >
-                                    <span>Giriş Yap</span>
-                                </Link>
-                            )
-                        )}
+                                )
+                            )}
+                        </div>
                     </div>
                 </div>
             </nav>
