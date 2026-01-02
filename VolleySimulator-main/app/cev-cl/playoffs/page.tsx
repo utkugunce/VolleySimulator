@@ -275,7 +275,7 @@ export default function CEVCLPlayoffsPage() {
                         {/* Match 1 */}
                         <div className="flex flex-col gap-1">
                             <span className="text-[9px] text-slate-500 uppercase font-bold pl-1">
-                                {matchFormat === '1match' ? 'Maç Sonucu' : '1. Maç'}
+                                {matchFormat === '1match' ? `${homeTeam} vs ${awayTeam}` : `1. Maç: ${homeTeam} vs ${awayTeam}`}
                             </span>
                             <div className="flex flex-wrap gap-1">
                                 {['3-0', '3-1', '3-2', '2-3', '1-3', '0-3'].map(score => {
@@ -301,7 +301,7 @@ export default function CEVCLPlayoffsPage() {
                         {/* Match 2 (Only for 2leg) */}
                         {matchFormat === '2leg' && (
                             <div className="flex flex-col gap-1">
-                                <span className="text-[9px] text-slate-500 uppercase font-bold pl-1">2. Maç</span>
+                                <span className="text-[9px] text-slate-500 uppercase font-bold pl-1">2. Maç: {awayTeam} vs {homeTeam}</span>
                                 <div className="flex flex-wrap gap-1">
                                     {['3-0', '3-1', '3-2', '2-3', '1-3', '0-3'].map(score => {
                                         const isSelected = playoffOverrides[`${matchId}-m2`] === score;

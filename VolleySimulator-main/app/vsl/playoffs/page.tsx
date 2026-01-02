@@ -142,13 +142,14 @@ export default function PlayoffsVSLPage() {
             if (i === 1) isHigherSeedHome = false; // Lower seed hosts 1st match
             if (i === 4) isHigherSeedHome = false; // Lower seed hosts 4th match
 
-            // UI Label to show who is hosting
-            const hostLabel = isHigherSeedHome ? (homeTeam || 'Üst') : (awayTeam || 'Alt');
+            // UI Label to show match info (Home vs Away format)
+            const matchHomeTeam = isHigherSeedHome ? homeTeam : awayTeam;
+            const matchAwayTeam = isHigherSeedHome ? awayTeam : homeTeam;
 
             matchInputs.push(
                 <div key={i} className="flex flex-col gap-1 mb-2">
                     <span className="text-[9px] text-slate-500 uppercase font-bold pl-1">
-                        {i}. Maç (Ev: {hostLabel})
+                        {i}. Maç: {matchHomeTeam || 'Ev'} vs {matchAwayTeam || 'Deplasman'}
                     </span>
                     <select
                         value={playoffOverrides[`${matchId}-m${i}`] || ''}
