@@ -61,7 +61,7 @@ export default function TeamProfileClient({ teamSlug }: TeamProfileClientProps) 
 
                 for (const league of leagues) {
                     try {
-                        const res = await fetch(`/api/league/${league}`);
+                        const res = await fetch(`/api/${league}`);
                         if (!res.ok) continue;
 
                         const data = await res.json();
