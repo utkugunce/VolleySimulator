@@ -370,20 +370,19 @@ function CalculatorContent() {
                 {/* Action Bar (Group Selection + Actions) */}
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-2 bg-slate-900/40 rounded-xl border border-slate-800">
                     {/* Group Selection */}
-                    <div className="flex gap-1 items-center w-full sm:w-auto overflow-x-auto no-scrollbar pb-1 sm:pb-0">
-                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden sm:inline mr-1 shrink-0">GRUP:</span>
-                        {groups.map(groupName => (
-                            <button
-                                key={groupName}
-                                onClick={() => setSelectedGroup(groupName)}
-                                className={`px-4 py-1.5 rounded-lg text-xs font-black uppercase transition-all shrink-0 ${activeGroup === groupName
-                                    ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/20 scale-105'
-                                    : 'bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700'
-                                    }`}
-                            >
-                                {groupName}
-                            </button>
-                        ))}
+                    <div className="flex gap-2 items-center w-full sm:w-auto">
+                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden sm:inline whitespace-nowrap">GRUP:</span>
+                        <select
+                            value={activeGroup}
+                            onChange={(e) => setSelectedGroup(e.target.value)}
+                            className="appearance-none bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-lg px-4 py-2 border border-slate-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all outline-none cursor-pointer min-w-[120px]"
+                        >
+                            {groups.map(groupName => (
+                                <option key={groupName} value={groupName} className="bg-slate-900">
+                                    {groupName}
+                                </option>
+                            ))}
+                        </select>
                     </div>
 
                     {/* Actions - Removed overflow-x-auto to prevent clipping */}

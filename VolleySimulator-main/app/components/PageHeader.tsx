@@ -56,7 +56,7 @@ export default function PageHeader({
 
     const getLeagueLinkClass = (leaguePath: string) => {
         const isActive = pathname.startsWith(leaguePath);
-        return `px-2 py-1 rounded text-[10px] font-bold transition-all ${isActive
+        return `px-2 py-1 rounded text-[10px] font-bold transition-all flex items-center gap-1.5 ${isActive
             ? 'bg-white/10 text-white border border-white/20'
             : 'text-slate-400 hover:text-white hover:bg-white/5'
             }`;
@@ -73,15 +73,19 @@ export default function PageHeader({
                 {showLeagueLinks && (
                     <div className="hidden md:flex items-center gap-1 ml-2 px-2 py-1 bg-slate-800/50 rounded-lg border border-slate-700/50">
                         <Link href={`/vsl${currentPageType}`} className={getLeagueLinkClass('/vsl')}>
+                            <span className="w-2 h-2 rounded-full bg-rose-400"></span>
                             VSL
                         </Link>
                         <Link href={`/1lig${currentPageType}`} className={getLeagueLinkClass('/1lig')}>
+                            <span className="w-2 h-2 rounded-full bg-amber-400"></span>
                             1.Lig
                         </Link>
                         <Link href={`/2lig${currentPageType}`} className={getLeagueLinkClass('/2lig')}>
+                            <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
                             2.Lig
                         </Link>
                         <Link href={`/cev-cl${currentPageType}`} className={getLeagueLinkClass('/cev-cl')}>
+                            <span className="w-2 h-2 rounded-full bg-blue-500"></span>
                             Şampiyonlar Ligi
                         </Link>
                     </div>
