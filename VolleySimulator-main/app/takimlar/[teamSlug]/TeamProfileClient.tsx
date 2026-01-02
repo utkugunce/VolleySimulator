@@ -56,10 +56,10 @@ export default function TeamProfileClient({ teamSlug }: TeamProfileClientProps) 
                         );
 
                         if (hasTeam || data.fixtures?.some((m: Match) =>
-                            m.HomeTeam?.toLowerCase().includes(teamName.toLowerCase()) ||
-                            m.AwayTeam?.toLowerCase().includes(teamName.toLowerCase()) ||
-                            teamName.toLowerCase().includes(m.HomeTeam?.toLowerCase() || '') ||
-                            teamName.toLowerCase().includes(m.AwayTeam?.toLowerCase() || '')
+                            m.homeTeam?.toLowerCase().includes(teamName.toLowerCase()) ||
+                            m.awayTeam?.toLowerCase().includes(teamName.toLowerCase()) ||
+                            teamName.toLowerCase().includes(m.homeTeam?.toLowerCase() || '') ||
+                            teamName.toLowerCase().includes(m.awayTeam?.toLowerCase() || '')
                         )) {
                             results.push({
                                 league,
@@ -106,20 +106,20 @@ export default function TeamProfileClient({ teamSlug }: TeamProfileClientProps) 
     // Get all matches for this team
     const teamMatches = leagueData.flatMap(ld =>
         ld.fixtures.filter(m =>
-            m.HomeTeam?.toLowerCase().includes(teamName.toLowerCase()) ||
-            m.AwayTeam?.toLowerCase().includes(teamName.toLowerCase()) ||
-            teamName.toLowerCase().includes(m.HomeTeam?.toLowerCase() || '') ||
-            teamName.toLowerCase().includes(m.AwayTeam?.toLowerCase() || '')
+            m.homeTeam?.toLowerCase().includes(teamName.toLowerCase()) ||
+            m.awayTeam?.toLowerCase().includes(teamName.toLowerCase()) ||
+            teamName.toLowerCase().includes(m.homeTeam?.toLowerCase() || '') ||
+            teamName.toLowerCase().includes(m.awayTeam?.toLowerCase() || '')
         )
     );
 
     // Separate past and upcoming matches
     const now = new Date();
     const pastMatches = teamMatches
-        .filter(m => m.HomeScore !== undefined && m.AwayScore !== undefined)
+        .filter(m => m.homeScore !== undefined && m.awayScore !== undefined)
         .slice(-5);
     const upcomingMatches = teamMatches
-        .filter(m => m.HomeScore === undefined || m.AwayScore === undefined)
+        .filter(m => m.homeScore === undefined || m.awayScore === undefined)
         .slice(0, 5);
 
     if (loading) {
@@ -275,8 +275,8 @@ export default function TeamProfileClient({ teamSlug }: TeamProfileClientProps) 
                                         {rank > 0 && (
                                             <div className="flex items-center gap-2">
                                                 <span className={`text-sm font-bold ${rank === 1 ? 'text-amber-400' :
-                                                        rank <= 4 ? 'text-emerald-400' :
-                                                            'text-slate-400'
+                                                    rank <= 4 ? 'text-emerald-400' :
+                                                        'text-slate-400'
                                                     }`}>
                                                     {rank}. sıra
                                                 </span>
@@ -313,25 +313,25 @@ export default function TeamProfileClient({ teamSlug }: TeamProfileClientProps) 
 
 // Match Card Component
 function MatchCard({ match, teamName, isPending = false }: { match: Match; teamName: string; isPending?: boolean }) {
-    const isHome = match.HomeTeam?.toLowerCase().includes(teamName.toLowerCase()) ||
-        teamName.toLowerCase().includes(match.HomeTeam?.toLowerCase() || '');
+    const isHome = match.homeTeam?.toLowerCase().includes(teamName.toLowerCase()) ||
+        teamName.toLowerCase().includes(match.homeTeam?.toLowerCase() || '');
 
-    const won = match.HomeScore !== undefined && match.AwayScore !== undefined &&
-        ((isHome && match.HomeScore > match.AwayScore) || (!isHome && match.AwayScore > match.HomeScore));
+    const won = match.homeScore !== undefined && match.awayScore !== undefined &&
+        ((isHome && match.homeScore > match.awayScore) || (!isHome && match.awayScore > match.homeScore));
 
-    const lost = match.HomeScore !== undefined && match.AwayScore !== undefined &&
-        ((isHome && match.HomeScore < match.AwayScore) || (!isHome && match.AwayScore < match.HomeScore));
+    const lost = match.homeScore !== undefined && match.awayScore !== undefined &&
+        ((isHome && match.homeScore < match.awayScore) || (!isHome && match.awayScore < match.homeScore));
 
     return (
         <div className={`flex items-center justify-between p-3 rounded-xl border ${isPending ? 'bg-surface-secondary/50 border-slate-700' :
-                won ? 'bg-emerald-500/10 border-emerald-500/30' :
-                    lost ? 'bg-rose-500/10 border-rose-500/30' :
-                        'bg-surface-secondary border-slate-700'
+            won ? 'bg-emerald-500/10 border-emerald-500/30' :
+                lost ? 'bg-rose-500/10 border-rose-500/30' :
+                    'bg-surface-secondary border-slate-700'
             }`}>
             <div className="flex items-center gap-3 flex-1 min-w-0">
-                <TeamAvatar name={match.HomeTeam || ''} size="sm" />
+                <TeamAvatar name={match.homeTeam || ''} size="sm" />
                 <span className={`text-sm truncate ${isHome ? 'font-bold text-white' : 'text-slate-300'}`}>
-                    {match.HomeTeam}
+                    {match.homeTeam}
                 </span>
             </div>
 
@@ -341,16 +341,16 @@ function MatchCard({ match, teamName, isPending = false }: { match: Match; teamN
                 ) : (
                     <span className={`font-mono font-bold ${won ? 'text-emerald-400' : lost ? 'text-rose-400' : 'text-slate-400'
                         }`}>
-                        {match.HomeScore} - {match.AwayScore}
+                        {match.homeScore} - {match.awayScore}
                     </span>
                 )}
             </div>
 
             <div className="flex items-center gap-3 flex-1 min-w-0 justify-end">
                 <span className={`text-sm truncate ${!isHome ? 'font-bold text-white' : 'text-slate-300'}`}>
-                    {match.AwayTeam}
+                    {match.awayTeam}
                 </span>
-                <TeamAvatar name={match.AwayTeam || ''} size="sm" />
+                <TeamAvatar name={match.awayTeam || ''} size="sm" />
             </div>
         </div>
     );
