@@ -252,7 +252,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                                                 onClick={() => onScoreChange(matchId, isSelected ? '' : score)}
                                                                 className={`w-8 h-6 flex items-center justify-center rounded text-[10px] font-bold transition-all border ${isSelected
                                                                     ? homeWin
-                                                                        ? 'bg-emerald-600 border-emerald-500 text-white shadow-emerald-500/30 shadow-md'
+                                                                        ? 'bg-emerald-700 border-emerald-600 text-white shadow-emerald-600/30 shadow-md'
                                                                         : 'bg-rose-600 border-rose-500 text-white shadow-rose-500/30 shadow-md'
                                                                     : 'bg-slate-950 border-slate-700 text-slate-400 hover:bg-slate-800 hover:text-slate-300'
                                                                     }`}
