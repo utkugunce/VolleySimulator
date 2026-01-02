@@ -530,6 +530,7 @@ function CalculatorContent() {
                                 playoffSpots={4}
                                 relegationSpots={activeGroup.includes('B') ? 2 : 0}
                                 initialRanks={initialRanks}
+                                compact={true}
                             />
                         </div>
                     </div>
