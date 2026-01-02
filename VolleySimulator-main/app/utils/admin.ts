@@ -1,7 +1,7 @@
-export const ADMIN_EMAILS = [
-    'utkugunce@gmail.com',
+'utkugunce@gmail.com',
     'gunceutku@gmail.com',
-    'zerenspor@gmail.com'
+    'zerenspor@gmail.com',
+    'volleysimulator@gmail.com'
 ];
 
 export function isAdmin(email?: string | null): boolean {
