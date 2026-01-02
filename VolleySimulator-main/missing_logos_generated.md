@@ -1,0 +1,246 @@
+# Eksik Logo Raporu
+
+Sisteme logo eklemek için aşağıdaki dosya isimlerini kullanmalısınız.
+Dosyalar `public/logos/` klasörüne yüklemişse kutucuk işaretli görünür.
+Takım isimleri sistemdeki veri dosyalarından (JSON) tam olarak alınmıştır. Büyük/küçük harf duyarlılığı olabilir.
+
+Toplam Takım Sayısı: 238
+
+- [ ] 07 MEGA SPOR.png
+- [ ] 52 ÇAMLIK SPOR.png
+- [ ] 73 ŞIRNAK BLD..png
+- [ ] 91000 DEV SPOR.png
+- [ ] A. Carraro Prosecco DOC CONEGLIANO.png
+- [ ] ADANA B.ŞEHİR BLD..png
+- [ ] ADANA SPORCU EĞİTİM SPOR.png
+- [ ] ADANA T.D.S..png
+- [ ] AFYON GENÇLİK SPOR.png
+- [ ] AHMET HAMDİ TANPINAR ORTAOKULU.png
+- [ ] AKDENİZ BİLGİ SPOR.png
+- [ ] AKHİSAR BLD..png
+- [ ] AKHİSAR GÜCÜ.png
+- [ ] AL-KA ALTIN KANATLAR.png
+- [ ] ALP SPOR.png
+- [ ] ALTAY.png
+- [ ] ALTINAY SPOR.png
+- [ ] ALTINYURT.png
+- [ ] ANKARA BAROSU.png
+- [ ] ANKARA DSİ.png
+- [ ] ANKARA Zeren Spor Kulübü.png
+- [ ] ANTEPİA.png
+- [x] ARAS KARGO.png
+- [ ] ARKAS SPOR.png
+- [ ] ARNAVUTKÖY BLD..png
+- [ ] ARSAVEV HATAY VOLEYBOL.png
+- [ ] ATA OKUL SPOR.png
+- [ ] ATAŞEHİR KARTALLARI.png
+- [ ] AVRUPA VOLEYBOL GELİŞİM.png
+- [x] AYDIN BÜYÜKŞEHİR BELEDİYESPOR.png
+- [ ] Afyon Bld. Yüntaş.png
+- [ ] Alfemo Zeren Spor.png
+- [ ] Altınordu.png
+- [ ] AÇI KOLEJİ.png
+- [ ] B.ŞEHİR BLD. ANKARA SPOR.png
+- [x] BAHÇELİEVLER BLD..png
+- [ ] BAHÇEŞEHİR KOLEJİ DALAMAN BLD..png
+- [ ] BALIKESİR B.ŞEHİR BLD..png
+- [ ] BALIKESİR DSİ.png
+- [ ] BANDIRMA ÇELİK SPOR.png
+- [ ] BARTIN VOLLEY ACADEMY.png
+- [ ] BAYBURT GENÇLİK MERKEZİ.png
+- [ ] BAYRAKLI BLD..png
+- [ ] BAŞAKŞEHİR VOLEYBOL.png
+- [ ] BAŞKENT ADA SPOR.png
+- [ ] BAŞKENT ZİRVE.png
+- [ ] BERGAMA BLD..png
+- [ ] BEYLİKDÜZÜ BEYKENT.png
+- [ ] BEŞİKDÜZÜ.png
+- [x] BEŞİKTAŞ.png
+- [ ] BEŞİKTAŞ NAVIOSA.png
+- [ ] BOLU ATATÜRK ANADOLU LİSESİ.png
+- [ ] BURSA B.ŞEHİR BLD..png
+- [ ] BURSA FETHİYE 1973 SPOR.png
+- [ ] Bodrum Bld. Bodrumspor.png
+- [ ] BÜYÜK REŞİTPAŞA ORTAOKULU.png
+- [ ] BÜYÜKÇEKMECE VOLEYBOL AKADEMİ.png
+- [ ] BİZİMKENT VOLEYBOL.png
+- [ ] CADENCE BOYA GÖLCÜK İHSANİYE.png
+- [ ] CAN MİLAN ATLETİK.png
+- [ ] CS Volei Alba BLAJ.png
+- [ ] DENİZLİ B.ŞEHİR BLD..png
+- [ ] DEV ATAŞEHİR.png
+- [ ] DOĞU AKADEMİ.png
+- [ ] DRESDNER SC.png
+- [ ] Denizli B.Şehir Bld..png
+- [ ] Diyarbakır B.Şehir Bld..png
+- [ ] DÜZCE VOLEYBOL.png
+- [ ] DİYARBAKIR VOLEYBOLCULAR.png
+- [x] ECZACIBAŞI DYNAVİT.png
+- [ ] EFOR GENÇLİK.png
+- [ ] ELAZIĞ BLD..png
+- [ ] ELİT AKDENİZ.png
+- [ ] ENDO KARŞIYAKA.png
+- [ ] ENGLISH TIME SPOR.png
+- [ ] EREĞLİ SÜMER SPOR.png
+- [ ] ERYAMAN GELİŞİM.png
+- [ ] ESKİŞEHİR PEYMAN SPOR.png
+- [ ] ESKİŞEHİR ŞEHİR KOLEJİ EĞT. KÜLTÜR.png
+- [ ] ETİMESGUT BLD. GELİŞİM.png
+- [ ] EYÜPSULTAN BLD..png
+- [ ] Eczacibasi ISTANBUL.png
+- [ ] Eczacıbaşı.png
+- [ ] Edremit Bld. Altınoluk.png
+- [ ] Endo Karşıyaka.png
+- [ ] FDM Yapı Konya Ereğli Bld..png
+- [x] FENERBAHÇE MEDICANA.png
+- [ ] FETHİYE VOLEYBOL.png
+- [ ] FIRAT ÖZKAN.png
+- [ ] FORZA SPOR.png
+- [x] Fenerbahçe Medicana.png
+- [ ] Fenerbahçe Medicana ISTANBUL.png
+- [ ] GALATASARAY.png
+- [x] GALATASARAY DAIKIN.png
+- [ ] GAZİANTEP BLD..png
+- [ ] GAZİEMİR BLD..png
+- [ ] GEBZE GENÇLİK VE SPOR.png
+- [ ] GELİŞİM KOLEJİ.png
+- [ ] GEMLİK İSTİKLAL SPOR.png
+- [ ] GÖLBAŞI İNCEK SPOR.png
+- [x] GÖZTEPE.png
+- [ ] GÜNGÖREN VOLEYBOL.png
+- [ ] GÜRAL PREMIER ANTALYASPOR.png
+- [ ] HAKAN AKIŞIK SPOR.png
+- [ ] HAKKARİ MAEMTAL.png
+- [ ] HAKKARİ SPORTİF FAALİYETLER.png
+- [ ] HARPUT LAHMACUN YAHYA KAPTAN.png
+- [ ] HEDEF ANKARA.png
+- [ ] HEKİMOĞLU GLOBAL CONNECT TRAVEL BVİ.png
+- [ ] HOCA AHMET YESEVİ ANADOLU L. ES VOLEYBOL AKADEMİ.png
+- [ ] HOPA BELEDİYE.png
+- [ ] Havran Bld..png
+- [ ] ISPARTA GENÇLİK SPOR.png
+- [ ] Igor Gorgonzola NOVARA.png
+- [ ] KAMARİN SPOR.png
+- [ ] KARABÜK GENÇLİK SPOR.png
+- [ ] KARTAL ANADOLU.png
+- [ ] KARTAL BLD..png
+- [ ] KAVAK SPOR.png
+- [ ] KAYSERİ CİMNASTİK SPOR.png
+- [ ] KAYSERİ VOLEYBOL.png
+- [ ] KIRKLARELİ GENÇLİK SPOR.png
+- [ ] KOCAELİ NİCOMEDİA AKADEMİ.png
+- [ ] KOCAELİ VOLEYBOL AKADEMİ.png
+- [ ] KS Developres RZESZÓW.png
+- [ ] KUZEY YILDIZLARI.png
+- [x] KUZEYBORU.png
+- [ ] KZY SPOR.png
+- [ ] Karayolları.png
+- [ ] Kuzeyboru Maxipipe Spor.png
+- [ ] KÜÇÜKÇEKMECE VOLEYBOL.png
+- [ ] LANUEVA KOZMETİK ANADOLU MARMARA.png
+- [ ] LEVALLOIS PARIS Saint Cloud.png
+- [ ] MALATYA VOLEYBOL.png
+- [ ] MARGENÇ.png
+- [ ] MARMARİS BLD..png
+- [ ] MAÇ SAYISI.png
+- [ ] MEDIA FIRST AYVALIK GELİŞİM SPOR.png
+- [ ] MEHMET EGE İNŞAAT İNEGÖL ORHANİYE VOLEYBOL.png
+- [ ] MEHMET ERDEM MARMARA AKADEMİ.png
+- [ ] MERİNOS VOLEYBOL.png
+- [ ] MG SPOR.png
+- [ ] MISIROĞLU BEYTEPE.png
+- [ ] MKE ANKARAGÜCÜ.png
+- [ ] MUŞ OLİMPİK SPOR.png
+- [ ] Maritza PLOVDIV.png
+- [ ] Merinos Voleybol.png
+- [ ] Muratpaşa Bld. Açı Koleji.png
+- [ ] Numia Vero Volley MILANO.png
+- [ ] NİCER HOTEL VOLEYBOL.png
+- [x] NİLÜFER BELEDİYESPOR EKER.png
+- [ ] NİLÜFER BLD..png
+- [ ] OK Železničar LAJKOVAC.png
+- [ ] OKURA LOJİSTİK MERSİN İHTİSAS.png
+- [ ] OSMANCIK BLD..png
+- [ ] Olympiacos PIRAEUS.png
+- [ ] PGE Budowlani ŁÓDŹ.png
+- [ ] POLAT GROUP DİDİM BELEDİYESPOR.png
+- [ ] POLATLI DUATEPE.png
+- [ ] PTT.png
+- [ ] ROBERTEAM.png
+- [ ] ROTA KOLEJİ.png
+- [ ] RİZE ENDÜSTRİ MESLEK LİSESİ.png
+- [ ] SEMT ASANSÖR BORDO MAVİ 61.png
+- [ ] SERDİVAN BLD..png
+- [ ] SEYHAN BLD..png
+- [ ] SINAV KOLEJİ SAMSUNSPOR.png
+- [ ] SMART HOLDING A.Ş. ÇAYELI.png
+- [ ] SMAÇ SPOR.png
+- [ ] SSC Palmberg SCHWERIN.png
+- [ ] SUPERPOOL FINDIKLI 1974.png
+- [ ] Sakarya Voleybol.png
+- [ ] Savino Del Bene SCANDICCI.png
+- [ ] Sigorta Shop MKE Ankaragücü.png
+- [ ] Sport LISBOA e Benfica.png
+- [ ] SÖKE BELEDİYE SALDOS VOLEYBOL.png
+- [ ] SİBANET KOZAN İMAMOĞLU SPOR.png
+- [ ] SİLOPİ BLD. SPORTİF FAALİYETLER.png
+- [ ] SİLOPİ GELİŞİM FAALİYETLERİ.png
+- [ ] SİLİVRİ ÇAĞRIBEY.png
+- [ ] SİVAS TOPRAK GAYRİMENKUL PARS AKADEMİ.png
+- [ ] TARSUS AMERİKAN KOLEJİ.png
+- [ ] TED ANKARA KOLEJLİLER.png
+- [ ] TEK METAL SPORTİF.png
+- [ ] TEKİRDAĞ VOLEYBOL İHTİSAS.png
+- [ ] TEMİZ ENERJİ BIRLİĞİ.png
+- [ ] TOROS ÜNIVERSİTESİ VOLGEM.png
+- [ ] TOROSLAR BLD..png
+- [ ] TOYZZ SHOP DİNAMO SPOR.png
+- [ ] TURGUTLU BLD. KÜLTÜR SANAT.png
+- [ ] TUZLA MERCAN.png
+- [ ] TVF SPOR LİSESİ.png
+- [ ] Trendy Hotels Manavgat Bld..png
+- [x] TÜRK HAVA YOLLARI.png
+- [ ] TÜRKOĞLU SPOR KULÜBÜ.png
+- [ ] UYSALLAR OTO FETHİYE ZİRVE.png
+- [x] VAKIFBANK.png
+- [ ] VEFA.png
+- [ ] VENÜS SPOR.png
+- [ ] VOLKAN GÜÇ SPOR.png
+- [ ] VakifBank ISTANBUL.png
+- [ ] Vakıfbank.png
+- [ ] Vestel Manisa B.Şehir Bld..png
+- [ ] Volero LE CANNET.png
+- [ ] VİRANŞEHİR VOLEYBOL.png
+- [ ] WORLD MEDICINE ATEŞ SPOR.png
+- [ ] YALOVA ÇİFTLİKKÖY BLD..png
+- [ ] YEDİDAĞ SPOR.png
+- [ ] YENİAY LOJİSTİK SARIYER KONAK SPOR.png
+- [ ] YEŞİL BAYRAMİÇ.png
+- [ ] YEŞİLYURT.png
+- [ ] YUNUSEMRE BLD..png
+- [ ] Yeşilyurt.png
+- [x] ZEREN SPOR.png
+- [ ] ZEUGMA GAZİANTEP SPOR.png
+- [ ] ÇABA SPOR.png
+- [ ] ÇAN KALE SPOR.png
+- [ ] ÇANAKKALE KEPEZ.png
+- [ ] ÇATALCA BLD..png
+- [ ] ÇEKMEKÖY İSTANBUL SPOR.png
+- [ ] ÇENGELKÖY VOLEYBOL.png
+- [ ] ÇERKEZKÖY VOLEYBOL AKADEMİ.png
+- [ ] ÇORLU BLD..png
+- [ ] ÇORUM ARENA SPOR.png
+- [ ] ÇORUM VOLEYBOL.png
+- [ ] Çanakkale Bld..png
+- [ ] ÜLKÜ SPOR.png
+- [ ] ÜNSPED.png
+- [ ] İBA Kimya TED Ankara Kolejliler.png
+- [ ] İBB Spor Kulübü.png
+- [x] İLBANK.png
+- [ ] İSTANBUL BİZİMKENT SPOR.png
+- [ ] İZMİR B.ŞEHIR BLD..png
+- [ ] İZMİR DSİ.png
+- [ ] İZMİT SPOR.png
+- [x] İlbank.png
+- [ ] İzmirspor.png
+- [ ] ŁKS Commercecon ŁÓDŹ.png
