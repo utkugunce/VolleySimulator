@@ -17,6 +17,23 @@ interface LeagueData {
     fixtures: Match[];
 }
 
+// Turkish character normalization for matching
+const normalizeTurkish = (str: string): string => {
+    const map: Record<string, string> = {
+        'ş': 's', 'Ş': 's', 'ğ': 'g', 'Ğ': 'g',
+        'ü': 'u', 'Ü': 'u', 'ö': 'o', 'Ö': 'o',
+        'ç': 'c', 'Ç': 'c', 'ı': 'i', 'İ': 'i',
+    };
+    return str.split('').map(char => map[char] || char).join('').toLowerCase();
+};
+
+// Match function that handles Turkish characters
+const matchesTeam = (name1: string, name2: string): boolean => {
+    const n1 = normalizeTurkish(name1);
+    const n2 = normalizeTurkish(name2);
+    return n1.includes(n2) || n2.includes(n1);
+};
+
 export default function TeamProfileClient({ teamSlug }: TeamProfileClientProps) {
     const [loading, setLoading] = useState(true);
     const [teamName, setTeamName] = useState<string>("");
@@ -51,15 +68,12 @@ export default function TeamProfileClient({ teamSlug }: TeamProfileClientProps) 
 
                         // Check if team exists in this league
                         const hasTeam = data.standings?.some((team: TeamStats) =>
-                            team.name.toLowerCase().includes(teamName.toLowerCase()) ||
-                            teamName.toLowerCase().includes(team.name.toLowerCase())
+                            matchesTeam(team.name, teamName)
                         );
 
                         if (hasTeam || data.fixtures?.some((m: Match) =>
-                            m.homeTeam?.toLowerCase().includes(teamName.toLowerCase()) ||
-                            m.awayTeam?.toLowerCase().includes(teamName.toLowerCase()) ||
-                            teamName.toLowerCase().includes(m.homeTeam?.toLowerCase() || '') ||
-                            teamName.toLowerCase().includes(m.awayTeam?.toLowerCase() || '')
+                            matchesTeam(m.homeTeam || '', teamName) ||
+                            matchesTeam(m.awayTeam || '', teamName)
                         )) {
                             results.push({
                                 league,
@@ -97,19 +111,14 @@ export default function TeamProfileClient({ teamSlug }: TeamProfileClientProps) 
 
     // Get team stats from first league where found
     const teamStats = leagueData.length > 0
-        ? leagueData[0].standings.find(t =>
-            t.name.toLowerCase().includes(teamName.toLowerCase()) ||
-            teamName.toLowerCase().includes(t.name.toLowerCase())
-        )
+        ? leagueData[0].standings.find(t => matchesTeam(t.name, teamName))
         : null;
 
     // Get all matches for this team
     const teamMatches = leagueData.flatMap(ld =>
         ld.fixtures.filter(m =>
-            m.homeTeam?.toLowerCase().includes(teamName.toLowerCase()) ||
-            m.awayTeam?.toLowerCase().includes(teamName.toLowerCase()) ||
-            teamName.toLowerCase().includes(m.homeTeam?.toLowerCase() || '') ||
-            teamName.toLowerCase().includes(m.awayTeam?.toLowerCase() || '')
+            matchesTeam(m.homeTeam || '', teamName) ||
+            matchesTeam(m.awayTeam || '', teamName)
         )
     );
 
@@ -254,8 +263,7 @@ export default function TeamProfileClient({ teamSlug }: TeamProfileClientProps) 
                         <div className="space-y-3">
                             {leagueData.map(ld => {
                                 const rank = ld.standings.findIndex(t =>
-                                    t.name.toLowerCase().includes(teamName.toLowerCase()) ||
-                                    teamName.toLowerCase().includes(t.name.toLowerCase())
+                                    matchesTeam(t.name, teamName)
                                 ) + 1;
 
                                 return (
@@ -313,8 +321,7 @@ export default function TeamProfileClient({ teamSlug }: TeamProfileClientProps) 
 
 // Match Card Component
 function MatchCard({ match, teamName, isPending = false }: { match: Match; teamName: string; isPending?: boolean }) {
-    const isHome = match.homeTeam?.toLowerCase().includes(teamName.toLowerCase()) ||
-        teamName.toLowerCase().includes(match.homeTeam?.toLowerCase() || '');
+    const isHome = matchesTeam(match.homeTeam || '', teamName);
 
     const won = match.homeScore != null && match.awayScore != null &&
         ((isHome && match.homeScore > match.awayScore) || (!isHome && match.awayScore > match.homeScore));
