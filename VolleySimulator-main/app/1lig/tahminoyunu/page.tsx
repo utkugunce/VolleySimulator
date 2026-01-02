@@ -8,7 +8,6 @@ import { useToast, AchievementToast, AchievementsPanel } from "../../components"
 import StandingsTable from "../../components/Calculator/StandingsTable";
 import FixtureList from "../../components/Calculator/FixtureList";
 import ShareButton from "../../components/ShareButton";
-import SwipeableTabs from "../../components/SwipeableTabs";
 import { calculateLiveStandings } from "../../utils/calculatorUtils";
 import { calculateElo } from "../../utils/eloCalculator";
 import { useGameState, ACHIEVEMENTS } from "../../utils/gameState";
@@ -383,15 +382,20 @@ function CalculatorContent() {
 
                 {/* Action Bar (Group Selection + Actions) */}
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-2 bg-slate-900/40 rounded-xl border border-slate-800">
-                    {/* Group Selection - SwipeableTabs for mobile */}
+                    {/* Group Selection */}
                     <div className="flex gap-2 items-center w-full sm:w-auto">
                         <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden sm:inline whitespace-nowrap">GRUP:</span>
-                        <SwipeableTabs
-                            tabs={groups.map(g => ({ id: g, label: g }))}
-                            activeTab={activeGroup}
-                            onChange={(id) => setSelectedGroup(id)}
-                            className="flex-1 sm:flex-initial"
-                        />
+                        <select
+                            value={activeGroup}
+                            onChange={(e) => setSelectedGroup(e.target.value)}
+                            className="appearance-none bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-lg px-4 py-2 border border-slate-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all outline-none cursor-pointer min-w-[120px]"
+                        >
+                            {groups.map(groupName => (
+                                <option key={groupName} value={groupName} className="bg-slate-900">
+                                    {groupName}
+                                </option>
+                            ))}
+                        </select>
                     </div>
 
                     {/* Actions - Removed overflow-x-auto to prevent clipping */}
