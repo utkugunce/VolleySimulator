@@ -1,4 +1,5 @@
-'utkugunce@gmail.com',
+export const ADMIN_EMAILS = [
+    'utkugunce@gmail.com',
     'gunceutku@gmail.com',
     'zerenspor@gmail.com',
     'volleysimulator@gmail.com'
