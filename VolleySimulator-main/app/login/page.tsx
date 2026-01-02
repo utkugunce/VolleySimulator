@@ -66,9 +66,9 @@ export default function LoginPage() {
                 <div className="hidden lg:block space-y-8 animate-fade-in-left">
                     <div className="space-y-2">
                         <Link href="/" className="inline-block">
-                            <span className="text-4xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400">
+                            <h1 className="text-4xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400">
                                 VolleySimulator
-                            </span>
+                            </h1>
                         </Link>
                         <h2 className="text-2xl font-light text-slate-300">
                             Voleybol Tutkunları İçin <br />
@@ -107,15 +107,15 @@ export default function LoginPage() {
                         {/* Mobile Header (Visible only on mobile) */}
                         <div className="text-center mb-8 lg:hidden">
                             <Link href="/" className="inline-block mb-2">
-                                <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200">
+                                <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200">
                                     VolleySimulator
-                                </span>
+                                </h1>
                             </Link>
-                            <h1 className="text-2xl font-bold text-white">Hoş Geldiniz</h1>
+                            <h2 className="text-2xl font-bold text-white">Hoş Geldiniz</h2>
                         </div>
 
                         <div className="text-center mb-6 hidden lg:block">
-                            <h1 className="text-2xl font-bold text-white">Giriş Yap</h1>
+                            <h2 className="text-2xl font-bold text-white">Giriş Yap</h2>
                             <p className="text-slate-400 text-sm">Hesabınıza erişmek için bilgilerinizi girin</p>
                         </div>
 
@@ -128,10 +128,11 @@ export default function LoginPage() {
                             )}
 
                             <div>
-                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">E-posta</label>
+                                <label htmlFor="email" className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">E-posta</label>
                                 <div className="relative group">
                                     <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl opacity-0 group-focus-within:opacity-20 transition-opacity"></div>
                                     <input
+                                        id="email"
                                         type="email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
@@ -144,7 +145,7 @@ export default function LoginPage() {
 
                             <div>
                                 <div className="flex items-center justify-between mb-2">
-                                    <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider">Şifre</label>
+                                    <label htmlFor="password" className="block text-xs font-bold text-slate-400 uppercase tracking-wider">Şifre</label>
                                     <a href="#" className="text-xs text-emerald-400 hover:text-emerald-300 transition-colors">
                                         Unuttum?
                                     </a>
@@ -152,6 +153,7 @@ export default function LoginPage() {
                                 <div className="relative group">
                                     <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl opacity-0 group-focus-within:opacity-20 transition-opacity"></div>
                                     <input
+                                        id="password"
                                         type="password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}

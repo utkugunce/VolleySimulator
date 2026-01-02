@@ -24,7 +24,7 @@ export default function StandingsTable({
 }: StandingsTableProps) {
     const rowClass = compact ? "px-2 py-1 text-xs" : "px-2 py-2 text-xs sm:text-sm";
     const headClass = compact ? "px-2 py-1 text-xs uppercase" : "px-2 py-2 text-xs uppercase sm:text-sm";
-    const rankSize = compact ? "w-5 h-5 text-[10px]" : "w-6 h-6 text-[10px]";
+    const rankSize = compact ? "w-5 h-5 text-xs" : "w-6 h-6 text-xs";
 
     if (loading) {
         return (
@@ -73,14 +73,14 @@ export default function StandingsTable({
                 <table className={`w-full text-left ${compact ? 'text-xs' : 'text-xs sm:text-sm'}`}>
                     <thead className="bg-slate-900/50 text-slate-400 tracking-wider font-semibold border-b border-slate-800 sticky top-0">
                         <tr>
-                            <th className={`${headClass} w-14 text-left pl-2`}>#</th>
-                            <th className={headClass}>Takım</th>
-                            <th className={`${headClass} w-8 text-center`} title="Oynanan Maç">OM</th>
-                            <th className={`${headClass} w-8 text-center text-emerald-400`} title="Galibiyet">G</th>
-                            <th className={`${headClass} w-8 text-center text-rose-400`} title="Mağlubiyet">M</th>
-                            <th className={`${headClass} w-10 text-center text-amber-300 font-bold`} title="Puan">P</th>
-                            <th className={`${headClass} w-8 text-center hidden sm:table-cell`} title="Alınan Set">AS</th>
-                            <th className={`${headClass} w-8 text-center hidden sm:table-cell`} title="Verilen Set">VS</th>
+                            <th scope="col" className={`${headClass} w-14 text-left pl-2`}>#</th>
+                            <th scope="col" className={headClass}>Takım</th>
+                            <th scope="col" className={`${headClass} w-8 text-center`} title="Oynanan Maç">OM</th>
+                            <th scope="col" className={`${headClass} w-8 text-center text-emerald-400`} title="Galibiyet">G</th>
+                            <th scope="col" className={`${headClass} w-8 text-center text-rose-400`} title="Mağlubiyet">M</th>
+                            <th scope="col" className={`${headClass} w-10 text-center text-amber-300 font-bold`} title="Puan">P</th>
+                            <th scope="col" className={`${headClass} w-8 text-center hidden sm:table-cell`} title="Alınan Set">AS</th>
+                            <th scope="col" className={`${headClass} w-8 text-center hidden sm:table-cell`} title="Verilen Set">VS</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-800/50">
@@ -103,21 +103,21 @@ export default function StandingsTable({
                                 if (diff) {
                                     // Rank Diff
                                     rankChange = diff.rankDiff;
-                                    if (rankChange > 0) rankChangeIcon = <span className="text-emerald-400 text-[9px] font-bold flex items-center gap-0.5">▲{rankChange}</span>;
-                                    else if (rankChange < 0) rankChangeIcon = <span className="text-rose-400 text-[9px] font-bold flex items-center gap-0.5">▼{Math.abs(rankChange)}</span>;
+                                    if (rankChange > 0) rankChangeIcon = <span className="text-emerald-400 text-[10px] font-bold flex items-center gap-0.5">▲{rankChange}</span>;
+                                    else if (rankChange < 0) rankChangeIcon = <span className="text-rose-400 text-[10px] font-bold flex items-center gap-0.5">▼{Math.abs(rankChange)}</span>;
 
                                     // Point Diff
                                     pointDiff = diff.pointDiff;
-                                    if (pointDiff > 0) pointDiffIcon = <span className="text-emerald-400 text-[9px] ml-1">+{pointDiff}</span>;
-                                    else if (pointDiff < 0) pointDiffIcon = <span className="text-rose-400 text-[9px] ml-1">{pointDiff}</span>;
+                                    if (pointDiff > 0) pointDiffIcon = <span className="text-emerald-400 text-[10px] ml-1">+{pointDiff}</span>;
+                                    else if (pointDiff < 0) pointDiffIcon = <span className="text-rose-400 text-[10px] ml-1">{pointDiff}</span>;
                                 }
                             } else if (initialRanks && initialRanks.has(team.name)) {
                                 const oldRank = initialRanks.get(team.name)!;
                                 rankChange = oldRank - currentRank;
                                 if (rankChange > 0) {
-                                    rankChangeIcon = <span className="text-emerald-400 text-[9px] font-bold flex items-center gap-0.5">▲{rankChange}</span>;
+                                    rankChangeIcon = <span className="text-emerald-400 text-[10px] font-bold flex items-center gap-0.5">▲{rankChange}</span>;
                                 } else if (rankChange < 0) {
-                                    rankChangeIcon = <span className="text-rose-400 text-[9px] font-bold flex items-center gap-0.5">▼{Math.abs(rankChange)}</span>;
+                                    rankChangeIcon = <span className="text-rose-400 text-[10px] font-bold flex items-center gap-0.5">▼{Math.abs(rankChange)}</span>;
                                 }
                             }
 

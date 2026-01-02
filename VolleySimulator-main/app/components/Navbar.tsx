@@ -145,7 +145,7 @@ export default function Navbar() {
                         {isAnasayfa && (
                             <div className="absolute inset-0 bg-emerald-500/15 rounded-xl border border-emerald-500/30"></div>
                         )}
-                        <span className="text-[10px] font-bold relative z-10">Anasayfa</span>
+                        <span className="text-xs font-bold relative z-10">Anasayfa</span>
                     </Link>
 
                     {/* Ligler */}
@@ -160,7 +160,7 @@ export default function Navbar() {
                         {(isInLeague || pathname === '/ligler') && (
                             <div className="absolute inset-0 bg-indigo-500/15 rounded-xl border border-indigo-500/30"></div>
                         )}
-                        <span className="text-[10px] font-bold relative z-10">Ligler</span>
+                        <span className="text-xs font-bold relative z-10">Ligler</span>
                     </Link>
 
                     {/* Ayarlar */}
@@ -175,7 +175,7 @@ export default function Navbar() {
                         {isAyarlar && (
                             <div className="absolute inset-0 bg-cyan-500/15 rounded-xl border border-cyan-500/30"></div>
                         )}
-                        <span className="text-[10px] font-bold relative z-10">Ayarlar</span>
+                        <span className="text-xs font-bold relative z-10">Ayarlar</span>
                     </Link>
 
                     {/* Profil */}
@@ -190,7 +190,7 @@ export default function Navbar() {
                         {isProfile && (
                             <div className="absolute inset-0 bg-amber-500/15 rounded-xl border border-amber-500/30"></div>
                         )}
-                        <span className="text-[10px] font-bold relative z-10">Profil</span>
+                        <span className="text-xs font-bold relative z-10">Profil</span>
                     </Link>
                 </div>
             </nav>
@@ -204,12 +204,15 @@ export default function Navbar() {
                     <div
                         className="bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-700/50 rounded-3xl w-full max-w-md shadow-2xl shadow-black/50 animate-scale-in overflow-hidden"
                         onClick={e => e.stopPropagation()}
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="league-modal-title"
                     >
                         {/* Header */}
                         <div className="bg-gradient-to-r from-emerald-600/20 via-transparent to-amber-600/20 p-6 border-b border-slate-800">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <h2 className="text-xl font-bold text-white">Lig Seçin</h2>
+                                    <h2 id="league-modal-title" className="text-xl font-bold text-white">Lig Seçin</h2>
                                     <p className="text-xs text-slate-400 mt-1">Takip etmek istediğiniz ligi seçin</p>
                                 </div>
                                 <button

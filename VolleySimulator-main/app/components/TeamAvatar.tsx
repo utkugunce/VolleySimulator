@@ -45,6 +45,8 @@ export default function TeamAvatar({ name, size = 'md', showName = false, positi
                 // eslint-disable-next-line react-dom/no-unsafe-target-blank
                 style={{ backgroundColor: stringToColor(name) }}
                 title={name}
+                role="img"
+                aria-label={name}
             >
                 {getInitials(name)}
             </div>

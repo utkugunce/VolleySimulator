@@ -186,12 +186,12 @@ export default function OneLigPlayoffGroupDetailPage() {
                                 <table className="w-full text-xs text-left table-fixed">
                                     <thead className="bg-slate-800 text-slate-400 uppercase text-[9px]">
                                         <tr>
-                                            <th className="px-1 py-2 w-6 text-center">#</th>
-                                            <th className="px-2 py-2 text-left w-auto">Takım</th>
-                                            <th className="px-1 py-1 text-center w-6">O</th>
-                                            <th className="px-1 py-1 text-center w-6">G</th>
-                                            <th className="px-1 py-1 text-center w-6">M</th>
-                                            <th className="px-1 py-1 text-center w-7 font-bold text-slate-200">P</th>
+                                            <th scope="col" className="px-1 py-2 w-6 text-center">#</th>
+                                            <th scope="col" className="px-2 py-2 text-left w-auto">Takım</th>
+                                            <th scope="col" className="px-1 py-1 text-center w-6">O</th>
+                                            <th scope="col" className="px-1 py-1 text-center w-6">G</th>
+                                            <th scope="col" className="px-1 py-1 text-center w-6">M</th>
+                                            <th scope="col" className="px-1 py-1 text-center w-7 font-bold text-slate-200">P</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-slate-800/50">

@@ -154,7 +154,12 @@ export default function TutorialModal({ isOpen, onClose, onComplete }: TutorialM
 
     return (
         <div className="fixed inset-0 z-[200] bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-            <div className="bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-700 rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden animate-scale-in">
+            <div
+                className="bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-700 rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden animate-scale-in"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="tutorial-title"
+            >
                 {/* Progress Bar */}
                 <div className="h-1 bg-slate-800">
                     <div
@@ -188,7 +193,7 @@ export default function TutorialModal({ isOpen, onClose, onComplete }: TutorialM
                     </div>
 
                     {/* Title & Description */}
-                    <h2 className="text-xl font-bold text-white text-center mb-3">
+                    <h2 id="tutorial-title" className="text-xl font-bold text-white text-center mb-3">
                         {step.title}
                     </h2>
                     <p className="text-slate-400 text-center text-sm leading-relaxed mb-6">
@@ -219,8 +224,8 @@ export default function TutorialModal({ isOpen, onClose, onComplete }: TutorialM
                         onClick={handlePrev}
                         disabled={isFirstStep}
                         className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${isFirstStep
-                                ? 'text-slate-600 cursor-not-allowed'
-                                : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                            ? 'text-slate-600 cursor-not-allowed'
+                            : 'text-slate-400 hover:text-white hover:bg-slate-800'
                             }`}
                     >
                         ← Geri
@@ -233,10 +238,10 @@ export default function TutorialModal({ isOpen, onClose, onComplete }: TutorialM
                                 key={index}
                                 onClick={() => setCurrentStep(index)}
                                 className={`w-2 h-2 rounded-full transition-all ${index === currentStep
-                                        ? 'bg-emerald-500 w-6'
-                                        : index < currentStep
-                                            ? 'bg-emerald-500/50'
-                                            : 'bg-slate-700'
+                                    ? 'bg-emerald-500 w-6'
+                                    : index < currentStep
+                                        ? 'bg-emerald-500/50'
+                                        : 'bg-slate-700'
                                     }`}
                             />
                         ))}
@@ -245,8 +250,8 @@ export default function TutorialModal({ isOpen, onClose, onComplete }: TutorialM
                     <button
                         onClick={handleNext}
                         className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${isLastStep
-                                ? 'bg-gradient-to-r from-emerald-600 to-cyan-600 text-white shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40'
-                                : 'bg-slate-800 text-white hover:bg-slate-700'
+                            ? 'bg-gradient-to-r from-emerald-600 to-cyan-600 text-white shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40'
+                            : 'bg-slate-800 text-white hover:bg-slate-700'
                             }`}
                     >
                         {isLastStep ? 'Başla! 🚀' : 'İleri →'}

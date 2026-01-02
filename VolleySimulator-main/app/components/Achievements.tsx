@@ -19,7 +19,7 @@ function AchievementToast({ achievement, onClose }: AchievementToastProps) {
         <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 animate-bounce-in">
             <div className="bg-gradient-to-r from-amber-900/95 to-orange-900/95 backdrop-blur-lg rounded-2xl border-2 border-amber-500 shadow-2xl shadow-amber-500/30 p-4 min-w-[300px]">
                 <div className="flex items-center gap-4">
-                    <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl text-4xl shadow-lg">
+                    <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl text-4xl shadow-lg" aria-hidden="true">
                         {achievement.icon}
                     </div>
                     <div className="flex-1">
@@ -55,9 +55,12 @@ export function AchievementsPanel({ isOpen, onClose }: AchievementsPanelProps) {
             <div
                 className="bg-slate-900 rounded-2xl border border-slate-700 shadow-2xl max-w-lg w-full mx-4 max-h-[80vh] overflow-hidden"
                 onClick={e => e.stopPropagation()}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="achievements-title"
             >
                 <div className="p-4 border-b border-slate-700 flex items-center justify-between">
-                    <h2 className="text-xl font-black text-white flex items-center gap-2">
+                    <h2 id="achievements-title" className="text-xl font-black text-white flex items-center gap-2">
                         <span>🏆</span> Başarılar
                     </h2>
                     <button onClick={onClose} className="text-slate-400 hover:text-white text-xl">✕</button>
@@ -73,8 +76,8 @@ export function AchievementsPanel({ isOpen, onClose }: AchievementsPanelProps) {
                                 <div
                                     key={achievement.id}
                                     className={`p-3 rounded-xl border transition-all ${isUnlocked
-                                            ? 'bg-gradient-to-br from-amber-900/30 to-orange-900/30 border-amber-600/50'
-                                            : 'bg-slate-800/50 border-slate-700/50 opacity-60'
+                                        ? 'bg-gradient-to-br from-amber-900/30 to-orange-900/30 border-amber-600/50'
+                                        : 'bg-slate-800/50 border-slate-700/50 opacity-60'
                                         }`}
                                 >
                                     <div className="flex items-start gap-3">

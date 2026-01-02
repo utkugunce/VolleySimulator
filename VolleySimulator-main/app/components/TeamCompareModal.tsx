@@ -43,8 +43,11 @@ export default function TeamCompareModal({ isOpen, onClose, team1, team2 }: Team
             <div
                 className="bg-slate-900 rounded-xl border border-slate-700 w-full max-w-lg p-6 animate-slide-up"
                 onClick={e => e.stopPropagation()}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="compare-title"
             >
-                <h2 className="text-lg font-bold text-white text-center mb-6">⚔️ Takım Karşılaştırması</h2>
+                <h2 id="compare-title" className="text-lg font-bold text-white text-center mb-6">⚔️ Takım Karşılaştırması</h2>
 
                 {/* Team Headers */}
                 <div className="flex justify-between items-center mb-6">

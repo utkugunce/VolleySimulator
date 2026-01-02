@@ -71,7 +71,7 @@ export default function PageHeader({
                 </div>
                 {/* League Navigation - Links preserve current page type */}
                 {showLeagueLinks && (
-                    <div className="hidden md:flex items-center gap-1 ml-2 px-2 py-1 bg-slate-800/50 rounded-lg border border-slate-700/50">
+                    <nav role="navigation" aria-label="Lig Seçimi" className="hidden md:flex items-center gap-1 ml-2 px-2 py-1 bg-slate-800/50 rounded-lg border border-slate-700/50">
                         <Link href={`/vsl${currentPageType}`} className={getLeagueLinkClass('/vsl')}>
                             <span className="w-2 h-2 rounded-full bg-rose-400"></span>
                             VSL
@@ -88,7 +88,7 @@ export default function PageHeader({
                             <span className="w-2 h-2 rounded-full bg-blue-500"></span>
                             Şampiyonlar Ligi
                         </Link>
-                    </div>
+                    </nav>
                 )}
             </div>
 

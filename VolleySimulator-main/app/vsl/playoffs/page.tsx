@@ -148,10 +148,11 @@ export default function PlayoffsVSLPage() {
 
             matchInputs.push(
                 <div key={i} className="flex flex-col gap-1 mb-2">
-                    <span className="text-[9px] text-slate-500 uppercase font-bold pl-1">
+                    <label htmlFor={`score-select-${matchId}-${i}`} className="text-xs text-slate-500 uppercase font-bold pl-1 block">
                         {i}. Maç: {matchHomeTeam || 'Ev'} vs {matchAwayTeam || 'Deplasman'}
-                    </span>
+                    </label>
                     <select
+                        id={`score-select-${matchId}-${i}`}
                         value={playoffOverrides[`${matchId}-m${i}`] || ''}
                         onChange={(e) => handleScoreChange(`${matchId}-m${i}`, e.target.value)}
                         className="w-full p-2 bg-slate-900 border border-slate-700/50 rounded text-xs text-white focus:border-rose-500 transition-colors"
@@ -171,7 +172,7 @@ export default function PlayoffsVSLPage() {
         return (
             <div className="bg-slate-800 rounded-lg p-3 border border-slate-700 space-y-3 min-w-[240px]">
                 <div className="flex justify-between items-center border-b border-slate-700/50 pb-2">
-                    <div className="text-[10px] text-rose-400 font-bold uppercase tracking-wider">{label}</div>
+                    <div className="text-xs text-rose-400 font-bold uppercase tracking-wider">{label}</div>
                     <div className="text-xs font-bold text-slate-400 bg-slate-900 px-2 py-0.5 rounded">
                         Seri: {result.homeWins}-{result.awayWins}
                     </div>
@@ -193,7 +194,7 @@ export default function PlayoffsVSLPage() {
 
                 {homeTeam && awayTeam && (
                     <div className="bg-slate-900/50 p-2 rounded border border-slate-800 mt-2">
-                        <div className="text-[10px] text-slate-500 mb-2 font-bold text-center border-b border-slate-700 pb-1">MAÇ SKORLARI</div>
+                        <div className="text-xs text-slate-500 mb-2 font-bold text-center border-b border-slate-700 pb-1">MAÇ SKORLARI</div>
                         <div className="grid grid-cols-2 gap-2">
                             {matchInputs}
                         </div>
@@ -338,7 +339,7 @@ export default function PlayoffsVSLPage() {
                     {!isGroupsComplete && (
                         <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm z-20 flex flex-col items-center justify-start pt-16 rounded-xl">
                             <div className="text-6xl mb-4">🔒</div>
-                            <h3 className="text-xl font-bold text-white mb-2">Play-Off Kilitli</h3>
+                            <h2 className="text-xl font-bold text-white mb-2">Play-Off Kilitli</h2>
                             <p className="text-slate-400 text-sm text-center max-w-md mb-4">
                                 Play-Off senaryolarını düzenleyebilmek için önce tüm lig maçlarını tahmin etmeniz gerekmektedir.
                             </p>
