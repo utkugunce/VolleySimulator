@@ -258,7 +258,7 @@ function CalculatorContent() {
         setOverrides(newOverrides);
         if (count > 0) {
             sounds.levelUp();
-            showToast(`${count} maç güç dengelerine göre tahmin edildi! 🧠`, "success");
+            showToast(`${count} maç güç dengelerine göre tahmin edildi!`, "success");
             addXP(count * 2);
         } else {
             showToast("Doldurulacak maç bulunamadı.", "info");
@@ -283,7 +283,7 @@ function CalculatorContent() {
         setOverrides(newOverrides);
         if (count > 0) {
             sounds.levelUp();
-            showToast(`${count} maç rastgele tahmin edildi! 🎲`, "success");
+            showToast(`${count} maç rastgele tahmin edildi!`, "success");
             addXP(count * 2);
         } else {
             showToast("Doldurulacak maç bulunamadı.", "info");
@@ -333,7 +333,6 @@ function CalculatorContent() {
                                     onClick={() => setShowAutoMenu(!showAutoMenu)}
                                     className={`px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-1 shadow-lg shadow-amber-500/20 ${showAutoMenu ? 'ring-2 ring-amber-400' : ''}`}
                                 >
-                                    <span>⚡</span>
                                     <span className="hidden sm:inline">Otomatik</span>
                                     <span className="text-[8px] ml-0.5">▼</span>
                                 </button>
@@ -346,7 +345,6 @@ function CalculatorContent() {
                                                 onClick={() => { handleSimulateSmart(); setShowAutoMenu(false); }}
                                                 className="w-full text-left px-4 py-3 hover:bg-slate-800 transition-colors flex items-center gap-3 border-b border-slate-800"
                                             >
-                                                <div className="w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-lg">🧠</div>
                                                 <div>
                                                     <div className="text-xs font-bold text-white">Güç Dengelerine Göre</div>
                                                     <div className="text-[9px] text-slate-400">Takım güçlerine göre gerçekçi tahmin</div>
@@ -356,7 +354,6 @@ function CalculatorContent() {
                                                 onClick={() => { handleSimulateRandom(); setShowAutoMenu(false); }}
                                                 className="w-full text-left px-4 py-3 hover:bg-slate-800 transition-colors flex items-center gap-3"
                                             >
-                                                <div className="w-8 h-8 rounded-full bg-fuchsia-500/20 text-fuchsia-400 flex items-center justify-center text-lg">🎲</div>
                                                 <div>
                                                     <div className="text-xs font-bold text-white">Rastgele Dağıt</div>
                                                     <div className="text-[9px] text-slate-400">Tamamen şansa dayalı sonuçlar</div>
@@ -379,7 +376,6 @@ function CalculatorContent() {
                                 className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-all cursor-pointer flex items-center gap-1"
                                 title="Senaryo Yükle"
                             >
-                                <span>📂</span>
                                 <span className="hidden sm:inline">Yükle</span>
                             </label>
                             <button
@@ -387,7 +383,6 @@ function CalculatorContent() {
                                 className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-1"
                                 title="Senaryoyu Kaydet"
                             >
-                                <span>💾</span>
                                 <span className="hidden sm:inline">Kaydet</span>
                             </button>
                         </div>
@@ -400,14 +395,12 @@ function CalculatorContent() {
                                 className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700 flex items-center gap-1"
                                 title="Son kaldığım maça git"
                             >
-                                <span>📍</span>
                                 <span className="hidden sm:inline">Kaldığım Yer</span>
                             </button>
                             <button
                                 onClick={handleReset}
                                 className="px-3 py-1.5 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 text-xs font-bold rounded-lg transition-all border border-slate-700 flex items-center gap-1"
                             >
-                                <span>🗑️</span>
                                 <span className="hidden sm:inline">Sıfırla</span>
                             </button>
                             <ShareButton

@@ -65,7 +65,6 @@ export default function PageHeader({
     return (
         <div className="flex flex-col sm:flex-row items-center justify-between bg-slate-900 border border-slate-800 rounded-lg p-3 shadow-sm flex-shrink-0 gap-3">
             <div className="flex items-center gap-3">
-                <span className="text-2xl">🏐</span>
                 <div>
                     <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">{title}</h1>
                     <p className="text-[10px] text-slate-500 hidden sm:block">{subtitle}</p>
@@ -74,16 +73,16 @@ export default function PageHeader({
                 {showLeagueLinks && (
                     <div className="hidden md:flex items-center gap-1 ml-2 px-2 py-1 bg-slate-800/50 rounded-lg border border-slate-700/50">
                         <Link href={`/vsl${currentPageType}`} className={getLeagueLinkClass('/vsl')}>
-                            <span className="text-rose-400">●</span> VSL
+                            VSL
                         </Link>
                         <Link href={`/1lig${currentPageType}`} className={getLeagueLinkClass('/1lig')}>
-                            <span className="text-amber-400">●</span> 1.Lig
+                            1.Lig
                         </Link>
                         <Link href={`/2lig${currentPageType}`} className={getLeagueLinkClass('/2lig')}>
-                            <span className="text-emerald-400">●</span> 2.Lig
+                            2.Lig
                         </Link>
                         <Link href={`/cev-cl${currentPageType}`} className={getLeagueLinkClass('/cev-cl')}>
-                            <span className="text-blue-500">●</span> Şampiyonlar Ligi
+                            Şampiyonlar Ligi
                         </Link>
                     </div>
                 )}
@@ -94,7 +93,6 @@ export default function PageHeader({
                 <div className="flex items-center gap-2 w-full sm:w-auto flex-wrap justify-center">
 
                     <Link href={leaguePrefix ? `${leaguePrefix}/tahminoyunu` : '/'} className={getLinkClass(leaguePrefix ? `${leaguePrefix}/tahminoyunu` : '/')}>
-                        <span>🏠</span>
                         <span className="hidden sm:inline">Tahmin Oyunu</span>
                     </Link>
 
@@ -105,7 +103,6 @@ export default function PageHeader({
                     {/* Stats link for all leagues */}
                     {(is1Lig || is2Lig || isVSL || isCL) && (
                         <Link href={`${leaguePrefix}/stats`} className={getLinkClass(`${leaguePrefix}/stats`)}>
-                            <span>📊</span>
                             <span className="hidden sm:inline">İstatistikler</span>
                         </Link>
                     )}
@@ -113,7 +110,6 @@ export default function PageHeader({
                     {/* Playoffs link for all leagues */}
                     {(is1Lig || is2Lig || isVSL || isCL) && (
                         <Link href={`${leaguePrefix}/playoffs`} className={getLinkClass(`${leaguePrefix}/playoffs`, true)}>
-                            <span>🏆</span>
                             <span className="hidden sm:inline">Play-Off</span>
                         </Link>
                     )}

@@ -52,11 +52,12 @@ export function ToastProvider({ children }: { children: ReactNode }) {
 function ToastContainer({ toasts, onRemove }: { toasts: Toast[], onRemove: (id: string) => void }) {
     if (toasts.length === 0) return null;
 
-    const icons = {
-        success: '✅',
-        error: '❌',
-        info: 'ℹ️'
-    };
+    // Icons removed
+    // const icons = {
+    //     success: '✅',
+    //     error: '❌',
+    //     info: 'ℹ️'
+    // };
 
     return (
         <div className="toast-container">
@@ -66,7 +67,7 @@ function ToastContainer({ toasts, onRemove }: { toasts: Toast[], onRemove: (id: 
                     className={`toast toast-${toast.type}`}
                     onClick={() => onRemove(toast.id)}
                 >
-                    <span>{icons[toast.type]}</span>
+                    {/* <span>{icons[toast.type]}</span> */}
                     <span>{toast.message}</span>
                 </div>
             ))}

@@ -78,22 +78,18 @@ export default function Home() {
         {/* Features Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 animate-fade-in-up delay-400">
           <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 p-5 rounded-2xl hover:border-emerald-500/30 transition-all duration-300 hover:scale-[1.02] card-shine">
-            <div className="text-3xl mb-3">🏆</div>
             <h3 className="font-bold text-white mb-1">Tahmin Oyunu</h3>
             <p className="text-xs text-slate-400">Maç skorlarını tahmin et, puanları topla</p>
           </div>
           <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 p-5 rounded-2xl hover:border-emerald-500/30 transition-all duration-300 hover:scale-[1.02] card-shine">
-            <div className="text-3xl mb-3">📊</div>
             <h3 className="font-bold text-white mb-1">Detaylı Analiz</h3>
             <p className="text-xs text-slate-400">Takım form durumları ve istatistikler</p>
           </div>
           <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 p-5 rounded-2xl hover:border-emerald-500/30 transition-all duration-300 hover:scale-[1.02] card-shine">
-            <div className="text-3xl mb-3">⚡</div>
             <h3 className="font-bold text-white mb-1">Canlı Skor</h3>
             <p className="text-xs text-slate-400">Anlık maç sonuçları ve güncellemeler</p>
           </div>
           <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 p-5 rounded-2xl hover:border-emerald-500/30 transition-all duration-300 hover:scale-[1.02] card-shine">
-            <div className="text-3xl mb-3">🌍</div>
             <h3 className="font-bold text-white mb-1">Topluluk</h3>
             <p className="text-xs text-slate-400">Diğer kullanıcılarla yarış</p>
           </div>

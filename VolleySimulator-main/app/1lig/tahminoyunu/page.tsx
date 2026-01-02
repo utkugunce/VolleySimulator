@@ -442,7 +442,6 @@ function CalculatorContent() {
                                 className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-all cursor-pointer flex items-center gap-1"
                                 title="Senaryo Yükle"
                             >
-                                <span>📂</span>
                                 <span className="hidden sm:inline">Yükle</span>
                             </label>
                             <button
@@ -450,7 +449,6 @@ function CalculatorContent() {
                                 className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-1"
                                 title="Senaryoyu Kaydet"
                             >
-                                <span>💾</span>
                                 <span className="hidden sm:inline">Kaydet</span>
                             </button>
                         </div>
@@ -463,7 +461,6 @@ function CalculatorContent() {
                                 className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700 flex items-center gap-1"
                                 title="Son kaldığım maça git"
                             >
-                                <span>📍</span>
                                 <span className="hidden sm:inline">Kaldığım Yer</span>
                             </button>
                             {/* Reset Dropdown */}
@@ -472,7 +469,6 @@ function CalculatorContent() {
                                     onClick={() => setShowResetMenu(!showResetMenu)}
                                     className={`px-3 py-1.5 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 text-xs font-bold rounded-lg transition-all border border-slate-700 flex items-center gap-1 ${showResetMenu ? 'ring-2 ring-rose-500/50' : ''}`}
                                 >
-                                    <span>🗑️</span>
                                     <span className="hidden sm:inline">Sıfırla</span>
                                     <span className="text-[8px] ml-0.5">▼</span>
                                 </button>
@@ -485,7 +481,6 @@ function CalculatorContent() {
                                                 onClick={() => { handleResetGroup(); setShowResetMenu(false); }}
                                                 className="w-full text-left px-4 py-3 hover:bg-slate-800 transition-colors flex items-center gap-3 border-b border-slate-800"
                                             >
-                                                <div className="w-8 h-8 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-lg">📝</div>
                                                 <div>
                                                     <div className="text-xs font-bold text-white">Bu Grubu Sıfırla</div>
                                                     <div className="text-[9px] text-slate-400">Sadece {activeGroup} silinir</div>
@@ -495,7 +490,6 @@ function CalculatorContent() {
                                                 onClick={() => { handleResetAll(); setShowResetMenu(false); }}
                                                 className="w-full text-left px-4 py-3 hover:bg-rose-900/20 transition-colors flex items-center gap-3 group"
                                             >
-                                                <div className="w-8 h-8 rounded-full bg-rose-500/20 text-rose-400 group-hover:bg-rose-500 group-hover:text-white transition-colors flex items-center justify-center text-lg">🔥</div>
                                                 <div>
                                                     <div className="text-xs font-bold text-rose-400 group-hover:text-rose-300">Tümünü Sıfırla</div>
                                                     <div className="text-[9px] text-rose-500/70 group-hover:text-rose-400/70">Bütün tahminler silinir</div>

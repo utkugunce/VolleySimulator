@@ -140,7 +140,7 @@ export default function AnasayfaPage() {
                         </div>
                         <div className="flex justify-between text-xs text-white/60 mt-1">
                             <span>{progress} / {required} XP</span>
-                            <span>🏆 {gameState.achievements.length} Başarım</span>
+                            <span>{gameState.achievements.length} Başarım</span>
                         </div>
                     </div>
                 </div>
@@ -154,7 +154,7 @@ export default function AnasayfaPage() {
                         href="/vsl/tahminoyunu"
                         className="bg-gradient-to-br from-red-600 to-rose-700 rounded-2xl p-4 text-center shadow-xl shadow-red-500/20 hover:scale-[1.02] transition-all"
                     >
-                        <div className="text-3xl mb-2">🏆</div>
+                        <div className="font-bold text-white text-lg mb-1">Volley</div>
                         <div className="font-bold text-white">Sultanlar</div>
                         <div className="text-xs text-white/60">Tahmin Oyunu</div>
                     </Link>
@@ -162,16 +162,16 @@ export default function AnasayfaPage() {
                         href="/1lig/tahminoyunu"
                         className="bg-gradient-to-br from-amber-600 to-orange-700 rounded-2xl p-4 text-center shadow-xl shadow-amber-500/20 hover:scale-[1.02] transition-all"
                     >
-                        <div className="text-3xl mb-2">🥇</div>
-                        <div className="font-bold text-white">1. Lig</div>
+                        <div className="font-bold text-white text-lg mb-1">1. Lig</div>
+                        <div className="font-bold text-white">Kadınlar</div>
                         <div className="text-xs text-white/60">Tahmin Oyunu</div>
                     </Link>
                     <Link
                         href="/2lig/tahminoyunu"
                         className="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-2xl p-4 text-center shadow-xl shadow-emerald-500/20 hover:scale-[1.02] transition-all"
                     >
-                        <div className="text-3xl mb-2">🥈</div>
-                        <div className="font-bold text-white">2. Lig</div>
+                        <div className="font-bold text-white text-lg mb-1">2. Lig</div>
+                        <div className="font-bold text-white">Kadınlar</div>
                         <div className="text-xs text-white/60">Tahmin Oyunu</div>
                     </Link>
                 </div>
@@ -180,7 +180,7 @@ export default function AnasayfaPage() {
                 <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
                     <div className="bg-gradient-to-r from-amber-600 to-orange-600 px-4 py-3 flex items-center justify-between">
                         <h2 className="font-bold text-white flex items-center gap-2">
-                            <span>🥇</span> Arabica Coffee House 1. Lig
+                            Arabica Coffee House 1. Lig
                         </h2>
                         <Link href="/1lig/gunceldurum" className="text-xs text-white/80 hover:text-white">
                             Tümünü Gör →
@@ -224,7 +224,7 @@ export default function AnasayfaPage() {
                 <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
                     <div className="bg-gradient-to-r from-red-600 to-rose-600 px-4 py-3 flex items-center justify-between">
                         <h2 className="font-bold text-white flex items-center gap-2">
-                            <span>🏆</span> Vodafone Sultanlar Ligi
+                            Vodafone Sultanlar Ligi
                         </h2>
                         <Link href="/vsl/gunceldurum" className="text-xs text-white/80 hover:text-white">
                             Tümünü Gör →
@@ -268,7 +268,7 @@ export default function AnasayfaPage() {
                 <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
                     <div className="bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-3 flex items-center justify-between">
                         <h2 className="font-bold text-white flex items-center gap-2">
-                            <span>🥈</span> Kadınlar 2. Lig
+                            Kadınlar 2. Lig
                         </h2>
                         <Link href="/2lig/gunceldurum" className="text-xs text-white/80 hover:text-white">
                             Tümünü Gör →

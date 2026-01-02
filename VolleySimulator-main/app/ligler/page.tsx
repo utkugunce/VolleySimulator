@@ -17,7 +17,6 @@ export default function LiglerPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Vodafone Sultanlar Ligi */}
                     <Link href="/vsl/tahminoyunu" className="group bg-slate-900 border border-red-500/30 rounded-2xl p-8 hover:bg-slate-800 hover:border-red-500/60 transition-all flex flex-col items-center text-center gap-4 shadow-lg hover:shadow-red-900/20">
-                        <span className="text-6xl group-hover:scale-110 transition-transform duration-300">🏆</span>
                         <div>
                             <h2 className="text-2xl font-bold text-white mb-2">Vodafone Sultanlar Ligi</h2>
                             <p className="text-slate-400">Türkiye'nin en üst düzey kadınlar voleybol ligi</p>
@@ -29,7 +28,6 @@ export default function LiglerPage() {
 
                     {/* Arabica Coffee House 1. Lig */}
                     <Link href="/1lig/tahminoyunu" className="group bg-slate-900 border border-amber-500/30 rounded-2xl p-8 hover:bg-slate-800 hover:border-amber-500/60 transition-all flex flex-col items-center text-center gap-4 shadow-lg hover:shadow-amber-900/20">
-                        <span className="text-6xl group-hover:scale-110 transition-transform duration-300">🥇</span>
                         <div>
                             <h2 className="text-2xl font-bold text-white mb-2">Arabica Coffee House 1. Lig</h2>
                             <p className="text-slate-400">2 Gruplu 1. Lig Sistemi</p>
@@ -41,7 +39,6 @@ export default function LiglerPage() {
 
                     {/* Kadınlar 2. Lig */}
                     <Link href="/2lig/tahminoyunu" className="group bg-slate-900 border border-emerald-500/30 rounded-2xl p-8 hover:bg-slate-800 hover:border-emerald-500/60 transition-all flex flex-col items-center text-center gap-4 shadow-lg hover:shadow-emerald-900/20">
-                        <span className="text-6xl group-hover:scale-110 transition-transform duration-300">🥈</span>
                         <div>
                             <h2 className="text-2xl font-bold text-white mb-2">Kadınlar 2. Lig</h2>
                             <p className="text-slate-400">5 Gruplu 2. Lig Sistemi</p>
@@ -53,7 +50,6 @@ export default function LiglerPage() {
 
                     {/* Şampiyonlar Ligi */}
                     <Link href="/cev-cl/tahminoyunu" className="group bg-slate-900 border border-blue-500/30 rounded-2xl p-8 hover:bg-slate-800 hover:border-blue-500/60 transition-all flex flex-col items-center text-center gap-4 shadow-lg hover:shadow-blue-900/20">
-                        <span className="text-6xl group-hover:scale-110 transition-transform duration-300">🌍</span>
                         <div>
                             <h2 className="text-2xl font-bold text-white mb-2">CEV Şampiyonlar Ligi</h2>
                             <p className="text-slate-400">Avrupa'nın en iyi takımları</p>

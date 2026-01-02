@@ -77,7 +77,6 @@ export default function Navbar() {
                                 <div className="flex items-center gap-3">
                                     {/* Achievements Badge */}
                                     <div className="hidden sm:flex items-center gap-1 text-xs text-amber-400 bg-amber-500/20 px-2 py-1 rounded-full border border-amber-500/30">
-                                        <span>🏆</span>
                                         <span className="font-bold">{gameState.achievements.length}</span>
                                     </div>
 
@@ -146,7 +145,6 @@ export default function Navbar() {
                         {isAnasayfa && (
                             <div className="absolute inset-0 bg-emerald-500/15 rounded-xl border border-emerald-500/30"></div>
                         )}
-                        <span className="text-xl relative z-10">🏠</span>
                         <span className="text-[10px] font-bold relative z-10">Anasayfa</span>
                     </Link>
 
@@ -162,7 +160,6 @@ export default function Navbar() {
                         {(isInLeague || pathname === '/ligler') && (
                             <div className="absolute inset-0 bg-indigo-500/15 rounded-xl border border-indigo-500/30"></div>
                         )}
-                        <span className="text-xl relative z-10">🏐</span>
                         <span className="text-[10px] font-bold relative z-10">Ligler</span>
                     </Link>
 
@@ -178,7 +175,6 @@ export default function Navbar() {
                         {isAyarlar && (
                             <div className="absolute inset-0 bg-cyan-500/15 rounded-xl border border-cyan-500/30"></div>
                         )}
-                        <span className="text-xl relative z-10">⚙️</span>
                         <span className="text-[10px] font-bold relative z-10">Ayarlar</span>
                     </Link>
 
@@ -194,7 +190,6 @@ export default function Navbar() {
                         {isProfile && (
                             <div className="absolute inset-0 bg-amber-500/15 rounded-xl border border-amber-500/30"></div>
                         )}
-                        <span className="text-xl relative z-10">👤</span>
                         <span className="text-[10px] font-bold relative z-10">Profil</span>
                     </Link>
                 </div>
@@ -231,7 +226,6 @@ export default function Navbar() {
                             {/* Turkey Section */}
                             <div className="mb-4">
                                 <div className="flex items-center gap-2 mb-3 px-1">
-                                    <span className="text-2xl">🇹🇷</span>
                                     <span className="text-sm font-bold text-slate-300 uppercase tracking-wider">Türkiye</span>
                                     <div className="flex-1 h-px bg-gradient-to-r from-slate-700 to-transparent"></div>
                                 </div>
@@ -243,9 +237,6 @@ export default function Navbar() {
                                         onClick={() => setShowLeagueModal(false)}
                                         className="group flex items-center gap-4 p-4 bg-gradient-to-r from-red-900/30 to-red-800/10 hover:from-red-800/40 hover:to-red-700/20 rounded-2xl border border-red-600/30 hover:border-red-500/50 transition-all duration-300"
                                     >
-                                        <div className="w-14 h-14 bg-gradient-to-br from-red-600 to-rose-700 rounded-xl flex items-center justify-center shadow-lg shadow-red-500/30 group-hover:scale-110 transition-transform">
-                                            <span className="text-2xl">🏆</span>
-                                        </div>
                                         <div className="flex-1">
                                             <div className="font-bold text-white group-hover:text-red-300 transition-colors">Vodafone Sultanlar Ligi</div>
                                             <div className="text-xs text-red-400/70">Kadınlar Voleybol • 2025-26</div>
@@ -259,9 +250,6 @@ export default function Navbar() {
                                         onClick={() => setShowLeagueModal(false)}
                                         className="group flex items-center gap-4 p-4 bg-gradient-to-r from-amber-900/30 to-amber-800/10 hover:from-amber-800/40 hover:to-amber-700/20 rounded-2xl border border-amber-600/30 hover:border-amber-500/50 transition-all duration-300"
                                     >
-                                        <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30 group-hover:scale-110 transition-transform">
-                                            <span className="text-2xl">🥇</span>
-                                        </div>
                                         <div className="flex-1">
                                             <div className="font-bold text-white group-hover:text-amber-300 transition-colors">Arabica Coffee House 1. Lig</div>
                                             <div className="text-xs text-amber-400/70">Kadınlar Voleybol • 2025-26</div>
@@ -275,9 +263,6 @@ export default function Navbar() {
                                         onClick={() => setShowLeagueModal(false)}
                                         className="group flex items-center gap-4 p-4 bg-gradient-to-r from-emerald-900/30 to-emerald-800/10 hover:from-emerald-800/40 hover:to-emerald-700/20 rounded-2xl border border-emerald-600/30 hover:border-emerald-500/50 transition-all duration-300"
                                     >
-                                        <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform">
-                                            <span className="text-2xl">🥈</span>
-                                        </div>
                                         <div className="flex-1">
                                             <div className="font-bold text-white group-hover:text-emerald-300 transition-colors">Kadınlar 2. Lig</div>
                                             <div className="text-xs text-emerald-400/70">Kadınlar Voleybol • 2025-26</div>
@@ -290,7 +275,6 @@ export default function Navbar() {
                             {/* Europe Section */}
                             <div className="mt-6 pt-4 border-t border-slate-800">
                                 <div className="flex items-center gap-2 mb-3 px-1">
-                                    <span className="text-2xl">🇪🇺</span>
                                     <span className="text-sm font-bold text-slate-300 uppercase tracking-wider">Avrupa</span>
                                     <div className="flex-1 h-px bg-gradient-to-r from-slate-700 to-transparent"></div>
                                 </div>
@@ -302,9 +286,6 @@ export default function Navbar() {
                                         onClick={() => setShowLeagueModal(false)}
                                         className="group flex items-center gap-4 p-4 bg-gradient-to-r from-blue-900/30 to-indigo-800/10 hover:from-blue-800/40 hover:to-indigo-700/20 rounded-2xl border border-blue-600/30 hover:border-blue-500/50 transition-all duration-300"
                                     >
-                                        <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform">
-                                            <span className="text-2xl">⭐</span>
-                                        </div>
                                         <div className="flex-1">
                                             <div className="font-bold text-white group-hover:text-blue-300 transition-colors">CEV Şampiyonlar Ligi</div>
                                             <div className="text-xs text-blue-400/70">Kadınlar • Grup Aşaması 2025-26</div>
@@ -317,21 +298,17 @@ export default function Navbar() {
                             {/* Coming Soon Section */}
                             <div className="mt-6 pt-4 border-t border-slate-800">
                                 <div className="flex items-center gap-2 mb-3 px-1">
-                                    <span className="text-lg">🌍</span>
                                     <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">Yakında Eklenecek</span>
                                 </div>
 
                                 <div className="grid grid-cols-3 gap-2">
                                     <div className="flex flex-col items-center gap-1 p-3 bg-slate-800/30 rounded-xl opacity-50">
-                                        <span className="text-xl grayscale">🇮🇹</span>
                                         <span className="text-[10px] text-slate-500">İtalya</span>
                                     </div>
                                     <div className="flex flex-col items-center gap-1 p-3 bg-slate-800/30 rounded-xl opacity-50">
-                                        <span className="text-xl grayscale">🇵🇱</span>
                                         <span className="text-[10px] text-slate-500">Polonya</span>
                                     </div>
                                     <div className="flex flex-col items-center gap-1 p-3 bg-slate-800/30 rounded-xl opacity-50">
-                                        <span className="text-xl grayscale">🇧🇷</span>
                                         <span className="text-[10px] text-slate-500">Brezilya</span>
                                     </div>
                                 </div>
