@@ -69,8 +69,8 @@ export default function LeaderboardPage() {
                             key={t}
                             onClick={() => setType(t)}
                             className={`flex-1 px-4 py-2 rounded-lg text-sm font-bold transition-all ${type === t
-                                    ? 'bg-emerald-600 text-white shadow-lg'
-                                    : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                                ? 'bg-emerald-700 text-white shadow-lg'
+                                : 'text-slate-400 hover:text-white hover:bg-slate-800'
                                 }`}
                         >
                             {typeLabels[t]}
@@ -130,9 +130,9 @@ export default function LeaderboardPage() {
                                         <div className="flex items-center gap-3 sm:gap-4">
                                             {/* Rank */}
                                             <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center font-bold text-sm ${entry.rank === 1 ? 'bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-lg shadow-amber-500/30' :
-                                                    entry.rank === 2 ? 'bg-gradient-to-br from-slate-300 to-slate-400 text-slate-800' :
-                                                        entry.rank === 3 ? 'bg-gradient-to-br from-amber-600 to-amber-700 text-white' :
-                                                            'bg-slate-800 text-slate-500'
+                                                entry.rank === 2 ? 'bg-gradient-to-br from-slate-300 to-slate-400 text-slate-800' :
+                                                    entry.rank === 3 ? 'bg-gradient-to-br from-amber-600 to-amber-700 text-white' :
+                                                        'bg-slate-800 text-slate-500'
                                                 }`}>
                                                 {entry.rank === 1 ? '👑' : entry.rank}
                                             </div>

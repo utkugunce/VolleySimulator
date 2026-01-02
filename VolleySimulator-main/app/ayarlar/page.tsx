@@ -215,7 +215,7 @@ export default function AyarlarPage() {
                             <p className="text-slate-400 text-sm mb-3">Giriş yaparak verilerinizi kaydedin</p>
                             <a
                                 href="/login"
-                                className="inline-block px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg transition-colors"
+                                className="inline-block px-4 py-2 bg-emerald-700 hover:bg-emerald-600 text-white font-bold rounded-lg transition-colors"
                             >
                                 Giriş Yap
                             </a>

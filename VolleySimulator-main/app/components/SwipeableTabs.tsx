@@ -73,7 +73,7 @@ export default function SwipeableTabs({
                             whitespace-nowrap transition-all duration-200
                             min-h-[44px] flex-shrink-0
                             ${isActive
-                                ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/30'
+                                ? 'bg-emerald-700 text-white shadow-lg shadow-emerald-600/30'
                                 : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-slate-200'
                             }
                         `}

@@ -190,14 +190,14 @@ export default function AnasayfaPage() {
                     <div className="p-4 grid md:grid-cols-2 gap-4">
                         {/* Standings Preview */}
                         <div>
-                            <h3 className="text-xs font-bold text-slate-500 uppercase mb-2">Puan Durumu ({lig1Groups[0]})</h3>
+                            <h3 className="text-xs font-bold text-slate-400 uppercase mb-2">Puan Durumu ({lig1Groups[0]})</h3>
                             <div className="space-y-1">
                                 {lig1TopTeams.map((team, i) => (
                                     <div key={team.name} className="flex items-center gap-2 p-2 bg-slate-800/50 rounded-lg">
                                         <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${i === 0 ? "bg-amber-500 text-white" : "bg-slate-700 text-slate-400"
                                             }`}>{i + 1}</div>
                                         <span className="flex-1 text-sm text-slate-300 truncate">{team.name}</span>
-                                        <span className="text-xs text-slate-500">{team.played}M</span>
+                                        <span className="text-xs text-slate-400">{team.played}M</span>
                                         <span className="font-bold text-white text-sm">{team.points}P</span>
                                     </div>
                                 ))}
@@ -206,12 +206,12 @@ export default function AnasayfaPage() {
 
                         {/* Upcoming Matches */}
                         <div>
-                            <h3 className="text-xs font-bold text-slate-500 uppercase mb-2">Yaklaşan Maçlar</h3>
+                            <h3 className="text-xs font-bold text-slate-400 uppercase mb-2">Yaklaşan Maçlar</h3>
                             <div className="space-y-1">
                                 {lig1UpcomingMatches.map((match, i) => (
                                     <div key={i} className="flex items-center gap-2 p-2 bg-slate-800/50 rounded-lg text-xs">
                                         <span className="flex-1 text-slate-300 truncate text-right">{match.homeTeam}</span>
-                                        <span className="px-2 py-0.5 bg-slate-700 rounded text-slate-500">vs</span>
+                                        <span className="px-2 py-0.5 bg-slate-700 rounded text-slate-300">vs</span>
                                         <span className="flex-1 text-slate-300 truncate">{match.awayTeam}</span>
                                     </div>
                                 ))}
@@ -234,14 +234,14 @@ export default function AnasayfaPage() {
                     <div className="p-4 grid md:grid-cols-2 gap-4">
                         {/* Standings Preview */}
                         <div>
-                            <h3 className="text-xs font-bold text-slate-500 uppercase mb-2">Puan Durumu</h3>
+                            <h3 className="text-xs font-bold text-slate-400 uppercase mb-2">Puan Durumu</h3>
                             <div className="space-y-1">
                                 {vslTopTeams.map((team, i) => (
                                     <div key={team.name} className="flex items-center gap-2 p-2 bg-slate-800/50 rounded-lg">
                                         <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${i === 0 ? "bg-red-600 text-white" : "bg-slate-700 text-slate-400"
                                             }`}>{i + 1}</div>
                                         <span className="flex-1 text-sm text-slate-300 truncate">{team.name}</span>
-                                        <span className="text-xs text-slate-500">{team.played}M</span>
+                                        <span className="text-xs text-slate-400">{team.played}M</span>
                                         <span className="font-bold text-white text-sm">{team.points}P</span>
                                     </div>
                                 ))}
@@ -250,12 +250,12 @@ export default function AnasayfaPage() {
 
                         {/* Upcoming Matches */}
                         <div>
-                            <h3 className="text-xs font-bold text-slate-500 uppercase mb-2">Yaklaşan Maçlar</h3>
+                            <h3 className="text-xs font-bold text-slate-400 uppercase mb-2">Yaklaşan Maçlar</h3>
                             <div className="space-y-1">
                                 {vslUpcomingMatches.map((match, i) => (
                                     <div key={i} className="flex items-center gap-2 p-2 bg-slate-800/50 rounded-lg text-xs">
                                         <span className="flex-1 text-slate-300 truncate text-right">{match.homeTeam}</span>
-                                        <span className="px-2 py-0.5 bg-slate-700 rounded text-slate-500">vs</span>
+                                        <span className="px-2 py-0.5 bg-slate-700 rounded text-slate-300">vs</span>
                                         <span className="flex-1 text-slate-300 truncate">{match.awayTeam}</span>
                                     </div>
                                 ))}
@@ -278,14 +278,14 @@ export default function AnasayfaPage() {
                     <div className="p-4 grid md:grid-cols-2 gap-4">
                         {/* Standings Preview */}
                         <div>
-                            <h3 className="text-xs font-bold text-slate-500 uppercase mb-2">Puan Durumu ({lig2Groups[0]})</h3>
+                            <h3 className="text-xs font-bold text-slate-400 uppercase mb-2">Puan Durumu ({lig2Groups[0]})</h3>
                             <div className="space-y-1">
                                 {lig2TopTeams.map((team, i) => (
                                     <div key={team.name} className="flex items-center gap-2 p-2 bg-slate-800/50 rounded-lg">
                                         <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${i === 0 ? "bg-emerald-500 text-white" : "bg-slate-700 text-slate-400"
                                             }`}>{i + 1}</div>
                                         <span className="flex-1 text-sm text-slate-300 truncate">{team.name}</span>
-                                        <span className="text-xs text-slate-500">{team.played}M</span>
+                                        <span className="text-xs text-slate-400">{team.played}M</span>
                                         <span className="font-bold text-white text-sm">{team.points}P</span>
                                     </div>
                                 ))}
@@ -294,12 +294,12 @@ export default function AnasayfaPage() {
 
                         {/* Upcoming Matches */}
                         <div>
-                            <h3 className="text-xs font-bold text-slate-500 uppercase mb-2">Yaklaşan Maçlar</h3>
+                            <h3 className="text-xs font-bold text-slate-400 uppercase mb-2">Yaklaşan Maçlar</h3>
                             <div className="space-y-1">
                                 {lig2UpcomingMatches.map((match, i) => (
                                     <div key={i} className="flex items-center gap-2 p-2 bg-slate-800/50 rounded-lg text-xs">
                                         <span className="flex-1 text-slate-300 truncate text-right">{match.homeTeam}</span>
-                                        <span className="px-2 py-0.5 bg-slate-700 rounded text-slate-500">vs</span>
+                                        <span className="px-2 py-0.5 bg-slate-700 rounded text-slate-300">vs</span>
                                         <span className="flex-1 text-slate-300 truncate">{match.awayTeam}</span>
                                     </div>
                                 ))}
@@ -312,19 +312,19 @@ export default function AnasayfaPage() {
                 <div className="grid grid-cols-4 gap-2">
                     <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 text-center">
                         <div className="text-xl font-bold text-amber-400">{gameState.stats.totalPredictions}</div>
-                        <div className="text-[10px] text-slate-500">Tahmin</div>
+                        <div className="text-[10px] text-slate-400">Tahmin</div>
                     </div>
                     <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 text-center">
                         <div className="text-xl font-bold text-emerald-400">{gameState.stats.correctPredictions}</div>
-                        <div className="text-[10px] text-slate-500">Doğru</div>
+                        <div className="text-[10px] text-slate-400">Doğru</div>
                     </div>
                     <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 text-center">
                         <div className="text-xl font-bold text-orange-400">{gameState.stats.bestStreak}</div>
-                        <div className="text-[10px] text-slate-500">En İyi Seri</div>
+                        <div className="text-[10px] text-slate-400">En İyi Seri</div>
                     </div>
                     <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 text-center">
                         <div className="text-xl font-bold text-cyan-400">{gameState.achievements.length}</div>
-                        <div className="text-[10px] text-slate-500">Başarım</div>
+                        <div className="text-[10px] text-slate-400">Başarım</div>
                     </div>
                 </div>
             </div>

@@ -21,7 +21,7 @@ export default function LiglerPage() {
                             <h2 className="text-2xl font-bold text-white mb-2">Vodafone Sultanlar Ligi</h2>
                             <p className="text-slate-400">Türkiye'nin en üst düzey kadınlar voleybol ligi</p>
                         </div>
-                        <div className="mt-2 px-4 py-2 bg-red-600/20 text-red-400 rounded-full text-sm font-bold group-hover:bg-red-600 group-hover:text-white transition-colors">
+                        <div className="mt-2 px-4 py-2 bg-red-600/20 text-red-400 rounded-full text-sm font-bold group-hover:bg-red-700 group-hover:text-white transition-colors">
                             Lige Git →
                         </div>
                     </Link>
@@ -43,7 +43,7 @@ export default function LiglerPage() {
                             <h2 className="text-2xl font-bold text-white mb-2">Kadınlar 2. Lig</h2>
                             <p className="text-slate-400">5 Gruplu 2. Lig Sistemi</p>
                         </div>
-                        <div className="mt-2 px-4 py-2 bg-emerald-600/20 text-emerald-400 rounded-full text-sm font-bold group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                        <div className="mt-2 px-4 py-2 bg-emerald-600/20 text-emerald-400 rounded-full text-sm font-bold group-hover:bg-emerald-700 group-hover:text-white transition-colors">
                             Lige Git →
                         </div>
                     </Link>

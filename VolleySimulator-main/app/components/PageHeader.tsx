@@ -67,7 +67,7 @@ export default function PageHeader({
             <div className="flex items-center gap-3">
                 <div>
                     <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">{title}</h1>
-                    <p className="text-[10px] text-slate-500 hidden sm:block">{subtitle}</p>
+                    <p className="text-[10px] text-slate-400 hidden sm:block">{subtitle}</p>
                 </div>
                 {/* League Navigation - Links preserve current page type */}
                 {showLeagueLinks && (

@@ -249,7 +249,7 @@ export default function MatchManagement() {
                                 <button
                                     onClick={handleUpdateScore}
                                     disabled={updating}
-                                    className="flex-1 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold"
+                                    className="flex-1 py-3 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl font-bold"
                                 >
                                     {updating ? "..." : "Kaydet"}
                                 </button>

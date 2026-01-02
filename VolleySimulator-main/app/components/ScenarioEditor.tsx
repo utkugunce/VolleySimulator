@@ -54,15 +54,15 @@ const ScenarioEditor: React.FC<ScenarioEditorProps> = ({ matches, overrides, onU
                                         const [h, a] = score.split('-').map(Number);
                                         const targetWins = isHome ? h > a : a > h;
                                         const colorClass = targetWins ? 'hover:bg-emerald-900/50 hover:border-emerald-500/50' : 'hover:bg-rose-900/50 hover:border-rose-500/50';
-                                        const activeClass = targetWins ? 'bg-emerald-600 border-emerald-500 text-white' : 'bg-rose-600 border-rose-500 text-white';
+                                        const activeClass = targetWins ? 'bg-emerald-700 border-emerald-600 text-white' : 'bg-rose-700 border-rose-600 text-white';
 
                                         return (
                                             <button
                                                 key={score}
                                                 onClick={() => onUpdate(matchId, isSelected ? null : score)}
                                                 className={`flex-1 text-[10px] py-1.5 rounded border transition-all text-center ${isSelected
-                                                        ? activeClass
-                                                        : 'bg-slate-900 border-slate-800 text-slate-400 ' + colorClass
+                                                    ? activeClass
+                                                    : 'bg-slate-900 border-slate-800 text-slate-400 ' + colorClass
                                                     }`}
                                             >
                                                 {score}
@@ -78,15 +78,15 @@ const ScenarioEditor: React.FC<ScenarioEditorProps> = ({ matches, overrides, onU
                                         const [h, a] = score.split('-').map(Number);
                                         const targetWins = isHome ? h > a : a > h;
                                         const colorClass = targetWins ? 'hover:bg-emerald-900/50 hover:border-emerald-500/50' : 'hover:bg-rose-900/50 hover:border-rose-500/50';
-                                        const activeClass = targetWins ? 'bg-emerald-600 border-emerald-500 text-white' : 'bg-rose-600 border-rose-500 text-white';
+                                        const activeClass = targetWins ? 'bg-emerald-700 border-emerald-600 text-white' : 'bg-rose-700 border-rose-600 text-white';
 
                                         return (
                                             <button
                                                 key={score}
                                                 onClick={() => onUpdate(matchId, isSelected ? null : score)}
                                                 className={`flex-1 text-[10px] py-1.5 rounded border transition-all text-center ${isSelected
-                                                        ? activeClass
-                                                        : 'bg-slate-900 border-slate-800 text-slate-400 ' + colorClass
+                                                    ? activeClass
+                                                    : 'bg-slate-900 border-slate-800 text-slate-400 ' + colorClass
                                                     }`}
                                             >
                                                 {score}

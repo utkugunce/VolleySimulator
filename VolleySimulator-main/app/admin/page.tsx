@@ -74,7 +74,7 @@ export default function AdminDashboard() {
                     <div className="flex gap-3">
                         <Link
                             href="/admin/matches"
-                            className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-emerald-500/20 flex items-center gap-2"
+                            className="px-4 py-2 bg-emerald-700 hover:bg-emerald-600 text-white font-bold rounded-xl transition-all shadow-lg shadow-emerald-500/20 flex items-center gap-2"
                         >
                             <span>🏐</span> Maç Yönetimi
                         </Link>

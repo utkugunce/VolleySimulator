@@ -130,8 +130,8 @@ export default function QuestPanel({
                         <div
                             key={quest.id}
                             className={`p-2 rounded-lg border transition-all ${quest.completed
-                                    ? 'bg-emerald-900/20 border-emerald-600/30'
-                                    : 'bg-slate-800/50 border-slate-700/50'
+                                ? 'bg-emerald-900/20 border-emerald-600/30'
+                                : 'bg-slate-800/50 border-slate-700/50'
                                 }`}
                         >
                             <div className="flex items-start gap-2">
@@ -145,7 +145,7 @@ export default function QuestPanel({
                                             {quest.name}
                                         </span>
                                         {quest.completed && (
-                                            <span className="text-[10px] bg-emerald-600 text-white px-1.5 rounded">✓</span>
+                                            <span className="text-[10px] bg-emerald-700 text-white px-1.5 rounded">✓</span>
                                         )}
                                     </div>
                                     <div className="text-[10px] text-slate-400">{quest.description}</div>
@@ -155,8 +155,8 @@ export default function QuestPanel({
                                         <div className="flex-1 h-1.5 bg-slate-700 rounded-full overflow-hidden">
                                             <div
                                                 className={`h-full transition-all duration-500 ${quest.completed
-                                                        ? 'bg-emerald-500'
-                                                        : 'bg-gradient-to-r from-purple-500 to-indigo-500'
+                                                    ? 'bg-emerald-500'
+                                                    : 'bg-gradient-to-r from-purple-500 to-indigo-500'
                                                     }`}
                                                 style={{ width: `${progressPercent}%` }}
                                             />

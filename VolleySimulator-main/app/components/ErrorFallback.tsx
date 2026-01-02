@@ -20,7 +20,7 @@ export default function ErrorFallback({ error, onRetry, className = "" }: ErrorF
             {onRetry && (
                 <button
                     onClick={onRetry}
-                    className="flex items-center gap-2 px-4 py-2 bg-rose-600 hover:bg-rose-500 text-white text-sm font-medium rounded-lg transition-all"
+                    className="flex items-center gap-2 px-4 py-2 bg-rose-700 hover:bg-rose-600 text-white text-sm font-medium rounded-lg transition-all"
                 >
                     <span>🔄</span>
                     <span>Tekrar Dene</span>

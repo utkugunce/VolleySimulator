@@ -136,7 +136,7 @@ export default function BracketView({ quarterGroups, semiGroups, finalGroups }: 
                     <span className="w-3 h-3 rounded bg-blue-600"></span> Yarı Final
                 </span>
                 <span className="flex items-center gap-1">
-                    <span className="w-3 h-3 rounded bg-emerald-600"></span> Final
+                    <span className="w-3 h-3 rounded bg-emerald-700"></span> Final
                 </span>
             </div>
         </div>
@@ -177,8 +177,8 @@ function BracketCard({
 function TeamSlot({ name, isWinner = false }: { name: string; isWinner?: boolean }) {
     return (
         <div className={`text-xs px-2 py-1 rounded truncate ${isWinner
-                ? 'bg-emerald-900/50 text-emerald-300 border border-emerald-700'
-                : 'bg-slate-800/50 text-slate-400'
+            ? 'bg-emerald-900/50 text-emerald-300 border border-emerald-700'
+            : 'bg-slate-800/50 text-slate-400'
             }`}>
             {name}
         </div>

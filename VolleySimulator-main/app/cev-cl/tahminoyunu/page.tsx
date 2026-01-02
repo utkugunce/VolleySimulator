@@ -407,7 +407,7 @@ function CalculatorContent() {
                             </label>
                             <button
                                 onClick={handleSaveAllScenarios}
-                                className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-1"
+                                className="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-1"
                                 title="Senaryoyu Kaydet"
                             >
                                 <span className="hidden sm:inline">Kaydet</span>

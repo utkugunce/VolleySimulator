@@ -310,7 +310,7 @@ function CalculatorContent() {
                             <div className="relative">
                                 <button
                                     onClick={() => setShowAutoMenu(!showAutoMenu)}
-                                    className={`px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-1 shadow-lg shadow-amber-500/20 ${showAutoMenu ? 'ring-2 ring-amber-400' : ''}`}
+                                    className={`px-3 py-1.5 bg-amber-700 hover:bg-amber-600 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-1 shadow-lg shadow-amber-600/20 ${showAutoMenu ? 'ring-2 ring-amber-500' : ''}`}
                                 >
                                     <span className="hidden sm:inline">Otomatik</span>
                                     <span className="text-[8px] ml-0.5">▼</span>
@@ -352,14 +352,14 @@ function CalculatorContent() {
                             />
                             <label
                                 htmlFor="import-upload-vsl"
-                                className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-all cursor-pointer flex items-center gap-1"
+                                className="px-3 py-1.5 bg-blue-700 hover:bg-blue-600 text-white text-xs font-bold rounded-lg transition-all cursor-pointer flex items-center gap-1"
                                 title="Senaryo Yükle"
                             >
                                 <span className="hidden sm:inline">Yükle</span>
                             </label>
                             <button
                                 onClick={handleSaveAllScenarios}
-                                className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-1"
+                                className="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-1"
                                 title="Senaryoyu Kaydet"
                             >
                                 <span className="hidden sm:inline">Kaydet</span>

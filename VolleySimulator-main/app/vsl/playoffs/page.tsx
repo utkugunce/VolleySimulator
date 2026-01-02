@@ -345,7 +345,7 @@ export default function PlayoffsVSLPage() {
                             <p className="text-rose-400 font-medium">
                                 {remainingMatches} maç eksik
                             </p>
-                            <Link href="/vsl/tahminoyunu" className="mt-4 px-4 py-2 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-lg transition-colors">
+                            <Link href="/vsl/tahminoyunu" className="mt-4 px-4 py-2 bg-rose-700 hover:bg-rose-600 text-white font-bold rounded-lg transition-colors">
                                 Tahminleri Tamamla →
                             </Link>
                         </div>
@@ -364,19 +364,19 @@ export default function PlayoffsVSLPage() {
                             <div className="flex gap-2 border-b border-rose-500/20 mb-6 overflow-x-auto pb-2">
                                 <button
                                     onClick={() => setActiveTab1_4('semi')}
-                                    className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTab1_4 === 'semi' ? 'bg-rose-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                                    className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTab1_4 === 'semi' ? 'bg-rose-700 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
                                 >
                                     Yarı Final
                                 </button>
                                 <button
                                     onClick={() => setActiveTab1_4('final')}
-                                    className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTab1_4 === 'final' ? 'bg-amber-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                                    className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTab1_4 === 'final' ? 'bg-amber-700 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
                                 >
                                     Final
                                 </button>
                                 <button
                                     onClick={() => setActiveTab1_4('3rd')}
-                                    className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTab1_4 === '3rd' ? 'bg-slate-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                                    className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTab1_4 === '3rd' ? 'bg-slate-700 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
                                 >
                                     3.lük Maçı
                                 </button>
