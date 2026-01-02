@@ -4,37 +4,18 @@ import Link from "next/link";
 import { useState, useMemo } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useGameState, getLevelTitle, getXPForNextLevel } from "../utils/gameState";
-import { LEVEL_THRESHOLDS } from "../types";
+import { LEVEL_THRESHOLDS, TeamStats, Match } from "../types";
 import TutorialModal, { useTutorial } from "../components/TutorialModal";
 import TeamAvatar from "../components/TeamAvatar";
 
-interface Team {
-    name: string;
-    groupName: string;
-    played: number;
-    wins: number;
-    losses: number;
-    points: number;
-    setsWon: number;
-    setsLost: number;
-}
-
-interface Match {
-    homeTeam: string;
-    awayTeam: string;
-    groupName: string;
-    matchDate?: string;
-    isPlayed: boolean;
-    resultScore?: string;
-}
 
 interface AnasayfaClientProps {
-    initialLig1: { teams: Team[], fixture: Match[] };
-    initialLig2: { teams: Team[], fixture: Match[] };
-    initialVsl: { teams: Team[], fixture: Match[] };
+    initialLig1: { teams: TeamStats[], fixture: Match[] };
+    initialLig2: { teams: TeamStats[], fixture: Match[] };
+    initialVsl: { teams: TeamStats[], fixture: Match[] };
 }
 
-const sortStandings = (teams: Team[]): Team[] => {
+const sortStandings = (teams: TeamStats[]): TeamStats[] => {
     return [...teams].sort((a, b) => {
         if (b.points !== a.points) return b.points - a.points;
         const aAvg = a.setsLost > 0 ? a.setsWon / a.setsLost : a.setsWon;
