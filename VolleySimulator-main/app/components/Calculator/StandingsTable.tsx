@@ -1,6 +1,6 @@
 import { TeamStats } from "../../types";
 import { TeamDiff } from "../../utils/scenarioUtils";
-import TeamAvatar from "../../TeamAvatar";
+import TeamAvatar from "../TeamAvatar";
 
 interface StandingsTableProps {
     teams: TeamStats[];

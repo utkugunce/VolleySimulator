@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Match } from "../../types";
 import { SCORES, normalizeTeamName } from "../../utils/calculatorUtils";
-import TeamAvatar from "../../TeamAvatar";
+import TeamAvatar from "../TeamAvatar";
 
 interface FixtureListProps {
     matches: Match[];
