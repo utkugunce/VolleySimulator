@@ -254,7 +254,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                                                     ? homeWin
                                                                         ? 'bg-emerald-600 border-emerald-500 text-white shadow-emerald-500/30 shadow-md'
                                                                         : 'bg-rose-600 border-rose-500 text-white shadow-rose-500/30 shadow-md'
-                                                                    : 'bg-slate-950 border-slate-700 text-slate-500 hover:bg-slate-800 hover:text-slate-300'
+                                                                    : 'bg-slate-950 border-slate-700 text-slate-400 hover:bg-slate-800 hover:text-slate-300'
                                                                     }`}
                                                             >
                                                                 {score}
