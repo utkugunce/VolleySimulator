@@ -10,6 +10,8 @@ export default function LiglerPage() {
                 <PageHeader
                     title="Ligler"
                     subtitle="Türkiye Kadınlar Voleybol Ligleri • 2025-2026 Sezonu"
+                    showLeagueLinks={false}
+                    showQuickActions={false}
                 />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

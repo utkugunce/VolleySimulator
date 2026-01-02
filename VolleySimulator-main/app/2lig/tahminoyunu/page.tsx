@@ -31,6 +31,7 @@ function CalculatorContent() {
     const [overrides, setOverrides] = useState<Record<string, string>>({});
     const [showAchievements, setShowAchievements] = useState(false);
     const [showAutoMenu, setShowAutoMenu] = useState(false);
+    const [showResetMenu, setShowResetMenu] = useState(false);
     const [newAchievement, setNewAchievement] = useState<Achievement | null>(null);
 
     // Game State
@@ -163,7 +164,22 @@ function CalculatorContent() {
     }, [overrides, groups, allMatches, selectedGroup]);
 
 
-    const handleReset = () => {
+    const handleResetGroup = () => {
+        if (!confirm(`${activeGroup} grubundaki tahminleriniz silinecek. Emin misiniz?`)) return;
+
+        const newOverrides = { ...overrides };
+        const groupMatches = allMatches.filter(m => m.groupName === activeGroup);
+
+        groupMatches.forEach(m => {
+            const id = `${m.homeTeam}-${m.awayTeam}`;
+            delete newOverrides[id];
+        });
+
+        setOverrides(newOverrides);
+        showToast(`${activeGroup} tahminleri sıfırlandı`, "success");
+    };
+
+    const handleResetAll = () => {
         if (!confirm("Tüm tahminleriniz silinecek (Grup + Playoff). Emin misiniz?")) return;
         setOverrides({});
         localStorage.removeItem('groupScenarios');
@@ -474,13 +490,45 @@ function CalculatorContent() {
                                 <span>📍</span>
                                 <span className="hidden sm:inline">Kaldığım Yer</span>
                             </button>
-                            <button
-                                onClick={handleReset}
-                                className="px-3 py-1.5 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 text-xs font-bold rounded-lg transition-all border border-slate-700 flex items-center gap-1"
-                            >
-                                <span>🗑️</span>
-                                <span className="hidden sm:inline">Sıfırla</span>
-                            </button>
+                            {/* Reset Dropdown */}
+                            <div className="relative">
+                                <button
+                                    onClick={() => setShowResetMenu(!showResetMenu)}
+                                    className={`px-3 py-1.5 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 text-xs font-bold rounded-lg transition-all border border-slate-700 flex items-center gap-1 ${showResetMenu ? 'ring-2 ring-rose-500/50' : ''}`}
+                                >
+                                    <span>🗑️</span>
+                                    <span className="hidden sm:inline">Sıfırla</span>
+                                    <span className="text-[8px] ml-0.5">▼</span>
+                                </button>
+
+                                {showResetMenu && (
+                                    <>
+                                        <div className="fixed inset-0 z-40" onClick={() => setShowResetMenu(false)}></div>
+                                        <div className="absolute top-full right-0 mt-2 w-48 bg-slate-900 border border-slate-700 rounded-xl shadow-xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                                            <button
+                                                onClick={() => { handleResetGroup(); setShowResetMenu(false); }}
+                                                className="w-full text-left px-4 py-3 hover:bg-slate-800 transition-colors flex items-center gap-3 border-b border-slate-800"
+                                            >
+                                                <div className="w-8 h-8 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-lg">📝</div>
+                                                <div>
+                                                    <div className="text-xs font-bold text-white">Bu Grubu Sıfırla</div>
+                                                    <div className="text-[9px] text-slate-400">Sadece {activeGroup} silinir</div>
+                                                </div>
+                                            </button>
+                                            <button
+                                                onClick={() => { handleResetAll(); setShowResetMenu(false); }}
+                                                className="w-full text-left px-4 py-3 hover:bg-rose-900/20 transition-colors flex items-center gap-3 group"
+                                            >
+                                                <div className="w-8 h-8 rounded-full bg-rose-500/20 text-rose-400 group-hover:bg-rose-500 group-hover:text-white transition-colors flex items-center justify-center text-lg">🔥</div>
+                                                <div>
+                                                    <div className="text-xs font-bold text-rose-400 group-hover:text-rose-300">Tümünü Sıfırla</div>
+                                                    <div className="text-[9px] text-rose-500/70 group-hover:text-rose-400/70">Bütün tahminler silinir</div>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
                             <ShareButton
                                 targetRef={standingsRef}
                                 championName={liveStandings[0]?.name}
