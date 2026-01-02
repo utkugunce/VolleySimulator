@@ -72,35 +72,37 @@ export default function MatchManagement() {
             };
 
             const [res1Lig, resVSL, res2Lig, resCEV] = await Promise.all([
-                fetch(process.env.NEXT_PUBLIC_API_URL + "/1lig").then(r => r.json()),
-                fetch(process.env.NEXT_PUBLIC_API_URL + "/vsl").then(r => r.json()),
-                fetch(process.env.NEXT_PUBLIC_API_URL + "/scrape").then(r => r.json()), // 2. Lig
-                fetch(process.env.NEXT_PUBLIC_API_URL + "/cev-cl").then(r => r.json()),
+                fetch("/api/1lig").then(r => r.json()),
+                fetch("/api/vsl").then(r => r.json()),
+                fetch("/api/scrape").then(r => r.json()), // 2. Lig
+                fetch("/api/cev-cl").then(r => r.json()),
             ]);
 
             let allMatches: Match[] = [];
 
             // Helper to process response
             const processLeagueData = (data: any, leagueName: string) => {
-                if (!data || !data.matches) return;
-                data.matches.forEach((m: any) => {
-                    // Need to flat map dates/weeks if structure varies. 
-                    // Assuming standard structure: { matches: [ { id, home, ... } ] } 
-                    // OR if grouped by weeks: { weeks: [ { matches: [] } ] }
-                    // Let's assume flattened for MVP or check structure.
-                    // VolleySimulator structure is usually grouped by "weeks" or just flat array in "matches".
-                    // Let's assume flat array 'matches' inside the league json for now based on '1lig.json' usage logic usually being complex.
-                    // If it's grouped, we need to flatten.
-                    // Let's try to handle both.
+                if (!data) return;
+                const matchesList = data.fixture || data.matches || [];
 
-                    allMatches.push({ ...m, league: leagueName });
+                matchesList.forEach((m: any) => {
+                    allMatches.push({
+                        ...m,
+                        league: leagueName,
+                        date: m.date || m.matchDate || ""
+                    });
                 });
 
                 // Handle week-based structure if matches is not top-level
                 if (data.weeks) {
                     data.weeks.forEach((w: any) => {
                         w.matches.forEach((m: any) => {
-                            allMatches.push({ ...m, league: leagueName, week: w.week });
+                            allMatches.push({
+                                ...m,
+                                league: leagueName,
+                                week: w.week,
+                                date: m.date || m.matchDate || ""
+                            });
                         });
                     });
                 }

@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { useGameState, getLevelTitle, getXPForNextLevel } from "../utils/gameState";
 import { useAuth } from "../context/AuthContext";
 import { LEVEL_THRESHOLDS } from "../types";
+import { isAdmin } from "../utils/admin";
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -147,6 +148,23 @@ export default function Navbar() {
                         )}
                         <span className="text-xs font-bold relative z-10">Anasayfa</span>
                     </Link>
+
+                    {/* Admin (Conditional) */}
+                    {isAdmin(user?.email) && (
+                        <Link
+                            href="/admin"
+                            className={`relative flex flex-col items-center gap-0.5 px-5 py-2 rounded-xl transition-all duration-200 active:scale-95 ${pathname?.startsWith('/admin')
+                                ? 'text-rose-400'
+                                : 'text-slate-400 hover:text-white'
+                                }`}
+                            prefetch={true}
+                        >
+                            {pathname?.startsWith('/admin') && (
+                                <div className="absolute inset-0 bg-rose-500/15 rounded-xl border border-rose-500/30"></div>
+                            )}
+                            <span className="text-xs font-bold relative z-10">Admin</span>
+                        </Link>
+                    )}
 
                     {/* Ligler */}
                     <Link

@@ -425,6 +425,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                                                         'text-slate-400'
                                                     }`}>
                                                     <span className="w-4 text-center">{tIdx + 1}.</span>
+                                                    <TeamAvatar name={team.name} size="xs" />
                                                     <span className="truncate flex-1">{team.name}</span>
                                                     <span className="text-slate-500">{team.points}P</span>
                                                 </div>

@@ -139,7 +139,7 @@ export default function StandingsTable({
                                     </td>
                                     <td className={`${rowClass} font-medium`}>
                                         <div className="flex items-center gap-2">
-                                            <TeamAvatar name={team.name} size={compact ? 'sm' : 'md'} />
+                                            <TeamAvatar name={team.name} size={compact ? 'sm' : 'md'} priority={idx < 5} />
                                             <span className={`block truncate ${isPlayoff ? 'text-emerald-600 dark:text-emerald-400' : isSecondaryPlayoff ? 'text-amber-600 dark:text-amber-400' : isRelegation ? 'text-rose-600 dark:text-rose-400' : 'text-text-primary'}`}>{team.name}</span>
                                         </div>
                                     </td>
