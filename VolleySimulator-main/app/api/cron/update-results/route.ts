@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import * as cheerio from 'cheerio';
-import { createServiceRoleClient } from '../../utils/supabase-server';
+import { createServiceRoleClient } from '../../../utils/supabase-server';
 
 // Cron job endpoint - fetches all league results from TVF Calendar (Takvim)
 // Updates VSL, 1. Lig, and 2. Lig in one pass
