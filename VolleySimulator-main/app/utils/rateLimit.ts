@@ -13,7 +13,7 @@ const rateLimits = new Map<string, { count: number; resetTime: number }>();
  */
 export function createRateLimiter(config: RateLimitConfig) {
     return function rateLimit(req: NextRequest): NextResponse | null {
-        const identifier = req.headers.get('x-forwarded-for') || req.ip || 'anonymous';
+        const identifier = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'anonymous';
         const key = `${identifier}:${req.nextUrl.pathname}`;
         const now = Date.now();
 
