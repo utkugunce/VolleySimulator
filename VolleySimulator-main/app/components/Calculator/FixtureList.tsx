@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { Match } from "../../types";
 import { SCORES, normalizeTeamName } from "../../utils/calculatorUtils";
@@ -14,7 +14,7 @@ interface FixtureListProps {
     relegationSpots?: number; // Number of teams to be relegated
 }
 
-export default function FixtureList({ matches, overrides, onScoreChange, teamRanks, totalTeams = 16, relegationSpots = 2 }: FixtureListProps) {
+function FixtureList({ matches, overrides, onScoreChange, teamRanks, totalTeams = 16, relegationSpots = 2 }: FixtureListProps) {
     const [activeTab, setActiveTab] = useState<'upcoming' | 'past'>('upcoming');
     const [collapsedDates, setCollapsedDates] = useState<Set<string>>(new Set());
 
@@ -305,3 +305,5 @@ function getScoreWinner(score: string) {
     if (a > h) return 'away';
     return null;
 }
+
+export default memo(FixtureList);

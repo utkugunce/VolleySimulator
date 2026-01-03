@@ -1,25 +1,32 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { ToastProvider } from "./components/Toast";
-import ScrollToTop from "./components/ScrollToTop";
 import Navbar from "./components/Navbar";
 import { AuthProvider } from "./context/AuthContext";
 import AuthGuard from "./components/AuthGuard";
 import { QueryProvider } from "./providers/QueryProvider";
-import AccessiBeWidget from "./components/AccessiBeWidget";
+
+// Lazy load non-critical components
+const ScrollToTop = dynamic(() => import("./components/ScrollToTop"), { ssr: false });
+const AccessiBeWidget = dynamic(() => import("./components/AccessiBeWidget"), { ssr: false });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap", // Improve FCP by showing fallback font immediately
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: false, // Only load when needed
 });
 
 export const viewport = {

@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import TeamAvatar from "../../components/TeamAvatar";
-import Link from "next/link";
 import { SCORES } from "../../utils/calculatorUtils";
 
 interface Match {
@@ -22,7 +21,7 @@ interface CEVCupData {
     league: string;
     season: string;
     currentStage: string;
-    teams: any[];
+    teams: string[];
     fixture: Match[];
 }
 
@@ -38,26 +37,19 @@ const ROUND_LABELS: Record<string, string> = {
 const TURKISH_TEAMS = ["Galatasaray Daikin ISTANBUL", "THY ISTANBUL", "Kuzeyboru AKSARAY"];
 
 export default function CEVCupPlayoffsClient({ initialData }: { initialData: CEVCupData }) {
-    const [overrides, setOverrides] = useState<Record<string, string>>({});
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    // Load saved predictions
-    useEffect(() => {
-        const saved = localStorage.getItem('cevCupPredictions');
-        if (saved) {
-            try {
-                setOverrides(JSON.parse(saved));
-            } catch (e) { console.error(e); }
+    const [overrides, setOverrides] = useState<Record<string, string>>(() => {
+        try {
+            const saved = localStorage.getItem('cevCupPredictions');
+            return saved ? JSON.parse(saved) : {};
+        } catch (e) {
+            console.error(e);
+            return {};
         }
-        setIsLoaded(true);
-    }, []);
-
+    });
     // Save predictions
     useEffect(() => {
-        if (isLoaded) {
-            localStorage.setItem('cevCupPredictions', JSON.stringify(overrides));
-        }
-    }, [overrides, isLoaded]);
+        localStorage.setItem('cevCupPredictions', JSON.stringify(overrides));
+    }, [overrides]);
 
     const handleScoreChange = (matchId: number, score: string) => {
         setOverrides(prev => {
@@ -107,8 +99,6 @@ export default function CEVCupPlayoffsClient({ initialData }: { initialData: CEV
             const team2 = leg1.awayTeam;
 
             // Calculate aggregate
-            let team1Sets = 0; // Simplified points logic based on sets for aggregate won
-            let team2Sets = 0;
             let team1Points = 0;
             let team2Points = 0;
             let allPlayedOrPredicted = true;
@@ -182,7 +172,6 @@ export default function CEVCupPlayoffsClient({ initialData }: { initialData: CEV
     const renderScoreInput = (match: Match) => {
         const isPlayed = match.isPlayed && match.homeScore !== null;
         const pred = overrides[`match-${match.id}`];
-        const [ph, pa] = pred ? pred.split('-') : ['', ''];
 
         if (isPlayed) {
             return (
@@ -194,6 +183,7 @@ export default function CEVCupPlayoffsClient({ initialData }: { initialData: CEV
 
         return (
             <select
+                aria-label={`Match ${match.id} score prediction`}
                 value={pred || ''}
                 onChange={(e) => handleScoreChange(match.id, e.target.value)}
                 className={`bg-slate-900 border text-xs rounded px-1 py-1 font-mono w-16 text-center appearance-none cursor-pointer hover:bg-slate-800 focus:ring-2 focus:ring-blue-500 outline-none transition-all ${pred ? 'border-blue-500 text-white' : 'border-slate-700 text-slate-500'}`}
@@ -275,12 +265,16 @@ export default function CEVCupPlayoffsClient({ initialData }: { initialData: CEV
                                                 <span className="text-amber-500 font-bold text-[10px]">ALTIN SET:</span>
                                                 <div className="flex gap-1">
                                                     <button
+                                                        type="button"
+                                                        title={`Golden set winner: ${matchup.team1}`}
                                                         onClick={() => setOverrides(prev => ({ ...prev, [matchup.goldenKey]: 'team1' }))}
                                                         className={`px-2 py-0.5 text-[9px] rounded border ${matchup.goldenPred === 'team1' ? 'bg-amber-500 text-slate-900 border-amber-500' : 'bg-slate-800 text-slate-400 border-slate-600'}`}
                                                     >
                                                         {matchup.team1.substring(0, 3)}
                                                     </button>
                                                     <button
+                                                        type="button"
+                                                        title={`Golden set winner: ${matchup.team2}`}
                                                         onClick={() => setOverrides(prev => ({ ...prev, [matchup.goldenKey]: 'team2' }))}
                                                         className={`px-2 py-0.5 text-[9px] rounded border ${matchup.goldenPred === 'team2' ? 'bg-amber-500 text-slate-900 border-amber-500' : 'bg-slate-800 text-slate-400 border-slate-600'}`}
                                                     >
@@ -304,12 +298,6 @@ export default function CEVCupPlayoffsClient({ initialData }: { initialData: CEV
                                         </div>
                                     </div>
 
-                                    {/* Golden Set Button Correction (Hidden helper to fix the loop above visually) */}
-                                    {matchup.goldenSetNeeded && (
-                                        <div className="hidden">
-                                            <button onClick={() => setOverrides(prev => ({ ...prev, [matchup.goldenKey]: 'team1' }))} />
-                                        </div>
-                                    )}
 
                                 </div>
                             </div>

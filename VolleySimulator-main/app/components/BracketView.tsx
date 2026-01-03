@@ -21,8 +21,19 @@ interface BracketViewProps {
     finalGroups: { name: string; teams: { name: string; sourceGroup: string; position: string }[] }[];
 }
 
+interface GroupTeam {
+    name: string;
+    sourceGroup: string;
+    position: string;
+}
+
+interface GroupData {
+    name: string;
+    teams: GroupTeam[];
+}
+
 export default function BracketView({ quarterGroups, semiGroups, finalGroups }: BracketViewProps) {
-    const getWinners = (groups: { name: string; teams: any[] }[]) => {
+    const getWinners = (groups: GroupData[]) => {
         return groups.map(g => ({
             name: g.name,
             first: g.teams[0],

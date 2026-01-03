@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Link from "next/link";
 import { TeamStats } from "../../types";
 import { TeamDiff } from "../../utils/scenarioUtils";
@@ -15,7 +16,7 @@ interface StandingsTableProps {
     comparisonDiffs?: TeamDiff[];
 }
 
-export default function StandingsTable({
+function StandingsTable({
     teams,
     playoffSpots = 2,
     secondaryPlayoffSpots = 0,
@@ -163,3 +164,5 @@ export default function StandingsTable({
         </div>
     );
 }
+
+export default memo(StandingsTable);
