@@ -79,20 +79,11 @@ export const metadata: Metadata = {
     siteName: "VolleySimulator",
     title: "VolleySimulator - Voleybol Tahmin ve Simülasyon Platformu",
     description: "Türkiye voleybol ligleri için puan durumu, maç tahminleri, playoff simülasyonu ve liderlik tablosu.",
-    images: [
-      {
-        url: "/volley_simulator_logo.png",
-        width: 1200,
-        height: 630,
-        alt: "VolleySimulator Logo",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "VolleySimulator - Voleybol Tahmin ve Simülasyon Platformu",
     description: "Türkiye voleybol ligleri için puan durumu, maç tahminleri, playoff simülasyonu ve liderlik tablosu.",
-    images: ["/volley_simulator_logo.png"],
   },
   robots: {
     index: true,
