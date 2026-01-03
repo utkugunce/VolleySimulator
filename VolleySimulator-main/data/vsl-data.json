@@ -23,11 +23,11 @@
     {
       "name": "BAHÇELİEVLER BLD.",
       "groupName": "Vodafone Sultanlar Ligi",
-      "played": 13,
+      "played": 14,
       "wins": 0,
       "points": 0,
-      "setsWon": 3,
-      "setsLost": 39
+      "setsWon": 4,
+      "setsLost": 41
     },
     {
       "name": "BEŞİKTAŞ",
@@ -41,11 +41,11 @@
     {
       "name": "ECZACIBAŞI DYNAVİT",
       "groupName": "Vodafone Sultanlar Ligi",
-      "played": 13,
-      "wins": 10,
-      "points": 29,
-      "setsWon": 33,
-      "setsLost": 11
+      "played": 14,
+      "wins": 11,
+      "points": 31,
+      "setsWon": 36,
+      "setsLost": 13
     },
     {
       "name": "FENERBAHÇE MEDICANA",
@@ -77,11 +77,11 @@
     {
       "name": "KUZEYBORU",
       "groupName": "Vodafone Sultanlar Ligi",
-      "played": 13,
+      "played": 14,
       "wins": 3,
-      "points": 9,
-      "setsWon": 15,
-      "setsLost": 34
+      "points": 10,
+      "setsWon": 17,
+      "setsLost": 37
     },
     {
       "name": "NİLÜFER BELEDİYESPOR EKER",
@@ -95,11 +95,11 @@
     {
       "name": "TÜRK HAVA YOLLARI",
       "groupName": "Vodafone Sultanlar Ligi",
-      "played": 13,
-      "wins": 5,
-      "points": 15,
-      "setsWon": 20,
-      "setsLost": 28
+      "played": 14,
+      "wins": 6,
+      "points": 18,
+      "setsWon": 22,
+      "setsLost": 29
     },
     {
       "name": "VAKIFBANK",
@@ -1504,9 +1504,9 @@
       "groupName": "Vodafone Sultanlar Ligi",
       "homeTeam": "KUZEYBORU",
       "awayTeam": "ECZACIBAŞI DYNAVİT",
-      "homeScore": null,
-      "awayScore": null,
-      "isPlayed": false,
+      "homeScore": 2,
+      "awayScore": 3,
+      "isPlayed": true,
       "venue": "AKSARAY SPOR SALONU",
       "city": "AKSARAY"
     },
@@ -1579,9 +1579,9 @@
       "groupName": "Vodafone Sultanlar Ligi",
       "homeTeam": "BAHÇELİEVLER BLD.",
       "awayTeam": "TÜRK HAVA YOLLARI",
-      "homeScore": null,
-      "awayScore": null,
-      "isPlayed": false,
+      "homeScore": 1,
+      "awayScore": 2,
+      "isPlayed": true,
       "venue": "HASAN DOĞAN",
       "city": "İSTANBUL"
     },
@@ -2861,5 +2861,5 @@
       "city": "İSTANBUL"
     }
   ],
-  "lastUpdated": "2026-01-02T09:26:49.443Z"
+  "lastUpdated": "2026-01-03T14:45:50.493Z"
 }
