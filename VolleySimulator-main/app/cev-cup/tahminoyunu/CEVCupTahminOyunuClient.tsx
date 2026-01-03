@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
-import PageHeader from "../../components/PageHeader";
+
 import TeamAvatar from "@/app/components/TeamAvatar";
 import { useToast } from "../../components";
 import { useGameState, ACHIEVEMENTS } from "../../utils/gameState";
@@ -145,50 +145,64 @@ export default function CEVCupTahminOyunuClient({ initialData }: { initialData: 
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-1 sm:p-2 font-sans">
             <div className="w-full max-w-7xl mx-auto flex flex-col h-full gap-2">
-                <PageHeader
-                    title="CEV Cup"
-                    subtitle="Tahmin Oyunu"
-                    groups={availableRounds.map(r => ROUND_LABELS[r] || r)}
-                    selectedGroup={ROUND_LABELS[activeRound] || activeRound}
-                    onGroupChange={(g) => {
-                        const round = Object.entries(ROUND_LABELS).find(([, v]) => v === g)?.[0];
-                        if (round) setActiveRound(round);
-                    }}
-                />
-
-                {/* Action Bar */}
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-2 bg-slate-900/40 rounded-xl border border-slate-800">
-                    <div className="flex items-center gap-2">
-                        <span className="text-xs text-slate-500">
-                            {predictedCount}/{totalUnplayed} tahmin yapıldı
-                        </span>
-                        <div className="w-20 h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                            <div
-                                className="h-full bg-amber-500 transition-all"
-                                // eslint-disable-next-line
-                                style={{ width: `${totalUnplayed > 0 ? (predictedCount / totalUnplayed) * 100 : 0}%` }}
-                            />
+                    <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                        <div className="text-center sm:text-left">
+                            <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">CEV Cup</h1>
+                            <p className="text-[10px] text-slate-400 hidden sm:block">Tahmin Oyunu</p>
+                        </div>
+                        <div className="flex gap-2 items-center w-full sm:w-auto">
+                            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden sm:inline whitespace-nowrap">TUR:</span>
+                            <div className="flex gap-1 p-1 bg-slate-950/50 rounded-lg border border-slate-800 items-center">
+                                <select
+                                    value={activeRound}
+                                    onChange={(e) => setActiveRound(e.target.value)}
+                                    title="Tur Seçin"
+                                    className="px-3 py-1 bg-amber-600/20 text-amber-500 text-[10px] uppercase font-black rounded-md border border-amber-500/30 outline-none cursor-pointer transition-all focus:ring-2 focus:ring-amber-500/50"
+                                >
+                                    {availableRounds.map(r => (
+                                        <option key={r} value={r} className="bg-slate-900 text-white">
+                                            {ROUND_LABELS[r] || r}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                        <button
-                            onClick={handleRandomize}
-                            className="px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold rounded-lg transition-all"
-                        >
-                            🎲 Rastgele
-                        </button>
-                        <button
-                            onClick={handleResetRound}
-                            className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700"
-                        >
-                            Turu Sıfırla
-                        </button>
-                        <button
-                            onClick={handleResetAll}
-                            className="px-3 py-1.5 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 text-xs font-bold rounded-lg transition-all border border-slate-700"
-                        >
-                            Tümünü Sıfırla
-                        </button>
+
+                    <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
+                        <div className="flex items-center gap-2 sm:mr-2">
+                            <span className="text-xs text-slate-500 hidden lg:inline">
+                                {predictedCount}/{totalUnplayed} tahmin
+                            </span>
+                            <div className="w-16 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                                <div
+                                    className="h-full bg-amber-500 transition-all"
+                                    // eslint-disable-next-line
+                                    style={{ width: `${totalUnplayed > 0 ? (predictedCount / totalUnplayed) * 100 : 0}%` }}
+                                />
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <button
+                                onClick={handleRandomize}
+                                className="px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold rounded-lg transition-all"
+                            >
+                                🎲 Rastgele
+                            </button>
+                            <button
+                                onClick={handleResetRound}
+                                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700"
+                            >
+                                Turu Sıfırla
+                            </button>
+                            <button
+                                onClick={handleResetAll}
+                                className="px-3 py-1.5 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 text-xs font-bold rounded-lg transition-all border border-slate-700"
+                            >
+                                Tümünü Sıfırla
+                            </button>
+                        </div>
                     </div>
                 </div>
 

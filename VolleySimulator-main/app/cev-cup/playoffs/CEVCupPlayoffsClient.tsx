@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
-import PageHeader from "../../components/PageHeader";
+
 import TeamAvatar from "../../components/TeamAvatar";
 import Link from "next/link";
 
@@ -203,10 +203,10 @@ export default function CEVCupPlayoffsClient({ initialData }: { initialData: CEV
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-8 font-sans">
             <div className="max-w-7xl mx-auto space-y-6">
-                <PageHeader
-                    title="CEV Cup"
-                    subtitle="Eleme Tablosu 2025-2026"
-                />
+                <div className="flex flex-col gap-1">
+                    <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">CEV Cup</h1>
+                    <p className="text-[10px] text-slate-400 hidden sm:block">Eleme Tablosu 2025-2026</p>
+                </div>
 
                 {/* Info Banner */}
                 {totalPredictions < unplayedMatches && (

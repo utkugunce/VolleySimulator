@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import PageHeader from "../components/PageHeader";
+
 import { useAuth } from "../context/AuthContext";
 
 interface LeaderboardEntry {
@@ -70,10 +70,10 @@ export default function LeaderboardClient({
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">
             <div className="max-w-4xl mx-auto space-y-4">
-                <PageHeader
-                    title="Sıralama Tablosu"
-                    subtitle="En iyi tahmin uzmanları"
-                />
+                <div className="flex flex-col gap-1 px-1">
+                    <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">Sıralama Tablosu</h1>
+                    <p className="text-[10px] text-slate-400 hidden sm:block">En iyi tahmin uzmanları</p>
+                </div>
 
                 {/* Type Selector */}
                 <div className="flex gap-2 p-1 bg-slate-900 rounded-xl border border-slate-800">

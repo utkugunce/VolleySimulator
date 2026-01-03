@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { TeamStats, Match, Achievement } from "../../types";
-import PageHeader from "../../components/PageHeader";
+
 import { useToast, AchievementToast, AchievementsPanel } from "../../components";
 import StandingsTable from "../../components/Calculator/StandingsTable";
 import FixtureList from "../../components/Calculator/FixtureList";
@@ -287,25 +287,27 @@ export default function OneLigCalculatorClient({ initialTeams, initialMatches }:
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-1 sm:p-2 font-sans">
             <div className="w-full max-w-7xl mx-auto flex flex-col h-full gap-2">
-                <PageHeader
-                    title="Arabica Coffee House"
-                    subtitle="Kadınlar Voleybol 1.Ligi"
-                />
-
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-2 bg-slate-900/40 rounded-xl border border-slate-800">
-                    <div className="flex gap-2 items-center w-full sm:w-auto">
-                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden sm:inline whitespace-nowrap">GRUP:</span>
-                        <select
-                            value={activeGroup}
-                            onChange={(e) => setSelectedGroup(e.target.value)}
-                            className="appearance-none bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-lg px-4 py-2 border border-slate-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all outline-none cursor-pointer min-w-[120px]"
-                        >
-                            {groups.map(groupName => (
-                                <option key={groupName} value={groupName} className="bg-slate-900">
-                                    {groupName}
-                                </option>
-                            ))}
-                        </select>
+                    <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                        <div className="text-center sm:text-left">
+                            <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">Arabica Coffee House</h1>
+                            <p className="text-[10px] text-slate-400 hidden sm:block">Kadınlar Voleybol 1.Ligi</p>
+                        </div>
+                        <div className="flex gap-2 items-center w-full sm:w-auto">
+                            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden sm:inline whitespace-nowrap">GRUP:</span>
+                            <select
+                                value={activeGroup}
+                                onChange={(e) => setSelectedGroup(e.target.value)}
+                                title="Grup Seçin"
+                                className="appearance-none bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-lg px-4 py-2 border border-slate-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all outline-none cursor-pointer min-w-[120px]"
+                            >
+                                {groups.map(groupName => (
+                                    <option key={groupName} value={groupName} className="bg-slate-900">
+                                        {groupName}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
 
                     <div className="flex items-center gap-2 w-full sm:w-auto pb-1 sm:pb-0 justify-between sm:justify-end flex-wrap sm:flex-nowrap">

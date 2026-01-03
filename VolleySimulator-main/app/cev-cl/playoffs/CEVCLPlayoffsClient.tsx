@@ -3,7 +3,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { TeamStats, Match } from "../../types";
 import Link from "next/link";
-import PageHeader from "../../components/PageHeader";
+
 import TeamAvatar from "../../components/TeamAvatar";
 import { calculateLiveStandings } from "../../utils/calculatorUtils";
 
@@ -372,10 +372,10 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-8 font-sans">
             <div className="max-w-7xl mx-auto space-y-6">
-                <PageHeader
-                    title="CEV Şampiyonlar Ligi"
-                    subtitle="Playoff ve Final Four 2025-2026"
-                />
+                <div className="flex flex-col gap-1">
+                    <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">CEV Şampiyonlar Ligi</h1>
+                    <p className="text-[10px] text-slate-400 hidden sm:block">Playoff ve Final Four 2025-2026</p>
+                </div>
 
                 {!isGroupsComplete && (
                     <div className="bg-blue-500/10 border border-blue-500/20 text-blue-200 p-4 rounded-lg flex items-center gap-3">

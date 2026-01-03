@@ -11,7 +11,7 @@ import {
     applyOverridesToGroups
 } from "../../utils/playoffUtils";
 import { calculateLiveStandings } from "../../utils/calculatorUtils";
-import PageHeader from "../../components/PageHeader";
+
 import TeamAvatar from "../../components/TeamAvatar";
 
 interface OneLigPlayoffsClientProps {
@@ -141,10 +141,10 @@ export default function OneLigPlayoffsClient({ initialTeams, initialMatches }: O
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-8 font-sans">
             <div className="max-w-7xl mx-auto space-y-8">
-                <PageHeader
-                    title="1. Lig Play-Off"
-                    subtitle="Sultanlar Ligi yükselme mücadelesi"
-                />
+                <div className="flex flex-col gap-1">
+                    <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">1. Lig Play-Off</h1>
+                    <p className="text-[10px] text-slate-400 hidden sm:block">Sultanlar Ligi yükselme mücadelesi</p>
+                </div>
 
                 {!isGroupsComplete && (
                     <div className="bg-amber-500/10 border border-amber-500/20 text-amber-200 p-4 rounded-lg flex items-center gap-3">

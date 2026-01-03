@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { TeamStats } from "../../types";
-import PageHeader from "@/app/components/PageHeader";
+
 import TeamAvatar from "@/app/components/TeamAvatar";
 
 interface CEVCLStatsClientProps {
@@ -100,10 +100,10 @@ export default function CEVCLStatsClient({ initialTeams }: CEVCLStatsClientProps
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">
             <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
-                <PageHeader
-                    title="CEV Şampiyonlar Ligi İstatistikleri"
-                    subtitle="Kadınlar • 2025-2026"
-                />
+                <div className="flex flex-col gap-1 px-1">
+                    <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">CEV Şampiyonlar Ligi İstatistikleri</h1>
+                    <p className="text-[10px] text-slate-400 hidden sm:block">Kadınlar • 2025-2026</p>
+                </div>
 
                 <div className="grid grid-cols-3 gap-2 sm:gap-4">
                     <div className="bg-gradient-to-br from-blue-600/20 to-blue-900/10 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-blue-600/30 text-center">

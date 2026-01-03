@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo } from "react";
 import { TeamStats, Match } from "../../types";
 import Link from "next/link";
 import { calculateLiveStandings } from "../../utils/calculatorUtils";
-import PageHeader from "../../components/PageHeader";
+
 import TeamAvatar from "../../components/TeamAvatar";
 
 interface VSLPlayoffsClientProps {
@@ -238,10 +238,10 @@ export default function VSLPlayoffsClient({ initialTeams, initialMatches }: VSLP
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-8 font-sans">
             <div className="max-w-7xl mx-auto space-y-8">
-                <PageHeader
-                    title="Sultanlar Ligi Play-Off"
-                    subtitle="Şampiyonluk ve sıralama mücadelesi 2025-2026"
-                />
+                <div className="flex flex-col gap-1">
+                    <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">Sultanlar Ligi Play-Off</h1>
+                    <p className="text-[10px] text-slate-400 hidden sm:block">Şampiyonluk ve sıralama mücadelesi 2025-2026</p>
+                </div>
 
                 {!isGroupsComplete && (
                     <div className="bg-rose-500/10 border border-rose-500/20 text-rose-200 p-4 rounded-lg flex items-center gap-3">

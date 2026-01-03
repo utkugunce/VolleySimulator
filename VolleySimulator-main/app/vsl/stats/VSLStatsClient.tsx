@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { TeamStats } from "../../types";
-import PageHeader from "@/app/components/PageHeader";
+
 import TeamAvatar from "@/app/components/TeamAvatar";
 
 interface VSLStatsClientProps {
@@ -99,10 +99,10 @@ export default function VSLStatsClient({ initialTeams }: VSLStatsClientProps) {
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">
             <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
-                <PageHeader
-                    title="Sultanlar Ligi İstatistikleri"
-                    subtitle="Vodafone Sultanlar Ligi İstatistik Merkezi"
-                />
+                <div className="flex flex-col gap-1 px-1">
+                    <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">Sultanlar Ligi İstatistikleri</h1>
+                    <p className="text-[10px] text-slate-400 hidden sm:block">Vodafone Sultanlar Ligi İstatistik Merkezi</p>
+                </div>
 
                 <div className="grid grid-cols-3 gap-2 sm:gap-4">
                     <div className="bg-gradient-to-br from-red-600/20 to-red-900/10 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-red-600/30 text-center">

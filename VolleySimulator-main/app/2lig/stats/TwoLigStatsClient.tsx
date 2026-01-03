@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { TeamStats } from "../../types";
-import PageHeader from "@/app/components/PageHeader";
+
 import TeamAvatar from "@/app/components/TeamAvatar";
 
 interface TwoLigStatsClientProps {
@@ -120,10 +120,10 @@ export default function TwoLigStatsClient({ initialTeams }: TwoLigStatsClientPro
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">
             <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
-                <PageHeader
-                    title="2. Lig İstatistikleri"
-                    subtitle="Kadınlar 2. Ligi İstatistik Merkezi"
-                />
+                <div className="flex flex-col gap-1 px-1">
+                    <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">2. Lig İstatistikleri</h1>
+                    <p className="text-[10px] text-slate-400 hidden sm:block">Kadınlar 2. Ligi İstatistik Merkezi</p>
+                </div>
 
                 <div className="flex bg-slate-900/50 p-1 rounded-xl border border-slate-800/50 overflow-x-auto no-scrollbar snap-x">
                     <button

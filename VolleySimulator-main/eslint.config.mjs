@@ -13,11 +13,13 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
-  // Disable inline style warning - needed for dynamic width/height values
+  // Disable inline style warnings - needed for dynamic width/height values in progress bars
   {
     rules: {
       "react/forbid-dom-props": "off",
       "react/forbid-component-props": "off",
+      "react/style-prop-object": "off",
+      "@next/next/no-img-element": "off",
     },
   },
 ]);

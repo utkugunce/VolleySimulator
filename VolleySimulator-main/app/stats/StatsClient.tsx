@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { TeamStats } from "../types";
-import PageHeader from "../components/PageHeader";
+
 import TeamAvatar from "../components/TeamAvatar";
 
 interface StatsClientProps {
@@ -91,10 +91,10 @@ export default function StatsClient({ initialTeams }: StatsClientProps) {
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-4 font-sans">
             <div className="max-w-7xl mx-auto space-y-8 pt-4">
-                <PageHeader
-                    title="İstatistikler"
-                    subtitle="Global İstatistik Merkezi"
-                />
+                <div className="flex flex-col gap-1">
+                    <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">İstatistikler</h1>
+                    <p className="text-[10px] text-slate-400 hidden sm:block">Global İstatistik Merkezi</p>
+                </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="bg-gradient-to-br from-emerald-600/20 to-emerald-900/20 backdrop-blur-sm border border-emerald-500/20 rounded-2xl p-4 text-center">

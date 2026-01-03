@@ -1,16 +1,14 @@
 import Link from "next/link";
-import PageHeader from "../components/PageHeader";
+
 
 export default function LiglerPage() {
     return (
         <div className="min-h-screen bg-slate-950">
             <div className="max-w-5xl mx-auto px-4 py-6 space-y-6">
-                <PageHeader
-                    title="Ligler"
-                    subtitle="Türkiye Kadınlar Voleybol Ligleri • 2025-2026 Sezonu"
-                    showLeagueLinks={false}
-                    showQuickActions={false}
-                />
+                <div className="flex flex-col gap-1 items-center md:items-start text-center md:text-left">
+                    <h1 className="font-bold text-white text-2xl tracking-tight leading-none">Ligler</h1>
+                    <p className="text-sm text-slate-400">Türkiye Kadınlar Voleybol Ligleri • 2025-2026 Sezonu</p>
+                </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Vodafone Sultanlar Ligi */}

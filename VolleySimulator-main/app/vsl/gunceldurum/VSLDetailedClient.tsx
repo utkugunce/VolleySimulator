@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { TeamStats, Match } from "../../types";
-import PageHeader from "../../components/PageHeader";
+
 import StandingsTable from "../../components/Calculator/StandingsTable";
 import { sortStandings } from "../../utils/calculatorUtils";
 import TeamAvatar from "@/app/components/TeamAvatar";
@@ -64,14 +64,10 @@ export default function VSLDetailedClient({ initialTeams, initialMatches }: VSLD
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-0 sm:p-2 font-sans overflow-hidden">
             <div className="max-w-7xl mx-auto space-y-1 h-full flex flex-col">
-                <PageHeader
-                    title="Vodafone Sultanlar Ligi"
-                    subtitle="2025-2026 Sezonu Puan Durumu ve Fikstür"
-                />
-
                 <div className="space-y-3 bg-slate-900/40 p-3 rounded-2xl border border-slate-800/60 backdrop-blur-sm animate-in fade-in slide-in-from-bottom-4 duration-300">
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 border-b border-slate-800 pb-3">
                         <div className="space-y-0.5">
+                            <p className="text-[10px] text-slate-400 font-medium mb-1 hidden sm:block">2025-2026 Sezonu Puan Durumu ve Fikstür</p>
                             <h2 className="text-2xl font-black italic uppercase tracking-tighter text-red-600 leading-none">
                                 {groupName}
                             </h2>

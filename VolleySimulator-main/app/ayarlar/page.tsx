@@ -90,6 +90,7 @@ export default function AyarlarPage() {
                         </div>
                         <button
                             onClick={toggleSound}
+                            title="Ses Efektlerini Aç/Kapat"
                             className={`w-14 h-7 rounded-full transition-all relative ${gameState.soundEnabled ? 'bg-emerald-600' : 'bg-slate-700'
                                 }`}
                         >
@@ -111,6 +112,7 @@ export default function AyarlarPage() {
                         <select
                             value={theme}
                             onChange={(e) => setTheme(e.target.value as 'dark' | 'light')}
+                            title="Tema Seçin"
                             className="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white"
                         >
                             <option value="dark">Koyu</option>
@@ -125,6 +127,7 @@ export default function AyarlarPage() {
                         </div>
                         <button
                             onClick={() => setNotifications(!notifications)}
+                            title="Bildirimleri Aç/Kapat"
                             className={`w-14 h-7 rounded-full transition-all relative ${notifications ? 'bg-emerald-600' : 'bg-slate-700'
                                 }`}
                         >

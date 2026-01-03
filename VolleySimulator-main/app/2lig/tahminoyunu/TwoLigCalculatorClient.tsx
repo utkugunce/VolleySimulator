@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { TeamStats, Match, Achievement } from "../../types";
-import PageHeader from "../../components/PageHeader";
+
 import { useToast, AchievementToast, AchievementsPanel } from "../../components";
 import StandingsTable from "../../components/Calculator/StandingsTable";
 import FixtureList from "../../components/Calculator/FixtureList";
@@ -284,25 +284,27 @@ export default function TwoLigCalculatorClient({ initialTeams, initialMatches }:
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-1 sm:p-2 font-sans">
             <div className="w-full max-w-7xl mx-auto flex flex-col h-full gap-2">
-                <PageHeader
-                    title="Kadınlar 2. Lig"
-                    subtitle="Tahmin Oyunu"
-                />
-
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-2 bg-slate-900/40 rounded-xl border border-slate-800">
-                    <div className="flex gap-2 items-center w-full sm:w-auto">
-                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden sm:inline whitespace-nowrap">GRUP:</span>
-                        <select
-                            value={activeGroup}
-                            onChange={(e) => setSelectedGroup(e.target.value)}
-                            className="flex-1 sm:flex-none px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-lg border border-slate-700 hover:border-slate-600 outline-none cursor-pointer transition-all focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500"
-                        >
-                            {groups.map(groupName => (
-                                <option key={groupName} value={groupName} className="bg-slate-900 text-white py-2">
-                                    {groupName}
-                                </option>
-                            ))}
-                        </select>
+                    <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                        <div className="text-center sm:text-left">
+                            <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">Kadınlar 2. Lig</h1>
+                            <p className="text-[10px] text-slate-400 hidden sm:block">Tahmin Oyunu</p>
+                        </div>
+                        <div className="flex gap-2 items-center w-full sm:w-auto">
+                            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden sm:inline whitespace-nowrap">GRUP:</span>
+                            <select
+                                value={activeGroup}
+                                onChange={(e) => setSelectedGroup(e.target.value)}
+                                title="Grup Seçin"
+                                className="flex-1 sm:flex-none px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-lg border border-slate-700 hover:border-slate-600 outline-none cursor-pointer transition-all focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500"
+                            >
+                                {groups.map(groupName => (
+                                    <option key={groupName} value={groupName} className="bg-slate-900 text-white py-2">
+                                        {groupName}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
 
                     <div className="flex items-center gap-2 w-full sm:w-auto pb-1 sm:pb-0 justify-between sm:justify-end flex-wrap sm:flex-nowrap">

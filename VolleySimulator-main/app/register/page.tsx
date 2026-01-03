@@ -148,6 +148,7 @@ export default function RegisterPage() {
                                     name="favoriteTeam"
                                     value={formData.favoriteTeam}
                                     onChange={handleChange}
+                                    title="Favori Takım Seçin"
                                     className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                                 >
                                     <option value="">Takım seç...</option>

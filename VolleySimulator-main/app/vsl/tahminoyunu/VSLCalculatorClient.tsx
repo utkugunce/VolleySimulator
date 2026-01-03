@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useMemo } from "react";
 import { TeamStats, Match, Achievement } from "../../types";
-import PageHeader from "../../components/PageHeader";
+
 import { useToast, AchievementToast, AchievementsPanel } from "../../components";
 import StandingsTable from "../../components/Calculator/StandingsTable";
 import FixtureList from "../../components/Calculator/FixtureList";
@@ -232,13 +232,15 @@ export default function VSLCalculatorClient({ initialTeams, initialMatches }: VS
         <main className="min-h-screen bg-slate-950 text-slate-100 p-1 sm:p-2 font-sans">
             <div className="w-full max-w-7xl mx-auto flex flex-col h-full gap-2">
 
-                <PageHeader
-                    title="Vodafone Sultanlar Ligi"
-                    subtitle="Tahmin Oyunu"
-                />
-
                 {/* Action Bar - Sticky Top on Mobile */}
-                <div className="sticky top-0 z-20 flex flex-col sm:flex-row items-center justify-end gap-3 p-2 bg-slate-900/95 backdrop-blur-sm rounded-xl border border-slate-800 shadow-xl mb-4">
+                <div className="sticky top-14 z-20 flex flex-col sm:flex-row items-center justify-between gap-3 p-2 bg-slate-900/95 backdrop-blur-sm rounded-xl border border-slate-800 shadow-xl mb-4">
+                    <div className="flex items-center gap-3">
+                        <div>
+                            <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">Vodafone Sultanlar Ligi</h1>
+                            <p className="text-[10px] text-slate-400 hidden sm:block">Tahmin Oyunu</p>
+                        </div>
+                    </div>
+
                     <div className="flex items-center gap-2 w-full sm:w-auto pb-1 sm:pb-0 justify-end flex-wrap sm:flex-nowrap">
                         <div className="flex items-center gap-2 shrink-0">
                             <div className="relative">

@@ -1,4 +1,4 @@
-﻿import { Match, TeamStats, MatchOverride } from "../types";
+import { Match, TeamStats, MatchOverride } from "../types";
 import { normalizeTeamName } from "./calculatorUtils";
 import { calculateElo } from "./eloCalculator";
 
@@ -114,7 +114,7 @@ export function generateSemiGroups(quarterGroups: PlayoffGroup[]): PlayoffGroup[
         // IMPORTANT: The caller is responsible for ensuring quarterGroups are sorted by standings!
         const team = qGroup.teams[position - 1];
         if (!team) return null;
-        return { ...team, sourceGroup: `Ã‡F ${grpName}`, position: `${position}.` };
+        return { ...team, sourceGroup: `ÇF ${grpName}`, position: `${position}.` };
     };
 
     return semiDefs.map(sd => {
@@ -210,14 +210,14 @@ export function generateGroupFixture(groups: PlayoffGroup[], stage: 'quarter' | 
 
         // Custom seeding/pairing logic 1-4, 2-3
         // Day 1
-        matches.push({ id: `${stage}-${group.groupName}-${t1.name}-${t4.name}`, homeTeam: t1.name, awayTeam: t4.name, date: 'Gün 1', stage });
-        matches.push({ id: `${stage}-${group.groupName}-${t2.name}-${t3.name}`, homeTeam: t2.name, awayTeam: t3.name, date: 'Gün 1', stage });
+        matches.push({ id: `${stage}-${group.groupName}-${t1.name}-${t4.name}`, homeTeam: t1.name, awayTeam: t4.name, date: 'G�n 1', stage });
+        matches.push({ id: `${stage}-${group.groupName}-${t2.name}-${t3.name}`, homeTeam: t2.name, awayTeam: t3.name, date: 'G�n 1', stage });
         // Day 2
-        matches.push({ id: `${stage}-${group.groupName}-${t4.name}-${t2.name}`, homeTeam: t4.name, awayTeam: t2.name, date: 'Gün 2', stage });
-        matches.push({ id: `${stage}-${group.groupName}-${t3.name}-${t1.name}`, homeTeam: t3.name, awayTeam: t1.name, date: 'Gün 2', stage });
+        matches.push({ id: `${stage}-${group.groupName}-${t4.name}-${t2.name}`, homeTeam: t4.name, awayTeam: t2.name, date: 'G�n 2', stage });
+        matches.push({ id: `${stage}-${group.groupName}-${t3.name}-${t1.name}`, homeTeam: t3.name, awayTeam: t1.name, date: 'G�n 2', stage });
         // Day 3
-        matches.push({ id: `${stage}-${group.groupName}-${t3.name}-${t4.name}`, homeTeam: t3.name, awayTeam: t4.name, date: 'Gün 3', stage });
-        matches.push({ id: `${stage}-${group.groupName}-${t1.name}-${t2.name}`, homeTeam: t1.name, awayTeam: t2.name, date: 'Gün 3', stage });
+        matches.push({ id: `${stage}-${group.groupName}-${t3.name}-${t4.name}`, homeTeam: t3.name, awayTeam: t4.name, date: 'G�n 3', stage });
+        matches.push({ id: `${stage}-${group.groupName}-${t1.name}-${t2.name}`, homeTeam: t1.name, awayTeam: t2.name, date: 'G�n 3', stage });
     });
 
     return matches;
@@ -296,13 +296,13 @@ export function applyOverridesToGroups(
         });
 
         updatedTeams.sort((a, b) => {
-            // 1. Total Wins (Galibiyet Sayısı)
+            // 1. Total Wins (Galibiyet Say�s�)
             if ((b.scenarioWins || 0) !== (a.scenarioWins || 0)) return (b.scenarioWins || 0) - (a.scenarioWins || 0);
 
             // 2. Total Points (Puan)
             if ((b.scenarioPoints || 0) !== (a.scenarioPoints || 0)) return (b.scenarioPoints || 0) - (a.scenarioPoints || 0);
 
-            // 3. Set Ratio (Set Averajı)
+            // 3. Set Ratio (Set Averaj�)
             // Calculate ratios - handle 0 division safely
             const getRatio = (won: number, lost: number) => {
                 if (lost === 0 && won === 0) return 0; // No games played -> 0 ratio

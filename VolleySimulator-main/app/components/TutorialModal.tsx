@@ -237,6 +237,7 @@ export default function TutorialModal({ isOpen, onClose, onComplete }: TutorialM
                             <button
                                 key={index}
                                 onClick={() => setCurrentStep(index)}
+                                title={`Adım ${index + 1}'e git`}
                                 className={`w-2 h-2 rounded-full transition-all ${index === currentStep
                                     ? 'bg-emerald-500 w-6'
                                     : index < currentStep

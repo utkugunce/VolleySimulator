@@ -130,6 +130,7 @@ export default function ProfilePage() {
                         </div>
                         <button
                             onClick={toggleSound}
+                            title="Ses Efektlerini Aç/Kapat"
                             className={`w-10 h-5 rounded-full transition-all relative ${gameState.soundEnabled ? 'bg-emerald-600' : 'bg-slate-700'}`}
                         >
                             <div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform ${gameState.soundEnabled ? 'translate-x-5' : 'translate-x-0.5'}`} />

@@ -15,7 +15,7 @@ import {
     generateGroupFixture,
     applyOverridesToGroups
 } from "../../../../utils/playoffUtils";
-import PageHeader from "../../../../components/PageHeader";
+
 
 export default function OneLigPlayoffGroupDetailPage() {
     const params = useParams();

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { TeamStats } from "../types";
 import Link from "next/link";
 import { calculateGroupStandings, applyOverridesToTeams } from "../utils/playoffUtils";
-import PageHeader from "../components/PageHeader";
+
 
 export default function ScenarioStandingsPage() {
     const [loading, setLoading] = useState(true);
@@ -85,14 +85,10 @@ export default function ScenarioStandingsPage() {
             <div className="max-w-7xl mx-auto flex flex-col gap-4">
 
                 {/* Header */}
-                <PageHeader
-                    title="Senaryo Puan Durumu"
-                    subtitle="Yaptığınız maç tahminlerine göre oluşan puan durumu"
-                    groups={groups}
-                // Logic for filtering in this page
-                // The Original Code didn't have filter state. I won't add it yet to avoid complexity unless requested.
-                // Just displaying the header visual.
-                />
+                <div className="flex flex-col gap-1 px-1">
+                    <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">Senaryo Puan Durumu</h1>
+                    <p className="text-[10px] text-slate-400 hidden sm:block">Yaptığınız maç tahminlerine göre oluşan puan durumu</p>
+                </div>
 
                 {/* Global Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
