@@ -1,6 +1,6 @@
 /**
  * Auto-generated Team IDs
- * Generated at: 2026-01-03T16:35:43.886Z
+ * Generated at: 2026-01-03T16:36:46.660Z
  * Total Teams: 352
  */
 
@@ -3562,9 +3562,6 @@ export type ClubId =
   | 'CLUB_KUZEYBORU'
   | 'CLUB_ARAS_KARGO'
   | 'CLUB_BURSA_BSB'
-  | 'CLUB_ANKARA_DSI'
-  | 'CLUB_HALKBANK'
-  | 'CLUB_ARKAS'
   | 'CLUB_IZMIR_BSB'
   | 'CLUB_ISTANBULBBSK'
   | null;
@@ -3590,7 +3587,5 @@ export const CLUBS: Record<string, { clubId: ClubId; teams: TeamId[] }> = {
   'CLUB_MERINOS': { clubId: 'CLUB_MERINOS', teams: ['1031', '1205'] },
   'CLUB_PTT': { clubId: 'CLUB_PTT', teams: ['1037', '1166'] },
   'CLUB_YESILYURT': { clubId: 'CLUB_YESILYURT', teams: ['1020', '1059'] },
-  'CLUB_ANKARA_DSI': { clubId: 'CLUB_ANKARA_DSI', teams: ['1168', '1090', '1116'] },
-  'CLUB_ARKAS': { clubId: 'CLUB_ARKAS', teams: ['1107'] },
   'CLUB_BURSA_BSB': { clubId: 'CLUB_BURSA_BSB', teams: ['1136'] }
 };

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-01-03T16:35:47.201Z",
+  "generatedAt": "2026-01-03T16:36:46.708Z",
   "version": "1.1.0",
   "totalTeams": 352,
   "teamsByLeague": {
@@ -549,7 +549,7 @@
       "league": "2LIG",
       "country": "TUR",
       "groupName": "12. GRUP",
-      "clubId": "CLUB_ANKARA_DSI"
+      "clubId": null
     },
     {
       "id": 1208,
@@ -567,7 +567,7 @@
       "league": "2LIG",
       "country": "TUR",
       "groupName": "7. GRUP",
-      "clubId": "CLUB_ARKAS"
+      "clubId": null
     },
     {
       "id": 1047,
@@ -666,7 +666,7 @@
       "league": "2LIG",
       "country": "TUR",
       "groupName": "5. GRUP",
-      "clubId": "CLUB_ANKARA_DSI"
+      "clubId": null
     },
     {
       "id": 1083,
@@ -1314,7 +1314,7 @@
       "league": "2LIG",
       "country": "TUR",
       "groupName": "7. GRUP",
-      "clubId": "CLUB_ANKARA_DSI"
+      "clubId": null
     },
     {
       "id": 1151,
@@ -3180,5 +3180,5 @@
       "clubId": null
     }
   ],
-  "clubsCount": 23
+  "clubsCount": 21
 }
