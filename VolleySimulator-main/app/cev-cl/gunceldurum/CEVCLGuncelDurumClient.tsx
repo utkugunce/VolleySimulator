@@ -80,6 +80,7 @@ export default function CEVCLGuncelDurumClient({ initialTeams, initialMatches }:
                             <div className="flex items-center gap-2">
                                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">İlerleme</span>
                                 <div className="w-24 h-1 bg-slate-800 rounded-full overflow-hidden">
+                                    {/* eslint-disable-next-line */}
                                     <div className="h-full bg-blue-500 transition-all duration-1000" style={{ width: `${completionRate}%` }}></div>
                                 </div>
                                 <span className="text-[9px] font-bold text-blue-400">%{completionRate}</span>

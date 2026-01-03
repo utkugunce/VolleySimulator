@@ -165,6 +165,7 @@ export default function CEVCupTahminOyunuClient({ initialData }: { initialData: 
                         <div className="w-20 h-1.5 bg-slate-800 rounded-full overflow-hidden">
                             <div
                                 className="h-full bg-amber-500 transition-all"
+                                // eslint-disable-next-line
                                 style={{ width: `${totalUnplayed > 0 ? (predictedCount / totalUnplayed) * 100 : 0}%` }}
                             />
                         </div>

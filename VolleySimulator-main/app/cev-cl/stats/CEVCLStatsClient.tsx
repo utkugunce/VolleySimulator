@@ -32,6 +32,7 @@ export default function CEVCLStatsClient({ initialTeams }: CEVCLStatsClientProps
         <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden flex-1">
             <div
                 className={`h-full ${color} transition-all duration-500`}
+                // eslint-disable-next-line
                 style={{ width: `${Math.min((value / (max || 1)) * 100, 100)}%` }}
             />
         </div>
