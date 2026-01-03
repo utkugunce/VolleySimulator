@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
+import { validators, sanitize } from "../utils/validation";
 
 export default function RegisterPage() {
     const router = useRouter();
@@ -34,10 +35,21 @@ export default function RegisterPage() {
         e.preventDefault();
 
         if (step === 1) {
-            if (!formData.name || !formData.email) {
-                setError("Ad ve e-posta gerekli");
+            // Use validation utilities
+            const nameError = validators.string.required(formData.name, "Ad gerekli");
+            const emailError = validators.string.required(formData.email, "E-posta gerekli")
+                || validators.string.email(formData.email, "Geçerli bir e-posta girin");
+
+            if (nameError || emailError) {
+                setError(nameError || emailError || "");
                 return;
             }
+            // Sanitize inputs
+            setFormData(prev => ({
+                ...prev,
+                name: sanitize.normalizeWhitespace(prev.name),
+                email: prev.email.trim().toLowerCase()
+            }));
             setError("");
             setStep(2);
             return;

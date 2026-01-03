@@ -15,4 +15,7 @@ export { default as QuestPanel } from './QuestPanel';
 export { AchievementToast, AchievementsPanel } from './Achievements';
 export { ToastProvider, useToast } from './Toast';
 
-
+// New components
+export { default as ErrorBoundary, withErrorBoundary } from './ErrorBoundary';
+export * from './Skeleton';
+export * from './LeagueTemplate';
