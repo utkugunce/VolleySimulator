@@ -34,11 +34,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
         const initAuth = async () => {
             try {
-                const { data } = await client.auth.getSession();
+                // Set a timeout to prevent infinite loading
+                const timeoutPromise = new Promise((_, reject) =>
+                    setTimeout(() => reject(new Error('Auth timeout')), 5000)
+                );
+
+                const sessionPromise = client.auth.getSession();
+
+                // Race between session fetch and timeout
+                const { data } = await Promise.race([sessionPromise, timeoutPromise]) as any;
+
                 setSession(data.session);
                 setUser(data.session?.user ?? null);
             } catch (err) {
-                console.warn("Auth check failed:", err);
+                console.warn("Auth check failed or timed out:", err);
+                // If it was a timeout or error, valid state is "not logged in"
+                setSession(null);
+                setUser(null);
             } finally {
                 setLoading(false);
             }
