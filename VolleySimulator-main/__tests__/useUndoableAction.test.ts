@@ -4,101 +4,144 @@
 import { renderHook, act } from '@testing-library/react';
 import { useUndoableAction } from '../app/hooks/useUndoableAction';
 
+// Mock the Toast context
+jest.mock('../app/components/Toast', () => ({
+  useToast: () => ({
+    showUndoToast: jest.fn((message: string, onUndo: () => void) => {
+      // Store the onUndo callback for testing
+      (global as unknown as { __lastUndoCallback: () => void }).__lastUndoCallback = onUndo;
+    }),
+  }),
+}));
+
 describe('useUndoableAction', () => {
-  it('should initialize with provided initial state', () => {
-    const initialState = { count: 0 };
-    const { result } = renderHook(() => useUndoableAction(initialState));
-    
-    expect(result.current.state).toEqual({ count: 0 });
-    expect(result.current.canUndo).toBe(false);
-    expect(result.current.canRedo).toBe(false);
+  beforeEach(() => {
+    jest.useFakeTimers();
   });
 
-  it('should update state and allow undo', () => {
-    const { result } = renderHook(() => useUndoableAction({ count: 0 }));
-    
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
+  it('should initialize with isUndoable as false', () => {
+    let storedValue = 'initial';
+    const { result } = renderHook(() => useUndoableAction({
+      message: 'Action performed',
+      onExecute: () => {
+        const prev = storedValue;
+        storedValue = 'executed';
+        return prev;
+      },
+      onUndo: (prev) => {
+        storedValue = prev;
+      },
+    }));
+
+    expect(result.current.isUndoable).toBe(false);
+  });
+
+  it('should execute action and become undoable', () => {
+    let storedValue = 'initial';
+    const { result } = renderHook(() => useUndoableAction({
+      message: 'Action performed',
+      onExecute: () => {
+        const prev = storedValue;
+        storedValue = 'executed';
+        return prev;
+      },
+      onUndo: (prev) => {
+        storedValue = prev;
+      },
+    }));
+
     act(() => {
-      result.current.updateState({ count: 1 });
+      result.current.execute();
     });
-    
-    expect(result.current.state).toEqual({ count: 1 });
-    expect(result.current.canUndo).toBe(true);
-    expect(result.current.canRedo).toBe(false);
-    
+
+    expect(storedValue).toBe('executed');
+    expect(result.current.isUndoable).toBe(true);
+  });
+
+  it('should undo action and restore previous state', () => {
+    let storedValue = 'initial';
+    const { result } = renderHook(() => useUndoableAction({
+      message: 'Action performed',
+      onExecute: () => {
+        const prev = storedValue;
+        storedValue = 'executed';
+        return prev;
+      },
+      onUndo: (prev) => {
+        storedValue = prev;
+      },
+    }));
+
+    act(() => {
+      result.current.execute();
+    });
+
+    expect(storedValue).toBe('executed');
+
     act(() => {
       result.current.undo();
     });
-    
-    expect(result.current.state).toEqual({ count: 0 });
-    expect(result.current.canUndo).toBe(false);
-    expect(result.current.canRedo).toBe(true);
+
+    expect(storedValue).toBe('initial');
+    expect(result.current.isUndoable).toBe(false);
   });
 
-  it('should support redo after undo', () => {
-    const { result } = renderHook(() => useUndoableAction({ value: 'a' }));
-    
+  it('should clear undo ability after duration', () => {
+    let storedValue = 'initial';
+    const { result } = renderHook(() => useUndoableAction({
+      message: 'Action performed',
+      duration: 5000,
+      onExecute: () => {
+        const prev = storedValue;
+        storedValue = 'executed';
+        return prev;
+      },
+      onUndo: (prev) => {
+        storedValue = prev;
+      },
+    }));
+
     act(() => {
-      result.current.updateState({ value: 'b' });
+      result.current.execute();
     });
-    
+
+    expect(result.current.isUndoable).toBe(true);
+
     act(() => {
-      result.current.updateState({ value: 'c' });
+      jest.advanceTimersByTime(5000);
     });
-    
+
+    expect(result.current.isUndoable).toBe(false);
+  });
+
+  it('should work with complex state objects', () => {
+    let predictions: Record<string, string> = { match1: '3-0', match2: '3-1' };
+    const { result } = renderHook(() => useUndoableAction({
+      message: 'Predictions cleared',
+      onExecute: () => {
+        const prev = { ...predictions };
+        predictions = {};
+        return prev;
+      },
+      onUndo: (prev) => {
+        predictions = prev;
+      },
+    }));
+
+    act(() => {
+      result.current.execute();
+    });
+
+    expect(predictions).toEqual({});
+
     act(() => {
       result.current.undo();
     });
-    
-    expect(result.current.state).toEqual({ value: 'b' });
-    
-    act(() => {
-      result.current.redo();
-    });
-    
-    expect(result.current.state).toEqual({ value: 'c' });
-  });
 
-  it('should clear redo stack when new action is performed after undo', () => {
-    const { result } = renderHook(() => useUndoableAction({ step: 1 }));
-    
-    act(() => {
-      result.current.updateState({ step: 2 });
-    });
-    
-    act(() => {
-      result.current.updateState({ step: 3 });
-    });
-    
-    act(() => {
-      result.current.undo(); // back to step 2
-    });
-    
-    act(() => {
-      result.current.updateState({ step: 4 }); // new branch
-    });
-    
-    expect(result.current.state).toEqual({ step: 4 });
-    expect(result.current.canRedo).toBe(false);
-  });
-
-  it('should reset to initial state', () => {
-    const initialState = { items: [] as string[] };
-    const { result } = renderHook(() => useUndoableAction(initialState));
-    
-    act(() => {
-      result.current.updateState({ items: ['a'] });
-    });
-    
-    act(() => {
-      result.current.updateState({ items: ['a', 'b'] });
-    });
-    
-    act(() => {
-      result.current.reset();
-    });
-    
-    expect(result.current.state).toEqual({ items: [] });
-    expect(result.current.canUndo).toBe(false);
-    expect(result.current.canRedo).toBe(false);
+    expect(predictions).toEqual({ match1: '3-0', match2: '3-1' });
   });
 });
