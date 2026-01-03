@@ -70,7 +70,7 @@ export default function TeamAvatar({ name, size = 'md', showName = false, positi
                         className="w-full h-full object-contain p-0.5"
                         onError={() => setHasError(true)}
                         priority={priority}
-                        unoptimized // Adding this because we don't know the exact logo paths at build time and they are served from public/
+                        loading={priority ? "eager" : "lazy"}
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center">

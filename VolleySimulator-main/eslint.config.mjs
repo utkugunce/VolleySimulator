@@ -13,6 +13,13 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  // Disable inline style warning - needed for dynamic width/height values
+  {
+    rules: {
+      "react/forbid-dom-props": "off",
+      "react/forbid-component-props": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;
