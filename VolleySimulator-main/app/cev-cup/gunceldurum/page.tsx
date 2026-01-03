@@ -1,6 +1,16 @@
 import fs from 'fs';
 import path from 'path';
+import { Metadata } from "next";
 import CEVCupGuncelDurumClient from './CEVCupGuncelDurumClient';
+
+export const metadata: Metadata = {
+    title: "CEV Cup Güncel Durum",
+    description: "CEV Kadınlar Kupası puan durumu, tur sıralamaları ve maç sonuçları. Avrupa kupası güncel tablo.",
+    openGraph: {
+        title: "CEV Cup Güncel Durum | VolleySimulator",
+        description: "CEV Cup tur sıralamaları ve maç sonuçları.",
+    },
+};
 
 interface CEVCupMatch {
     id: number;

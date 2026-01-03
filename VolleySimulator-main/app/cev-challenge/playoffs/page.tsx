@@ -1,6 +1,16 @@
 import fs from 'fs';
 import path from 'path';
+import { Metadata } from "next";
 import CEVChallengePlayoffsClient from './CEVChallengePlayoffsClient';
+
+export const metadata: Metadata = {
+    title: "CEV Challenge Cup Playoff Simülasyonu",
+    description: "CEV Challenge Cup playoff simülasyonu. Eleme turlarını simüle edin.",
+    openGraph: {
+        title: "CEV Challenge Cup Playoff | VolleySimulator",
+        description: "Challenge Cup playoff eşleşmelerini simüle edin.",
+    },
+};
 
 export default async function CEVChallengePlayoffsPage() {
     const filePath = path.join(process.cwd(), 'data', 'cev-challenge-cup-data.json');

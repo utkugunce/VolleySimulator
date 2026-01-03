@@ -1,6 +1,16 @@
 import fs from 'fs';
 import path from 'path';
+import { Metadata } from "next";
 import CEVChallengeTahminOyunuClient from './CEVChallengeTahminOyunuClient';
+
+export const metadata: Metadata = {
+    title: "CEV Challenge Cup Tahmin Oyunu",
+    description: "CEV Challenge Cup maç sonuçlarını tahmin edin. Avrupa kupası maçlarını tahmin ederek puan kazanın.",
+    openGraph: {
+        title: "CEV Challenge Cup Tahmin Oyunu | VolleySimulator",
+        description: "Challenge Cup maç sonuçlarını tahmin edin ve liderlik tablosunda yerinizi alın.",
+    },
+};
 
 export default async function CEVChallengeTahminOyunuPage() {
     const filePath = path.join(process.cwd(), 'data', 'cev-challenge-cup-data.json');

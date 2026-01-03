@@ -1,6 +1,16 @@
 import fs from 'fs';
 import path from 'path';
+import { Metadata } from "next";
 import CEVChallengeStatsClient from './CEVChallengeStatsClient';
+
+export const metadata: Metadata = {
+    title: "CEV Challenge Cup İstatistikler",
+    description: "CEV Challenge Cup takım istatistikleri ve performans analizleri.",
+    openGraph: {
+        title: "CEV Challenge Cup İstatistikler | VolleySimulator",
+        description: "Challenge Cup takım istatistikleri.",
+    },
+};
 
 export default async function CEVChallengeStatsPage() {
     const filePath = path.join(process.cwd(), 'data', 'cev-challenge-cup-data.json');

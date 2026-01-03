@@ -1,6 +1,16 @@
 import fs from 'fs';
 import path from 'path';
+import { Metadata } from "next";
 import CEVCupPlayoffsClient from './CEVCupPlayoffsClient';
+
+export const metadata: Metadata = {
+    title: "CEV Cup Playoff Simülasyonu",
+    description: "CEV Kadınlar Kupası playoff simülasyonu. Eleme turlarını simüle edin.",
+    openGraph: {
+        title: "CEV Cup Playoff Simülasyonu | VolleySimulator",
+        description: "CEV Cup playoff eşleşmelerini simüle edin.",
+    },
+};
 
 export default async function CEVCupPlayoffsPage() {
     const dataPath = path.join(process.cwd(), 'data', 'cev-cup-data.json');
