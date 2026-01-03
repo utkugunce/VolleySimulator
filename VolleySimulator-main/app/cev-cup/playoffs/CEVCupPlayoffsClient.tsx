@@ -275,23 +275,17 @@ export default function CEVCupPlayoffsClient({ initialData }: { initialData: CEV
                                                 <span className="text-amber-500 font-bold text-[10px]">ALTIN SET:</span>
                                                 <div className="flex gap-1">
                                                     <button
-                                                        onClick={() => handleScoreChange(matchup.goldenKey, 'team1') as any} // Typo in state types for golden set, sticking to setOverrides directly or handling simpler
-                                                        // Wait, handleScoreChange expects matchId number. We need a separate handler or use string key.
-                                                        // Let's modify handleScoreChange to accept string key OR make a new one.
+                                                        onClick={() => setOverrides(prev => ({ ...prev, [matchup.goldenKey]: 'team1' }))}
                                                         className={`px-2 py-0.5 text-[9px] rounded border ${matchup.goldenPred === 'team1' ? 'bg-amber-500 text-slate-900 border-amber-500' : 'bg-slate-800 text-slate-400 border-slate-600'}`}
                                                     >
                                                         {matchup.team1.substring(0, 3)}
                                                     </button>
                                                     <button
-                                                        // Actually, handleScoreChange expects number ID... let's inline-fix in next step?
-                                                        // No, I'll fix this block logic now.
-                                                        // We'll use setOverrides directly.
                                                         onClick={() => setOverrides(prev => ({ ...prev, [matchup.goldenKey]: 'team2' }))}
                                                         className={`px-2 py-0.5 text-[9px] rounded border ${matchup.goldenPred === 'team2' ? 'bg-amber-500 text-slate-900 border-amber-500' : 'bg-slate-800 text-slate-400 border-slate-600'}`}
                                                     >
                                                         {matchup.team2.substring(0, 3)}
                                                     </button>
-                                                    {/* Duplicate button for team1 above with correct onClick */}
                                                 </div>
                                             </div>
                                         )}

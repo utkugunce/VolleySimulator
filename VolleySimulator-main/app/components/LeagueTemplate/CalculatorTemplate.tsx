@@ -192,9 +192,7 @@ export default function CalculatorTemplate({ config, initialTeams, initialMatche
                         Sıfırla
                     </button>
                     <ShareButton
-                        standingsRef={standingsRef}
-                        leagueName={config.name}
-                        season={config.subtitle}
+                        targetRef={standingsRef}
                     />
                 </LeagueActionBar>
 
@@ -206,7 +204,6 @@ export default function CalculatorTemplate({ config, initialTeams, initialMatche
                             matches={currentMatches}
                             overrides={overrides}
                             onScoreChange={handleScoreChange}
-                            title={config.hasGroups ? `${activeGroup} Fikstürü` : "Fikstür"}
                         />
                     </div>
 

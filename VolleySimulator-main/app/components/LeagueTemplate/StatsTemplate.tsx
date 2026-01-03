@@ -86,32 +86,32 @@ export default function StatsTemplate({ config, initialTeams, initialMatches }: 
                     <StatsCard
                         title="Galibiyet Lideri"
                         value={stats.topWinRate?.name || '-'}
-                        subValue={`${stats.topWinRate?.wins || 0} Galibiyet`}
-                        trend="En Yüksek"
+                        subtitle={`${stats.topWinRate?.wins || 0} Galibiyet`}
+                        trend="up"
                         icon="🏆"
                         color="emerald"
                     />
                     <StatsCard
                         title="Set Averajı"
                         value={stats.topSetRatio?.name || '-'}
-                        subValue={(stats.topSetRatio?.setsWon / (stats.topSetRatio?.setsLost || 1)).toFixed(2)}
-                        trend="Ratio"
+                        subtitle={(stats.topSetRatio?.setsWon / (stats.topSetRatio?.setsLost || 1)).toFixed(2)}
+                        trend="up"
                         icon="📊"
                         color="blue"
                     />
                     <StatsCard
                         title="En Çok Maç"
                         value={stats.mostPlayed?.name || '-'}
-                        subValue={`${stats.mostPlayed?.played || 0} Maç`}
-                        trend="Toplam"
+                        subtitle={`${stats.mostPlayed?.played || 0} Maç`}
+                        trend="neutral"
                         icon="📅"
                         color="amber"
                     />
                     <StatsCard
                         title="MVP Adayı"
                         value="Tijana Boskovic"
-                        subValue="Eczacıbaşı"
-                        trend="32.4 sayı/maç"
+                        subtitle="Eczacıbaşı"
+                        trend="up"
                         icon="⭐"
                         color="rose"
                     />

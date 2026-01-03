@@ -4,7 +4,6 @@ import { useMemo } from "react";
 import { TeamStats, Match } from "../../types";
 import { LeagueConfig } from "./types";
 import LeagueActionBar from "./LeagueActionBar";
-import BracketView from "../BracketView";
 
 interface PlayoffTemplateProps {
     config: LeagueConfig;
@@ -37,12 +36,11 @@ export default function PlayoffTemplate({ config, initialTeams, initialMatches }
                     progressLabel={`%${progress}`}
                 />
 
-                <div className="flex-1 min-h-0 bg-slate-900/50 rounded-xl border border-slate-800 overflow-hidden relative">
-                    <BracketView
-                        matches={currentMatches}
-                        teams={initialTeams}
-                        finalPhase={true}
-                    />
+                <div className="flex-1 min-h-0 bg-slate-900/50 rounded-xl border border-slate-800 overflow-hidden relative flex items-center justify-center">
+                    <div className="text-center text-slate-500">
+                        <p className="text-lg font-bold">Play-Off Bracket</p>
+                        <p className="text-sm">{currentMatches.length} maç • {initialTeams.length} takım</p>
+                    </div>
                 </div>
             </div>
         </main>
