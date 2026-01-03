@@ -1,362 +1,362 @@
 /**
  * Auto-generated Team IDs
- * Generated at: 2026-01-03T16:30:43.518Z
+ * Generated at: 2026-01-03T16:35:43.886Z
  * Total Teams: 352
  */
 
 export type TeamId = 
-  | 'ARASKARGO_94AD2F'
-  | 'AYDINBÜYÜKŞEHİRBELED_57B10E'
-  | 'BAHÇELİEVLERBLD_7BEE9F'
-  | 'BEŞİKTAŞ_7AD79A'
-  | 'ECZACIBAŞIDYNAVİT_41201C'
-  | 'FENERBAHÇEMEDICANA_80912F'
-  | 'GALATASARAYDAIKIN_67B339'
-  | 'GÖZTEPE_9CF1DE'
-  | 'İLBANK_315374'
-  | 'KUZEYBORU_FC1751'
-  | 'NİLÜFERBELEDİYESPORE_8A47A0'
-  | 'TÜRKHAVAYOLLARI_B246A6'
-  | 'VAKIFBANK_CEE9EF'
-  | 'ZERENSPOR_547415'
-  | 'AFYONBLDYÜNTAŞ_AC4016'
-  | 'ALFEMOZERENSPOR_5EB5B9'
-  | 'ALTINORDU_922B12'
-  | 'BODRUMBLDBODRUMSPOR_2E3097'
-  | 'ÇANAKKALEBLD_0DF050'
-  | 'DENİZLİBŞEHİRBLD_F6735D'
-  | 'DİYARBAKIRBŞEHİRBLD_4DF16E'
-  | 'ECZACIBAŞI_D25917'
-  | 'ENDOKARŞIYAKA_9CC283'
-  | 'FDMYAPIKONYAEREĞLİBL_74D33D'
-  | 'FENERBAHÇEMEDICANA_C729B9'
-  | 'HAVRANBLD_643B33'
-  | 'İBAKİMYATEDANKARAKOL_7304D4'
-  | 'İBBSPORKULÜBÜ_3F23C3'
-  | 'İLBANK_B9F38E'
-  | 'KARAYOLLARI_1754C5'
-  | 'KUZEYBORUMAXİPİPESPO_0CF1B1'
-  | 'MERİNOSVOLEYBOL_13D842'
-  | 'MURATPAŞABLDAÇIKOLEJ_2FAAE7'
-  | 'PTT_578234'
-  | 'SAKARYAVOLEYBOL_391AEC'
-  | 'SİGORTASHOPMKEANKARA_D6C234'
-  | 'TRENDYHOTELSMANAVGAT_15AD8B'
-  | 'VAKIFBANK_CBCA40'
-  | 'VESTELMANİSABŞEHİRBL_F098F4'
-  | 'YEŞİLYURT_FE3819'
-  | '07MEGASPOR_2D454B'
-  | '52ÇAMLIKSPOR_8AFEBC'
-  | '73ŞIRNAKBLD_3CC363'
-  | '91000DEVSPOR_A9CD95'
-  | 'AÇIKOLEJİ_BFC9FE'
-  | 'ADANABŞEHİRBLD_8742E2'
-  | 'ADANASPORCUEĞİTİMSPO_A80394'
-  | 'ADANATDS_87B960'
-  | 'AFYONGENÇLİKSPOR_E3166D'
-  | 'AHMETHAMDİTANPINAROR_049D58'
-  | 'AKDENİZBİLGİSPOR_48AC1E'
-  | 'AKHİSARBLD_0D6D9A'
-  | 'AKHİSARGÜCÜ_B30E02'
-  | 'ALKAALTINKANATLAR_28023F'
-  | 'ALPSPOR_C31DB9'
-  | 'ALTAY_F8487E'
-  | 'ALTINAYSPOR_5D12B3'
-  | 'ALTINYURT_2FE2DE'
-  | 'ANKARABAROSU_B9EDB0'
-  | 'ANKARADSİ_606CEC'
-  | 'ANTEPİA_FE9CC1'
-  | 'ARKASSPOR_C4941F'
-  | 'ARNAVUTKÖYBLD_340423'
-  | 'ARSAVEVHATAYVOLEYBOL_52563F'
-  | 'ATAOKULSPOR_DE59AC'
-  | 'ATAŞEHİRKARTALLARI_B93771'
-  | 'AVRUPAVOLEYBOLGELİŞİ_EBB0EB'
-  | 'AYDINBÜYÜKŞEHİRBELED_6E5808'
-  | 'BŞEHİRBLDANKARASPOR_09161C'
-  | 'BAHÇELİEVLERBLD_465BB0'
-  | 'BAHÇEŞEHİRKOLEJİDALA_655A70'
-  | 'BALIKESİRBŞEHİRBLD_183E40'
-  | 'BALIKESİRDSİ_C3709C'
-  | 'BANDIRMAÇELİKSPOR_1290EB'
-  | 'BARTINVOLLEYACADEMY_8A2926'
-  | 'BAŞAKŞEHİRVOLEYBOL_B99A1B'
-  | 'BAŞKENTADASPOR_A98FF0'
-  | 'BAŞKENTZİRVE_415094'
-  | 'BAYBURTGENÇLİKMERKEZ_84399C'
-  | 'BAYRAKLIBLD_06E495'
-  | 'BERGAMABLD_78C5F6'
-  | 'BEŞİKDÜZÜ_AC8D83'
-  | 'BEŞİKTAŞNAVIOSA_E497CD'
-  | 'BEYLİKDÜZÜBEYKENT_0D0EC9'
-  | 'BİZİMKENTVOLEYBOL_64F474'
-  | 'BOLUATATÜRKANADOLULİ_EC4943'
-  | 'BURSABŞEHİRBLD_94A7C3'
-  | 'BURSAFETHİYE1973SPOR_191496'
-  | 'BÜYÜKREŞİTPAŞAORTAOK_350B13'
-  | 'BÜYÜKÇEKMECEVOLEYBOL_32A058'
-  | 'CADENCEBOYAGÖLCÜKİHS_A39E08'
-  | 'CANMİLANATLETİK_4476A3'
-  | 'ÇABASPOR_C1284F'
-  | 'ÇANKALESPOR_61B85D'
-  | 'ÇANAKKALEKEPEZ_0B106F'
-  | 'ÇATALCABLD_B979A6'
-  | 'ÇEKMEKÖYİSTANBULSPOR_589AD5'
-  | 'ÇENGELKÖYVOLEYBOL_549285'
-  | 'ÇERKEZKÖYVOLEYBOLAKA_883783'
-  | 'ÇORLUBLD_835F2A'
-  | 'ÇORUMARENASPOR_BCA9B1'
-  | 'ÇORUMVOLEYBOL_CA22C8'
-  | 'DENİZLİBŞEHİRBLD_B60FB6'
-  | 'DEVATAŞEHİR_3AAB71'
-  | 'DİYARBAKIRVOLEYBOLCU_930B6B'
-  | 'DOĞUAKADEMİ_0FA8DA'
-  | 'DÜZCEVOLEYBOL_F63501'
-  | 'EFORGENÇLİK_A971A1'
-  | 'ELAZIĞBLD_324F7D'
-  | 'ELİTAKDENİZ_3FC20F'
-  | 'ENDOKARŞIYAKA_8CE42B'
-  | 'ENGLISHTIMESPOR_724F9F'
-  | 'EREĞLİSÜMERSPOR_42FE0E'
-  | 'ERYAMANGELİŞİM_62E77C'
-  | 'ESKİŞEHİRPEYMANSPOR_42FC94'
-  | 'ESKİŞEHİRŞEHİRKOLEJİ_46854A'
-  | 'ETİMESGUTBLDGELİŞİM_E63AB2'
-  | 'EYÜPSULTANBLD_311D79'
-  | 'FENERBAHÇEMEDICANA_E6323E'
-  | 'FETHİYEVOLEYBOL_CDA02D'
-  | 'FIRATÖZKAN_33828C'
-  | 'FORZASPOR_53611C'
-  | 'GALATASARAY_F06D8C'
-  | 'GAZİANTEPBLD_B516C9'
-  | 'GAZİEMİRBLD_F2F9CB'
-  | 'GEBZEGENÇLİKVESPOR_E941F1'
-  | 'GELİŞİMKOLEJİ_DE31D7'
-  | 'GEMLİKİSTİKLALSPOR_528393'
-  | 'GÖLBAŞIİNCEKSPOR_9697A3'
-  | 'GÖZTEPE_FE6189'
-  | 'GÜNGÖRENVOLEYBOL_6DBFD7'
-  | 'GÜRALPREMIERANTALYAS_92C711'
-  | 'HAKANAKIŞIKSPOR_38CC89'
-  | 'HAKKARİMAEMTAL_598095'
-  | 'HAKKARİSPORTİFFAALİY_60C78E'
-  | 'HARPUTLAHMACUNYAHYAK_C8E161'
-  | 'HEDEFANKARA_433D0E'
-  | 'HEKİMOĞLUGLOBALCONNE_55E097'
-  | 'HOCAAHMETYESEVİANADO_A6483E'
-  | 'HOPABELEDİYE_B55796'
-  | 'ISPARTAGENÇLİKSPOR_FC462B'
-  | 'İLBANK_A250F5'
-  | 'İSTANBULBİZİMKENTSPO_1F5D70'
-  | 'İZMİRBŞEHIRBLD_591CA3'
-  | 'İZMİRDSİ_021412'
-  | 'İZMİTSPOR_7D00C1'
-  | 'KAMARİNSPOR_379EE3'
-  | 'KARABÜKGENÇLİKSPOR_F6B427'
-  | 'KARTALANADOLU_40573D'
-  | 'KARTALBLD_8558A7'
-  | 'KAVAKSPOR_8E3BEA'
-  | 'KAYSERİCİMNASTİKSPOR_9FDA98'
-  | 'KAYSERİVOLEYBOL_6536C2'
-  | 'KIRKLARELİGENÇLİKSPO_460251'
-  | 'KOCAELİNİCOMEDİAAKAD_99F257'
-  | 'KOCAELİVOLEYBOLAKADE_B59FC7'
-  | 'KUZEYYILDIZLARI_43C34D'
-  | 'KÜÇÜKÇEKMECEVOLEYBOL_73D1D3'
-  | 'KZYSPOR_73EDB5'
-  | 'LANUEVAKOZMETİKANADO_A7878F'
-  | 'MAÇSAYISI_A0BAA4'
-  | 'MALATYAVOLEYBOL_0BE2B0'
-  | 'MARGENÇ_916FDB'
-  | 'MARMARİSBLD_F5BB56'
-  | 'MEDIAFIRSTAYVALIKGEL_253CC0'
-  | 'MEHMETEGEİNŞAATİNEGÖ_36338A'
-  | 'MEHMETERDEMMARMARAAK_E88C4E'
-  | 'MERİNOSVOLEYBOL_CBD4F6'
-  | 'MGSPOR_680D97'
-  | 'MISIROĞLUBEYTEPE_C75EE6'
-  | 'MKEANKARAGÜCÜ_3BF495'
-  | 'MUŞOLİMPİKSPOR_F6961B'
-  | 'NİCERHOTELVOLEYBOL_18543F'
-  | 'NİLÜFERBLD_078DCC'
-  | 'OKURALOJİSTİKMERSİNİ_D20CDF'
-  | 'OSMANCIKBLD_0703C1'
-  | 'POLATGROUPDİDİMBELED_6AEF55'
-  | 'POLATLIDUATEPE_69A48E'
-  | 'PTT_8A836B'
-  | 'RİZEENDÜSTRİMESLEKLİ_0CB40B'
-  | 'ROBERTEAM_A79F43'
-  | 'ROTAKOLEJİ_64F899'
-  | 'SEMTASANSÖRBORDOMAVİ_E3CE93'
-  | 'SERDİVANBLD_09CFB9'
-  | 'SEYHANBLD_CD697B'
-  | 'SINAVKOLEJİSAMSUNSPO_E6AAD0'
-  | 'SİBANETKOZANİMAMOĞLU_6E7FED'
-  | 'SİLİVRİÇAĞRIBEY_496BBC'
-  | 'SİLOPİBLDSPORTİFFAAL_0C677A'
-  | 'SİLOPİGELİŞİMFAALİYE_1ECF04'
-  | 'SİVASTOPRAKGAYRİMENK_44C436'
-  | 'SMAÇSPOR_CA7776'
-  | 'SMARTHOLDINGAŞÇAYELI_B3F3C9'
-  | 'SÖKEBELEDİYESALDOSVO_5FB81A'
-  | 'SUPERPOOLFINDIKLI197_B7D248'
-  | 'TARSUSAMERİKANKOLEJİ_EF545D'
-  | 'TEDANKARAKOLEJLİLER_2D5172'
-  | 'TEKMETALSPORTİF_AE72E6'
-  | 'TEKİRDAĞVOLEYBOLİHTİ_654418'
-  | 'TEMİZENERJİBIRLİĞİ_E7FE8F'
-  | 'TOROSÜNIVERSİTESİVOL_8561B6'
-  | 'TOROSLARBLD_27C930'
-  | 'TOYZZSHOPDİNAMOSPOR_3CD024'
-  | 'TURGUTLUBLDKÜLTÜRSAN_870C0D'
-  | 'TUZLAMERCAN_4E96C1'
-  | 'TÜRKHAVAYOLLARI_3E2BC1'
-  | 'TÜRKOĞLUSPORKULÜBÜ_80E381'
-  | 'TVFSPORLİSESİ_8B1177'
-  | 'UYSALLAROTOFETHİYEZİ_CF4466'
-  | 'ÜLKÜSPOR_BE29CD'
-  | 'ÜNSPED_D88123'
-  | 'VEFA_17A68B'
-  | 'VENÜSSPOR_5ACCC9'
-  | 'VİRANŞEHİRVOLEYBOL_A9A211'
-  | 'VOLKANGÜÇSPOR_D17E4E'
-  | 'WORLDMEDICINEATEŞSPO_5F4F78'
-  | 'YALOVAÇİFTLİKKÖYBLD_973B22'
-  | 'YEDİDAĞSPOR_F782EF'
-  | 'YENİAYLOJİSTİKSARIYE_17E8F8'
-  | 'YEŞİLBAYRAMİÇ_374BDE'
-  | 'YEŞİLYURT_4B08E9'
-  | 'YUNUSEMREBLD_9E25B9'
-  | 'ZEUGMAGAZİANTEPSPOR_DAF0C3'
-  | 'ACARRAROPROSECCODOCC_DF2816'
-  | 'ANKARAZERENSPORKULÜB_CA4574'
-  | 'CSVOLEIALBABLAJ_8AAB0E'
-  | 'DRESDNERSC_48B4E1'
-  | 'ECZACIBASIISTANBUL_BD2664'
-  | 'FENERBAHÇEMEDICANAIS_F3A44E'
-  | 'IGORGORGONZOLANOVARA_4B8546'
-  | 'KSDEVELOPRESRZESZW_8E4085'
-  | 'LEVALLOISPARISSAINTC_4B65AA'
-  | 'KSCOMMERCECOND_B9ED4A'
-  | 'MARITZAPLOVDIV_3A840F'
-  | 'NUMIAVEROVOLLEYMILAN_BAE474'
-  | 'OKELEZNIARLAJKOVAC_743E3E'
-  | 'OLYMPIACOSPIRAEUS_02AA62'
-  | 'PGEBUDOWLANID_B7159C'
-  | 'SAVINODELBENESCANDIC_CD7C13'
-  | 'SPORTLISBOAEBENFICA_DF9546'
-  | 'SSCPALMBERGSCHWERIN_CB95E7'
-  | 'VAKIFBANKISTANBUL_F27D00'
-  | 'VOLEROLECANNET_A5CC2F'
-  | 'ACPAOKTHESSALONIKI_73A5F3'
-  | 'ALLIANZMTVSTUTTGART_0EC839'
-  | 'ASTERIXAVOBEVEREN_3A33B9'
-  | 'AVARCADEMENORCA_BC8517'
-  | 'BKSBOSTIKBIELSKOBIAA_FC5C28'
-  | 'CSOVOLUNTARI2005_782C00'
-  | 'CDHEIDELBERGLASPALMA_F4B6E6'
-  | 'DARTABEVOROESELARE_417D2B'
-  | 'DINAMOBUCURESTI_1E4157'
-  | 'DUKLALIBEREC_778B61'
-  | 'FCPORTO_FDD815'
-  | 'GALATASARAYDAIKINIST_C32C2E'
-  | 'JANTAVOLEJKISELAVODA_08FC49'
-  | 'MBHBKSCSABA_7C01BD'
-  | 'MLADOSTZAGREB_356A91'
-  | 'MOYARADOMKARADOM_0E2A1E'
-  | 'OKDINAMOZAGREB_F14AD7'
-  | 'OTPBANKABRANIKMARIBO_87FC33'
-  | 'REALEMUTUAFENERACHIE_C1330D'
-  | 'SPORTINGCPLISBOA_DBDFE2'
-  | 'TENTOBRENOVAC_218E0A'
-  | 'THYISTANBUL_D3D381'
-  | 'VANDOEUVRENANCYVB_7B50A2'
-  | 'VASASBUDABUDAPEST_A45ABA'
-  | 'VFBSUHLTHÜRINGEN_292F8D'
-  | 'VITEOSNEUCHATELUC_4AA5D9'
-  | 'VKUPOLOMOUC_334CB7'
-  | 'VOLLEYMULHOUSEALSACE_C7D93B'
-  | 'OKGACKORDSWISSLION_3A28C9'
-  | 'OKRIBOLAKATELA_B5BCAB'
-  | 'ZOKUB_28221B'
-  | 'AEKATHENS_66CD30'
-  | 'AEKATHENSGRE_720B10'
-  | 'AOTHIRAS_513593'
-  | 'AOTHIRASGRE_F5D8E1'
-  | 'BUDUCNOSTPODGORICA_4B268F'
-  | 'BUDUCNOSTPODGORICAMN_716AAB'
-  | 'CSMLUGOJ_FA79AB'
-  | 'CSMLUGOJROU_D2CE73'
-  | 'DRAISMADYNAMOAPELDOO_58D452'
-  | 'DRAISMADYNAMOAPELDOO_3356CB'
-  | 'ERZBERGMTROFAIACHEIS_755FF8'
-  | 'ERZBERGMTROFAIACHEIS_EA68D4'
-  | 'FATUMNYREGYHZA_5B4082'
-  | 'FATUMNYREGYHZAHUN_556337'
-  | 'FLEYRTRSHAVN_B5F233'
-  | 'FLEYRTRSHAVNFAR_B63BFE'
-  | 'FRISOSNEEK_88D5F3'
-  | 'FRISOSNEEKNED_BBC3F1'
-  | 'FUNDACINCAJASOLANDAL_49C385'
-  | 'FUNDACINCAJASOLANDAL_0E33EB'
-  | 'GSPANIONIOSNEASMYRNI_567A21'
-  | 'GSPANIONIOSNEASMYRNI_AD29C0'
-  | 'GZOKSREMSREMSKAMITRO_4D8C6D'
-  | 'GZOKSREMSREMSKAMITRO_F20701'
-  | 'HOLTEIF_2761ED'
-  | 'HOLTEIFDEN_647338'
-  | 'KAUNASVDU_C6D0C7'
-  | 'KAUNASVDULTU_C3F8B8'
-  | 'KVFERVOLLEYFERIZAJ_BE9FCC'
-  | 'KVFERVOLLEYFERIZAJKO_228A0F'
-  | 'LEVSKISOFIA_FDEA1F'
-  | 'LEVSKISOFIABUL_9A6C05'
-  | 'LPSALO_593563'
-  | 'LPSALOFIN_7CA75A'
-  | 'NAKOVSKIVOLEJSTRUMIC_D54FAA'
-  | 'NAKOVSKIVOLEJSTRUMIC_B0EB60'
-  | 'OCISAHARORIOJA_178653'
-  | 'OCISAHARORIOJAESP_DE8F08'
-  | 'OKBRDASPLIT_CB1A2D'
-  | 'OKBRDASPLITCRO_0B2045'
-  | 'KSYLMYRE_AB144F'
-  | 'KSYLMYRENOR_4FA6C0'
-  | 'OLYMPIADANEAPOLISNIC_9D3C1E'
-  | 'OLYMPIADANEAPOLISNIC_FB70DF'
-  | 'RABOTNICKISKOPJE_BC3403'
-  | 'RABOTNICKISKOPJEMKD_5A7F48'
-  | 'RAESPORDIKOOLVIASTON_96C6A4'
-  | 'RAESPORDIKOOLVIASTON_66A48C'
-  | 'SCBALTA_04FDE4'
-  | 'SCBALTAUKR_6E5681'
-  | 'TCHALOUCHAPELLELEZHE_9ED227'
-  | 'TCHALOUCHAPELLELEZHE_91AA2F'
-  | 'TIFVIKINGBERGEN_6E116A'
-  | 'TIFVIKINGBERGENNOR_98607E'
-  | 'TJOSTRAVA_546715'
-  | 'TJOSTRAVACZE_05F0BC'
-  | 'VAUNIZAZILINA_6BD732'
-  | 'VAUNIZAZILINASVK_56A58F'
-  | 'VBCCHESEAUX_F722C4'
-  | 'VBCCHESEAUXSUI_B36F51'
-  | 'VKPIRANEBRUSNO_FDF6CA'
-  | 'VKPIRANEBRUSNOSVK_D27316'
-  | 'VKPROSTEJOV_B1760A'
-  | 'VKPROSTEJOVCZE_E0254F'
-  | 'VKSLOVANBRATISLAVA_D9EE31'
-  | 'VKSLOVANBRATISLAVASV_BCFE97'
-  | 'VOLLEYDÜDINGEN_337032'
-  | 'VOLLEYDÜDINGENSUI_AFD153'
-  | 'WINNERCHCM6768_6D9BB1'
-  | 'WINNERCHCW6970_91B148'
-  | 'WINNERCHCW7172_E600A0'
-  | 'WINNERCHCW7374_B43212'
-  | 'WINNERCHCW7576_CCC588'
-  | 'WINNERCHCW7778_9071D2'
-  | 'WINNERCHCW7980_5C506F'
-  | 'WINNERCHCW8182_6DB1F4'
-  | 'WINNERCHCW9192_1EA6A0'
-  | 'WINNERCHCW9394_E329E6';
+  | '1000'
+  | '1001'
+  | '1002'
+  | '1003'
+  | '1004'
+  | '1005'
+  | '1006'
+  | '1007'
+  | '1013'
+  | '1008'
+  | '1009'
+  | '1010'
+  | '1011'
+  | '1012'
+  | '1033'
+  | '1030'
+  | '1021'
+  | '1024'
+  | '1015'
+  | '1017'
+  | '1029'
+  | '1016'
+  | '1022'
+  | '1038'
+  | '1014'
+  | '1025'
+  | '1039'
+  | '1018'
+  | '1028'
+  | '1032'
+  | '1026'
+  | '1031'
+  | '1036'
+  | '1037'
+  | '1027'
+  | '1035'
+  | '1034'
+  | '1019'
+  | '1023'
+  | '1020'
+  | '1122'
+  | '1198'
+  | '1216'
+  | '1212'
+  | '1120'
+  | '1185'
+  | '1183'
+  | '1180'
+  | '1129'
+  | '1160'
+  | '1123'
+  | '1098'
+  | '1097'
+  | '1142'
+  | '1080'
+  | '1093'
+  | '1099'
+  | '1062'
+  | '1157'
+  | '1168'
+  | '1208'
+  | '1107'
+  | '1047'
+  | '1187'
+  | '1096'
+  | '1071'
+  | '1040'
+  | '1111'
+  | '1176'
+  | '1052'
+  | '1131'
+  | '1082'
+  | '1090'
+  | '1083'
+  | '1149'
+  | '1054'
+  | '1155'
+  | '1170'
+  | '1190'
+  | '1102'
+  | '1104'
+  | '1199'
+  | '1055'
+  | '1042'
+  | '1044'
+  | '1154'
+  | '1136'
+  | '1134'
+  | '1056'
+  | '1050'
+  | '1146'
+  | '1064'
+  | '1173'
+  | '1087'
+  | '1085'
+  | '1041'
+  | '1077'
+  | '1066'
+  | '1086'
+  | '1092'
+  | '1194'
+  | '1201'
+  | '1125'
+  | '1068'
+  | '1211'
+  | '1069'
+  | '1144'
+  | '1095'
+  | '1220'
+  | '1121'
+  | '1118'
+  | '1164'
+  | '1179'
+  | '1167'
+  | '1135'
+  | '1143'
+  | '1165'
+  | '1061'
+  | '1072'
+  | '1126'
+  | '1206'
+  | '1106'
+  | '1070'
+  | '1210'
+  | '1115'
+  | '1147'
+  | '1108'
+  | '1133'
+  | '1159'
+  | '1101'
+  | '1053'
+  | '1127'
+  | '1163'
+  | '1217'
+  | '1219'
+  | '1148'
+  | '1178'
+  | '1132'
+  | '1137'
+  | '1192'
+  | '1124'
+  | '1158'
+  | '1046'
+  | '1114'
+  | '1116'
+  | '1151'
+  | '1074'
+  | '1145'
+  | '1078'
+  | '1079'
+  | '1169'
+  | '1203'
+  | '1204'
+  | '1089'
+  | '1150'
+  | '1153'
+  | '1081'
+  | '1048'
+  | '1103'
+  | '1065'
+  | '1067'
+  | '1214'
+  | '1213'
+  | '1130'
+  | '1084'
+  | '1140'
+  | '1075'
+  | '1205'
+  | '1138'
+  | '1174'
+  | '1172'
+  | '1215'
+  | '1218'
+  | '1139'
+  | '1184'
+  | '1196'
+  | '1109'
+  | '1177'
+  | '1166'
+  | '1200'
+  | '1058'
+  | '1112'
+  | '1197'
+  | '1152'
+  | '1182'
+  | '1191'
+  | '1189'
+  | '1049'
+  | '1222'
+  | '1221'
+  | '1209'
+  | '1045'
+  | '1195'
+  | '1113'
+  | '1193'
+  | '1181'
+  | '1175'
+  | '1161'
+  | '1091'
+  | '1156'
+  | '1188'
+  | '1186'
+  | '1073'
+  | '1105'
+  | '1076'
+  | '1043'
+  | '1094'
+  | '1162'
+  | '1128'
+  | '1110'
+  | '1051'
+  | '1060'
+  | '1117'
+  | '1207'
+  | '1119'
+  | '1063'
+  | '1141'
+  | '1171'
+  | '1057'
+  | '1088'
+  | '1059'
+  | '1100'
+  | '1202'
+  | '1235'
+  | '1236'
+  | '1225'
+  | '1237'
+  | '1232'
+  | '1227'
+  | '1228'
+  | '1240'
+  | '1241'
+  | '1238'
+  | '1242'
+  | '1231'
+  | '1234'
+  | '1233'
+  | '1230'
+  | '1223'
+  | '1229'
+  | '1239'
+  | '1224'
+  | '1226'
+  | '1266'
+  | '1245'
+  | '1260'
+  | '1268'
+  | '1252'
+  | '1247'
+  | '1267'
+  | '1259'
+  | '1248'
+  | '1265'
+  | '1261'
+  | '1243'
+  | '1273'
+  | '1255'
+  | '1257'
+  | '1253'
+  | '1258'
+  | '1254'
+  | '1249'
+  | '1262'
+  | '1269'
+  | '1244'
+  | '1251'
+  | '1256'
+  | '1246'
+  | '1263'
+  | '1264'
+  | '1250'
+  | '1272'
+  | '1271'
+  | '1270'
+  | '1274'
+  | '1318'
+  | '1294'
+  | '1338'
+  | '1301'
+  | '1345'
+  | '1287'
+  | '1331'
+  | '1279'
+  | '1323'
+  | '1306'
+  | '1350'
+  | '1296'
+  | '1340'
+  | '1293'
+  | '1337'
+  | '1286'
+  | '1330'
+  | '1282'
+  | '1326'
+  | '1295'
+  | '1339'
+  | '1275'
+  | '1319'
+  | '1281'
+  | '1325'
+  | '1298'
+  | '1342'
+  | '1291'
+  | '1335'
+  | '1289'
+  | '1333'
+  | '1297'
+  | '1341'
+  | '1277'
+  | '1321'
+  | '1300'
+  | '1344'
+  | '1284'
+  | '1328'
+  | '1299'
+  | '1343'
+  | '1285'
+  | '1329'
+  | '1302'
+  | '1346'
+  | '1303'
+  | '1347'
+  | '1307'
+  | '1351'
+  | '1292'
+  | '1336'
+  | '1305'
+  | '1349'
+  | '1276'
+  | '1320'
+  | '1280'
+  | '1324'
+  | '1288'
+  | '1332'
+  | '1304'
+  | '1348'
+  | '1278'
+  | '1322'
+  | '1283'
+  | '1327'
+  | '1290'
+  | '1334'
+  | '1308'
+  | '1309'
+  | '1310'
+  | '1311'
+  | '1312'
+  | '1313'
+  | '1314'
+  | '1315'
+  | '1316'
+  | '1317';
 
 export interface TeamInfo {
   id: TeamId;
@@ -368,3173 +368,3173 @@ export interface TeamInfo {
 }
 
 export const TEAM_IDS = {
-  'aras-kargo': 'ARASKARGO_94AD2F',
-  'aydin-buyuksehi-r-beledi-yespor': 'AYDINBÜYÜKŞEHİRBELED_57B10E',
-  'bahceli-evler-bld': 'BAHÇELİEVLERBLD_7BEE9F',
-  'besi-ktas': 'BEŞİKTAŞ_7AD79A',
-  'eczacibasi-dynavi-t': 'ECZACIBAŞIDYNAVİT_41201C',
-  'fenerbahce-medicana': 'FENERBAHÇEMEDICANA_80912F',
-  'galatasaray-daikin': 'GALATASARAYDAIKIN_67B339',
-  'goztepe': 'GÖZTEPE_9CF1DE',
-  'i-lbank': 'İLBANK_315374',
-  'kuzeyboru': 'KUZEYBORU_FC1751',
-  'ni-lufer-beledi-yespor-eker': 'NİLÜFERBELEDİYESPORE_8A47A0',
-  'turk-hava-yollari': 'TÜRKHAVAYOLLARI_B246A6',
-  'vakifbank': 'VAKIFBANK_CEE9EF',
-  'zeren-spor': 'ZERENSPOR_547415',
-  'afyon-bld-yuntas': 'AFYONBLDYÜNTAŞ_AC4016',
-  'alfemo-zeren-spor': 'ALFEMOZERENSPOR_5EB5B9',
-  'altinordu': 'ALTINORDU_922B12',
-  'bodrum-bld-bodrumspor': 'BODRUMBLDBODRUMSPOR_2E3097',
-  'canakkale-bld': 'ÇANAKKALEBLD_0DF050',
-  'deni-zli-b-sehi-r-bld': 'DENİZLİBŞEHİRBLD_F6735D',
-  'di-yarbakir-b-sehi-r-bld': 'DİYARBAKIRBŞEHİRBLD_4DF16E',
-  'eczacibasi': 'ECZACIBAŞI_D25917',
-  'endo-karsiyaka': 'ENDOKARŞIYAKA_9CC283',
-  'fdm-yapi-konya-eregli-bld': 'FDMYAPIKONYAEREĞLİBL_74D33D',
-  'fenerbahce-medicana': 'FENERBAHÇEMEDICANA_C729B9',
-  'havran-bld': 'HAVRANBLD_643B33',
-  'i-ba-ki-mya-ted-ankara-kolejli-ler': 'İBAKİMYATEDANKARAKOL_7304D4',
-  'i-bb-spor-kulubu': 'İBBSPORKULÜBÜ_3F23C3',
-  'i-lbank': 'İLBANK_B9F38E',
-  'karayollari': 'KARAYOLLARI_1754C5',
-  'kuzeyboru-maxi-pi-pe-spor': 'KUZEYBORUMAXİPİPESPO_0CF1B1',
-  'meri-nos-voleybol': 'MERİNOSVOLEYBOL_13D842',
-  'muratpasa-bld-aci-koleji': 'MURATPAŞABLDAÇIKOLEJ_2FAAE7',
-  'ptt': 'PTT_578234',
-  'sakarya-voleybol': 'SAKARYAVOLEYBOL_391AEC',
-  'si-gorta-shop-mke-ankaragucu': 'SİGORTASHOPMKEANKARA_D6C234',
-  'trendy-hotels-manavgat-bld': 'TRENDYHOTELSMANAVGAT_15AD8B',
-  'vakifbank': 'VAKIFBANK_CBCA40',
-  'vestel-mani-sa-b-sehi-r-bld': 'VESTELMANİSABŞEHİRBL_F098F4',
-  'yesi-lyurt': 'YEŞİLYURT_FE3819',
-  '07-mega-spor': '07MEGASPOR_2D454B',
-  '52-camlik-spor': '52ÇAMLIKSPOR_8AFEBC',
-  '73-sirnak-bld': '73ŞIRNAKBLD_3CC363',
-  '91000-dev-spor': '91000DEVSPOR_A9CD95',
-  'aci-koleji': 'AÇIKOLEJİ_BFC9FE',
-  'adana-b-sehi-r-bld': 'ADANABŞEHİRBLD_8742E2',
-  'adana-sporcu-egi-ti-m-spor': 'ADANASPORCUEĞİTİMSPO_A80394',
-  'adana-t-d-s': 'ADANATDS_87B960',
-  'afyon-gencli-k-spor': 'AFYONGENÇLİKSPOR_E3166D',
-  'ahmet-hamdi-tanpinar-ortaokulu': 'AHMETHAMDİTANPINAROR_049D58',
-  'akdeni-z-bi-lgi-spor': 'AKDENİZBİLGİSPOR_48AC1E',
-  'akhi-sar-bld': 'AKHİSARBLD_0D6D9A',
-  'akhi-sar-gucu': 'AKHİSARGÜCÜ_B30E02',
-  'al-ka-altin-kanatlar': 'ALKAALTINKANATLAR_28023F',
-  'alp-spor': 'ALPSPOR_C31DB9',
-  'altay': 'ALTAY_F8487E',
-  'altinay-spor': 'ALTINAYSPOR_5D12B3',
-  'altinyurt': 'ALTINYURT_2FE2DE',
-  'ankara-barosu': 'ANKARABAROSU_B9EDB0',
-  'ankara-dsi': 'ANKARADSİ_606CEC',
-  'antepi-a': 'ANTEPİA_FE9CC1',
-  'arkas-spor': 'ARKASSPOR_C4941F',
-  'arnavutkoy-bld': 'ARNAVUTKÖYBLD_340423',
-  'arsavev-hatay-voleybol': 'ARSAVEVHATAYVOLEYBOL_52563F',
-  'ata-okul-spor': 'ATAOKULSPOR_DE59AC',
-  'atasehi-r-kartallari': 'ATAŞEHİRKARTALLARI_B93771',
-  'avrupa-voleybol-geli-si-m': 'AVRUPAVOLEYBOLGELİŞİ_EBB0EB',
-  'aydin-buyuksehi-r-beledi-yespor': 'AYDINBÜYÜKŞEHİRBELED_6E5808',
-  'b-sehi-r-bld-ankara-spor': 'BŞEHİRBLDANKARASPOR_09161C',
-  'bahceli-evler-bld': 'BAHÇELİEVLERBLD_465BB0',
-  'bahcesehi-r-koleji-dalaman-bld': 'BAHÇEŞEHİRKOLEJİDALA_655A70',
-  'balikesi-r-b-sehi-r-bld': 'BALIKESİRBŞEHİRBLD_183E40',
-  'balikesi-r-dsi': 'BALIKESİRDSİ_C3709C',
-  'bandirma-celi-k-spor': 'BANDIRMAÇELİKSPOR_1290EB',
-  'bartin-volley-academy': 'BARTINVOLLEYACADEMY_8A2926',
-  'basaksehi-r-voleybol': 'BAŞAKŞEHİRVOLEYBOL_B99A1B',
-  'baskent-ada-spor': 'BAŞKENTADASPOR_A98FF0',
-  'baskent-zi-rve': 'BAŞKENTZİRVE_415094',
-  'bayburt-gencli-k-merkezi': 'BAYBURTGENÇLİKMERKEZ_84399C',
-  'bayrakli-bld': 'BAYRAKLIBLD_06E495',
-  'bergama-bld': 'BERGAMABLD_78C5F6',
-  'besi-kduzu': 'BEŞİKDÜZÜ_AC8D83',
-  'besi-ktas-naviosa': 'BEŞİKTAŞNAVIOSA_E497CD',
-  'beyli-kduzu-beykent': 'BEYLİKDÜZÜBEYKENT_0D0EC9',
-  'bi-zi-mkent-voleybol': 'BİZİMKENTVOLEYBOL_64F474',
-  'bolu-ataturk-anadolu-li-sesi': 'BOLUATATÜRKANADOLULİ_EC4943',
-  'bursa-b-sehi-r-bld': 'BURSABŞEHİRBLD_94A7C3',
-  'bursa-fethi-ye-1973-spor': 'BURSAFETHİYE1973SPOR_191496',
-  'buyuk-resi-tpasa-ortaokulu': 'BÜYÜKREŞİTPAŞAORTAOK_350B13',
-  'buyukcekmece-voleybol-akademi': 'BÜYÜKÇEKMECEVOLEYBOL_32A058',
-  'cadence-boya-golcuk-i-hsani-ye': 'CADENCEBOYAGÖLCÜKİHS_A39E08',
-  'can-mi-lan-atleti-k': 'CANMİLANATLETİK_4476A3',
-  'caba-spor': 'ÇABASPOR_C1284F',
-  'can-kale-spor': 'ÇANKALESPOR_61B85D',
-  'canakkale-kepez': 'ÇANAKKALEKEPEZ_0B106F',
-  'catalca-bld': 'ÇATALCABLD_B979A6',
-  'cekmekoy-i-stanbul-spor': 'ÇEKMEKÖYİSTANBULSPOR_589AD5',
-  'cengelkoy-voleybol': 'ÇENGELKÖYVOLEYBOL_549285',
-  'cerkezkoy-voleybol-akademi': 'ÇERKEZKÖYVOLEYBOLAKA_883783',
-  'corlu-bld': 'ÇORLUBLD_835F2A',
-  'corum-arena-spor': 'ÇORUMARENASPOR_BCA9B1',
-  'corum-voleybol': 'ÇORUMVOLEYBOL_CA22C8',
-  'deni-zli-b-sehi-r-bld': 'DENİZLİBŞEHİRBLD_B60FB6',
-  'dev-atasehi-r': 'DEVATAŞEHİR_3AAB71',
-  'di-yarbakir-voleybolcular': 'DİYARBAKIRVOLEYBOLCU_930B6B',
-  'dogu-akademi': 'DOĞUAKADEMİ_0FA8DA',
-  'duzce-voleybol': 'DÜZCEVOLEYBOL_F63501',
-  'efor-gencli-k': 'EFORGENÇLİK_A971A1',
-  'elazig-bld': 'ELAZIĞBLD_324F7D',
-  'eli-t-akdeni-z': 'ELİTAKDENİZ_3FC20F',
-  'endo-karsiyaka': 'ENDOKARŞIYAKA_8CE42B',
-  'english-time-spor': 'ENGLISHTIMESPOR_724F9F',
-  'eregli-sumer-spor': 'EREĞLİSÜMERSPOR_42FE0E',
-  'eryaman-geli-si-m': 'ERYAMANGELİŞİM_62E77C',
-  'eski-sehi-r-peyman-spor': 'ESKİŞEHİRPEYMANSPOR_42FC94',
-  'eski-sehi-r-sehi-r-koleji-egt-kultur': 'ESKİŞEHİRŞEHİRKOLEJİ_46854A',
-  'eti-mesgut-bld-geli-si-m': 'ETİMESGUTBLDGELİŞİM_E63AB2',
-  'eyupsultan-bld': 'EYÜPSULTANBLD_311D79',
-  'fenerbahce-medicana': 'FENERBAHÇEMEDICANA_E6323E',
-  'fethi-ye-voleybol': 'FETHİYEVOLEYBOL_CDA02D',
-  'firat-ozkan': 'FIRATÖZKAN_33828C',
-  'forza-spor': 'FORZASPOR_53611C',
-  'galatasaray': 'GALATASARAY_F06D8C',
-  'gazi-antep-bld': 'GAZİANTEPBLD_B516C9',
-  'gazi-emi-r-bld': 'GAZİEMİRBLD_F2F9CB',
-  'gebze-gencli-k-ve-spor': 'GEBZEGENÇLİKVESPOR_E941F1',
-  'geli-si-m-koleji': 'GELİŞİMKOLEJİ_DE31D7',
-  'gemli-k-i-sti-klal-spor': 'GEMLİKİSTİKLALSPOR_528393',
-  'golbasi-i-ncek-spor': 'GÖLBAŞIİNCEKSPOR_9697A3',
-  'goztepe': 'GÖZTEPE_FE6189',
-  'gungoren-voleybol': 'GÜNGÖRENVOLEYBOL_6DBFD7',
-  'gural-premier-antalyaspor': 'GÜRALPREMIERANTALYAS_92C711',
-  'hakan-akisik-spor': 'HAKANAKIŞIKSPOR_38CC89',
-  'hakkari-maemtal': 'HAKKARİMAEMTAL_598095',
-  'hakkari-sporti-f-faali-yetler': 'HAKKARİSPORTİFFAALİY_60C78E',
-  'harput-lahmacun-yahya-kaptan': 'HARPUTLAHMACUNYAHYAK_C8E161',
-  'hedef-ankara': 'HEDEFANKARA_433D0E',
-  'heki-moglu-global-connect-travel-bvi': 'HEKİMOĞLUGLOBALCONNE_55E097',
-  'hoca-ahmet-yesevi-anadolu-l-es-voleybol-akademi': 'HOCAAHMETYESEVİANADO_A6483E',
-  'hopa-beledi-ye': 'HOPABELEDİYE_B55796',
-  'isparta-gencli-k-spor': 'ISPARTAGENÇLİKSPOR_FC462B',
-  'i-lbank': 'İLBANK_A250F5',
-  'i-stanbul-bi-zi-mkent-spor': 'İSTANBULBİZİMKENTSPO_1F5D70',
-  'i-zmi-r-b-sehir-bld': 'İZMİRBŞEHIRBLD_591CA3',
-  'i-zmi-r-dsi': 'İZMİRDSİ_021412',
-  'i-zmi-t-spor': 'İZMİTSPOR_7D00C1',
-  'kamari-n-spor': 'KAMARİNSPOR_379EE3',
-  'karabuk-gencli-k-spor': 'KARABÜKGENÇLİKSPOR_F6B427',
-  'kartal-anadolu': 'KARTALANADOLU_40573D',
-  'kartal-bld': 'KARTALBLD_8558A7',
-  'kavak-spor': 'KAVAKSPOR_8E3BEA',
-  'kayseri-ci-mnasti-k-spor': 'KAYSERİCİMNASTİKSPOR_9FDA98',
-  'kayseri-voleybol': 'KAYSERİVOLEYBOL_6536C2',
-  'kirklareli-gencli-k-spor': 'KIRKLARELİGENÇLİKSPO_460251',
-  'kocaeli-ni-comedi-a-akademi': 'KOCAELİNİCOMEDİAAKAD_99F257',
-  'kocaeli-voleybol-akademi': 'KOCAELİVOLEYBOLAKADE_B59FC7',
-  'kuzey-yildizlari': 'KUZEYYILDIZLARI_43C34D',
-  'kucukcekmece-voleybol': 'KÜÇÜKÇEKMECEVOLEYBOL_73D1D3',
-  'kzy-spor': 'KZYSPOR_73EDB5',
-  'lanueva-kozmeti-k-anadolu-marmara': 'LANUEVAKOZMETİKANADO_A7878F',
-  'mac-sayisi': 'MAÇSAYISI_A0BAA4',
-  'malatya-voleybol': 'MALATYAVOLEYBOL_0BE2B0',
-  'margenc': 'MARGENÇ_916FDB',
-  'marmari-s-bld': 'MARMARİSBLD_F5BB56',
-  'media-first-ayvalik-geli-si-m-spor': 'MEDIAFIRSTAYVALIKGEL_253CC0',
-  'mehmet-ege-i-nsaat-i-negol-orhani-ye-voleybol': 'MEHMETEGEİNŞAATİNEGÖ_36338A',
-  'mehmet-erdem-marmara-akademi': 'MEHMETERDEMMARMARAAK_E88C4E',
-  'meri-nos-voleybol': 'MERİNOSVOLEYBOL_CBD4F6',
-  'mg-spor': 'MGSPOR_680D97',
-  'misiroglu-beytepe': 'MISIROĞLUBEYTEPE_C75EE6',
-  'mke-ankaragucu': 'MKEANKARAGÜCÜ_3BF495',
-  'mus-oli-mpi-k-spor': 'MUŞOLİMPİKSPOR_F6961B',
-  'ni-cer-hotel-voleybol': 'NİCERHOTELVOLEYBOL_18543F',
-  'ni-lufer-bld': 'NİLÜFERBLD_078DCC',
-  'okura-loji-sti-k-mersi-n-i-hti-sas': 'OKURALOJİSTİKMERSİNİ_D20CDF',
-  'osmancik-bld': 'OSMANCIKBLD_0703C1',
-  'polat-group-di-di-m-beledi-yespor': 'POLATGROUPDİDİMBELED_6AEF55',
-  'polatli-duatepe': 'POLATLIDUATEPE_69A48E',
-  'ptt': 'PTT_8A836B',
-  'ri-ze-endustri-meslek-li-sesi': 'RİZEENDÜSTRİMESLEKLİ_0CB40B',
-  'roberteam': 'ROBERTEAM_A79F43',
-  'rota-koleji': 'ROTAKOLEJİ_64F899',
-  'semt-asansor-bordo-mavi-61': 'SEMTASANSÖRBORDOMAVİ_E3CE93',
-  'serdi-van-bld': 'SERDİVANBLD_09CFB9',
-  'seyhan-bld': 'SEYHANBLD_CD697B',
-  'sinav-koleji-samsunspor': 'SINAVKOLEJİSAMSUNSPO_E6AAD0',
-  'si-banet-kozan-i-mamoglu-spor': 'SİBANETKOZANİMAMOĞLU_6E7FED',
-  'si-li-vri-cagribey': 'SİLİVRİÇAĞRIBEY_496BBC',
-  'si-lopi-bld-sporti-f-faali-yetler': 'SİLOPİBLDSPORTİFFAAL_0C677A',
-  'si-lopi-geli-si-m-faali-yetleri': 'SİLOPİGELİŞİMFAALİYE_1ECF04',
-  'si-vas-toprak-gayri-menkul-pars-akademi': 'SİVASTOPRAKGAYRİMENK_44C436',
-  'smac-spor': 'SMAÇSPOR_CA7776',
-  'smart-holding-a-s-cayeli': 'SMARTHOLDINGAŞÇAYELI_B3F3C9',
-  'soke-beledi-ye-saldos-voleybol': 'SÖKEBELEDİYESALDOSVO_5FB81A',
-  'superpool-findikli-1974': 'SUPERPOOLFINDIKLI197_B7D248',
-  'tarsus-ameri-kan-koleji': 'TARSUSAMERİKANKOLEJİ_EF545D',
-  'ted-ankara-kolejli-ler': 'TEDANKARAKOLEJLİLER_2D5172',
-  'tek-metal-sporti-f': 'TEKMETALSPORTİF_AE72E6',
-  'teki-rdag-voleybol-i-hti-sas': 'TEKİRDAĞVOLEYBOLİHTİ_654418',
-  'temi-z-enerji-birli-gi': 'TEMİZENERJİBIRLİĞİ_E7FE8F',
-  'toros-universi-tesi-volgem': 'TOROSÜNIVERSİTESİVOL_8561B6',
-  'toroslar-bld': 'TOROSLARBLD_27C930',
-  'toyzz-shop-di-namo-spor': 'TOYZZSHOPDİNAMOSPOR_3CD024',
-  'turgutlu-bld-kultur-sanat': 'TURGUTLUBLDKÜLTÜRSAN_870C0D',
-  'tuzla-mercan': 'TUZLAMERCAN_4E96C1',
-  'turk-hava-yollari': 'TÜRKHAVAYOLLARI_3E2BC1',
-  'turkoglu-spor-kulubu': 'TÜRKOĞLUSPORKULÜBÜ_80E381',
-  'tvf-spor-li-sesi': 'TVFSPORLİSESİ_8B1177',
-  'uysallar-oto-fethi-ye-zi-rve': 'UYSALLAROTOFETHİYEZİ_CF4466',
-  'ulku-spor': 'ÜLKÜSPOR_BE29CD',
-  'unsped': 'ÜNSPED_D88123',
-  'vefa': 'VEFA_17A68B',
-  'venus-spor': 'VENÜSSPOR_5ACCC9',
-  'vi-ransehi-r-voleybol': 'VİRANŞEHİRVOLEYBOL_A9A211',
-  'volkan-guc-spor': 'VOLKANGÜÇSPOR_D17E4E',
-  'world-medicine-ates-spor': 'WORLDMEDICINEATEŞSPO_5F4F78',
-  'yalova-ci-ftli-kkoy-bld': 'YALOVAÇİFTLİKKÖYBLD_973B22',
-  'yedi-dag-spor': 'YEDİDAĞSPOR_F782EF',
-  'yeni-ay-loji-sti-k-sariyer-konak-spor': 'YENİAYLOJİSTİKSARIYE_17E8F8',
-  'yesi-l-bayrami-c': 'YEŞİLBAYRAMİÇ_374BDE',
-  'yesi-lyurt': 'YEŞİLYURT_4B08E9',
-  'yunusemre-bld': 'YUNUSEMREBLD_9E25B9',
-  'zeugma-gazi-antep-spor': 'ZEUGMAGAZİANTEPSPOR_DAF0C3',
-  'a-carraro-prosecco-doc-conegliano': 'ACARRAROPROSECCODOCC_DF2816',
-  'ankara-zeren-spor-kulubu': 'ANKARAZERENSPORKULÜB_CA4574',
-  'cs-volei-alba-blaj': 'CSVOLEIALBABLAJ_8AAB0E',
-  'dresdner-sc': 'DRESDNERSC_48B4E1',
-  'eczacibasi-istanbul': 'ECZACIBASIISTANBUL_BD2664',
-  'fenerbahce-medicana-istanbul': 'FENERBAHÇEMEDICANAIS_F3A44E',
-  'igor-gorgonzola-novara': 'IGORGORGONZOLANOVARA_4B8546',
-  'ks-developres-rzesz-w': 'KSDEVELOPRESRZESZW_8E4085',
-  'levallois-paris-saint-cloud': 'LEVALLOISPARISSAINTC_4B65AA',
-  'ks-commercecon-d': 'KSCOMMERCECOND_B9ED4A',
-  'maritza-plovdiv': 'MARITZAPLOVDIV_3A840F',
-  'numia-vero-volley-milano': 'NUMIAVEROVOLLEYMILAN_BAE474',
-  'ok-elezni-ar-lajkovac': 'OKELEZNIARLAJKOVAC_743E3E',
-  'olympiacos-piraeus': 'OLYMPIACOSPIRAEUS_02AA62',
-  'pge-budowlani-d': 'PGEBUDOWLANID_B7159C',
-  'savino-del-bene-scandicci': 'SAVINODELBENESCANDIC_CD7C13',
-  'sport-lisboa-e-benfica': 'SPORTLISBOAEBENFICA_DF9546',
-  'ssc-palmberg-schwerin': 'SSCPALMBERGSCHWERIN_CB95E7',
-  'vakifbank-istanbul': 'VAKIFBANKISTANBUL_F27D00',
-  'volero-le-cannet': 'VOLEROLECANNET_A5CC2F',
-  'ac-paok-thessaloniki': 'ACPAOKTHESSALONIKI_73A5F3',
-  'allianz-mtv-stuttgart': 'ALLIANZMTVSTUTTGART_0EC839',
-  'asterix-avo-beveren': 'ASTERIXAVOBEVEREN_3A33B9',
-  'avarca-de-menorca': 'AVARCADEMENORCA_BC8517',
-  'bks-bostik-bielsko-bia-a': 'BKSBOSTIKBIELSKOBIAA_FC5C28',
-  'c-s-o-voluntari-2005': 'CSOVOLUNTARI2005_782C00',
-  'cd-heidelberg-las-palmas': 'CDHEIDELBERGLASPALMA_F4B6E6',
-  'darta-bevo-roeselare': 'DARTABEVOROESELARE_417D2B',
-  'dinamo-bucuresti': 'DINAMOBUCURESTI_1E4157',
-  'dukla-liberec': 'DUKLALIBEREC_778B61',
-  'fc-porto': 'FCPORTO_FDD815',
-  'galatasaray-daikin-istanbul': 'GALATASARAYDAIKINIST_C32C2E',
-  'janta-volej-kisela-voda': 'JANTAVOLEJKISELAVODA_08FC49',
-  'mbh-b-k-scsaba': 'MBHBKSCSABA_7C01BD',
-  'mladost-zagreb': 'MLADOSTZAGREB_356A91',
-  'moya-radomka-radom': 'MOYARADOMKARADOM_0E2A1E',
-  'ok-dinamo-zagreb': 'OKDINAMOZAGREB_F14AD7',
-  'otp-banka-branik-maribor': 'OTPBANKABRANIKMARIBO_87FC33',
-  'reale-mutua-fenera-chieri-76': 'REALEMUTUAFENERACHIE_C1330D',
-  'sporting-cp-lisboa': 'SPORTINGCPLISBOA_DBDFE2',
-  'tent-obrenovac': 'TENTOBRENOVAC_218E0A',
-  'thy-istanbul': 'THYISTANBUL_D3D381',
-  'vandoeuvre-nancy-vb': 'VANDOEUVRENANCYVB_7B50A2',
-  'vasas-buda-budapest': 'VASASBUDABUDAPEST_A45ABA',
-  'vfb-suhl-thuringen': 'VFBSUHLTHÜRINGEN_292F8D',
-  'viteos-neuchatel-uc': 'VITEOSNEUCHATELUC_4AA5D9',
-  'vk-up-olomouc': 'VKUPOLOMOUC_334CB7',
-  'volley-mulhouse-alsace': 'VOLLEYMULHOUSEALSACE_C7D93B',
-  'ok-gacko-rd-swisslion': 'OKGACKORDSWISSLION_3A28C9',
-  'ok-ribola-ka-tela': 'OKRIBOLAKATELA_B5BCAB',
-  'zok-ub': 'ZOKUB_28221B',
-  'aek-athens': 'AEKATHENS_66CD30',
-  'aek-athens-gre': 'AEKATHENSGRE_720B10',
-  'ao-thiras': 'AOTHIRAS_513593',
-  'ao-thiras-gre': 'AOTHIRASGRE_F5D8E1',
-  'buducnost-podgorica': 'BUDUCNOSTPODGORICA_4B268F',
-  'buducnost-podgorica-mne': 'BUDUCNOSTPODGORICAMN_716AAB',
-  'c-s-m-lugoj': 'CSMLUGOJ_FA79AB',
-  'c-s-m-lugoj-rou': 'CSMLUGOJROU_D2CE73',
-  'draisma-dynamo-apeldoorn': 'DRAISMADYNAMOAPELDOO_58D452',
-  'draisma-dynamo-apeldoorn-ned': 'DRAISMADYNAMOAPELDOO_3356CB',
-  'erzbergm-trofaiach-eisenerz': 'ERZBERGMTROFAIACHEIS_755FF8',
-  'erzbergm-trofaiach-eisenerz-aut': 'ERZBERGMTROFAIACHEIS_EA68D4',
-  'fatum-ny-regyh-za': 'FATUMNYREGYHZA_5B4082',
-  'fatum-ny-regyh-za-hun': 'FATUMNYREGYHZAHUN_556337',
-  'fleyr-t-rshavn': 'FLEYRTRSHAVN_B5F233',
-  'fleyr-t-rshavn-far': 'FLEYRTRSHAVNFAR_B63BFE',
-  'friso-sneek': 'FRISOSNEEK_88D5F3',
-  'friso-sneek-ned': 'FRISOSNEEKNED_BBC3F1',
-  'fundaci-n-cajasol-andaluc-a': 'FUNDACINCAJASOLANDAL_49C385',
-  'fundaci-n-cajasol-andaluc-a-esp': 'FUNDACINCAJASOLANDAL_0E33EB',
-  'gs-panionios-nea-smyrni': 'GSPANIONIOSNEASMYRNI_567A21',
-  'gs-panionios-nea-smyrni-gre': 'GSPANIONIOSNEASMYRNI_AD29C0',
-  'gzok-srem-sremska-mitrovica': 'GZOKSREMSREMSKAMITRO_4D8C6D',
-  'gzok-srem-sremska-mitrovica-srb': 'GZOKSREMSREMSKAMITRO_F20701',
-  'holte-if': 'HOLTEIF_2761ED',
-  'holte-if-den': 'HOLTEIFDEN_647338',
-  'kaunas-vdu': 'KAUNASVDU_C6D0C7',
-  'kaunas-vdu-ltu': 'KAUNASVDULTU_C3F8B8',
-  'kv-fer-volley-ferizaj': 'KVFERVOLLEYFERIZAJ_BE9FCC',
-  'kv-fer-volley-ferizaj-kos': 'KVFERVOLLEYFERIZAJKO_228A0F',
-  'levski-sofia': 'LEVSKISOFIA_FDEA1F',
-  'levski-sofia-bul': 'LEVSKISOFIABUL_9A6C05',
-  'lp-salo': 'LPSALO_593563',
-  'lp-salo-fin': 'LPSALOFIN_7CA75A',
-  'nakovski-volej-strumica': 'NAKOVSKIVOLEJSTRUMIC_D54FAA',
-  'nakovski-volej-strumica-mkd': 'NAKOVSKIVOLEJSTRUMIC_B0EB60',
-  'ocisa-haro-rioja': 'OCISAHARORIOJA_178653',
-  'ocisa-haro-rioja-esp': 'OCISAHARORIOJAESP_DE8F08',
-  'ok-brda-split': 'OKBRDASPLIT_CB1A2D',
-  'ok-brda-split-cro': 'OKBRDASPLITCRO_0B2045',
-  'ksyl-myre': 'KSYLMYRE_AB144F',
-  'ksyl-myre-nor': 'KSYLMYRENOR_4FA6C0',
-  'olympiada-neapolis-nicosia': 'OLYMPIADANEAPOLISNIC_9D3C1E',
-  'olympiada-neapolis-nicosia-cyp': 'OLYMPIADANEAPOLISNIC_FB70DF',
-  'rabotnicki-skopje': 'RABOTNICKISKOPJE_BC3403',
-  'rabotnicki-skopje-mkd': 'RABOTNICKISKOPJEMKD_5A7F48',
-  'rae-spordikool-viaston-juri': 'RAESPORDIKOOLVIASTON_96C6A4',
-  'rae-spordikool-viaston-juri-est': 'RAESPORDIKOOLVIASTON_66A48C',
-  'sc-balta': 'SCBALTA_04FDE4',
-  'sc-balta-ukr': 'SCBALTAUKR_6E5681',
-  'tchalou-chapelle-lez-herlaimont': 'TCHALOUCHAPELLELEZHE_9ED227',
-  'tchalou-chapelle-lez-herlaimont-bel': 'TCHALOUCHAPELLELEZHE_91AA2F',
-  'tif-viking-bergen': 'TIFVIKINGBERGEN_6E116A',
-  'tif-viking-bergen-nor': 'TIFVIKINGBERGENNOR_98607E',
-  'tj-ostrava': 'TJOSTRAVA_546715',
-  'tj-ostrava-cze': 'TJOSTRAVACZE_05F0BC',
-  'va-uniza-zilina': 'VAUNIZAZILINA_6BD732',
-  'va-uniza-zilina-svk': 'VAUNIZAZILINASVK_56A58F',
-  'vbc-cheseaux': 'VBCCHESEAUX_F722C4',
-  'vbc-cheseaux-sui': 'VBCCHESEAUXSUI_B36F51',
-  'vk-pirane-brusno': 'VKPIRANEBRUSNO_FDF6CA',
-  'vk-pirane-brusno-svk': 'VKPIRANEBRUSNOSVK_D27316',
-  'vk-prostejov': 'VKPROSTEJOV_B1760A',
-  'vk-prostejov-cze': 'VKPROSTEJOVCZE_E0254F',
-  'vk-slovan-bratislava': 'VKSLOVANBRATISLAVA_D9EE31',
-  'vk-slovan-bratislava-svk': 'VKSLOVANBRATISLAVASV_BCFE97',
-  'volley-dudingen': 'VOLLEYDÜDINGEN_337032',
-  'volley-dudingen-sui': 'VOLLEYDÜDINGENSUI_AFD153',
-  'winner-chcm-67-68': 'WINNERCHCM6768_6D9BB1',
-  'winner-chcw-69-70': 'WINNERCHCW6970_91B148',
-  'winner-chcw-71-72': 'WINNERCHCW7172_E600A0',
-  'winner-chcw-73-74': 'WINNERCHCW7374_B43212',
-  'winner-chcw-75-76': 'WINNERCHCW7576_CCC588',
-  'winner-chcw-77-78': 'WINNERCHCW7778_9071D2',
-  'winner-chcw-79-80': 'WINNERCHCW7980_5C506F',
-  'winner-chcw-81-82': 'WINNERCHCW8182_6DB1F4',
-  'winner-chcw-91-92': 'WINNERCHCW9192_1EA6A0',
-  'winner-chcw-93-94': 'WINNERCHCW9394_E329E6'
+  'aras-kargo': '1000',
+  'aydin-buyuksehi-r-beledi-yespor': '1001',
+  'bahceli-evler-bld': '1002',
+  'besi-ktas': '1003',
+  'eczacibasi-dynavi-t': '1004',
+  'fenerbahce-medicana': '1005',
+  'galatasaray-daikin': '1006',
+  'goztepe': '1007',
+  'i-lbank': '1013',
+  'kuzeyboru': '1008',
+  'ni-lufer-beledi-yespor-eker': '1009',
+  'turk-hava-yollari': '1010',
+  'vakifbank': '1011',
+  'zeren-spor': '1012',
+  'afyon-bld-yuntas': '1033',
+  'alfemo-zeren-spor': '1030',
+  'altinordu': '1021',
+  'bodrum-bld-bodrumspor': '1024',
+  'canakkale-bld': '1015',
+  'deni-zli-b-sehi-r-bld': '1017',
+  'di-yarbakir-b-sehi-r-bld': '1029',
+  'eczacibasi': '1016',
+  'endo-karsiyaka': '1022',
+  'fdm-yapi-konya-eregli-bld': '1038',
+  'fenerbahce-medicana': '1014',
+  'havran-bld': '1025',
+  'i-ba-ki-mya-ted-ankara-kolejli-ler': '1039',
+  'i-bb-spor-kulubu': '1018',
+  'i-lbank': '1028',
+  'karayollari': '1032',
+  'kuzeyboru-maxi-pi-pe-spor': '1026',
+  'meri-nos-voleybol': '1031',
+  'muratpasa-bld-aci-koleji': '1036',
+  'ptt': '1037',
+  'sakarya-voleybol': '1027',
+  'si-gorta-shop-mke-ankaragucu': '1035',
+  'trendy-hotels-manavgat-bld': '1034',
+  'vakifbank': '1019',
+  'vestel-mani-sa-b-sehi-r-bld': '1023',
+  'yesi-lyurt': '1020',
+  '07-mega-spor': '1122',
+  '52-camlik-spor': '1198',
+  '73-sirnak-bld': '1216',
+  '91000-dev-spor': '1212',
+  'aci-koleji': '1120',
+  'adana-b-sehi-r-bld': '1185',
+  'adana-sporcu-egi-ti-m-spor': '1183',
+  'adana-t-d-s': '1180',
+  'afyon-gencli-k-spor': '1129',
+  'ahmet-hamdi-tanpinar-ortaokulu': '1160',
+  'akdeni-z-bi-lgi-spor': '1123',
+  'akhi-sar-bld': '1098',
+  'akhi-sar-gucu': '1097',
+  'al-ka-altin-kanatlar': '1142',
+  'alp-spor': '1080',
+  'altay': '1093',
+  'altinay-spor': '1099',
+  'altinyurt': '1062',
+  'ankara-barosu': '1157',
+  'ankara-dsi': '1168',
+  'antepi-a': '1208',
+  'arkas-spor': '1107',
+  'arnavutkoy-bld': '1047',
+  'arsavev-hatay-voleybol': '1187',
+  'ata-okul-spor': '1096',
+  'atasehi-r-kartallari': '1071',
+  'avrupa-voleybol-geli-si-m': '1040',
+  'aydin-buyuksehi-r-beledi-yespor': '1111',
+  'b-sehi-r-bld-ankara-spor': '1176',
+  'bahceli-evler-bld': '1052',
+  'bahcesehi-r-koleji-dalaman-bld': '1131',
+  'balikesi-r-b-sehi-r-bld': '1082',
+  'balikesi-r-dsi': '1090',
+  'bandirma-celi-k-spor': '1083',
+  'bartin-volley-academy': '1149',
+  'basaksehi-r-voleybol': '1054',
+  'baskent-ada-spor': '1155',
+  'baskent-zi-rve': '1170',
+  'bayburt-gencli-k-merkezi': '1190',
+  'bayrakli-bld': '1102',
+  'bergama-bld': '1104',
+  'besi-kduzu': '1199',
+  'besi-ktas-naviosa': '1055',
+  'beyli-kduzu-beykent': '1042',
+  'bi-zi-mkent-voleybol': '1044',
+  'bolu-ataturk-anadolu-li-sesi': '1154',
+  'bursa-b-sehi-r-bld': '1136',
+  'bursa-fethi-ye-1973-spor': '1134',
+  'buyuk-resi-tpasa-ortaokulu': '1056',
+  'buyukcekmece-voleybol-akademi': '1050',
+  'cadence-boya-golcuk-i-hsani-ye': '1146',
+  'can-mi-lan-atleti-k': '1064',
+  'caba-spor': '1173',
+  'can-kale-spor': '1087',
+  'canakkale-kepez': '1085',
+  'catalca-bld': '1041',
+  'cekmekoy-i-stanbul-spor': '1077',
+  'cengelkoy-voleybol': '1066',
+  'cerkezkoy-voleybol-akademi': '1086',
+  'corlu-bld': '1092',
+  'corum-arena-spor': '1194',
+  'corum-voleybol': '1201',
+  'deni-zli-b-sehi-r-bld': '1125',
+  'dev-atasehi-r': '1068',
+  'di-yarbakir-voleybolcular': '1211',
+  'dogu-akademi': '1069',
+  'duzce-voleybol': '1144',
+  'efor-gencli-k': '1095',
+  'elazig-bld': '1220',
+  'eli-t-akdeni-z': '1121',
+  'endo-karsiyaka': '1118',
+  'english-time-spor': '1164',
+  'eregli-sumer-spor': '1179',
+  'eryaman-geli-si-m': '1167',
+  'eski-sehi-r-peyman-spor': '1135',
+  'eski-sehi-r-sehi-r-koleji-egt-kultur': '1143',
+  'eti-mesgut-bld-geli-si-m': '1165',
+  'eyupsultan-bld': '1061',
+  'fenerbahce-medicana': '1072',
+  'fethi-ye-voleybol': '1126',
+  'firat-ozkan': '1206',
+  'forza-spor': '1106',
+  'galatasaray': '1070',
+  'gazi-antep-bld': '1210',
+  'gazi-emi-r-bld': '1115',
+  'gebze-gencli-k-ve-spor': '1147',
+  'geli-si-m-koleji': '1108',
+  'gemli-k-i-sti-klal-spor': '1133',
+  'golbasi-i-ncek-spor': '1159',
+  'goztepe': '1101',
+  'gungoren-voleybol': '1053',
+  'gural-premier-antalyaspor': '1127',
+  'hakan-akisik-spor': '1163',
+  'hakkari-maemtal': '1217',
+  'hakkari-sporti-f-faali-yetler': '1219',
+  'harput-lahmacun-yahya-kaptan': '1148',
+  'hedef-ankara': '1178',
+  'heki-moglu-global-connect-travel-bvi': '1132',
+  'hoca-ahmet-yesevi-anadolu-l-es-voleybol-akademi': '1137',
+  'hopa-beledi-ye': '1192',
+  'isparta-gencli-k-spor': '1124',
+  'i-lbank': '1158',
+  'i-stanbul-bi-zi-mkent-spor': '1046',
+  'i-zmi-r-b-sehir-bld': '1114',
+  'i-zmi-r-dsi': '1116',
+  'i-zmi-t-spor': '1151',
+  'kamari-n-spor': '1074',
+  'karabuk-gencli-k-spor': '1145',
+  'kartal-anadolu': '1078',
+  'kartal-bld': '1079',
+  'kavak-spor': '1169',
+  'kayseri-ci-mnasti-k-spor': '1203',
+  'kayseri-voleybol': '1204',
+  'kirklareli-gencli-k-spor': '1089',
+  'kocaeli-ni-comedi-a-akademi': '1150',
+  'kocaeli-voleybol-akademi': '1153',
+  'kuzey-yildizlari': '1081',
+  'kucukcekmece-voleybol': '1048',
+  'kzy-spor': '1103',
+  'lanueva-kozmeti-k-anadolu-marmara': '1065',
+  'mac-sayisi': '1067',
+  'malatya-voleybol': '1214',
+  'margenc': '1213',
+  'marmari-s-bld': '1130',
+  'media-first-ayvalik-geli-si-m-spor': '1084',
+  'mehmet-ege-i-nsaat-i-negol-orhani-ye-voleybol': '1140',
+  'mehmet-erdem-marmara-akademi': '1075',
+  'meri-nos-voleybol': '1205',
+  'mg-spor': '1138',
+  'misiroglu-beytepe': '1174',
+  'mke-ankaragucu': '1172',
+  'mus-oli-mpi-k-spor': '1215',
+  'ni-cer-hotel-voleybol': '1218',
+  'ni-lufer-bld': '1139',
+  'okura-loji-sti-k-mersi-n-i-hti-sas': '1184',
+  'osmancik-bld': '1196',
+  'polat-group-di-di-m-beledi-yespor': '1109',
+  'polatli-duatepe': '1177',
+  'ptt': '1166',
+  'ri-ze-endustri-meslek-li-sesi': '1200',
+  'roberteam': '1058',
+  'rota-koleji': '1112',
+  'semt-asansor-bordo-mavi-61': '1197',
+  'serdi-van-bld': '1152',
+  'seyhan-bld': '1182',
+  'sinav-koleji-samsunspor': '1191',
+  'si-banet-kozan-i-mamoglu-spor': '1189',
+  'si-li-vri-cagribey': '1049',
+  'si-lopi-bld-sporti-f-faali-yetler': '1222',
+  'si-lopi-geli-si-m-faali-yetleri': '1221',
+  'si-vas-toprak-gayri-menkul-pars-akademi': '1209',
+  'smac-spor': '1045',
+  'smart-holding-a-s-cayeli': '1195',
+  'soke-beledi-ye-saldos-voleybol': '1113',
+  'superpool-findikli-1974': '1193',
+  'tarsus-ameri-kan-koleji': '1181',
+  'ted-ankara-kolejli-ler': '1175',
+  'tek-metal-sporti-f': '1161',
+  'teki-rdag-voleybol-i-hti-sas': '1091',
+  'temi-z-enerji-birli-gi': '1156',
+  'toros-universi-tesi-volgem': '1188',
+  'toroslar-bld': '1186',
+  'toyzz-shop-di-namo-spor': '1073',
+  'turgutlu-bld-kultur-sanat': '1105',
+  'tuzla-mercan': '1076',
+  'turk-hava-yollari': '1043',
+  'turkoglu-spor-kulubu': '1094',
+  'tvf-spor-li-sesi': '1162',
+  'uysallar-oto-fethi-ye-zi-rve': '1128',
+  'ulku-spor': '1110',
+  'unsped': '1051',
+  'vefa': '1060',
+  'venus-spor': '1117',
+  'vi-ransehi-r-voleybol': '1207',
+  'volkan-guc-spor': '1119',
+  'world-medicine-ates-spor': '1063',
+  'yalova-ci-ftli-kkoy-bld': '1141',
+  'yedi-dag-spor': '1171',
+  'yeni-ay-loji-sti-k-sariyer-konak-spor': '1057',
+  'yesi-l-bayrami-c': '1088',
+  'yesi-lyurt': '1059',
+  'yunusemre-bld': '1100',
+  'zeugma-gazi-antep-spor': '1202',
+  'a-carraro-prosecco-doc-conegliano': '1235',
+  'ankara-zeren-spor-kulubu': '1236',
+  'cs-volei-alba-blaj': '1225',
+  'dresdner-sc': '1237',
+  'eczacibasi-istanbul': '1232',
+  'fenerbahce-medicana-istanbul': '1227',
+  'igor-gorgonzola-novara': '1228',
+  'ks-developres-rzesz-w': '1240',
+  'levallois-paris-saint-cloud': '1241',
+  'ks-commercecon-d': '1238',
+  'maritza-plovdiv': '1242',
+  'numia-vero-volley-milano': '1231',
+  'ok-elezni-ar-lajkovac': '1234',
+  'olympiacos-piraeus': '1233',
+  'pge-budowlani-d': '1230',
+  'savino-del-bene-scandicci': '1223',
+  'sport-lisboa-e-benfica': '1229',
+  'ssc-palmberg-schwerin': '1239',
+  'vakifbank-istanbul': '1224',
+  'volero-le-cannet': '1226',
+  'ac-paok-thessaloniki': '1266',
+  'allianz-mtv-stuttgart': '1245',
+  'asterix-avo-beveren': '1260',
+  'avarca-de-menorca': '1268',
+  'bks-bostik-bielsko-bia-a': '1252',
+  'c-s-o-voluntari-2005': '1247',
+  'cd-heidelberg-las-palmas': '1267',
+  'darta-bevo-roeselare': '1259',
+  'dinamo-bucuresti': '1248',
+  'dukla-liberec': '1265',
+  'fc-porto': '1261',
+  'galatasaray-daikin-istanbul': '1243',
+  'janta-volej-kisela-voda': '1273',
+  'mbh-b-k-scsaba': '1255',
+  'mladost-zagreb': '1257',
+  'moya-radomka-radom': '1253',
+  'ok-dinamo-zagreb': '1258',
+  'otp-banka-branik-maribor': '1254',
+  'reale-mutua-fenera-chieri-76': '1249',
+  'sporting-cp-lisboa': '1262',
+  'tent-obrenovac': '1269',
+  'thy-istanbul': '1244',
+  'vandoeuvre-nancy-vb': '1251',
+  'vasas-buda-budapest': '1256',
+  'vfb-suhl-thuringen': '1246',
+  'viteos-neuchatel-uc': '1263',
+  'vk-up-olomouc': '1264',
+  'volley-mulhouse-alsace': '1250',
+  'ok-gacko-rd-swisslion': '1272',
+  'ok-ribola-ka-tela': '1271',
+  'zok-ub': '1270',
+  'aek-athens': '1274',
+  'aek-athens-gre': '1318',
+  'ao-thiras': '1294',
+  'ao-thiras-gre': '1338',
+  'buducnost-podgorica': '1301',
+  'buducnost-podgorica-mne': '1345',
+  'c-s-m-lugoj': '1287',
+  'c-s-m-lugoj-rou': '1331',
+  'draisma-dynamo-apeldoorn': '1279',
+  'draisma-dynamo-apeldoorn-ned': '1323',
+  'erzbergm-trofaiach-eisenerz': '1306',
+  'erzbergm-trofaiach-eisenerz-aut': '1350',
+  'fatum-ny-regyh-za': '1296',
+  'fatum-ny-regyh-za-hun': '1340',
+  'fleyr-t-rshavn': '1293',
+  'fleyr-t-rshavn-far': '1337',
+  'friso-sneek': '1286',
+  'friso-sneek-ned': '1330',
+  'fundaci-n-cajasol-andaluc-a': '1282',
+  'fundaci-n-cajasol-andaluc-a-esp': '1326',
+  'gs-panionios-nea-smyrni': '1295',
+  'gs-panionios-nea-smyrni-gre': '1339',
+  'gzok-srem-sremska-mitrovica': '1275',
+  'gzok-srem-sremska-mitrovica-srb': '1319',
+  'holte-if': '1281',
+  'holte-if-den': '1325',
+  'kaunas-vdu': '1298',
+  'kaunas-vdu-ltu': '1342',
+  'kv-fer-volley-ferizaj': '1291',
+  'kv-fer-volley-ferizaj-kos': '1335',
+  'levski-sofia': '1289',
+  'levski-sofia-bul': '1333',
+  'lp-salo': '1297',
+  'lp-salo-fin': '1341',
+  'nakovski-volej-strumica': '1277',
+  'nakovski-volej-strumica-mkd': '1321',
+  'ocisa-haro-rioja': '1300',
+  'ocisa-haro-rioja-esp': '1344',
+  'ok-brda-split': '1284',
+  'ok-brda-split-cro': '1328',
+  'ksyl-myre': '1299',
+  'ksyl-myre-nor': '1343',
+  'olympiada-neapolis-nicosia': '1285',
+  'olympiada-neapolis-nicosia-cyp': '1329',
+  'rabotnicki-skopje': '1302',
+  'rabotnicki-skopje-mkd': '1346',
+  'rae-spordikool-viaston-juri': '1303',
+  'rae-spordikool-viaston-juri-est': '1347',
+  'sc-balta': '1307',
+  'sc-balta-ukr': '1351',
+  'tchalou-chapelle-lez-herlaimont': '1292',
+  'tchalou-chapelle-lez-herlaimont-bel': '1336',
+  'tif-viking-bergen': '1305',
+  'tif-viking-bergen-nor': '1349',
+  'tj-ostrava': '1276',
+  'tj-ostrava-cze': '1320',
+  'va-uniza-zilina': '1280',
+  'va-uniza-zilina-svk': '1324',
+  'vbc-cheseaux': '1288',
+  'vbc-cheseaux-sui': '1332',
+  'vk-pirane-brusno': '1304',
+  'vk-pirane-brusno-svk': '1348',
+  'vk-prostejov': '1278',
+  'vk-prostejov-cze': '1322',
+  'vk-slovan-bratislava': '1283',
+  'vk-slovan-bratislava-svk': '1327',
+  'volley-dudingen': '1290',
+  'volley-dudingen-sui': '1334',
+  'winner-chcm-67-68': '1308',
+  'winner-chcw-69-70': '1309',
+  'winner-chcw-71-72': '1310',
+  'winner-chcw-73-74': '1311',
+  'winner-chcw-75-76': '1312',
+  'winner-chcw-77-78': '1313',
+  'winner-chcw-79-80': '1314',
+  'winner-chcw-81-82': '1315',
+  'winner-chcw-91-92': '1316',
+  'winner-chcw-93-94': '1317'
 } as const;
 
 export const TEAMS: Record<TeamId, TeamInfo> = {
-  "ARASKARGO_94AD2F": {
-    "id": "ARASKARGO_94AD2F",
+  "1000": {
+    "id": 1000,
     "slug": "aras-kargo",
     "name": "ARAS KARGO",
     "league": "VSL",
     "country": "TUR",
     "groupName": "Vodafone Sultanlar Ligi"
   },
-  "AYDINBÜYÜKŞEHİRBELED_57B10E": {
-    "id": "AYDINBÜYÜKŞEHİRBELED_57B10E",
+  "1001": {
+    "id": 1001,
     "slug": "aydin-buyuksehi-r-beledi-yespor",
     "name": "AYDIN BÜYÜKŞEHİR BELEDİYESPOR",
     "league": "VSL",
     "country": "TUR",
     "groupName": "Vodafone Sultanlar Ligi"
   },
-  "BAHÇELİEVLERBLD_7BEE9F": {
-    "id": "BAHÇELİEVLERBLD_7BEE9F",
+  "1002": {
+    "id": 1002,
     "slug": "bahceli-evler-bld",
     "name": "BAHÇELİEVLER BLD.",
     "league": "VSL",
     "country": "TUR",
     "groupName": "Vodafone Sultanlar Ligi"
   },
-  "BEŞİKTAŞ_7AD79A": {
-    "id": "BEŞİKTAŞ_7AD79A",
+  "1003": {
+    "id": 1003,
     "slug": "besi-ktas",
     "name": "BEŞİKTAŞ",
     "league": "VSL",
     "country": "TUR",
     "groupName": "Vodafone Sultanlar Ligi"
   },
-  "ECZACIBAŞIDYNAVİT_41201C": {
-    "id": "ECZACIBAŞIDYNAVİT_41201C",
+  "1004": {
+    "id": 1004,
     "slug": "eczacibasi-dynavi-t",
     "name": "ECZACIBAŞI DYNAVİT",
     "league": "VSL",
     "country": "TUR",
     "groupName": "Vodafone Sultanlar Ligi"
   },
-  "FENERBAHÇEMEDICANA_80912F": {
-    "id": "FENERBAHÇEMEDICANA_80912F",
+  "1005": {
+    "id": 1005,
     "slug": "fenerbahce-medicana",
     "name": "FENERBAHÇE MEDICANA",
     "league": "VSL",
     "country": "TUR",
     "groupName": "Vodafone Sultanlar Ligi"
   },
-  "GALATASARAYDAIKIN_67B339": {
-    "id": "GALATASARAYDAIKIN_67B339",
+  "1006": {
+    "id": 1006,
     "slug": "galatasaray-daikin",
     "name": "GALATASARAY DAIKIN",
     "league": "VSL",
     "country": "TUR",
     "groupName": "Vodafone Sultanlar Ligi"
   },
-  "GÖZTEPE_9CF1DE": {
-    "id": "GÖZTEPE_9CF1DE",
+  "1007": {
+    "id": 1007,
     "slug": "goztepe",
     "name": "GÖZTEPE",
     "league": "VSL",
     "country": "TUR",
     "groupName": "Vodafone Sultanlar Ligi"
   },
-  "İLBANK_315374": {
-    "id": "İLBANK_315374",
-    "slug": "i-lbank",
-    "name": "İLBANK",
-    "league": "VSL",
-    "country": "TUR",
-    "groupName": "Vodafone Sultanlar Ligi"
-  },
-  "KUZEYBORU_FC1751": {
-    "id": "KUZEYBORU_FC1751",
+  "1008": {
+    "id": 1008,
     "slug": "kuzeyboru",
     "name": "KUZEYBORU",
     "league": "VSL",
     "country": "TUR",
     "groupName": "Vodafone Sultanlar Ligi"
   },
-  "NİLÜFERBELEDİYESPORE_8A47A0": {
-    "id": "NİLÜFERBELEDİYESPORE_8A47A0",
+  "1009": {
+    "id": 1009,
     "slug": "ni-lufer-beledi-yespor-eker",
     "name": "NİLÜFER BELEDİYESPOR EKER",
     "league": "VSL",
     "country": "TUR",
     "groupName": "Vodafone Sultanlar Ligi"
   },
-  "TÜRKHAVAYOLLARI_B246A6": {
-    "id": "TÜRKHAVAYOLLARI_B246A6",
+  "1010": {
+    "id": 1010,
     "slug": "turk-hava-yollari",
     "name": "TÜRK HAVA YOLLARI",
     "league": "VSL",
     "country": "TUR",
     "groupName": "Vodafone Sultanlar Ligi"
   },
-  "VAKIFBANK_CEE9EF": {
-    "id": "VAKIFBANK_CEE9EF",
+  "1011": {
+    "id": 1011,
     "slug": "vakifbank",
     "name": "VAKIFBANK",
     "league": "VSL",
     "country": "TUR",
     "groupName": "Vodafone Sultanlar Ligi"
   },
-  "ZERENSPOR_547415": {
-    "id": "ZERENSPOR_547415",
+  "1012": {
+    "id": 1012,
     "slug": "zeren-spor",
     "name": "ZEREN SPOR",
     "league": "VSL",
     "country": "TUR",
     "groupName": "Vodafone Sultanlar Ligi"
   },
-  "AFYONBLDYÜNTAŞ_AC4016": {
-    "id": "AFYONBLDYÜNTAŞ_AC4016",
-    "slug": "afyon-bld-yuntas",
-    "name": "AFYON BLD. YÜNTAŞ",
-    "league": "1LIG",
+  "1013": {
+    "id": 1013,
+    "slug": "i-lbank",
+    "name": "İLBANK",
+    "league": "VSL",
     "country": "TUR",
-    "groupName": "B. Grup"
+    "groupName": "Vodafone Sultanlar Ligi"
   },
-  "ALFEMOZERENSPOR_5EB5B9": {
-    "id": "ALFEMOZERENSPOR_5EB5B9",
-    "slug": "alfemo-zeren-spor",
-    "name": "ALFEMO ZEREN SPOR",
-    "league": "1LIG",
-    "country": "TUR",
-    "groupName": "B. Grup"
-  },
-  "ALTINORDU_922B12": {
-    "id": "ALTINORDU_922B12",
-    "slug": "altinordu",
-    "name": "ALTINORDU",
+  "1014": {
+    "id": 1014,
+    "slug": "fenerbahce-medicana",
+    "name": "FENERBAHÇE MEDICANA",
     "league": "1LIG",
     "country": "TUR",
     "groupName": "A. Grup"
   },
-  "BODRUMBLDBODRUMSPOR_2E3097": {
-    "id": "BODRUMBLDBODRUMSPOR_2E3097",
-    "slug": "bodrum-bld-bodrumspor",
-    "name": "BODRUM BLD. BODRUMSPOR",
-    "league": "1LIG",
-    "country": "TUR",
-    "groupName": "A. Grup"
-  },
-  "ÇANAKKALEBLD_0DF050": {
-    "id": "ÇANAKKALEBLD_0DF050",
+  "1015": {
+    "id": 1015,
     "slug": "canakkale-bld",
     "name": "ÇANAKKALE BLD.",
     "league": "1LIG",
     "country": "TUR",
     "groupName": "A. Grup"
   },
-  "DENİZLİBŞEHİRBLD_F6735D": {
-    "id": "DENİZLİBŞEHİRBLD_F6735D",
-    "slug": "deni-zli-b-sehi-r-bld",
-    "name": "DENİZLİ B.ŞEHİR BLD.",
-    "league": "1LIG",
-    "country": "TUR",
-    "groupName": "A. Grup"
-  },
-  "DİYARBAKIRBŞEHİRBLD_4DF16E": {
-    "id": "DİYARBAKIRBŞEHİRBLD_4DF16E",
-    "slug": "di-yarbakir-b-sehi-r-bld",
-    "name": "DİYARBAKIR B.ŞEHİR BLD.",
-    "league": "1LIG",
-    "country": "TUR",
-    "groupName": "B. Grup"
-  },
-  "ECZACIBAŞI_D25917": {
-    "id": "ECZACIBAŞI_D25917",
+  "1016": {
+    "id": 1016,
     "slug": "eczacibasi",
     "name": "ECZACIBAŞI",
     "league": "1LIG",
     "country": "TUR",
     "groupName": "A. Grup"
   },
-  "ENDOKARŞIYAKA_9CC283": {
-    "id": "ENDOKARŞIYAKA_9CC283",
-    "slug": "endo-karsiyaka",
-    "name": "ENDO KARŞIYAKA",
+  "1017": {
+    "id": 1017,
+    "slug": "deni-zli-b-sehi-r-bld",
+    "name": "DENİZLİ B.ŞEHİR BLD.",
     "league": "1LIG",
     "country": "TUR",
     "groupName": "A. Grup"
   },
-  "FDMYAPIKONYAEREĞLİBL_74D33D": {
-    "id": "FDMYAPIKONYAEREĞLİBL_74D33D",
-    "slug": "fdm-yapi-konya-eregli-bld",
-    "name": "FDM YAPI KONYA EREĞLİ BLD.",
-    "league": "1LIG",
-    "country": "TUR",
-    "groupName": "B. Grup"
-  },
-  "FENERBAHÇEMEDICANA_C729B9": {
-    "id": "FENERBAHÇEMEDICANA_C729B9",
-    "slug": "fenerbahce-medicana",
-    "name": "FENERBAHÇE MEDICANA",
-    "league": "1LIG",
-    "country": "TUR",
-    "groupName": "A. Grup"
-  },
-  "HAVRANBLD_643B33": {
-    "id": "HAVRANBLD_643B33",
-    "slug": "havran-bld",
-    "name": "HAVRAN BLD.",
-    "league": "1LIG",
-    "country": "TUR",
-    "groupName": "A. Grup"
-  },
-  "İBAKİMYATEDANKARAKOL_7304D4": {
-    "id": "İBAKİMYATEDANKARAKOL_7304D4",
-    "slug": "i-ba-ki-mya-ted-ankara-kolejli-ler",
-    "name": "İBA KİMYA TED ANKARA KOLEJLİLER",
-    "league": "1LIG",
-    "country": "TUR",
-    "groupName": "B. Grup"
-  },
-  "İBBSPORKULÜBÜ_3F23C3": {
-    "id": "İBBSPORKULÜBÜ_3F23C3",
+  "1018": {
+    "id": 1018,
     "slug": "i-bb-spor-kulubu",
     "name": "İBB SPOR KULÜBÜ",
     "league": "1LIG",
     "country": "TUR",
     "groupName": "A. Grup"
   },
-  "İLBANK_B9F38E": {
-    "id": "İLBANK_B9F38E",
-    "slug": "i-lbank",
-    "name": "İLBANK",
-    "league": "1LIG",
-    "country": "TUR",
-    "groupName": "B. Grup"
-  },
-  "KARAYOLLARI_1754C5": {
-    "id": "KARAYOLLARI_1754C5",
-    "slug": "karayollari",
-    "name": "KARAYOLLARI",
-    "league": "1LIG",
-    "country": "TUR",
-    "groupName": "B. Grup"
-  },
-  "KUZEYBORUMAXİPİPESPO_0CF1B1": {
-    "id": "KUZEYBORUMAXİPİPESPO_0CF1B1",
-    "slug": "kuzeyboru-maxi-pi-pe-spor",
-    "name": "KUZEYBORU MAXİPİPE SPOR",
-    "league": "1LIG",
-    "country": "TUR",
-    "groupName": "B. Grup"
-  },
-  "MERİNOSVOLEYBOL_13D842": {
-    "id": "MERİNOSVOLEYBOL_13D842",
-    "slug": "meri-nos-voleybol",
-    "name": "MERİNOS VOLEYBOL",
-    "league": "1LIG",
-    "country": "TUR",
-    "groupName": "B. Grup"
-  },
-  "MURATPAŞABLDAÇIKOLEJ_2FAAE7": {
-    "id": "MURATPAŞABLDAÇIKOLEJ_2FAAE7",
-    "slug": "muratpasa-bld-aci-koleji",
-    "name": "MURATPAŞA BLD. AÇI KOLEJİ",
-    "league": "1LIG",
-    "country": "TUR",
-    "groupName": "B. Grup"
-  },
-  "PTT_578234": {
-    "id": "PTT_578234",
-    "slug": "ptt",
-    "name": "PTT",
-    "league": "1LIG",
-    "country": "TUR",
-    "groupName": "B. Grup"
-  },
-  "SAKARYAVOLEYBOL_391AEC": {
-    "id": "SAKARYAVOLEYBOL_391AEC",
-    "slug": "sakarya-voleybol",
-    "name": "SAKARYA VOLEYBOL",
-    "league": "1LIG",
-    "country": "TUR",
-    "groupName": "B. Grup"
-  },
-  "SİGORTASHOPMKEANKARA_D6C234": {
-    "id": "SİGORTASHOPMKEANKARA_D6C234",
-    "slug": "si-gorta-shop-mke-ankaragucu",
-    "name": "SİGORTA SHOP MKE ANKARAGÜCÜ",
-    "league": "1LIG",
-    "country": "TUR",
-    "groupName": "B. Grup"
-  },
-  "TRENDYHOTELSMANAVGAT_15AD8B": {
-    "id": "TRENDYHOTELSMANAVGAT_15AD8B",
-    "slug": "trendy-hotels-manavgat-bld",
-    "name": "TRENDY HOTELS MANAVGAT BLD.",
-    "league": "1LIG",
-    "country": "TUR",
-    "groupName": "B. Grup"
-  },
-  "VAKIFBANK_CBCA40": {
-    "id": "VAKIFBANK_CBCA40",
+  "1019": {
+    "id": 1019,
     "slug": "vakifbank",
     "name": "VAKIFBANK",
     "league": "1LIG",
     "country": "TUR",
     "groupName": "A. Grup"
   },
-  "VESTELMANİSABŞEHİRBL_F098F4": {
-    "id": "VESTELMANİSABŞEHİRBL_F098F4",
+  "1020": {
+    "id": 1020,
+    "slug": "yesi-lyurt",
+    "name": "YEŞİLYURT",
+    "league": "1LIG",
+    "country": "TUR",
+    "groupName": "A. Grup"
+  },
+  "1021": {
+    "id": 1021,
+    "slug": "altinordu",
+    "name": "ALTINORDU",
+    "league": "1LIG",
+    "country": "TUR",
+    "groupName": "A. Grup"
+  },
+  "1022": {
+    "id": 1022,
+    "slug": "endo-karsiyaka",
+    "name": "ENDO KARŞIYAKA",
+    "league": "1LIG",
+    "country": "TUR",
+    "groupName": "A. Grup"
+  },
+  "1023": {
+    "id": 1023,
     "slug": "vestel-mani-sa-b-sehi-r-bld",
     "name": "VESTEL MANİSA B.ŞEHİR BLD.",
     "league": "1LIG",
     "country": "TUR",
     "groupName": "A. Grup"
   },
-  "YEŞİLYURT_FE3819": {
-    "id": "YEŞİLYURT_FE3819",
-    "slug": "yesi-lyurt",
-    "name": "YEŞİLYURT",
+  "1024": {
+    "id": 1024,
+    "slug": "bodrum-bld-bodrumspor",
+    "name": "BODRUM BLD. BODRUMSPOR",
     "league": "1LIG",
     "country": "TUR",
     "groupName": "A. Grup"
   },
-  "07MEGASPOR_2D454B": {
-    "id": "07MEGASPOR_2D454B",
-    "slug": "07-mega-spor",
-    "name": "07 MEGA SPOR",
-    "league": "2LIG",
+  "1025": {
+    "id": 1025,
+    "slug": "havran-bld",
+    "name": "HAVRAN BLD.",
+    "league": "1LIG",
     "country": "TUR",
-    "groupName": "8. GRUP"
+    "groupName": "A. Grup"
   },
-  "52ÇAMLIKSPOR_8AFEBC": {
-    "id": "52ÇAMLIKSPOR_8AFEBC",
-    "slug": "52-camlik-spor",
-    "name": "52 ÇAMLIK SPOR",
-    "league": "2LIG",
+  "1026": {
+    "id": 1026,
+    "slug": "kuzeyboru-maxi-pi-pe-spor",
+    "name": "KUZEYBORU MAXİPİPE SPOR",
+    "league": "1LIG",
     "country": "TUR",
-    "groupName": "14. GRUP"
+    "groupName": "B. Grup"
   },
-  "73ŞIRNAKBLD_3CC363": {
-    "id": "73ŞIRNAKBLD_3CC363",
-    "slug": "73-sirnak-bld",
-    "name": "73 ŞIRNAK BLD.",
-    "league": "2LIG",
+  "1027": {
+    "id": 1027,
+    "slug": "sakarya-voleybol",
+    "name": "SAKARYA VOLEYBOL",
+    "league": "1LIG",
     "country": "TUR",
-    "groupName": "16. GRUP"
+    "groupName": "B. Grup"
   },
-  "91000DEVSPOR_A9CD95": {
-    "id": "91000DEVSPOR_A9CD95",
-    "slug": "91000-dev-spor",
-    "name": "91000 DEV SPOR",
-    "league": "2LIG",
+  "1028": {
+    "id": 1028,
+    "slug": "i-lbank",
+    "name": "İLBANK",
+    "league": "1LIG",
     "country": "TUR",
-    "groupName": "16. GRUP"
+    "groupName": "B. Grup"
   },
-  "AÇIKOLEJİ_BFC9FE": {
-    "id": "AÇIKOLEJİ_BFC9FE",
-    "slug": "aci-koleji",
-    "name": "AÇI KOLEJİ",
-    "league": "2LIG",
+  "1029": {
+    "id": 1029,
+    "slug": "di-yarbakir-b-sehi-r-bld",
+    "name": "DİYARBAKIR B.ŞEHİR BLD.",
+    "league": "1LIG",
     "country": "TUR",
-    "groupName": "8. GRUP"
+    "groupName": "B. Grup"
   },
-  "ADANABŞEHİRBLD_8742E2": {
-    "id": "ADANABŞEHİRBLD_8742E2",
-    "slug": "adana-b-sehi-r-bld",
-    "name": "ADANA B.ŞEHİR BLD.",
-    "league": "2LIG",
+  "1030": {
+    "id": 1030,
+    "slug": "alfemo-zeren-spor",
+    "name": "ALFEMO ZEREN SPOR",
+    "league": "1LIG",
     "country": "TUR",
-    "groupName": "13. GRUP"
+    "groupName": "B. Grup"
   },
-  "ADANASPORCUEĞİTİMSPO_A80394": {
-    "id": "ADANASPORCUEĞİTİMSPO_A80394",
-    "slug": "adana-sporcu-egi-ti-m-spor",
-    "name": "ADANA SPORCU EĞİTİM SPOR",
-    "league": "2LIG",
+  "1031": {
+    "id": 1031,
+    "slug": "meri-nos-voleybol",
+    "name": "MERİNOS VOLEYBOL",
+    "league": "1LIG",
     "country": "TUR",
-    "groupName": "13. GRUP"
+    "groupName": "B. Grup"
   },
-  "ADANATDS_87B960": {
-    "id": "ADANATDS_87B960",
-    "slug": "adana-t-d-s",
-    "name": "ADANA T.D.S.",
-    "league": "2LIG",
+  "1032": {
+    "id": 1032,
+    "slug": "karayollari",
+    "name": "KARAYOLLARI",
+    "league": "1LIG",
     "country": "TUR",
-    "groupName": "13. GRUP"
+    "groupName": "B. Grup"
   },
-  "AFYONGENÇLİKSPOR_E3166D": {
-    "id": "AFYONGENÇLİKSPOR_E3166D",
-    "slug": "afyon-gencli-k-spor",
-    "name": "AFYON GENÇLİK SPOR",
-    "league": "2LIG",
+  "1033": {
+    "id": 1033,
+    "slug": "afyon-bld-yuntas",
+    "name": "AFYON BLD. YÜNTAŞ",
+    "league": "1LIG",
     "country": "TUR",
-    "groupName": "8. GRUP"
+    "groupName": "B. Grup"
   },
-  "AHMETHAMDİTANPINAROR_049D58": {
-    "id": "AHMETHAMDİTANPINAROR_049D58",
-    "slug": "ahmet-hamdi-tanpinar-ortaokulu",
-    "name": "AHMET HAMDİ TANPINAR ORTAOKULU",
-    "league": "2LIG",
+  "1034": {
+    "id": 1034,
+    "slug": "trendy-hotels-manavgat-bld",
+    "name": "TRENDY HOTELS MANAVGAT BLD.",
+    "league": "1LIG",
     "country": "TUR",
-    "groupName": "11. GRUP"
+    "groupName": "B. Grup"
   },
-  "AKDENİZBİLGİSPOR_48AC1E": {
-    "id": "AKDENİZBİLGİSPOR_48AC1E",
-    "slug": "akdeni-z-bi-lgi-spor",
-    "name": "AKDENİZ BİLGİ SPOR",
-    "league": "2LIG",
+  "1035": {
+    "id": 1035,
+    "slug": "si-gorta-shop-mke-ankaragucu",
+    "name": "SİGORTA SHOP MKE ANKARAGÜCÜ",
+    "league": "1LIG",
     "country": "TUR",
-    "groupName": "8. GRUP"
+    "groupName": "B. Grup"
   },
-  "AKHİSARBLD_0D6D9A": {
-    "id": "AKHİSARBLD_0D6D9A",
-    "slug": "akhi-sar-bld",
-    "name": "AKHİSAR BLD.",
-    "league": "2LIG",
+  "1036": {
+    "id": 1036,
+    "slug": "muratpasa-bld-aci-koleji",
+    "name": "MURATPAŞA BLD. AÇI KOLEJİ",
+    "league": "1LIG",
     "country": "TUR",
-    "groupName": "6. GRUP"
+    "groupName": "B. Grup"
   },
-  "AKHİSARGÜCÜ_B30E02": {
-    "id": "AKHİSARGÜCÜ_B30E02",
-    "slug": "akhi-sar-gucu",
-    "name": "AKHİSAR GÜCÜ",
-    "league": "2LIG",
+  "1037": {
+    "id": 1037,
+    "slug": "ptt",
+    "name": "PTT",
+    "league": "1LIG",
     "country": "TUR",
-    "groupName": "6. GRUP"
+    "groupName": "B. Grup"
   },
-  "ALKAALTINKANATLAR_28023F": {
-    "id": "ALKAALTINKANATLAR_28023F",
-    "slug": "al-ka-altin-kanatlar",
-    "name": "AL-KA ALTIN KANATLAR",
-    "league": "2LIG",
+  "1038": {
+    "id": 1038,
+    "slug": "fdm-yapi-konya-eregli-bld",
+    "name": "FDM YAPI KONYA EREĞLİ BLD.",
+    "league": "1LIG",
     "country": "TUR",
-    "groupName": "9. GRUP"
+    "groupName": "B. Grup"
   },
-  "ALPSPOR_C31DB9": {
-    "id": "ALPSPOR_C31DB9",
-    "slug": "alp-spor",
-    "name": "ALP SPOR",
-    "league": "2LIG",
+  "1039": {
+    "id": 1039,
+    "slug": "i-ba-ki-mya-ted-ankara-kolejli-ler",
+    "name": "İBA KİMYA TED ANKARA KOLEJLİLER",
+    "league": "1LIG",
     "country": "TUR",
-    "groupName": "4. GRUP"
+    "groupName": "B. Grup"
   },
-  "ALTAY_F8487E": {
-    "id": "ALTAY_F8487E",
-    "slug": "altay",
-    "name": "ALTAY",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "6. GRUP"
-  },
-  "ALTINAYSPOR_5D12B3": {
-    "id": "ALTINAYSPOR_5D12B3",
-    "slug": "altinay-spor",
-    "name": "ALTINAY SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "6. GRUP"
-  },
-  "ALTINYURT_2FE2DE": {
-    "id": "ALTINYURT_2FE2DE",
-    "slug": "altinyurt",
-    "name": "ALTINYURT",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "3. GRUP"
-  },
-  "ANKARABAROSU_B9EDB0": {
-    "id": "ANKARABAROSU_B9EDB0",
-    "slug": "ankara-barosu",
-    "name": "ANKARA BAROSU",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "11. GRUP"
-  },
-  "ANKARADSİ_606CEC": {
-    "id": "ANKARADSİ_606CEC",
-    "slug": "ankara-dsi",
-    "name": "ANKARA DSİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "12. GRUP"
-  },
-  "ANTEPİA_FE9CC1": {
-    "id": "ANTEPİA_FE9CC1",
-    "slug": "antepi-a",
-    "name": "ANTEPİA",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "15. GRUP"
-  },
-  "ARKASSPOR_C4941F": {
-    "id": "ARKASSPOR_C4941F",
-    "slug": "arkas-spor",
-    "name": "ARKAS SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "7. GRUP"
-  },
-  "ARNAVUTKÖYBLD_340423": {
-    "id": "ARNAVUTKÖYBLD_340423",
-    "slug": "arnavutkoy-bld",
-    "name": "ARNAVUTKÖY BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "1. GRUP"
-  },
-  "ARSAVEVHATAYVOLEYBOL_52563F": {
-    "id": "ARSAVEVHATAYVOLEYBOL_52563F",
-    "slug": "arsavev-hatay-voleybol",
-    "name": "ARSAVEV HATAY VOLEYBOL",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "13. GRUP"
-  },
-  "ATAOKULSPOR_DE59AC": {
-    "id": "ATAOKULSPOR_DE59AC",
-    "slug": "ata-okul-spor",
-    "name": "ATA OKUL SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "6. GRUP"
-  },
-  "ATAŞEHİRKARTALLARI_B93771": {
-    "id": "ATAŞEHİRKARTALLARI_B93771",
-    "slug": "atasehi-r-kartallari",
-    "name": "ATAŞEHİR KARTALLARI",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "3. GRUP"
-  },
-  "AVRUPAVOLEYBOLGELİŞİ_EBB0EB": {
-    "id": "AVRUPAVOLEYBOLGELİŞİ_EBB0EB",
+  "1040": {
+    "id": 1040,
     "slug": "avrupa-voleybol-geli-si-m",
     "name": "AVRUPA VOLEYBOL GELİŞİM",
     "league": "2LIG",
     "country": "TUR",
     "groupName": "1. GRUP"
   },
-  "AYDINBÜYÜKŞEHİRBELED_6E5808": {
-    "id": "AYDINBÜYÜKŞEHİRBELED_6E5808",
-    "slug": "aydin-buyuksehi-r-beledi-yespor",
-    "name": "AYDIN BÜYÜKŞEHİR BELEDİYESPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "7. GRUP"
-  },
-  "BŞEHİRBLDANKARASPOR_09161C": {
-    "id": "BŞEHİRBLDANKARASPOR_09161C",
-    "slug": "b-sehi-r-bld-ankara-spor",
-    "name": "B.ŞEHİR BLD. ANKARA SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "12. GRUP"
-  },
-  "BAHÇELİEVLERBLD_465BB0": {
-    "id": "BAHÇELİEVLERBLD_465BB0",
-    "slug": "bahceli-evler-bld",
-    "name": "BAHÇELİEVLER BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "2. GRUP"
-  },
-  "BAHÇEŞEHİRKOLEJİDALA_655A70": {
-    "id": "BAHÇEŞEHİRKOLEJİDALA_655A70",
-    "slug": "bahcesehi-r-koleji-dalaman-bld",
-    "name": "BAHÇEŞEHİR KOLEJİ DALAMAN BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "8. GRUP"
-  },
-  "BALIKESİRBŞEHİRBLD_183E40": {
-    "id": "BALIKESİRBŞEHİRBLD_183E40",
-    "slug": "balikesi-r-b-sehi-r-bld",
-    "name": "BALIKESİR B.ŞEHİR BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "5. GRUP"
-  },
-  "BALIKESİRDSİ_C3709C": {
-    "id": "BALIKESİRDSİ_C3709C",
-    "slug": "balikesi-r-dsi",
-    "name": "BALIKESİR DSİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "5. GRUP"
-  },
-  "BANDIRMAÇELİKSPOR_1290EB": {
-    "id": "BANDIRMAÇELİKSPOR_1290EB",
-    "slug": "bandirma-celi-k-spor",
-    "name": "BANDIRMA ÇELİK SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "5. GRUP"
-  },
-  "BARTINVOLLEYACADEMY_8A2926": {
-    "id": "BARTINVOLLEYACADEMY_8A2926",
-    "slug": "bartin-volley-academy",
-    "name": "BARTIN VOLLEY ACADEMY",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "10. GRUP"
-  },
-  "BAŞAKŞEHİRVOLEYBOL_B99A1B": {
-    "id": "BAŞAKŞEHİRVOLEYBOL_B99A1B",
-    "slug": "basaksehi-r-voleybol",
-    "name": "BAŞAKŞEHİR VOLEYBOL",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "2. GRUP"
-  },
-  "BAŞKENTADASPOR_A98FF0": {
-    "id": "BAŞKENTADASPOR_A98FF0",
-    "slug": "baskent-ada-spor",
-    "name": "BAŞKENT ADA SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "11. GRUP"
-  },
-  "BAŞKENTZİRVE_415094": {
-    "id": "BAŞKENTZİRVE_415094",
-    "slug": "baskent-zi-rve",
-    "name": "BAŞKENT ZİRVE",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "12. GRUP"
-  },
-  "BAYBURTGENÇLİKMERKEZ_84399C": {
-    "id": "BAYBURTGENÇLİKMERKEZ_84399C",
-    "slug": "bayburt-gencli-k-merkezi",
-    "name": "BAYBURT GENÇLİK MERKEZİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "14. GRUP"
-  },
-  "BAYRAKLIBLD_06E495": {
-    "id": "BAYRAKLIBLD_06E495",
-    "slug": "bayrakli-bld",
-    "name": "BAYRAKLI BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "6. GRUP"
-  },
-  "BERGAMABLD_78C5F6": {
-    "id": "BERGAMABLD_78C5F6",
-    "slug": "bergama-bld",
-    "name": "BERGAMA BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "6. GRUP"
-  },
-  "BEŞİKDÜZÜ_AC8D83": {
-    "id": "BEŞİKDÜZÜ_AC8D83",
-    "slug": "besi-kduzu",
-    "name": "BEŞİKDÜZÜ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "14. GRUP"
-  },
-  "BEŞİKTAŞNAVIOSA_E497CD": {
-    "id": "BEŞİKTAŞNAVIOSA_E497CD",
-    "slug": "besi-ktas-naviosa",
-    "name": "BEŞİKTAŞ NAVIOSA",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "2. GRUP"
-  },
-  "BEYLİKDÜZÜBEYKENT_0D0EC9": {
-    "id": "BEYLİKDÜZÜBEYKENT_0D0EC9",
-    "slug": "beyli-kduzu-beykent",
-    "name": "BEYLİKDÜZÜ BEYKENT",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "1. GRUP"
-  },
-  "BİZİMKENTVOLEYBOL_64F474": {
-    "id": "BİZİMKENTVOLEYBOL_64F474",
-    "slug": "bi-zi-mkent-voleybol",
-    "name": "BİZİMKENT VOLEYBOL",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "1. GRUP"
-  },
-  "BOLUATATÜRKANADOLULİ_EC4943": {
-    "id": "BOLUATATÜRKANADOLULİ_EC4943",
-    "slug": "bolu-ataturk-anadolu-li-sesi",
-    "name": "BOLU ATATÜRK ANADOLU LİSESİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "10. GRUP"
-  },
-  "BURSABŞEHİRBLD_94A7C3": {
-    "id": "BURSABŞEHİRBLD_94A7C3",
-    "slug": "bursa-b-sehi-r-bld",
-    "name": "BURSA B.ŞEHİR BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "9. GRUP"
-  },
-  "BURSAFETHİYE1973SPOR_191496": {
-    "id": "BURSAFETHİYE1973SPOR_191496",
-    "slug": "bursa-fethi-ye-1973-spor",
-    "name": "BURSA FETHİYE 1973 SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "9. GRUP"
-  },
-  "BÜYÜKREŞİTPAŞAORTAOK_350B13": {
-    "id": "BÜYÜKREŞİTPAŞAORTAOK_350B13",
-    "slug": "buyuk-resi-tpasa-ortaokulu",
-    "name": "BÜYÜK REŞİTPAŞA ORTAOKULU",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "2. GRUP"
-  },
-  "BÜYÜKÇEKMECEVOLEYBOL_32A058": {
-    "id": "BÜYÜKÇEKMECEVOLEYBOL_32A058",
-    "slug": "buyukcekmece-voleybol-akademi",
-    "name": "BÜYÜKÇEKMECE VOLEYBOL AKADEMİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "1. GRUP"
-  },
-  "CADENCEBOYAGÖLCÜKİHS_A39E08": {
-    "id": "CADENCEBOYAGÖLCÜKİHS_A39E08",
-    "slug": "cadence-boya-golcuk-i-hsani-ye",
-    "name": "CADENCE BOYA GÖLCÜK İHSANİYE",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "10. GRUP"
-  },
-  "CANMİLANATLETİK_4476A3": {
-    "id": "CANMİLANATLETİK_4476A3",
-    "slug": "can-mi-lan-atleti-k",
-    "name": "CAN MİLAN ATLETİK",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "3. GRUP"
-  },
-  "ÇABASPOR_C1284F": {
-    "id": "ÇABASPOR_C1284F",
-    "slug": "caba-spor",
-    "name": "ÇABA SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "12. GRUP"
-  },
-  "ÇANKALESPOR_61B85D": {
-    "id": "ÇANKALESPOR_61B85D",
-    "slug": "can-kale-spor",
-    "name": "ÇAN KALE SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "5. GRUP"
-  },
-  "ÇANAKKALEKEPEZ_0B106F": {
-    "id": "ÇANAKKALEKEPEZ_0B106F",
-    "slug": "canakkale-kepez",
-    "name": "ÇANAKKALE KEPEZ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "5. GRUP"
-  },
-  "ÇATALCABLD_B979A6": {
-    "id": "ÇATALCABLD_B979A6",
+  "1041": {
+    "id": 1041,
     "slug": "catalca-bld",
     "name": "ÇATALCA BLD.",
     "league": "2LIG",
     "country": "TUR",
     "groupName": "1. GRUP"
   },
-  "ÇEKMEKÖYİSTANBULSPOR_589AD5": {
-    "id": "ÇEKMEKÖYİSTANBULSPOR_589AD5",
-    "slug": "cekmekoy-i-stanbul-spor",
-    "name": "ÇEKMEKÖY İSTANBUL SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "4. GRUP"
-  },
-  "ÇENGELKÖYVOLEYBOL_549285": {
-    "id": "ÇENGELKÖYVOLEYBOL_549285",
-    "slug": "cengelkoy-voleybol",
-    "name": "ÇENGELKÖY VOLEYBOL",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "3. GRUP"
-  },
-  "ÇERKEZKÖYVOLEYBOLAKA_883783": {
-    "id": "ÇERKEZKÖYVOLEYBOLAKA_883783",
-    "slug": "cerkezkoy-voleybol-akademi",
-    "name": "ÇERKEZKÖY VOLEYBOL AKADEMİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "5. GRUP"
-  },
-  "ÇORLUBLD_835F2A": {
-    "id": "ÇORLUBLD_835F2A",
-    "slug": "corlu-bld",
-    "name": "ÇORLU BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "5. GRUP"
-  },
-  "ÇORUMARENASPOR_BCA9B1": {
-    "id": "ÇORUMARENASPOR_BCA9B1",
-    "slug": "corum-arena-spor",
-    "name": "ÇORUM ARENA SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "14. GRUP"
-  },
-  "ÇORUMVOLEYBOL_CA22C8": {
-    "id": "ÇORUMVOLEYBOL_CA22C8",
-    "slug": "corum-voleybol",
-    "name": "ÇORUM VOLEYBOL",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "14. GRUP"
-  },
-  "DENİZLİBŞEHİRBLD_B60FB6": {
-    "id": "DENİZLİBŞEHİRBLD_B60FB6",
-    "slug": "deni-zli-b-sehi-r-bld",
-    "name": "DENİZLİ B.ŞEHİR BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "8. GRUP"
-  },
-  "DEVATAŞEHİR_3AAB71": {
-    "id": "DEVATAŞEHİR_3AAB71",
-    "slug": "dev-atasehi-r",
-    "name": "DEV ATAŞEHİR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "3. GRUP"
-  },
-  "DİYARBAKIRVOLEYBOLCU_930B6B": {
-    "id": "DİYARBAKIRVOLEYBOLCU_930B6B",
-    "slug": "di-yarbakir-voleybolcular",
-    "name": "DİYARBAKIR VOLEYBOLCULAR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "15. GRUP"
-  },
-  "DOĞUAKADEMİ_0FA8DA": {
-    "id": "DOĞUAKADEMİ_0FA8DA",
-    "slug": "dogu-akademi",
-    "name": "DOĞU AKADEMİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "3. GRUP"
-  },
-  "DÜZCEVOLEYBOL_F63501": {
-    "id": "DÜZCEVOLEYBOL_F63501",
-    "slug": "duzce-voleybol",
-    "name": "DÜZCE VOLEYBOL",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "10. GRUP"
-  },
-  "EFORGENÇLİK_A971A1": {
-    "id": "EFORGENÇLİK_A971A1",
-    "slug": "efor-gencli-k",
-    "name": "EFOR GENÇLİK",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "6. GRUP"
-  },
-  "ELAZIĞBLD_324F7D": {
-    "id": "ELAZIĞBLD_324F7D",
-    "slug": "elazig-bld",
-    "name": "ELAZIĞ BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "16. GRUP"
-  },
-  "ELİTAKDENİZ_3FC20F": {
-    "id": "ELİTAKDENİZ_3FC20F",
-    "slug": "eli-t-akdeni-z",
-    "name": "ELİT AKDENİZ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "8. GRUP"
-  },
-  "ENDOKARŞIYAKA_8CE42B": {
-    "id": "ENDOKARŞIYAKA_8CE42B",
-    "slug": "endo-karsiyaka",
-    "name": "ENDO KARŞIYAKA",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "7. GRUP"
-  },
-  "ENGLISHTIMESPOR_724F9F": {
-    "id": "ENGLISHTIMESPOR_724F9F",
-    "slug": "english-time-spor",
-    "name": "ENGLISH TIME SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "11. GRUP"
-  },
-  "EREĞLİSÜMERSPOR_42FE0E": {
-    "id": "EREĞLİSÜMERSPOR_42FE0E",
-    "slug": "eregli-sumer-spor",
-    "name": "EREĞLİ SÜMER SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "13. GRUP"
-  },
-  "ERYAMANGELİŞİM_62E77C": {
-    "id": "ERYAMANGELİŞİM_62E77C",
-    "slug": "eryaman-geli-si-m",
-    "name": "ERYAMAN GELİŞİM",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "12. GRUP"
-  },
-  "ESKİŞEHİRPEYMANSPOR_42FC94": {
-    "id": "ESKİŞEHİRPEYMANSPOR_42FC94",
-    "slug": "eski-sehi-r-peyman-spor",
-    "name": "ESKİŞEHİR PEYMAN SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "9. GRUP"
-  },
-  "ESKİŞEHİRŞEHİRKOLEJİ_46854A": {
-    "id": "ESKİŞEHİRŞEHİRKOLEJİ_46854A",
-    "slug": "eski-sehi-r-sehi-r-koleji-egt-kultur",
-    "name": "ESKİŞEHİR ŞEHİR KOLEJİ EĞT. KÜLTÜR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "9. GRUP"
-  },
-  "ETİMESGUTBLDGELİŞİM_E63AB2": {
-    "id": "ETİMESGUTBLDGELİŞİM_E63AB2",
-    "slug": "eti-mesgut-bld-geli-si-m",
-    "name": "ETİMESGUT BLD. GELİŞİM",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "11. GRUP"
-  },
-  "EYÜPSULTANBLD_311D79": {
-    "id": "EYÜPSULTANBLD_311D79",
-    "slug": "eyupsultan-bld",
-    "name": "EYÜPSULTAN BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "2. GRUP"
-  },
-  "FENERBAHÇEMEDICANA_E6323E": {
-    "id": "FENERBAHÇEMEDICANA_E6323E",
-    "slug": "fenerbahce-medicana",
-    "name": "FENERBAHÇE MEDICANA",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "4. GRUP"
-  },
-  "FETHİYEVOLEYBOL_CDA02D": {
-    "id": "FETHİYEVOLEYBOL_CDA02D",
-    "slug": "fethi-ye-voleybol",
-    "name": "FETHİYE VOLEYBOL",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "8. GRUP"
-  },
-  "FIRATÖZKAN_33828C": {
-    "id": "FIRATÖZKAN_33828C",
-    "slug": "firat-ozkan",
-    "name": "FIRAT ÖZKAN",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "15. GRUP"
-  },
-  "FORZASPOR_53611C": {
-    "id": "FORZASPOR_53611C",
-    "slug": "forza-spor",
-    "name": "FORZA SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "6. GRUP"
-  },
-  "GALATASARAY_F06D8C": {
-    "id": "GALATASARAY_F06D8C",
-    "slug": "galatasaray",
-    "name": "GALATASARAY",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "3. GRUP"
-  },
-  "GAZİANTEPBLD_B516C9": {
-    "id": "GAZİANTEPBLD_B516C9",
-    "slug": "gazi-antep-bld",
-    "name": "GAZİANTEP BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "15. GRUP"
-  },
-  "GAZİEMİRBLD_F2F9CB": {
-    "id": "GAZİEMİRBLD_F2F9CB",
-    "slug": "gazi-emi-r-bld",
-    "name": "GAZİEMİR BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "7. GRUP"
-  },
-  "GEBZEGENÇLİKVESPOR_E941F1": {
-    "id": "GEBZEGENÇLİKVESPOR_E941F1",
-    "slug": "gebze-gencli-k-ve-spor",
-    "name": "GEBZE GENÇLİK VE SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "10. GRUP"
-  },
-  "GELİŞİMKOLEJİ_DE31D7": {
-    "id": "GELİŞİMKOLEJİ_DE31D7",
-    "slug": "geli-si-m-koleji",
-    "name": "GELİŞİM KOLEJİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "7. GRUP"
-  },
-  "GEMLİKİSTİKLALSPOR_528393": {
-    "id": "GEMLİKİSTİKLALSPOR_528393",
-    "slug": "gemli-k-i-sti-klal-spor",
-    "name": "GEMLİK İSTİKLAL SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "9. GRUP"
-  },
-  "GÖLBAŞIİNCEKSPOR_9697A3": {
-    "id": "GÖLBAŞIİNCEKSPOR_9697A3",
-    "slug": "golbasi-i-ncek-spor",
-    "name": "GÖLBAŞI İNCEK SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "11. GRUP"
-  },
-  "GÖZTEPE_FE6189": {
-    "id": "GÖZTEPE_FE6189",
-    "slug": "goztepe",
-    "name": "GÖZTEPE",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "6. GRUP"
-  },
-  "GÜNGÖRENVOLEYBOL_6DBFD7": {
-    "id": "GÜNGÖRENVOLEYBOL_6DBFD7",
-    "slug": "gungoren-voleybol",
-    "name": "GÜNGÖREN VOLEYBOL",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "2. GRUP"
-  },
-  "GÜRALPREMIERANTALYAS_92C711": {
-    "id": "GÜRALPREMIERANTALYAS_92C711",
-    "slug": "gural-premier-antalyaspor",
-    "name": "GÜRAL PREMIER ANTALYASPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "8. GRUP"
-  },
-  "HAKANAKIŞIKSPOR_38CC89": {
-    "id": "HAKANAKIŞIKSPOR_38CC89",
-    "slug": "hakan-akisik-spor",
-    "name": "HAKAN AKIŞIK SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "11. GRUP"
-  },
-  "HAKKARİMAEMTAL_598095": {
-    "id": "HAKKARİMAEMTAL_598095",
-    "slug": "hakkari-maemtal",
-    "name": "HAKKARİ MAEMTAL",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "16. GRUP"
-  },
-  "HAKKARİSPORTİFFAALİY_60C78E": {
-    "id": "HAKKARİSPORTİFFAALİY_60C78E",
-    "slug": "hakkari-sporti-f-faali-yetler",
-    "name": "HAKKARİ SPORTİF FAALİYETLER",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "16. GRUP"
-  },
-  "HARPUTLAHMACUNYAHYAK_C8E161": {
-    "id": "HARPUTLAHMACUNYAHYAK_C8E161",
-    "slug": "harput-lahmacun-yahya-kaptan",
-    "name": "HARPUT LAHMACUN YAHYA KAPTAN",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "10. GRUP"
-  },
-  "HEDEFANKARA_433D0E": {
-    "id": "HEDEFANKARA_433D0E",
-    "slug": "hedef-ankara",
-    "name": "HEDEF ANKARA",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "12. GRUP"
-  },
-  "HEKİMOĞLUGLOBALCONNE_55E097": {
-    "id": "HEKİMOĞLUGLOBALCONNE_55E097",
-    "slug": "heki-moglu-global-connect-travel-bvi",
-    "name": "HEKİMOĞLU GLOBAL CONNECT TRAVEL BVİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "9. GRUP"
-  },
-  "HOCAAHMETYESEVİANADO_A6483E": {
-    "id": "HOCAAHMETYESEVİANADO_A6483E",
-    "slug": "hoca-ahmet-yesevi-anadolu-l-es-voleybol-akademi",
-    "name": "HOCA AHMET YESEVİ ANADOLU L. ES VOLEYBOL AKADEMİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "9. GRUP"
-  },
-  "HOPABELEDİYE_B55796": {
-    "id": "HOPABELEDİYE_B55796",
-    "slug": "hopa-beledi-ye",
-    "name": "HOPA BELEDİYE",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "14. GRUP"
-  },
-  "ISPARTAGENÇLİKSPOR_FC462B": {
-    "id": "ISPARTAGENÇLİKSPOR_FC462B",
-    "slug": "isparta-gencli-k-spor",
-    "name": "ISPARTA GENÇLİK SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "8. GRUP"
-  },
-  "İLBANK_A250F5": {
-    "id": "İLBANK_A250F5",
-    "slug": "i-lbank",
-    "name": "İLBANK",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "11. GRUP"
-  },
-  "İSTANBULBİZİMKENTSPO_1F5D70": {
-    "id": "İSTANBULBİZİMKENTSPO_1F5D70",
-    "slug": "i-stanbul-bi-zi-mkent-spor",
-    "name": "İSTANBUL BİZİMKENT SPOR",
+  "1042": {
+    "id": 1042,
+    "slug": "beyli-kduzu-beykent",
+    "name": "BEYLİKDÜZÜ BEYKENT",
     "league": "2LIG",
     "country": "TUR",
     "groupName": "1. GRUP"
   },
-  "İZMİRBŞEHIRBLD_591CA3": {
-    "id": "İZMİRBŞEHIRBLD_591CA3",
-    "slug": "i-zmi-r-b-sehir-bld",
-    "name": "İZMİR B.ŞEHIR BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "7. GRUP"
-  },
-  "İZMİRDSİ_021412": {
-    "id": "İZMİRDSİ_021412",
-    "slug": "i-zmi-r-dsi",
-    "name": "İZMİR DSİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "7. GRUP"
-  },
-  "İZMİTSPOR_7D00C1": {
-    "id": "İZMİTSPOR_7D00C1",
-    "slug": "i-zmi-t-spor",
-    "name": "İZMİT SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "10. GRUP"
-  },
-  "KAMARİNSPOR_379EE3": {
-    "id": "KAMARİNSPOR_379EE3",
-    "slug": "kamari-n-spor",
-    "name": "KAMARİN SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "4. GRUP"
-  },
-  "KARABÜKGENÇLİKSPOR_F6B427": {
-    "id": "KARABÜKGENÇLİKSPOR_F6B427",
-    "slug": "karabuk-gencli-k-spor",
-    "name": "KARABÜK GENÇLİK SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "10. GRUP"
-  },
-  "KARTALANADOLU_40573D": {
-    "id": "KARTALANADOLU_40573D",
-    "slug": "kartal-anadolu",
-    "name": "KARTAL ANADOLU",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "4. GRUP"
-  },
-  "KARTALBLD_8558A7": {
-    "id": "KARTALBLD_8558A7",
-    "slug": "kartal-bld",
-    "name": "KARTAL BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "4. GRUP"
-  },
-  "KAVAKSPOR_8E3BEA": {
-    "id": "KAVAKSPOR_8E3BEA",
-    "slug": "kavak-spor",
-    "name": "KAVAK SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "12. GRUP"
-  },
-  "KAYSERİCİMNASTİKSPOR_9FDA98": {
-    "id": "KAYSERİCİMNASTİKSPOR_9FDA98",
-    "slug": "kayseri-ci-mnasti-k-spor",
-    "name": "KAYSERİ CİMNASTİK SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "15. GRUP"
-  },
-  "KAYSERİVOLEYBOL_6536C2": {
-    "id": "KAYSERİVOLEYBOL_6536C2",
-    "slug": "kayseri-voleybol",
-    "name": "KAYSERİ VOLEYBOL",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "15. GRUP"
-  },
-  "KIRKLARELİGENÇLİKSPO_460251": {
-    "id": "KIRKLARELİGENÇLİKSPO_460251",
-    "slug": "kirklareli-gencli-k-spor",
-    "name": "KIRKLARELİ GENÇLİK SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "5. GRUP"
-  },
-  "KOCAELİNİCOMEDİAAKAD_99F257": {
-    "id": "KOCAELİNİCOMEDİAAKAD_99F257",
-    "slug": "kocaeli-ni-comedi-a-akademi",
-    "name": "KOCAELİ NİCOMEDİA AKADEMİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "10. GRUP"
-  },
-  "KOCAELİVOLEYBOLAKADE_B59FC7": {
-    "id": "KOCAELİVOLEYBOLAKADE_B59FC7",
-    "slug": "kocaeli-voleybol-akademi",
-    "name": "KOCAELİ VOLEYBOL AKADEMİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "10. GRUP"
-  },
-  "KUZEYYILDIZLARI_43C34D": {
-    "id": "KUZEYYILDIZLARI_43C34D",
-    "slug": "kuzey-yildizlari",
-    "name": "KUZEY YILDIZLARI",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "4. GRUP"
-  },
-  "KÜÇÜKÇEKMECEVOLEYBOL_73D1D3": {
-    "id": "KÜÇÜKÇEKMECEVOLEYBOL_73D1D3",
-    "slug": "kucukcekmece-voleybol",
-    "name": "KÜÇÜKÇEKMECE VOLEYBOL",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "1. GRUP"
-  },
-  "KZYSPOR_73EDB5": {
-    "id": "KZYSPOR_73EDB5",
-    "slug": "kzy-spor",
-    "name": "KZY SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "6. GRUP"
-  },
-  "LANUEVAKOZMETİKANADO_A7878F": {
-    "id": "LANUEVAKOZMETİKANADO_A7878F",
-    "slug": "lanueva-kozmeti-k-anadolu-marmara",
-    "name": "LANUEVA KOZMETİK ANADOLU MARMARA",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "3. GRUP"
-  },
-  "MAÇSAYISI_A0BAA4": {
-    "id": "MAÇSAYISI_A0BAA4",
-    "slug": "mac-sayisi",
-    "name": "MAÇ SAYISI",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "3. GRUP"
-  },
-  "MALATYAVOLEYBOL_0BE2B0": {
-    "id": "MALATYAVOLEYBOL_0BE2B0",
-    "slug": "malatya-voleybol",
-    "name": "MALATYA VOLEYBOL",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "16. GRUP"
-  },
-  "MARGENÇ_916FDB": {
-    "id": "MARGENÇ_916FDB",
-    "slug": "margenc",
-    "name": "MARGENÇ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "16. GRUP"
-  },
-  "MARMARİSBLD_F5BB56": {
-    "id": "MARMARİSBLD_F5BB56",
-    "slug": "marmari-s-bld",
-    "name": "MARMARİS BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "8. GRUP"
-  },
-  "MEDIAFIRSTAYVALIKGEL_253CC0": {
-    "id": "MEDIAFIRSTAYVALIKGEL_253CC0",
-    "slug": "media-first-ayvalik-geli-si-m-spor",
-    "name": "MEDIA FIRST AYVALIK GELİŞİM SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "5. GRUP"
-  },
-  "MEHMETEGEİNŞAATİNEGÖ_36338A": {
-    "id": "MEHMETEGEİNŞAATİNEGÖ_36338A",
-    "slug": "mehmet-ege-i-nsaat-i-negol-orhani-ye-voleybol",
-    "name": "MEHMET EGE İNŞAAT İNEGÖL ORHANİYE VOLEYBOL",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "9. GRUP"
-  },
-  "MEHMETERDEMMARMARAAK_E88C4E": {
-    "id": "MEHMETERDEMMARMARAAK_E88C4E",
-    "slug": "mehmet-erdem-marmara-akademi",
-    "name": "MEHMET ERDEM MARMARA AKADEMİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "4. GRUP"
-  },
-  "MERİNOSVOLEYBOL_CBD4F6": {
-    "id": "MERİNOSVOLEYBOL_CBD4F6",
-    "slug": "meri-nos-voleybol",
-    "name": "MERİNOS VOLEYBOL",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "15. GRUP"
-  },
-  "MGSPOR_680D97": {
-    "id": "MGSPOR_680D97",
-    "slug": "mg-spor",
-    "name": "MG SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "9. GRUP"
-  },
-  "MISIROĞLUBEYTEPE_C75EE6": {
-    "id": "MISIROĞLUBEYTEPE_C75EE6",
-    "slug": "misiroglu-beytepe",
-    "name": "MISIROĞLU BEYTEPE",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "12. GRUP"
-  },
-  "MKEANKARAGÜCÜ_3BF495": {
-    "id": "MKEANKARAGÜCÜ_3BF495",
-    "slug": "mke-ankaragucu",
-    "name": "MKE ANKARAGÜCÜ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "12. GRUP"
-  },
-  "MUŞOLİMPİKSPOR_F6961B": {
-    "id": "MUŞOLİMPİKSPOR_F6961B",
-    "slug": "mus-oli-mpi-k-spor",
-    "name": "MUŞ OLİMPİK SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "16. GRUP"
-  },
-  "NİCERHOTELVOLEYBOL_18543F": {
-    "id": "NİCERHOTELVOLEYBOL_18543F",
-    "slug": "ni-cer-hotel-voleybol",
-    "name": "NİCER HOTEL VOLEYBOL",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "16. GRUP"
-  },
-  "NİLÜFERBLD_078DCC": {
-    "id": "NİLÜFERBLD_078DCC",
-    "slug": "ni-lufer-bld",
-    "name": "NİLÜFER BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "9. GRUP"
-  },
-  "OKURALOJİSTİKMERSİNİ_D20CDF": {
-    "id": "OKURALOJİSTİKMERSİNİ_D20CDF",
-    "slug": "okura-loji-sti-k-mersi-n-i-hti-sas",
-    "name": "OKURA LOJİSTİK MERSİN İHTİSAS",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "13. GRUP"
-  },
-  "OSMANCIKBLD_0703C1": {
-    "id": "OSMANCIKBLD_0703C1",
-    "slug": "osmancik-bld",
-    "name": "OSMANCIK BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "14. GRUP"
-  },
-  "POLATGROUPDİDİMBELED_6AEF55": {
-    "id": "POLATGROUPDİDİMBELED_6AEF55",
-    "slug": "polat-group-di-di-m-beledi-yespor",
-    "name": "POLAT GROUP DİDİM BELEDİYESPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "7. GRUP"
-  },
-  "POLATLIDUATEPE_69A48E": {
-    "id": "POLATLIDUATEPE_69A48E",
-    "slug": "polatli-duatepe",
-    "name": "POLATLI DUATEPE",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "12. GRUP"
-  },
-  "PTT_8A836B": {
-    "id": "PTT_8A836B",
-    "slug": "ptt",
-    "name": "PTT",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "11. GRUP"
-  },
-  "RİZEENDÜSTRİMESLEKLİ_0CB40B": {
-    "id": "RİZEENDÜSTRİMESLEKLİ_0CB40B",
-    "slug": "ri-ze-endustri-meslek-li-sesi",
-    "name": "RİZE ENDÜSTRİ MESLEK LİSESİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "14. GRUP"
-  },
-  "ROBERTEAM_A79F43": {
-    "id": "ROBERTEAM_A79F43",
-    "slug": "roberteam",
-    "name": "ROBERTEAM",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "2. GRUP"
-  },
-  "ROTAKOLEJİ_64F899": {
-    "id": "ROTAKOLEJİ_64F899",
-    "slug": "rota-koleji",
-    "name": "ROTA KOLEJİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "7. GRUP"
-  },
-  "SEMTASANSÖRBORDOMAVİ_E3CE93": {
-    "id": "SEMTASANSÖRBORDOMAVİ_E3CE93",
-    "slug": "semt-asansor-bordo-mavi-61",
-    "name": "SEMT ASANSÖR BORDO MAVİ 61",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "14. GRUP"
-  },
-  "SERDİVANBLD_09CFB9": {
-    "id": "SERDİVANBLD_09CFB9",
-    "slug": "serdi-van-bld",
-    "name": "SERDİVAN BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "10. GRUP"
-  },
-  "SEYHANBLD_CD697B": {
-    "id": "SEYHANBLD_CD697B",
-    "slug": "seyhan-bld",
-    "name": "SEYHAN BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "13. GRUP"
-  },
-  "SINAVKOLEJİSAMSUNSPO_E6AAD0": {
-    "id": "SINAVKOLEJİSAMSUNSPO_E6AAD0",
-    "slug": "sinav-koleji-samsunspor",
-    "name": "SINAV KOLEJİ SAMSUNSPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "14. GRUP"
-  },
-  "SİBANETKOZANİMAMOĞLU_6E7FED": {
-    "id": "SİBANETKOZANİMAMOĞLU_6E7FED",
-    "slug": "si-banet-kozan-i-mamoglu-spor",
-    "name": "SİBANET KOZAN İMAMOĞLU SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "13. GRUP"
-  },
-  "SİLİVRİÇAĞRIBEY_496BBC": {
-    "id": "SİLİVRİÇAĞRIBEY_496BBC",
-    "slug": "si-li-vri-cagribey",
-    "name": "SİLİVRİ ÇAĞRIBEY",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "1. GRUP"
-  },
-  "SİLOPİBLDSPORTİFFAAL_0C677A": {
-    "id": "SİLOPİBLDSPORTİFFAAL_0C677A",
-    "slug": "si-lopi-bld-sporti-f-faali-yetler",
-    "name": "SİLOPİ BLD. SPORTİF FAALİYETLER",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "16. GRUP"
-  },
-  "SİLOPİGELİŞİMFAALİYE_1ECF04": {
-    "id": "SİLOPİGELİŞİMFAALİYE_1ECF04",
-    "slug": "si-lopi-geli-si-m-faali-yetleri",
-    "name": "SİLOPİ GELİŞİM FAALİYETLERİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "16. GRUP"
-  },
-  "SİVASTOPRAKGAYRİMENK_44C436": {
-    "id": "SİVASTOPRAKGAYRİMENK_44C436",
-    "slug": "si-vas-toprak-gayri-menkul-pars-akademi",
-    "name": "SİVAS TOPRAK GAYRİMENKUL PARS AKADEMİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "15. GRUP"
-  },
-  "SMAÇSPOR_CA7776": {
-    "id": "SMAÇSPOR_CA7776",
-    "slug": "smac-spor",
-    "name": "SMAÇ SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "1. GRUP"
-  },
-  "SMARTHOLDINGAŞÇAYELI_B3F3C9": {
-    "id": "SMARTHOLDINGAŞÇAYELI_B3F3C9",
-    "slug": "smart-holding-a-s-cayeli",
-    "name": "SMART HOLDING A.Ş. ÇAYELI",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "14. GRUP"
-  },
-  "SÖKEBELEDİYESALDOSVO_5FB81A": {
-    "id": "SÖKEBELEDİYESALDOSVO_5FB81A",
-    "slug": "soke-beledi-ye-saldos-voleybol",
-    "name": "SÖKE BELEDİYE SALDOS VOLEYBOL",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "7. GRUP"
-  },
-  "SUPERPOOLFINDIKLI197_B7D248": {
-    "id": "SUPERPOOLFINDIKLI197_B7D248",
-    "slug": "superpool-findikli-1974",
-    "name": "SUPERPOOL FINDIKLI 1974",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "14. GRUP"
-  },
-  "TARSUSAMERİKANKOLEJİ_EF545D": {
-    "id": "TARSUSAMERİKANKOLEJİ_EF545D",
-    "slug": "tarsus-ameri-kan-koleji",
-    "name": "TARSUS AMERİKAN KOLEJİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "13. GRUP"
-  },
-  "TEDANKARAKOLEJLİLER_2D5172": {
-    "id": "TEDANKARAKOLEJLİLER_2D5172",
-    "slug": "ted-ankara-kolejli-ler",
-    "name": "TED ANKARA KOLEJLİLER",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "12. GRUP"
-  },
-  "TEKMETALSPORTİF_AE72E6": {
-    "id": "TEKMETALSPORTİF_AE72E6",
-    "slug": "tek-metal-sporti-f",
-    "name": "TEK METAL SPORTİF",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "11. GRUP"
-  },
-  "TEKİRDAĞVOLEYBOLİHTİ_654418": {
-    "id": "TEKİRDAĞVOLEYBOLİHTİ_654418",
-    "slug": "teki-rdag-voleybol-i-hti-sas",
-    "name": "TEKİRDAĞ VOLEYBOL İHTİSAS",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "5. GRUP"
-  },
-  "TEMİZENERJİBIRLİĞİ_E7FE8F": {
-    "id": "TEMİZENERJİBIRLİĞİ_E7FE8F",
-    "slug": "temi-z-enerji-birli-gi",
-    "name": "TEMİZ ENERJİ BIRLİĞİ",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "11. GRUP"
-  },
-  "TOROSÜNIVERSİTESİVOL_8561B6": {
-    "id": "TOROSÜNIVERSİTESİVOL_8561B6",
-    "slug": "toros-universi-tesi-volgem",
-    "name": "TOROS ÜNIVERSİTESİ VOLGEM",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "13. GRUP"
-  },
-  "TOROSLARBLD_27C930": {
-    "id": "TOROSLARBLD_27C930",
-    "slug": "toroslar-bld",
-    "name": "TOROSLAR BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "13. GRUP"
-  },
-  "TOYZZSHOPDİNAMOSPOR_3CD024": {
-    "id": "TOYZZSHOPDİNAMOSPOR_3CD024",
-    "slug": "toyzz-shop-di-namo-spor",
-    "name": "TOYZZ SHOP DİNAMO SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "4. GRUP"
-  },
-  "TURGUTLUBLDKÜLTÜRSAN_870C0D": {
-    "id": "TURGUTLUBLDKÜLTÜRSAN_870C0D",
-    "slug": "turgutlu-bld-kultur-sanat",
-    "name": "TURGUTLU BLD. KÜLTÜR SANAT",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "6. GRUP"
-  },
-  "TUZLAMERCAN_4E96C1": {
-    "id": "TUZLAMERCAN_4E96C1",
-    "slug": "tuzla-mercan",
-    "name": "TUZLA MERCAN",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "4. GRUP"
-  },
-  "TÜRKHAVAYOLLARI_3E2BC1": {
-    "id": "TÜRKHAVAYOLLARI_3E2BC1",
+  "1043": {
+    "id": 1043,
     "slug": "turk-hava-yollari",
     "name": "TÜRK HAVA YOLLARI",
     "league": "2LIG",
     "country": "TUR",
     "groupName": "1. GRUP"
   },
-  "TÜRKOĞLUSPORKULÜBÜ_80E381": {
-    "id": "TÜRKOĞLUSPORKULÜBÜ_80E381",
-    "slug": "turkoglu-spor-kulubu",
-    "name": "TÜRKOĞLU SPOR KULÜBÜ",
+  "1044": {
+    "id": 1044,
+    "slug": "bi-zi-mkent-voleybol",
+    "name": "BİZİMKENT VOLEYBOL",
     "league": "2LIG",
     "country": "TUR",
-    "groupName": "6. GRUP"
+    "groupName": "1. GRUP"
   },
-  "TVFSPORLİSESİ_8B1177": {
-    "id": "TVFSPORLİSESİ_8B1177",
-    "slug": "tvf-spor-li-sesi",
-    "name": "TVF SPOR LİSESİ",
+  "1045": {
+    "id": 1045,
+    "slug": "smac-spor",
+    "name": "SMAÇ SPOR",
     "league": "2LIG",
     "country": "TUR",
-    "groupName": "11. GRUP"
+    "groupName": "1. GRUP"
   },
-  "UYSALLAROTOFETHİYEZİ_CF4466": {
-    "id": "UYSALLAROTOFETHİYEZİ_CF4466",
-    "slug": "uysallar-oto-fethi-ye-zi-rve",
-    "name": "UYSALLAR OTO FETHİYE ZİRVE",
+  "1046": {
+    "id": 1046,
+    "slug": "i-stanbul-bi-zi-mkent-spor",
+    "name": "İSTANBUL BİZİMKENT SPOR",
     "league": "2LIG",
     "country": "TUR",
-    "groupName": "8. GRUP"
+    "groupName": "1. GRUP"
   },
-  "ÜLKÜSPOR_BE29CD": {
-    "id": "ÜLKÜSPOR_BE29CD",
-    "slug": "ulku-spor",
-    "name": "ÜLKÜ SPOR",
+  "1047": {
+    "id": 1047,
+    "slug": "arnavutkoy-bld",
+    "name": "ARNAVUTKÖY BLD.",
     "league": "2LIG",
     "country": "TUR",
-    "groupName": "7. GRUP"
+    "groupName": "1. GRUP"
   },
-  "ÜNSPED_D88123": {
-    "id": "ÜNSPED_D88123",
+  "1048": {
+    "id": 1048,
+    "slug": "kucukcekmece-voleybol",
+    "name": "KÜÇÜKÇEKMECE VOLEYBOL",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "1. GRUP"
+  },
+  "1049": {
+    "id": 1049,
+    "slug": "si-li-vri-cagribey",
+    "name": "SİLİVRİ ÇAĞRIBEY",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "1. GRUP"
+  },
+  "1050": {
+    "id": 1050,
+    "slug": "buyukcekmece-voleybol-akademi",
+    "name": "BÜYÜKÇEKMECE VOLEYBOL AKADEMİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "1. GRUP"
+  },
+  "1051": {
+    "id": 1051,
     "slug": "unsped",
     "name": "ÜNSPED",
     "league": "2LIG",
     "country": "TUR",
     "groupName": "2. GRUP"
   },
-  "VEFA_17A68B": {
-    "id": "VEFA_17A68B",
-    "slug": "vefa",
-    "name": "VEFA",
+  "1052": {
+    "id": 1052,
+    "slug": "bahceli-evler-bld",
+    "name": "BAHÇELİEVLER BLD.",
     "league": "2LIG",
     "country": "TUR",
     "groupName": "2. GRUP"
   },
-  "VENÜSSPOR_5ACCC9": {
-    "id": "VENÜSSPOR_5ACCC9",
-    "slug": "venus-spor",
-    "name": "VENÜS SPOR",
+  "1053": {
+    "id": 1053,
+    "slug": "gungoren-voleybol",
+    "name": "GÜNGÖREN VOLEYBOL",
     "league": "2LIG",
     "country": "TUR",
-    "groupName": "7. GRUP"
+    "groupName": "2. GRUP"
   },
-  "VİRANŞEHİRVOLEYBOL_A9A211": {
-    "id": "VİRANŞEHİRVOLEYBOL_A9A211",
-    "slug": "vi-ransehi-r-voleybol",
-    "name": "VİRANŞEHİR VOLEYBOL",
+  "1054": {
+    "id": 1054,
+    "slug": "basaksehi-r-voleybol",
+    "name": "BAŞAKŞEHİR VOLEYBOL",
     "league": "2LIG",
     "country": "TUR",
-    "groupName": "15. GRUP"
+    "groupName": "2. GRUP"
   },
-  "VOLKANGÜÇSPOR_D17E4E": {
-    "id": "VOLKANGÜÇSPOR_D17E4E",
-    "slug": "volkan-guc-spor",
-    "name": "VOLKAN GÜÇ SPOR",
+  "1055": {
+    "id": 1055,
+    "slug": "besi-ktas-naviosa",
+    "name": "BEŞİKTAŞ NAVIOSA",
     "league": "2LIG",
     "country": "TUR",
-    "groupName": "7. GRUP"
+    "groupName": "2. GRUP"
   },
-  "WORLDMEDICINEATEŞSPO_5F4F78": {
-    "id": "WORLDMEDICINEATEŞSPO_5F4F78",
-    "slug": "world-medicine-ates-spor",
-    "name": "WORLD MEDICINE ATEŞ SPOR",
+  "1056": {
+    "id": 1056,
+    "slug": "buyuk-resi-tpasa-ortaokulu",
+    "name": "BÜYÜK REŞİTPAŞA ORTAOKULU",
     "league": "2LIG",
     "country": "TUR",
-    "groupName": "3. GRUP"
+    "groupName": "2. GRUP"
   },
-  "YALOVAÇİFTLİKKÖYBLD_973B22": {
-    "id": "YALOVAÇİFTLİKKÖYBLD_973B22",
-    "slug": "yalova-ci-ftli-kkoy-bld",
-    "name": "YALOVA ÇİFTLİKKÖY BLD.",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "9. GRUP"
-  },
-  "YEDİDAĞSPOR_F782EF": {
-    "id": "YEDİDAĞSPOR_F782EF",
-    "slug": "yedi-dag-spor",
-    "name": "YEDİDAĞ SPOR",
-    "league": "2LIG",
-    "country": "TUR",
-    "groupName": "12. GRUP"
-  },
-  "YENİAYLOJİSTİKSARIYE_17E8F8": {
-    "id": "YENİAYLOJİSTİKSARIYE_17E8F8",
+  "1057": {
+    "id": 1057,
     "slug": "yeni-ay-loji-sti-k-sariyer-konak-spor",
     "name": "YENİAY LOJİSTİK SARIYER KONAK SPOR",
     "league": "2LIG",
     "country": "TUR",
     "groupName": "2. GRUP"
   },
-  "YEŞİLBAYRAMİÇ_374BDE": {
-    "id": "YEŞİLBAYRAMİÇ_374BDE",
-    "slug": "yesi-l-bayrami-c",
-    "name": "YEŞİL BAYRAMİÇ",
+  "1058": {
+    "id": 1058,
+    "slug": "roberteam",
+    "name": "ROBERTEAM",
     "league": "2LIG",
     "country": "TUR",
-    "groupName": "5. GRUP"
+    "groupName": "2. GRUP"
   },
-  "YEŞİLYURT_4B08E9": {
-    "id": "YEŞİLYURT_4B08E9",
+  "1059": {
+    "id": 1059,
     "slug": "yesi-lyurt",
     "name": "YEŞİLYURT",
     "league": "2LIG",
     "country": "TUR",
     "groupName": "2. GRUP"
   },
-  "YUNUSEMREBLD_9E25B9": {
-    "id": "YUNUSEMREBLD_9E25B9",
+  "1060": {
+    "id": 1060,
+    "slug": "vefa",
+    "name": "VEFA",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "2. GRUP"
+  },
+  "1061": {
+    "id": 1061,
+    "slug": "eyupsultan-bld",
+    "name": "EYÜPSULTAN BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "2. GRUP"
+  },
+  "1062": {
+    "id": 1062,
+    "slug": "altinyurt",
+    "name": "ALTINYURT",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "3. GRUP"
+  },
+  "1063": {
+    "id": 1063,
+    "slug": "world-medicine-ates-spor",
+    "name": "WORLD MEDICINE ATEŞ SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "3. GRUP"
+  },
+  "1064": {
+    "id": 1064,
+    "slug": "can-mi-lan-atleti-k",
+    "name": "CAN MİLAN ATLETİK",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "3. GRUP"
+  },
+  "1065": {
+    "id": 1065,
+    "slug": "lanueva-kozmeti-k-anadolu-marmara",
+    "name": "LANUEVA KOZMETİK ANADOLU MARMARA",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "3. GRUP"
+  },
+  "1066": {
+    "id": 1066,
+    "slug": "cengelkoy-voleybol",
+    "name": "ÇENGELKÖY VOLEYBOL",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "3. GRUP"
+  },
+  "1067": {
+    "id": 1067,
+    "slug": "mac-sayisi",
+    "name": "MAÇ SAYISI",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "3. GRUP"
+  },
+  "1068": {
+    "id": 1068,
+    "slug": "dev-atasehi-r",
+    "name": "DEV ATAŞEHİR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "3. GRUP"
+  },
+  "1069": {
+    "id": 1069,
+    "slug": "dogu-akademi",
+    "name": "DOĞU AKADEMİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "3. GRUP"
+  },
+  "1070": {
+    "id": 1070,
+    "slug": "galatasaray",
+    "name": "GALATASARAY",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "3. GRUP"
+  },
+  "1071": {
+    "id": 1071,
+    "slug": "atasehi-r-kartallari",
+    "name": "ATAŞEHİR KARTALLARI",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "3. GRUP"
+  },
+  "1072": {
+    "id": 1072,
+    "slug": "fenerbahce-medicana",
+    "name": "FENERBAHÇE MEDICANA",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "4. GRUP"
+  },
+  "1073": {
+    "id": 1073,
+    "slug": "toyzz-shop-di-namo-spor",
+    "name": "TOYZZ SHOP DİNAMO SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "4. GRUP"
+  },
+  "1074": {
+    "id": 1074,
+    "slug": "kamari-n-spor",
+    "name": "KAMARİN SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "4. GRUP"
+  },
+  "1075": {
+    "id": 1075,
+    "slug": "mehmet-erdem-marmara-akademi",
+    "name": "MEHMET ERDEM MARMARA AKADEMİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "4. GRUP"
+  },
+  "1076": {
+    "id": 1076,
+    "slug": "tuzla-mercan",
+    "name": "TUZLA MERCAN",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "4. GRUP"
+  },
+  "1077": {
+    "id": 1077,
+    "slug": "cekmekoy-i-stanbul-spor",
+    "name": "ÇEKMEKÖY İSTANBUL SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "4. GRUP"
+  },
+  "1078": {
+    "id": 1078,
+    "slug": "kartal-anadolu",
+    "name": "KARTAL ANADOLU",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "4. GRUP"
+  },
+  "1079": {
+    "id": 1079,
+    "slug": "kartal-bld",
+    "name": "KARTAL BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "4. GRUP"
+  },
+  "1080": {
+    "id": 1080,
+    "slug": "alp-spor",
+    "name": "ALP SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "4. GRUP"
+  },
+  "1081": {
+    "id": 1081,
+    "slug": "kuzey-yildizlari",
+    "name": "KUZEY YILDIZLARI",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "4. GRUP"
+  },
+  "1082": {
+    "id": 1082,
+    "slug": "balikesi-r-b-sehi-r-bld",
+    "name": "BALIKESİR B.ŞEHİR BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "5. GRUP"
+  },
+  "1083": {
+    "id": 1083,
+    "slug": "bandirma-celi-k-spor",
+    "name": "BANDIRMA ÇELİK SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "5. GRUP"
+  },
+  "1084": {
+    "id": 1084,
+    "slug": "media-first-ayvalik-geli-si-m-spor",
+    "name": "MEDIA FIRST AYVALIK GELİŞİM SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "5. GRUP"
+  },
+  "1085": {
+    "id": 1085,
+    "slug": "canakkale-kepez",
+    "name": "ÇANAKKALE KEPEZ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "5. GRUP"
+  },
+  "1086": {
+    "id": 1086,
+    "slug": "cerkezkoy-voleybol-akademi",
+    "name": "ÇERKEZKÖY VOLEYBOL AKADEMİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "5. GRUP"
+  },
+  "1087": {
+    "id": 1087,
+    "slug": "can-kale-spor",
+    "name": "ÇAN KALE SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "5. GRUP"
+  },
+  "1088": {
+    "id": 1088,
+    "slug": "yesi-l-bayrami-c",
+    "name": "YEŞİL BAYRAMİÇ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "5. GRUP"
+  },
+  "1089": {
+    "id": 1089,
+    "slug": "kirklareli-gencli-k-spor",
+    "name": "KIRKLARELİ GENÇLİK SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "5. GRUP"
+  },
+  "1090": {
+    "id": 1090,
+    "slug": "balikesi-r-dsi",
+    "name": "BALIKESİR DSİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "5. GRUP"
+  },
+  "1091": {
+    "id": 1091,
+    "slug": "teki-rdag-voleybol-i-hti-sas",
+    "name": "TEKİRDAĞ VOLEYBOL İHTİSAS",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "5. GRUP"
+  },
+  "1092": {
+    "id": 1092,
+    "slug": "corlu-bld",
+    "name": "ÇORLU BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "5. GRUP"
+  },
+  "1093": {
+    "id": 1093,
+    "slug": "altay",
+    "name": "ALTAY",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "6. GRUP"
+  },
+  "1094": {
+    "id": 1094,
+    "slug": "turkoglu-spor-kulubu",
+    "name": "TÜRKOĞLU SPOR KULÜBÜ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "6. GRUP"
+  },
+  "1095": {
+    "id": 1095,
+    "slug": "efor-gencli-k",
+    "name": "EFOR GENÇLİK",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "6. GRUP"
+  },
+  "1096": {
+    "id": 1096,
+    "slug": "ata-okul-spor",
+    "name": "ATA OKUL SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "6. GRUP"
+  },
+  "1097": {
+    "id": 1097,
+    "slug": "akhi-sar-gucu",
+    "name": "AKHİSAR GÜCÜ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "6. GRUP"
+  },
+  "1098": {
+    "id": 1098,
+    "slug": "akhi-sar-bld",
+    "name": "AKHİSAR BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "6. GRUP"
+  },
+  "1099": {
+    "id": 1099,
+    "slug": "altinay-spor",
+    "name": "ALTINAY SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "6. GRUP"
+  },
+  "1100": {
+    "id": 1100,
     "slug": "yunusemre-bld",
     "name": "YUNUSEMRE BLD.",
     "league": "2LIG",
     "country": "TUR",
     "groupName": "6. GRUP"
   },
-  "ZEUGMAGAZİANTEPSPOR_DAF0C3": {
-    "id": "ZEUGMAGAZİANTEPSPOR_DAF0C3",
+  "1101": {
+    "id": 1101,
+    "slug": "goztepe",
+    "name": "GÖZTEPE",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "6. GRUP"
+  },
+  "1102": {
+    "id": 1102,
+    "slug": "bayrakli-bld",
+    "name": "BAYRAKLI BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "6. GRUP"
+  },
+  "1103": {
+    "id": 1103,
+    "slug": "kzy-spor",
+    "name": "KZY SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "6. GRUP"
+  },
+  "1104": {
+    "id": 1104,
+    "slug": "bergama-bld",
+    "name": "BERGAMA BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "6. GRUP"
+  },
+  "1105": {
+    "id": 1105,
+    "slug": "turgutlu-bld-kultur-sanat",
+    "name": "TURGUTLU BLD. KÜLTÜR SANAT",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "6. GRUP"
+  },
+  "1106": {
+    "id": 1106,
+    "slug": "forza-spor",
+    "name": "FORZA SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "6. GRUP"
+  },
+  "1107": {
+    "id": 1107,
+    "slug": "arkas-spor",
+    "name": "ARKAS SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "7. GRUP"
+  },
+  "1108": {
+    "id": 1108,
+    "slug": "geli-si-m-koleji",
+    "name": "GELİŞİM KOLEJİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "7. GRUP"
+  },
+  "1109": {
+    "id": 1109,
+    "slug": "polat-group-di-di-m-beledi-yespor",
+    "name": "POLAT GROUP DİDİM BELEDİYESPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "7. GRUP"
+  },
+  "1110": {
+    "id": 1110,
+    "slug": "ulku-spor",
+    "name": "ÜLKÜ SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "7. GRUP"
+  },
+  "1111": {
+    "id": 1111,
+    "slug": "aydin-buyuksehi-r-beledi-yespor",
+    "name": "AYDIN BÜYÜKŞEHİR BELEDİYESPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "7. GRUP"
+  },
+  "1112": {
+    "id": 1112,
+    "slug": "rota-koleji",
+    "name": "ROTA KOLEJİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "7. GRUP"
+  },
+  "1113": {
+    "id": 1113,
+    "slug": "soke-beledi-ye-saldos-voleybol",
+    "name": "SÖKE BELEDİYE SALDOS VOLEYBOL",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "7. GRUP"
+  },
+  "1114": {
+    "id": 1114,
+    "slug": "i-zmi-r-b-sehir-bld",
+    "name": "İZMİR B.ŞEHIR BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "7. GRUP"
+  },
+  "1115": {
+    "id": 1115,
+    "slug": "gazi-emi-r-bld",
+    "name": "GAZİEMİR BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "7. GRUP"
+  },
+  "1116": {
+    "id": 1116,
+    "slug": "i-zmi-r-dsi",
+    "name": "İZMİR DSİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "7. GRUP"
+  },
+  "1117": {
+    "id": 1117,
+    "slug": "venus-spor",
+    "name": "VENÜS SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "7. GRUP"
+  },
+  "1118": {
+    "id": 1118,
+    "slug": "endo-karsiyaka",
+    "name": "ENDO KARŞIYAKA",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "7. GRUP"
+  },
+  "1119": {
+    "id": 1119,
+    "slug": "volkan-guc-spor",
+    "name": "VOLKAN GÜÇ SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "7. GRUP"
+  },
+  "1120": {
+    "id": 1120,
+    "slug": "aci-koleji",
+    "name": "AÇI KOLEJİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "8. GRUP"
+  },
+  "1121": {
+    "id": 1121,
+    "slug": "eli-t-akdeni-z",
+    "name": "ELİT AKDENİZ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "8. GRUP"
+  },
+  "1122": {
+    "id": 1122,
+    "slug": "07-mega-spor",
+    "name": "07 MEGA SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "8. GRUP"
+  },
+  "1123": {
+    "id": 1123,
+    "slug": "akdeni-z-bi-lgi-spor",
+    "name": "AKDENİZ BİLGİ SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "8. GRUP"
+  },
+  "1124": {
+    "id": 1124,
+    "slug": "isparta-gencli-k-spor",
+    "name": "ISPARTA GENÇLİK SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "8. GRUP"
+  },
+  "1125": {
+    "id": 1125,
+    "slug": "deni-zli-b-sehi-r-bld",
+    "name": "DENİZLİ B.ŞEHİR BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "8. GRUP"
+  },
+  "1126": {
+    "id": 1126,
+    "slug": "fethi-ye-voleybol",
+    "name": "FETHİYE VOLEYBOL",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "8. GRUP"
+  },
+  "1127": {
+    "id": 1127,
+    "slug": "gural-premier-antalyaspor",
+    "name": "GÜRAL PREMIER ANTALYASPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "8. GRUP"
+  },
+  "1128": {
+    "id": 1128,
+    "slug": "uysallar-oto-fethi-ye-zi-rve",
+    "name": "UYSALLAR OTO FETHİYE ZİRVE",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "8. GRUP"
+  },
+  "1129": {
+    "id": 1129,
+    "slug": "afyon-gencli-k-spor",
+    "name": "AFYON GENÇLİK SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "8. GRUP"
+  },
+  "1130": {
+    "id": 1130,
+    "slug": "marmari-s-bld",
+    "name": "MARMARİS BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "8. GRUP"
+  },
+  "1131": {
+    "id": 1131,
+    "slug": "bahcesehi-r-koleji-dalaman-bld",
+    "name": "BAHÇEŞEHİR KOLEJİ DALAMAN BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "8. GRUP"
+  },
+  "1132": {
+    "id": 1132,
+    "slug": "heki-moglu-global-connect-travel-bvi",
+    "name": "HEKİMOĞLU GLOBAL CONNECT TRAVEL BVİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "9. GRUP"
+  },
+  "1133": {
+    "id": 1133,
+    "slug": "gemli-k-i-sti-klal-spor",
+    "name": "GEMLİK İSTİKLAL SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "9. GRUP"
+  },
+  "1134": {
+    "id": 1134,
+    "slug": "bursa-fethi-ye-1973-spor",
+    "name": "BURSA FETHİYE 1973 SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "9. GRUP"
+  },
+  "1135": {
+    "id": 1135,
+    "slug": "eski-sehi-r-peyman-spor",
+    "name": "ESKİŞEHİR PEYMAN SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "9. GRUP"
+  },
+  "1136": {
+    "id": 1136,
+    "slug": "bursa-b-sehi-r-bld",
+    "name": "BURSA B.ŞEHİR BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "9. GRUP"
+  },
+  "1137": {
+    "id": 1137,
+    "slug": "hoca-ahmet-yesevi-anadolu-l-es-voleybol-akademi",
+    "name": "HOCA AHMET YESEVİ ANADOLU L. ES VOLEYBOL AKADEMİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "9. GRUP"
+  },
+  "1138": {
+    "id": 1138,
+    "slug": "mg-spor",
+    "name": "MG SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "9. GRUP"
+  },
+  "1139": {
+    "id": 1139,
+    "slug": "ni-lufer-bld",
+    "name": "NİLÜFER BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "9. GRUP"
+  },
+  "1140": {
+    "id": 1140,
+    "slug": "mehmet-ege-i-nsaat-i-negol-orhani-ye-voleybol",
+    "name": "MEHMET EGE İNŞAAT İNEGÖL ORHANİYE VOLEYBOL",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "9. GRUP"
+  },
+  "1141": {
+    "id": 1141,
+    "slug": "yalova-ci-ftli-kkoy-bld",
+    "name": "YALOVA ÇİFTLİKKÖY BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "9. GRUP"
+  },
+  "1142": {
+    "id": 1142,
+    "slug": "al-ka-altin-kanatlar",
+    "name": "AL-KA ALTIN KANATLAR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "9. GRUP"
+  },
+  "1143": {
+    "id": 1143,
+    "slug": "eski-sehi-r-sehi-r-koleji-egt-kultur",
+    "name": "ESKİŞEHİR ŞEHİR KOLEJİ EĞT. KÜLTÜR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "9. GRUP"
+  },
+  "1144": {
+    "id": 1144,
+    "slug": "duzce-voleybol",
+    "name": "DÜZCE VOLEYBOL",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "10. GRUP"
+  },
+  "1145": {
+    "id": 1145,
+    "slug": "karabuk-gencli-k-spor",
+    "name": "KARABÜK GENÇLİK SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "10. GRUP"
+  },
+  "1146": {
+    "id": 1146,
+    "slug": "cadence-boya-golcuk-i-hsani-ye",
+    "name": "CADENCE BOYA GÖLCÜK İHSANİYE",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "10. GRUP"
+  },
+  "1147": {
+    "id": 1147,
+    "slug": "gebze-gencli-k-ve-spor",
+    "name": "GEBZE GENÇLİK VE SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "10. GRUP"
+  },
+  "1148": {
+    "id": 1148,
+    "slug": "harput-lahmacun-yahya-kaptan",
+    "name": "HARPUT LAHMACUN YAHYA KAPTAN",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "10. GRUP"
+  },
+  "1149": {
+    "id": 1149,
+    "slug": "bartin-volley-academy",
+    "name": "BARTIN VOLLEY ACADEMY",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "10. GRUP"
+  },
+  "1150": {
+    "id": 1150,
+    "slug": "kocaeli-ni-comedi-a-akademi",
+    "name": "KOCAELİ NİCOMEDİA AKADEMİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "10. GRUP"
+  },
+  "1151": {
+    "id": 1151,
+    "slug": "i-zmi-t-spor",
+    "name": "İZMİT SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "10. GRUP"
+  },
+  "1152": {
+    "id": 1152,
+    "slug": "serdi-van-bld",
+    "name": "SERDİVAN BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "10. GRUP"
+  },
+  "1153": {
+    "id": 1153,
+    "slug": "kocaeli-voleybol-akademi",
+    "name": "KOCAELİ VOLEYBOL AKADEMİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "10. GRUP"
+  },
+  "1154": {
+    "id": 1154,
+    "slug": "bolu-ataturk-anadolu-li-sesi",
+    "name": "BOLU ATATÜRK ANADOLU LİSESİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "10. GRUP"
+  },
+  "1155": {
+    "id": 1155,
+    "slug": "baskent-ada-spor",
+    "name": "BAŞKENT ADA SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "11. GRUP"
+  },
+  "1156": {
+    "id": 1156,
+    "slug": "temi-z-enerji-birli-gi",
+    "name": "TEMİZ ENERJİ BIRLİĞİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "11. GRUP"
+  },
+  "1157": {
+    "id": 1157,
+    "slug": "ankara-barosu",
+    "name": "ANKARA BAROSU",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "11. GRUP"
+  },
+  "1158": {
+    "id": 1158,
+    "slug": "i-lbank",
+    "name": "İLBANK",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "11. GRUP"
+  },
+  "1159": {
+    "id": 1159,
+    "slug": "golbasi-i-ncek-spor",
+    "name": "GÖLBAŞI İNCEK SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "11. GRUP"
+  },
+  "1160": {
+    "id": 1160,
+    "slug": "ahmet-hamdi-tanpinar-ortaokulu",
+    "name": "AHMET HAMDİ TANPINAR ORTAOKULU",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "11. GRUP"
+  },
+  "1161": {
+    "id": 1161,
+    "slug": "tek-metal-sporti-f",
+    "name": "TEK METAL SPORTİF",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "11. GRUP"
+  },
+  "1162": {
+    "id": 1162,
+    "slug": "tvf-spor-li-sesi",
+    "name": "TVF SPOR LİSESİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "11. GRUP"
+  },
+  "1163": {
+    "id": 1163,
+    "slug": "hakan-akisik-spor",
+    "name": "HAKAN AKIŞIK SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "11. GRUP"
+  },
+  "1164": {
+    "id": 1164,
+    "slug": "english-time-spor",
+    "name": "ENGLISH TIME SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "11. GRUP"
+  },
+  "1165": {
+    "id": 1165,
+    "slug": "eti-mesgut-bld-geli-si-m",
+    "name": "ETİMESGUT BLD. GELİŞİM",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "11. GRUP"
+  },
+  "1166": {
+    "id": 1166,
+    "slug": "ptt",
+    "name": "PTT",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "11. GRUP"
+  },
+  "1167": {
+    "id": 1167,
+    "slug": "eryaman-geli-si-m",
+    "name": "ERYAMAN GELİŞİM",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "12. GRUP"
+  },
+  "1168": {
+    "id": 1168,
+    "slug": "ankara-dsi",
+    "name": "ANKARA DSİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "12. GRUP"
+  },
+  "1169": {
+    "id": 1169,
+    "slug": "kavak-spor",
+    "name": "KAVAK SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "12. GRUP"
+  },
+  "1170": {
+    "id": 1170,
+    "slug": "baskent-zi-rve",
+    "name": "BAŞKENT ZİRVE",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "12. GRUP"
+  },
+  "1171": {
+    "id": 1171,
+    "slug": "yedi-dag-spor",
+    "name": "YEDİDAĞ SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "12. GRUP"
+  },
+  "1172": {
+    "id": 1172,
+    "slug": "mke-ankaragucu",
+    "name": "MKE ANKARAGÜCÜ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "12. GRUP"
+  },
+  "1173": {
+    "id": 1173,
+    "slug": "caba-spor",
+    "name": "ÇABA SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "12. GRUP"
+  },
+  "1174": {
+    "id": 1174,
+    "slug": "misiroglu-beytepe",
+    "name": "MISIROĞLU BEYTEPE",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "12. GRUP"
+  },
+  "1175": {
+    "id": 1175,
+    "slug": "ted-ankara-kolejli-ler",
+    "name": "TED ANKARA KOLEJLİLER",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "12. GRUP"
+  },
+  "1176": {
+    "id": 1176,
+    "slug": "b-sehi-r-bld-ankara-spor",
+    "name": "B.ŞEHİR BLD. ANKARA SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "12. GRUP"
+  },
+  "1177": {
+    "id": 1177,
+    "slug": "polatli-duatepe",
+    "name": "POLATLI DUATEPE",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "12. GRUP"
+  },
+  "1178": {
+    "id": 1178,
+    "slug": "hedef-ankara",
+    "name": "HEDEF ANKARA",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "12. GRUP"
+  },
+  "1179": {
+    "id": 1179,
+    "slug": "eregli-sumer-spor",
+    "name": "EREĞLİ SÜMER SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "13. GRUP"
+  },
+  "1180": {
+    "id": 1180,
+    "slug": "adana-t-d-s",
+    "name": "ADANA T.D.S.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "13. GRUP"
+  },
+  "1181": {
+    "id": 1181,
+    "slug": "tarsus-ameri-kan-koleji",
+    "name": "TARSUS AMERİKAN KOLEJİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "13. GRUP"
+  },
+  "1182": {
+    "id": 1182,
+    "slug": "seyhan-bld",
+    "name": "SEYHAN BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "13. GRUP"
+  },
+  "1183": {
+    "id": 1183,
+    "slug": "adana-sporcu-egi-ti-m-spor",
+    "name": "ADANA SPORCU EĞİTİM SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "13. GRUP"
+  },
+  "1184": {
+    "id": 1184,
+    "slug": "okura-loji-sti-k-mersi-n-i-hti-sas",
+    "name": "OKURA LOJİSTİK MERSİN İHTİSAS",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "13. GRUP"
+  },
+  "1185": {
+    "id": 1185,
+    "slug": "adana-b-sehi-r-bld",
+    "name": "ADANA B.ŞEHİR BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "13. GRUP"
+  },
+  "1186": {
+    "id": 1186,
+    "slug": "toroslar-bld",
+    "name": "TOROSLAR BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "13. GRUP"
+  },
+  "1187": {
+    "id": 1187,
+    "slug": "arsavev-hatay-voleybol",
+    "name": "ARSAVEV HATAY VOLEYBOL",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "13. GRUP"
+  },
+  "1188": {
+    "id": 1188,
+    "slug": "toros-universi-tesi-volgem",
+    "name": "TOROS ÜNIVERSİTESİ VOLGEM",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "13. GRUP"
+  },
+  "1189": {
+    "id": 1189,
+    "slug": "si-banet-kozan-i-mamoglu-spor",
+    "name": "SİBANET KOZAN İMAMOĞLU SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "13. GRUP"
+  },
+  "1190": {
+    "id": 1190,
+    "slug": "bayburt-gencli-k-merkezi",
+    "name": "BAYBURT GENÇLİK MERKEZİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "14. GRUP"
+  },
+  "1191": {
+    "id": 1191,
+    "slug": "sinav-koleji-samsunspor",
+    "name": "SINAV KOLEJİ SAMSUNSPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "14. GRUP"
+  },
+  "1192": {
+    "id": 1192,
+    "slug": "hopa-beledi-ye",
+    "name": "HOPA BELEDİYE",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "14. GRUP"
+  },
+  "1193": {
+    "id": 1193,
+    "slug": "superpool-findikli-1974",
+    "name": "SUPERPOOL FINDIKLI 1974",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "14. GRUP"
+  },
+  "1194": {
+    "id": 1194,
+    "slug": "corum-arena-spor",
+    "name": "ÇORUM ARENA SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "14. GRUP"
+  },
+  "1195": {
+    "id": 1195,
+    "slug": "smart-holding-a-s-cayeli",
+    "name": "SMART HOLDING A.Ş. ÇAYELI",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "14. GRUP"
+  },
+  "1196": {
+    "id": 1196,
+    "slug": "osmancik-bld",
+    "name": "OSMANCIK BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "14. GRUP"
+  },
+  "1197": {
+    "id": 1197,
+    "slug": "semt-asansor-bordo-mavi-61",
+    "name": "SEMT ASANSÖR BORDO MAVİ 61",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "14. GRUP"
+  },
+  "1198": {
+    "id": 1198,
+    "slug": "52-camlik-spor",
+    "name": "52 ÇAMLIK SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "14. GRUP"
+  },
+  "1199": {
+    "id": 1199,
+    "slug": "besi-kduzu",
+    "name": "BEŞİKDÜZÜ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "14. GRUP"
+  },
+  "1200": {
+    "id": 1200,
+    "slug": "ri-ze-endustri-meslek-li-sesi",
+    "name": "RİZE ENDÜSTRİ MESLEK LİSESİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "14. GRUP"
+  },
+  "1201": {
+    "id": 1201,
+    "slug": "corum-voleybol",
+    "name": "ÇORUM VOLEYBOL",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "14. GRUP"
+  },
+  "1202": {
+    "id": 1202,
     "slug": "zeugma-gazi-antep-spor",
     "name": "ZEUGMA GAZİANTEP SPOR",
     "league": "2LIG",
     "country": "TUR",
     "groupName": "15. GRUP"
   },
-  "ACARRAROPROSECCODOCC_DF2816": {
-    "id": "ACARRAROPROSECCODOCC_DF2816",
-    "slug": "a-carraro-prosecco-doc-conegliano",
-    "name": "A. Carraro Prosecco DOC CONEGLIANO",
-    "league": "CEV_CL",
-    "country": null,
-    "groupName": "Pool D"
+  "1203": {
+    "id": 1203,
+    "slug": "kayseri-ci-mnasti-k-spor",
+    "name": "KAYSERİ CİMNASTİK SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "15. GRUP"
   },
-  "ANKARAZERENSPORKULÜB_CA4574": {
-    "id": "ANKARAZERENSPORKULÜB_CA4574",
-    "slug": "ankara-zeren-spor-kulubu",
-    "name": "ANKARA Zeren Spor Kulübü",
-    "league": "CEV_CL",
-    "country": null,
-    "groupName": "Pool D"
+  "1204": {
+    "id": 1204,
+    "slug": "kayseri-voleybol",
+    "name": "KAYSERİ VOLEYBOL",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "15. GRUP"
   },
-  "CSVOLEIALBABLAJ_8AAB0E": {
-    "id": "CSVOLEIALBABLAJ_8AAB0E",
-    "slug": "cs-volei-alba-blaj",
-    "name": "CS Volei Alba BLAJ",
-    "league": "CEV_CL",
-    "country": null,
-    "groupName": "Pool A"
+  "1205": {
+    "id": 1205,
+    "slug": "meri-nos-voleybol",
+    "name": "MERİNOS VOLEYBOL",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "15. GRUP"
   },
-  "DRESDNERSC_48B4E1": {
-    "id": "DRESDNERSC_48B4E1",
-    "slug": "dresdner-sc",
-    "name": "DRESDNER SC",
-    "league": "CEV_CL",
-    "country": null,
-    "groupName": "Pool D"
+  "1206": {
+    "id": 1206,
+    "slug": "firat-ozkan",
+    "name": "FIRAT ÖZKAN",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "15. GRUP"
   },
-  "ECZACIBASIISTANBUL_BD2664": {
-    "id": "ECZACIBASIISTANBUL_BD2664",
-    "slug": "eczacibasi-istanbul",
-    "name": "Eczacibasi ISTANBUL",
-    "league": "CEV_CL",
-    "country": null,
-    "groupName": "Pool C"
+  "1207": {
+    "id": 1207,
+    "slug": "vi-ransehi-r-voleybol",
+    "name": "VİRANŞEHİR VOLEYBOL",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "15. GRUP"
   },
-  "FENERBAHÇEMEDICANAIS_F3A44E": {
-    "id": "FENERBAHÇEMEDICANAIS_F3A44E",
-    "slug": "fenerbahce-medicana-istanbul",
-    "name": "Fenerbahçe Medicana ISTANBUL",
-    "league": "CEV_CL",
-    "country": null,
-    "groupName": "Pool B"
+  "1208": {
+    "id": 1208,
+    "slug": "antepi-a",
+    "name": "ANTEPİA",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "15. GRUP"
   },
-  "IGORGORGONZOLANOVARA_4B8546": {
-    "id": "IGORGORGONZOLANOVARA_4B8546",
-    "slug": "igor-gorgonzola-novara",
-    "name": "Igor Gorgonzola NOVARA",
-    "league": "CEV_CL",
-    "country": null,
-    "groupName": "Pool B"
+  "1209": {
+    "id": 1209,
+    "slug": "si-vas-toprak-gayri-menkul-pars-akademi",
+    "name": "SİVAS TOPRAK GAYRİMENKUL PARS AKADEMİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "15. GRUP"
   },
-  "KSDEVELOPRESRZESZW_8E4085": {
-    "id": "KSDEVELOPRESRZESZW_8E4085",
-    "slug": "ks-developres-rzesz-w",
-    "name": "KS Developres RZESZÓW",
-    "league": "CEV_CL",
-    "country": null,
-    "groupName": "Pool E"
+  "1210": {
+    "id": 1210,
+    "slug": "gazi-antep-bld",
+    "name": "GAZİANTEP BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "15. GRUP"
   },
-  "LEVALLOISPARISSAINTC_4B65AA": {
-    "id": "LEVALLOISPARISSAINTC_4B65AA",
-    "slug": "levallois-paris-saint-cloud",
-    "name": "LEVALLOIS PARIS Saint Cloud",
-    "league": "CEV_CL",
-    "country": null,
-    "groupName": "Pool E"
+  "1211": {
+    "id": 1211,
+    "slug": "di-yarbakir-voleybolcular",
+    "name": "DİYARBAKIR VOLEYBOLCULAR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "15. GRUP"
   },
-  "KSCOMMERCECOND_B9ED4A": {
-    "id": "KSCOMMERCECOND_B9ED4A",
-    "slug": "ks-commercecon-d",
-    "name": "ŁKS Commercecon ŁÓDŹ",
-    "league": "CEV_CL",
-    "country": null,
-    "groupName": "Pool D"
+  "1212": {
+    "id": 1212,
+    "slug": "91000-dev-spor",
+    "name": "91000 DEV SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "16. GRUP"
   },
-  "MARITZAPLOVDIV_3A840F": {
-    "id": "MARITZAPLOVDIV_3A840F",
-    "slug": "maritza-plovdiv",
-    "name": "Maritza PLOVDIV",
-    "league": "CEV_CL",
-    "country": null,
-    "groupName": "Pool E"
+  "1213": {
+    "id": 1213,
+    "slug": "margenc",
+    "name": "MARGENÇ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "16. GRUP"
   },
-  "NUMIAVEROVOLLEYMILAN_BAE474": {
-    "id": "NUMIAVEROVOLLEYMILAN_BAE474",
-    "slug": "numia-vero-volley-milano",
-    "name": "Numia Vero Volley MILANO",
-    "league": "CEV_CL",
-    "country": null,
-    "groupName": "Pool C"
+  "1214": {
+    "id": 1214,
+    "slug": "malatya-voleybol",
+    "name": "MALATYA VOLEYBOL",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "16. GRUP"
   },
-  "OKELEZNIARLAJKOVAC_743E3E": {
-    "id": "OKELEZNIARLAJKOVAC_743E3E",
-    "slug": "ok-elezni-ar-lajkovac",
-    "name": "OK Železničar LAJKOVAC",
-    "league": "CEV_CL",
-    "country": null,
-    "groupName": "Pool C"
+  "1215": {
+    "id": 1215,
+    "slug": "mus-oli-mpi-k-spor",
+    "name": "MUŞ OLİMPİK SPOR",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "16. GRUP"
   },
-  "OLYMPIACOSPIRAEUS_02AA62": {
-    "id": "OLYMPIACOSPIRAEUS_02AA62",
-    "slug": "olympiacos-piraeus",
-    "name": "Olympiacos PIRAEUS",
-    "league": "CEV_CL",
-    "country": null,
-    "groupName": "Pool C"
+  "1216": {
+    "id": 1216,
+    "slug": "73-sirnak-bld",
+    "name": "73 ŞIRNAK BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "16. GRUP"
   },
-  "PGEBUDOWLANID_B7159C": {
-    "id": "PGEBUDOWLANID_B7159C",
-    "slug": "pge-budowlani-d",
-    "name": "PGE Budowlani ŁÓDŹ",
-    "league": "CEV_CL",
-    "country": null,
-    "groupName": "Pool B"
+  "1217": {
+    "id": 1217,
+    "slug": "hakkari-maemtal",
+    "name": "HAKKARİ MAEMTAL",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "16. GRUP"
   },
-  "SAVINODELBENESCANDIC_CD7C13": {
-    "id": "SAVINODELBENESCANDIC_CD7C13",
+  "1218": {
+    "id": 1218,
+    "slug": "ni-cer-hotel-voleybol",
+    "name": "NİCER HOTEL VOLEYBOL",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "16. GRUP"
+  },
+  "1219": {
+    "id": 1219,
+    "slug": "hakkari-sporti-f-faali-yetler",
+    "name": "HAKKARİ SPORTİF FAALİYETLER",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "16. GRUP"
+  },
+  "1220": {
+    "id": 1220,
+    "slug": "elazig-bld",
+    "name": "ELAZIĞ BLD.",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "16. GRUP"
+  },
+  "1221": {
+    "id": 1221,
+    "slug": "si-lopi-geli-si-m-faali-yetleri",
+    "name": "SİLOPİ GELİŞİM FAALİYETLERİ",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "16. GRUP"
+  },
+  "1222": {
+    "id": 1222,
+    "slug": "si-lopi-bld-sporti-f-faali-yetler",
+    "name": "SİLOPİ BLD. SPORTİF FAALİYETLER",
+    "league": "2LIG",
+    "country": "TUR",
+    "groupName": "16. GRUP"
+  },
+  "1223": {
+    "id": 1223,
     "slug": "savino-del-bene-scandicci",
     "name": "Savino Del Bene SCANDICCI",
     "league": "CEV_CL",
     "country": null,
     "groupName": "Pool A"
   },
-  "SPORTLISBOAEBENFICA_DF9546": {
-    "id": "SPORTLISBOAEBENFICA_DF9546",
-    "slug": "sport-lisboa-e-benfica",
-    "name": "Sport LISBOA e Benfica",
-    "league": "CEV_CL",
-    "country": null,
-    "groupName": "Pool B"
-  },
-  "SSCPALMBERGSCHWERIN_CB95E7": {
-    "id": "SSCPALMBERGSCHWERIN_CB95E7",
-    "slug": "ssc-palmberg-schwerin",
-    "name": "SSC Palmberg SCHWERIN",
-    "league": "CEV_CL",
-    "country": null,
-    "groupName": "Pool E"
-  },
-  "VAKIFBANKISTANBUL_F27D00": {
-    "id": "VAKIFBANKISTANBUL_F27D00",
+  "1224": {
+    "id": 1224,
     "slug": "vakifbank-istanbul",
     "name": "VakifBank ISTANBUL",
     "league": "CEV_CL",
     "country": null,
     "groupName": "Pool A"
   },
-  "VOLEROLECANNET_A5CC2F": {
-    "id": "VOLEROLECANNET_A5CC2F",
+  "1225": {
+    "id": 1225,
+    "slug": "cs-volei-alba-blaj",
+    "name": "CS Volei Alba BLAJ",
+    "league": "CEV_CL",
+    "country": null,
+    "groupName": "Pool A"
+  },
+  "1226": {
+    "id": 1226,
     "slug": "volero-le-cannet",
     "name": "Volero LE CANNET",
     "league": "CEV_CL",
     "country": null,
     "groupName": "Pool A"
   },
-  "ACPAOKTHESSALONIKI_73A5F3": {
-    "id": "ACPAOKTHESSALONIKI_73A5F3",
-    "slug": "ac-paok-thessaloniki",
-    "name": "AC PAOK THESSALONIKI",
-    "league": "CEV_CUP",
-    "country": "GRE",
-    "groupName": null
+  "1227": {
+    "id": 1227,
+    "slug": "fenerbahce-medicana-istanbul",
+    "name": "Fenerbahçe Medicana ISTANBUL",
+    "league": "CEV_CL",
+    "country": null,
+    "groupName": "Pool B"
   },
-  "ALLIANZMTVSTUTTGART_0EC839": {
-    "id": "ALLIANZMTVSTUTTGART_0EC839",
-    "slug": "allianz-mtv-stuttgart",
-    "name": "Allianz MTV STUTTGART",
-    "league": "CEV_CUP",
-    "country": "GER",
-    "groupName": null
+  "1228": {
+    "id": 1228,
+    "slug": "igor-gorgonzola-novara",
+    "name": "Igor Gorgonzola NOVARA",
+    "league": "CEV_CL",
+    "country": null,
+    "groupName": "Pool B"
   },
-  "ASTERIXAVOBEVEREN_3A33B9": {
-    "id": "ASTERIXAVOBEVEREN_3A33B9",
-    "slug": "asterix-avo-beveren",
-    "name": "Asterix Avo BEVEREN",
-    "league": "CEV_CUP",
-    "country": "BEL",
-    "groupName": null
+  "1229": {
+    "id": 1229,
+    "slug": "sport-lisboa-e-benfica",
+    "name": "Sport LISBOA e Benfica",
+    "league": "CEV_CL",
+    "country": null,
+    "groupName": "Pool B"
   },
-  "AVARCADEMENORCA_BC8517": {
-    "id": "AVARCADEMENORCA_BC8517",
-    "slug": "avarca-de-menorca",
-    "name": "Avarca de MENORCA",
-    "league": "CEV_CUP",
-    "country": "ESP",
-    "groupName": null
+  "1230": {
+    "id": 1230,
+    "slug": "pge-budowlani-d",
+    "name": "PGE Budowlani ŁÓDŹ",
+    "league": "CEV_CL",
+    "country": null,
+    "groupName": "Pool B"
   },
-  "BKSBOSTIKBIELSKOBIAA_FC5C28": {
-    "id": "BKSBOSTIKBIELSKOBIAA_FC5C28",
-    "slug": "bks-bostik-bielsko-bia-a",
-    "name": "BKS Bostik BIELSKO-BIAŁA",
-    "league": "CEV_CUP",
-    "country": "POL",
-    "groupName": null
+  "1231": {
+    "id": 1231,
+    "slug": "numia-vero-volley-milano",
+    "name": "Numia Vero Volley MILANO",
+    "league": "CEV_CL",
+    "country": null,
+    "groupName": "Pool C"
   },
-  "CSOVOLUNTARI2005_782C00": {
-    "id": "CSOVOLUNTARI2005_782C00",
-    "slug": "c-s-o-voluntari-2005",
-    "name": "C.S.O. VOLUNTARI 2005",
-    "league": "CEV_CUP",
-    "country": "ROU",
-    "groupName": null
+  "1232": {
+    "id": 1232,
+    "slug": "eczacibasi-istanbul",
+    "name": "Eczacibasi ISTANBUL",
+    "league": "CEV_CL",
+    "country": null,
+    "groupName": "Pool C"
   },
-  "CDHEIDELBERGLASPALMA_F4B6E6": {
-    "id": "CDHEIDELBERGLASPALMA_F4B6E6",
-    "slug": "cd-heidelberg-las-palmas",
-    "name": "CD Heidelberg LAS PALMAS",
-    "league": "CEV_CUP",
-    "country": "ESP",
-    "groupName": null
+  "1233": {
+    "id": 1233,
+    "slug": "olympiacos-piraeus",
+    "name": "Olympiacos PIRAEUS",
+    "league": "CEV_CL",
+    "country": null,
+    "groupName": "Pool C"
   },
-  "DARTABEVOROESELARE_417D2B": {
-    "id": "DARTABEVOROESELARE_417D2B",
-    "slug": "darta-bevo-roeselare",
-    "name": "Darta Bevo ROESELARE",
-    "league": "CEV_CUP",
-    "country": "BEL",
-    "groupName": null
+  "1234": {
+    "id": 1234,
+    "slug": "ok-elezni-ar-lajkovac",
+    "name": "OK Železničar LAJKOVAC",
+    "league": "CEV_CL",
+    "country": null,
+    "groupName": "Pool C"
   },
-  "DINAMOBUCURESTI_1E4157": {
-    "id": "DINAMOBUCURESTI_1E4157",
-    "slug": "dinamo-bucuresti",
-    "name": "Dinamo BUCURESTI",
-    "league": "CEV_CUP",
-    "country": "ROU",
-    "groupName": null
+  "1235": {
+    "id": 1235,
+    "slug": "a-carraro-prosecco-doc-conegliano",
+    "name": "A. Carraro Prosecco DOC CONEGLIANO",
+    "league": "CEV_CL",
+    "country": null,
+    "groupName": "Pool D"
   },
-  "DUKLALIBEREC_778B61": {
-    "id": "DUKLALIBEREC_778B61",
-    "slug": "dukla-liberec",
-    "name": "Dukla LIBEREC",
-    "league": "CEV_CUP",
-    "country": "CZE",
-    "groupName": null
+  "1236": {
+    "id": 1236,
+    "slug": "ankara-zeren-spor-kulubu",
+    "name": "ANKARA Zeren Spor Kulübü",
+    "league": "CEV_CL",
+    "country": null,
+    "groupName": "Pool D"
   },
-  "FCPORTO_FDD815": {
-    "id": "FCPORTO_FDD815",
-    "slug": "fc-porto",
-    "name": "FC PORTO",
-    "league": "CEV_CUP",
-    "country": "POR",
-    "groupName": null
+  "1237": {
+    "id": 1237,
+    "slug": "dresdner-sc",
+    "name": "DRESDNER SC",
+    "league": "CEV_CL",
+    "country": null,
+    "groupName": "Pool D"
   },
-  "GALATASARAYDAIKINIST_C32C2E": {
-    "id": "GALATASARAYDAIKINIST_C32C2E",
+  "1238": {
+    "id": 1238,
+    "slug": "ks-commercecon-d",
+    "name": "ŁKS Commercecon ŁÓDŹ",
+    "league": "CEV_CL",
+    "country": null,
+    "groupName": "Pool D"
+  },
+  "1239": {
+    "id": 1239,
+    "slug": "ssc-palmberg-schwerin",
+    "name": "SSC Palmberg SCHWERIN",
+    "league": "CEV_CL",
+    "country": null,
+    "groupName": "Pool E"
+  },
+  "1240": {
+    "id": 1240,
+    "slug": "ks-developres-rzesz-w",
+    "name": "KS Developres RZESZÓW",
+    "league": "CEV_CL",
+    "country": null,
+    "groupName": "Pool E"
+  },
+  "1241": {
+    "id": 1241,
+    "slug": "levallois-paris-saint-cloud",
+    "name": "LEVALLOIS PARIS Saint Cloud",
+    "league": "CEV_CL",
+    "country": null,
+    "groupName": "Pool E"
+  },
+  "1242": {
+    "id": 1242,
+    "slug": "maritza-plovdiv",
+    "name": "Maritza PLOVDIV",
+    "league": "CEV_CL",
+    "country": null,
+    "groupName": "Pool E"
+  },
+  "1243": {
+    "id": 1243,
     "slug": "galatasaray-daikin-istanbul",
     "name": "Galatasaray Daikin ISTANBUL",
     "league": "CEV_CUP",
     "country": "TUR",
     "groupName": null
   },
-  "JANTAVOLEJKISELAVODA_08FC49": {
-    "id": "JANTAVOLEJKISELAVODA_08FC49",
-    "slug": "janta-volej-kisela-voda",
-    "name": "Janta Volej KISELA VODA",
-    "league": "CEV_CUP",
-    "country": "MKD",
-    "groupName": null
-  },
-  "MBHBKSCSABA_7C01BD": {
-    "id": "MBHBKSCSABA_7C01BD",
-    "slug": "mbh-b-k-scsaba",
-    "name": "MBH - BÉKÉSCSABA",
-    "league": "CEV_CUP",
-    "country": "HUN",
-    "groupName": null
-  },
-  "MLADOSTZAGREB_356A91": {
-    "id": "MLADOSTZAGREB_356A91",
-    "slug": "mladost-zagreb",
-    "name": "Mladost ZAGREB",
-    "league": "CEV_CUP",
-    "country": "CRO",
-    "groupName": null
-  },
-  "MOYARADOMKARADOM_0E2A1E": {
-    "id": "MOYARADOMKARADOM_0E2A1E",
-    "slug": "moya-radomka-radom",
-    "name": "MOYA Radomka RADOM",
-    "league": "CEV_CUP",
-    "country": "POL",
-    "groupName": null
-  },
-  "OKDINAMOZAGREB_F14AD7": {
-    "id": "OKDINAMOZAGREB_F14AD7",
-    "slug": "ok-dinamo-zagreb",
-    "name": "OK Dinamo ZAGREB",
-    "league": "CEV_CUP",
-    "country": "CRO",
-    "groupName": null
-  },
-  "OTPBANKABRANIKMARIBO_87FC33": {
-    "id": "OTPBANKABRANIKMARIBO_87FC33",
-    "slug": "otp-banka-branik-maribor",
-    "name": "OTP Banka Branik MARIBOR",
-    "league": "CEV_CUP",
-    "country": "SLO",
-    "groupName": null
-  },
-  "REALEMUTUAFENERACHIE_C1330D": {
-    "id": "REALEMUTUAFENERACHIE_C1330D",
-    "slug": "reale-mutua-fenera-chieri-76",
-    "name": "Reale Mutua Fenera CHIERI'76",
-    "league": "CEV_CUP",
-    "country": "ITA",
-    "groupName": null
-  },
-  "SPORTINGCPLISBOA_DBDFE2": {
-    "id": "SPORTINGCPLISBOA_DBDFE2",
-    "slug": "sporting-cp-lisboa",
-    "name": "Sporting CP LISBOA",
-    "league": "CEV_CUP",
-    "country": "POR",
-    "groupName": null
-  },
-  "TENTOBRENOVAC_218E0A": {
-    "id": "TENTOBRENOVAC_218E0A",
-    "slug": "tent-obrenovac",
-    "name": "Tent OBRENOVAC",
-    "league": "CEV_CUP",
-    "country": "SRB",
-    "groupName": null
-  },
-  "THYISTANBUL_D3D381": {
-    "id": "THYISTANBUL_D3D381",
+  "1244": {
+    "id": 1244,
     "slug": "thy-istanbul",
     "name": "THY ISTANBUL",
     "league": "CEV_CUP",
     "country": "TUR",
     "groupName": null
   },
-  "VANDOEUVRENANCYVB_7B50A2": {
-    "id": "VANDOEUVRENANCYVB_7B50A2",
-    "slug": "vandoeuvre-nancy-vb",
-    "name": "Vandoeuvre NANCY VB",
+  "1245": {
+    "id": 1245,
+    "slug": "allianz-mtv-stuttgart",
+    "name": "Allianz MTV STUTTGART",
     "league": "CEV_CUP",
-    "country": "FRA",
+    "country": "GER",
     "groupName": null
   },
-  "VASASBUDABUDAPEST_A45ABA": {
-    "id": "VASASBUDABUDAPEST_A45ABA",
-    "slug": "vasas-buda-budapest",
-    "name": "Vasas Óbuda BUDAPEST",
-    "league": "CEV_CUP",
-    "country": "HUN",
-    "groupName": null
-  },
-  "VFBSUHLTHÜRINGEN_292F8D": {
-    "id": "VFBSUHLTHÜRINGEN_292F8D",
+  "1246": {
+    "id": 1246,
     "slug": "vfb-suhl-thuringen",
     "name": "VfB SUHL Thüringen",
     "league": "CEV_CUP",
     "country": "GER",
     "groupName": null
   },
-  "VITEOSNEUCHATELUC_4AA5D9": {
-    "id": "VITEOSNEUCHATELUC_4AA5D9",
-    "slug": "viteos-neuchatel-uc",
-    "name": "Viteos NEUCHATEL UC",
+  "1247": {
+    "id": 1247,
+    "slug": "c-s-o-voluntari-2005",
+    "name": "C.S.O. VOLUNTARI 2005",
     "league": "CEV_CUP",
-    "country": "SUI",
+    "country": "ROU",
     "groupName": null
   },
-  "VKUPOLOMOUC_334CB7": {
-    "id": "VKUPOLOMOUC_334CB7",
-    "slug": "vk-up-olomouc",
-    "name": "VK UP OLOMOUC",
+  "1248": {
+    "id": 1248,
+    "slug": "dinamo-bucuresti",
+    "name": "Dinamo BUCURESTI",
     "league": "CEV_CUP",
-    "country": "CZE",
+    "country": "ROU",
     "groupName": null
   },
-  "VOLLEYMULHOUSEALSACE_C7D93B": {
-    "id": "VOLLEYMULHOUSEALSACE_C7D93B",
+  "1249": {
+    "id": 1249,
+    "slug": "reale-mutua-fenera-chieri-76",
+    "name": "Reale Mutua Fenera CHIERI'76",
+    "league": "CEV_CUP",
+    "country": "ITA",
+    "groupName": null
+  },
+  "1250": {
+    "id": 1250,
     "slug": "volley-mulhouse-alsace",
     "name": "Volley MULHOUSE Alsace",
     "league": "CEV_CUP",
     "country": "FRA",
     "groupName": null
   },
-  "OKGACKORDSWISSLION_3A28C9": {
-    "id": "OKGACKORDSWISSLION_3A28C9",
-    "slug": "ok-gacko-rd-swisslion",
-    "name": "ŽOK GACKO RD Swisslion",
+  "1251": {
+    "id": 1251,
+    "slug": "vandoeuvre-nancy-vb",
+    "name": "Vandoeuvre NANCY VB",
     "league": "CEV_CUP",
-    "country": "BIH",
+    "country": "FRA",
     "groupName": null
   },
-  "OKRIBOLAKATELA_B5BCAB": {
-    "id": "OKRIBOLAKATELA_B5BCAB",
-    "slug": "ok-ribola-ka-tela",
-    "name": "ŽOK Ribola KAŠTELA",
+  "1252": {
+    "id": 1252,
+    "slug": "bks-bostik-bielsko-bia-a",
+    "name": "BKS Bostik BIELSKO-BIAŁA",
+    "league": "CEV_CUP",
+    "country": "POL",
+    "groupName": null
+  },
+  "1253": {
+    "id": 1253,
+    "slug": "moya-radomka-radom",
+    "name": "MOYA Radomka RADOM",
+    "league": "CEV_CUP",
+    "country": "POL",
+    "groupName": null
+  },
+  "1254": {
+    "id": 1254,
+    "slug": "otp-banka-branik-maribor",
+    "name": "OTP Banka Branik MARIBOR",
+    "league": "CEV_CUP",
+    "country": "SLO",
+    "groupName": null
+  },
+  "1255": {
+    "id": 1255,
+    "slug": "mbh-b-k-scsaba",
+    "name": "MBH - BÉKÉSCSABA",
+    "league": "CEV_CUP",
+    "country": "HUN",
+    "groupName": null
+  },
+  "1256": {
+    "id": 1256,
+    "slug": "vasas-buda-budapest",
+    "name": "Vasas Óbuda BUDAPEST",
+    "league": "CEV_CUP",
+    "country": "HUN",
+    "groupName": null
+  },
+  "1257": {
+    "id": 1257,
+    "slug": "mladost-zagreb",
+    "name": "Mladost ZAGREB",
     "league": "CEV_CUP",
     "country": "CRO",
     "groupName": null
   },
-  "ZOKUB_28221B": {
-    "id": "ZOKUB_28221B",
+  "1258": {
+    "id": 1258,
+    "slug": "ok-dinamo-zagreb",
+    "name": "OK Dinamo ZAGREB",
+    "league": "CEV_CUP",
+    "country": "CRO",
+    "groupName": null
+  },
+  "1259": {
+    "id": 1259,
+    "slug": "darta-bevo-roeselare",
+    "name": "Darta Bevo ROESELARE",
+    "league": "CEV_CUP",
+    "country": "BEL",
+    "groupName": null
+  },
+  "1260": {
+    "id": 1260,
+    "slug": "asterix-avo-beveren",
+    "name": "Asterix Avo BEVEREN",
+    "league": "CEV_CUP",
+    "country": "BEL",
+    "groupName": null
+  },
+  "1261": {
+    "id": 1261,
+    "slug": "fc-porto",
+    "name": "FC PORTO",
+    "league": "CEV_CUP",
+    "country": "POR",
+    "groupName": null
+  },
+  "1262": {
+    "id": 1262,
+    "slug": "sporting-cp-lisboa",
+    "name": "Sporting CP LISBOA",
+    "league": "CEV_CUP",
+    "country": "POR",
+    "groupName": null
+  },
+  "1263": {
+    "id": 1263,
+    "slug": "viteos-neuchatel-uc",
+    "name": "Viteos NEUCHATEL UC",
+    "league": "CEV_CUP",
+    "country": "SUI",
+    "groupName": null
+  },
+  "1264": {
+    "id": 1264,
+    "slug": "vk-up-olomouc",
+    "name": "VK UP OLOMOUC",
+    "league": "CEV_CUP",
+    "country": "CZE",
+    "groupName": null
+  },
+  "1265": {
+    "id": 1265,
+    "slug": "dukla-liberec",
+    "name": "Dukla LIBEREC",
+    "league": "CEV_CUP",
+    "country": "CZE",
+    "groupName": null
+  },
+  "1266": {
+    "id": 1266,
+    "slug": "ac-paok-thessaloniki",
+    "name": "AC PAOK THESSALONIKI",
+    "league": "CEV_CUP",
+    "country": "GRE",
+    "groupName": null
+  },
+  "1267": {
+    "id": 1267,
+    "slug": "cd-heidelberg-las-palmas",
+    "name": "CD Heidelberg LAS PALMAS",
+    "league": "CEV_CUP",
+    "country": "ESP",
+    "groupName": null
+  },
+  "1268": {
+    "id": 1268,
+    "slug": "avarca-de-menorca",
+    "name": "Avarca de MENORCA",
+    "league": "CEV_CUP",
+    "country": "ESP",
+    "groupName": null
+  },
+  "1269": {
+    "id": 1269,
+    "slug": "tent-obrenovac",
+    "name": "Tent OBRENOVAC",
+    "league": "CEV_CUP",
+    "country": "SRB",
+    "groupName": null
+  },
+  "1270": {
+    "id": 1270,
     "slug": "zok-ub",
     "name": "ZOK UB",
     "league": "CEV_CUP",
     "country": "SRB",
     "groupName": null
   },
-  "AEKATHENS_66CD30": {
-    "id": "AEKATHENS_66CD30",
+  "1271": {
+    "id": 1271,
+    "slug": "ok-ribola-ka-tela",
+    "name": "ŽOK Ribola KAŠTELA",
+    "league": "CEV_CUP",
+    "country": "CRO",
+    "groupName": null
+  },
+  "1272": {
+    "id": 1272,
+    "slug": "ok-gacko-rd-swisslion",
+    "name": "ŽOK GACKO RD Swisslion",
+    "league": "CEV_CUP",
+    "country": "BIH",
+    "groupName": null
+  },
+  "1273": {
+    "id": 1273,
+    "slug": "janta-volej-kisela-voda",
+    "name": "Janta Volej KISELA VODA",
+    "league": "CEV_CUP",
+    "country": "MKD",
+    "groupName": null
+  },
+  "1274": {
+    "id": 1274,
     "slug": "aek-athens",
     "name": "AEK ATHENS",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "AEKATHENSGRE_720B10": {
-    "id": "AEKATHENSGRE_720B10",
-    "slug": "aek-athens-gre",
-    "name": "AEK ATHENS GRE",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "AOTHIRAS_513593": {
-    "id": "AOTHIRAS_513593",
-    "slug": "ao-thiras",
-    "name": "AO THIRAS",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "AOTHIRASGRE_F5D8E1": {
-    "id": "AOTHIRASGRE_F5D8E1",
-    "slug": "ao-thiras-gre",
-    "name": "AO THIRAS GRE",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "BUDUCNOSTPODGORICA_4B268F": {
-    "id": "BUDUCNOSTPODGORICA_4B268F",
-    "slug": "buducnost-podgorica",
-    "name": "Buducnost PODGORICA",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "BUDUCNOSTPODGORICAMN_716AAB": {
-    "id": "BUDUCNOSTPODGORICAMN_716AAB",
-    "slug": "buducnost-podgorica-mne",
-    "name": "Buducnost PODGORICA MNE",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "CSMLUGOJ_FA79AB": {
-    "id": "CSMLUGOJ_FA79AB",
-    "slug": "c-s-m-lugoj",
-    "name": "C.S.M LUGOJ",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "CSMLUGOJROU_D2CE73": {
-    "id": "CSMLUGOJROU_D2CE73",
-    "slug": "c-s-m-lugoj-rou",
-    "name": "C.S.M LUGOJ ROU",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "DRAISMADYNAMOAPELDOO_58D452": {
-    "id": "DRAISMADYNAMOAPELDOO_58D452",
-    "slug": "draisma-dynamo-apeldoorn",
-    "name": "Draisma Dynamo APELDOORN",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "DRAISMADYNAMOAPELDOO_3356CB": {
-    "id": "DRAISMADYNAMOAPELDOO_3356CB",
-    "slug": "draisma-dynamo-apeldoorn-ned",
-    "name": "Draisma Dynamo APELDOORN NED",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "ERZBERGMTROFAIACHEIS_755FF8": {
-    "id": "ERZBERGMTROFAIACHEIS_755FF8",
-    "slug": "erzbergm-trofaiach-eisenerz",
-    "name": "Erzbergm TROFAIACH EISENERZ",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "ERZBERGMTROFAIACHEIS_EA68D4": {
-    "id": "ERZBERGMTROFAIACHEIS_EA68D4",
-    "slug": "erzbergm-trofaiach-eisenerz-aut",
-    "name": "Erzbergm TROFAIACH EISENERZ AUT",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "FATUMNYREGYHZA_5B4082": {
-    "id": "FATUMNYREGYHZA_5B4082",
-    "slug": "fatum-ny-regyh-za",
-    "name": "Fatum NYÍREGYHÁZA",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "FATUMNYREGYHZAHUN_556337": {
-    "id": "FATUMNYREGYHZAHUN_556337",
-    "slug": "fatum-ny-regyh-za-hun",
-    "name": "Fatum NYÍREGYHÁZA HUN",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "FLEYRTRSHAVN_B5F233": {
-    "id": "FLEYRTRSHAVN_B5F233",
-    "slug": "fleyr-t-rshavn",
-    "name": "Fleyr TÓRSHAVN",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "FLEYRTRSHAVNFAR_B63BFE": {
-    "id": "FLEYRTRSHAVNFAR_B63BFE",
-    "slug": "fleyr-t-rshavn-far",
-    "name": "Fleyr TÓRSHAVN FAR",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "FRISOSNEEK_88D5F3": {
-    "id": "FRISOSNEEK_88D5F3",
-    "slug": "friso-sneek",
-    "name": "Friso SNEEK",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "FRISOSNEEKNED_BBC3F1": {
-    "id": "FRISOSNEEKNED_BBC3F1",
-    "slug": "friso-sneek-ned",
-    "name": "Friso SNEEK NED",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "FUNDACINCAJASOLANDAL_49C385": {
-    "id": "FUNDACINCAJASOLANDAL_49C385",
-    "slug": "fundaci-n-cajasol-andaluc-a",
-    "name": "Fundación Cajasol ANDALUCÍA",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "FUNDACINCAJASOLANDAL_0E33EB": {
-    "id": "FUNDACINCAJASOLANDAL_0E33EB",
-    "slug": "fundaci-n-cajasol-andaluc-a-esp",
-    "name": "Fundación Cajasol ANDALUCÍA ESP",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "GSPANIONIOSNEASMYRNI_567A21": {
-    "id": "GSPANIONIOSNEASMYRNI_567A21",
-    "slug": "gs-panionios-nea-smyrni",
-    "name": "GS Panionios NEA SMYRNI",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "GSPANIONIOSNEASMYRNI_AD29C0": {
-    "id": "GSPANIONIOSNEASMYRNI_AD29C0",
-    "slug": "gs-panionios-nea-smyrni-gre",
-    "name": "GS Panionios NEA SMYRNI GRE",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "GZOKSREMSREMSKAMITRO_4D8C6D": {
-    "id": "GZOKSREMSREMSKAMITRO_4D8C6D",
+  "1275": {
+    "id": 1275,
     "slug": "gzok-srem-sremska-mitrovica",
     "name": "GZOK Srem SREMSKA MITROVICA",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "GZOKSREMSREMSKAMITRO_F20701": {
-    "id": "GZOKSREMSREMSKAMITRO_F20701",
-    "slug": "gzok-srem-sremska-mitrovica-srb",
-    "name": "GZOK Srem SREMSKA MITROVICA SRB",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "HOLTEIF_2761ED": {
-    "id": "HOLTEIF_2761ED",
-    "slug": "holte-if",
-    "name": "HOLTE IF",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "HOLTEIFDEN_647338": {
-    "id": "HOLTEIFDEN_647338",
-    "slug": "holte-if-den",
-    "name": "HOLTE IF DEN",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "KAUNASVDU_C6D0C7": {
-    "id": "KAUNASVDU_C6D0C7",
-    "slug": "kaunas-vdu",
-    "name": "KAUNAS VDU",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "KAUNASVDULTU_C3F8B8": {
-    "id": "KAUNASVDULTU_C3F8B8",
-    "slug": "kaunas-vdu-ltu",
-    "name": "KAUNAS VDU LTU",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "KVFERVOLLEYFERIZAJ_BE9FCC": {
-    "id": "KVFERVOLLEYFERIZAJ_BE9FCC",
-    "slug": "kv-fer-volley-ferizaj",
-    "name": "KV Fer Volley FERIZAJ",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "KVFERVOLLEYFERIZAJKO_228A0F": {
-    "id": "KVFERVOLLEYFERIZAJKO_228A0F",
-    "slug": "kv-fer-volley-ferizaj-kos",
-    "name": "KV Fer Volley FERIZAJ KOS",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "LEVSKISOFIA_FDEA1F": {
-    "id": "LEVSKISOFIA_FDEA1F",
-    "slug": "levski-sofia",
-    "name": "Levski SOFIA",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "LEVSKISOFIABUL_9A6C05": {
-    "id": "LEVSKISOFIABUL_9A6C05",
-    "slug": "levski-sofia-bul",
-    "name": "Levski SOFIA BUL",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "LPSALO_593563": {
-    "id": "LPSALO_593563",
-    "slug": "lp-salo",
-    "name": "LP SALO",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "LPSALOFIN_7CA75A": {
-    "id": "LPSALOFIN_7CA75A",
-    "slug": "lp-salo-fin",
-    "name": "LP SALO FIN",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "NAKOVSKIVOLEJSTRUMIC_D54FAA": {
-    "id": "NAKOVSKIVOLEJSTRUMIC_D54FAA",
-    "slug": "nakovski-volej-strumica",
-    "name": "Nakovski Volej STRUMICA",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "NAKOVSKIVOLEJSTRUMIC_B0EB60": {
-    "id": "NAKOVSKIVOLEJSTRUMIC_B0EB60",
-    "slug": "nakovski-volej-strumica-mkd",
-    "name": "Nakovski Volej STRUMICA MKD",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "OCISAHARORIOJA_178653": {
-    "id": "OCISAHARORIOJA_178653",
-    "slug": "ocisa-haro-rioja",
-    "name": "Ocisa HARO Rioja",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "OCISAHARORIOJAESP_DE8F08": {
-    "id": "OCISAHARORIOJAESP_DE8F08",
-    "slug": "ocisa-haro-rioja-esp",
-    "name": "Ocisa HARO Rioja ESP",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "OKBRDASPLIT_CB1A2D": {
-    "id": "OKBRDASPLIT_CB1A2D",
-    "slug": "ok-brda-split",
-    "name": "OK BRDA SPLIT",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "OKBRDASPLITCRO_0B2045": {
-    "id": "OKBRDASPLITCRO_0B2045",
-    "slug": "ok-brda-split-cro",
-    "name": "OK BRDA SPLIT CRO",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "KSYLMYRE_AB144F": {
-    "id": "KSYLMYRE_AB144F",
-    "slug": "ksyl-myre",
-    "name": "Øksyl MYRE",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "KSYLMYRENOR_4FA6C0": {
-    "id": "KSYLMYRENOR_4FA6C0",
-    "slug": "ksyl-myre-nor",
-    "name": "Øksyl MYRE NOR",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "OLYMPIADANEAPOLISNIC_9D3C1E": {
-    "id": "OLYMPIADANEAPOLISNIC_9D3C1E",
-    "slug": "olympiada-neapolis-nicosia",
-    "name": "Olympiada Neapolis NICOSIA",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "OLYMPIADANEAPOLISNIC_FB70DF": {
-    "id": "OLYMPIADANEAPOLISNIC_FB70DF",
-    "slug": "olympiada-neapolis-nicosia-cyp",
-    "name": "Olympiada Neapolis NICOSIA CYP",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "RABOTNICKISKOPJE_BC3403": {
-    "id": "RABOTNICKISKOPJE_BC3403",
-    "slug": "rabotnicki-skopje",
-    "name": "Rabotnicki SKOPJE",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "RABOTNICKISKOPJEMKD_5A7F48": {
-    "id": "RABOTNICKISKOPJEMKD_5A7F48",
-    "slug": "rabotnicki-skopje-mkd",
-    "name": "Rabotnicki SKOPJE MKD",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "RAESPORDIKOOLVIASTON_96C6A4": {
-    "id": "RAESPORDIKOOLVIASTON_96C6A4",
-    "slug": "rae-spordikool-viaston-juri",
-    "name": "RAE Spordikool Viaston JÜRI",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "RAESPORDIKOOLVIASTON_66A48C": {
-    "id": "RAESPORDIKOOLVIASTON_66A48C",
-    "slug": "rae-spordikool-viaston-juri-est",
-    "name": "RAE Spordikool Viaston JÜRI EST",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "SCBALTA_04FDE4": {
-    "id": "SCBALTA_04FDE4",
-    "slug": "sc-balta",
-    "name": "SC BALTA",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "SCBALTAUKR_6E5681": {
-    "id": "SCBALTAUKR_6E5681",
-    "slug": "sc-balta-ukr",
-    "name": "SC BALTA UKR",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "TCHALOUCHAPELLELEZHE_9ED227": {
-    "id": "TCHALOUCHAPELLELEZHE_9ED227",
-    "slug": "tchalou-chapelle-lez-herlaimont",
-    "name": "Tchalou CHAPELLE-LEZ-HERLAIMONT",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "TCHALOUCHAPELLELEZHE_91AA2F": {
-    "id": "TCHALOUCHAPELLELEZHE_91AA2F",
-    "slug": "tchalou-chapelle-lez-herlaimont-bel",
-    "name": "Tchalou CHAPELLE-LEZ-HERLAIMONT BEL",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "TIFVIKINGBERGEN_6E116A": {
-    "id": "TIFVIKINGBERGEN_6E116A",
-    "slug": "tif-viking-bergen",
-    "name": "TIF Viking BERGEN",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "TIFVIKINGBERGENNOR_98607E": {
-    "id": "TIFVIKINGBERGENNOR_98607E",
-    "slug": "tif-viking-bergen-nor",
-    "name": "TIF Viking BERGEN NOR",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "TJOSTRAVA_546715": {
-    "id": "TJOSTRAVA_546715",
+  "1276": {
+    "id": 1276,
     "slug": "tj-ostrava",
     "name": "TJ OSTRAVA",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "TJOSTRAVACZE_05F0BC": {
-    "id": "TJOSTRAVACZE_05F0BC",
-    "slug": "tj-ostrava-cze",
-    "name": "TJ OSTRAVA CZE",
+  "1277": {
+    "id": 1277,
+    "slug": "nakovski-volej-strumica",
+    "name": "Nakovski Volej STRUMICA",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "VAUNIZAZILINA_6BD732": {
-    "id": "VAUNIZAZILINA_6BD732",
-    "slug": "va-uniza-zilina",
-    "name": "VA Uniza ZILINA",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "VAUNIZAZILINASVK_56A58F": {
-    "id": "VAUNIZAZILINASVK_56A58F",
-    "slug": "va-uniza-zilina-svk",
-    "name": "VA Uniza ZILINA SVK",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "VBCCHESEAUX_F722C4": {
-    "id": "VBCCHESEAUX_F722C4",
-    "slug": "vbc-cheseaux",
-    "name": "VBC CHESEAUX",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "VBCCHESEAUXSUI_B36F51": {
-    "id": "VBCCHESEAUXSUI_B36F51",
-    "slug": "vbc-cheseaux-sui",
-    "name": "VBC CHESEAUX SUI",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "VKPIRANEBRUSNO_FDF6CA": {
-    "id": "VKPIRANEBRUSNO_FDF6CA",
-    "slug": "vk-pirane-brusno",
-    "name": "VK Pirane BRUSNO",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "VKPIRANEBRUSNOSVK_D27316": {
-    "id": "VKPIRANEBRUSNOSVK_D27316",
-    "slug": "vk-pirane-brusno-svk",
-    "name": "VK Pirane BRUSNO SVK",
-    "league": "CEV_CHALLENGE",
-    "country": null,
-    "groupName": null
-  },
-  "VKPROSTEJOV_B1760A": {
-    "id": "VKPROSTEJOV_B1760A",
+  "1278": {
+    "id": 1278,
     "slug": "vk-prostejov",
     "name": "VK PROSTEJOV",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "VKPROSTEJOVCZE_E0254F": {
-    "id": "VKPROSTEJOVCZE_E0254F",
-    "slug": "vk-prostejov-cze",
-    "name": "VK PROSTEJOV CZE",
+  "1279": {
+    "id": 1279,
+    "slug": "draisma-dynamo-apeldoorn",
+    "name": "Draisma Dynamo APELDOORN",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "VKSLOVANBRATISLAVA_D9EE31": {
-    "id": "VKSLOVANBRATISLAVA_D9EE31",
+  "1280": {
+    "id": 1280,
+    "slug": "va-uniza-zilina",
+    "name": "VA Uniza ZILINA",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1281": {
+    "id": 1281,
+    "slug": "holte-if",
+    "name": "HOLTE IF",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1282": {
+    "id": 1282,
+    "slug": "fundaci-n-cajasol-andaluc-a",
+    "name": "Fundación Cajasol ANDALUCÍA",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1283": {
+    "id": 1283,
     "slug": "vk-slovan-bratislava",
     "name": "VK Slovan BRATISLAVA",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "VKSLOVANBRATISLAVASV_BCFE97": {
-    "id": "VKSLOVANBRATISLAVASV_BCFE97",
-    "slug": "vk-slovan-bratislava-svk",
-    "name": "VK Slovan BRATISLAVA SVK",
+  "1284": {
+    "id": 1284,
+    "slug": "ok-brda-split",
+    "name": "OK BRDA SPLIT",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "VOLLEYDÜDINGEN_337032": {
-    "id": "VOLLEYDÜDINGEN_337032",
+  "1285": {
+    "id": 1285,
+    "slug": "olympiada-neapolis-nicosia",
+    "name": "Olympiada Neapolis NICOSIA",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1286": {
+    "id": 1286,
+    "slug": "friso-sneek",
+    "name": "Friso SNEEK",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1287": {
+    "id": 1287,
+    "slug": "c-s-m-lugoj",
+    "name": "C.S.M LUGOJ",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1288": {
+    "id": 1288,
+    "slug": "vbc-cheseaux",
+    "name": "VBC CHESEAUX",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1289": {
+    "id": 1289,
+    "slug": "levski-sofia",
+    "name": "Levski SOFIA",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1290": {
+    "id": 1290,
     "slug": "volley-dudingen",
     "name": "Volley DÜDINGEN",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "VOLLEYDÜDINGENSUI_AFD153": {
-    "id": "VOLLEYDÜDINGENSUI_AFD153",
-    "slug": "volley-dudingen-sui",
-    "name": "Volley DÜDINGEN SUI",
+  "1291": {
+    "id": 1291,
+    "slug": "kv-fer-volley-ferizaj",
+    "name": "KV Fer Volley FERIZAJ",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "WINNERCHCM6768_6D9BB1": {
-    "id": "WINNERCHCM6768_6D9BB1",
+  "1292": {
+    "id": 1292,
+    "slug": "tchalou-chapelle-lez-herlaimont",
+    "name": "Tchalou CHAPELLE-LEZ-HERLAIMONT",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1293": {
+    "id": 1293,
+    "slug": "fleyr-t-rshavn",
+    "name": "Fleyr TÓRSHAVN",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1294": {
+    "id": 1294,
+    "slug": "ao-thiras",
+    "name": "AO THIRAS",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1295": {
+    "id": 1295,
+    "slug": "gs-panionios-nea-smyrni",
+    "name": "GS Panionios NEA SMYRNI",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1296": {
+    "id": 1296,
+    "slug": "fatum-ny-regyh-za",
+    "name": "Fatum NYÍREGYHÁZA",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1297": {
+    "id": 1297,
+    "slug": "lp-salo",
+    "name": "LP SALO",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1298": {
+    "id": 1298,
+    "slug": "kaunas-vdu",
+    "name": "KAUNAS VDU",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1299": {
+    "id": 1299,
+    "slug": "ksyl-myre",
+    "name": "Øksyl MYRE",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1300": {
+    "id": 1300,
+    "slug": "ocisa-haro-rioja",
+    "name": "Ocisa HARO Rioja",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1301": {
+    "id": 1301,
+    "slug": "buducnost-podgorica",
+    "name": "Buducnost PODGORICA",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1302": {
+    "id": 1302,
+    "slug": "rabotnicki-skopje",
+    "name": "Rabotnicki SKOPJE",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1303": {
+    "id": 1303,
+    "slug": "rae-spordikool-viaston-juri",
+    "name": "RAE Spordikool Viaston JÜRI",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1304": {
+    "id": 1304,
+    "slug": "vk-pirane-brusno",
+    "name": "VK Pirane BRUSNO",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1305": {
+    "id": 1305,
+    "slug": "tif-viking-bergen",
+    "name": "TIF Viking BERGEN",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1306": {
+    "id": 1306,
+    "slug": "erzbergm-trofaiach-eisenerz",
+    "name": "Erzbergm TROFAIACH EISENERZ",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1307": {
+    "id": 1307,
+    "slug": "sc-balta",
+    "name": "SC BALTA",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1308": {
+    "id": 1308,
     "slug": "winner-chcm-67-68",
     "name": "Winner CHCM 67/68",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "WINNERCHCW6970_91B148": {
-    "id": "WINNERCHCW6970_91B148",
+  "1309": {
+    "id": 1309,
     "slug": "winner-chcw-69-70",
     "name": "Winner CHCW 69/70",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "WINNERCHCW7172_E600A0": {
-    "id": "WINNERCHCW7172_E600A0",
+  "1310": {
+    "id": 1310,
     "slug": "winner-chcw-71-72",
     "name": "Winner CHCW 71/72",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "WINNERCHCW7374_B43212": {
-    "id": "WINNERCHCW7374_B43212",
+  "1311": {
+    "id": 1311,
     "slug": "winner-chcw-73-74",
     "name": "Winner CHCW 73/74",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "WINNERCHCW7576_CCC588": {
-    "id": "WINNERCHCW7576_CCC588",
+  "1312": {
+    "id": 1312,
     "slug": "winner-chcw-75-76",
     "name": "Winner CHCW 75/76",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "WINNERCHCW7778_9071D2": {
-    "id": "WINNERCHCW7778_9071D2",
+  "1313": {
+    "id": 1313,
     "slug": "winner-chcw-77-78",
     "name": "Winner CHCW 77/78",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "WINNERCHCW7980_5C506F": {
-    "id": "WINNERCHCW7980_5C506F",
+  "1314": {
+    "id": 1314,
     "slug": "winner-chcw-79-80",
     "name": "Winner CHCW 79/80",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "WINNERCHCW8182_6DB1F4": {
-    "id": "WINNERCHCW8182_6DB1F4",
+  "1315": {
+    "id": 1315,
     "slug": "winner-chcw-81-82",
     "name": "Winner CHCW 81/82",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "WINNERCHCW9192_1EA6A0": {
-    "id": "WINNERCHCW9192_1EA6A0",
+  "1316": {
+    "id": 1316,
     "slug": "winner-chcw-91-92",
     "name": "Winner CHCW 91/92",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
   },
-  "WINNERCHCW9394_E329E6": {
-    "id": "WINNERCHCW9394_E329E6",
+  "1317": {
+    "id": 1317,
     "slug": "winner-chcw-93-94",
     "name": "Winner CHCW 93/94",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1318": {
+    "id": 1318,
+    "slug": "aek-athens-gre",
+    "name": "AEK ATHENS GRE",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1319": {
+    "id": 1319,
+    "slug": "gzok-srem-sremska-mitrovica-srb",
+    "name": "GZOK Srem SREMSKA MITROVICA SRB",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1320": {
+    "id": 1320,
+    "slug": "tj-ostrava-cze",
+    "name": "TJ OSTRAVA CZE",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1321": {
+    "id": 1321,
+    "slug": "nakovski-volej-strumica-mkd",
+    "name": "Nakovski Volej STRUMICA MKD",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1322": {
+    "id": 1322,
+    "slug": "vk-prostejov-cze",
+    "name": "VK PROSTEJOV CZE",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1323": {
+    "id": 1323,
+    "slug": "draisma-dynamo-apeldoorn-ned",
+    "name": "Draisma Dynamo APELDOORN NED",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1324": {
+    "id": 1324,
+    "slug": "va-uniza-zilina-svk",
+    "name": "VA Uniza ZILINA SVK",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1325": {
+    "id": 1325,
+    "slug": "holte-if-den",
+    "name": "HOLTE IF DEN",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1326": {
+    "id": 1326,
+    "slug": "fundaci-n-cajasol-andaluc-a-esp",
+    "name": "Fundación Cajasol ANDALUCÍA ESP",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1327": {
+    "id": 1327,
+    "slug": "vk-slovan-bratislava-svk",
+    "name": "VK Slovan BRATISLAVA SVK",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1328": {
+    "id": 1328,
+    "slug": "ok-brda-split-cro",
+    "name": "OK BRDA SPLIT CRO",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1329": {
+    "id": 1329,
+    "slug": "olympiada-neapolis-nicosia-cyp",
+    "name": "Olympiada Neapolis NICOSIA CYP",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1330": {
+    "id": 1330,
+    "slug": "friso-sneek-ned",
+    "name": "Friso SNEEK NED",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1331": {
+    "id": 1331,
+    "slug": "c-s-m-lugoj-rou",
+    "name": "C.S.M LUGOJ ROU",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1332": {
+    "id": 1332,
+    "slug": "vbc-cheseaux-sui",
+    "name": "VBC CHESEAUX SUI",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1333": {
+    "id": 1333,
+    "slug": "levski-sofia-bul",
+    "name": "Levski SOFIA BUL",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1334": {
+    "id": 1334,
+    "slug": "volley-dudingen-sui",
+    "name": "Volley DÜDINGEN SUI",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1335": {
+    "id": 1335,
+    "slug": "kv-fer-volley-ferizaj-kos",
+    "name": "KV Fer Volley FERIZAJ KOS",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1336": {
+    "id": 1336,
+    "slug": "tchalou-chapelle-lez-herlaimont-bel",
+    "name": "Tchalou CHAPELLE-LEZ-HERLAIMONT BEL",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1337": {
+    "id": 1337,
+    "slug": "fleyr-t-rshavn-far",
+    "name": "Fleyr TÓRSHAVN FAR",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1338": {
+    "id": 1338,
+    "slug": "ao-thiras-gre",
+    "name": "AO THIRAS GRE",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1339": {
+    "id": 1339,
+    "slug": "gs-panionios-nea-smyrni-gre",
+    "name": "GS Panionios NEA SMYRNI GRE",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1340": {
+    "id": 1340,
+    "slug": "fatum-ny-regyh-za-hun",
+    "name": "Fatum NYÍREGYHÁZA HUN",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1341": {
+    "id": 1341,
+    "slug": "lp-salo-fin",
+    "name": "LP SALO FIN",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1342": {
+    "id": 1342,
+    "slug": "kaunas-vdu-ltu",
+    "name": "KAUNAS VDU LTU",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1343": {
+    "id": 1343,
+    "slug": "ksyl-myre-nor",
+    "name": "Øksyl MYRE NOR",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1344": {
+    "id": 1344,
+    "slug": "ocisa-haro-rioja-esp",
+    "name": "Ocisa HARO Rioja ESP",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1345": {
+    "id": 1345,
+    "slug": "buducnost-podgorica-mne",
+    "name": "Buducnost PODGORICA MNE",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1346": {
+    "id": 1346,
+    "slug": "rabotnicki-skopje-mkd",
+    "name": "Rabotnicki SKOPJE MKD",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1347": {
+    "id": 1347,
+    "slug": "rae-spordikool-viaston-juri-est",
+    "name": "RAE Spordikool Viaston JÜRI EST",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1348": {
+    "id": 1348,
+    "slug": "vk-pirane-brusno-svk",
+    "name": "VK Pirane BRUSNO SVK",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1349": {
+    "id": 1349,
+    "slug": "tif-viking-bergen-nor",
+    "name": "TIF Viking BERGEN NOR",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1350": {
+    "id": 1350,
+    "slug": "erzbergm-trofaiach-eisenerz-aut",
+    "name": "Erzbergm TROFAIACH EISENERZ AUT",
+    "league": "CEV_CHALLENGE",
+    "country": null,
+    "groupName": null
+  },
+  "1351": {
+    "id": 1351,
+    "slug": "sc-balta-ukr",
+    "name": "SC BALTA UKR",
     "league": "CEV_CHALLENGE",
     "country": null,
     "groupName": null
@@ -3570,27 +3570,27 @@ export type ClubId =
   | null;
 
 export const CLUBS: Record<string, { clubId: ClubId; teams: TeamId[] }> = {
-  'CLUB_ARAS_KARGO': { clubId: 'CLUB_ARAS_KARGO', teams: ['ARASKARGO_94AD2F'] },
-  'CLUB_AYDIN_BSB': { clubId: 'CLUB_AYDIN_BSB', teams: ['AYDINBÜYÜKŞEHİRBELED_57B10E', 'AYDINBÜYÜKŞEHİRBELED_6E5808'] },
-  'CLUB_BAHCELIEVLER': { clubId: 'CLUB_BAHCELIEVLER', teams: ['BAHÇELİEVLERBLD_7BEE9F', 'BAHÇELİEVLERBLD_465BB0'] },
-  'CLUB_BESIKTAS': { clubId: 'CLUB_BESIKTAS', teams: ['BEŞİKTAŞ_7AD79A', 'BEŞİKTAŞNAVIOSA_E497CD'] },
-  'CLUB_ECZACIBASI': { clubId: 'CLUB_ECZACIBASI', teams: ['ECZACIBAŞIDYNAVİT_41201C', 'ECZACIBAŞI_D25917', 'ECZACIBASIISTANBUL_BD2664'] },
-  'CLUB_FENERBAHCE': { clubId: 'CLUB_FENERBAHCE', teams: ['FENERBAHÇEMEDICANA_80912F', 'FENERBAHÇEMEDICANA_C729B9', 'FENERBAHÇEMEDICANA_E6323E', 'FENERBAHÇEMEDICANAIS_F3A44E'] },
-  'CLUB_GALATASARAY': { clubId: 'CLUB_GALATASARAY', teams: ['GALATASARAYDAIKIN_67B339', 'GALATASARAY_F06D8C', 'GALATASARAYDAIKINIST_C32C2E'] },
-  'CLUB_GOZTEPE': { clubId: 'CLUB_GOZTEPE', teams: ['GÖZTEPE_9CF1DE', 'GÖZTEPE_FE6189'] },
-  'CLUB_ILBANK': { clubId: 'CLUB_ILBANK', teams: ['İLBANK_315374', 'İLBANK_B9F38E', 'İLBANK_A250F5'] },
-  'CLUB_KUZEYBORU': { clubId: 'CLUB_KUZEYBORU', teams: ['KUZEYBORU_FC1751', 'KUZEYBORUMAXİPİPESPO_0CF1B1'] },
-  'CLUB_NILUFER': { clubId: 'CLUB_NILUFER', teams: ['NİLÜFERBELEDİYESPORE_8A47A0', 'NİLÜFERBLD_078DCC'] },
-  'CLUB_THY': { clubId: 'CLUB_THY', teams: ['TÜRKHAVAYOLLARI_B246A6', 'TÜRKHAVAYOLLARI_3E2BC1', 'THYISTANBUL_D3D381'] },
-  'CLUB_VAKIFBANK': { clubId: 'CLUB_VAKIFBANK', teams: ['VAKIFBANK_CEE9EF', 'VAKIFBANK_CBCA40', 'VAKIFBANKISTANBUL_F27D00'] },
-  'CLUB_ZEREN': { clubId: 'CLUB_ZEREN', teams: ['ZERENSPOR_547415', 'ALFEMOZERENSPOR_5EB5B9', 'ANKARAZERENSPORKULÜB_CA4574'] },
-  'CLUB_DENIZLI_BSB': { clubId: 'CLUB_DENIZLI_BSB', teams: ['DENİZLİBŞEHİRBLD_F6735D', 'DENİZLİBŞEHİRBLD_B60FB6'] },
-  'CLUB_KARSIYAKA': { clubId: 'CLUB_KARSIYAKA', teams: ['ENDOKARŞIYAKA_9CC283', 'ENDOKARŞIYAKA_8CE42B'] },
-  'CLUB_ISTANBULBBSK': { clubId: 'CLUB_ISTANBULBBSK', teams: ['İBBSPORKULÜBÜ_3F23C3'] },
-  'CLUB_MERINOS': { clubId: 'CLUB_MERINOS', teams: ['MERİNOSVOLEYBOL_13D842', 'MERİNOSVOLEYBOL_CBD4F6'] },
-  'CLUB_PTT': { clubId: 'CLUB_PTT', teams: ['PTT_578234', 'PTT_8A836B'] },
-  'CLUB_YESILYURT': { clubId: 'CLUB_YESILYURT', teams: ['YEŞİLYURT_FE3819', 'YEŞİLYURT_4B08E9'] },
-  'CLUB_ANKARA_DSI': { clubId: 'CLUB_ANKARA_DSI', teams: ['ANKARADSİ_606CEC', 'BALIKESİRDSİ_C3709C', 'İZMİRDSİ_021412'] },
-  'CLUB_ARKAS': { clubId: 'CLUB_ARKAS', teams: ['ARKASSPOR_C4941F'] },
-  'CLUB_BURSA_BSB': { clubId: 'CLUB_BURSA_BSB', teams: ['BURSABŞEHİRBLD_94A7C3'] }
+  'CLUB_ARAS_KARGO': { clubId: 'CLUB_ARAS_KARGO', teams: ['1000'] },
+  'CLUB_AYDIN_BSB': { clubId: 'CLUB_AYDIN_BSB', teams: ['1001', '1111'] },
+  'CLUB_BAHCELIEVLER': { clubId: 'CLUB_BAHCELIEVLER', teams: ['1002', '1052'] },
+  'CLUB_BESIKTAS': { clubId: 'CLUB_BESIKTAS', teams: ['1003', '1055'] },
+  'CLUB_ECZACIBASI': { clubId: 'CLUB_ECZACIBASI', teams: ['1004', '1016', '1232'] },
+  'CLUB_FENERBAHCE': { clubId: 'CLUB_FENERBAHCE', teams: ['1005', '1014', '1072', '1227'] },
+  'CLUB_GALATASARAY': { clubId: 'CLUB_GALATASARAY', teams: ['1006', '1070', '1243'] },
+  'CLUB_GOZTEPE': { clubId: 'CLUB_GOZTEPE', teams: ['1007', '1101'] },
+  'CLUB_ILBANK': { clubId: 'CLUB_ILBANK', teams: ['1013', '1028', '1158'] },
+  'CLUB_KUZEYBORU': { clubId: 'CLUB_KUZEYBORU', teams: ['1008', '1026'] },
+  'CLUB_NILUFER': { clubId: 'CLUB_NILUFER', teams: ['1009', '1139'] },
+  'CLUB_THY': { clubId: 'CLUB_THY', teams: ['1010', '1043', '1244'] },
+  'CLUB_VAKIFBANK': { clubId: 'CLUB_VAKIFBANK', teams: ['1011', '1019', '1224'] },
+  'CLUB_ZEREN': { clubId: 'CLUB_ZEREN', teams: ['1012', '1030', '1236'] },
+  'CLUB_DENIZLI_BSB': { clubId: 'CLUB_DENIZLI_BSB', teams: ['1017', '1125'] },
+  'CLUB_KARSIYAKA': { clubId: 'CLUB_KARSIYAKA', teams: ['1022', '1118'] },
+  'CLUB_ISTANBULBBSK': { clubId: 'CLUB_ISTANBULBBSK', teams: ['1018'] },
+  'CLUB_MERINOS': { clubId: 'CLUB_MERINOS', teams: ['1031', '1205'] },
+  'CLUB_PTT': { clubId: 'CLUB_PTT', teams: ['1037', '1166'] },
+  'CLUB_YESILYURT': { clubId: 'CLUB_YESILYURT', teams: ['1020', '1059'] },
+  'CLUB_ANKARA_DSI': { clubId: 'CLUB_ANKARA_DSI', teams: ['1168', '1090', '1116'] },
+  'CLUB_ARKAS': { clubId: 'CLUB_ARKAS', teams: ['1107'] },
+  'CLUB_BURSA_BSB': { clubId: 'CLUB_BURSA_BSB', teams: ['1136'] }
 };

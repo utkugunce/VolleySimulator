@@ -7,22 +7,12 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-// Helper function to generate unique ID from team name
+// Counter for numeric IDs
+let teamIdCounter = 1000;
+
+// Helper function to generate unique numeric ID
 function generateTeamId(teamName, league) {
-    // Normalize team name for consistent ID generation
-    const normalized = teamName
-        .toUpperCase()
-        .replace(/[^A-ZÇĞİÖŞÜ0-9]/g, '')
-        .substring(0, 20);
-    
-    // Create hash from full name + league for uniqueness
-    const hash = crypto
-        .createHash('md5')
-        .update(teamName + league)
-        .digest('hex')
-        .substring(0, 6);
-    
-    return `${normalized}_${hash}`.toUpperCase();
+    return teamIdCounter++;
 }
 
 // Helper function to create slug from team name
