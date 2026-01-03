@@ -36,6 +36,37 @@ const nextConfig: NextConfig = {
   
   // Enable gzip/brotli compression headers hint
   compress: true,
+  
+  // Security headers using Next.js async headers function
+  async headers() {
+    return [
+      {
+        source: '/((?!api|_next/static|_next/image|favicon.ico).*)',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff'
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY'
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block'
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin'
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https://supabase.co https://www.google-analytics.com https://www.googletagmanager.com; frame-ancestors 'none'"
+          }
+        ]
+      }
+    ];
+  }
 };
 
 export default withBundleAnalyzer(nextConfig);
