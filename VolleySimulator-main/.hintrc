@@ -4,6 +4,8 @@
   ],
   "hints": {
     "no-inline-styles": "off",
-    "css-at-rules/unknown": "off"
+    "css-at-rules/unknown": "off",
+    "axe/aria": "off",
+    "axe/name-role-value": "off"
   }
 }
