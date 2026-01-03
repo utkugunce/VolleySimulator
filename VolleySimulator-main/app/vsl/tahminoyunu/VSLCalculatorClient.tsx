@@ -1,6 +1,3 @@
-"use client";
-
-import { TeamStats, Match } from "../../types";
 import CalculatorTemplate from "../../components/LeagueTemplate/CalculatorTemplate";
 import { LEAGUE_CONFIGS } from "../../components/LeagueTemplate/types";
 

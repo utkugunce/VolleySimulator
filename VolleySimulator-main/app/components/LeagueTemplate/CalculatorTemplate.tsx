@@ -3,7 +3,8 @@
 import { useEffect, useState, useMemo, useRef } from "react";
 import { TeamStats, Match, Achievement } from "../../types";
 
-import { useToast, AchievementToast, AchievementsPanel } from "..";
+import { useToast } from "../Toast";
+import { AchievementToast, AchievementsPanel } from "../Achievements";
 import StandingsTable from "../Calculator/StandingsTable";
 import FixtureList from "../Calculator/FixtureList";
 import ShareButton from "../ShareButton";
@@ -58,7 +59,7 @@ export default function CalculatorTemplate({ config, initialTeams, initialMatche
     // Derived Data based on active group (if hasGroups)
     const currentMatches = useMemo(() => {
         if (!config.hasGroups) return allMatches;
-        return allMatches.filter(m => !activeGroup || (m as any).groupName === activeGroup); // Type cast for groupName as it might not be on standard Match interface strictly? Actually Match usually has it
+        return allMatches.filter(m => !activeGroup || (m as any).groupName === activeGroup);
     }, [allMatches, config.hasGroups, activeGroup]);
 
     const currentTeams = useMemo(() => {
@@ -154,8 +155,6 @@ export default function CalculatorTemplate({ config, initialTeams, initialMatche
     const initialRanks = useMemo(() => {
         const baseStandings = calculateLiveStandings(currentTeams, currentMatches, {});
         // Sort by points/wins etc to get rank
-        // Re-sorting logic usually inside calculateLiveStandings but let's assume it returns derived structure
-        // Actually calculateLiveStandings returns sorted array
         const map = new Map<string, number>();
         baseStandings.forEach((t, i) => map.set(t.name, i + 1));
         return map;
@@ -216,19 +215,16 @@ export default function CalculatorTemplate({ config, initialTeams, initialMatche
                         <StandingsTable
                             teams={standings}
                             playoffSpots={config.playoffSpots}
-                            secondaryPlayoffSpots={config.secondaryPlayoffSpots}
                             relegationSpots={config.relegationSpots}
                             initialRanks={initialRanks}
                         />
 
-                        {/* Achievements Panel if needed */}
+                        {/* Achievements Panel */}
                         {showAchievements && (
                             <div className="absolute inset-0 bg-slate-950/90 z-50 flex items-center justify-center p-4">
                                 <AchievementsPanel
+                                    isOpen={showAchievements}
                                     onClose={() => setShowAchievements(false)}
-                                    userStats={gameState.stats}
-                                    achievements={Object.values(ACHIEVEMENTS) as Achievement[]}
-                                    unlockedAchievements={gameState.unlockedAchievements}
                                 />
                             </div>
                         )}

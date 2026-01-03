@@ -3,7 +3,8 @@
 import { useState, useMemo } from "react";
 
 import TeamAvatar from "@/app/components/TeamAvatar";
-import { LeagueActionBar, LEAGUE_CONFIGS } from "../../components/LeagueTemplate";
+import LeagueActionBar from "../../components/LeagueTemplate/LeagueActionBar";
+import { LEAGUE_CONFIGS } from "../../components/LeagueTemplate/types";
 
 interface CEVCupMatch {
     id: number;

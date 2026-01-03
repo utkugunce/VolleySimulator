@@ -6,7 +6,8 @@ import { TeamStats, Match } from "../../types";
 import StandingsTable from "../../components/Calculator/StandingsTable";
 import { sortStandings } from "../../utils/calculatorUtils";
 import TeamAvatar from "@/app/components/TeamAvatar";
-import { LeagueActionBar, LEAGUE_CONFIGS } from "../../components/LeagueTemplate";
+import LeagueActionBar from "../../components/LeagueTemplate/LeagueActionBar";
+import { LEAGUE_CONFIGS } from "../../components/LeagueTemplate/types";
 
 interface VSLDetailedClientProps {
     initialTeams: TeamStats[];

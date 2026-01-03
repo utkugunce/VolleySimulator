@@ -26,6 +26,11 @@ export interface LeagueData {
     pools?: string[];
 }
 
+export interface LeaguePageProps {
+    config: LeagueConfig;
+    initialData?: LeagueData;
+}
+
 // ... (skipping theme colors) ...
 
 // Pre-defined league configurations
