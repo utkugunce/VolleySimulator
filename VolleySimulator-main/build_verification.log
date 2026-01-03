@@ -1,0 +1,24 @@
+
+> web_app@0.1.0 build
+> next build
+
+▲ Next.js 16.1.1 (Turbopack)
+- Experiments (use with caution):
+  · optimizePackageImports
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 3.8s
+  Running TypeScript ...
+Failed to compile.
+
+./app/context/QuestsContext.tsx:78:64
+Type error: Property 'completed' does not exist on type 'Badge'.
+
+[0m [90m 76 |[39m           [90m// but API returns 'badges' which likely contains status.[39m
+ [90m 77 |[39m           [90m// For now, filtering if structure supports it, or setting empty if separate property missing[39m
+[31m[1m>[22m[39m[90m 78 |[39m           setUnlockedBadges(data[33m.[39mbadges[33m.[39mfilter((b[33m:[39m [33mBadge[39m) [33m=>[39m b[33m.[39mcompleted) [33m||[39m [])[33m;[39m
+ [90m    |[39m                                                                [31m[1m^[22m[39m
+ [90m 79 |[39m         }
+ [90m 80 |[39m       } [36melse[39m {
+ [90m 81 |[39m         [36mthrow[39m [36mnew[39m [33mError[39m([32m'Failed to fetch quests'[39m)[33m;[39m[0m
+Next.js build worker exited with code: 1 and signal: null

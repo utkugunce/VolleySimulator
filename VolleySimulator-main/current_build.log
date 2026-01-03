@@ -1,0 +1,117 @@
+
+> web_app@0.1.0 build
+> next build
+
+▲ Next.js 16.1.1 (Turbopack)
+- Experiments (use with caution):
+  · optimizePackageImports
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 4.2s
+  Running TypeScript ...
+  Collecting page data using 15 workers ...
+⚠ Using edge runtime on a page currently disables static generation for that page
+  Generating static pages using 15 workers (0/84) ...
+  Generating static pages using 15 workers (21/84) 
+  Generating static pages using 15 workers (42/84) 
+  Generating static pages using 15 workers (63/84) 
+✓ Generating static pages using 15 workers (84/84) in 351.5ms
+  Finalizing page optimization ...
+
+Route (app)                                        Revalidate  Expire
+┌ ƒ /
+├ ƒ /_not-found
+├ ƒ /1lig/gunceldurum
+├ ƒ /1lig/playoffs
+├ ƒ /1lig/playoffs/[stage]/[groupId]
+├ ƒ /1lig/stats
+├ ƒ /1lig/tahminoyunu
+├ ƒ /2lig/group/[groupId]
+├ ƒ /2lig/gunceldurum
+├ ƒ /2lig/playoffs
+├ ƒ /2lig/playoffs/[stage]/[groupId]
+├ ƒ /2lig/stats
+├ ƒ /2lig/tahminoyunu
+├ ƒ /anasayfa
+├ ○ /api/1lig                                              5m      1y
+├ ƒ /api/ai/analysis
+├ ƒ /api/ai/prediction
+├ ƒ /api/calculate
+├ ƒ /api/cev-challenge
+├ ƒ /api/cev-cl
+├ ƒ /api/cev-cup
+├ ƒ /api/cron/update-results
+├ ƒ /api/custom-leagues
+├ ƒ /api/custom-leagues/join
+├ ƒ /api/friends
+├ ƒ /api/friends/requests
+├ ƒ /api/friends/search
+├ ƒ /api/leaderboard
+├ ƒ /api/live
+├ ƒ /api/live/[matchId]/comments
+├ ƒ /api/live/[matchId]/comments/[commentId]/like
+├ ƒ /api/notifications
+├ ƒ /api/notifications/preferences
+├ ƒ /api/notifications/subscribe
+├ ƒ /api/predict-all
+├ ƒ /api/predictions
+├ ƒ /api/push/subscribe
+├ ƒ /api/push/unsubscribe
+├ ƒ /api/quests
+├ ƒ /api/refresh
+├ ƒ /api/results/sync
+├ ƒ /api/scrape
+├ ƒ /api/user/profile
+├ ○ /api/vsl                                               5m      1y
+├ ƒ /auth/auth-code-error
+├ ƒ /auth/callback
+├ ƒ /ayarlar
+├ ƒ /cev-challenge
+├ ƒ /cev-challenge/anasayfa
+├ ƒ /cev-challenge/gunceldurum
+├ ƒ /cev-challenge/playoffs
+├ ƒ /cev-challenge/stats
+├ ƒ /cev-challenge/tahminoyunu
+├ ƒ /cev-cl/anasayfa
+├ ƒ /cev-cl/gunceldurum
+├ ƒ /cev-cl/playoffs
+├ ƒ /cev-cl/stats
+├ ƒ /cev-cl/tahminoyunu
+├ ƒ /cev-cup
+├ ƒ /cev-cup/anasayfa
+├ ƒ /cev-cup/gunceldurum
+├ ƒ /cev-cup/playoffs
+├ ƒ /cev-cup/stats
+├ ƒ /cev-cup/tahminoyunu
+├ ƒ /custom-leagues
+├ ƒ /dashboard
+├ ƒ /friends
+├ ƒ /leaderboard
+├ ƒ /ligler
+├ ƒ /live
+├ ƒ /login
+├ ƒ /notifications
+├ ƒ /oauth/consent
+├ ƒ /offline
+├ ƒ /opengraph-image
+├ ƒ /premium
+├ ƒ /profile
+├ ƒ /quests
+├ ƒ /register
+├ ○ /robots.txt
+├ ƒ /scenario-standings
+├ ƒ /simulation
+├ ○ /sitemap.xml
+├ ƒ /stats
+├ ƒ /stats/advanced
+├ ƒ /takimlar/[teamSlug]
+├ ƒ /tournament-predictions
+├ ƒ /vsl/gunceldurum
+├ ƒ /vsl/playoffs
+├ ƒ /vsl/stats
+└ ƒ /vsl/tahminoyunu
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

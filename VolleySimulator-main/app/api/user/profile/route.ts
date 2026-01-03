@@ -1,18 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerSupabaseClient } from '../../../utils/supabase-server';
+import { withAuth } from '@/lib/api-middleware';
+import { z } from 'zod';
+
+const ProfileUpdateSchema = z.object({
+    display_name: z.string().min(2).max(50).optional(),
+    avatar_url: z.string().url().optional().or(z.literal('')),
+    favorite_team: z.string().optional()
+});
 
 // GET - Fetch user profile
-export async function GET() {
-    try {
+export async function GET(request: NextRequest) {
+    return withAuth(request, async (req, { user }) => {
         const supabase = await createServerSupabaseClient();
-        const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-        if (authError || !user) {
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-        }
 
         // Get profile
-        const { data: profile, error: profileError } = await supabase
+        const { data: profile } = await supabase
             .from('user_profiles')
             .select('*')
             .eq('id', user.id)
@@ -61,33 +64,27 @@ export async function GET() {
             rank,
             recentPredictions: recentPredictions || []
         });
-    } catch (error) {
-        console.error('Profile GET error:', error);
-        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-    }
+    });
 }
 
 // PUT - Update user profile
 export async function PUT(request: NextRequest) {
-    try {
+    return withAuth(request, async (req, { user }) => {
         const supabase = await createServerSupabaseClient();
-        const { data: { user }, error: authError } = await supabase.auth.getUser();
+        const body = await req.json();
 
-        if (authError || !user) {
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-        }
-
-        const body = await request.json();
-        const allowedFields = ['display_name', 'avatar_url', 'favorite_team'];
-
-        const updates: Record<string, any> = {};
-        for (const field of allowedFields) {
-            if (body[field] !== undefined) {
-                updates[field] = body[field];
+        // Validate input with Zod
+        let validatedData;
+        try {
+            validatedData = ProfileUpdateSchema.parse(body);
+        } catch (error) {
+            if (error instanceof z.ZodError) {
+                return NextResponse.json({ error: 'Invalid data', details: error.errors }, { status: 400 });
             }
+            throw error;
         }
 
-        if (Object.keys(updates).length === 0) {
+        if (Object.keys(validatedData).length === 0) {
             return NextResponse.json({ error: 'No valid fields to update' }, { status: 400 });
         }
 
@@ -95,7 +92,7 @@ export async function PUT(request: NextRequest) {
             .from('user_profiles')
             .upsert({
                 id: user.id,
-                ...updates,
+                ...validatedData,
                 updated_at: new Date().toISOString()
             })
             .select()
@@ -107,16 +104,13 @@ export async function PUT(request: NextRequest) {
         }
 
         // Also update display_name in leaderboard
-        if (updates.display_name) {
+        if (validatedData.display_name) {
             await supabase
                 .from('leaderboard')
-                .update({ display_name: updates.display_name })
+                .update({ display_name: validatedData.display_name })
                 .eq('user_id', user.id);
         }
 
         return NextResponse.json({ success: true, profile: data });
-    } catch (error) {
-        console.error('Profile PUT error:', error);
-        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-    }
+    });
 }

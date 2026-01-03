@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createServerSupabaseClient } from '../../utils/supabase-server';
-import { createRateLimiter } from '../../utils/rateLimit';
+import { withAuth } from '@/lib/api-middleware';
 
 // Validation schemas
 const PredictionInputSchema = z.object({
@@ -26,24 +26,12 @@ export interface PredictionInput {
     predictedScore: string;
 }
 
-// Rate limiter: 60 requests per minute per user
-const rateLimiter = createRateLimiter({ requests: 60, windowMs: 60000 });
-
 // GET - Fetch user's predictions
 export async function GET(request: NextRequest) {
-    try {
-        // Apply rate limiting
-        const limitResponse = rateLimiter(request);
-        if (limitResponse) return limitResponse;
-
+    return withAuth(request, async (req, { user }) => {
         const supabase = await createServerSupabaseClient();
-        const { data: { user }, error: authError } = await supabase.auth.getUser();
 
-        if (authError || !user) {
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-        }
-
-        const { searchParams } = new URL(request.url);
+        const { searchParams } = new URL(req.url);
         const league = searchParams.get('league');
         const groupName = searchParams.get('group');
 
@@ -64,27 +52,14 @@ export async function GET(request: NextRequest) {
         }
 
         return NextResponse.json({ predictions: data });
-    } catch (error) {
-        console.error('Predictions GET error:', error);
-        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-    }
+    }, { rateLimit: { limit: 60, windowMs: 60000 } });
 }
 
 // POST - Create or update predictions (batch)
 export async function POST(request: NextRequest) {
-    try {
-        // Apply rate limiting
-        const limitResponse = rateLimiter(request);
-        if (limitResponse) return limitResponse;
-
+    return withAuth(request, async (req, { user }) => {
         const supabase = await createServerSupabaseClient();
-        const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-        if (authError || !user) {
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-        }
-
-        const body = await request.json();
+        const body = await req.json();
         const predictions: PredictionInput[] = Array.isArray(body) ? body : [body];
 
         if (predictions.length === 0) {
@@ -136,23 +111,14 @@ export async function POST(request: NextRequest) {
             saved: data?.length || 0,
             message: `${data?.length || 0} tahmin kaydedildi`
         });
-    } catch (error) {
-        console.error('Predictions POST error:', error);
-        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-    }
+    }, { rateLimit: { limit: 60, windowMs: 60000 } });
 }
 
 // DELETE - Remove a prediction
 export async function DELETE(request: NextRequest) {
-    try {
+    return withAuth(request, async (req, { user }) => {
         const supabase = await createServerSupabaseClient();
-        const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-        if (authError || !user) {
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-        }
-
-        const { searchParams } = new URL(request.url);
+        const { searchParams } = new URL(req.url);
         const matchId = searchParams.get('matchId');
 
         if (!matchId) {
@@ -171,8 +137,6 @@ export async function DELETE(request: NextRequest) {
         }
 
         return NextResponse.json({ success: true });
-    } catch (error) {
-        console.error('Predictions DELETE error:', error);
-        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-    }
+    }, { rateLimit: { limit: 60, windowMs: 60000 } });
 }
+

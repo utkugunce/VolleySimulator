@@ -31,7 +31,7 @@ export function createRateLimiter(config: RateLimitConfig) {
         if (limit.count >= config.requests) {
             return NextResponse.json(
                 { error: 'Çok fazla istek. Lütfen daha sonra tekrar deneyin.' },
-                { 
+                {
                     status: 429,
                     headers: {
                         'Retry-After': String(Math.ceil((limit.resetTime - now) / 1000))
@@ -69,7 +69,7 @@ let cleanupInterval: NodeJS.Timeout | null = null;
 export function startRateLimitCleanup(intervalMs = 60000) {
     // Prevent multiple intervals
     if (cleanupInterval) return;
-    
+
     cleanupInterval = setInterval(() => {
         const now = Date.now();
         for (const [key, limit] of rateLimits.entries()) {
@@ -78,7 +78,7 @@ export function startRateLimitCleanup(intervalMs = 60000) {
             }
         }
     }, intervalMs);
-    
+
     // Don't block Node.js from exiting
     if (cleanupInterval.unref) {
         cleanupInterval.unref();
@@ -86,6 +86,33 @@ export function startRateLimitCleanup(intervalMs = 60000) {
 }
 
 // Auto-start cleanup when module is loaded
+// Auto-start cleanup when module is loaded
 if (typeof window === 'undefined') {
     startRateLimitCleanup();
 }
+
+// Export a direct check function for use in middleware
+export async function checkRateLimit(identifier: string, limit: number, windowMs: number): Promise<{ success: boolean; retryAfter?: number }> {
+    const key = `${identifier}`;
+    const now = Date.now();
+    const entry = rateLimits.get(key);
+
+    if (!entry || now > entry.resetTime) {
+        rateLimits.set(key, {
+            count: 1,
+            resetTime: now + windowMs
+        });
+        return { success: true };
+    }
+
+    if (entry.count >= limit) {
+        return {
+            success: false,
+            retryAfter: Math.ceil((entry.resetTime - now) / 1000)
+        };
+    }
+
+    entry.count++;
+    return { success: true };
+}
+

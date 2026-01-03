@@ -1,14 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/api-middleware';
+import { z } from 'zod';
+
+const LeagueConfigSchema = z.object({
+  allowedLeagues: z.array(z.string()),
+  scoringMultiplier: z.number().min(0.5).max(5).optional(),
+  showRankings: z.boolean().optional(),
+  allowChat: z.boolean().optional(),
+});
+
+const CreateLeagueSchema = z.object({
+  name: z.string().min(3).max(50),
+  description: z.string().max(200).optional(),
+  type: z.enum(['private', 'public']).default('private'),
+  maxMembers: z.number().min(2).max(1000).optional(),
+  settings: LeagueConfigSchema.optional(),
+});
+
+const UpdateLeagueSchema = z.object({
+  leagueId: z.string().min(1),
+  updates: CreateLeagueSchema.partial()
+});
 
 // GET /api/custom-leagues - Get user's custom leagues
 export async function GET(request: NextRequest) {
-  try {
-    const userId = request.headers.get('x-user-id');
-    
-    if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
+  return withAuth(request, async (req, { user }) => {
     // In production, fetch from Supabase
     const mockLeagues = [
       {
@@ -16,7 +32,7 @@ export async function GET(request: NextRequest) {
         name: 'Ofis Ligi',
         description: 'Şirket içi voleybol tahmin yarışması',
         type: 'private',
-        ownerId: userId,
+        ownerId: user.id,
         inviteCode: 'OFIS2024',
         maxMembers: 50,
         memberCount: 12,
@@ -54,27 +70,26 @@ export async function GET(request: NextRequest) {
     ];
 
     return NextResponse.json({ leagues: mockLeagues });
-  } catch (error) {
-    console.error('Error fetching custom leagues:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-  }
+  });
 }
 
 // POST /api/custom-leagues - Create a new custom league
 export async function POST(request: NextRequest) {
-  try {
-    const userId = request.headers.get('x-user-id');
-    
-    if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  return withAuth(request, async (req, { user }) => {
+    const body = await req.json();
+
+    // Validate with Zod
+    let validatedData;
+    try {
+      validatedData = CreateLeagueSchema.parse(body);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return NextResponse.json({ error: 'Invalid data', details: error.errors }, { status: 400 });
+      }
+      throw error;
     }
 
-    const body = await request.json();
-    const { name, description, type, maxMembers, settings } = body;
-
-    if (!name) {
-      return NextResponse.json({ error: 'League name is required' }, { status: 400 });
-    }
+    const { name, description, type, maxMembers, settings } = validatedData;
 
     // Generate invite code
     const inviteCode = Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -84,8 +99,8 @@ export async function POST(request: NextRequest) {
       id: `league-${Date.now()}`,
       name,
       description: description || '',
-      type: type || 'private',
-      ownerId: userId,
+      type: type,
+      ownerId: user.id,
       inviteCode,
       maxMembers: maxMembers || 50,
       memberCount: 1,
@@ -97,7 +112,7 @@ export async function POST(request: NextRequest) {
       },
       createdAt: new Date().toISOString(),
       members: [
-        { id: userId, username: 'you', displayName: 'Sen', role: 'owner', joinedAt: new Date().toISOString(), points: 0 }
+        { id: user.id, username: 'you', displayName: 'Sen', role: 'owner', joinedAt: new Date().toISOString(), points: 0 }
       ],
     };
 
@@ -106,27 +121,26 @@ export async function POST(request: NextRequest) {
       message: 'League created',
       league: newLeague,
     });
-  } catch (error) {
-    console.error('Error creating custom league:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-  }
+  });
 }
 
 // PUT /api/custom-leagues - Update a custom league
 export async function PUT(request: NextRequest) {
-  try {
-    const userId = request.headers.get('x-user-id');
-    
-    if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  return withAuth(request, async (req, { user }) => {
+    const body = await req.json();
+
+    // Validate with Zod
+    let validatedData;
+    try {
+      validatedData = UpdateLeagueSchema.parse(body);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return NextResponse.json({ error: 'Invalid data', details: error.errors }, { status: 400 });
+      }
+      throw error;
     }
 
-    const body = await request.json();
-    const { leagueId, updates } = body;
-
-    if (!leagueId) {
-      return NextResponse.json({ error: 'League ID is required' }, { status: 400 });
-    }
+    const { leagueId, updates } = validatedData;
 
     // In production, check ownership and update in Supabase
 
@@ -134,22 +148,13 @@ export async function PUT(request: NextRequest) {
       success: true,
       message: 'League updated',
     });
-  } catch (error) {
-    console.error('Error updating custom league:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-  }
+  });
 }
 
 // DELETE /api/custom-leagues - Delete a custom league
 export async function DELETE(request: NextRequest) {
-  try {
-    const userId = request.headers.get('x-user-id');
-    
-    if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    const { searchParams } = new URL(request.url);
+  return withAuth(request, async (req, { user }) => {
+    const { searchParams } = new URL(req.url);
     const leagueId = searchParams.get('id');
 
     if (!leagueId) {
@@ -162,8 +167,5 @@ export async function DELETE(request: NextRequest) {
       success: true,
       message: 'League deleted',
     });
-  } catch (error) {
-    console.error('Error deleting custom league:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-  }
+  });
 }
