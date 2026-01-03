@@ -67,19 +67,19 @@ export default function TeamProfileClient({ teamSlug }: TeamProfileClientProps) 
                         const data = await res.json();
 
                         // Check if team exists in this league
-                        const hasTeam = data.standings?.some((team: TeamStats) =>
+                        const hasTeam = data.teams?.some((team: TeamStats) =>
                             matchesTeam(team.name, teamName)
                         );
 
-                        if (hasTeam || data.fixtures?.some((m: Match) =>
+                        if (hasTeam || data.fixture?.some((m: Match) =>
                             matchesTeam(m.homeTeam || '', teamName) ||
                             matchesTeam(m.awayTeam || '', teamName)
                         )) {
                             results.push({
                                 league,
                                 leagueName: getLeagueName(league),
-                                standings: data.standings || [],
-                                fixtures: data.fixtures || [],
+                                standings: data.teams || [],
+                                fixtures: data.fixture || [],
                             });
                         }
                     } catch {
