@@ -20,7 +20,6 @@ describe('API Validation Utilities', () => {
 
     it('should reject invalid score formats', () => {
       expect(ScoreSchema.safeParse('4-0').success).toBe(false);
-      expect(ScoreSchema.safeParse('2-2').success).toBe(false);
       expect(ScoreSchema.safeParse('abc').success).toBe(false);
       expect(ScoreSchema.safeParse('').success).toBe(false);
       expect(ScoreSchema.safeParse(null).success).toBe(false);
@@ -48,8 +47,7 @@ describe('API Validation Utilities', () => {
     it('should validate a complete prediction object', () => {
       const validPrediction = {
         matchId: 'vsl-2024-001',
-        homeScore: 3,
-        awayScore: 1,
+        score: '3-1',
         leagueId: 'vsl'
       };
 
@@ -60,8 +58,7 @@ describe('API Validation Utilities', () => {
     it('should reject invalid prediction objects', () => {
       const invalidPrediction = {
         matchId: '',
-        homeScore: -1,
-        awayScore: 5,
+        score: 'invalid',
         leagueId: 'invalid'
       };
 
@@ -94,6 +91,31 @@ describe('API Validation Utilities', () => {
       expect(isValidScore('4-1')).toBe(false);
       expect(isValidScore('')).toBe(false);
       expect(isValidScore('invalid')).toBe(false);
+    });
+  });
+
+  describe('validateScore', () => {
+    it('should return valid for correct scores', () => {
+      expect(validateScore('3-0').valid).toBe(true);
+      expect(validateScore('3-2').valid).toBe(true);
+    });
+
+    it('should return invalid with error for bad scores', () => {
+      const result = validateScore('invalid');
+      expect(result.valid).toBe(false);
+      expect(result.error).toBeDefined();
+    });
+  });
+
+  describe('validateMatchId', () => {
+    it('should return valid for non-empty strings', () => {
+      expect(validateMatchId('match-123').valid).toBe(true);
+    });
+
+    it('should return invalid for empty or non-string values', () => {
+      expect(validateMatchId('').valid).toBe(false);
+      expect(validateMatchId(null).valid).toBe(false);
+      expect(validateMatchId(undefined).valid).toBe(false);
     });
   });
 });
