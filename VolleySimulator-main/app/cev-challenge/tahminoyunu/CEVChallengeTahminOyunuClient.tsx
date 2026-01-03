@@ -27,13 +27,14 @@ interface CEVChallengeData {
     fixture: Match[];
 }
 
-const ROUNDS = ["Qualification Rounds", "Main Round", "4th Finals", "Semi Finals", "Finals"];
+const ROUNDS = ["Qualification Rounds", "Main Round", "4th Finals", "Semi Finals", "Finals", "Final Phase"];
 const ROUND_LABELS: Record<string, string> = {
     "Qualification Rounds": "Eleme Turları",
     "Main Round": "Ana Tablo",
     "4th Finals": "Çeyrek Final",
     "Semi Finals": "Yarı Final",
-    "Finals": "Final"
+    "Finals": "Final",
+    "Final Phase": "Final Aşaması"
 };
 
 const TURKISH_TEAMS = ["Galatasaray Daikin ISTANBUL", "Kuzeyboru", "THY ISTANBUL"];

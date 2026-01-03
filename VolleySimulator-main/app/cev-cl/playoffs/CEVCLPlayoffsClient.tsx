@@ -18,9 +18,23 @@ interface CEVCLPlayoffsClientProps {
 }
 
 export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CEVCLPlayoffsClientProps) {
-    // No loading state needed for base data since it's passed from server
-    const [baseTeams] = useState<TeamStats[]>(initialTeams);
-    const [allMatches] = useState<Match[]>(initialMatches);
+    // ONE-TIME Normalization to match Calculator Client keys (TR Uppercase)
+    const [baseTeams] = useState<TeamStats[]>(() =>
+        initialTeams.map(t => ({
+            ...t,
+            name: t.name.toLocaleUpperCase('tr-TR'),
+            groupName: t.groupName.replace('Pool ', '') + ' GRUBU' // Match Calculator style
+        }))
+    );
+
+    const [allMatches] = useState<Match[]>(() =>
+        initialMatches.map(m => ({
+            ...m,
+            homeTeam: m.homeTeam.toLocaleUpperCase('tr-TR'),
+            awayTeam: m.awayTeam.toLocaleUpperCase('tr-TR'),
+            groupName: typeof m.groupName === 'string' ? m.groupName.replace('Pool ', '') + ' GRUBU' : m.groupName
+        }))
+    );
 
     const [groupOverrides, setGroupOverrides] = useState<Record<string, string>>({});
     const [remainingMatches, setRemainingMatches] = useState(0);
@@ -49,27 +63,29 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
         setIsLoaded(true);
     }, []);
 
-    // Check remaining matches on mount (and when overrides change)
+    // Check remaining matches
     useEffect(() => {
         let remaining = allMatches.filter((m: Match) => !m.isPlayed).length;
         if (groupOverrides) {
-            remaining = Math.max(0, remaining - Object.keys(groupOverrides).length);
+            const predictedCount = allMatches.filter(m => !m.isPlayed && groupOverrides[`${m.homeTeam}-${m.awayTeam}`]).length;
+            remaining = Math.max(0, remaining - predictedCount);
         }
         setRemainingMatches(remaining);
     }, [allMatches, groupOverrides]);
 
 
-    // Calculate live standings using predictions and group by pool
+    // Calculate live standings
     const pools = useMemo(() => {
         if (!baseTeams.length) return [];
 
-        const poolNames = ["Pool A", "Pool B", "Pool C", "Pool D", "Pool E"];
+        const poolNames = ["A GRUBU", "B GRUBU", "C GRUBU", "D GRUBU", "E GRUBU"];
         const calculatedTeams = calculateLiveStandings(baseTeams, allMatches, groupOverrides);
 
         return poolNames.map(poolName => {
             const poolTeams = calculatedTeams
                 .filter((t: TeamStats) => t.groupName === poolName)
                 .sort((a: TeamStats, b: TeamStats) => {
+                    if (b.wins !== a.wins) return b.wins - a.wins;
                     if (b.points !== a.points) return b.points - a.points;
                     const aRatio = a.setsLost > 0 ? a.setsWon / a.setsLost : a.setsWon;
                     const bRatio = b.setsLost > 0 ? b.setsWon / b.setsLost : b.setsWon;
@@ -79,12 +95,18 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
         });
     }, [baseTeams, allMatches, groupOverrides]);
 
-    // Save overrides when changed
+    // Save overrides
     useEffect(() => {
         if (isLoaded) {
             localStorage.setItem('cevclPlayoffScenarios', JSON.stringify(playoffOverrides));
         }
     }, [playoffOverrides, isLoaded]);
+
+    useEffect(() => {
+        if (isLoaded) {
+            localStorage.setItem('cevclGroupScenarios', JSON.stringify(groupOverrides));
+        }
+    }, [groupOverrides, isLoaded]);
 
     const isGroupsComplete = remainingMatches === 0;
 
@@ -98,12 +120,32 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
         setPlayoffOverrides(newOverrides);
     };
 
+    const handlePredictAll = () => {
+        const newGroupOverrides = { ...groupOverrides };
+        const possibleScores = ['3-0', '3-1', '3-2', '2-3', '1-3', '0-3'];
+
+        let addedCount = 0;
+        allMatches.forEach(m => {
+            if (!m.isPlayed) {
+                const key = `${m.homeTeam}-${m.awayTeam}`;
+                if (!newGroupOverrides[key]) {
+                    newGroupOverrides[key] = possibleScores[Math.floor(Math.random() * possibleScores.length)];
+                    addedCount++;
+                }
+            }
+        });
+
+        if (addedCount > 0) {
+            setGroupOverrides(newGroupOverrides);
+        }
+    };
+
     // Get pool winners and runners-up
     const poolWinners = pools.map(p => p.teams[0]?.name || null);
     const poolRunnersUp = pools.map(p => p.teams[1]?.name || null);
     const poolThirds = pools.map(p => p.teams[2]?.name || null);
 
-    // Rank pool winners (simplified - based on points)
+    // Rank pool winners
     const rankedWinners = pools
         .map((p, idx) => ({ name: p.teams[0]?.name, points: p.teams[0]?.points || 0, poolIdx: idx }))
         .sort((a, b) => b.points - a.points);
@@ -128,7 +170,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
         if (h === 3 && a === 2) return { home: 2, away: 1 };
         if (h === 2 && a === 3) return { home: 1, away: 2 };
         if ((h === 0 || h === 1) && a === 3) return { home: 0, away: 3 };
-        return { home: 0, away: 0 }; // Should be unreachable for valid volleyball scores
+        return { home: 0, away: 0 };
     };
 
     const calculateLegacyResult = (matchId: string, homeTeam: string | null, awayTeam: string | null, matchFormat: '2leg' | '1match') => {
@@ -159,7 +201,6 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
         if (totalHome > totalAway) return { winner: homeTeam, loser: awayTeam, goldenSetNeeded: false };
         if (totalAway > totalHome) return { winner: awayTeam, loser: homeTeam, goldenSetNeeded: false };
 
-        // Equal points -> Golden Set
         if (golden === 'home') return { winner: homeTeam, loser: awayTeam, goldenSetNeeded: true };
         if (golden === 'away') return { winner: awayTeam, loser: homeTeam, goldenSetNeeded: true };
 
@@ -174,7 +215,6 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
         return calculateLegacyResult(matchId, homeTeam, awayTeam, matchFormat).loser;
     };
 
-    // Randomize for CEV CL
     const randomizeCEVMatch = (matchId: string, matchFormat: '2leg' | '1match') => {
         const newOverrides = { ...playoffOverrides };
         const possibleScores = ['3-0', '3-1', '3-2', '2-3', '1-3', '0-3'];
@@ -186,8 +226,6 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
             const s2 = possibleScores[Math.floor(Math.random() * possibleScores.length)];
             newOverrides[`${matchId}-m2`] = s2;
 
-            // Should we add a golden set?
-            // Simple logic: check if randomized scores trigger it
             const p1 = getMatchPoints(s1);
             const p2 = getMatchPoints(s2);
             if (p1 && p2) {
@@ -203,7 +241,6 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
         setPlayoffOverrides(newOverrides);
     };
 
-    // matchFormat: '2leg' = 2-leg knockout (home & away), '1match' = single match
     const renderBracketMatch = (matchId: string, homeTeam: string | null, awayTeam: string | null, label: string, matchFormat: '2leg' | '1match' = '2leg') => {
         const result = calculateLegacyResult(matchId, homeTeam, awayTeam, matchFormat);
         const homeSeriesWin = result.winner === homeTeam;
@@ -332,7 +369,6 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
         );
     };
 
-    // Playoff 6 pairings (6 teams: 5 runners-up + best 3rd)
     const playoff6_1_home = bestThird;
     const playoff6_1_away = rankedRunnersUp[0]?.name || null;
     const playoff6_2_home = rankedRunnersUp[4]?.name || null;
@@ -344,7 +380,6 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
     const playoff6_2_winner = getWinner('cevcl-po6-2', playoff6_2_home, playoff6_2_away);
     const playoff6_3_winner = getWinner('cevcl-po6-3', playoff6_3_home, playoff6_3_away);
 
-    // Quarterfinals pairings
     const qf1_home = playoff6_1_winner;
     const qf1_away = rankedWinners[2]?.name || null;
     const qf2_home = playoff6_2_winner;
@@ -359,7 +394,6 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
     const qf3_winner = getWinner('cevcl-qf-3', qf3_home, qf3_away);
     const qf4_winner = getWinner('cevcl-qf-4', qf4_home, qf4_away);
 
-    // Final Four
     const sf1_winner = getWinner('cevcl-sf-1', qf1_winner, qf2_winner, '1match');
     const sf2_winner = getWinner('cevcl-sf-2', qf3_winner, qf4_winner, '1match');
     const sf1_loser = getLoser('cevcl-sf-1', qf1_winner, qf2_winner, '1match');
@@ -378,15 +412,24 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                 </div>
 
                 {!isGroupsComplete && (
-                    <div className="bg-blue-500/10 border border-blue-500/20 text-blue-200 p-4 rounded-lg flex items-center gap-3">
-                        <span className="text-2xl">⚠️</span>
-                        <div>
-                            <p className="font-bold text-sm">Havuz Etabı Henüz Tamamlanmadı</p>
-                            <p className="text-xs opacity-70">
-                                Play-Off senaryoları mevcut sıralamaya göre hesaplanmaktadır.
-                                Kesin sonuçlar için önce tüm havuz maçlarını tahmin edin.
-                            </p>
+                    <div className="bg-blue-500/10 border border-blue-500/20 text-blue-200 p-4 rounded-lg flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-3">
+                            <span className="text-2xl">⚠️</span>
+                            <div>
+                                <p className="font-bold text-sm">Havuz Etabı Henüz Tamamlanmadı</p>
+                                <p className="text-xs opacity-70">
+                                    Play-Off senaryoları mevcut sıralamaya göre hesaplanmaktadır.
+                                    Kesin sonuçlar için önce tüm havuz maçlarını tahmin edin.
+                                </p>
+                            </div>
                         </div>
+                        <button
+                            onClick={handlePredictAll}
+                            className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded flex items-center gap-1 transition-colors whitespace-nowrap"
+                        >
+                            <span>🎲</span>
+                            Tümünü Tahmin Et
+                        </button>
                     </div>
                 )}
 
@@ -401,9 +444,17 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                             <p className="text-blue-400 font-medium">
                                 {remainingMatches} maç eksik
                             </p>
-                            <Link href="/cev-cl/tahminoyunu" className="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg transition-colors">
-                                Tahminleri Tamamla →
-                            </Link>
+                            <div className="flex gap-2 mt-4">
+                                <Link href="/cev-cl/tahminoyunu" className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-lg transition-colors border border-slate-700">
+                                    Tahminlere Git →
+                                </Link>
+                                <button
+                                    onClick={handlePredictAll}
+                                    className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg transition-colors shadow-lg shadow-blue-600/20"
+                                >
+                                    🎲 Tümünü Tahmin Et ({remainingMatches})
+                                </button>
+                            </div>
                         </div>
                     )}
 
@@ -434,17 +485,6 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                                     </div>
                                 ))}
                             </div>
-                            <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
-                                <div className="bg-emerald-500/10 border border-emerald-500/20 rounded p-2 text-emerald-400 text-center">
-                                    🏆 Havuz Birincileri → Çeyrek Final (Direkt)
-                                </div>
-                                <div className="bg-amber-500/10 border border-amber-500/20 rounded p-2 text-amber-400 text-center">
-                                    📈 Havuz İkincileri + En İyi 3. → Playoff 6
-                                </div>
-                                <div className="bg-slate-500/10 border border-slate-500/20 rounded p-2 text-slate-400 text-center">
-                                    📉 Diğer 3.'ler → CEV Cup'a Transfer
-                                </div>
-                            </div>
                         </div>
 
                         {/* PLAYOFF 6 */}
@@ -454,17 +494,10 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                                 Playoff 6
                                 <span className="text-xs text-amber-400 ml-auto">Şubat 2026</span>
                             </h2>
-                            <p className="text-xs text-slate-400 mb-4">
-                                5 havuz ikincisi + en iyi havuz 3.'sü (6 takım). Kazananlar Çeyrek Finale yükselir.
-                            </p>
-
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 {renderBracketMatch('cevcl-po6-1', playoff6_1_home, playoff6_1_away, 'Tie 1: En İyi 3. vs 1. İkinci')}
                                 {renderBracketMatch('cevcl-po6-2', playoff6_2_home, playoff6_2_away, 'Tie 2: 5. İkinci vs 2. İkinci')}
                                 {renderBracketMatch('cevcl-po6-3', playoff6_3_home, playoff6_3_away, 'Tie 3: 4. İkinci vs 3. İkinci')}
-                            </div>
-                            <div className="text-[10px] text-slate-500 mt-3 bg-slate-900/50 p-2 rounded">
-                                ℹ️ 2 ayaklı (home & away) eleme turu. Berabere kalınırsa Golden Set oynanır.
                             </div>
                         </div>
 
@@ -475,18 +508,11 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                                 Çeyrek Final
                                 <span className="text-xs text-blue-400 ml-auto">Mart 2026</span>
                             </h2>
-                            <p className="text-xs text-slate-400 mb-4">
-                                5 havuz birincisi + 3 Playoff 6 kazananı (8 takım)
-                            </p>
-
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                                 {renderBracketMatch('cevcl-qf-1', qf1_home, qf1_away, 'QF1: PO6-1 K. vs 3. Birinci')}
                                 {renderBracketMatch('cevcl-qf-2', qf2_home, qf2_away, 'QF2: PO6-2 K. vs 2. Birinci')}
                                 {renderBracketMatch('cevcl-qf-3', qf3_home, qf3_away, 'QF3: 5. Birinci vs 4. Birinci')}
                                 {renderBracketMatch('cevcl-qf-4', qf4_home, qf4_away, 'QF4: PO6-3 K. vs 1. Birinci')}
-                            </div>
-                            <div className="text-[10px] text-slate-500 mt-3 bg-slate-900/50 p-2 rounded">
-                                ℹ️ 2 ayaklı (home & away) eleme turu. Berabere kalınırsa Golden Set oynanır.
                             </div>
                         </div>
 
@@ -497,51 +523,27 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                                 Final Four
                                 <span className="text-xs text-purple-400 ml-auto">2-3 Mayıs 2026</span>
                             </h2>
-                            <p className="text-xs text-slate-400 mb-4">
-                                Tek lokasyonda tekli maç formatında Yarı Final, 3.'lük ve Final
-                            </p>
 
                             <div className="flex gap-2 border-b border-purple-500/20 mb-6 overflow-x-auto pb-2">
-                                <button
-                                    onClick={() => setActiveTabFF('semi')}
-                                    className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTabFF === 'semi' ? 'bg-purple-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
-                                >
-                                    Yarı Final
-                                </button>
-                                <button
-                                    onClick={() => setActiveTabFF('final')}
-                                    className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTabFF === 'final' ? 'bg-amber-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
-                                >
-                                    Super Final
-                                </button>
-                                <button
-                                    onClick={() => setActiveTabFF('3rd')}
-                                    className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTabFF === '3rd' ? 'bg-slate-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
-                                >
-                                    3.'lük Maçı
-                                </button>
+                                <button onClick={() => setActiveTabFF('semi')} className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTabFF === 'semi' ? 'bg-purple-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}>Yarı Final</button>
+                                <button onClick={() => setActiveTabFF('final')} className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTabFF === 'final' ? 'bg-amber-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}>Super Final</button>
+                                <button onClick={() => setActiveTabFF('3rd')} className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTabFF === '3rd' ? 'bg-slate-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}>3.'lük Maçı</button>
                             </div>
 
                             <div className="min-h-[250px]">
                                 {activeTabFF === 'semi' && (
-                                    <div className="space-y-6">
-                                        <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Yarı Final (2 Mayıs - Tek Maç)</div>
-                                        <div className="grid md:grid-cols-2 gap-6">
-                                            {renderBracketMatch('cevcl-sf-1', qf1_winner, qf2_winner, 'SF1: QF1 K. vs QF2 K.', '1match')}
-                                            {renderBracketMatch('cevcl-sf-2', qf3_winner, qf4_winner, 'SF2: QF3 K. vs QF4 K.', '1match')}
-                                        </div>
+                                    <div className="grid md:grid-cols-2 gap-6">
+                                        {renderBracketMatch('cevcl-sf-1', qf1_winner, qf2_winner, 'SF1: QF1 K. vs QF2 K.', '1match')}
+                                        {renderBracketMatch('cevcl-sf-2', qf3_winner, qf4_winner, 'SF2: QF3 K. vs QF4 K.', '1match')}
                                     </div>
                                 )}
-
                                 {activeTabFF === 'final' && (
-                                    <div className="space-y-6">
-                                        <div className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">Super Final (3 Mayıs - Tek Maç)</div>
+                                    <div>
                                         <div className="max-w-md">
                                             {renderBracketMatch('cevcl-final', sf1_winner, sf2_winner, '🏆 ŞAMPİYONLUK FİNALİ', '1match')}
                                         </div>
-
                                         {finalWinner && (
-                                            <div className="bg-gradient-to-r from-amber-500/20 to-amber-600/10 border border-amber-500/30 rounded-lg p-6 text-center max-w-md animate-in fade-in zoom-in duration-500">
+                                            <div className="mt-4 bg-gradient-to-r from-amber-500/20 to-amber-600/10 border border-amber-500/30 rounded-lg p-6 text-center max-w-md animate-in fade-in zoom-in duration-500">
                                                 <div className="text-5xl mb-2">🏆</div>
                                                 <div className="text-sm text-amber-400 uppercase tracking-wider font-bold">CEV Şampiyonlar Ligi Kazananı</div>
                                                 <div className="text-3xl font-black text-white mt-1">{finalWinner}</div>
@@ -549,52 +551,13 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                                         )}
                                     </div>
                                 )}
-
                                 {activeTabFF === '3rd' && (
-                                    <div className="space-y-6">
-                                        <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">3.'lük Maçı (3 Mayıs - Tek Maç)</div>
+                                    <div>
                                         <div className="max-w-md">
                                             {renderBracketMatch('cevcl-3rd', sf1_loser, sf2_loser, '🥉 3. lük Mücadelesi', '1match')}
                                         </div>
-
-                                        {thirdPlaceWinner && (
-                                            <div className="bg-slate-800/50 border border-slate-600/30 rounded-lg p-4 text-center max-w-md">
-                                                <div className="text-2xl mb-1">🥉</div>
-                                                <div className="text-xs text-slate-400">3. Sıra</div>
-                                                <div className="text-xl font-bold text-white">{thirdPlaceWinner}</div>
-                                            </div>
-                                        )}
                                     </div>
                                 )}
-                            </div>
-                        </div>
-
-                        {/* Tournament Flow Info */}
-                        <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-6">
-                            <h2 className="text-lg font-bold text-emerald-400 mb-4 flex items-center gap-2">
-                                <span>📋</span> Turnuva Formatı
-                            </h2>
-                            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs">
-                                <div className="bg-slate-800 rounded-lg p-3">
-                                    <div className="font-bold text-amber-400 mb-1">Playoff 6</div>
-                                    <div className="text-slate-400">6 takım • 2 ayaklı</div>
-                                    <div className="text-slate-500 mt-1">Şubat 2026</div>
-                                </div>
-                                <div className="bg-slate-800 rounded-lg p-3">
-                                    <div className="font-bold text-blue-400 mb-1">Çeyrek Final</div>
-                                    <div className="text-slate-400">8 takım • 2 ayaklı</div>
-                                    <div className="text-slate-500 mt-1">Mart 2026</div>
-                                </div>
-                                <div className="bg-slate-800 rounded-lg p-3">
-                                    <div className="font-bold text-purple-400 mb-1">Yarı Final</div>
-                                    <div className="text-slate-400">4 takım • Tek maç</div>
-                                    <div className="text-slate-500 mt-1">2 Mayıs 2026</div>
-                                </div>
-                                <div className="bg-slate-800 rounded-lg p-3">
-                                    <div className="font-bold text-amber-400 mb-1">Super Final</div>
-                                    <div className="text-slate-400">2 takım • Tek maç</div>
-                                    <div className="text-slate-500 mt-1">3 Mayıs 2026</div>
-                                </div>
                             </div>
                         </div>
                     </div>

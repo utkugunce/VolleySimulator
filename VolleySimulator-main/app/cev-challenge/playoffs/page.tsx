@@ -22,6 +22,9 @@ export default async function CEVChallengePlayoffsPage() {
             };
 
             if (sourceData.phases) {
+                // Track leg numbers for matchups
+                const matchupLegs = new Map<string, number>();
+
                 sourceData.phases.forEach((phase: any) => {
                     const roundName = phase.name;
                     phase.matches.forEach((m: any) => {
@@ -29,10 +32,15 @@ export default async function CEVChallengePlayoffsPage() {
                         if (!teamsMap.has(m.homeTeam)) teamsMap.set(m.homeTeam, { name: m.homeTeam, country: '' });
                         if (!teamsMap.has(m.awayTeam)) teamsMap.set(m.awayTeam, { name: m.awayTeam, country: '' });
 
+                        // Determine leg
+                        const matchupKey = [m.homeTeam, m.awayTeam].sort().join(' vs ');
+                        const currentLeg = (matchupLegs.get(matchupKey) || 0) + 1;
+                        matchupLegs.set(matchupKey, currentLeg);
+
                         fixture.push({
                             id: matchCounter++,
                             round: roundName,
-                            leg: 1,
+                            leg: currentLeg,
                             date: m.date || 'TBD',
                             homeTeam: m.homeTeam,
                             awayTeam: m.awayTeam,
