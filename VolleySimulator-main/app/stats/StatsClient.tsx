@@ -28,51 +28,65 @@ export default function StatsClient({ initialTeams }: StatsClientProps) {
     const totalMatches = Math.floor(initialTeams.reduce((acc, t) => acc + t.played, 0) / 2);
     const avgPoints = totalTeams > 0 ? Math.round(initialTeams.reduce((acc, t) => acc + t.points, 0) / totalTeams) : 0;
 
-    const StatTile = ({ title, icon, teams, statKey, gradientFrom, gradientTo, suffix }: {
+    const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
         title: string; icon: string;
         teams: typeof teamsWithStats;
         statKey: 'losses' | 'wins' | 'setsWon' | 'setsLost' | 'points' | 'winRate';
-        gradientFrom: string;
-        gradientTo: string;
+        color: string;
+        gradient: string;
         suffix?: string;
-    }) => (
-        <div className="group bg-slate-900/60 backdrop-blur-sm rounded-xl border border-slate-800/50 overflow-hidden hover:border-slate-600/50 transition-all duration-200">
-            <div className={`bg-gradient-to-r ${gradientFrom} ${gradientTo} px-3 py-2 border-b border-white/10`}>
-                <h3 className="font-bold text-white text-xs flex items-center gap-2">
-                    <span className="text-base">{icon}</span>
-                    <span className="uppercase tracking-wide">{title}</span>
-                </h3>
-            </div>
-            <div className="p-2 space-y-0.5">
-                {teams.map((t, idx) => (
-                    <div
-                        key={t.name}
-                        className={`flex items-center justify-between gap-2 px-2 py-1.5 rounded-lg transition-all duration-150 ${idx === 0
-                            ? 'bg-gradient-to-r from-amber-500/10 to-transparent'
-                            : 'hover:bg-slate-800/50'
-                            }`}
-                    >
-                        <div className="flex items-center gap-2 flex-1 min-w-0">
-                            <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black ${idx === 0 ? 'bg-gradient-to-br from-amber-400 to-amber-600 text-white' :
-                                idx === 1 ? 'bg-gradient-to-br from-slate-300 to-slate-500 text-white' :
-                                    idx === 2 ? 'bg-gradient-to-br from-amber-600 to-amber-800 text-white' :
+    }) => {
+        const maxValue = Math.max(...teams.map(t => Number(t[statKey])), 1);
+
+        return (
+            <div className="bg-slate-950/50 backdrop-blur-md rounded-xl border border-slate-800/60 overflow-hidden hover:border-slate-700/80 transition-all duration-300 group shadow-lg hover:shadow-xl">
+                <div className={`${gradient} px-3 py-2.5 border-b border-white/10 relative overflow-hidden`}>
+                    {/* Gloss effect */}
+                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="flex items-center justify-between relative z-10">
+                        <h3 className="font-bold text-white text-xs uppercase tracking-wider flex items-center gap-2">
+                            <span className="text-base">{icon}</span> {title}
+                        </h3>
+                        <span className="text-[10px] font-bold text-white/80 bg-black/20 px-2 py-0.5 rounded-full backdrop-blur-sm border border-white/10">TOP 5</span>
+                    </div>
+                </div>
+
+                <div className="p-2 space-y-1.5">
+                    {teams.map((t, idx) => (
+                        <div
+                            key={t.name}
+                            className={`flex items-center gap-2.5 p-1.5 rounded-lg transition-all ${idx === 0 ? 'bg-gradient-to-r from-white/5 to-transparent border border-white/10' : 'hover:bg-white/5'
+                                }`}
+                        >
+                            <div className={`w-5 h-5 rounded flex items-center justify-center font-bold text-[10px] shadow-sm ${idx === 0 ? 'bg-amber-400 text-amber-950' :
+                                idx === 1 ? 'bg-slate-300 text-slate-800' :
+                                    idx === 2 ? 'bg-amber-700 text-amber-100' :
                                         'bg-slate-800 text-slate-500'
                                 }`}>
                                 {idx + 1}
                             </div>
                             <TeamAvatar name={t.name} size="xs" />
-                            <span className={`text-xs truncate ${idx === 0 ? 'text-white font-semibold' : 'text-slate-300'}`} title={t.name}>
-                                {t.name}
-                            </span>
+
+                            <div className="flex-1 min-w-0">
+                                <span className={`text-xs font-bold truncate block ${idx === 0 ? 'text-white' : 'text-slate-300'}`} title={t.name}>
+                                    {t.name}
+                                </span>
+                            </div>
+
+                            <div className="flex items-center gap-2 w-20 justify-end">
+                                <div className="h-1 bg-slate-800/50 rounded-full overflow-hidden flex-1 max-w-[40px]">
+                                    <div className={`h-full ${color} opacity-80`} style={{ width: `${Math.min((Number(t[statKey]) / maxValue) * 100, 100)}%` }}></div>
+                                </div>
+                                <span className={`text-xs font-bold min-w-[30px] text-right ${idx === 0 ? 'text-white' : 'text-slate-400'}`}>
+                                    {t[statKey]}{suffix}
+                                </span>
+                            </div>
                         </div>
-                        <span className={`text-sm font-black ${idx === 0 ? 'text-amber-400' : 'text-white'}`}>
-                            {t[statKey]}<span className="text-[10px] text-slate-500 ml-0.5">{suffix}</span>
-                        </span>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-        </div>
-    );
+        );
+    };
 
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-4 font-sans">
@@ -102,58 +116,58 @@ export default function StatsClient({ initialTeams }: StatsClientProps) {
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 pb-8">
-                    <StatTile
+                    <StatCard
                         title="En Çok Puan"
                         icon="💎"
                         teams={mostPoints}
                         statKey="points"
-                        gradientFrom="from-amber-600"
-                        gradientTo="to-orange-600"
+                        color="bg-amber-500"
+                        gradient="bg-gradient-to-r from-amber-600 to-orange-600"
                         suffix="P"
                     />
-                    <StatTile
+                    <StatCard
                         title="En Yüksek Galibiyet %"
                         icon="📈"
                         teams={bestWinRate}
                         statKey="winRate"
-                        gradientFrom="from-teal-600"
-                        gradientTo="to-emerald-600"
+                        color="bg-teal-500"
+                        gradient="bg-gradient-to-r from-teal-600 to-emerald-600"
                         suffix="%"
                     />
-                    <StatTile
+                    <StatCard
                         title="En Çok Set Alan"
                         icon="🏐"
                         teams={mostSets}
                         statKey="setsWon"
-                        gradientFrom="from-purple-600"
-                        gradientTo="to-pink-600"
+                        color="bg-purple-500"
+                        gradient="bg-gradient-to-r from-purple-600 to-pink-600"
                         suffix="Set"
                     />
-                    <StatTile
+                    <StatCard
                         title="En Az Mağlubiyet"
                         icon="🛡️"
                         teams={leastLosses}
                         statKey="losses"
-                        gradientFrom="from-emerald-600"
-                        gradientTo="to-cyan-600"
+                        color="bg-emerald-500"
+                        gradient="bg-gradient-to-r from-emerald-600 to-cyan-600"
                         suffix="M"
                     />
-                    <StatTile
+                    <StatCard
                         title="En Az Set Veren"
                         icon="🧱"
                         teams={leastSetsLost}
                         statKey="setsLost"
-                        gradientFrom="from-rose-600"
-                        gradientTo="to-red-600"
+                        color="bg-rose-500"
+                        gradient="bg-gradient-to-r from-rose-600 to-red-600"
                         suffix="Set"
                     />
-                    <StatTile
+                    <StatCard
                         title="En Çok Mağlubiyet"
                         icon="📉"
                         teams={mostLosses}
                         statKey="losses"
-                        gradientFrom="from-slate-600"
-                        gradientTo="to-slate-700"
+                        color="bg-slate-500"
+                        gradient="bg-gradient-to-r from-slate-600 to-slate-700"
                         suffix="M"
                     />
                 </div>

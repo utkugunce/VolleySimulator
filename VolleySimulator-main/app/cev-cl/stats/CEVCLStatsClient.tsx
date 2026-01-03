@@ -49,26 +49,28 @@ export default function CEVCLStatsClient({ initialTeams }: CEVCLStatsClientProps
         const maxValue = Math.max(...teams.map(t => Number(t[statKey])), 1);
 
         return (
-            <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 transition-all duration-300 group">
-                <div className={`${gradient} px-4 py-3 border-b border-white/10`}>
-                    <div className="flex items-center justify-between">
-                        <h3 className="font-bold text-white text-sm flex items-center gap-2">
-                            <span className="text-lg">{icon}</span> {title}
+            <div className="bg-slate-950/50 backdrop-blur-md rounded-xl border border-slate-800/60 overflow-hidden hover:border-slate-700/80 transition-all duration-300 group shadow-lg hover:shadow-xl">
+                <div className={`${gradient} px-3 py-2.5 border-b border-white/10 relative overflow-hidden`}>
+                    {/* Gloss effect */}
+                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="flex items-center justify-between relative z-10">
+                        <h3 className="font-bold text-white text-xs uppercase tracking-wider flex items-center gap-2">
+                            <span className="text-base">{icon}</span> {title}
                         </h3>
-                        <span className="text-xs text-white/60 bg-white/10 px-2 py-0.5 rounded-full">TOP 5</span>
+                        <span className="text-[10px] font-bold text-white/80 bg-black/20 px-2 py-0.5 rounded-full backdrop-blur-sm border border-white/10">TOP 5</span>
                     </div>
                 </div>
 
-                <div className="p-3 space-y-2">
+                <div className="p-2 space-y-1.5">
                     {teams.map((t, idx) => (
                         <div
                             key={t.name}
-                            className={`flex items-center gap-3 p-2 rounded-xl transition-all ${idx === 0 ? 'bg-gradient-to-r from-blue-500/10 to-transparent border border-blue-500/20' : 'hover:bg-slate-800/50'
+                            className={`flex items-center gap-2.5 p-1.5 rounded-lg transition-all ${idx === 0 ? 'bg-gradient-to-r from-white/5 to-transparent border border-white/10' : 'hover:bg-white/5'
                                 }`}
                         >
-                            <div className={`w-7 h-7 rounded-lg flex items-center justify-center font-bold text-sm ${idx === 0 ? 'bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-lg shadow-blue-500/30' :
-                                idx === 1 ? 'bg-gradient-to-br from-slate-300 to-slate-400 text-slate-800' :
-                                    idx === 2 ? 'bg-gradient-to-br from-amber-600 to-amber-700 text-white' :
+                            <div className={`w-5 h-5 rounded flex items-center justify-center font-bold text-[10px] shadow-sm ${idx === 0 ? 'bg-amber-400 text-amber-950' :
+                                idx === 1 ? 'bg-slate-300 text-slate-800' :
+                                    idx === 2 ? 'bg-amber-700 text-amber-100' :
                                         'bg-slate-800 text-slate-500'
                                 }`}>
                                 {idx + 1}
@@ -76,14 +78,16 @@ export default function CEVCLStatsClient({ initialTeams }: CEVCLStatsClientProps
                             <TeamAvatar name={t.name} size="xs" />
 
                             <div className="flex-1 min-w-0">
-                                <span className={`text-sm font-medium truncate block ${idx === 0 ? 'text-blue-300' : 'text-white'}`} title={t.name}>
+                                <span className={`text-xs font-bold truncate block ${idx === 0 ? 'text-white' : 'text-slate-300'}`} title={t.name}>
                                     {t.name}
                                 </span>
                             </div>
 
-                            <div className="flex items-center gap-2 w-24">
-                                <BarChart value={Number(t[statKey])} max={maxValue} color={color} />
-                                <span className={`text-sm font-bold min-w-[40px] text-right ${idx === 0 ? 'text-blue-400' : 'text-slate-300'}`}>
+                            <div className="flex items-center gap-2 w-20 justify-end">
+                                <div className="h-1 bg-slate-800/50 rounded-full overflow-hidden flex-1 max-w-[40px]">
+                                    <div className={`h-full ${color} opacity-80`} style={{ width: `${Math.min((Number(t[statKey]) / maxValue) * 100, 100)}%` }}></div>
+                                </div>
+                                <span className={`text-xs font-bold min-w-[30px] text-right ${idx === 0 ? 'text-white' : 'text-slate-400'}`}>
                                     {t[statKey]}{suffix}
                                 </span>
                             </div>

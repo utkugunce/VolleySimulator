@@ -192,10 +192,13 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                 {!isCollapsed && dateMatches.map((match) => {
                                     const matchId = `${match.homeTeam}-${match.awayTeam}`;
                                     const currentScore = overrides[matchId];
-                                    const isPlayed = match.isPlayed;
+                                    // ROBUST: Treat as played if isPlayed is true OR scores are present
+                                    const isPlayed = match.isPlayed || (match.homeScore !== undefined && match.homeScore !== null && match.awayScore !== undefined && match.awayScore !== null);
+
                                     const homeRank = getTeamRank(match.homeTeam);
                                     const awayRank = getTeamRank(match.awayTeam);
                                     const matchImportance = getMatchImportance(homeRank, awayRank);
+                                    const matchTime = match.matchTime || (match as any).time;
 
                                     return (
                                         <div
@@ -208,6 +211,15 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                                     : 'bg-slate-800 border-slate-700 hover:border-slate-600'
                                                 }`}
                                         >
+                                            {/* Match Time Badge */}
+                                            {matchTime && (
+                                                <div className="flex justify-center -mt-1 mb-1.5">
+                                                    <span className="text-[9px] font-mono bg-slate-950/80 px-1.5 py-0.5 rounded text-slate-400 border border-slate-800/50">
+                                                        {matchTime}
+                                                    </span>
+                                                </div>
+                                            )}
+
                                             {/* Match Importance Badge */}
                                             {matchImportance && !isPlayed && (
                                                 <div className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-t-md -mx-3 -mt-3 mb-2 text-center bg-gradient-to-r ${matchImportance.color}`}>
@@ -240,7 +252,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                             {isPlayed ? (
                                                 <div className="flex justify-center">
                                                     <span className="px-3 py-1 bg-slate-900 font-mono font-bold text-slate-400 rounded border border-slate-800 text-sm">
-                                                        {match.homeScore !== undefined && match.awayScore !== undefined
+                                                        {match.homeScore !== undefined && match.homeScore !== null && match.awayScore !== undefined && match.awayScore !== null
                                                             ? `${match.homeScore} - ${match.awayScore}`
                                                             : match.resultScore || "Oynandı"}
                                                     </span>

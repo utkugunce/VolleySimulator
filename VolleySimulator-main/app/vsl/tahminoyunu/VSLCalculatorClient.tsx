@@ -237,8 +237,8 @@ export default function VSLCalculatorClient({ initialTeams, initialMatches }: VS
                     subtitle="Tahmin Oyunu"
                 />
 
-                {/* Action Bar */}
-                <div className="flex flex-col sm:flex-row items-center justify-end gap-3 p-2 bg-slate-900/40 rounded-xl border border-slate-800">
+                {/* Action Bar - Sticky Top on Mobile */}
+                <div className="sticky top-0 z-20 flex flex-col sm:flex-row items-center justify-end gap-3 p-2 bg-slate-900/95 backdrop-blur-sm rounded-xl border border-slate-800 shadow-xl mb-4">
                     <div className="flex items-center gap-2 w-full sm:w-auto pb-1 sm:pb-0 justify-end flex-wrap sm:flex-nowrap">
                         <div className="flex items-center gap-2 shrink-0">
                             <div className="relative">

@@ -116,8 +116,8 @@ export default function VSLDetailedClient({ initialTeams, initialMatches }: VSLD
                             <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2 px-1">
                                 <span>📅</span> Gelecek Maçlar
                             </h3>
-                            <div className="bg-slate-950/40 rounded-xl overflow-hidden border border-slate-800/50 flex-1 relative">
-                                <div className="absolute inset-0 overflow-y-auto p-2 space-y-2">
+                            <div className="bg-slate-950/40 rounded-xl overflow-hidden border border-slate-800/50 flex-1 relative flex flex-col">
+                                <div className="overflow-y-auto p-2 space-y-2 flex-1 custom-scrollbar">
                                     {Object.keys(groupedMatches).length === 0 ? (
                                         <div className="flex flex-col items-center justify-center h-full text-slate-500 text-xs italic">
                                             Maç bulunamadı veya sezon tamamlandı.
@@ -126,35 +126,89 @@ export default function VSLDetailedClient({ initialTeams, initialMatches }: VSLD
                                         <div className="space-y-2">
                                             {Object.entries(groupedMatches).map(([date, matches], dateIdx) => (
                                                 <div key={date} className={dateIdx > 0 ? 'mt-3' : ''}>
-                                                    <div className="sticky top-0 bg-rose-600/20 px-2 py-1 rounded border border-rose-500/30 mb-2 z-10">
-                                                        <span className="text-[10px] font-bold text-rose-400 uppercase tracking-wide">
-                                                            {date}
+                                                    <div className="sticky top-0 bg-slate-950/90 backdrop-blur-sm py-1.5 px-3 rounded-lg border border-slate-800 flex items-center justify-between z-10 mb-2 shadow-sm">
+                                                        <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-wide flex items-center gap-2">
+                                                            <span>📅</span> {date}
                                                         </span>
+                                                        <span className="text-[9px] text-slate-400 bg-slate-800/50 px-2 py-0.5 rounded">{matches.length} maç</span>
                                                     </div>
-                                                    <div className="px-2 space-y-1">
-                                                        {matches.map(match => (
-                                                            <div key={match.id || `${match.homeTeam}-${match.awayTeam}`} className="bg-slate-900/30 border border-slate-800/50 rounded-lg p-2 hover:bg-slate-800/50 transition-colors group">
-                                                                <div className="flex items-center justify-between gap-2">
-                                                                    <div className="flex-1 flex items-center justify-end gap-2 overflow-hidden">
-                                                                        <div className="text-[11px] font-bold text-slate-200 truncate group-hover:text-red-500 transition-colors">{match.homeTeam}</div>
-                                                                        <TeamAvatar name={match.homeTeam} size="xs" />
+                                                    <div className="px-1 space-y-2">
+                                                        {matches.map(match => {
+                                                            const homeRank = teams.findIndex(t => t.name === match.homeTeam) + 1;
+                                                            const awayRank = teams.findIndex(t => t.name === match.awayTeam) + 1;
+
+                                                            // Determine importance (simplified logic closer to FixtureList)
+                                                            let borderColor = 'border-slate-800/50';
+                                                            let importanceColor = null;
+
+                                                            // Top 4 clash
+                                                            if (homeRank <= 4 && awayRank <= 4 && homeRank > 0 && awayRank > 0) {
+                                                                borderColor = 'border-emerald-700/30';
+                                                                importanceColor = 'from-emerald-600/80 to-emerald-500/60 text-emerald-100';
+                                                            }
+                                                            // Relegation clash (Assuming 14 teams)
+                                                            else if (homeRank >= 13 && awayRank >= 13) {
+                                                                borderColor = 'border-rose-700/30';
+                                                                importanceColor = 'from-rose-600/80 to-rose-500/60 text-rose-100';
+                                                            }
+
+                                                            return (
+                                                                <div key={match.id || `${match.homeTeam}-${match.awayTeam}`} className={`bg-slate-900 border ${borderColor} rounded-lg p-2.5 shadow-sm hover:border-slate-700 transition-all group relative overflow-hidden`}>
+
+                                                                    {importanceColor && (
+                                                                        <div className={`absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r ${importanceColor.split(' ')[0]}`}></div>
+                                                                    )}
+
+                                                                    {/* Time Badge */}
+                                                                    <div className="flex justify-center -mt-1 mb-2">
+                                                                        <span className="text-[9px] font-mono bg-slate-950/80 px-2 py-0.5 rounded text-slate-400 border border-slate-800/50 shadow-sm">
+                                                                            {match.matchTime && match.matchTime !== '00:00' ? match.matchTime : '--:--'}
+                                                                        </span>
                                                                     </div>
-                                                                    <div className="px-2 py-0.5 bg-slate-950 rounded text-[9px] font-mono text-slate-500 font-bold whitespace-nowrap border border-slate-900 shadow-inner">
-                                                                        {match.matchTime && match.matchTime !== '00:00' ? match.matchTime : '--:--'}
+
+                                                                    <div className="flex items-center justify-between gap-2">
+                                                                        <div className="flex-1 flex items-center justify-end gap-2 overflow-hidden">
+                                                                            {homeRank > 0 && homeRank <= 4 && (
+                                                                                <span className="text-[9px] font-bold text-emerald-500 bg-emerald-950/30 px-1 py-0.5 rounded hidden sm:inline-block">{homeRank}.</span>
+                                                                            )}
+                                                                            <div className="text-[11px] font-bold text-slate-200 truncate group-hover:text-white transition-colors text-right leading-tight">{match.homeTeam}</div>
+                                                                            <TeamAvatar name={match.homeTeam} size="xs" />
+                                                                        </div>
+
+                                                                        <div className="mx-1 shrink-0">
+                                                                            {match.isPlayed ? (
+                                                                                <div className="px-2.5 py-1 bg-slate-950 rounded text-[11px] font-mono font-bold text-slate-200 border border-slate-800 shadow-inner tracking-wider">
+                                                                                    {match.homeScore}-{match.awayScore}
+                                                                                </div>
+                                                                            ) : (
+                                                                                <div className="text-[10px] text-slate-600 font-mono font-bold">vs</div>
+                                                                            )}
+                                                                        </div>
+
+                                                                        <div className="flex-1 flex items-center justify-start gap-2 overflow-hidden">
+                                                                            <TeamAvatar name={match.awayTeam} size="xs" />
+                                                                            <div className="text-[11px] font-bold text-slate-200 truncate group-hover:text-white transition-colors text-left leading-tight">{match.awayTeam}</div>
+                                                                            {awayRank > 0 && awayRank <= 4 && (
+                                                                                <span className="text-[9px] font-bold text-emerald-500 bg-emerald-950/30 px-1 py-0.5 rounded hidden sm:inline-block">{awayRank}.</span>
+                                                                            )}
+                                                                        </div>
                                                                     </div>
-                                                                    <div className="flex-1 flex items-center justify-start gap-2 overflow-hidden">
-                                                                        <TeamAvatar name={match.awayTeam} size="xs" />
-                                                                        <div className="text-[11px] font-bold text-slate-200 truncate group-hover:text-red-500 transition-colors">{match.awayTeam}</div>
+
+                                                                    <div className="mt-2 pt-1.5 border-t border-slate-800/50 flex justify-between items-center opacity-60 group-hover:opacity-100 transition-opacity">
+                                                                        <div className="flex items-center gap-1 text-[9px] text-slate-500">
+                                                                            <span>📍</span>
+                                                                            <span className="truncate max-w-[150px]">{match.venue || 'Salon Belirtilmemiş'}</span>
+                                                                        </div>
+                                                                        {!match.isPlayed && (
+                                                                            <div className="text-[9px] text-indigo-400 font-medium">Yakında</div>
+                                                                        )}
+                                                                        {match.isPlayed && (
+                                                                            <div className="text-[9px] text-emerald-500 font-medium">Bitti</div>
+                                                                        )}
                                                                     </div>
                                                                 </div>
-                                                                <div className="mt-1.5 pt-1.5 border-t border-slate-800/50 flex justify-between items-center">
-                                                                    <div className="flex items-center gap-1 text-[9px] text-slate-500">
-                                                                        <span>📍</span>
-                                                                        <span className="truncate max-w-[120px]">{match.venue || 'Salon Belirtilmemiş'}</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        ))}
+                                                            );
+                                                        })}
                                                     </div>
                                                 </div>
                                             ))}

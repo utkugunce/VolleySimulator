@@ -72,18 +72,18 @@ export default function StandingsTable({
                 </div>
             )}
 
-            <div className="overflow-x-auto flex-1">
+            <div className="overflow-x-auto flex-1 custom-scrollbar pb-2">
                 <table className={`w-full text-left ${compact ? 'text-xs' : 'text-xs sm:text-sm'}`}>
                     <thead className="bg-surface-secondary text-text-secondary tracking-wider font-semibold border-b border-border-main sticky top-0">
                         <tr>
-                            <th scope="col" className={`${headClass} w-14 text-left pl-2`}>#</th>
-                            <th scope="col" className={headClass}>Takım</th>
-                            <th scope="col" className={`${headClass} w-8 text-center`} title="Oynanan Maç">OM</th>
-                            <th scope="col" className={`${headClass} w-8 text-center text-emerald-500`} title="Galibiyet">G</th>
-                            <th scope="col" className={`${headClass} w-8 text-center text-rose-500`} title="Mağlubiyet">M</th>
-                            <th scope="col" className={`${headClass} w-10 text-center text-amber-500 font-bold`} title="Puan">P</th>
-                            <th scope="col" className={`${headClass} w-8 text-center hidden sm:table-cell`} title="Alınan Set">AS</th>
-                            <th scope="col" className={`${headClass} w-8 text-center hidden sm:table-cell`} title="Verilen Set">VS</th>
+                            <th scope="col" className={`${headClass} w-10 text-left pl-2 whitespace-nowrap`}>#</th>
+                            <th scope="col" className={`${headClass} whitespace-nowrap`}>Takım</th>
+                            <th scope="col" className={`${headClass} w-8 text-center whitespace-nowrap`} title="Oynanan Maç">OM</th>
+                            <th scope="col" className={`${headClass} w-8 text-center text-emerald-500 whitespace-nowrap`} title="Galibiyet">G</th>
+                            <th scope="col" className={`${headClass} w-8 text-center text-rose-500 whitespace-nowrap`} title="Mağlubiyet">M</th>
+                            <th scope="col" className={`${headClass} w-10 text-center text-amber-500 font-bold whitespace-nowrap`} title="Puan">P</th>
+                            <th scope="col" className={`${headClass} w-8 text-center hidden sm:table-cell whitespace-nowrap`} title="Alınan Set">AS</th>
+                            <th scope="col" className={`${headClass} w-8 text-center hidden sm:table-cell whitespace-nowrap`} title="Verilen Set">VS</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-border-subtle">
@@ -116,17 +116,17 @@ export default function StandingsTable({
                                 }
                             } else if (initialRanks && initialRanks.has(team.name)) {
                                 const oldRank = initialRanks.get(team.name)!;
-                                rankChange = oldRank - currentRank;
-                                if (rankChange > 0) {
-                                    rankChangeIcon = <span className="text-emerald-500 text-[10px] font-bold flex items-center gap-0.5">▲{rankChange}</span>;
-                                } else if (rankChange < 0) {
-                                    rankChangeIcon = <span className="text-rose-500 text-[10px] font-bold flex items-center gap-0.5">▼{Math.abs(rankChange)}</span>;
+                                const diff = oldRank - currentRank;
+                                if (diff > 0) {
+                                    rankChangeIcon = <span className="text-emerald-500 text-[10px] font-bold flex items-center gap-0.5">▲{diff}</span>;
+                                } else if (diff < 0) {
+                                    rankChangeIcon = <span className="text-rose-500 text-[10px] font-bold flex items-center gap-0.5">▼{Math.abs(diff)}</span>;
                                 }
                             }
 
                             return (
                                 <tr key={team.name} className={`hover:bg-surface-secondary/50 transition-colors ${isChampion ? 'bg-amber-500/10 dark:bg-amber-900/20' : isPlayoff ? 'bg-emerald-500/10 dark:bg-emerald-900/20' : isSecondaryPlayoff ? 'bg-amber-500/5 dark:bg-amber-900/10' : isRelegation ? 'bg-rose-500/10 dark:bg-rose-900/20' : ''}`}>
-                                    <td className={`${rowClass} text-center font-mono`}>
+                                    <td className={`${rowClass} text-center font-mono whitespace-nowrap`}>
                                         <div className="flex items-center justify-start gap-1 pl-1">
                                             <div className={`${rankSize} flex-shrink-0 flex items-center justify-center rounded-full font-bold ${isChampion ? 'bg-gradient-to-b from-amber-400 to-amber-600 text-white shadow-lg' :
                                                 isPlayoff ? 'bg-emerald-500 text-white shadow-lg' :
@@ -139,21 +139,21 @@ export default function StandingsTable({
                                             {rankChangeIcon}
                                         </div>
                                     </td>
-                                    <td className={`${rowClass} font-medium`}>
+                                    <td className={`${rowClass} font-medium whitespace-nowrap`}>
                                         <Link href={`/takimlar/${generateTeamSlug(team.name)}`} className="flex items-center gap-2 hover:opacity-80 transition-opacity group">
                                             <TeamAvatar name={team.name} size={compact ? 'sm' : 'md'} priority={idx < 5} />
-                                            <span className={`block truncate group-hover:underline ${isPlayoff ? 'text-emerald-600 dark:text-emerald-400' : isSecondaryPlayoff ? 'text-amber-600 dark:text-amber-400' : isRelegation ? 'text-rose-600 dark:text-rose-400' : 'text-text-primary'}`}>{team.name}</span>
+                                            <span className={`block truncate max-w-[120px] sm:max-w-[200px] group-hover:underline ${isPlayoff ? 'text-emerald-600 dark:text-emerald-400' : isSecondaryPlayoff ? 'text-amber-600 dark:text-amber-400' : isRelegation ? 'text-rose-600 dark:text-rose-400' : 'text-text-primary'}`}>{team.name}</span>
                                         </Link>
                                     </td>
-                                    <td className={`${rowClass} text-center text-text-secondary`}>{team.played}</td>
-                                    <td className={`${rowClass} text-center text-emerald-500 font-medium`}>{team.wins}</td>
-                                    <td className={`${rowClass} text-center text-rose-500 font-medium`}>{losses}</td>
-                                    <td className={`${rowClass} text-center font-bold text-amber-500 bg-surface-secondary/30`}>
+                                    <td className={`${rowClass} text-center text-text-secondary whitespace-nowrap`}>{team.played}</td>
+                                    <td className={`${rowClass} text-center text-emerald-500 font-medium whitespace-nowrap`}>{team.wins}</td>
+                                    <td className={`${rowClass} text-center text-rose-500 font-medium whitespace-nowrap`}>{losses}</td>
+                                    <td className={`${rowClass} text-center font-bold text-amber-500 bg-surface-secondary/30 whitespace-nowrap`}>
                                         {team.points}
                                         {pointDiffIcon}
                                     </td>
-                                    <td className={`${rowClass} text-center text-text-secondary hidden sm:table-cell`}>{team.setsWon}</td>
-                                    <td className={`${rowClass} text-center text-text-secondary hidden sm:table-cell`}>{team.setsLost}</td>
+                                    <td className={`${rowClass} text-center text-text-secondary hidden sm:table-cell whitespace-nowrap`}>{team.setsWon}</td>
+                                    <td className={`${rowClass} text-center text-text-secondary hidden sm:table-cell whitespace-nowrap`}>{team.setsLost}</td>
                                 </tr>
                             );
                         })}
