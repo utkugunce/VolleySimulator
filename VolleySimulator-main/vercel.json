@@ -1,12 +1,3 @@
 {
-    "crons": [
-        {
-            "path": "/api/cron/update-results",
-            "schedule": "0 5 * * *"
-        },
-        {
-            "path": "/api/cron/update-results",
-            "schedule": "0 11-18 * * 6,0"
-        }
-    ]
+    "crons": []
 }
