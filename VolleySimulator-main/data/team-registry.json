@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-01-03T16:36:46.708Z",
+  "generatedAt": "2026-01-03T16:39:03.233Z",
   "version": "1.1.0",
   "totalTeams": 352,
   "teamsByLeague": {
@@ -13,7 +13,7 @@
   "teams": [
     {
       "id": 1000,
-      "slug": "aras-kargo",
+      "slug": "aras-kargo-vsl",
       "name": "ARAS KARGO",
       "league": "VSL",
       "country": "TUR",
@@ -22,7 +22,7 @@
     },
     {
       "id": 1001,
-      "slug": "aydin-buyuksehi-r-beledi-yespor",
+      "slug": "aydin-buyuksehi-r-beledi-yespor-vsl",
       "name": "AYDIN BÜYÜKŞEHİR BELEDİYESPOR",
       "league": "VSL",
       "country": "TUR",
@@ -31,7 +31,7 @@
     },
     {
       "id": 1002,
-      "slug": "bahceli-evler-bld",
+      "slug": "bahceli-evler-bld-vsl",
       "name": "BAHÇELİEVLER BLD.",
       "league": "VSL",
       "country": "TUR",
@@ -40,7 +40,7 @@
     },
     {
       "id": 1003,
-      "slug": "besi-ktas",
+      "slug": "besi-ktas-vsl",
       "name": "BEŞİKTAŞ",
       "league": "VSL",
       "country": "TUR",
@@ -49,7 +49,7 @@
     },
     {
       "id": 1004,
-      "slug": "eczacibasi-dynavi-t",
+      "slug": "eczacibasi-dynavi-t-vsl",
       "name": "ECZACIBAŞI DYNAVİT",
       "league": "VSL",
       "country": "TUR",
@@ -58,7 +58,7 @@
     },
     {
       "id": 1005,
-      "slug": "fenerbahce-medicana",
+      "slug": "fenerbahce-medicana-vsl",
       "name": "FENERBAHÇE MEDICANA",
       "league": "VSL",
       "country": "TUR",
@@ -67,7 +67,7 @@
     },
     {
       "id": 1006,
-      "slug": "galatasaray-daikin",
+      "slug": "galatasaray-daikin-vsl",
       "name": "GALATASARAY DAIKIN",
       "league": "VSL",
       "country": "TUR",
@@ -76,7 +76,7 @@
     },
     {
       "id": 1007,
-      "slug": "goztepe",
+      "slug": "goztepe-vsl",
       "name": "GÖZTEPE",
       "league": "VSL",
       "country": "TUR",
@@ -85,7 +85,7 @@
     },
     {
       "id": 1013,
-      "slug": "i-lbank",
+      "slug": "i-lbank-vsl",
       "name": "İLBANK",
       "league": "VSL",
       "country": "TUR",
@@ -94,7 +94,7 @@
     },
     {
       "id": 1008,
-      "slug": "kuzeyboru",
+      "slug": "kuzeyboru-vsl",
       "name": "KUZEYBORU",
       "league": "VSL",
       "country": "TUR",
@@ -103,7 +103,7 @@
     },
     {
       "id": 1009,
-      "slug": "ni-lufer-beledi-yespor-eker",
+      "slug": "ni-lufer-beledi-yespor-eker-vsl",
       "name": "NİLÜFER BELEDİYESPOR EKER",
       "league": "VSL",
       "country": "TUR",
@@ -112,7 +112,7 @@
     },
     {
       "id": 1010,
-      "slug": "turk-hava-yollari",
+      "slug": "turk-hava-yollari-vsl",
       "name": "TÜRK HAVA YOLLARI",
       "league": "VSL",
       "country": "TUR",
@@ -121,7 +121,7 @@
     },
     {
       "id": 1011,
-      "slug": "vakifbank",
+      "slug": "vakifbank-vsl",
       "name": "VAKIFBANK",
       "league": "VSL",
       "country": "TUR",
@@ -130,7 +130,7 @@
     },
     {
       "id": 1012,
-      "slug": "zeren-spor",
+      "slug": "zeren-spor-vsl",
       "name": "ZEREN SPOR",
       "league": "VSL",
       "country": "TUR",
@@ -139,7 +139,7 @@
     },
     {
       "id": 1033,
-      "slug": "afyon-bld-yuntas",
+      "slug": "afyon-bld-yuntas-1lig",
       "name": "AFYON BLD. YÜNTAŞ",
       "league": "1LIG",
       "country": "TUR",
@@ -148,7 +148,7 @@
     },
     {
       "id": 1030,
-      "slug": "alfemo-zeren-spor",
+      "slug": "alfemo-zeren-spor-1lig",
       "name": "ALFEMO ZEREN SPOR",
       "league": "1LIG",
       "country": "TUR",
@@ -157,7 +157,7 @@
     },
     {
       "id": 1021,
-      "slug": "altinordu",
+      "slug": "altinordu-1lig",
       "name": "ALTINORDU",
       "league": "1LIG",
       "country": "TUR",
@@ -166,7 +166,7 @@
     },
     {
       "id": 1024,
-      "slug": "bodrum-bld-bodrumspor",
+      "slug": "bodrum-bld-bodrumspor-1lig",
       "name": "BODRUM BLD. BODRUMSPOR",
       "league": "1LIG",
       "country": "TUR",
@@ -175,7 +175,7 @@
     },
     {
       "id": 1015,
-      "slug": "canakkale-bld",
+      "slug": "canakkale-bld-1lig",
       "name": "ÇANAKKALE BLD.",
       "league": "1LIG",
       "country": "TUR",
@@ -184,7 +184,7 @@
     },
     {
       "id": 1017,
-      "slug": "deni-zli-b-sehi-r-bld",
+      "slug": "deni-zli-b-sehi-r-bld-1lig",
       "name": "DENİZLİ B.ŞEHİR BLD.",
       "league": "1LIG",
       "country": "TUR",
@@ -193,7 +193,7 @@
     },
     {
       "id": 1029,
-      "slug": "di-yarbakir-b-sehi-r-bld",
+      "slug": "di-yarbakir-b-sehi-r-bld-1lig",
       "name": "DİYARBAKIR B.ŞEHİR BLD.",
       "league": "1LIG",
       "country": "TUR",
@@ -202,7 +202,7 @@
     },
     {
       "id": 1016,
-      "slug": "eczacibasi",
+      "slug": "eczacibasi-1lig",
       "name": "ECZACIBAŞI",
       "league": "1LIG",
       "country": "TUR",
@@ -211,7 +211,7 @@
     },
     {
       "id": 1022,
-      "slug": "endo-karsiyaka",
+      "slug": "endo-karsiyaka-1lig",
       "name": "ENDO KARŞIYAKA",
       "league": "1LIG",
       "country": "TUR",
@@ -220,7 +220,7 @@
     },
     {
       "id": 1038,
-      "slug": "fdm-yapi-konya-eregli-bld",
+      "slug": "fdm-yapi-konya-eregli-bld-1lig",
       "name": "FDM YAPI KONYA EREĞLİ BLD.",
       "league": "1LIG",
       "country": "TUR",
@@ -229,7 +229,7 @@
     },
     {
       "id": 1014,
-      "slug": "fenerbahce-medicana",
+      "slug": "fenerbahce-medicana-1lig",
       "name": "FENERBAHÇE MEDICANA",
       "league": "1LIG",
       "country": "TUR",
@@ -238,7 +238,7 @@
     },
     {
       "id": 1025,
-      "slug": "havran-bld",
+      "slug": "havran-bld-1lig",
       "name": "HAVRAN BLD.",
       "league": "1LIG",
       "country": "TUR",
@@ -247,7 +247,7 @@
     },
     {
       "id": 1039,
-      "slug": "i-ba-ki-mya-ted-ankara-kolejli-ler",
+      "slug": "i-ba-ki-mya-ted-ankara-kolejli-ler-1lig",
       "name": "İBA KİMYA TED ANKARA KOLEJLİLER",
       "league": "1LIG",
       "country": "TUR",
@@ -256,7 +256,7 @@
     },
     {
       "id": 1018,
-      "slug": "i-bb-spor-kulubu",
+      "slug": "i-bb-spor-kulubu-1lig",
       "name": "İBB SPOR KULÜBÜ",
       "league": "1LIG",
       "country": "TUR",
@@ -265,7 +265,7 @@
     },
     {
       "id": 1028,
-      "slug": "i-lbank",
+      "slug": "i-lbank-1lig",
       "name": "İLBANK",
       "league": "1LIG",
       "country": "TUR",
@@ -274,7 +274,7 @@
     },
     {
       "id": 1032,
-      "slug": "karayollari",
+      "slug": "karayollari-1lig",
       "name": "KARAYOLLARI",
       "league": "1LIG",
       "country": "TUR",
@@ -283,7 +283,7 @@
     },
     {
       "id": 1026,
-      "slug": "kuzeyboru-maxi-pi-pe-spor",
+      "slug": "kuzeyboru-maxi-pi-pe-spor-1lig",
       "name": "KUZEYBORU MAXİPİPE SPOR",
       "league": "1LIG",
       "country": "TUR",
@@ -292,7 +292,7 @@
     },
     {
       "id": 1031,
-      "slug": "meri-nos-voleybol",
+      "slug": "meri-nos-voleybol-1lig",
       "name": "MERİNOS VOLEYBOL",
       "league": "1LIG",
       "country": "TUR",
@@ -301,7 +301,7 @@
     },
     {
       "id": 1036,
-      "slug": "muratpasa-bld-aci-koleji",
+      "slug": "muratpasa-bld-aci-koleji-1lig",
       "name": "MURATPAŞA BLD. AÇI KOLEJİ",
       "league": "1LIG",
       "country": "TUR",
@@ -310,7 +310,7 @@
     },
     {
       "id": 1037,
-      "slug": "ptt",
+      "slug": "ptt-1lig",
       "name": "PTT",
       "league": "1LIG",
       "country": "TUR",
@@ -319,7 +319,7 @@
     },
     {
       "id": 1027,
-      "slug": "sakarya-voleybol",
+      "slug": "sakarya-voleybol-1lig",
       "name": "SAKARYA VOLEYBOL",
       "league": "1LIG",
       "country": "TUR",
@@ -328,7 +328,7 @@
     },
     {
       "id": 1035,
-      "slug": "si-gorta-shop-mke-ankaragucu",
+      "slug": "si-gorta-shop-mke-ankaragucu-1lig",
       "name": "SİGORTA SHOP MKE ANKARAGÜCÜ",
       "league": "1LIG",
       "country": "TUR",
@@ -337,7 +337,7 @@
     },
     {
       "id": 1034,
-      "slug": "trendy-hotels-manavgat-bld",
+      "slug": "trendy-hotels-manavgat-bld-1lig",
       "name": "TRENDY HOTELS MANAVGAT BLD.",
       "league": "1LIG",
       "country": "TUR",
@@ -346,7 +346,7 @@
     },
     {
       "id": 1019,
-      "slug": "vakifbank",
+      "slug": "vakifbank-1lig",
       "name": "VAKIFBANK",
       "league": "1LIG",
       "country": "TUR",
@@ -355,7 +355,7 @@
     },
     {
       "id": 1023,
-      "slug": "vestel-mani-sa-b-sehi-r-bld",
+      "slug": "vestel-mani-sa-b-sehi-r-bld-1lig",
       "name": "VESTEL MANİSA B.ŞEHİR BLD.",
       "league": "1LIG",
       "country": "TUR",
@@ -364,7 +364,7 @@
     },
     {
       "id": 1020,
-      "slug": "yesi-lyurt",
+      "slug": "yesi-lyurt-1lig",
       "name": "YEŞİLYURT",
       "league": "1LIG",
       "country": "TUR",
@@ -373,7 +373,7 @@
     },
     {
       "id": 1122,
-      "slug": "07-mega-spor",
+      "slug": "07-mega-spor-2lig",
       "name": "07 MEGA SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -382,7 +382,7 @@
     },
     {
       "id": 1198,
-      "slug": "52-camlik-spor",
+      "slug": "52-camlik-spor-2lig",
       "name": "52 ÇAMLIK SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -391,7 +391,7 @@
     },
     {
       "id": 1216,
-      "slug": "73-sirnak-bld",
+      "slug": "73-sirnak-bld-2lig",
       "name": "73 ŞIRNAK BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -400,7 +400,7 @@
     },
     {
       "id": 1212,
-      "slug": "91000-dev-spor",
+      "slug": "91000-dev-spor-2lig",
       "name": "91000 DEV SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -409,7 +409,7 @@
     },
     {
       "id": 1120,
-      "slug": "aci-koleji",
+      "slug": "aci-koleji-2lig",
       "name": "AÇI KOLEJİ",
       "league": "2LIG",
       "country": "TUR",
@@ -418,7 +418,7 @@
     },
     {
       "id": 1185,
-      "slug": "adana-b-sehi-r-bld",
+      "slug": "adana-b-sehi-r-bld-2lig",
       "name": "ADANA B.ŞEHİR BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -427,7 +427,7 @@
     },
     {
       "id": 1183,
-      "slug": "adana-sporcu-egi-ti-m-spor",
+      "slug": "adana-sporcu-egi-ti-m-spor-2lig",
       "name": "ADANA SPORCU EĞİTİM SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -436,7 +436,7 @@
     },
     {
       "id": 1180,
-      "slug": "adana-t-d-s",
+      "slug": "adana-t-d-s-2lig",
       "name": "ADANA T.D.S.",
       "league": "2LIG",
       "country": "TUR",
@@ -445,7 +445,7 @@
     },
     {
       "id": 1129,
-      "slug": "afyon-gencli-k-spor",
+      "slug": "afyon-gencli-k-spor-2lig",
       "name": "AFYON GENÇLİK SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -454,7 +454,7 @@
     },
     {
       "id": 1160,
-      "slug": "ahmet-hamdi-tanpinar-ortaokulu",
+      "slug": "ahmet-hamdi-tanpinar-ortaokulu-2lig",
       "name": "AHMET HAMDİ TANPINAR ORTAOKULU",
       "league": "2LIG",
       "country": "TUR",
@@ -463,7 +463,7 @@
     },
     {
       "id": 1123,
-      "slug": "akdeni-z-bi-lgi-spor",
+      "slug": "akdeni-z-bi-lgi-spor-2lig",
       "name": "AKDENİZ BİLGİ SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -472,7 +472,7 @@
     },
     {
       "id": 1098,
-      "slug": "akhi-sar-bld",
+      "slug": "akhi-sar-bld-2lig",
       "name": "AKHİSAR BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -481,7 +481,7 @@
     },
     {
       "id": 1097,
-      "slug": "akhi-sar-gucu",
+      "slug": "akhi-sar-gucu-2lig",
       "name": "AKHİSAR GÜCÜ",
       "league": "2LIG",
       "country": "TUR",
@@ -490,7 +490,7 @@
     },
     {
       "id": 1142,
-      "slug": "al-ka-altin-kanatlar",
+      "slug": "al-ka-altin-kanatlar-2lig",
       "name": "AL-KA ALTIN KANATLAR",
       "league": "2LIG",
       "country": "TUR",
@@ -499,7 +499,7 @@
     },
     {
       "id": 1080,
-      "slug": "alp-spor",
+      "slug": "alp-spor-2lig",
       "name": "ALP SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -508,7 +508,7 @@
     },
     {
       "id": 1093,
-      "slug": "altay",
+      "slug": "altay-2lig",
       "name": "ALTAY",
       "league": "2LIG",
       "country": "TUR",
@@ -517,7 +517,7 @@
     },
     {
       "id": 1099,
-      "slug": "altinay-spor",
+      "slug": "altinay-spor-2lig",
       "name": "ALTINAY SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -526,7 +526,7 @@
     },
     {
       "id": 1062,
-      "slug": "altinyurt",
+      "slug": "altinyurt-2lig",
       "name": "ALTINYURT",
       "league": "2LIG",
       "country": "TUR",
@@ -535,7 +535,7 @@
     },
     {
       "id": 1157,
-      "slug": "ankara-barosu",
+      "slug": "ankara-barosu-2lig",
       "name": "ANKARA BAROSU",
       "league": "2LIG",
       "country": "TUR",
@@ -544,7 +544,7 @@
     },
     {
       "id": 1168,
-      "slug": "ankara-dsi",
+      "slug": "ankara-dsi-2lig",
       "name": "ANKARA DSİ",
       "league": "2LIG",
       "country": "TUR",
@@ -553,7 +553,7 @@
     },
     {
       "id": 1208,
-      "slug": "antepi-a",
+      "slug": "antepi-a-2lig",
       "name": "ANTEPİA",
       "league": "2LIG",
       "country": "TUR",
@@ -562,7 +562,7 @@
     },
     {
       "id": 1107,
-      "slug": "arkas-spor",
+      "slug": "arkas-spor-2lig",
       "name": "ARKAS SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -571,7 +571,7 @@
     },
     {
       "id": 1047,
-      "slug": "arnavutkoy-bld",
+      "slug": "arnavutkoy-bld-2lig",
       "name": "ARNAVUTKÖY BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -580,7 +580,7 @@
     },
     {
       "id": 1187,
-      "slug": "arsavev-hatay-voleybol",
+      "slug": "arsavev-hatay-voleybol-2lig",
       "name": "ARSAVEV HATAY VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
@@ -589,7 +589,7 @@
     },
     {
       "id": 1096,
-      "slug": "ata-okul-spor",
+      "slug": "ata-okul-spor-2lig",
       "name": "ATA OKUL SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -598,7 +598,7 @@
     },
     {
       "id": 1071,
-      "slug": "atasehi-r-kartallari",
+      "slug": "atasehi-r-kartallari-2lig",
       "name": "ATAŞEHİR KARTALLARI",
       "league": "2LIG",
       "country": "TUR",
@@ -607,7 +607,7 @@
     },
     {
       "id": 1040,
-      "slug": "avrupa-voleybol-geli-si-m",
+      "slug": "avrupa-voleybol-geli-si-m-2lig",
       "name": "AVRUPA VOLEYBOL GELİŞİM",
       "league": "2LIG",
       "country": "TUR",
@@ -616,7 +616,7 @@
     },
     {
       "id": 1111,
-      "slug": "aydin-buyuksehi-r-beledi-yespor",
+      "slug": "aydin-buyuksehi-r-beledi-yespor-2lig",
       "name": "AYDIN BÜYÜKŞEHİR BELEDİYESPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -625,7 +625,7 @@
     },
     {
       "id": 1176,
-      "slug": "b-sehi-r-bld-ankara-spor",
+      "slug": "b-sehi-r-bld-ankara-spor-2lig",
       "name": "B.ŞEHİR BLD. ANKARA SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -634,7 +634,7 @@
     },
     {
       "id": 1052,
-      "slug": "bahceli-evler-bld",
+      "slug": "bahceli-evler-bld-2lig",
       "name": "BAHÇELİEVLER BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -643,7 +643,7 @@
     },
     {
       "id": 1131,
-      "slug": "bahcesehi-r-koleji-dalaman-bld",
+      "slug": "bahcesehi-r-koleji-dalaman-bld-2lig",
       "name": "BAHÇEŞEHİR KOLEJİ DALAMAN BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -652,7 +652,7 @@
     },
     {
       "id": 1082,
-      "slug": "balikesi-r-b-sehi-r-bld",
+      "slug": "balikesi-r-b-sehi-r-bld-2lig",
       "name": "BALIKESİR B.ŞEHİR BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -661,7 +661,7 @@
     },
     {
       "id": 1090,
-      "slug": "balikesi-r-dsi",
+      "slug": "balikesi-r-dsi-2lig",
       "name": "BALIKESİR DSİ",
       "league": "2LIG",
       "country": "TUR",
@@ -670,7 +670,7 @@
     },
     {
       "id": 1083,
-      "slug": "bandirma-celi-k-spor",
+      "slug": "bandirma-celi-k-spor-2lig",
       "name": "BANDIRMA ÇELİK SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -679,7 +679,7 @@
     },
     {
       "id": 1149,
-      "slug": "bartin-volley-academy",
+      "slug": "bartin-volley-academy-2lig",
       "name": "BARTIN VOLLEY ACADEMY",
       "league": "2LIG",
       "country": "TUR",
@@ -688,7 +688,7 @@
     },
     {
       "id": 1054,
-      "slug": "basaksehi-r-voleybol",
+      "slug": "basaksehi-r-voleybol-2lig",
       "name": "BAŞAKŞEHİR VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
@@ -697,7 +697,7 @@
     },
     {
       "id": 1155,
-      "slug": "baskent-ada-spor",
+      "slug": "baskent-ada-spor-2lig",
       "name": "BAŞKENT ADA SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -706,7 +706,7 @@
     },
     {
       "id": 1170,
-      "slug": "baskent-zi-rve",
+      "slug": "baskent-zi-rve-2lig",
       "name": "BAŞKENT ZİRVE",
       "league": "2LIG",
       "country": "TUR",
@@ -715,7 +715,7 @@
     },
     {
       "id": 1190,
-      "slug": "bayburt-gencli-k-merkezi",
+      "slug": "bayburt-gencli-k-merkezi-2lig",
       "name": "BAYBURT GENÇLİK MERKEZİ",
       "league": "2LIG",
       "country": "TUR",
@@ -724,7 +724,7 @@
     },
     {
       "id": 1102,
-      "slug": "bayrakli-bld",
+      "slug": "bayrakli-bld-2lig",
       "name": "BAYRAKLI BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -733,7 +733,7 @@
     },
     {
       "id": 1104,
-      "slug": "bergama-bld",
+      "slug": "bergama-bld-2lig",
       "name": "BERGAMA BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -742,7 +742,7 @@
     },
     {
       "id": 1199,
-      "slug": "besi-kduzu",
+      "slug": "besi-kduzu-2lig",
       "name": "BEŞİKDÜZÜ",
       "league": "2LIG",
       "country": "TUR",
@@ -751,7 +751,7 @@
     },
     {
       "id": 1055,
-      "slug": "besi-ktas-naviosa",
+      "slug": "besi-ktas-naviosa-2lig",
       "name": "BEŞİKTAŞ NAVIOSA",
       "league": "2LIG",
       "country": "TUR",
@@ -760,7 +760,7 @@
     },
     {
       "id": 1042,
-      "slug": "beyli-kduzu-beykent",
+      "slug": "beyli-kduzu-beykent-2lig",
       "name": "BEYLİKDÜZÜ BEYKENT",
       "league": "2LIG",
       "country": "TUR",
@@ -769,7 +769,7 @@
     },
     {
       "id": 1044,
-      "slug": "bi-zi-mkent-voleybol",
+      "slug": "bi-zi-mkent-voleybol-2lig",
       "name": "BİZİMKENT VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
@@ -778,7 +778,7 @@
     },
     {
       "id": 1154,
-      "slug": "bolu-ataturk-anadolu-li-sesi",
+      "slug": "bolu-ataturk-anadolu-li-sesi-2lig",
       "name": "BOLU ATATÜRK ANADOLU LİSESİ",
       "league": "2LIG",
       "country": "TUR",
@@ -787,7 +787,7 @@
     },
     {
       "id": 1136,
-      "slug": "bursa-b-sehi-r-bld",
+      "slug": "bursa-b-sehi-r-bld-2lig",
       "name": "BURSA B.ŞEHİR BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -796,7 +796,7 @@
     },
     {
       "id": 1134,
-      "slug": "bursa-fethi-ye-1973-spor",
+      "slug": "bursa-fethi-ye-1973-spor-2lig",
       "name": "BURSA FETHİYE 1973 SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -805,7 +805,7 @@
     },
     {
       "id": 1056,
-      "slug": "buyuk-resi-tpasa-ortaokulu",
+      "slug": "buyuk-resi-tpasa-ortaokulu-2lig",
       "name": "BÜYÜK REŞİTPAŞA ORTAOKULU",
       "league": "2LIG",
       "country": "TUR",
@@ -814,7 +814,7 @@
     },
     {
       "id": 1050,
-      "slug": "buyukcekmece-voleybol-akademi",
+      "slug": "buyukcekmece-voleybol-akademi-2lig",
       "name": "BÜYÜKÇEKMECE VOLEYBOL AKADEMİ",
       "league": "2LIG",
       "country": "TUR",
@@ -823,7 +823,7 @@
     },
     {
       "id": 1146,
-      "slug": "cadence-boya-golcuk-i-hsani-ye",
+      "slug": "cadence-boya-golcuk-i-hsani-ye-2lig",
       "name": "CADENCE BOYA GÖLCÜK İHSANİYE",
       "league": "2LIG",
       "country": "TUR",
@@ -832,7 +832,7 @@
     },
     {
       "id": 1064,
-      "slug": "can-mi-lan-atleti-k",
+      "slug": "can-mi-lan-atleti-k-2lig",
       "name": "CAN MİLAN ATLETİK",
       "league": "2LIG",
       "country": "TUR",
@@ -841,7 +841,7 @@
     },
     {
       "id": 1173,
-      "slug": "caba-spor",
+      "slug": "caba-spor-2lig",
       "name": "ÇABA SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -850,7 +850,7 @@
     },
     {
       "id": 1087,
-      "slug": "can-kale-spor",
+      "slug": "can-kale-spor-2lig",
       "name": "ÇAN KALE SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -859,7 +859,7 @@
     },
     {
       "id": 1085,
-      "slug": "canakkale-kepez",
+      "slug": "canakkale-kepez-2lig",
       "name": "ÇANAKKALE KEPEZ",
       "league": "2LIG",
       "country": "TUR",
@@ -868,7 +868,7 @@
     },
     {
       "id": 1041,
-      "slug": "catalca-bld",
+      "slug": "catalca-bld-2lig",
       "name": "ÇATALCA BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -877,7 +877,7 @@
     },
     {
       "id": 1077,
-      "slug": "cekmekoy-i-stanbul-spor",
+      "slug": "cekmekoy-i-stanbul-spor-2lig",
       "name": "ÇEKMEKÖY İSTANBUL SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -886,7 +886,7 @@
     },
     {
       "id": 1066,
-      "slug": "cengelkoy-voleybol",
+      "slug": "cengelkoy-voleybol-2lig",
       "name": "ÇENGELKÖY VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
@@ -895,7 +895,7 @@
     },
     {
       "id": 1086,
-      "slug": "cerkezkoy-voleybol-akademi",
+      "slug": "cerkezkoy-voleybol-akademi-2lig",
       "name": "ÇERKEZKÖY VOLEYBOL AKADEMİ",
       "league": "2LIG",
       "country": "TUR",
@@ -904,7 +904,7 @@
     },
     {
       "id": 1092,
-      "slug": "corlu-bld",
+      "slug": "corlu-bld-2lig",
       "name": "ÇORLU BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -913,7 +913,7 @@
     },
     {
       "id": 1194,
-      "slug": "corum-arena-spor",
+      "slug": "corum-arena-spor-2lig",
       "name": "ÇORUM ARENA SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -922,7 +922,7 @@
     },
     {
       "id": 1201,
-      "slug": "corum-voleybol",
+      "slug": "corum-voleybol-2lig",
       "name": "ÇORUM VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
@@ -931,7 +931,7 @@
     },
     {
       "id": 1125,
-      "slug": "deni-zli-b-sehi-r-bld",
+      "slug": "deni-zli-b-sehi-r-bld-2lig",
       "name": "DENİZLİ B.ŞEHİR BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -940,7 +940,7 @@
     },
     {
       "id": 1068,
-      "slug": "dev-atasehi-r",
+      "slug": "dev-atasehi-r-2lig",
       "name": "DEV ATAŞEHİR",
       "league": "2LIG",
       "country": "TUR",
@@ -949,7 +949,7 @@
     },
     {
       "id": 1211,
-      "slug": "di-yarbakir-voleybolcular",
+      "slug": "di-yarbakir-voleybolcular-2lig",
       "name": "DİYARBAKIR VOLEYBOLCULAR",
       "league": "2LIG",
       "country": "TUR",
@@ -958,7 +958,7 @@
     },
     {
       "id": 1069,
-      "slug": "dogu-akademi",
+      "slug": "dogu-akademi-2lig",
       "name": "DOĞU AKADEMİ",
       "league": "2LIG",
       "country": "TUR",
@@ -967,7 +967,7 @@
     },
     {
       "id": 1144,
-      "slug": "duzce-voleybol",
+      "slug": "duzce-voleybol-2lig",
       "name": "DÜZCE VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
@@ -976,7 +976,7 @@
     },
     {
       "id": 1095,
-      "slug": "efor-gencli-k",
+      "slug": "efor-gencli-k-2lig",
       "name": "EFOR GENÇLİK",
       "league": "2LIG",
       "country": "TUR",
@@ -985,7 +985,7 @@
     },
     {
       "id": 1220,
-      "slug": "elazig-bld",
+      "slug": "elazig-bld-2lig",
       "name": "ELAZIĞ BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -994,7 +994,7 @@
     },
     {
       "id": 1121,
-      "slug": "eli-t-akdeni-z",
+      "slug": "eli-t-akdeni-z-2lig",
       "name": "ELİT AKDENİZ",
       "league": "2LIG",
       "country": "TUR",
@@ -1003,7 +1003,7 @@
     },
     {
       "id": 1118,
-      "slug": "endo-karsiyaka",
+      "slug": "endo-karsiyaka-2lig",
       "name": "ENDO KARŞIYAKA",
       "league": "2LIG",
       "country": "TUR",
@@ -1012,7 +1012,7 @@
     },
     {
       "id": 1164,
-      "slug": "english-time-spor",
+      "slug": "english-time-spor-2lig",
       "name": "ENGLISH TIME SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1021,7 +1021,7 @@
     },
     {
       "id": 1179,
-      "slug": "eregli-sumer-spor",
+      "slug": "eregli-sumer-spor-2lig",
       "name": "EREĞLİ SÜMER SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1030,7 +1030,7 @@
     },
     {
       "id": 1167,
-      "slug": "eryaman-geli-si-m",
+      "slug": "eryaman-geli-si-m-2lig",
       "name": "ERYAMAN GELİŞİM",
       "league": "2LIG",
       "country": "TUR",
@@ -1039,7 +1039,7 @@
     },
     {
       "id": 1135,
-      "slug": "eski-sehi-r-peyman-spor",
+      "slug": "eski-sehi-r-peyman-spor-2lig",
       "name": "ESKİŞEHİR PEYMAN SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1048,7 +1048,7 @@
     },
     {
       "id": 1143,
-      "slug": "eski-sehi-r-sehi-r-koleji-egt-kultur",
+      "slug": "eski-sehi-r-sehi-r-koleji-egt-kultur-2lig",
       "name": "ESKİŞEHİR ŞEHİR KOLEJİ EĞT. KÜLTÜR",
       "league": "2LIG",
       "country": "TUR",
@@ -1057,7 +1057,7 @@
     },
     {
       "id": 1165,
-      "slug": "eti-mesgut-bld-geli-si-m",
+      "slug": "eti-mesgut-bld-geli-si-m-2lig",
       "name": "ETİMESGUT BLD. GELİŞİM",
       "league": "2LIG",
       "country": "TUR",
@@ -1066,7 +1066,7 @@
     },
     {
       "id": 1061,
-      "slug": "eyupsultan-bld",
+      "slug": "eyupsultan-bld-2lig",
       "name": "EYÜPSULTAN BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -1075,7 +1075,7 @@
     },
     {
       "id": 1072,
-      "slug": "fenerbahce-medicana",
+      "slug": "fenerbahce-medicana-2lig",
       "name": "FENERBAHÇE MEDICANA",
       "league": "2LIG",
       "country": "TUR",
@@ -1084,7 +1084,7 @@
     },
     {
       "id": 1126,
-      "slug": "fethi-ye-voleybol",
+      "slug": "fethi-ye-voleybol-2lig",
       "name": "FETHİYE VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
@@ -1093,7 +1093,7 @@
     },
     {
       "id": 1206,
-      "slug": "firat-ozkan",
+      "slug": "firat-ozkan-2lig",
       "name": "FIRAT ÖZKAN",
       "league": "2LIG",
       "country": "TUR",
@@ -1102,7 +1102,7 @@
     },
     {
       "id": 1106,
-      "slug": "forza-spor",
+      "slug": "forza-spor-2lig",
       "name": "FORZA SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1111,7 +1111,7 @@
     },
     {
       "id": 1070,
-      "slug": "galatasaray",
+      "slug": "galatasaray-2lig",
       "name": "GALATASARAY",
       "league": "2LIG",
       "country": "TUR",
@@ -1120,7 +1120,7 @@
     },
     {
       "id": 1210,
-      "slug": "gazi-antep-bld",
+      "slug": "gazi-antep-bld-2lig",
       "name": "GAZİANTEP BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -1129,7 +1129,7 @@
     },
     {
       "id": 1115,
-      "slug": "gazi-emi-r-bld",
+      "slug": "gazi-emi-r-bld-2lig",
       "name": "GAZİEMİR BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -1138,7 +1138,7 @@
     },
     {
       "id": 1147,
-      "slug": "gebze-gencli-k-ve-spor",
+      "slug": "gebze-gencli-k-ve-spor-2lig",
       "name": "GEBZE GENÇLİK VE SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1147,7 +1147,7 @@
     },
     {
       "id": 1108,
-      "slug": "geli-si-m-koleji",
+      "slug": "geli-si-m-koleji-2lig",
       "name": "GELİŞİM KOLEJİ",
       "league": "2LIG",
       "country": "TUR",
@@ -1156,7 +1156,7 @@
     },
     {
       "id": 1133,
-      "slug": "gemli-k-i-sti-klal-spor",
+      "slug": "gemli-k-i-sti-klal-spor-2lig",
       "name": "GEMLİK İSTİKLAL SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1165,7 +1165,7 @@
     },
     {
       "id": 1159,
-      "slug": "golbasi-i-ncek-spor",
+      "slug": "golbasi-i-ncek-spor-2lig",
       "name": "GÖLBAŞI İNCEK SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1174,7 +1174,7 @@
     },
     {
       "id": 1101,
-      "slug": "goztepe",
+      "slug": "goztepe-2lig",
       "name": "GÖZTEPE",
       "league": "2LIG",
       "country": "TUR",
@@ -1183,7 +1183,7 @@
     },
     {
       "id": 1053,
-      "slug": "gungoren-voleybol",
+      "slug": "gungoren-voleybol-2lig",
       "name": "GÜNGÖREN VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
@@ -1192,7 +1192,7 @@
     },
     {
       "id": 1127,
-      "slug": "gural-premier-antalyaspor",
+      "slug": "gural-premier-antalyaspor-2lig",
       "name": "GÜRAL PREMIER ANTALYASPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1201,7 +1201,7 @@
     },
     {
       "id": 1163,
-      "slug": "hakan-akisik-spor",
+      "slug": "hakan-akisik-spor-2lig",
       "name": "HAKAN AKIŞIK SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1210,7 +1210,7 @@
     },
     {
       "id": 1217,
-      "slug": "hakkari-maemtal",
+      "slug": "hakkari-maemtal-2lig",
       "name": "HAKKARİ MAEMTAL",
       "league": "2LIG",
       "country": "TUR",
@@ -1219,7 +1219,7 @@
     },
     {
       "id": 1219,
-      "slug": "hakkari-sporti-f-faali-yetler",
+      "slug": "hakkari-sporti-f-faali-yetler-2lig",
       "name": "HAKKARİ SPORTİF FAALİYETLER",
       "league": "2LIG",
       "country": "TUR",
@@ -1228,7 +1228,7 @@
     },
     {
       "id": 1148,
-      "slug": "harput-lahmacun-yahya-kaptan",
+      "slug": "harput-lahmacun-yahya-kaptan-2lig",
       "name": "HARPUT LAHMACUN YAHYA KAPTAN",
       "league": "2LIG",
       "country": "TUR",
@@ -1237,7 +1237,7 @@
     },
     {
       "id": 1178,
-      "slug": "hedef-ankara",
+      "slug": "hedef-ankara-2lig",
       "name": "HEDEF ANKARA",
       "league": "2LIG",
       "country": "TUR",
@@ -1246,7 +1246,7 @@
     },
     {
       "id": 1132,
-      "slug": "heki-moglu-global-connect-travel-bvi",
+      "slug": "heki-moglu-global-connect-travel-bvi-2lig",
       "name": "HEKİMOĞLU GLOBAL CONNECT TRAVEL BVİ",
       "league": "2LIG",
       "country": "TUR",
@@ -1255,7 +1255,7 @@
     },
     {
       "id": 1137,
-      "slug": "hoca-ahmet-yesevi-anadolu-l-es-voleybol-akademi",
+      "slug": "hoca-ahmet-yesevi-anadolu-l-es-voleybol--2lig",
       "name": "HOCA AHMET YESEVİ ANADOLU L. ES VOLEYBOL AKADEMİ",
       "league": "2LIG",
       "country": "TUR",
@@ -1264,7 +1264,7 @@
     },
     {
       "id": 1192,
-      "slug": "hopa-beledi-ye",
+      "slug": "hopa-beledi-ye-2lig",
       "name": "HOPA BELEDİYE",
       "league": "2LIG",
       "country": "TUR",
@@ -1273,7 +1273,7 @@
     },
     {
       "id": 1124,
-      "slug": "isparta-gencli-k-spor",
+      "slug": "isparta-gencli-k-spor-2lig",
       "name": "ISPARTA GENÇLİK SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1282,7 +1282,7 @@
     },
     {
       "id": 1158,
-      "slug": "i-lbank",
+      "slug": "i-lbank-2lig",
       "name": "İLBANK",
       "league": "2LIG",
       "country": "TUR",
@@ -1291,7 +1291,7 @@
     },
     {
       "id": 1046,
-      "slug": "i-stanbul-bi-zi-mkent-spor",
+      "slug": "i-stanbul-bi-zi-mkent-spor-2lig",
       "name": "İSTANBUL BİZİMKENT SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1300,7 +1300,7 @@
     },
     {
       "id": 1114,
-      "slug": "i-zmi-r-b-sehir-bld",
+      "slug": "i-zmi-r-b-sehir-bld-2lig",
       "name": "İZMİR B.ŞEHIR BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -1309,7 +1309,7 @@
     },
     {
       "id": 1116,
-      "slug": "i-zmi-r-dsi",
+      "slug": "i-zmi-r-dsi-2lig",
       "name": "İZMİR DSİ",
       "league": "2LIG",
       "country": "TUR",
@@ -1318,7 +1318,7 @@
     },
     {
       "id": 1151,
-      "slug": "i-zmi-t-spor",
+      "slug": "i-zmi-t-spor-2lig",
       "name": "İZMİT SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1327,7 +1327,7 @@
     },
     {
       "id": 1074,
-      "slug": "kamari-n-spor",
+      "slug": "kamari-n-spor-2lig",
       "name": "KAMARİN SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1336,7 +1336,7 @@
     },
     {
       "id": 1145,
-      "slug": "karabuk-gencli-k-spor",
+      "slug": "karabuk-gencli-k-spor-2lig",
       "name": "KARABÜK GENÇLİK SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1345,7 +1345,7 @@
     },
     {
       "id": 1078,
-      "slug": "kartal-anadolu",
+      "slug": "kartal-anadolu-2lig",
       "name": "KARTAL ANADOLU",
       "league": "2LIG",
       "country": "TUR",
@@ -1354,7 +1354,7 @@
     },
     {
       "id": 1079,
-      "slug": "kartal-bld",
+      "slug": "kartal-bld-2lig",
       "name": "KARTAL BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -1363,7 +1363,7 @@
     },
     {
       "id": 1169,
-      "slug": "kavak-spor",
+      "slug": "kavak-spor-2lig",
       "name": "KAVAK SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1372,7 +1372,7 @@
     },
     {
       "id": 1203,
-      "slug": "kayseri-ci-mnasti-k-spor",
+      "slug": "kayseri-ci-mnasti-k-spor-2lig",
       "name": "KAYSERİ CİMNASTİK SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1381,7 +1381,7 @@
     },
     {
       "id": 1204,
-      "slug": "kayseri-voleybol",
+      "slug": "kayseri-voleybol-2lig",
       "name": "KAYSERİ VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
@@ -1390,7 +1390,7 @@
     },
     {
       "id": 1089,
-      "slug": "kirklareli-gencli-k-spor",
+      "slug": "kirklareli-gencli-k-spor-2lig",
       "name": "KIRKLARELİ GENÇLİK SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1399,7 +1399,7 @@
     },
     {
       "id": 1150,
-      "slug": "kocaeli-ni-comedi-a-akademi",
+      "slug": "kocaeli-ni-comedi-a-akademi-2lig",
       "name": "KOCAELİ NİCOMEDİA AKADEMİ",
       "league": "2LIG",
       "country": "TUR",
@@ -1408,7 +1408,7 @@
     },
     {
       "id": 1153,
-      "slug": "kocaeli-voleybol-akademi",
+      "slug": "kocaeli-voleybol-akademi-2lig",
       "name": "KOCAELİ VOLEYBOL AKADEMİ",
       "league": "2LIG",
       "country": "TUR",
@@ -1417,7 +1417,7 @@
     },
     {
       "id": 1081,
-      "slug": "kuzey-yildizlari",
+      "slug": "kuzey-yildizlari-2lig",
       "name": "KUZEY YILDIZLARI",
       "league": "2LIG",
       "country": "TUR",
@@ -1426,7 +1426,7 @@
     },
     {
       "id": 1048,
-      "slug": "kucukcekmece-voleybol",
+      "slug": "kucukcekmece-voleybol-2lig",
       "name": "KÜÇÜKÇEKMECE VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
@@ -1435,7 +1435,7 @@
     },
     {
       "id": 1103,
-      "slug": "kzy-spor",
+      "slug": "kzy-spor-2lig",
       "name": "KZY SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1444,7 +1444,7 @@
     },
     {
       "id": 1065,
-      "slug": "lanueva-kozmeti-k-anadolu-marmara",
+      "slug": "lanueva-kozmeti-k-anadolu-marmara-2lig",
       "name": "LANUEVA KOZMETİK ANADOLU MARMARA",
       "league": "2LIG",
       "country": "TUR",
@@ -1453,7 +1453,7 @@
     },
     {
       "id": 1067,
-      "slug": "mac-sayisi",
+      "slug": "mac-sayisi-2lig",
       "name": "MAÇ SAYISI",
       "league": "2LIG",
       "country": "TUR",
@@ -1462,7 +1462,7 @@
     },
     {
       "id": 1214,
-      "slug": "malatya-voleybol",
+      "slug": "malatya-voleybol-2lig",
       "name": "MALATYA VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
@@ -1471,7 +1471,7 @@
     },
     {
       "id": 1213,
-      "slug": "margenc",
+      "slug": "margenc-2lig",
       "name": "MARGENÇ",
       "league": "2LIG",
       "country": "TUR",
@@ -1480,7 +1480,7 @@
     },
     {
       "id": 1130,
-      "slug": "marmari-s-bld",
+      "slug": "marmari-s-bld-2lig",
       "name": "MARMARİS BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -1489,7 +1489,7 @@
     },
     {
       "id": 1084,
-      "slug": "media-first-ayvalik-geli-si-m-spor",
+      "slug": "media-first-ayvalik-geli-si-m-spor-2lig",
       "name": "MEDIA FIRST AYVALIK GELİŞİM SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1498,7 +1498,7 @@
     },
     {
       "id": 1140,
-      "slug": "mehmet-ege-i-nsaat-i-negol-orhani-ye-voleybol",
+      "slug": "mehmet-ege-i-nsaat-i-negol-orhani-ye-vol-2lig",
       "name": "MEHMET EGE İNŞAAT İNEGÖL ORHANİYE VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
@@ -1507,7 +1507,7 @@
     },
     {
       "id": 1075,
-      "slug": "mehmet-erdem-marmara-akademi",
+      "slug": "mehmet-erdem-marmara-akademi-2lig",
       "name": "MEHMET ERDEM MARMARA AKADEMİ",
       "league": "2LIG",
       "country": "TUR",
@@ -1516,7 +1516,7 @@
     },
     {
       "id": 1205,
-      "slug": "meri-nos-voleybol",
+      "slug": "meri-nos-voleybol-2lig",
       "name": "MERİNOS VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
@@ -1525,7 +1525,7 @@
     },
     {
       "id": 1138,
-      "slug": "mg-spor",
+      "slug": "mg-spor-2lig",
       "name": "MG SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1534,7 +1534,7 @@
     },
     {
       "id": 1174,
-      "slug": "misiroglu-beytepe",
+      "slug": "misiroglu-beytepe-2lig",
       "name": "MISIROĞLU BEYTEPE",
       "league": "2LIG",
       "country": "TUR",
@@ -1543,7 +1543,7 @@
     },
     {
       "id": 1172,
-      "slug": "mke-ankaragucu",
+      "slug": "mke-ankaragucu-2lig",
       "name": "MKE ANKARAGÜCÜ",
       "league": "2LIG",
       "country": "TUR",
@@ -1552,7 +1552,7 @@
     },
     {
       "id": 1215,
-      "slug": "mus-oli-mpi-k-spor",
+      "slug": "mus-oli-mpi-k-spor-2lig",
       "name": "MUŞ OLİMPİK SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1561,7 +1561,7 @@
     },
     {
       "id": 1218,
-      "slug": "ni-cer-hotel-voleybol",
+      "slug": "ni-cer-hotel-voleybol-2lig",
       "name": "NİCER HOTEL VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
@@ -1570,7 +1570,7 @@
     },
     {
       "id": 1139,
-      "slug": "ni-lufer-bld",
+      "slug": "ni-lufer-bld-2lig",
       "name": "NİLÜFER BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -1579,7 +1579,7 @@
     },
     {
       "id": 1184,
-      "slug": "okura-loji-sti-k-mersi-n-i-hti-sas",
+      "slug": "okura-loji-sti-k-mersi-n-i-hti-sas-2lig",
       "name": "OKURA LOJİSTİK MERSİN İHTİSAS",
       "league": "2LIG",
       "country": "TUR",
@@ -1588,7 +1588,7 @@
     },
     {
       "id": 1196,
-      "slug": "osmancik-bld",
+      "slug": "osmancik-bld-2lig",
       "name": "OSMANCIK BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -1597,7 +1597,7 @@
     },
     {
       "id": 1109,
-      "slug": "polat-group-di-di-m-beledi-yespor",
+      "slug": "polat-group-di-di-m-beledi-yespor-2lig",
       "name": "POLAT GROUP DİDİM BELEDİYESPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1606,7 +1606,7 @@
     },
     {
       "id": 1177,
-      "slug": "polatli-duatepe",
+      "slug": "polatli-duatepe-2lig",
       "name": "POLATLI DUATEPE",
       "league": "2LIG",
       "country": "TUR",
@@ -1615,7 +1615,7 @@
     },
     {
       "id": 1166,
-      "slug": "ptt",
+      "slug": "ptt-2lig",
       "name": "PTT",
       "league": "2LIG",
       "country": "TUR",
@@ -1624,7 +1624,7 @@
     },
     {
       "id": 1200,
-      "slug": "ri-ze-endustri-meslek-li-sesi",
+      "slug": "ri-ze-endustri-meslek-li-sesi-2lig",
       "name": "RİZE ENDÜSTRİ MESLEK LİSESİ",
       "league": "2LIG",
       "country": "TUR",
@@ -1633,7 +1633,7 @@
     },
     {
       "id": 1058,
-      "slug": "roberteam",
+      "slug": "roberteam-2lig",
       "name": "ROBERTEAM",
       "league": "2LIG",
       "country": "TUR",
@@ -1642,7 +1642,7 @@
     },
     {
       "id": 1112,
-      "slug": "rota-koleji",
+      "slug": "rota-koleji-2lig",
       "name": "ROTA KOLEJİ",
       "league": "2LIG",
       "country": "TUR",
@@ -1651,7 +1651,7 @@
     },
     {
       "id": 1197,
-      "slug": "semt-asansor-bordo-mavi-61",
+      "slug": "semt-asansor-bordo-mavi-61-2lig",
       "name": "SEMT ASANSÖR BORDO MAVİ 61",
       "league": "2LIG",
       "country": "TUR",
@@ -1660,7 +1660,7 @@
     },
     {
       "id": 1152,
-      "slug": "serdi-van-bld",
+      "slug": "serdi-van-bld-2lig",
       "name": "SERDİVAN BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -1669,7 +1669,7 @@
     },
     {
       "id": 1182,
-      "slug": "seyhan-bld",
+      "slug": "seyhan-bld-2lig",
       "name": "SEYHAN BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -1678,7 +1678,7 @@
     },
     {
       "id": 1191,
-      "slug": "sinav-koleji-samsunspor",
+      "slug": "sinav-koleji-samsunspor-2lig",
       "name": "SINAV KOLEJİ SAMSUNSPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1687,7 +1687,7 @@
     },
     {
       "id": 1189,
-      "slug": "si-banet-kozan-i-mamoglu-spor",
+      "slug": "si-banet-kozan-i-mamoglu-spor-2lig",
       "name": "SİBANET KOZAN İMAMOĞLU SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1696,7 +1696,7 @@
     },
     {
       "id": 1049,
-      "slug": "si-li-vri-cagribey",
+      "slug": "si-li-vri-cagribey-2lig",
       "name": "SİLİVRİ ÇAĞRIBEY",
       "league": "2LIG",
       "country": "TUR",
@@ -1705,7 +1705,7 @@
     },
     {
       "id": 1222,
-      "slug": "si-lopi-bld-sporti-f-faali-yetler",
+      "slug": "si-lopi-bld-sporti-f-faali-yetler-2lig",
       "name": "SİLOPİ BLD. SPORTİF FAALİYETLER",
       "league": "2LIG",
       "country": "TUR",
@@ -1714,7 +1714,7 @@
     },
     {
       "id": 1221,
-      "slug": "si-lopi-geli-si-m-faali-yetleri",
+      "slug": "si-lopi-geli-si-m-faali-yetleri-2lig",
       "name": "SİLOPİ GELİŞİM FAALİYETLERİ",
       "league": "2LIG",
       "country": "TUR",
@@ -1723,7 +1723,7 @@
     },
     {
       "id": 1209,
-      "slug": "si-vas-toprak-gayri-menkul-pars-akademi",
+      "slug": "si-vas-toprak-gayri-menkul-pars-akademi-2lig",
       "name": "SİVAS TOPRAK GAYRİMENKUL PARS AKADEMİ",
       "league": "2LIG",
       "country": "TUR",
@@ -1732,7 +1732,7 @@
     },
     {
       "id": 1045,
-      "slug": "smac-spor",
+      "slug": "smac-spor-2lig",
       "name": "SMAÇ SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1741,7 +1741,7 @@
     },
     {
       "id": 1195,
-      "slug": "smart-holding-a-s-cayeli",
+      "slug": "smart-holding-a-s-cayeli-2lig",
       "name": "SMART HOLDING A.Ş. ÇAYELI",
       "league": "2LIG",
       "country": "TUR",
@@ -1750,7 +1750,7 @@
     },
     {
       "id": 1113,
-      "slug": "soke-beledi-ye-saldos-voleybol",
+      "slug": "soke-beledi-ye-saldos-voleybol-2lig",
       "name": "SÖKE BELEDİYE SALDOS VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
@@ -1759,7 +1759,7 @@
     },
     {
       "id": 1193,
-      "slug": "superpool-findikli-1974",
+      "slug": "superpool-findikli-1974-2lig",
       "name": "SUPERPOOL FINDIKLI 1974",
       "league": "2LIG",
       "country": "TUR",
@@ -1768,7 +1768,7 @@
     },
     {
       "id": 1181,
-      "slug": "tarsus-ameri-kan-koleji",
+      "slug": "tarsus-ameri-kan-koleji-2lig",
       "name": "TARSUS AMERİKAN KOLEJİ",
       "league": "2LIG",
       "country": "TUR",
@@ -1777,7 +1777,7 @@
     },
     {
       "id": 1175,
-      "slug": "ted-ankara-kolejli-ler",
+      "slug": "ted-ankara-kolejli-ler-2lig",
       "name": "TED ANKARA KOLEJLİLER",
       "league": "2LIG",
       "country": "TUR",
@@ -1786,7 +1786,7 @@
     },
     {
       "id": 1161,
-      "slug": "tek-metal-sporti-f",
+      "slug": "tek-metal-sporti-f-2lig",
       "name": "TEK METAL SPORTİF",
       "league": "2LIG",
       "country": "TUR",
@@ -1795,7 +1795,7 @@
     },
     {
       "id": 1091,
-      "slug": "teki-rdag-voleybol-i-hti-sas",
+      "slug": "teki-rdag-voleybol-i-hti-sas-2lig",
       "name": "TEKİRDAĞ VOLEYBOL İHTİSAS",
       "league": "2LIG",
       "country": "TUR",
@@ -1804,7 +1804,7 @@
     },
     {
       "id": 1156,
-      "slug": "temi-z-enerji-birli-gi",
+      "slug": "temi-z-enerji-birli-gi-2lig",
       "name": "TEMİZ ENERJİ BIRLİĞİ",
       "league": "2LIG",
       "country": "TUR",
@@ -1813,7 +1813,7 @@
     },
     {
       "id": 1188,
-      "slug": "toros-universi-tesi-volgem",
+      "slug": "toros-universi-tesi-volgem-2lig",
       "name": "TOROS ÜNIVERSİTESİ VOLGEM",
       "league": "2LIG",
       "country": "TUR",
@@ -1822,7 +1822,7 @@
     },
     {
       "id": 1186,
-      "slug": "toroslar-bld",
+      "slug": "toroslar-bld-2lig",
       "name": "TOROSLAR BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -1831,7 +1831,7 @@
     },
     {
       "id": 1073,
-      "slug": "toyzz-shop-di-namo-spor",
+      "slug": "toyzz-shop-di-namo-spor-2lig",
       "name": "TOYZZ SHOP DİNAMO SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1840,7 +1840,7 @@
     },
     {
       "id": 1105,
-      "slug": "turgutlu-bld-kultur-sanat",
+      "slug": "turgutlu-bld-kultur-sanat-2lig",
       "name": "TURGUTLU BLD. KÜLTÜR SANAT",
       "league": "2LIG",
       "country": "TUR",
@@ -1849,7 +1849,7 @@
     },
     {
       "id": 1076,
-      "slug": "tuzla-mercan",
+      "slug": "tuzla-mercan-2lig",
       "name": "TUZLA MERCAN",
       "league": "2LIG",
       "country": "TUR",
@@ -1858,7 +1858,7 @@
     },
     {
       "id": 1043,
-      "slug": "turk-hava-yollari",
+      "slug": "turk-hava-yollari-2lig",
       "name": "TÜRK HAVA YOLLARI",
       "league": "2LIG",
       "country": "TUR",
@@ -1867,7 +1867,7 @@
     },
     {
       "id": 1094,
-      "slug": "turkoglu-spor-kulubu",
+      "slug": "turkoglu-spor-kulubu-2lig",
       "name": "TÜRKOĞLU SPOR KULÜBÜ",
       "league": "2LIG",
       "country": "TUR",
@@ -1876,7 +1876,7 @@
     },
     {
       "id": 1162,
-      "slug": "tvf-spor-li-sesi",
+      "slug": "tvf-spor-li-sesi-2lig",
       "name": "TVF SPOR LİSESİ",
       "league": "2LIG",
       "country": "TUR",
@@ -1885,7 +1885,7 @@
     },
     {
       "id": 1128,
-      "slug": "uysallar-oto-fethi-ye-zi-rve",
+      "slug": "uysallar-oto-fethi-ye-zi-rve-2lig",
       "name": "UYSALLAR OTO FETHİYE ZİRVE",
       "league": "2LIG",
       "country": "TUR",
@@ -1894,7 +1894,7 @@
     },
     {
       "id": 1110,
-      "slug": "ulku-spor",
+      "slug": "ulku-spor-2lig",
       "name": "ÜLKÜ SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1903,7 +1903,7 @@
     },
     {
       "id": 1051,
-      "slug": "unsped",
+      "slug": "unsped-2lig",
       "name": "ÜNSPED",
       "league": "2LIG",
       "country": "TUR",
@@ -1912,7 +1912,7 @@
     },
     {
       "id": 1060,
-      "slug": "vefa",
+      "slug": "vefa-2lig",
       "name": "VEFA",
       "league": "2LIG",
       "country": "TUR",
@@ -1921,7 +1921,7 @@
     },
     {
       "id": 1117,
-      "slug": "venus-spor",
+      "slug": "venus-spor-2lig",
       "name": "VENÜS SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1930,7 +1930,7 @@
     },
     {
       "id": 1207,
-      "slug": "vi-ransehi-r-voleybol",
+      "slug": "vi-ransehi-r-voleybol-2lig",
       "name": "VİRANŞEHİR VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
@@ -1939,7 +1939,7 @@
     },
     {
       "id": 1119,
-      "slug": "volkan-guc-spor",
+      "slug": "volkan-guc-spor-2lig",
       "name": "VOLKAN GÜÇ SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1948,7 +1948,7 @@
     },
     {
       "id": 1063,
-      "slug": "world-medicine-ates-spor",
+      "slug": "world-medicine-ates-spor-2lig",
       "name": "WORLD MEDICINE ATEŞ SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1957,7 +1957,7 @@
     },
     {
       "id": 1141,
-      "slug": "yalova-ci-ftli-kkoy-bld",
+      "slug": "yalova-ci-ftli-kkoy-bld-2lig",
       "name": "YALOVA ÇİFTLİKKÖY BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -1966,7 +1966,7 @@
     },
     {
       "id": 1171,
-      "slug": "yedi-dag-spor",
+      "slug": "yedi-dag-spor-2lig",
       "name": "YEDİDAĞ SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1975,7 +1975,7 @@
     },
     {
       "id": 1057,
-      "slug": "yeni-ay-loji-sti-k-sariyer-konak-spor",
+      "slug": "yeni-ay-loji-sti-k-sariyer-konak-spor-2lig",
       "name": "YENİAY LOJİSTİK SARIYER KONAK SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -1984,7 +1984,7 @@
     },
     {
       "id": 1088,
-      "slug": "yesi-l-bayrami-c",
+      "slug": "yesi-l-bayrami-c-2lig",
       "name": "YEŞİL BAYRAMİÇ",
       "league": "2LIG",
       "country": "TUR",
@@ -1993,7 +1993,7 @@
     },
     {
       "id": 1059,
-      "slug": "yesi-lyurt",
+      "slug": "yesi-lyurt-2lig",
       "name": "YEŞİLYURT",
       "league": "2LIG",
       "country": "TUR",
@@ -2002,7 +2002,7 @@
     },
     {
       "id": 1100,
-      "slug": "yunusemre-bld",
+      "slug": "yunusemre-bld-2lig",
       "name": "YUNUSEMRE BLD.",
       "league": "2LIG",
       "country": "TUR",
@@ -2011,7 +2011,7 @@
     },
     {
       "id": 1202,
-      "slug": "zeugma-gazi-antep-spor",
+      "slug": "zeugma-gazi-antep-spor-2lig",
       "name": "ZEUGMA GAZİANTEP SPOR",
       "league": "2LIG",
       "country": "TUR",
@@ -2020,7 +2020,7 @@
     },
     {
       "id": 1235,
-      "slug": "a-carraro-prosecco-doc-conegliano",
+      "slug": "a-carraro-prosecco-doc-conegliano-cev-cl",
       "name": "A. Carraro Prosecco DOC CONEGLIANO",
       "league": "CEV_CL",
       "country": null,
@@ -2029,7 +2029,7 @@
     },
     {
       "id": 1236,
-      "slug": "ankara-zeren-spor-kulubu",
+      "slug": "ankara-zeren-spor-kulubu-cev-cl",
       "name": "ANKARA Zeren Spor Kulübü",
       "league": "CEV_CL",
       "country": null,
@@ -2038,7 +2038,7 @@
     },
     {
       "id": 1225,
-      "slug": "cs-volei-alba-blaj",
+      "slug": "cs-volei-alba-blaj-cev-cl",
       "name": "CS Volei Alba BLAJ",
       "league": "CEV_CL",
       "country": null,
@@ -2047,7 +2047,7 @@
     },
     {
       "id": 1237,
-      "slug": "dresdner-sc",
+      "slug": "dresdner-sc-cev-cl",
       "name": "DRESDNER SC",
       "league": "CEV_CL",
       "country": null,
@@ -2056,7 +2056,7 @@
     },
     {
       "id": 1232,
-      "slug": "eczacibasi-istanbul",
+      "slug": "eczacibasi-istanbul-cev-cl",
       "name": "Eczacibasi ISTANBUL",
       "league": "CEV_CL",
       "country": null,
@@ -2065,7 +2065,7 @@
     },
     {
       "id": 1227,
-      "slug": "fenerbahce-medicana-istanbul",
+      "slug": "fenerbahce-medicana-istanbul-cev-cl",
       "name": "Fenerbahçe Medicana ISTANBUL",
       "league": "CEV_CL",
       "country": null,
@@ -2074,7 +2074,7 @@
     },
     {
       "id": 1228,
-      "slug": "igor-gorgonzola-novara",
+      "slug": "igor-gorgonzola-novara-cev-cl",
       "name": "Igor Gorgonzola NOVARA",
       "league": "CEV_CL",
       "country": null,
@@ -2083,7 +2083,7 @@
     },
     {
       "id": 1240,
-      "slug": "ks-developres-rzesz-w",
+      "slug": "ks-developres-rzesz-w-cev-cl",
       "name": "KS Developres RZESZÓW",
       "league": "CEV_CL",
       "country": null,
@@ -2092,7 +2092,7 @@
     },
     {
       "id": 1241,
-      "slug": "levallois-paris-saint-cloud",
+      "slug": "levallois-paris-saint-cloud-cev-cl",
       "name": "LEVALLOIS PARIS Saint Cloud",
       "league": "CEV_CL",
       "country": null,
@@ -2101,7 +2101,7 @@
     },
     {
       "id": 1238,
-      "slug": "ks-commercecon-d",
+      "slug": "ks-commercecon-d-cev-cl",
       "name": "ŁKS Commercecon ŁÓDŹ",
       "league": "CEV_CL",
       "country": null,
@@ -2110,7 +2110,7 @@
     },
     {
       "id": 1242,
-      "slug": "maritza-plovdiv",
+      "slug": "maritza-plovdiv-cev-cl",
       "name": "Maritza PLOVDIV",
       "league": "CEV_CL",
       "country": null,
@@ -2119,7 +2119,7 @@
     },
     {
       "id": 1231,
-      "slug": "numia-vero-volley-milano",
+      "slug": "numia-vero-volley-milano-cev-cl",
       "name": "Numia Vero Volley MILANO",
       "league": "CEV_CL",
       "country": null,
@@ -2128,7 +2128,7 @@
     },
     {
       "id": 1234,
-      "slug": "ok-elezni-ar-lajkovac",
+      "slug": "ok-elezni-ar-lajkovac-cev-cl",
       "name": "OK Železničar LAJKOVAC",
       "league": "CEV_CL",
       "country": null,
@@ -2137,7 +2137,7 @@
     },
     {
       "id": 1233,
-      "slug": "olympiacos-piraeus",
+      "slug": "olympiacos-piraeus-cev-cl",
       "name": "Olympiacos PIRAEUS",
       "league": "CEV_CL",
       "country": null,
@@ -2146,7 +2146,7 @@
     },
     {
       "id": 1230,
-      "slug": "pge-budowlani-d",
+      "slug": "pge-budowlani-d-cev-cl",
       "name": "PGE Budowlani ŁÓDŹ",
       "league": "CEV_CL",
       "country": null,
@@ -2155,7 +2155,7 @@
     },
     {
       "id": 1223,
-      "slug": "savino-del-bene-scandicci",
+      "slug": "savino-del-bene-scandicci-cev-cl",
       "name": "Savino Del Bene SCANDICCI",
       "league": "CEV_CL",
       "country": null,
@@ -2164,7 +2164,7 @@
     },
     {
       "id": 1229,
-      "slug": "sport-lisboa-e-benfica",
+      "slug": "sport-lisboa-e-benfica-cev-cl",
       "name": "Sport LISBOA e Benfica",
       "league": "CEV_CL",
       "country": null,
@@ -2173,7 +2173,7 @@
     },
     {
       "id": 1239,
-      "slug": "ssc-palmberg-schwerin",
+      "slug": "ssc-palmberg-schwerin-cev-cl",
       "name": "SSC Palmberg SCHWERIN",
       "league": "CEV_CL",
       "country": null,
@@ -2182,7 +2182,7 @@
     },
     {
       "id": 1224,
-      "slug": "vakifbank-istanbul",
+      "slug": "vakifbank-istanbul-cev-cl",
       "name": "VakifBank ISTANBUL",
       "league": "CEV_CL",
       "country": null,
@@ -2191,7 +2191,7 @@
     },
     {
       "id": 1226,
-      "slug": "volero-le-cannet",
+      "slug": "volero-le-cannet-cev-cl",
       "name": "Volero LE CANNET",
       "league": "CEV_CL",
       "country": null,
@@ -2200,7 +2200,7 @@
     },
     {
       "id": 1266,
-      "slug": "ac-paok-thessaloniki",
+      "slug": "ac-paok-thessaloniki-cev-cup",
       "name": "AC PAOK THESSALONIKI",
       "league": "CEV_CUP",
       "country": "GRE",
@@ -2209,7 +2209,7 @@
     },
     {
       "id": 1245,
-      "slug": "allianz-mtv-stuttgart",
+      "slug": "allianz-mtv-stuttgart-cev-cup",
       "name": "Allianz MTV STUTTGART",
       "league": "CEV_CUP",
       "country": "GER",
@@ -2218,7 +2218,7 @@
     },
     {
       "id": 1260,
-      "slug": "asterix-avo-beveren",
+      "slug": "asterix-avo-beveren-cev-cup",
       "name": "Asterix Avo BEVEREN",
       "league": "CEV_CUP",
       "country": "BEL",
@@ -2227,7 +2227,7 @@
     },
     {
       "id": 1268,
-      "slug": "avarca-de-menorca",
+      "slug": "avarca-de-menorca-cev-cup",
       "name": "Avarca de MENORCA",
       "league": "CEV_CUP",
       "country": "ESP",
@@ -2236,7 +2236,7 @@
     },
     {
       "id": 1252,
-      "slug": "bks-bostik-bielsko-bia-a",
+      "slug": "bks-bostik-bielsko-bia-a-cev-cup",
       "name": "BKS Bostik BIELSKO-BIAŁA",
       "league": "CEV_CUP",
       "country": "POL",
@@ -2245,7 +2245,7 @@
     },
     {
       "id": 1247,
-      "slug": "c-s-o-voluntari-2005",
+      "slug": "c-s-o-voluntari-2005-cev-cup",
       "name": "C.S.O. VOLUNTARI 2005",
       "league": "CEV_CUP",
       "country": "ROU",
@@ -2254,7 +2254,7 @@
     },
     {
       "id": 1267,
-      "slug": "cd-heidelberg-las-palmas",
+      "slug": "cd-heidelberg-las-palmas-cev-cup",
       "name": "CD Heidelberg LAS PALMAS",
       "league": "CEV_CUP",
       "country": "ESP",
@@ -2263,7 +2263,7 @@
     },
     {
       "id": 1259,
-      "slug": "darta-bevo-roeselare",
+      "slug": "darta-bevo-roeselare-cev-cup",
       "name": "Darta Bevo ROESELARE",
       "league": "CEV_CUP",
       "country": "BEL",
@@ -2272,7 +2272,7 @@
     },
     {
       "id": 1248,
-      "slug": "dinamo-bucuresti",
+      "slug": "dinamo-bucuresti-cev-cup",
       "name": "Dinamo BUCURESTI",
       "league": "CEV_CUP",
       "country": "ROU",
@@ -2281,7 +2281,7 @@
     },
     {
       "id": 1265,
-      "slug": "dukla-liberec",
+      "slug": "dukla-liberec-cev-cup",
       "name": "Dukla LIBEREC",
       "league": "CEV_CUP",
       "country": "CZE",
@@ -2290,7 +2290,7 @@
     },
     {
       "id": 1261,
-      "slug": "fc-porto",
+      "slug": "fc-porto-cev-cup",
       "name": "FC PORTO",
       "league": "CEV_CUP",
       "country": "POR",
@@ -2299,7 +2299,7 @@
     },
     {
       "id": 1243,
-      "slug": "galatasaray-daikin-istanbul",
+      "slug": "galatasaray-daikin-istanbul-cev-cup",
       "name": "Galatasaray Daikin ISTANBUL",
       "league": "CEV_CUP",
       "country": "TUR",
@@ -2308,7 +2308,7 @@
     },
     {
       "id": 1273,
-      "slug": "janta-volej-kisela-voda",
+      "slug": "janta-volej-kisela-voda-cev-cup",
       "name": "Janta Volej KISELA VODA",
       "league": "CEV_CUP",
       "country": "MKD",
@@ -2317,7 +2317,7 @@
     },
     {
       "id": 1255,
-      "slug": "mbh-b-k-scsaba",
+      "slug": "mbh-b-k-scsaba-cev-cup",
       "name": "MBH - BÉKÉSCSABA",
       "league": "CEV_CUP",
       "country": "HUN",
@@ -2326,7 +2326,7 @@
     },
     {
       "id": 1257,
-      "slug": "mladost-zagreb",
+      "slug": "mladost-zagreb-cev-cup",
       "name": "Mladost ZAGREB",
       "league": "CEV_CUP",
       "country": "CRO",
@@ -2335,7 +2335,7 @@
     },
     {
       "id": 1253,
-      "slug": "moya-radomka-radom",
+      "slug": "moya-radomka-radom-cev-cup",
       "name": "MOYA Radomka RADOM",
       "league": "CEV_CUP",
       "country": "POL",
@@ -2344,7 +2344,7 @@
     },
     {
       "id": 1258,
-      "slug": "ok-dinamo-zagreb",
+      "slug": "ok-dinamo-zagreb-cev-cup",
       "name": "OK Dinamo ZAGREB",
       "league": "CEV_CUP",
       "country": "CRO",
@@ -2353,7 +2353,7 @@
     },
     {
       "id": 1254,
-      "slug": "otp-banka-branik-maribor",
+      "slug": "otp-banka-branik-maribor-cev-cup",
       "name": "OTP Banka Branik MARIBOR",
       "league": "CEV_CUP",
       "country": "SLO",
@@ -2362,7 +2362,7 @@
     },
     {
       "id": 1249,
-      "slug": "reale-mutua-fenera-chieri-76",
+      "slug": "reale-mutua-fenera-chieri-76-cev-cup",
       "name": "Reale Mutua Fenera CHIERI'76",
       "league": "CEV_CUP",
       "country": "ITA",
@@ -2371,7 +2371,7 @@
     },
     {
       "id": 1262,
-      "slug": "sporting-cp-lisboa",
+      "slug": "sporting-cp-lisboa-cev-cup",
       "name": "Sporting CP LISBOA",
       "league": "CEV_CUP",
       "country": "POR",
@@ -2380,7 +2380,7 @@
     },
     {
       "id": 1269,
-      "slug": "tent-obrenovac",
+      "slug": "tent-obrenovac-cev-cup",
       "name": "Tent OBRENOVAC",
       "league": "CEV_CUP",
       "country": "SRB",
@@ -2389,7 +2389,7 @@
     },
     {
       "id": 1244,
-      "slug": "thy-istanbul",
+      "slug": "thy-istanbul-cev-cup",
       "name": "THY ISTANBUL",
       "league": "CEV_CUP",
       "country": "TUR",
@@ -2398,7 +2398,7 @@
     },
     {
       "id": 1251,
-      "slug": "vandoeuvre-nancy-vb",
+      "slug": "vandoeuvre-nancy-vb-cev-cup",
       "name": "Vandoeuvre NANCY VB",
       "league": "CEV_CUP",
       "country": "FRA",
@@ -2407,7 +2407,7 @@
     },
     {
       "id": 1256,
-      "slug": "vasas-buda-budapest",
+      "slug": "vasas-buda-budapest-cev-cup",
       "name": "Vasas Óbuda BUDAPEST",
       "league": "CEV_CUP",
       "country": "HUN",
@@ -2416,7 +2416,7 @@
     },
     {
       "id": 1246,
-      "slug": "vfb-suhl-thuringen",
+      "slug": "vfb-suhl-thuringen-cev-cup",
       "name": "VfB SUHL Thüringen",
       "league": "CEV_CUP",
       "country": "GER",
@@ -2425,7 +2425,7 @@
     },
     {
       "id": 1263,
-      "slug": "viteos-neuchatel-uc",
+      "slug": "viteos-neuchatel-uc-cev-cup",
       "name": "Viteos NEUCHATEL UC",
       "league": "CEV_CUP",
       "country": "SUI",
@@ -2434,7 +2434,7 @@
     },
     {
       "id": 1264,
-      "slug": "vk-up-olomouc",
+      "slug": "vk-up-olomouc-cev-cup",
       "name": "VK UP OLOMOUC",
       "league": "CEV_CUP",
       "country": "CZE",
@@ -2443,7 +2443,7 @@
     },
     {
       "id": 1250,
-      "slug": "volley-mulhouse-alsace",
+      "slug": "volley-mulhouse-alsace-cev-cup",
       "name": "Volley MULHOUSE Alsace",
       "league": "CEV_CUP",
       "country": "FRA",
@@ -2452,7 +2452,7 @@
     },
     {
       "id": 1272,
-      "slug": "ok-gacko-rd-swisslion",
+      "slug": "ok-gacko-rd-swisslion-cev-cup",
       "name": "ŽOK GACKO RD Swisslion",
       "league": "CEV_CUP",
       "country": "BIH",
@@ -2461,7 +2461,7 @@
     },
     {
       "id": 1271,
-      "slug": "ok-ribola-ka-tela",
+      "slug": "ok-ribola-ka-tela-cev-cup",
       "name": "ŽOK Ribola KAŠTELA",
       "league": "CEV_CUP",
       "country": "CRO",
@@ -2470,7 +2470,7 @@
     },
     {
       "id": 1270,
-      "slug": "zok-ub",
+      "slug": "zok-ub-cev-cup",
       "name": "ZOK UB",
       "league": "CEV_CUP",
       "country": "SRB",
@@ -2479,7 +2479,7 @@
     },
     {
       "id": 1274,
-      "slug": "aek-athens",
+      "slug": "aek-athens-cev-challenge",
       "name": "AEK ATHENS",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2488,7 +2488,7 @@
     },
     {
       "id": 1318,
-      "slug": "aek-athens-gre",
+      "slug": "aek-athens-gre-cev-challenge",
       "name": "AEK ATHENS GRE",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2497,7 +2497,7 @@
     },
     {
       "id": 1294,
-      "slug": "ao-thiras",
+      "slug": "ao-thiras-cev-challenge",
       "name": "AO THIRAS",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2506,7 +2506,7 @@
     },
     {
       "id": 1338,
-      "slug": "ao-thiras-gre",
+      "slug": "ao-thiras-gre-cev-challenge",
       "name": "AO THIRAS GRE",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2515,7 +2515,7 @@
     },
     {
       "id": 1301,
-      "slug": "buducnost-podgorica",
+      "slug": "buducnost-podgorica-cev-challenge",
       "name": "Buducnost PODGORICA",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2524,7 +2524,7 @@
     },
     {
       "id": 1345,
-      "slug": "buducnost-podgorica-mne",
+      "slug": "buducnost-podgorica-mne-cev-challenge",
       "name": "Buducnost PODGORICA MNE",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2533,7 +2533,7 @@
     },
     {
       "id": 1287,
-      "slug": "c-s-m-lugoj",
+      "slug": "c-s-m-lugoj-cev-challenge",
       "name": "C.S.M LUGOJ",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2542,7 +2542,7 @@
     },
     {
       "id": 1331,
-      "slug": "c-s-m-lugoj-rou",
+      "slug": "c-s-m-lugoj-rou-cev-challenge",
       "name": "C.S.M LUGOJ ROU",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2551,7 +2551,7 @@
     },
     {
       "id": 1279,
-      "slug": "draisma-dynamo-apeldoorn",
+      "slug": "draisma-dynamo-apeldoorn-cev-challenge",
       "name": "Draisma Dynamo APELDOORN",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2560,7 +2560,7 @@
     },
     {
       "id": 1323,
-      "slug": "draisma-dynamo-apeldoorn-ned",
+      "slug": "draisma-dynamo-apeldoorn-ned-cev-challenge",
       "name": "Draisma Dynamo APELDOORN NED",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2569,7 +2569,7 @@
     },
     {
       "id": 1306,
-      "slug": "erzbergm-trofaiach-eisenerz",
+      "slug": "erzbergm-trofaiach-eisenerz-cev-challenge",
       "name": "Erzbergm TROFAIACH EISENERZ",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2578,7 +2578,7 @@
     },
     {
       "id": 1350,
-      "slug": "erzbergm-trofaiach-eisenerz-aut",
+      "slug": "erzbergm-trofaiach-eisenerz-aut-cev-challenge",
       "name": "Erzbergm TROFAIACH EISENERZ AUT",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2587,7 +2587,7 @@
     },
     {
       "id": 1296,
-      "slug": "fatum-ny-regyh-za",
+      "slug": "fatum-ny-regyh-za-cev-challenge",
       "name": "Fatum NYÍREGYHÁZA",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2596,7 +2596,7 @@
     },
     {
       "id": 1340,
-      "slug": "fatum-ny-regyh-za-hun",
+      "slug": "fatum-ny-regyh-za-hun-cev-challenge",
       "name": "Fatum NYÍREGYHÁZA HUN",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2605,7 +2605,7 @@
     },
     {
       "id": 1293,
-      "slug": "fleyr-t-rshavn",
+      "slug": "fleyr-t-rshavn-cev-challenge",
       "name": "Fleyr TÓRSHAVN",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2614,7 +2614,7 @@
     },
     {
       "id": 1337,
-      "slug": "fleyr-t-rshavn-far",
+      "slug": "fleyr-t-rshavn-far-cev-challenge",
       "name": "Fleyr TÓRSHAVN FAR",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2623,7 +2623,7 @@
     },
     {
       "id": 1286,
-      "slug": "friso-sneek",
+      "slug": "friso-sneek-cev-challenge",
       "name": "Friso SNEEK",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2632,7 +2632,7 @@
     },
     {
       "id": 1330,
-      "slug": "friso-sneek-ned",
+      "slug": "friso-sneek-ned-cev-challenge",
       "name": "Friso SNEEK NED",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2641,7 +2641,7 @@
     },
     {
       "id": 1282,
-      "slug": "fundaci-n-cajasol-andaluc-a",
+      "slug": "fundaci-n-cajasol-andaluc-a-cev-challenge",
       "name": "Fundación Cajasol ANDALUCÍA",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2650,7 +2650,7 @@
     },
     {
       "id": 1326,
-      "slug": "fundaci-n-cajasol-andaluc-a-esp",
+      "slug": "fundaci-n-cajasol-andaluc-a-esp-cev-challenge",
       "name": "Fundación Cajasol ANDALUCÍA ESP",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2659,7 +2659,7 @@
     },
     {
       "id": 1295,
-      "slug": "gs-panionios-nea-smyrni",
+      "slug": "gs-panionios-nea-smyrni-cev-challenge",
       "name": "GS Panionios NEA SMYRNI",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2668,7 +2668,7 @@
     },
     {
       "id": 1339,
-      "slug": "gs-panionios-nea-smyrni-gre",
+      "slug": "gs-panionios-nea-smyrni-gre-cev-challenge",
       "name": "GS Panionios NEA SMYRNI GRE",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2677,7 +2677,7 @@
     },
     {
       "id": 1275,
-      "slug": "gzok-srem-sremska-mitrovica",
+      "slug": "gzok-srem-sremska-mitrovica-cev-challenge",
       "name": "GZOK Srem SREMSKA MITROVICA",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2686,7 +2686,7 @@
     },
     {
       "id": 1319,
-      "slug": "gzok-srem-sremska-mitrovica-srb",
+      "slug": "gzok-srem-sremska-mitrovica-srb-cev-challenge",
       "name": "GZOK Srem SREMSKA MITROVICA SRB",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2695,7 +2695,7 @@
     },
     {
       "id": 1281,
-      "slug": "holte-if",
+      "slug": "holte-if-cev-challenge",
       "name": "HOLTE IF",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2704,7 +2704,7 @@
     },
     {
       "id": 1325,
-      "slug": "holte-if-den",
+      "slug": "holte-if-den-cev-challenge",
       "name": "HOLTE IF DEN",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2713,7 +2713,7 @@
     },
     {
       "id": 1298,
-      "slug": "kaunas-vdu",
+      "slug": "kaunas-vdu-cev-challenge",
       "name": "KAUNAS VDU",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2722,7 +2722,7 @@
     },
     {
       "id": 1342,
-      "slug": "kaunas-vdu-ltu",
+      "slug": "kaunas-vdu-ltu-cev-challenge",
       "name": "KAUNAS VDU LTU",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2731,7 +2731,7 @@
     },
     {
       "id": 1291,
-      "slug": "kv-fer-volley-ferizaj",
+      "slug": "kv-fer-volley-ferizaj-cev-challenge",
       "name": "KV Fer Volley FERIZAJ",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2740,7 +2740,7 @@
     },
     {
       "id": 1335,
-      "slug": "kv-fer-volley-ferizaj-kos",
+      "slug": "kv-fer-volley-ferizaj-kos-cev-challenge",
       "name": "KV Fer Volley FERIZAJ KOS",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2749,7 +2749,7 @@
     },
     {
       "id": 1289,
-      "slug": "levski-sofia",
+      "slug": "levski-sofia-cev-challenge",
       "name": "Levski SOFIA",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2758,7 +2758,7 @@
     },
     {
       "id": 1333,
-      "slug": "levski-sofia-bul",
+      "slug": "levski-sofia-bul-cev-challenge",
       "name": "Levski SOFIA BUL",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2767,7 +2767,7 @@
     },
     {
       "id": 1297,
-      "slug": "lp-salo",
+      "slug": "lp-salo-cev-challenge",
       "name": "LP SALO",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2776,7 +2776,7 @@
     },
     {
       "id": 1341,
-      "slug": "lp-salo-fin",
+      "slug": "lp-salo-fin-cev-challenge",
       "name": "LP SALO FIN",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2785,7 +2785,7 @@
     },
     {
       "id": 1277,
-      "slug": "nakovski-volej-strumica",
+      "slug": "nakovski-volej-strumica-cev-challenge",
       "name": "Nakovski Volej STRUMICA",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2794,7 +2794,7 @@
     },
     {
       "id": 1321,
-      "slug": "nakovski-volej-strumica-mkd",
+      "slug": "nakovski-volej-strumica-mkd-cev-challenge",
       "name": "Nakovski Volej STRUMICA MKD",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2803,7 +2803,7 @@
     },
     {
       "id": 1300,
-      "slug": "ocisa-haro-rioja",
+      "slug": "ocisa-haro-rioja-cev-challenge",
       "name": "Ocisa HARO Rioja",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2812,7 +2812,7 @@
     },
     {
       "id": 1344,
-      "slug": "ocisa-haro-rioja-esp",
+      "slug": "ocisa-haro-rioja-esp-cev-challenge",
       "name": "Ocisa HARO Rioja ESP",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2821,7 +2821,7 @@
     },
     {
       "id": 1284,
-      "slug": "ok-brda-split",
+      "slug": "ok-brda-split-cev-challenge",
       "name": "OK BRDA SPLIT",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2830,7 +2830,7 @@
     },
     {
       "id": 1328,
-      "slug": "ok-brda-split-cro",
+      "slug": "ok-brda-split-cro-cev-challenge",
       "name": "OK BRDA SPLIT CRO",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2839,7 +2839,7 @@
     },
     {
       "id": 1299,
-      "slug": "ksyl-myre",
+      "slug": "ksyl-myre-cev-challenge",
       "name": "Øksyl MYRE",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2848,7 +2848,7 @@
     },
     {
       "id": 1343,
-      "slug": "ksyl-myre-nor",
+      "slug": "ksyl-myre-nor-cev-challenge",
       "name": "Øksyl MYRE NOR",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2857,7 +2857,7 @@
     },
     {
       "id": 1285,
-      "slug": "olympiada-neapolis-nicosia",
+      "slug": "olympiada-neapolis-nicosia-cev-challenge",
       "name": "Olympiada Neapolis NICOSIA",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2866,7 +2866,7 @@
     },
     {
       "id": 1329,
-      "slug": "olympiada-neapolis-nicosia-cyp",
+      "slug": "olympiada-neapolis-nicosia-cyp-cev-challenge",
       "name": "Olympiada Neapolis NICOSIA CYP",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2875,7 +2875,7 @@
     },
     {
       "id": 1302,
-      "slug": "rabotnicki-skopje",
+      "slug": "rabotnicki-skopje-cev-challenge",
       "name": "Rabotnicki SKOPJE",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2884,7 +2884,7 @@
     },
     {
       "id": 1346,
-      "slug": "rabotnicki-skopje-mkd",
+      "slug": "rabotnicki-skopje-mkd-cev-challenge",
       "name": "Rabotnicki SKOPJE MKD",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2893,7 +2893,7 @@
     },
     {
       "id": 1303,
-      "slug": "rae-spordikool-viaston-juri",
+      "slug": "rae-spordikool-viaston-juri-cev-challenge",
       "name": "RAE Spordikool Viaston JÜRI",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2902,7 +2902,7 @@
     },
     {
       "id": 1347,
-      "slug": "rae-spordikool-viaston-juri-est",
+      "slug": "rae-spordikool-viaston-juri-est-cev-challenge",
       "name": "RAE Spordikool Viaston JÜRI EST",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2911,7 +2911,7 @@
     },
     {
       "id": 1307,
-      "slug": "sc-balta",
+      "slug": "sc-balta-cev-challenge",
       "name": "SC BALTA",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2920,7 +2920,7 @@
     },
     {
       "id": 1351,
-      "slug": "sc-balta-ukr",
+      "slug": "sc-balta-ukr-cev-challenge",
       "name": "SC BALTA UKR",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2929,7 +2929,7 @@
     },
     {
       "id": 1292,
-      "slug": "tchalou-chapelle-lez-herlaimont",
+      "slug": "tchalou-chapelle-lez-herlaimont-cev-challenge",
       "name": "Tchalou CHAPELLE-LEZ-HERLAIMONT",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2938,7 +2938,7 @@
     },
     {
       "id": 1336,
-      "slug": "tchalou-chapelle-lez-herlaimont-bel",
+      "slug": "tchalou-chapelle-lez-herlaimont-bel-cev-challenge",
       "name": "Tchalou CHAPELLE-LEZ-HERLAIMONT BEL",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2947,7 +2947,7 @@
     },
     {
       "id": 1305,
-      "slug": "tif-viking-bergen",
+      "slug": "tif-viking-bergen-cev-challenge",
       "name": "TIF Viking BERGEN",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2956,7 +2956,7 @@
     },
     {
       "id": 1349,
-      "slug": "tif-viking-bergen-nor",
+      "slug": "tif-viking-bergen-nor-cev-challenge",
       "name": "TIF Viking BERGEN NOR",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2965,7 +2965,7 @@
     },
     {
       "id": 1276,
-      "slug": "tj-ostrava",
+      "slug": "tj-ostrava-cev-challenge",
       "name": "TJ OSTRAVA",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2974,7 +2974,7 @@
     },
     {
       "id": 1320,
-      "slug": "tj-ostrava-cze",
+      "slug": "tj-ostrava-cze-cev-challenge",
       "name": "TJ OSTRAVA CZE",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2983,7 +2983,7 @@
     },
     {
       "id": 1280,
-      "slug": "va-uniza-zilina",
+      "slug": "va-uniza-zilina-cev-challenge",
       "name": "VA Uniza ZILINA",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -2992,7 +2992,7 @@
     },
     {
       "id": 1324,
-      "slug": "va-uniza-zilina-svk",
+      "slug": "va-uniza-zilina-svk-cev-challenge",
       "name": "VA Uniza ZILINA SVK",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3001,7 +3001,7 @@
     },
     {
       "id": 1288,
-      "slug": "vbc-cheseaux",
+      "slug": "vbc-cheseaux-cev-challenge",
       "name": "VBC CHESEAUX",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3010,7 +3010,7 @@
     },
     {
       "id": 1332,
-      "slug": "vbc-cheseaux-sui",
+      "slug": "vbc-cheseaux-sui-cev-challenge",
       "name": "VBC CHESEAUX SUI",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3019,7 +3019,7 @@
     },
     {
       "id": 1304,
-      "slug": "vk-pirane-brusno",
+      "slug": "vk-pirane-brusno-cev-challenge",
       "name": "VK Pirane BRUSNO",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3028,7 +3028,7 @@
     },
     {
       "id": 1348,
-      "slug": "vk-pirane-brusno-svk",
+      "slug": "vk-pirane-brusno-svk-cev-challenge",
       "name": "VK Pirane BRUSNO SVK",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3037,7 +3037,7 @@
     },
     {
       "id": 1278,
-      "slug": "vk-prostejov",
+      "slug": "vk-prostejov-cev-challenge",
       "name": "VK PROSTEJOV",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3046,7 +3046,7 @@
     },
     {
       "id": 1322,
-      "slug": "vk-prostejov-cze",
+      "slug": "vk-prostejov-cze-cev-challenge",
       "name": "VK PROSTEJOV CZE",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3055,7 +3055,7 @@
     },
     {
       "id": 1283,
-      "slug": "vk-slovan-bratislava",
+      "slug": "vk-slovan-bratislava-cev-challenge",
       "name": "VK Slovan BRATISLAVA",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3064,7 +3064,7 @@
     },
     {
       "id": 1327,
-      "slug": "vk-slovan-bratislava-svk",
+      "slug": "vk-slovan-bratislava-svk-cev-challenge",
       "name": "VK Slovan BRATISLAVA SVK",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3073,7 +3073,7 @@
     },
     {
       "id": 1290,
-      "slug": "volley-dudingen",
+      "slug": "volley-dudingen-cev-challenge",
       "name": "Volley DÜDINGEN",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3082,7 +3082,7 @@
     },
     {
       "id": 1334,
-      "slug": "volley-dudingen-sui",
+      "slug": "volley-dudingen-sui-cev-challenge",
       "name": "Volley DÜDINGEN SUI",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3091,7 +3091,7 @@
     },
     {
       "id": 1308,
-      "slug": "winner-chcm-67-68",
+      "slug": "winner-chcm-67-68-cev-challenge",
       "name": "Winner CHCM 67/68",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3100,7 +3100,7 @@
     },
     {
       "id": 1309,
-      "slug": "winner-chcw-69-70",
+      "slug": "winner-chcw-69-70-cev-challenge",
       "name": "Winner CHCW 69/70",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3109,7 +3109,7 @@
     },
     {
       "id": 1310,
-      "slug": "winner-chcw-71-72",
+      "slug": "winner-chcw-71-72-cev-challenge",
       "name": "Winner CHCW 71/72",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3118,7 +3118,7 @@
     },
     {
       "id": 1311,
-      "slug": "winner-chcw-73-74",
+      "slug": "winner-chcw-73-74-cev-challenge",
       "name": "Winner CHCW 73/74",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3127,7 +3127,7 @@
     },
     {
       "id": 1312,
-      "slug": "winner-chcw-75-76",
+      "slug": "winner-chcw-75-76-cev-challenge",
       "name": "Winner CHCW 75/76",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3136,7 +3136,7 @@
     },
     {
       "id": 1313,
-      "slug": "winner-chcw-77-78",
+      "slug": "winner-chcw-77-78-cev-challenge",
       "name": "Winner CHCW 77/78",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3145,7 +3145,7 @@
     },
     {
       "id": 1314,
-      "slug": "winner-chcw-79-80",
+      "slug": "winner-chcw-79-80-cev-challenge",
       "name": "Winner CHCW 79/80",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3154,7 +3154,7 @@
     },
     {
       "id": 1315,
-      "slug": "winner-chcw-81-82",
+      "slug": "winner-chcw-81-82-cev-challenge",
       "name": "Winner CHCW 81/82",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3163,7 +3163,7 @@
     },
     {
       "id": 1316,
-      "slug": "winner-chcw-91-92",
+      "slug": "winner-chcw-91-92-cev-challenge",
       "name": "Winner CHCW 91/92",
       "league": "CEV_CHALLENGE",
       "country": null,
@@ -3172,7 +3172,7 @@
     },
     {
       "id": 1317,
-      "slug": "winner-chcw-93-94",
+      "slug": "winner-chcw-93-94-cev-challenge",
       "name": "Winner CHCW 93/94",
       "league": "CEV_CHALLENGE",
       "country": null,

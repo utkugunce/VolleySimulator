@@ -15,9 +15,9 @@ function generateTeamId(teamName, league) {
     return teamIdCounter++;
 }
 
-// Helper function to create slug from team name
-function createSlug(teamName) {
-    return teamName
+// Helper function to create slug from team name - includes league for uniqueness
+function createSlug(teamName, league) {
+    const baseSlug = teamName
         .toLowerCase()
         .replace(/ç/g, 'c')
         .replace(/ğ/g, 'g')
@@ -29,7 +29,11 @@ function createSlug(teamName) {
         .replace(/[^a-z0-9]/g, '-')
         .replace(/-+/g, '-')
         .replace(/^-|-$/g, '')
-        .substring(0, 50);
+        .substring(0, 40);
+    
+    // Add league suffix to make slug unique
+    const leagueSuffix = league.toLowerCase().replace(/_/g, '-');
+    return `${baseSlug}-${leagueSuffix}`;
 }
 
 // Load data files
@@ -49,7 +53,7 @@ const teamRegistry = {};
 console.log('\n📋 Processing VSL teams...');
 vslData.teams.forEach(team => {
     const id = generateTeamId(team.name, 'VSL');
-    const slug = createSlug(team.name);
+    const slug = createSlug(team.name, 'VSL');
     teamRegistry[id] = {
         id,
         slug,
@@ -64,7 +68,7 @@ vslData.teams.forEach(team => {
 console.log('📋 Processing 1. Lig teams...');
 lig1Data.teams.forEach(team => {
     const id = generateTeamId(team.name, '1LIG');
-    const slug = createSlug(team.name);
+    const slug = createSlug(team.name, '1LIG');
     teamRegistry[id] = {
         id,
         slug,
@@ -79,7 +83,7 @@ lig1Data.teams.forEach(team => {
 console.log('📋 Processing 2. Lig teams...');
 lig2Data.teams.forEach(team => {
     const id = generateTeamId(team.name, '2LIG');
-    const slug = createSlug(team.name);
+    const slug = createSlug(team.name, '2LIG');
     teamRegistry[id] = {
         id,
         slug,
@@ -94,7 +98,7 @@ lig2Data.teams.forEach(team => {
 console.log('📋 Processing CEV Champions League teams...');
 cevClData.teams.forEach(team => {
     const id = generateTeamId(team.name, 'CEV_CL');
-    const slug = createSlug(team.name);
+    const slug = createSlug(team.name, 'CEV_CL');
     teamRegistry[id] = {
         id,
         slug,
@@ -109,7 +113,7 @@ cevClData.teams.forEach(team => {
 console.log('📋 Processing CEV Cup teams...');
 cevCupData.teams.forEach(team => {
     const id = generateTeamId(team.name, 'CEV_CUP');
-    const slug = createSlug(team.name);
+    const slug = createSlug(team.name, 'CEV_CUP');
     teamRegistry[id] = {
         id,
         slug,
@@ -131,7 +135,7 @@ cevChallengeData.phases.forEach(phase => {
 });
 challengeTeams.forEach(teamName => {
     const id = generateTeamId(teamName, 'CEV_CHALLENGE');
-    const slug = createSlug(teamName);
+    const slug = createSlug(teamName, 'CEV_CHALLENGE');
     teamRegistry[id] = {
         id,
         slug,
@@ -187,8 +191,7 @@ const typesContent = `/**
  * Total Teams: ${output.totalTeams}
  */
 
-export type TeamId = 
-${teamsArray.map(t => `  | '${t.id}'`).join('\n')};
+export type TeamId = number;
 
 export interface TeamInfo {
   id: TeamId;
@@ -197,16 +200,16 @@ export interface TeamInfo {
   league: 'VSL' | '1LIG' | '2LIG' | 'CEV_CL' | 'CEV_CUP' | 'CEV_CHALLENGE';
   country: string | null;
   groupName: string | null;
+  clubId?: string | null;
 }
 
-export const TEAM_IDS = {
-${teamsArray.map(t => `  '${t.slug}': '${t.id}'`).join(',\n')}
-} as const;
+export const TEAM_IDS: Record<string, TeamId> = {
+${teamsArray.map(t => `  '${t.slug}': ${t.id}`).join(',\n')}
+};
 
-export const TEAMS: Record<TeamId, TeamInfo> = ${JSON.stringify(
-  teamsArray.reduce((acc, t) => { acc[t.id] = t; return acc; }, {}),
-  null, 2
-)};
+export const TEAMS: Record<TeamId, TeamInfo> = {
+${teamsArray.map(t => `  ${t.id}: ${JSON.stringify(t)}`).join(',\n')}
+};
 `;
 
 const typesPath = path.join(__dirname, '..', 'app', 'utils', 'teamIds.ts');
