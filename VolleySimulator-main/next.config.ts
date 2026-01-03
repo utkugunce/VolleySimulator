@@ -1,5 +1,11 @@
 import type { NextConfig } from "next";
 
+const withBundleAnalyzer = process.env.ANALYZE === 'true'
+  ? require('@next/bundle-analyzer')({
+      enabled: process.env.ANALYZE === 'true',
+    })
+  : (config: NextConfig) => config;
+
 const nextConfig: NextConfig = {
   // output: 'export', // Uncomment for static site generation (no API routes support if used)
   
@@ -32,4 +38,4 @@ const nextConfig: NextConfig = {
   compress: true,
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);
