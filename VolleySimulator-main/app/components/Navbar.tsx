@@ -33,7 +33,7 @@ export default function Navbar() {
     const required = nextLevelXP - currentLevelXP;
     const xpProgress = Math.min((progress / required) * 100, 100);
 
-    const isInLeague = pathname?.startsWith('/1lig') || pathname?.startsWith('/2lig') || pathname?.startsWith('/vsl') || pathname?.startsWith('/cev-cl') || pathname?.startsWith('/cev-cup');
+    const isInLeague = pathname?.startsWith('/1lig') || pathname?.startsWith('/2lig') || pathname?.startsWith('/vsl') || pathname?.startsWith('/cev-cl') || pathname?.startsWith('/cev-cup') || pathname?.startsWith('/cev-challenge');
     const isAnasayfa = pathname === '/' || pathname === '/anasayfa';
     const isAyarlar = pathname === '/ayarlar';
     const isProfile = pathname === '/profile' || pathname === '/login' || pathname === '/register';
@@ -94,6 +94,10 @@ export default function Navbar() {
                                     <Link href={getLeagueUrl('cev-cup')} className={`px-2 py-1 rounded text-[10px] font-bold transition-all flex items-center gap-1.5 ${pathname?.includes('/cev-cup') ? 'bg-slate-700 text-white shadow-sm' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}`}>
                                         <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
                                         Cup
+                                    </Link>
+                                    <Link href={getLeagueUrl('cev-challenge')} className={`px-2 py-1 rounded text-[10px] font-bold transition-all flex items-center gap-1.5 ${pathname?.includes('/cev-challenge') ? 'bg-slate-700 text-white shadow-sm' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}`}>
+                                        <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+                                        Chall
                                     </Link>
                                 </div>
 
@@ -373,6 +377,19 @@ export default function Navbar() {
                                             <div className="text-xs text-amber-400/70">Kadınlar • Eleme Aşaması 2025-26</div>
                                         </div>
                                         <div className="text-amber-500/50 group-hover:text-amber-400 group-hover:translate-x-1 transition-all">→</div>
+                                    </Link>
+
+                                    {/* CEV Challenge Cup */}
+                                    <Link
+                                        href="/cev-challenge/gunceldurum"
+                                        onClick={() => setShowLeagueModal(false)}
+                                        className="group flex items-center gap-4 p-4 bg-gradient-to-r from-purple-900/30 to-violet-800/10 hover:from-purple-800/40 hover:to-violet-700/20 rounded-2xl border border-purple-600/30 hover:border-purple-500/50 transition-all duration-300"
+                                    >
+                                        <div className="flex-1">
+                                            <div className="font-bold text-white group-hover:text-purple-300 transition-colors">CEV Challenge Cup</div>
+                                            <div className="text-xs text-purple-400/70">Kadınlar • 2025-26</div>
+                                        </div>
+                                        <div className="text-purple-500/50 group-hover:text-purple-400 group-hover:translate-x-1 transition-all">→</div>
                                     </Link>
                                 </div>
                             </div>
