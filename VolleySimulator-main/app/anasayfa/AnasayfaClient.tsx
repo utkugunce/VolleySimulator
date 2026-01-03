@@ -1,12 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useState, useMemo } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useGameState, getLevelTitle, getXPForNextLevel } from "../utils/gameState";
+import { useTutorial } from "../components/TutorialModal";
 import { LEVEL_THRESHOLDS, TeamStats, Match } from "../types";
-import TutorialModal, { useTutorial } from "../components/TutorialModal";
 import TeamAvatar from "../components/TeamAvatar";
+
+const TutorialModal = dynamic(() => import("../components/TutorialModal").then(mod => ({ default: mod.default })), {
+    loading: () => null,
+    ssr: false,
+});
 
 
 interface AnasayfaClientProps {

@@ -1,19 +1,41 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 import { createServerSupabaseClient } from '../../utils/supabase-server';
+import { createRateLimiter } from '../../utils/rateLimit';
+
+// Validation schemas
+const PredictionInputSchema = z.object({
+    matchId: z.string().min(1),
+    league: z.enum(['1lig', '2lig', 'vsl', 'cev-cl']),
+    groupName: z.string().optional(),
+    homeTeam: z.string().min(1),
+    awayTeam: z.string().min(1),
+    matchDate: z.string().optional(),
+    predictedScore: z.string().regex(/^\d+-\d+$/, 'Invalid score format'),
+});
+
+const PredictionBatchSchema = z.array(PredictionInputSchema);
 
 export interface PredictionInput {
     matchId: string;
-    league: '1lig' | '2lig';
-    groupName: string;
+    league: '1lig' | '2lig' | 'vsl' | 'cev-cl';
+    groupName?: string;
     homeTeam: string;
     awayTeam: string;
     matchDate?: string;
     predictedScore: string;
 }
 
+// Rate limiter: 60 requests per minute per user
+const rateLimiter = createRateLimiter({ requests: 60, windowMs: 60000 });
+
 // GET - Fetch user's predictions
 export async function GET(request: NextRequest) {
     try {
+        // Apply rate limiting
+        const limitResponse = rateLimiter(request);
+        if (limitResponse) return limitResponse;
+
         const supabase = await createServerSupabaseClient();
         const { data: { user }, error: authError } = await supabase.auth.getUser();
 
@@ -51,6 +73,10 @@ export async function GET(request: NextRequest) {
 // POST - Create or update predictions (batch)
 export async function POST(request: NextRequest) {
     try {
+        // Apply rate limiting
+        const limitResponse = rateLimiter(request);
+        if (limitResponse) return limitResponse;
+
         const supabase = await createServerSupabaseClient();
         const { data: { user }, error: authError } = await supabase.auth.getUser();
 
@@ -65,12 +91,25 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: 'No predictions provided' }, { status: 400 });
         }
 
+        // Validate all predictions
+        try {
+            PredictionBatchSchema.parse(predictions);
+        } catch (validationError) {
+            if (validationError instanceof z.ZodError) {
+                return NextResponse.json(
+                    { error: 'Invalid prediction data', details: validationError.errors },
+                    { status: 400 }
+                );
+            }
+            throw validationError;
+        }
+
         // Transform predictions for upsert
         const records = predictions.map(p => ({
             user_id: user.id,
             match_id: p.matchId,
             league: p.league,
-            group_name: p.groupName,
+            group_name: p.groupName || null,
             home_team: p.homeTeam,
             away_team: p.awayTeam,
             match_date: p.matchDate ? new Date(p.matchDate).toISOString().split('T')[0] : null,

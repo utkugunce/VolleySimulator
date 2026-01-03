@@ -1,10 +1,15 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useGameState } from "../utils/gameState";
 import { useToast } from "../components/Toast";
-import TutorialModal from "../components/TutorialModal";
+
+const TutorialModal = dynamic(() => import("../components/TutorialModal"), {
+    loading: () => null,
+    ssr: false,
+});
 
 // Theme handling inline since we need to update document
 function useLocalTheme() {
