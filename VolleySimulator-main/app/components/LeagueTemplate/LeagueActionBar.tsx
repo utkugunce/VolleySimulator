@@ -11,7 +11,7 @@ interface LeagueActionBarProps {
     // Selector (group/round/pool)
     selectorLabel?: string;
     selectorValue?: string;
-    selectorOptions?: string[];
+    selectorOptions?: (string | { label: string; value: string })[];
     onSelectorChange?: (value: string) => void;
     // Progress
     progress?: number;
@@ -69,11 +69,15 @@ export function LeagueActionBar({
                                 title={selectorLabel || 'Seçin'}
                                 className={`px-3 py-1 bg-${config.theme}-600/20 ${theme.text} text-[10px] uppercase font-black rounded-md border border-${config.theme}-500/30 outline-none cursor-pointer transition-all focus:ring-2 focus:ring-${config.theme}-500/50`}
                             >
-                                {selectorOptions.map(opt => (
-                                    <option key={opt} value={opt} className="bg-slate-900 text-white">
-                                        {opt}
-                                    </option>
-                                ))}
+                                {selectorOptions.map(opt => {
+                                    const value = typeof opt === 'string' ? opt : opt.value;
+                                    const label = typeof opt === 'string' ? opt : opt.label;
+                                    return (
+                                        <option key={value} value={value} className="bg-slate-900 text-white">
+                                            {label}
+                                        </option>
+                                    );
+                                })}
                             </select>
                         </div>
                     </div>

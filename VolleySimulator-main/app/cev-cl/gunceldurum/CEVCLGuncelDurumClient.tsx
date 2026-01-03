@@ -6,6 +6,7 @@ import { TeamStats, Match } from "../../types";
 import StandingsTable from "../../components/Calculator/StandingsTable";
 import { sortStandings } from "../../utils/calculatorUtils";
 import TeamAvatar from "@/app/components/TeamAvatar";
+import { LeagueActionBar, LEAGUE_CONFIGS } from "../../components/LeagueTemplate";
 
 interface CEVCLGuncelDurumClientProps {
     initialTeams: TeamStats[];
@@ -64,46 +65,30 @@ export default function CEVCLGuncelDurumClient({ initialTeams, initialMatches }:
         <main className="min-h-screen bg-slate-950 text-slate-100 p-0 sm:p-2 font-sans overflow-hidden">
             <div className="max-w-7xl mx-auto space-y-1 h-full flex flex-col">
                 <div className="space-y-3 bg-slate-900/40 p-3 rounded-2xl border border-slate-800/60 backdrop-blur-sm animate-in fade-in slide-in-from-bottom-4 duration-300">
-                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-2 border-b border-slate-800 pb-2">
-                        <div className="space-y-0.5">
-                            <p className="text-[10px] text-slate-400 font-medium mb-1 hidden sm:block">CEV Şampiyonlar Ligi • Güncel Durum</p>
-                            <h2 className="text-2xl font-black italic uppercase tracking-tighter text-blue-500 leading-none">
-                                {activePool}
-                            </h2>
-                            <div className="flex items-center gap-2">
-                                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">İlerleme</span>
-                                <div className="w-24 h-1 bg-slate-800 rounded-full overflow-hidden">
-                                    {/* eslint-disable-next-line */}
-                                    <div className="h-full bg-blue-500 transition-all duration-1000" style={{ width: `${completionRate}%` }}></div>
-                                </div>
-                                <span className="text-[9px] font-bold text-blue-400">%{completionRate}</span>
-                            </div>
+                    {/* Action Bar using LeagueTemplate */}
+                    <LeagueActionBar
+                        config={LEAGUE_CONFIGS['cev-cl']}
+                        title={`${LEAGUE_CONFIGS['cev-cl'].name} - ${activePool}`}
+                        subtitle="CEV Şampiyonlar Ligi • Güncel Durum"
+                        selectorLabel="Grup"
+                        selectorValue={activePool}
+                        selectorOptions={pools}
+                        onSelectorChange={setActivePool}
+                        progress={completionRate}
+                        progressLabel={`%${completionRate}`}
+                    >
+                        {/* Leader Badge */}
+                        <div className="hidden sm:flex bg-slate-950/50 px-3 py-1.5 rounded-lg border border-slate-800 text-center flex-col justify-center h-full min-h-[32px]">
+                            <div className="text-[9px] font-bold text-slate-500 uppercase leading-none mb-0.5">Lider</div>
+                            <div className="text-xs font-bold text-white truncate max-w-[100px] leading-none">{poolTeams[0]?.name || "-"}</div>
                         </div>
-                        <div className="flex gap-2 items-center flex-wrap">
-                            <div className="flex gap-1 p-1 bg-slate-950/50 rounded-lg border border-slate-800 h-full items-center">
-                                <select
-                                    value={activePool}
-                                    onChange={(e) => setActivePool(e.target.value)}
-                                    title="Havuz Seçin"
-                                    className="px-3 py-1 bg-blue-600/20 text-blue-500 text-[10px] uppercase font-black rounded-md border border-blue-500/30 outline-none cursor-pointer transition-all focus:ring-2 focus:ring-blue-500/50"
-                                >
-                                    {pools.map(pool => (
-                                        <option key={pool} value={pool} className="bg-slate-900 text-white">
-                                            {pool}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div className="bg-slate-950/50 px-3 py-1.5 rounded-lg border border-slate-800 text-center flex flex-col justify-center">
-                                <div className="text-[9px] font-bold text-slate-500 uppercase leading-none mb-0.5">Lider</div>
-                                <div className="text-xs font-bold text-white truncate max-w-[100px] leading-none">{poolTeams[0]?.name || "-"}</div>
-                            </div>
-                            <div className="px-3 py-1.5 bg-blue-950/50 rounded-lg border border-blue-800/50 flex items-center gap-2">
-                                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                                <span className="text-[10px] font-bold text-blue-400 uppercase">Otomatik</span>
-                            </div>
+                        {/* Live Badge */}
+                        <div className="px-3 h-8 bg-emerald-950/50 rounded-lg border border-emerald-800/50 flex items-center gap-2">
+                            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                            <span className="text-[10px] font-bold text-emerald-400 uppercase hidden sm:inline">Otomatik Güncelleme</span>
+                            <span className="text-[10px] font-bold text-emerald-400 uppercase sm:hidden">CANLI</span>
                         </div>
-                    </div>
+                    </LeagueActionBar>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 h-full">
                         <div className="lg:col-span-2 space-y-1 flex flex-col h-full">
