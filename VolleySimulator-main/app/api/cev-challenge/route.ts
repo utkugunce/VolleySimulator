@@ -14,7 +14,22 @@ export async function GET() {
         const sourceData = JSON.parse(fileContent);
 
         // Transform to CEV Cup format
-        const fixture: any[] = [];
+        // Transform to CEV Cup format
+        interface Match {
+            id: number;
+            round: string;
+            leg: number;
+            date: string;
+            matchTime: string;
+            homeTeam: string;
+            awayTeam: string;
+            homeScore: number | null;
+            awayScore: number | null;
+            setScores: string;
+            isPlayed: boolean;
+            venue: string;
+        }
+        const fixture: Match[] = [];
         const teamsMap = new Map();
 
         // Helper to parse score "3-0" -> { home: 3, away: 0 }
@@ -27,12 +42,12 @@ export async function GET() {
         let matchCounter = 1;
 
         if (sourceData.phases) {
-            sourceData.phases.forEach((phase: any) => {
+            sourceData.phases.forEach((phase: { name: string; matches: any[] }) => {
                 const roundName = phase.name; // e.g., "Qualification Rounds", "Main Round"
                 // Map generic phase names to CEV Cup expected rounds if needed, or update the UI constants.
                 // For now, let's keep original names but might need mapping for bracket logic.
 
-                phase.matches.forEach((m: any) => {
+                phase.matches.forEach((m: { score: string; date: string; homeTeam: string; awayTeam: string; sets: string; isPlayed: boolean }) => {
                     const { home, away } = parseScore(m.score);
 
                     // Add teams

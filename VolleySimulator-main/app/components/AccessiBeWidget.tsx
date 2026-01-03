@@ -8,9 +8,9 @@ export default function AccessiBeWidget() {
             src="https://acsbapp.com/apps/app/dist/js/app.js"
             strategy="lazyOnload"
             onLoad={() => {
-                // @ts-ignore
+                // @ts-expect-error - acsbJS is loaded from external script
                 if (typeof acsbJS !== 'undefined') {
-                    // @ts-ignore
+                    // @ts-expect-error - acsbJS is loaded from external script
                     acsbJS.init({
                         statementLink: '',
                         footerHtml: '',

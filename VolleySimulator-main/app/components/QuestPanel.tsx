@@ -53,17 +53,19 @@ export default function QuestPanel({
     // Reset quests at midnight
     useEffect(() => {
         const saved = localStorage.getItem('questLastReset');
-        if (saved !== today) {
-            setCompletedQuests(new Set());
-            localStorage.setItem('questLastReset', today);
-            localStorage.removeItem('completedQuests');
-        } else {
-            const savedCompleted = localStorage.getItem('completedQuests');
-            if (savedCompleted) {
-                setCompletedQuests(new Set(JSON.parse(savedCompleted)));
+        Promise.resolve().then(() => {
+            if (saved !== today) {
+                setCompletedQuests(new Set());
+                localStorage.setItem('questLastReset', today);
+                localStorage.removeItem('completedQuests');
+            } else {
+                const savedCompleted = localStorage.getItem('completedQuests');
+                if (savedCompleted) {
+                    setCompletedQuests(new Set(JSON.parse(savedCompleted)));
+                }
             }
-        }
-        setLastResetDate(today);
+            setLastResetDate(today);
+        });
     }, [today]);
 
     // Build quests with current progress
@@ -93,17 +95,24 @@ export default function QuestPanel({
 
     // Check for newly completed quests and award XP
     useEffect(() => {
-        quests.forEach(quest => {
-            if (quest.progress >= quest.target && !completedQuests.has(quest.id)) {
+        const newlyCompletedQuests = quests.filter(
+            quest => quest.progress >= quest.target && !completedQuests.has(quest.id)
+        );
+
+        if (newlyCompletedQuests.length > 0) {
+            // Defer update to avoid "cascading renders" warning
+            Promise.resolve().then(() => {
                 setCompletedQuests(prev => {
                     const newSet = new Set(prev);
-                    newSet.add(quest.id);
+                    newlyCompletedQuests.forEach(quest => {
+                        newSet.add(quest.id);
+                        addXP(quest.xpReward);
+                    });
                     localStorage.setItem('completedQuests', JSON.stringify([...newSet]));
                     return newSet;
                 });
-                addXP(quest.xpReward);
-            }
-        });
+            });
+        }
     }, [quests, completedQuests, addXP]);
 
     const completedCount = quests.filter(q => q.completed).length;

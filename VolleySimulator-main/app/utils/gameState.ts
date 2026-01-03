@@ -134,16 +134,20 @@ export function useGameState() {
 
     // Load from localStorage on mount
     useEffect(() => {
-        try {
-            const saved = localStorage.getItem(STORAGE_KEY);
-            if (saved) {
-                const parsed = JSON.parse(saved);
-                setGameState(prev => ({ ...prev, ...parsed }));
+        const loadState = () => {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    setGameState(prev => ({ ...prev, ...parsed }));
+                }
+            } catch (e) {
+                console.error('Failed to load game state:', e);
             }
-        } catch (e) {
-            console.error('Failed to load game state:', e);
-        }
-        setIsLoaded(true);
+            setIsLoaded(true);
+        };
+
+        Promise.resolve().then(loadState);
     }, []);
 
     // Save to localStorage on change

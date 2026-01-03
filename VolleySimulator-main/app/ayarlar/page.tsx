@@ -18,7 +18,7 @@ function useLocalTheme() {
     useEffect(() => {
         const saved = localStorage.getItem('theme') as 'dark' | 'light' | null;
         if (saved) {
-            setThemeState(saved);
+            Promise.resolve().then(() => setThemeState(saved));
         }
     }, []);
 

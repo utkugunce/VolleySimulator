@@ -18,7 +18,7 @@ export default function VSLDetailedClient({ initialTeams, initialMatches }: VSLD
     const groupName = "Vodafone Sultanlar Ligi";
 
     const teams = useMemo(() => sortStandings(initialTeams), [initialTeams]);
-    const matches = useMemo(() => initialMatches.map((m: any) => ({
+    const matches = useMemo(() => initialMatches.map((m: Match & { date?: string }) => ({
         ...m,
         matchDate: m.date || m.matchDate
     })), [initialMatches]);

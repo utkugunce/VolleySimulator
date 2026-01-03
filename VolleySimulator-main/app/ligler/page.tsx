@@ -24,7 +24,7 @@ export default function LiglerPage() {
                     <Link href="/vsl/tahminoyunu" className="group bg-slate-900 border border-red-500/30 rounded-2xl p-8 hover:bg-slate-800 hover:border-red-500/60 transition-all flex flex-col items-center text-center gap-4 shadow-lg hover:shadow-red-900/20">
                         <div>
                             <h2 className="text-2xl font-bold text-white mb-2">Vodafone Sultanlar Ligi</h2>
-                            <p className="text-slate-400">Türkiye'nin en üst düzey kadınlar voleybol ligi</p>
+                            <p className="text-slate-400">Türkiye&apos;nin en üst düzey kadınlar voleybol ligi</p>
                         </div>
                         <div className="mt-2 px-4 py-2 bg-red-600/20 text-red-400 rounded-full text-sm font-bold group-hover:bg-red-700 group-hover:text-white transition-colors">
                             Lige Git →
@@ -57,7 +57,7 @@ export default function LiglerPage() {
                     <Link href="/cev-cl/tahminoyunu" className="group bg-slate-900 border border-blue-500/30 rounded-2xl p-8 hover:bg-slate-800 hover:border-blue-500/60 transition-all flex flex-col items-center text-center gap-4 shadow-lg hover:shadow-blue-900/20">
                         <div>
                             <h2 className="text-2xl font-bold text-white mb-2">CEV Şampiyonlar Ligi</h2>
-                            <p className="text-slate-400">Avrupa'nın en iyi takımları</p>
+                            <p className="text-slate-400">Avrupa&apos;nın en iyi takımları</p>
                         </div>
                         <div className="mt-2 px-4 py-2 bg-blue-600/20 text-blue-400 rounded-full text-sm font-bold group-hover:bg-blue-600 group-hover:text-white transition-colors">
                             Lige Git →

@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useCallback, useEffect, useRef } from "react";
-import { 
-  MatchSimulation, 
-  SimulatedSet, 
+import {
+  MatchSimulation,
+  SimulatedSet,
   SimulatedPoint,
-  SimulationMoment 
+  SimulationMoment
 } from "../types";
 
 interface UseMatchSimulationOptions {
@@ -29,29 +29,85 @@ interface UseMatchSimulationReturn {
   setSpeed: (speed: number) => void;
 }
 
+// Simulate a single set
+const simulateSet = (
+  setNumber: number,
+  endScore: number,
+  homeTeam: string,
+  awayTeam: string
+): SimulatedSet => {
+  const points: SimulatedPoint[] = [];
+  let homeScore = 0;
+  let awayScore = 0;
+  let pointNumber = 0;
+
+  // Randomly determine which team is slightly favored
+  const homeBias = 0.48 + Math.random() * 0.08; // 48-56% for home
+
+  while (true) {
+    pointNumber++;
+
+    // Determine point type
+    const types: Array<'attack' | 'block' | 'ace' | 'error'> = ['attack', 'attack', 'attack', 'block', 'ace', 'error'];
+    const type = types[Math.floor(Math.random() * types.length)];
+
+    // Determine scorer
+    const scorer = Math.random() < homeBias ? 'home' : 'away';
+
+    if (scorer === 'home') {
+      homeScore++;
+    } else {
+      awayScore++;
+    }
+
+    points.push({
+      pointNumber,
+      homeScore,
+      awayScore,
+      scorer,
+      type,
+    });
+
+    // Check if set is over
+    const maxScore = Math.max(homeScore, awayScore);
+    const minScore = Math.min(homeScore, awayScore);
+
+    if (maxScore >= endScore && maxScore - minScore >= 2) {
+      break;
+    }
+
+    // Safety limit
+    if (pointNumber > 100) break;
+  }
+
+  return {
+    setNumber,
+    homePoints: homeScore,
+    awayPoints: awayScore,
+    winner: homeScore > awayScore ? 'home' : 'away',
+    pointByPoint: points,
+  };
+};
+
 export function useMatchSimulation(
   options: UseMatchSimulationOptions = {}
 ): UseMatchSimulationReturn {
   const { speed: initialSpeed = 1, autoPlay = true } = options;
-  
+
   const [simulation, setSimulation] = useState<MatchSimulation | null>(null);
   const [isSimulating, setIsSimulating] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSet, setCurrentSet] = useState(0);
   const [currentPoint, setCurrentPoint] = useState(0);
   const [speed, setSpeedState] = useState(initialSpeed);
-  
+
   const animationRef = useRef<NodeJS.Timeout | null>(null);
   const progressRef = useRef(0);
-
-  // Calculate progress
-  const progress = simulation 
-    ? (progressRef.current / simulation.duration) * 100 
-    : 0;
+  const [progressState, setProgressState] = useState(0);
 
   // Generate a simulated match
   const generateSimulation = useCallback((
-    homeTeam: string, 
+    homeTeam: string,
     awayTeam: string
   ): MatchSimulation => {
     const sets: SimulatedSet[] = [];
@@ -60,41 +116,41 @@ export function useMatchSimulation(
     let setNumber = 0;
     const moments: SimulationMoment[] = [];
     let totalDuration = 0;
-    
+
     // Simulate sets until one team wins 3
     while (homeSetsWon < 3 && awaySetsWon < 3) {
       setNumber++;
       const isDecidingSet = homeSetsWon === 2 && awaySetsWon === 2;
       const setEndScore = isDecidingSet ? 15 : 25;
-      
+
       const set = simulateSet(setNumber, setEndScore, homeTeam, awayTeam);
       sets.push(set);
-      
+
       if (set.winner === 'home') {
         homeSetsWon++;
       } else {
         awaySetsWon++;
       }
-      
+
       // Add set end moment
       moments.push({
         time: totalDuration + set.pointByPoint.length * 2,
         type: 'set_point',
         description: `${set.winner === 'home' ? homeTeam : awayTeam} ${setNumber}. seti kazandı (${set.homePoints}-${set.awayPoints})`,
       });
-      
+
       totalDuration += set.pointByPoint.length * 2;
     }
-    
+
     const winner = homeSetsWon === 3 ? homeTeam : awayTeam;
-    
+
     // Add match end moment
     moments.push({
       time: totalDuration,
       type: 'match_point',
       description: `${winner} maçı kazandı! (${homeSetsWon}-${awaySetsWon})`,
     });
-    
+
     return {
       matchId: `sim-${Date.now()}`,
       homeTeam,
@@ -107,81 +163,27 @@ export function useMatchSimulation(
     };
   }, []);
 
-  // Simulate a single set
-  const simulateSet = (
-    setNumber: number, 
-    endScore: number,
-    homeTeam: string,
-    awayTeam: string
-  ): SimulatedSet => {
-    const points: SimulatedPoint[] = [];
-    let homeScore = 0;
-    let awayScore = 0;
-    let pointNumber = 0;
-    
-    // Randomly determine which team is slightly favored
-    const homeBias = 0.48 + Math.random() * 0.08; // 48-56% for home
-    
-    while (true) {
-      pointNumber++;
-      
-      // Determine point type
-      const types: Array<'attack' | 'block' | 'ace' | 'error'> = ['attack', 'attack', 'attack', 'block', 'ace', 'error'];
-      const type = types[Math.floor(Math.random() * types.length)];
-      
-      // Determine scorer
-      const scorer = Math.random() < homeBias ? 'home' : 'away';
-      
-      if (scorer === 'home') {
-        homeScore++;
-      } else {
-        awayScore++;
-      }
-      
-      points.push({
-        pointNumber,
-        homeScore,
-        awayScore,
-        scorer,
-        type,
-      });
-      
-      // Check if set is over
-      const maxScore = Math.max(homeScore, awayScore);
-      const minScore = Math.min(homeScore, awayScore);
-      
-      if (maxScore >= endScore && maxScore - minScore >= 2) {
-        break;
-      }
-      
-      // Safety limit
-      if (pointNumber > 100) break;
-    }
-    
-    return {
-      setNumber,
-      homePoints: homeScore,
-      awayPoints: awayScore,
-      winner: homeScore > awayScore ? 'home' : 'away',
-      pointByPoint: points,
-    };
-  };
+  // Calculate progress - use state to avoid accessing ref during render
+  const progress = simulation
+    ? (progressState / simulation.duration) * 100
+    : 0;
 
   // Start simulation
   const startSimulation = useCallback(async (
-    homeTeam: string, 
+    homeTeam: string,
     awayTeam: string
   ) => {
     setIsSimulating(true);
     setCurrentSet(0);
     setCurrentPoint(0);
     progressRef.current = 0;
-    
+    setProgressState(0);
+
     // Generate simulation
     const sim = generateSimulation(homeTeam, awayTeam);
     setSimulation(sim);
     setIsSimulating(false);
-    
+
     if (autoPlay) {
       setIsPlaying(true);
     }
@@ -208,17 +210,19 @@ export function useMatchSimulation(
     setCurrentSet(0);
     setCurrentPoint(0);
     progressRef.current = 0;
+    setProgressState(0);
   }, [pause]);
 
   // Skip to end
   const skipToEnd = useCallback(() => {
     if (!simulation) return;
-    
+
     pause();
     setCurrentSet(simulation.simulatedSets.length - 1);
     const lastSet = simulation.simulatedSets[simulation.simulatedSets.length - 1];
     setCurrentPoint(lastSet.pointByPoint.length - 1);
     progressRef.current = simulation.duration;
+    setProgressState(simulation.duration);
   }, [simulation, pause]);
 
   // Set speed
@@ -229,15 +233,16 @@ export function useMatchSimulation(
   // Animation loop
   useEffect(() => {
     if (!isPlaying || !simulation) return;
-    
+
     const animate = () => {
       progressRef.current += 2 * speed;
-      
+      setProgressState(progressRef.current);
+
       // Find current set and point based on progress
       let elapsed = 0;
       let foundSet = 0;
       let foundPoint = 0;
-      
+
       for (let s = 0; s < simulation.simulatedSets.length; s++) {
         const set = simulation.simulatedSets[s];
         for (let p = 0; p < set.pointByPoint.length; p++) {
@@ -250,21 +255,21 @@ export function useMatchSimulation(
         }
         if (elapsed >= progressRef.current) break;
       }
-      
+
       setCurrentSet(foundSet);
       setCurrentPoint(foundPoint);
-      
+
       // Check if animation is complete
       if (progressRef.current >= simulation.duration) {
         setIsPlaying(false);
         return;
       }
-      
+
       animationRef.current = setTimeout(animate, 50 / speed);
     };
-    
+
     animationRef.current = setTimeout(animate, 50 / speed);
-    
+
     return () => {
       if (animationRef.current) {
         clearTimeout(animationRef.current);
@@ -305,10 +310,10 @@ export function getSimulationState(
 ) {
   const currentSetData = simulation.simulatedSets[setIndex];
   const currentPointData = currentSetData?.pointByPoint[pointIndex];
-  
+
   let homeSetsWon = 0;
   let awaySetsWon = 0;
-  
+
   for (let i = 0; i < setIndex; i++) {
     if (simulation.simulatedSets[i].winner === 'home') {
       homeSetsWon++;
@@ -316,14 +321,14 @@ export function getSimulationState(
       awaySetsWon++;
     }
   }
-  
+
   return {
     setScore: { home: homeSetsWon, away: awaySetsWon },
-    currentSetScore: currentPointData 
+    currentSetScore: currentPointData
       ? { home: currentPointData.homeScore, away: currentPointData.awayScore }
       : { home: 0, away: 0 },
     lastPoint: currentPointData,
-    isComplete: setIndex >= simulation.simulatedSets.length - 1 && 
+    isComplete: setIndex >= simulation.simulatedSets.length - 1 &&
       pointIndex >= currentSetData.pointByPoint.length - 1,
   };
 }

@@ -26,26 +26,29 @@ export default function TwoLigPlayoffsClient({ initialTeams, initialMatches }: T
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        const savedPlayoff = localStorage.getItem('playoffScenarios');
-        if (savedPlayoff) {
-            try {
-                setPlayoffOverrides(JSON.parse(savedPlayoff));
-            } catch (e) { console.error(e); }
-        }
+        const loadSaved = () => {
+            const savedPlayoff = localStorage.getItem('playoffScenarios');
+            if (savedPlayoff) {
+                try {
+                    setPlayoffOverrides(JSON.parse(savedPlayoff));
+                } catch (e) { console.error(e); }
+            }
 
-        const savedGroup = localStorage.getItem('groupScenarios');
-        if (savedGroup) {
-            try {
-                const parsed = JSON.parse(savedGroup);
-                let flatOverrides: Record<string, string> = {};
-                Object.values(parsed).forEach((groupObj: any) => {
-                    flatOverrides = { ...flatOverrides, ...groupObj };
-                });
-                setGroupOverrides(flatOverrides);
-            } catch (e) { console.error(e); }
-        }
+            const savedGroup = localStorage.getItem('groupScenarios');
+            if (savedGroup) {
+                try {
+                    const parsed = JSON.parse(savedGroup);
+                    let flatOverrides: Record<string, string> = {};
+                    Object.values(parsed).forEach((groupObj: unknown) => {
+                        flatOverrides = { ...flatOverrides, ...(groupObj as Record<string, string>) };
+                    });
+                    setGroupOverrides(flatOverrides);
+                } catch (e) { console.error(e); }
+            }
+            setIsLoaded(true);
+        };
 
-        setIsLoaded(true);
+        Promise.resolve().then(loadSaved);
     }, []);
 
     const baseStandings = useMemo(() => {

@@ -201,8 +201,8 @@ export default function TeamProfileClient({ teamSlug }: TeamProfileClientProps) 
                                     ) + 1;
                                     return (
                                         <span className={`text-lg font-black ${rank === 1 ? 'text-amber-400' :
-                                                rank <= 4 ? 'text-emerald-400' :
-                                                    'text-slate-400'
+                                            rank <= 4 ? 'text-emerald-400' :
+                                                'text-slate-400'
                                             }`}>
                                             {rank}. sıra
                                         </span>
@@ -309,7 +309,7 @@ export default function TeamProfileClient({ teamSlug }: TeamProfileClientProps) 
                         <div className="text-5xl mb-3">🔍</div>
                         <h2 className="text-lg font-bold text-white mb-1">Takım Bulunamadı</h2>
                         <p className="text-sm text-slate-400 mb-4">
-                            "{teamName}" aktif liglerde bulunamadı.
+                            &quot;{teamName}&quot; aktif liglerde bulunamadı.
                         </p>
                         <Link
                             href="/ligler"

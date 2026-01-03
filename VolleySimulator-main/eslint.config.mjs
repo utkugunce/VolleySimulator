@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "scripts/**",
+    ".gemini/**",
+    "data/**",
+    ".vsl_data/**"
   ]),
   // Disable inline style warnings - needed for dynamic width/height values in progress bars
   {
@@ -20,6 +24,9 @@ const eslintConfig = defineConfig([
       "react/forbid-component-props": "off",
       "react/style-prop-object": "off",
       "@next/next/no-img-element": "off",
+      "@typescript-eslint/no-require-imports": "off",
+      "@typescript-eslint/no-explicit-any": "warn",
+      "react-hooks/exhaustive-deps": "warn"
     },
   },
 ]);

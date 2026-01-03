@@ -1,0 +1,84 @@
+﻿
+> web_app@0.1.0 build
+> next build
+
+Ôû▓ Next.js 16.1.1 (Turbopack)
+- Experiments (use with caution):
+  ┬À optimizePackageImports
+
+  Creating an optimized production build ...
+node.exe : 
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node
+_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteExc 
+   eption
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+> Build error occurred
+Error: Turbopack build failed with 2 errors:
+./app/1lig/gunceldurum/OneLigDetailedGroupsClient.tsx:39:11
+Ecmascript file had an error
+[0m [90m 37 |[39m
+ [90m 38 |[39m     [36mconst[39m totalCount [33m=[39m groupMat
+ches[33m.[39mlength[33m;[39m
+[31m[1m>[22m[39m[90m 39 |[39m     [36mconst[39m completionRa
+te [33m=[39m totalCount [33m>[39m [35m0[39m [33m?[39m [33mM
+ath[39m[33m.[39mround((playedCount [33m/[39m totalCount) [33m*
+[39m [35m100[39m) [33m:[39m [35m0[39m[33m;[39m
+ [90m    |[39m           [31m[1m^[22m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 40 |[39m
+ [90m 41 |[39m     [36mconst[39m groupedMatches [33m=[39m useM
+emo(() [33m=>[39m {
+ [90m 42 |[39m         [36mconst[39m matchesByDate[33m:[39m [
+33mRecord[39m[33m<[39m[33mstring[39m[33m,[39m { formatted[33
+m:[39m string[33m;[39m matches[33m:[39m [33mMatch[39m[] }[33
+m>[39m [33m=[39m {}[33m;[39m[0m
+
+the name `completionRate` is defined multiple times
+
+Import trace:
+  Server Component:
+    ./app/1lig/gunceldurum/OneLigDetailedGroupsClient.tsx
+    ./app/1lig/gunceldurum/page.tsx
+
+
+./app/1lig/gunceldurum/OneLigDetailedGroupsClient.tsx:38:11
+Ecmascript file had an error
+[0m [90m 36 |[39m     [36mconst[39m completionRate [33m=[39m 
+totalCount [33m>[39m [35m0[39m [33m?[39m [33mMath[39m[33m.
+[39mround((playedCount [33m/[39m totalCount) [33m*[39m [35m100
+[39m) [33m:[39m [35m0[39m[33m;[39m
+ [90m 37 |[39m
+[31m[1m>[22m[39m[90m 38 |[39m     [36mconst[39m totalCount 
+[33m=[39m groupMatches[33m.[39mlength[33m;[39m
+ [90m    |[39m           [31m[1m^[22m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m
+ [90m 39 |[39m     [36mconst[39m completionRate [33m=[39m tota
+lCount [33m>[39m [35m0[39m [33m?[39m [33mMath[39m[33m.[39m
+round((playedCount [33m/[39m totalCount) [33m*[39m [35m100[39m
+) [33m:[39m [35m0[39m[33m;[39m
+ [90m 40 |[39m
+ [90m 41 |[39m     [36mconst[39m groupedMatches [33m=[39m useM
+emo(() [33m=>[39m {[0m
+
+the name `totalCount` is defined multiple times
+
+Import trace:
+  Server Component:
+    ./app/1lig/gunceldurum/OneLigDetailedGroupsClient.tsx
+    ./app/1lig/gunceldurum/page.tsx
+
+
+    at <unknown> (./app/1lig/gunceldurum/OneLigDetailedGroupsClient.
+tsx:39:11)
+    at <unknown> (./app/1lig/gunceldurum/OneLigDetailedGroupsClient.
+tsx:38:11)

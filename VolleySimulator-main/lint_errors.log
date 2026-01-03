@@ -1,0 +1,1743 @@
+
+> web_app@0.1.0 lint
+> eslint
+
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\gunceldurum\OneLigDetailedGroupsClient.tsx
+  19:67  error    Unexpected any. Specify a different type                                                                     @typescript-eslint/no-explicit-any
+  74:8   warning  React Hook useMemo has a missing dependency: 'formatDate'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\playoffs\OneLigPlayoffsClient.tsx
+   25:12  warning  'isLoaded' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+   31:17  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\playoffs\OneLigPlayoffsClient.tsx:31:17
+  29 |         if (savedPlayoff) {
+  30 |             try {
+> 31 |                 setPlayoffOverrides(JSON.parse(savedPlayoff));
+     |                 ^^^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  32 |             } catch (e) { console.error(e); }
+  33 |         }
+  34 |  react-hooks/set-state-in-effect
+   40:58  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-explicit-any
+  180:51  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    react/no-unescaped-entities
+  212:69  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    react/no-unescaped-entities
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\playoffs\[stage]\[groupId]\page.tsx
+   5:17  warning  'TeamStats' is defined but never used              @typescript-eslint/no-unused-vars
+  22:11  warning  'router' is assigned a value but never used        @typescript-eslint/no-unused-vars
+  33:12  warning  'saveStatus' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  36:12  warning  'initialRanks' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\stats\OneLigStatsClient.tsx
+   43:11  warning  'BarChart' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+  162:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\stats\OneLigStatsClient.tsx:162:22
+  160 |
+  161 |                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 pb-8">
+> 162 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  163 |                         title="En Çok Puan"
+  164 |                         icon="💎"
+  165 |                         teams={mostPoints}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\stats\OneLigStatsClient.tsx:52:22
+   50 |     );
+   51 |
+>  52 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  53 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  54 |         teams: typeof teamsWithStats;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 111 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 112 |     };
+      | ^^^^^^ The component is created during render here
+  113 |
+  114 |     return (
+  115 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">                       react-hooks/static-components
+  171:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\stats\OneLigStatsClient.tsx:171:22
+  169 |                         suffix="P"
+  170 |                     />
+> 171 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  172 |                         title="En Yüksek Galibiyet"
+  173 |                         icon="📈"
+  174 |                         teams={bestWinRate}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\stats\OneLigStatsClient.tsx:52:22
+   50 |     );
+   51 |
+>  52 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  53 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  54 |         teams: typeof teamsWithStats;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 111 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 112 |     };
+      | ^^^^^^ The component is created during render here
+  113 |
+  114 |     return (
+  115 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">                                             react-hooks/static-components
+  180:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\stats\OneLigStatsClient.tsx:180:22
+  178 |                         suffix="%"
+  179 |                     />
+> 180 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  181 |                         title="En Çok Set Alan"
+  182 |                         icon="🏐"
+  183 |                         teams={mostSets}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\stats\OneLigStatsClient.tsx:52:22
+   50 |     );
+   51 |
+>  52 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  53 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  54 |         teams: typeof teamsWithStats;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 111 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 112 |     };
+      | ^^^^^^ The component is created during render here
+  113 |
+  114 |     return (
+  115 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">                                                    react-hooks/static-components
+  188:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\stats\OneLigStatsClient.tsx:188:22
+  186 |                         gradient="bg-gradient-to-r from-purple-600 to-pink-600"
+  187 |                     />
+> 188 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  189 |                         title="En Az Mağlubiyet"
+  190 |                         icon="🛡️"
+  191 |                         teams={leastLosses}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\stats\OneLigStatsClient.tsx:52:22
+   50 |     );
+   51 |
+>  52 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  53 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  54 |         teams: typeof teamsWithStats;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 111 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 112 |     };
+      | ^^^^^^ The component is created during render here
+  113 |
+  114 |     return (
+  115 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">  react-hooks/static-components
+  197:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\stats\OneLigStatsClient.tsx:197:22
+  195 |                         suffix="M"
+  196 |                     />
+> 197 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  198 |                         title="En Az Set Veren"
+  199 |                         icon="🧱"
+  200 |                         teams={leastSetsLost}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\stats\OneLigStatsClient.tsx:52:22
+   50 |     );
+   51 |
+>  52 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  53 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  54 |         teams: typeof teamsWithStats;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 111 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 112 |     };
+      | ^^^^^^ The component is created during render here
+  113 |
+  114 |     return (
+  115 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">                                               react-hooks/static-components
+  205:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\stats\OneLigStatsClient.tsx:205:22
+  203 |                         gradient="bg-gradient-to-r from-rose-600 to-red-600"
+  204 |                     />
+> 205 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  206 |                         title="En Çok Mağlubiyet"
+  207 |                         icon="📉"
+  208 |                         teams={mostLosses}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\stats\OneLigStatsClient.tsx:52:22
+   50 |     );
+   51 |
+>  52 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  53 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  54 |         teams: typeof teamsWithStats;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 111 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 112 |     };
+      | ^^^^^^ The component is created during render here
+  113 |
+  114 |     return (
+  115 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">      react-hooks/static-components
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\tahminoyunu\OneLigCalculatorClient.tsx
+   28:64  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   34:68  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   65:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  227:69  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\group\[groupId]\page.tsx
+    7:22  warning  'ProgressRing' is defined but never used                                                                                                             @typescript-eslint/no-unused-vars
+   10:28  warning  'TeamDiff' is defined but never used                                                                                                                 @typescript-eslint/no-unused-vars
+   25:42  error    Unexpected any. Specify a different type                                                                                                             @typescript-eslint/no-explicit-any
+   43:8   warning  React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array                                         react-hooks/exhaustive-deps
+   74:8   warning  React Hook useEffect has a missing dependency: 'showToast'. Either include it or remove the dependency array                                         react-hooks/exhaustive-deps
+  121:18  warning  'e' is defined but never used                                                                                                                        @typescript-eslint/no-unused-vars
+  164:8   warning  React Hook useEffect has missing dependencies: 'handleCalculate', 'loading', and 'teams.length'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  242:22  warning  'err' is defined but never used                                                                                                                      @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\gunceldurum\TwoLigDetailedGroupsClient.tsx
+  19:67  error    Unexpected any. Specify a different type                                                                     @typescript-eslint/no-explicit-any
+  25:74  error    Unexpected any. Specify a different type                                                                     @typescript-eslint/no-explicit-any
+  25:82  error    Unexpected any. Specify a different type                                                                     @typescript-eslint/no-explicit-any
+  91:8   warning  React Hook useMemo has a missing dependency: 'formatDate'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\playoffs\TwoLigPlayoffsClient.tsx
+  26:12  warning  'isLoaded' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+  32:17  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\playoffs\TwoLigPlayoffsClient.tsx:32:17
+  30 |         if (savedPlayoff) {
+  31 |             try {
+> 32 |                 setPlayoffOverrides(JSON.parse(savedPlayoff));
+     |                 ^^^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  33 |             } catch (e) { console.error(e); }
+  34 |         }
+  35 |  react-hooks/set-state-in-effect
+  41:58  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\playoffs\[stage]\[groupId]\page.tsx
+   5:17  warning  'TeamStats' is defined but never used              @typescript-eslint/no-unused-vars
+  22:11  warning  'router' is assigned a value but never used        @typescript-eslint/no-unused-vars
+  28:12  warning  'initialGroup' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  35:12  warning  'saveStatus' is assigned a value but never used    @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\stats\TwoLigStatsClient.tsx
+   17:23  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        @typescript-eslint/no-explicit-any
+   17:31  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        @typescript-eslint/no-explicit-any
+   49:11  warning  'BarChart' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-unused-vars
+  168:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\stats\TwoLigStatsClient.tsx:168:22
+  166 |
+  167 |                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 pb-8">
+> 168 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  169 |                         title="En Çok Puan"
+  170 |                         icon="💎"
+  171 |                         teams={mostPoints}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\stats\TwoLigStatsClient.tsx:58:22
+   56 |     );
+   57 |
+>  58 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  59 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  60 |         teams: typeof teamsWithStats;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 117 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 118 |     };
+      | ^^^^^^ The component is created during render here
+  119 |
+  120 |     return (
+  121 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">                     react-hooks/static-components
+  177:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\stats\TwoLigStatsClient.tsx:177:22
+  175 |                         suffix="P"
+  176 |                     />
+> 177 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  178 |                         title="En Yüksek Galibiyet"
+  179 |                         icon="📈"
+  180 |                         teams={bestWinRate}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\stats\TwoLigStatsClient.tsx:58:22
+   56 |     );
+   57 |
+>  58 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  59 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  60 |         teams: typeof teamsWithStats;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 117 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 118 |     };
+      | ^^^^^^ The component is created during render here
+  119 |
+  120 |     return (
+  121 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">                                           react-hooks/static-components
+  186:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\stats\TwoLigStatsClient.tsx:186:22
+  184 |                         suffix="%"
+  185 |                     />
+> 186 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  187 |                         title="En Çok Set Alan"
+  188 |                         icon="🏐"
+  189 |                         teams={mostSets}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\stats\TwoLigStatsClient.tsx:58:22
+   56 |     );
+   57 |
+>  58 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  59 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  60 |         teams: typeof teamsWithStats;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 117 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 118 |     };
+      | ^^^^^^ The component is created during render here
+  119 |
+  120 |     return (
+  121 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">                                                  react-hooks/static-components
+  194:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\stats\TwoLigStatsClient.tsx:194:22
+  192 |                         gradient="bg-gradient-to-r from-cyan-600 to-blue-600"
+  193 |                     />
+> 194 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  195 |                         title="En Az Mağlubiyet"
+  196 |                         icon="🛡️"
+  197 |                         teams={leastLosses}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\stats\TwoLigStatsClient.tsx:58:22
+   56 |     );
+   57 |
+>  58 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  59 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  60 |         teams: typeof teamsWithStats;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 117 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 118 |     };
+      | ^^^^^^ The component is created during render here
+  119 |
+  120 |     return (
+  121 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">  react-hooks/static-components
+  203:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\stats\TwoLigStatsClient.tsx:203:22
+  201 |                         suffix="M"
+  202 |                     />
+> 203 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  204 |                         title="En Az Set Veren"
+  205 |                         icon="🧱"
+  206 |                         teams={leastSetsLost}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\stats\TwoLigStatsClient.tsx:58:22
+   56 |     );
+   57 |
+>  58 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  59 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  60 |         teams: typeof teamsWithStats;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 117 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 118 |     };
+      | ^^^^^^ The component is created during render here
+  119 |
+  120 |     return (
+  121 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">                                             react-hooks/static-components
+  211:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\stats\TwoLigStatsClient.tsx:211:22
+  209 |                         gradient="bg-gradient-to-r from-rose-600 to-red-600"
+  210 |                     />
+> 211 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  212 |                         title="En Çok Mağlubiyet"
+  213 |                         icon="📉"
+  214 |                         teams={mostLosses}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\stats\TwoLigStatsClient.tsx:58:22
+   56 |     );
+   57 |
+>  58 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  59 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  60 |         teams: typeof teamsWithStats;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 117 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 118 |     };
+      | ^^^^^^ The component is created during render here
+  119 |
+  120 |     return (
+  121 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">    react-hooks/static-components
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\tahminoyunu\TwoLigCalculatorClient.tsx
+   29:26   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   29:61   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   30:28   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   38:100  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   38:108  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   62:58   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  224:69   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\anasayfa\AnasayfaClient.tsx
+  5:10  warning  'useState' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\1lig\route.ts
+   8:27  warning  'req' is defined but never used           @typescript-eslint/no-unused-vars
+  18:47  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  19:52  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\ai\prediction\route.ts
+  7:42  warning  'league' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\calculate\route.ts
+   67:55  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   97:48  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   99:34  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  152:31  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\cev-challenge\route.ts
+  17:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  30:47  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  35:43  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\cev-cl\route.ts
+  5:27  warning  'req' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\cev-cup\route.ts
+  5:27  warning  'req' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\cron\update-results\route.ts
+  124:11  warning  'reverseMapping' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  200:18  warning  'e' is defined but never used                        @typescript-eslint/no-unused-vars
+  238:21  error    Unexpected any. Specify a different type             @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\custom-leagues\route.ts
+  129:42  warning  'user' is defined but never used               @typescript-eslint/no-unused-vars
+  143:13  warning  'leagueId' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  143:23  warning  'updates' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  156:42  warning  'user' is defined but never used               @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\live\[matchId]\comments\[commentId]\like\route.ts
+  15:13  warning  'matchId' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  15:22  warning  'commentId' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\live\route.ts
+  4:27  warning  'request' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\refresh\route.ts
+  15:17  warning  'stdout' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  32:21  error    Unexpected any. Specify a different type     @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\scrape\route.ts
+  44:53  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  47:57  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  57:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\auth\callback\route.ts
+  1:35  warning  'CookieOptions' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\ayarlar\page.tsx
+  21:13  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\ayarlar\page.tsx:21:13
+  19 |         const saved = localStorage.getItem('theme') as 'dark' | 'light' | null;
+  20 |         if (saved) {
+> 21 |             setThemeState(saved);
+     |             ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  22 |         }
+  23 |     }, []);
+  24 |  react-hooks/set-state-in-effect
+  70:18  warning  'e' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\anasayfa\page.tsx
+  171:72  warning  'i' is defined but never used  @typescript-eslint/no-unused-vars
+  208:57  warning  'i' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\gunceldurum\CEVChallengeGuncelDurumClient.tsx
+  187:62  warning  'mIdx' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\gunceldurum\page.tsx
+  67:51  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  69:47  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\playoffs\CEVChallengePlayoffsClient.tsx
+    3:31  warning  'useMemo' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+    5:8   warning  'Link' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 @typescript-eslint/no-unused-vars
+   25:12  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-explicit-any
+   52:17  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\playoffs\CEVChallengePlayoffsClient.tsx:52:17
+  50 |         if (saved) {
+  51 |             try {
+> 52 |                 setOverrides(JSON.parse(saved));
+     |                 ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  53 |             } catch (e) { console.error(e); }
+  54 |         }
+  55 |         setIsLoaded(true);  react-hooks/set-state-in-effect
+  218:48  warning  't' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\playoffs\page.tsx
+  24:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  38:51  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  40:47  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\stats\CEVChallengeStatsClient.tsx
+  191:22  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\stats\CEVChallengeStatsClient.tsx:191:22
+  189 |
+  190 |                 <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 pb-8">
+> 191 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  192 |                         title="En Çok Galibiyet"
+  193 |                         icon="🏆"
+  194 |                         teamStats={mostWins}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\stats\CEVChallengeStatsClient.tsx:110:22
+  108 |     );
+  109 |
+> 110 |     const StatCard = ({ title, icon, teamStats, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 111 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 112 |         teamStats: TeamStats[];
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 164 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 165 |     };
+      | ^^^^^^ The component is created during render here
+  166 |
+  167 |     return (
+  168 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">                                     react-hooks/static-components
+  200:22  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\stats\CEVChallengeStatsClient.tsx:200:22
+  198 |                         suffix="G"
+  199 |                     />
+> 200 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  201 |                         title="En Yüksek Galibiyet %"
+  202 |                         icon="📈"
+  203 |                         teamStats={bestWinRate}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\stats\CEVChallengeStatsClient.tsx:110:22
+  108 |     );
+  109 |
+> 110 |     const StatCard = ({ title, icon, teamStats, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 111 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 112 |         teamStats: TeamStats[];
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 164 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 165 |     };
+      | ^^^^^^ The component is created during render here
+  166 |
+  167 |     return (
+  168 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">                                             react-hooks/static-components
+  209:22  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\stats\CEVChallengeStatsClient.tsx:209:22
+  207 |                         suffix="%"
+  208 |                     />
+> 209 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  210 |                         title="En Çok Set Alan"
+  211 |                         icon="🏐"
+  212 |                         teamStats={mostSets}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\stats\CEVChallengeStatsClient.tsx:110:22
+  108 |     );
+  109 |
+> 110 |     const StatCard = ({ title, icon, teamStats, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 111 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 112 |         teamStats: TeamStats[];
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 164 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 165 |     };
+      | ^^^^^^ The component is created during render here
+  166 |
+  167 |     return (
+  168 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">                                                      react-hooks/static-components
+  217:22  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\stats\CEVChallengeStatsClient.tsx:217:22
+  215 |                         gradient="bg-gradient-to-r from-indigo-600 to-purple-600"
+  216 |                     />
+> 217 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  218 |                         title="En Az Mağlubiyet"
+  219 |                         icon="🛡️"
+  220 |                         teamStats={leastLosses}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\stats\CEVChallengeStatsClient.tsx:110:22
+  108 |     );
+  109 |
+> 110 |     const StatCard = ({ title, icon, teamStats, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 111 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 112 |         teamStats: TeamStats[];
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 164 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 165 |     };
+      | ^^^^^^ The component is created during render here
+  166 |
+  167 |     return (
+  168 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">  react-hooks/static-components
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\stats\page.tsx
+  17:16  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  18:20  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  35:51  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  37:47  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\tahminoyunu\CEVChallengeTahminOyunuClient.tsx
+  26:12  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\tahminoyunu\page.tsx
+  24:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  34:51  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  36:47  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cl\anasayfa\page.tsx
+    3:8   warning  'Link' is defined but never used                      @typescript-eslint/no-unused-vars
+   58:11  warning  'upcomingMatches' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  185:86  warning  'i' is defined but never used                         @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cl\gunceldurum\CEVCLGuncelDurumClient.tsx
+  19:67  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cl\playoffs\CEVCLPlayoffsClient.tsx
+   10:11   warning  'PoolData' is defined but never used                             @typescript-eslint/no-unused-vars
+  144:11   warning  'poolWinners' is assigned a value but never used                 @typescript-eslint/no-unused-vars
+  145:11   warning  'poolRunnersUp' is assigned a value but never used               @typescript-eslint/no-unused-vars
+  146:11   warning  'poolThirds' is assigned a value but never used                  @typescript-eslint/no-unused-vars
+  403:11   warning  'thirdPlaceWinner' is assigned a value but never used            @typescript-eslint/no-unused-vars
+  530:280  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cl\stats\CEVCLStatsClient.tsx
+   31:11  warning  'BarChart' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+  124:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cl\stats\CEVCLStatsClient.tsx:124:22
+  122 |
+  123 |                 <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 pb-8">
+> 124 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  125 |                         title="En Çok Puan"
+  126 |                         icon="💎"
+  127 |                         teams={mostPoints}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cl\stats\CEVCLStatsClient.tsx:41:22
+   39 |     );
+   40 |
+>  41 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  42 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  43 |         teams: typeof teamsWithStats;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  97 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  98 |     };
+      | ^^^^^^ The component is created during render here
+   99 |
+  100 |     return (
+  101 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">                                      react-hooks/static-components
+  133:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cl\stats\CEVCLStatsClient.tsx:133:22
+  131 |                         suffix="P"
+  132 |                     />
+> 133 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  134 |                         title="En Yüksek Galibiyet"
+  135 |                         icon="📈"
+  136 |                         teams={bestWinRate}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cl\stats\CEVCLStatsClient.tsx:41:22
+   39 |     );
+   40 |
+>  41 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  42 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  43 |         teams: typeof teamsWithStats;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  97 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  98 |     };
+      | ^^^^^^ The component is created during render here
+   99 |
+  100 |     return (
+  101 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">                                             react-hooks/static-components
+  142:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cl\stats\CEVCLStatsClient.tsx:142:22
+  140 |                         suffix="%"
+  141 |                     />
+> 142 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  143 |                         title="En Çok Set Alan"
+  144 |                         icon="🏐"
+  145 |                         teams={mostSets}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cl\stats\CEVCLStatsClient.tsx:41:22
+   39 |     );
+   40 |
+>  41 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  42 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  43 |         teams: typeof teamsWithStats;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  97 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  98 |     };
+      | ^^^^^^ The component is created during render here
+   99 |
+  100 |     return (
+  101 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">                                                    react-hooks/static-components
+  150:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cl\stats\CEVCLStatsClient.tsx:150:22
+  148 |                         gradient="bg-gradient-to-r from-purple-600 to-pink-600"
+  149 |                     />
+> 150 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  151 |                         title="En Az Mağlubiyet"
+  152 |                         icon="🛡️"
+  153 |                         teams={leastLosses}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cl\stats\CEVCLStatsClient.tsx:41:22
+   39 |     );
+   40 |
+>  41 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  42 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  43 |         teams: typeof teamsWithStats;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  97 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  98 |     };
+      | ^^^^^^ The component is created during render here
+   99 |
+  100 |     return (
+  101 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">  react-hooks/static-components
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cl\tahminoyunu\CEVCLCalculatorClient.tsx
+  25:64  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  31:68  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cup\anasayfa\page.tsx
+   72:11  warning  'turkishTeamMatches' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  164:72  warning  'i' is defined but never used                            @typescript-eslint/no-unused-vars
+  198:54  warning  'i' is defined but never used                            @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cup\gunceldurum\CEVCupGuncelDurumClient.tsx
+  185:62  warning  'mIdx' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cup\stats\CEVCupStatsClient.tsx
+  100:11  warning  'BarChart' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+  193:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cup\stats\CEVCupStatsClient.tsx:193:22
+  191 |
+  192 |                 <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 pb-8">
+> 193 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  194 |                         title="En Çok Galibiyet"
+  195 |                         icon="🏆"
+  196 |                         teamStats={mostWins}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cup\stats\CEVCupStatsClient.tsx:110:22
+  108 |     );
+  109 |
+> 110 |     const StatCard = ({ title, icon, teamStats, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 111 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 112 |         teamStats: TeamStats[];
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 166 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 167 |     };
+      | ^^^^^^ The component is created during render here
+  168 |
+  169 |     return (
+  170 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">                                   react-hooks/static-components
+  202:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cup\stats\CEVCupStatsClient.tsx:202:22
+  200 |                         suffix="G"
+  201 |                     />
+> 202 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  203 |                         title="En Yüksek Galibiyet %"
+  204 |                         icon="📈"
+  205 |                         teamStats={bestWinRate}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cup\stats\CEVCupStatsClient.tsx:110:22
+  108 |     );
+  109 |
+> 110 |     const StatCard = ({ title, icon, teamStats, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 111 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 112 |         teamStats: TeamStats[];
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 166 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 167 |     };
+      | ^^^^^^ The component is created during render here
+  168 |
+  169 |     return (
+  170 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">                                           react-hooks/static-components
+  211:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cup\stats\CEVCupStatsClient.tsx:211:22
+  209 |                         suffix="%"
+  210 |                     />
+> 211 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  212 |                         title="En Çok Set Alan"
+  213 |                         icon="🏐"
+  214 |                         teamStats={mostSets}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cup\stats\CEVCupStatsClient.tsx:110:22
+  108 |     );
+  109 |
+> 110 |     const StatCard = ({ title, icon, teamStats, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 111 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 112 |         teamStats: TeamStats[];
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 166 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 167 |     };
+      | ^^^^^^ The component is created during render here
+  168 |
+  169 |     return (
+  170 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">                                                    react-hooks/static-components
+  219:22  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cup\stats\CEVCupStatsClient.tsx:219:22
+  217 |                         gradient="bg-gradient-to-r from-purple-600 to-pink-600"
+  218 |                     />
+> 219 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  220 |                         title="En Az Mağlubiyet"
+  221 |                         icon="🛡️"
+  222 |                         teamStats={leastLosses}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cup\stats\CEVCupStatsClient.tsx:110:22
+  108 |     );
+  109 |
+> 110 |     const StatCard = ({ title, icon, teamStats, statKey, color, gradient, suffix = "" }: {
+      |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 111 |         title: string; icon: string;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 112 |         teamStats: TeamStats[];
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 166 |         );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 167 |     };
+      | ^^^^^^ The component is created during render here
+  168 |
+  169 |     return (
+  170 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">  react-hooks/static-components
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cup\stats\page.tsx
+  17:16  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  18:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cup\tahminoyunu\CEVCupTahminOyunuClient.tsx
+   7:24  warning  'ACHIEVEMENTS' is defined but never used  @typescript-eslint/no-unused-vars
+  26:12  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\AccessiBeWidget.tsx
+  11:17  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+  13:21  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\Achievements.tsx
+  3:21  warning  'useState' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\BracketView.tsx
+  12:11  warning  'BracketMatch' is defined but never used  @typescript-eslint/no-unused-vars
+  55:61  warning  'idx' is defined but never used           @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\Calculator\FixtureList.tsx
+    1:26  warning  'useCallback' is defined but never used   @typescript-eslint/no-unused-vars
+    1:39  warning  'useMemo' is defined but never used       @typescript-eslint/no-unused-vars
+  110:56  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  206:84  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\Confetti.tsx
+  48:21  error  Definition for rule 'react-dom/no-unsafe-target-blank' was not found                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       react-dom/no-unsafe-target-blank
+  55:39  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\Confetti.tsx:55:39
+  53 |                         height: p.size,
+  54 |                         backgroundColor: p.color,
+> 55 |                         borderRadius: Math.random() > 0.5 ? '50%' : '0',
+     |                                       ^^^^^^^^^^^^^ Cannot call impure function
+  56 |                         animationDelay: `${p.delay}s`,
+  57 |                         animationDuration: `${1 + Math.random()}s`
+  58 |                     }}  react-hooks/purity
+  57:51  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\Confetti.tsx:57:51
+  55 |                         borderRadius: Math.random() > 0.5 ? '50%' : '0',
+  56 |                         animationDelay: `${p.delay}s`,
+> 57 |                         animationDuration: `${1 + Math.random()}s`
+     |                                                   ^^^^^^^^^^^^^ Cannot call impure function
+  58 |                     }}
+  59 |                 />
+  60 |             ))}                                             react-hooks/purity
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\LeagueTemplate\CalculatorTemplate.tsx
+  25:11  warning  'theme' is assigned a value but never used            @typescript-eslint/no-unused-vars
+  36:12  warning  'showAutoMenu' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  36:26  warning  'setShowAutoMenu' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  62:61  error    Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+  67:59  error    Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\LeagueTemplate\StatsTemplate.tsx
+    8:8   warning  'TeamAvatar' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+   23:15  warning  'streaks' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-unused-vars
+   55:68  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-explicit-any
+  127:30  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\LeagueTemplate\StatsTemplate.tsx:127:30
+  125 |                         </h3>
+  126 |                         <div className="grid grid-cols-1 gap-3">
+> 127 |                             <StatTile
+      |                              ^^^^^^^^ This component is created during render
+  128 |                                 title="En Skorer"
+  129 |                                 player="Tijana Boskovic"
+  130 |                                 team="Eczacıbaşı Dynavit"
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\LeagueTemplate\StatsTemplate.tsx:55:22
+  53 |
+  54 |     // Stat Tile Component (Local helper or could be separate)
+> 55 |     const StatTile = ({ title, player, team, value, icon, color }: any) => (
+     |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 56 |         <div className="bg-slate-900/50 p-4 rounded-xl border border-slate-800/50 flex items-center justify-between group hover:border-slate-700 transition-all">
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 57 |             <div className="flex items-center gap-4">
+     …
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 70 |         </div>
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 71 |     );
+     | ^^^^^^ The component is created during render here
+  72 |
+  73 |     return (
+  74 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-0 sm:p-2 font-sans pb-20 sm:pb-4">  react-hooks/static-components
+  135:30  error    Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\LeagueTemplate\StatsTemplate.tsx:135:30
+  133 |                                 color="rose"
+  134 |                             />
+> 135 |                             <StatTile
+      |                              ^^^^^^^^ This component is created during render
+  136 |                                 title="En Çok Blok"
+  137 |                                 player="Zehra Güneş"
+  138 |                                 team="VakıfBank"
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\LeagueTemplate\StatsTemplate.tsx:55:22
+  53 |
+  54 |     // Stat Tile Component (Local helper or could be separate)
+> 55 |     const StatTile = ({ title, player, team, value, icon, color }: any) => (
+     |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 56 |         <div className="bg-slate-900/50 p-4 rounded-xl border border-slate-800/50 flex items-center justify-between group hover:border-slate-700 transition-all">
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 57 |             <div className="flex items-center gap-4">
+     …
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 70 |         </div>
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 71 |     );
+     | ^^^^^^ The component is created during render here
+  72 |
+  73 |     return (
+  74 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-0 sm:p-2 font-sans pb-20 sm:pb-4">                                react-hooks/static-components
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\LeagueTemplate\useLeagueData.ts
+  5:21  warning  'Match' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\LiveMatchCard.tsx
+  12:57  warning  'showChat' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\MiniBarChart.tsx
+  19:11  warning  'barWidth' is assigned a value but never used                         @typescript-eslint/no-unused-vars
+  22:9   error    Definition for rule 'react-dom/no-unsafe-target-blank' was not found  react-dom/no-unsafe-target-blank
+  36:29  error    Definition for rule 'react-dom/no-unsafe-target-blank' was not found  react-dom/no-unsafe-target-blank
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\Navbar.tsx
+  8:24  warning  'getLevelTitle' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\QuestPanel.tsx
+  48:12  warning  'lastResetDate' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+  57:13  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\QuestPanel.tsx:57:13
+  55 |         const saved = localStorage.getItem('questLastReset');
+  56 |         if (saved !== today) {
+> 57 |             setCompletedQuests(new Set());
+     |             ^^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  58 |             localStorage.setItem('questLastReset', today);
+  59 |             localStorage.removeItem('completedQuests');
+  60 |         } else {  react-hooks/set-state-in-effect
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\SearchFilter.tsx
+  6:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  7:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\ShareButton.tsx
+  3:23  warning  'useRef' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\TeamLoyaltySelector.tsx
+  3:20  warning  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\ThemeToggle.tsx
+  16:9  error  Error: Cannot access variable before it is declared
+
+`applyTheme` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\ThemeToggle.tsx:16:9
+  14 |         const initialTheme = saved || 'dark';
+  15 |         setTheme(initialTheme);
+> 16 |         applyTheme(initialTheme);
+     |         ^^^^^^^^^^ `applyTheme` accessed before it is declared
+  17 |     }, []);
+  18 |
+  19 |     function applyTheme(newTheme: 'dark' | 'light') {
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\ThemeToggle.tsx:19:5
+  17 |     }, []);
+  18 |
+> 19 |     function applyTheme(newTheme: 'dark' | 'light') {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 20 |         document.documentElement.setAttribute('data-theme', newTheme);
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 21 |         document.documentElement.classList.remove('dark', 'light');
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 22 |         document.documentElement.classList.add(newTheme);
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 23 |     }
+     | ^^^^^^ `applyTheme` is declared here
+  24 |
+  25 |     function toggleTheme() {
+  26 |         const newTheme = theme === 'dark' ? 'light' : 'dark';  react-hooks/immutability
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\ThemeWrapper.tsx
+   7:12  warning  'mounted' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  10:9   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\ThemeWrapper.tsx:10:9
+   8 |
+   9 |     useEffect(() => {
+> 10 |         setMounted(true);
+     |         ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  11 |         // Set initial theme from localStorage or default to dark
+  12 |         const saved = localStorage.getItem("theme") || "dark";
+  13 |         document.documentElement.setAttribute("data-theme", saved);  react-hooks/set-state-in-effect
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\TutorialModal.tsx
+  262:13  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\TutorialModal.tsx:262:13
+  260 |         const completed = localStorage.getItem("tutorialCompleted");
+  261 |         if (!completed) {
+> 262 |             setIsFirstVisit(true);
+      |             ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  263 |             // Show tutorial on first visit after a short delay
+  264 |             setTimeout(() => setShowTutorial(true), 1000);
+  265 |         }  react-hooks/set-state-in-effect
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\context\AuthContext.tsx
+  45:90  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\context\CustomLeaguesContext.tsx
+  8:3  warning  'UserProfile' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\context\FriendsContext.tsx
+  4:47  warning  'FriendshipStatus' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\context\LocaleContext.tsx
+  3:47  warning  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\context\NotificationsContext.tsx
+    4:54  warning  'NotificationType' is defined but never used       @typescript-eslint/no-unused-vars
+  208:19  warning  'registration' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\context\QuestsContext.tsx
+  175:13  warning  'data' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\context\ThemeContext.tsx
+   72:9   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\context\ThemeContext.tsx:72:9
+  70 |         };
+  71 |         
+> 72 |         setSystemTheme(mediaQuery.matches ? 'dark' : 'light');
+     |         ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  73 |         mediaQuery.addEventListener('change', handleChange);
+  74 |         
+  75 |         return () => mediaQuery.removeEventListener('change', handleChange);  react-hooks/set-state-in-effect
+   79:9   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\context\ThemeContext.tsx:79:9
+  77 |
+  78 |     useEffect(() => {
+> 79 |         setMounted(true);
+     |         ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  80 |         const saved = localStorage.getItem("theme") as Theme | null;
+  81 |         const savedPrefs = localStorage.getItem("ui-preferences");
+  82 |                                                    react-hooks/set-state-in-effect
+   94:22  warning  'e' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-unused-vars
+  169:18  warning  'err' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\custom-leagues\page.tsx
+    3:20  warning  'useEffect' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+   14:5   warning  'isLoading' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+   34:23  error    Error: Cannot call impure function during render
+
+`Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\custom-leagues\page.tsx:34:23
+  32 |     leagues: ['vsl'],
+  33 |     startDate: new Date().toISOString().split('T')[0],
+> 34 |     endDate: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+     |                       ^^^^^^^^^^ Cannot call impure function
+  35 |   });
+  36 |
+  37 |   const handleJoinLeague = async () => {  react-hooks/purity
+  414:60  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\friends\page.tsx
+   6:8   warning  'TeamAvatar' is defined but never used          @typescript-eslint/no-unused-vars
+  15:5   warning  'isLoading' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  25:54  error    Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\hooks\useAdvancedStats.ts
+  30:21  warning  'setIsLoading' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\hooks\useLocalStorage.ts
+  14:12  warning  'isHydrated' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+  21:17  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\hooks\useLocalStorage.ts:21:17
+  19 |             const item = window.localStorage.getItem(key);
+  20 |             if (item) {
+> 21 |                 setStoredValue(JSON.parse(item));
+     |                 ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  22 |             }
+  23 |         } catch (error) {
+  24 |             console.warn(`Error reading localStorage key "${key}":`, error);  react-hooks/set-state-in-effect
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\hooks\useMatchSimulation.ts
+   70:19  error    Error: Cannot access variable before it is declared
+
+`simulateSet` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\hooks\useMatchSimulation.ts:70:19
+  68 |       const setEndScore = isDecidingSet ? 15 : 25;
+  69 |       
+> 70 |       const set = simulateSet(setNumber, setEndScore, homeTeam, awayTeam);
+     |                   ^^^^^^^^^^^ `simulateSet` accessed before it is declared
+  71 |       sets.push(set);
+  72 |       
+  73 |       if (set.winner === 'home') {
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\hooks\useMatchSimulation.ts:111:3
+  109 |
+  110 |   // Simulate a single set
+> 111 |   const simulateSet = (
+      |   ^^^^^^^^^^^^^^^^^^^^^
+> 112 |     setNumber: number, 
+      | ^^^^^^^^^^^^^^^^^^^^^^^
+> 113 |     endScore: number,
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^
+> 167 |     };
+      | ^^^^^^^^^^^^^^^^^^^^^^^
+> 168 |   };
+      | ^^^^^ `simulateSet` is declared here
+  169 |
+  170 |   // Start simulation
+  171 |   const startSimulation = useCallback(async (  react-hooks/immutability
+  114:5   warning  'homeTeam' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-unused-vars
+  115:5   warning  'awayTeam' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\leaderboard\LeaderboardClient.tsx
+  45:8  warning  React Hook useEffect has missing dependencies: 'fetchLeaderboard', 'initialLeaderboard', and 'leaderboard'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\leaderboard\page.tsx
+  13:36  warning  'error' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\ligler\page.tsx
+  27:66  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  60:65  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\live\page.tsx
+   6:21  warning  'SetScore' is defined but never used                                                                                                                               @typescript-eslint/no-unused-vars
+   7:8   warning  'Link' is defined but never used                                                                                                                                   @typescript-eslint/no-unused-vars
+  24:5   warning  'isLoading' is assigned a value but never used                                                                                                                     @typescript-eslint/no-unused-vars
+  39:6   warning  React Hook useEffect has missing dependencies: 'currentMatch', 'subscribeToMatch', and 'unsubscribeFromMatch'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\notifications\page.tsx
+  21:5  warning  'isLoading' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\premium\page.tsx
+    5:8   warning  'Link' is defined but never used                      @typescript-eslint/no-unused-vars
+  115:11  warning  'user' is assigned a value but never used             @typescript-eslint/no-unused-vars
+  116:10  warning  'selectedPlan' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  116:24  warning  'setSelectedPlan' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\quests\page.tsx
+  12:11  warning  'gameState' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  21:5   warning  'isLoading' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\register\page.tsx
+  11:29  warning  'CardDescription' is defined but never used  @typescript-eslint/no-unused-vars
+  11:46  warning  'CardHeader' is defined but never used       @typescript-eslint/no-unused-vars
+  11:58  warning  'CardTitle' is defined but never used        @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\scenario-standings\page.tsx
+   5:8    warning  'Link' is defined but never used                     @typescript-eslint/no-unused-vars
+   6:10   warning  'calculateGroupStandings' is defined but never used  @typescript-eslint/no-unused-vars
+  13:48   error    Unexpected any. Specify a different type             @typescript-eslint/no-explicit-any
+  18:15   warning  'saved' is assigned a value but never used           @typescript-eslint/no-unused-vars
+  34:103  error    Unexpected any. Specify a different type             @typescript-eslint/no-explicit-any
+  34:111  error    Unexpected any. Specify a different type             @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\simulation\page.tsx
+   6:8   warning  'Link' is defined but never used           @typescript-eslint/no-unused-vars
+  21:11  warning  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\stats\StatsClient.tsx
+  119:22  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\stats\StatsClient.tsx:119:22
+  117 |
+  118 |                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 pb-8">
+> 119 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  120 |                         title="En Çok Puan"
+  121 |                         icon="💎"
+  122 |                         teams={mostPoints}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\stats\StatsClient.tsx:31:22
+  29 |     const avgPoints = totalTeams > 0 ? Math.round(initialTeams.reduce((acc, t) => acc + t.points, 0) / totalTeams) : 0;
+  30 |
+> 31 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+     |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 32 |         title: string; icon: string;
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 33 |         teams: typeof teamsWithStats;
+     …
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 88 |         );
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 89 |     };
+     | ^^^^^^ The component is created during render here
+  90 |
+  91 |     return (
+  92 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-4 font-sans">  react-hooks/static-components
+  128:22  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\stats\StatsClient.tsx:128:22
+  126 |                         suffix="P"
+  127 |                     />
+> 128 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  129 |                         title="En Yüksek Galibiyet %"
+  130 |                         icon="📈"
+  131 |                         teams={bestWinRate}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\stats\StatsClient.tsx:31:22
+  29 |     const avgPoints = totalTeams > 0 ? Math.round(initialTeams.reduce((acc, t) => acc + t.points, 0) / totalTeams) : 0;
+  30 |
+> 31 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+     |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 32 |         title: string; icon: string;
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 33 |         teams: typeof teamsWithStats;
+     …
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 88 |         );
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 89 |     };
+     | ^^^^^^ The component is created during render here
+  90 |
+  91 |     return (
+  92 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-4 font-sans">             react-hooks/static-components
+  137:22  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\stats\StatsClient.tsx:137:22
+  135 |                         suffix="%"
+  136 |                     />
+> 137 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  138 |                         title="En Çok Set Alan"
+  139 |                         icon="🏐"
+  140 |                         teams={mostSets}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\stats\StatsClient.tsx:31:22
+  29 |     const avgPoints = totalTeams > 0 ? Math.round(initialTeams.reduce((acc, t) => acc + t.points, 0) / totalTeams) : 0;
+  30 |
+> 31 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+     |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 32 |         title: string; icon: string;
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 33 |         teams: typeof teamsWithStats;
+     …
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 88 |         );
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 89 |     };
+     | ^^^^^^ The component is created during render here
+  90 |
+  91 |     return (
+  92 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-4 font-sans">                      react-hooks/static-components
+  146:22  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\stats\StatsClient.tsx:146:22
+  144 |                         suffix="Set"
+  145 |                     />
+> 146 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  147 |                         title="En Az Mağlubiyet"
+  148 |                         icon="🛡️"
+  149 |                         teams={leastLosses}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\stats\StatsClient.tsx:31:22
+  29 |     const avgPoints = totalTeams > 0 ? Math.round(initialTeams.reduce((acc, t) => acc + t.points, 0) / totalTeams) : 0;
+  30 |
+> 31 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+     |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 32 |         title: string; icon: string;
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 33 |         teams: typeof teamsWithStats;
+     …
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 88 |         );
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 89 |     };
+     | ^^^^^^ The component is created during render here
+  90 |
+  91 |     return (
+  92 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-4 font-sans">               react-hooks/static-components
+  155:22  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\stats\StatsClient.tsx:155:22
+  153 |                         suffix="M"
+  154 |                     />
+> 155 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  156 |                         title="En Az Set Veren"
+  157 |                         icon="🧱"
+  158 |                         teams={leastSetsLost}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\stats\StatsClient.tsx:31:22
+  29 |     const avgPoints = totalTeams > 0 ? Math.round(initialTeams.reduce((acc, t) => acc + t.points, 0) / totalTeams) : 0;
+  30 |
+> 31 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+     |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 32 |         title: string; icon: string;
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 33 |         teams: typeof teamsWithStats;
+     …
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 88 |         );
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 89 |     };
+     | ^^^^^^ The component is created during render here
+  90 |
+  91 |     return (
+  92 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-4 font-sans">                 react-hooks/static-components
+  164:22  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\stats\StatsClient.tsx:164:22
+  162 |                         suffix="Set"
+  163 |                     />
+> 164 |                     <StatCard
+      |                      ^^^^^^^^ This component is created during render
+  165 |                         title="En Çok Mağlubiyet"
+  166 |                         icon="📉"
+  167 |                         teams={mostLosses}
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\stats\StatsClient.tsx:31:22
+  29 |     const avgPoints = totalTeams > 0 ? Math.round(initialTeams.reduce((acc, t) => acc + t.points, 0) / totalTeams) : 0;
+  30 |
+> 31 |     const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+     |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 32 |         title: string; icon: string;
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 33 |         teams: typeof teamsWithStats;
+     …
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 88 |         );
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 89 |     };
+     | ^^^^^^ The component is created during render here
+  90 |
+  91 |     return (
+  92 |         <main className="min-h-screen bg-slate-950 text-slate-100 p-4 font-sans">                react-hooks/static-components
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\stats\advanced\page.tsx
+  64:6  warning  React Hook useMemo has an unnecessary dependency: 'selectedLeague'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\takimlar\[teamSlug]\TeamProfileClient.tsx
+  312:29  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  312:40  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\utils\gameState.ts
+    8:5   warning  'Quest' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+    9:5   warning  'QuestId' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-unused-vars
+  141:17  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\utils\gameState.ts:141:17
+  139 |             if (saved) {
+  140 |                 const parsed = JSON.parse(saved);
+> 141 |                 setGameState(prev => ({ ...prev, ...parsed }));
+      |                 ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  142 |             }
+  143 |         } catch (e) {
+  144 |             console.error('Failed to load game state:', e);  react-hooks/set-state-in-effect
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\utils\serverData.ts
+  27:52  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  29:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  29:74  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  48:49  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  54:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  54:71  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  65:68  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\utils\supabase-server.ts
+  19:30  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
+  26:30  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\utils\validation.ts
+  190:1  warning  Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\vsl\gunceldurum\VSLDetailedClient.tsx
+  18:11  warning  'groupName' is assigned a value but never used                                                               @typescript-eslint/no-unused-vars
+  21:58  error    Unexpected any. Specify a different type                                                                     @typescript-eslint/no-explicit-any
+  64:8   warning  React Hook useMemo has a missing dependency: 'formatDate'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\jest.config.js
+  1:18  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\lib\api-middleware.ts
+  7:22  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  8:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\lib\error-tracking.ts
+  4:72  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\add-club-ids.js
+    6:12  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+    7:14  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   90:15  warning  '_' is defined but never used            @typescript-eslint/no-unused-vars
+  109:43  warning  'teams' is defined but never used        @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\calculate-strength.js
+  1:12  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\convert-1lig-excel.js
+  1:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  3:12  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\convert-vsl-excel.js
+  1:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  3:12  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\download-vsl-logos.js
+  1:12  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  3:15  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\generate-team-ids.js
+   6:12  error    A `require()` style import is forbidden      @typescript-eslint/no-require-imports
+   7:14  error    A `require()` style import is forbidden      @typescript-eslint/no-require-imports
+   8:7   warning  'crypto' is assigned a value but never used  @typescript-eslint/no-unused-vars
+   8:16  error    A `require()` style import is forbidden      @typescript-eslint/no-require-imports
+  14:25  warning  'teamName' is defined but never used         @typescript-eslint/no-unused-vars
+  14:35  warning  'league' is defined but never used           @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\import-fixture.js
+   1:12  error    A `require()` style import is forbidden       @typescript-eslint/no-require-imports
+   2:14  error    A `require()` style import is forbidden       @typescript-eslint/no-require-imports
+   3:14  error    A `require()` style import is forbidden       @typescript-eslint/no-require-imports
+  44:11  warning  'headers' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\list-teams.js
+   1:12  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+   2:14  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  67:18  warning  'e' is defined but never used            @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\read-1lig-excel.js
+  1:14  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:14  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  3:7   warning  'fs' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  3:12  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\read-vsl-excel.js
+  1:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\reset_vsl_scores.js
+  2:12  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  3:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\reset_vsl_second_half.js
+  2:12  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  3:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\scrape-cev-challenge.js
+    1:19  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+    2:12  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+    3:14  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  121:18  warning  'e' is defined but never used            @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\scrape-tvf-live.js
+   1:19  error    A `require()` style import is forbidden             @typescript-eslint/no-require-imports
+   2:12  error    A `require()` style import is forbidden             @typescript-eslint/no-require-imports
+   3:14  error    A `require()` style import is forbidden             @typescript-eslint/no-require-imports
+  73:22  warning  'e' is defined but never used                       @typescript-eslint/no-unused-vars
+  82:19  warning  'tableSelector' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\scrape-vsl.js
+  7:19  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  8:12  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  9:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\simulate_vsl.js
+   2:12  error    A `require()` style import is forbidden     @typescript-eslint/no-require-imports
+   3:14  error    A `require()` style import is forbidden     @typescript-eslint/no-require-imports
+  38:46  warning  'm' is defined but never used               @typescript-eslint/no-unused-vars
+  58:9   warning  'loser' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\update-data.js
+    1:12  error    A `require()` style import is forbidden            @typescript-eslint/no-require-imports
+    2:14  error    A `require()` style import is forbidden            @typescript-eslint/no-require-imports
+    3:19  error    A `require()` style import is forbidden            @typescript-eslint/no-require-imports
+   25:16  warning  'getElementBySelectors' is defined but never used  @typescript-eslint/no-unused-vars
+  189:77  warning  'e' is defined but never used                      @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\update_vsl_stats.js
+  2:12  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  3:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\scripts\verify-api.js
+  1:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+✖ 323 problems (186 errors, 137 warnings)
+

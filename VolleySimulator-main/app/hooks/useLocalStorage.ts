@@ -15,16 +15,23 @@ export function useLocalStorage<T>(
 
     // Hydrate from localStorage after mount
     useEffect(() => {
-        try {
-            const item = window.localStorage.getItem(key);
-            if (item) {
-                setStoredValue(JSON.parse(item));
+        const value = (() => {
+            try {
+                const item = window.localStorage.getItem(key);
+                return item ? JSON.parse(item) : initialValue;
+            } catch (error) {
+                console.warn(`Error reading localStorage key "${key}":`, error);
+                return initialValue;
             }
-        } catch (error) {
-            console.warn(`Error reading localStorage key "${key}":`, error);
-        }
-        setIsHydrated(true);
-    }, [key]);
+        })();
+
+        // Defer state updates to avoid "cascading renders" warning 
+        // and ensure the initial render matches the server output.
+        Promise.resolve().then(() => {
+            setStoredValue(value);
+            setIsHydrated(true);
+        });
+    }, [key, initialValue]);
 
     // Return a wrapped version of useState's setter function
     const setValue = useCallback((value: T | ((prev: T) => T)) => {

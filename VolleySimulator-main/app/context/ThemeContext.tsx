@@ -63,34 +63,46 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     // Listen for system theme changes
     useEffect(() => {
+        if (typeof window === 'undefined') return;
+
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        
+        // Initialize system theme
+        Promise.resolve().then(() => setSystemTheme(mediaQuery.matches ? 'dark' : 'light'));
+
         const handleChange = (e: MediaQueryListEvent) => {
             setSystemTheme(e.matches ? 'dark' : 'light');
         };
-        
-        setSystemTheme(mediaQuery.matches ? 'dark' : 'light');
+
         mediaQuery.addEventListener('change', handleChange);
-        
+
         return () => mediaQuery.removeEventListener('change', handleChange);
     }, []);
 
     useEffect(() => {
-        setMounted(true);
+        Promise.resolve().then(() => setMounted(true));
+    }, []);
+
+    useEffect(() => {
+        if (!mounted) return;
+
         const saved = localStorage.getItem("theme") as Theme | null;
         const savedPrefs = localStorage.getItem("ui-preferences");
-        
+
         if (saved) {
-            setThemeState(saved);
-            document.documentElement.setAttribute("data-theme", saved);
+            Promise.resolve().then(() => {
+                setThemeState(saved);
+                document.documentElement.setAttribute("data-theme", saved);
+            });
         }
-        
+
         if (savedPrefs) {
             try {
                 const prefs = JSON.parse(savedPrefs);
-                setPreferences(prefs);
-                setThemeModeState(prefs.theme || 'dark');
-                setAccentColorState(prefs.accentColor || 'emerald');
+                Promise.resolve().then(() => {
+                    setPreferences(prefs);
+                    setThemeModeState(prefs.theme || 'dark');
+                    setAccentColorState(prefs.accentColor || 'emerald');
+                });
             } catch (e) {
                 // Ignore parse errors
             }
@@ -100,7 +112,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     // Apply accent color as CSS variable
     useEffect(() => {
         if (!mounted) return;
-        
+
         const root = document.documentElement;
         const colors: Record<AccentColor, string> = {
             emerald: '#10b981',
@@ -111,7 +123,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
             cyan: '#06b6d4',
         };
         root.style.setProperty('--accent-color', colors[accentColor]);
-        
+
         // Apply font size
         const fontSizes = { small: '14px', medium: '16px', large: '18px' };
         root.style.setProperty('--base-font-size', fontSizes[preferences.fontSize]);
@@ -132,7 +144,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         const newPrefs = { ...preferences, theme: mode };
         setPreferences(newPrefs);
         localStorage.setItem("ui-preferences", JSON.stringify(newPrefs));
-        
+
         // Also update legacy theme
         const actualTheme = mode === 'system' ? systemTheme : mode;
         setTheme(actualTheme as Theme);
@@ -159,7 +171,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     const playSound = useCallback((sound: SoundType) => {
         if (!preferences.soundEffects) return;
-        
+
         try {
             const audio = new Audio(SOUNDS[sound]);
             audio.volume = 0.5;
@@ -177,13 +189,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
 
     return (
-        <ThemeContext.Provider value={{ 
-            theme, 
+        <ThemeContext.Provider value={{
+            theme,
             themeMode,
             accentColor,
             preferences,
             isDark,
-            toggleTheme, 
+            toggleTheme,
             setTheme,
             setThemeMode,
             setAccentColor,
@@ -207,7 +219,7 @@ export function useTheme() {
 // Hook for accent color classes
 export function useAccentClasses() {
     const { accentColor } = useTheme();
-    
+
     const classes: Record<AccentColor, {
         bg: string;
         bgHover: string;
@@ -258,6 +270,6 @@ export function useAccentClasses() {
             gradient: 'from-cyan-500 to-blue-500',
         },
     };
-    
+
     return classes[accentColor];
 }

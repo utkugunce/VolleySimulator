@@ -14,6 +14,8 @@ export default function Confetti({ trigger, onComplete }: ConfettiProps) {
         color: string;
         delay: number;
         size: number;
+        borderRadius: string;
+        duration: string;
     }>>([]);
 
     useEffect(() => {
@@ -24,9 +26,11 @@ export default function Confetti({ trigger, onComplete }: ConfettiProps) {
                 x: Math.random() * 100,
                 color: colors[Math.floor(Math.random() * colors.length)],
                 delay: Math.random() * 0.5,
-                size: Math.random() * 8 + 4
+                size: Math.random() * 8 + 4,
+                borderRadius: Math.random() > 0.5 ? '50%' : '0',
+                duration: `${1 + Math.random()}s`
             }));
-            setParticles(newParticles);
+            Promise.resolve().then(() => setParticles(newParticles));
 
             const timer = setTimeout(() => {
                 setParticles([]);
@@ -45,16 +49,15 @@ export default function Confetti({ trigger, onComplete }: ConfettiProps) {
                 <div
                     key={p.id}
                     className="absolute animate-confetti"
-                    // eslint-disable-next-line react-dom/no-unsafe-target-blank
                     style={{
                         left: `${p.x}%`,
                         top: '-20px',
                         width: p.size,
                         height: p.size,
                         backgroundColor: p.color,
-                        borderRadius: Math.random() > 0.5 ? '50%' : '0',
+                        borderRadius: p.borderRadius,
                         animationDelay: `${p.delay}s`,
-                        animationDuration: `${1 + Math.random()}s`
+                        animationDuration: p.duration
                     }}
                 />
             ))}

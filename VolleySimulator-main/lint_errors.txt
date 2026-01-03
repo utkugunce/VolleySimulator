@@ -1,0 +1,371 @@
+﻿
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\gunceldurum\OneLigDetailedGroupsClient.tsx
+  19:67  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\playoffs\OneLigPlayoffsClient.tsx
+  25:12  warning  'isLoaded' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  41:62  warning  Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\playoffs\[stage]\[groupId]\page.tsx
+   5:17  warning  'TeamStats' is defined but never used              @typescript-eslint/no-unused-vars
+  22:11  warning  'router' is assigned a value but never used        @typescript-eslint/no-unused-vars
+  33:12  warning  'saveStatus' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  36:12  warning  'initialRanks' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\1lig\tahminoyunu\OneLigCalculatorClient.tsx
+   28:64  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   34:68  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   65:58  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  227:69  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\group\[groupId]\page.tsx
+    7:22  warning  'ProgressRing' is defined but never used                                                                                                             @typescript-eslint/no-unused-vars
+   10:28  warning  'TeamDiff' is defined but never used                                                                                                                 @typescript-eslint/no-unused-vars
+   25:42  warning  Unexpected any. Specify a different type                                                                                                             @typescript-eslint/no-explicit-any
+   43:8   warning  React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array                                         react-hooks/exhaustive-deps
+   74:8   warning  React Hook useEffect has a missing dependency: 'showToast'. Either include it or remove the dependency array                                         react-hooks/exhaustive-deps
+  121:18  warning  'e' is defined but never used                                                                                                                        @typescript-eslint/no-unused-vars
+  164:8   warning  React Hook useEffect has missing dependencies: 'handleCalculate', 'loading', and 'teams.length'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  242:22  warning  'err' is defined but never used                                                                                                                      @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\gunceldurum\TwoLigDetailedGroupsClient.tsx
+  19:67  warning  Unexpected any. Specify a different type                                                                     @typescript-eslint/no-explicit-any
+  25:74  warning  Unexpected any. Specify a different type                                                                     @typescript-eslint/no-explicit-any
+  25:82  warning  Unexpected any. Specify a different type                                                                     @typescript-eslint/no-explicit-any
+  91:8   warning  React Hook useMemo has a missing dependency: 'formatDate'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\playoffs\TwoLigPlayoffsClient.tsx
+  26:12  warning  'isLoaded' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\playoffs\[stage]\[groupId]\page.tsx
+   5:17  warning  'TeamStats' is defined but never used              @typescript-eslint/no-unused-vars
+  22:11  warning  'router' is assigned a value but never used        @typescript-eslint/no-unused-vars
+  28:12  warning  'initialGroup' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  35:12  warning  'saveStatus' is assigned a value but never used    @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\2lig\tahminoyunu\TwoLigCalculatorClient.tsx
+   29:26   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   29:61   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   30:28   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   38:100  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   38:108  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   62:58   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  224:69   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\anasayfa\AnasayfaClient.tsx
+  5:10  warning  'useState' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\1lig\route.ts
+   8:27  warning  'req' is defined but never used           @typescript-eslint/no-unused-vars
+  18:47  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  19:52  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\ai\prediction\route.ts
+  7:42  warning  'league' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\calculate\route.ts
+   67:55  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   97:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   99:34  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  152:31  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\cev-challenge\route.ts
+  45:72  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\cev-cl\route.ts
+  5:27  warning  'req' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\cev-cup\route.ts
+  5:27  warning  'req' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\cron\update-results\route.ts
+  124:11  warning  'reverseMapping' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  200:18  warning  'e' is defined but never used                        @typescript-eslint/no-unused-vars
+  238:21  warning  Unexpected any. Specify a different type             @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\custom-leagues\route.ts
+  129:42  warning  'user' is defined but never used               @typescript-eslint/no-unused-vars
+  143:13  warning  'leagueId' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  143:23  warning  'updates' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  156:42  warning  'user' is defined but never used               @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\live\[matchId]\comments\[commentId]\like\route.ts
+  15:13  warning  'matchId' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  15:22  warning  'commentId' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\live\route.ts
+  4:27  warning  'request' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\api\refresh\route.ts
+  15:17  warning  'stdout' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  32:21  warning  Unexpected any. Specify a different type     @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\auth\callback\route.ts
+  1:35  warning  'CookieOptions' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\ayarlar\page.tsx
+  70:18  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\anasayfa\page.tsx
+  171:72  warning  'i' is defined but never used  @typescript-eslint/no-unused-vars
+  208:57  warning  'i' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\gunceldurum\CEVChallengeGuncelDurumClient.tsx
+  187:62  warning  'mIdx' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\gunceldurum\page.tsx
+  67:51  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  69:47  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\playoffs\CEVChallengePlayoffsClient.tsx
+    3:31  warning  'useMemo' is defined but never used       @typescript-eslint/no-unused-vars
+    5:8   warning  'Link' is defined but never used          @typescript-eslint/no-unused-vars
+   25:12  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  222:48  warning  't' is defined but never used             @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\playoffs\page.tsx
+  24:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  38:51  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  40:47  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\stats\page.tsx
+  17:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  18:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  35:51  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  37:47  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\tahminoyunu\CEVChallengeTahminOyunuClient.tsx
+  26:12  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-challenge\tahminoyunu\page.tsx
+  24:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  34:51  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  36:47  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cl\anasayfa\page.tsx
+    3:8   warning  'Link' is defined but never used                      @typescript-eslint/no-unused-vars
+   58:11  warning  'upcomingMatches' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  185:86  warning  'i' is defined but never used                         @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cl\gunceldurum\CEVCLGuncelDurumClient.tsx
+  19:67  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cl\playoffs\CEVCLPlayoffsClient.tsx
+   10:11  warning  'PoolData' is defined but never used                   @typescript-eslint/no-unused-vars
+  144:11  warning  'poolWinners' is assigned a value but never used       @typescript-eslint/no-unused-vars
+  145:11  warning  'poolRunnersUp' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  146:11  warning  'poolThirds' is assigned a value but never used        @typescript-eslint/no-unused-vars
+  403:11  warning  'thirdPlaceWinner' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cl\stats\CEVCLStatsClient.tsx
+  103:7  warning  'BarChart' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cl\tahminoyunu\CEVCLCalculatorClient.tsx
+  25:64  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  31:68  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cup\anasayfa\page.tsx
+   72:11  warning  'turkishTeamMatches' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  164:72  warning  'i' is defined but never used                            @typescript-eslint/no-unused-vars
+  198:54  warning  'i' is defined but never used                            @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cup\gunceldurum\CEVCupGuncelDurumClient.tsx
+  185:62  warning  'mIdx' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cup\stats\page.tsx
+  17:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  18:18  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\cev-cup\tahminoyunu\CEVCupTahminOyunuClient.tsx
+   7:24  warning  'ACHIEVEMENTS' is defined but never used  @typescript-eslint/no-unused-vars
+  26:12  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\Achievements.tsx
+  3:21  warning  'useState' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\BracketView.tsx
+  12:11  warning  'BracketMatch' is defined but never used  @typescript-eslint/no-unused-vars
+  55:61  warning  'idx' is defined but never used           @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\Calculator\FixtureList.tsx
+    1:26  warning  'useCallback' is defined but never used   @typescript-eslint/no-unused-vars
+    1:39  warning  'useMemo' is defined but never used       @typescript-eslint/no-unused-vars
+  110:56  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  206:84  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\Confetti.tsx
+  52:21  error  Definition for rule 'react-dom/no-unsafe-target-blank' was not found  react-dom/no-unsafe-target-blank
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\LeagueTemplate\CalculatorTemplate.tsx
+  25:11  warning  'theme' is assigned a value but never used            @typescript-eslint/no-unused-vars
+  36:12  warning  'showAutoMenu' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  36:26  warning  'setShowAutoMenu' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\LeagueTemplate\StatsTemplate.tsx
+    8:8   warning  'TeamAvatar' is defined but never used        @typescript-eslint/no-unused-vars
+   23:15  warning  'streaks' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  145:64  warning  Unexpected any. Specify a different type      @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\LeagueTemplate\useLeagueData.ts
+  5:21  warning  'Match' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\LiveMatchCard.tsx
+  12:57  warning  'showChat' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\MiniBarChart.tsx
+  19:11  warning  'barWidth' is assigned a value but never used                         @typescript-eslint/no-unused-vars
+  22:9   error    Definition for rule 'react-dom/no-unsafe-target-blank' was not found  react-dom/no-unsafe-target-blank
+  36:29  error    Definition for rule 'react-dom/no-unsafe-target-blank' was not found  react-dom/no-unsafe-target-blank
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\Navbar.tsx
+  8:24  warning  'getLevelTitle' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\QuestPanel.tsx
+  48:12  warning  'lastResetDate' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\SearchFilter.tsx
+  6:42  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  7:26  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\ShareButton.tsx
+  3:23  warning  'useRef' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\TeamLoyaltySelector.tsx
+  3:20  warning  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\components\ThemeWrapper.tsx
+  7:12  warning  'mounted' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\context\AuthContext.tsx
+  45:90  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\context\CustomLeaguesContext.tsx
+  8:3  warning  'UserProfile' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\context\FriendsContext.tsx
+  4:47  warning  'FriendshipStatus' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\context\LocaleContext.tsx
+  3:47  warning  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\context\NotificationsContext.tsx
+    4:54  warning  'NotificationType' is defined but never used       @typescript-eslint/no-unused-vars
+  208:19  warning  'registration' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\context\QuestsContext.tsx
+  175:13  warning  'data' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\context\ThemeContext.tsx
+  101:17  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\context\ThemeContext.tsx:101:17
+   99 |             try {
+  100 |                 const prefs = JSON.parse(savedPrefs);
+> 101 |                 setPreferences(prefs);
+      |                 ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  102 |                 setThemeModeState(prefs.theme || 'dark');
+  103 |                 setAccentColorState(prefs.accentColor || 'emerald');
+  104 |             } catch (e) {  react-hooks/set-state-in-effect
+  104:22  warning  'e' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+  108:8   warning  React Hook useEffect has a missing dependency: 'mounted'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 react-hooks/exhaustive-deps
+  179:18  warning  'err' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\custom-leagues\page.tsx
+   14:5   warning  'isLoading' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+   31:21  error    Error: Cannot call impure function during render
+
+`Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\custom-leagues\page.tsx:31:21
+  29 |   }, []);
+  30 |   const initialEndDate = useMemo(() => {
+> 31 |     return new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+     |                     ^^^^^^^^^^ Cannot call impure function
+  32 |   }, []);
+  33 |
+  34 |   // Create league form state  react-hooks/purity
+  423:60  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\friends\page.tsx
+   6:8   warning  'TeamAvatar' is defined but never used          @typescript-eslint/no-unused-vars
+  15:5   warning  'isLoading' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  25:54  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\hooks\useAdvancedStats.ts
+  30:21  warning  'setIsLoading' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\hooks\useLocalStorage.ts
+  14:12  warning  'isHydrated' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\hooks\useMatchSimulation.ts
+  36:3  warning  'homeTeam' is defined but never used  @typescript-eslint/no-unused-vars
+  37:3  warning  'awayTeam' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\leaderboard\LeaderboardClient.tsx
+  45:8  warning  React Hook useEffect has missing dependencies: 'fetchLeaderboard', 'initialLeaderboard', and 'leaderboard'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\leaderboard\page.tsx
+  13:36  warning  'error' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\live\page.tsx
+   6:21  warning  'SetScore' is defined but never used                                                                                                                               @typescript-eslint/no-unused-vars
+   7:8   warning  'Link' is defined but never used                                                                                                                                   @typescript-eslint/no-unused-vars
+  24:5   warning  'isLoading' is assigned a value but never used                                                                                                                     @typescript-eslint/no-unused-vars
+  39:6   warning  React Hook useEffect has missing dependencies: 'currentMatch', 'subscribeToMatch', and 'unsubscribeFromMatch'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\notifications\page.tsx
+  21:5  warning  'isLoading' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\premium\page.tsx
+    5:8   warning  'Link' is defined but never used                      @typescript-eslint/no-unused-vars
+  115:11  warning  'user' is assigned a value but never used             @typescript-eslint/no-unused-vars
+  116:10  warning  'selectedPlan' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  116:24  warning  'setSelectedPlan' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\quests\page.tsx
+  12:11  warning  'gameState' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  21:5   warning  'isLoading' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\register\page.tsx
+  11:29  warning  'CardDescription' is defined but never used  @typescript-eslint/no-unused-vars
+  11:46  warning  'CardHeader' is defined but never used       @typescript-eslint/no-unused-vars
+  11:58  warning  'CardTitle' is defined but never used        @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\scenario-standings\page.tsx
+   5:8    warning  'Link' is defined but never used                     @typescript-eslint/no-unused-vars
+   6:10   warning  'calculateGroupStandings' is defined but never used  @typescript-eslint/no-unused-vars
+  13:48   warning  Unexpected any. Specify a different type             @typescript-eslint/no-explicit-any
+  18:15   warning  'saved' is assigned a value but never used           @typescript-eslint/no-unused-vars
+  34:103  warning  Unexpected any. Specify a different type             @typescript-eslint/no-explicit-any
+  34:111  warning  Unexpected any. Specify a different type             @typescript-eslint/no-explicit-any
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\simulation\page.tsx
+   6:8   warning  'Link' is defined but never used           @typescript-eslint/no-unused-vars
+  21:11  warning  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\stats\advanced\page.tsx
+  64:6  warning  React Hook useMemo has an unnecessary dependency: 'selectedLeague'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\utils\gameState.ts
+  8:5  warning  'Quest' is defined but never used    @typescript-eslint/no-unused-vars
+  9:5  warning  'QuestId' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\utils\supabase-server.ts
+  19:30  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
+  26:30  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\utils\validation.ts
+  190:1  warning  Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+
+C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\app\vsl\gunceldurum\VSLDetailedClient.tsx
+  18:11  warning  'groupName' is assigned a value but never used                                                               @typescript-eslint/no-unused-vars
+  64:8   warning  React Hook useMemo has a missing dependency: 'formatDate'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Ô£û 180 problems (5 errors, 175 warnings)
+

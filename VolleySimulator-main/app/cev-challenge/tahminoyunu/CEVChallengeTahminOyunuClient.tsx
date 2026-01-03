@@ -180,7 +180,7 @@ export default function CEVChallengeTahminOyunuClient({ initialData }: { initial
                             <div className="w-16 h-1.5 bg-slate-800 rounded-full overflow-hidden">
                                 <div
                                     className="h-full bg-emerald-500 transition-all"
-                                    // eslint-disable-next-line
+                                     
                                     style={{ width: `${totalUnplayed > 0 ? (predictedCount / totalUnplayed) * 100 : 0}%` }}
                                 />
                             </div>

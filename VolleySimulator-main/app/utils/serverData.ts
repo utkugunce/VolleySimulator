@@ -21,12 +21,13 @@ export async function getLeagueData(league: string): Promise<LeagueData> {
         const data = JSON.parse(content);
 
         // Filter out withdrawn teams (ligden çekilen takımlar)
+        // Filter out withdrawn teams (ligden çekilen takımlar)
         if (league === '1lig') {
             const withdrawnTeams = ['Edremit Bld. Altınoluk', 'İzmirspor'];
             if (data.teams) {
-                data.teams = data.teams.filter((t: any) => !withdrawnTeams.includes(t.name));
+                data.teams = data.teams.filter((t: TeamStats) => !withdrawnTeams.includes(t.name));
             }
-            const filterMatches = (matches: any[]) => matches.filter((m: any) =>
+            const filterMatches = (matches: Match[]) => matches.filter((m: Match) =>
                 !withdrawnTeams.includes(m.homeTeam) && !withdrawnTeams.includes(m.awayTeam)
             );
             if (data.fixture) data.fixture = filterMatches(data.fixture);
@@ -45,13 +46,13 @@ export async function getLeagueData(league: string): Promise<LeagueData> {
             const renameTeam = (name: string) => teamNameMapping[name] || name;
 
             if (data.teams) {
-                data.teams = data.teams.map((t: any) => ({
+                data.teams = data.teams.map((t: TeamStats) => ({
                     ...t,
                     name: renameTeam(t.name)
                 }));
             }
 
-            const renameMatches = (matches: any[]) => matches.map((m: any) => ({
+            const renameMatches = (matches: Match[]) => matches.map((m: Match) => ({
                 ...m,
                 homeTeam: renameTeam(m.homeTeam),
                 awayTeam: renameTeam(m.awayTeam)
@@ -62,7 +63,7 @@ export async function getLeagueData(league: string): Promise<LeagueData> {
         }
 
         // Normalize fixture data
-        let fixture = (data.fixture || data.matches || []).map((m: any) => ({
+        let fixture = (data.fixture || data.matches || []).map((m: Match & { date?: string }) => ({
             ...m,
             matchDate: m.matchDate || m.date
         }));

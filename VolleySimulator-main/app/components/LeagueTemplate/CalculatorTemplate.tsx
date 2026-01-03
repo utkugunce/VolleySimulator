@@ -59,12 +59,12 @@ export default function CalculatorTemplate({ config, initialTeams, initialMatche
     // Derived Data based on active group (if hasGroups)
     const currentMatches = useMemo(() => {
         if (!config.hasGroups) return allMatches;
-        return allMatches.filter(m => !activeGroup || (m as any).groupName === activeGroup);
+        return allMatches.filter(m => !activeGroup || m.groupName === activeGroup);
     }, [allMatches, config.hasGroups, activeGroup]);
 
     const currentTeams = useMemo(() => {
         if (!config.hasGroups) return allTeams;
-        return allTeams.filter(t => !activeGroup || (t as any).groupName === activeGroup);
+        return allTeams.filter(t => !activeGroup || t.groupName === activeGroup);
     }, [allTeams, config.hasGroups, activeGroup]);
 
 

@@ -40,11 +40,14 @@ export async function GET() {
             );
         };
 
+        interface BaseTeam { name: string;[key: string]: unknown }
+        interface BaseMatch { homeTeam: string; awayTeam: string;[key: string]: unknown }
+
         // Filter teams
-        const filteredTeams = data.teams.filter((t: any) => !isRelegated(t.name));
+        const filteredTeams = data.teams.filter((t: BaseTeam) => !isRelegated(t.name));
 
         // Filter fixtures (remove matches where either team is relegated)
-        const filteredFixture = data.fixture.filter((m: any) =>
+        const filteredFixture = data.fixture.filter((m: BaseMatch) =>
             !isRelegated(m.homeTeam) && !isRelegated(m.awayTeam)
         );
 
@@ -54,7 +57,8 @@ export async function GET() {
             fixture: filteredFixture
         });
 
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        return NextResponse.json({ error: errorMessage }, { status: 500 });
     }
 }

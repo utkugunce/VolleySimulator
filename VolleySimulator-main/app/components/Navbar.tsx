@@ -171,7 +171,7 @@ export default function Navbar() {
                                             <div className="w-20 h-1.5 bg-slate-700 rounded-full overflow-hidden">
                                                 <div
                                                     className="h-full bg-gradient-to-r from-amber-400 to-orange-400 transition-all"
-                                                    // eslint-disable-next-line
+                                                     
                                                     style={{ width: `${xpProgress}%` }}
                                                 />
                                             </div>

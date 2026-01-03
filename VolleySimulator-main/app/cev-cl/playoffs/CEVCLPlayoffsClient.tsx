@@ -527,7 +527,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                             <div className="flex gap-2 border-b border-purple-500/20 mb-6 overflow-x-auto pb-2">
                                 <button onClick={() => setActiveTabFF('semi')} className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTabFF === 'semi' ? 'bg-purple-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}>Yarı Final</button>
                                 <button onClick={() => setActiveTabFF('final')} className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTabFF === 'final' ? 'bg-amber-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}>Super Final</button>
-                                <button onClick={() => setActiveTabFF('3rd')} className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTabFF === '3rd' ? 'bg-slate-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}>3.'lük Maçı</button>
+                                <button onClick={() => setActiveTabFF('3rd')} className={`px-4 py-2 text-sm font-bold rounded-t-lg transition-colors whitespace-nowrap ${activeTabFF === '3rd' ? 'bg-slate-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}>3.&apos;lük Maçı</button>
                             </div>
 
                             <div className="min-h-[250px]">

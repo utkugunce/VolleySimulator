@@ -26,8 +26,8 @@ export default function TwoLigCalculatorClient({ initialTeams, initialMatches }:
 
     // Normalize data (Matching original fetchData logic)
     const normalizedData = useMemo(() => {
-        let teamsData: any[] = initialTeams.filter((item: any) => item.name && !item.homeTeam);
-        let matchesData: any[] = initialMatches;
+        const teamsData: any[] = initialTeams.filter((item: any) => item.name && !item.homeTeam);
+        const matchesData: any[] = initialMatches;
 
         return { teams: teamsData, matches: matchesData };
     }, [initialTeams, initialMatches]);

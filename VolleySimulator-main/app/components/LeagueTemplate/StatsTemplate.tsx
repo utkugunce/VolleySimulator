@@ -47,28 +47,10 @@ export default function StatsTemplate({ config, initialTeams, initialMatches }: 
     }, [teams, initialMatches]);
 
     // Completion Rate for Action Bar
+    // Completion Rate for Action Bar
     const totalMatches = initialMatches.length;
     const playedMatches = initialMatches.filter(m => m.isPlayed).length;
     const progress = totalMatches > 0 ? Math.round((playedMatches / totalMatches) * 100) : 0;
-
-    // Stat Tile Component (Local helper or could be separate)
-    const StatTile = ({ title, player, team, value, icon, color }: any) => (
-        <div className="bg-slate-900/50 p-4 rounded-xl border border-slate-800/50 flex items-center justify-between group hover:border-slate-700 transition-all">
-            <div className="flex items-center gap-4">
-                <div className={`w-10 h-10 rounded-lg bg-${color}-500/10 flex items-center justify-center text-xl`}>
-                    {icon}
-                </div>
-                <div>
-                    <div className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-0.5">{title}</div>
-                    <div className="font-bold text-slate-200 group-hover:text-white transition-colors">{player}</div>
-                    <div className="text-xs text-slate-500">{team}</div>
-                </div>
-            </div>
-            <div className="text-right">
-                <div className={`text-xl font-black text-${color}-400`}>{value}</div>
-            </div>
-        </div>
-    );
 
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-0 sm:p-2 font-sans pb-20 sm:pb-4">
@@ -158,3 +140,22 @@ export default function StatsTemplate({ config, initialTeams, initialMatches }: 
         </main>
     );
 }
+
+// Stat Tile Component (Local helper or could be separate)
+const StatTile = ({ title, player, team, value, icon, color }: any) => (
+    <div className="bg-slate-900/50 p-4 rounded-xl border border-slate-800/50 flex items-center justify-between group hover:border-slate-700 transition-all">
+        <div className="flex items-center gap-4">
+            <div className={`w-10 h-10 rounded-lg bg-${color}-500/10 flex items-center justify-center text-xl`}>
+                {icon}
+            </div>
+            <div>
+                <div className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-0.5">{title}</div>
+                <div className="font-bold text-slate-200 group-hover:text-white transition-colors">{player}</div>
+                <div className="text-xs text-slate-500">{team}</div>
+            </div>
+        </div>
+        <div className="text-right">
+            <div className={`text-xl font-black text-${color}-400`}>{value}</div>
+        </div>
+    </div>
+);

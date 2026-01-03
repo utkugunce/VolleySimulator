@@ -1,0 +1,37 @@
+﻿
+> web_app@0.1.0 build
+> next build
+
+Ôû▓ Next.js 16.1.1 (Turbopack)
+- Experiments (use with caution):
+  ┬À optimizePackageImports
+
+  Creating an optimized production build ...
+Ô£ô Compiled successfully in 4.0s
+  Running TypeScript ...
+node.exe : Failed to compile.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node
+_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~
+    + CategoryInfo          : NotSpecified: (Failed to compile.:Str 
+   ing) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+./app/1lig/stats/OneLigStatsClient.tsx:12:11
+Type error: Interface 'ExtendedTeamStats' incorrectly extends interf
+ace 'TeamStats'.
+  Types of property 'setRatio' are incompatible.
+    Type 'string' is not assignable to type 'number'.
+
+[0m [90m 10 |[39m }
+ [90m 11 |[39m
+[31m[1m>[22m[39m[90m 12 |[39m [36minterface[39m [33mExtende
+dTeamStats[39m [36mextends[39m [33mTeamStats[39m {
+ [90m    |[39m           [31m[1m^[22m[39m
+ [90m 13 |[39m     losses[33m:[39m number[33m;[39m
+ [90m 14 |[39m     winRate[33m:[39m number[33m;[39m
+ [90m 15 |[39m     setRatio[33m:[39m string[33m;[39m[0m
+Next.js build worker exited with code: 1 and signal: null

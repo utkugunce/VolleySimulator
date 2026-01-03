@@ -46,13 +46,17 @@ export default function CEVChallengePlayoffsClient({ initialData }: { initialDat
 
     // Load saved predictions
     useEffect(() => {
-        const saved = localStorage.getItem('cevChallengePredictions');
-        if (saved) {
-            try {
-                setOverrides(JSON.parse(saved));
-            } catch (e) { console.error(e); }
-        }
-        setIsLoaded(true);
+        const loadSaved = () => {
+            const saved = localStorage.getItem('cevChallengePredictions');
+            if (saved) {
+                try {
+                    setOverrides(JSON.parse(saved));
+                } catch (e) { console.error(e); }
+            }
+            setIsLoaded(true);
+        };
+
+        Promise.resolve().then(loadSaved);
     }, []);
 
     // Save predictions

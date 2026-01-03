@@ -35,25 +35,6 @@ export default function OneLigDetailedGroupsClient({ initialTeams, initialMatche
     const totalCount = groupMatches.length;
     const completionRate = totalCount > 0 ? Math.round((playedCount / totalCount) * 100) : 0;
 
-    // Turkish day names
-    const dayNames = ['PAZAR', 'PAZARTESİ', 'SALI', 'ÇARŞAMBA', 'PERŞEMBE', 'CUMA', 'CUMARTESİ'];
-
-    // Format date as DD/MM/YYYY + Day
-    const formatDate = (dateStr?: string) => {
-        if (!dateStr || dateStr.trim() === '') return { formatted: 'TARİH BELİRSİZ', sortKey: '9999-99-99' };
-        try {
-            const date = new Date(dateStr);
-            if (isNaN(date.getTime())) return { formatted: 'TARİH BELİRSİZ', sortKey: '9999-99-99' };
-            const day = String(date.getDate()).padStart(2, '0');
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const year = date.getFullYear();
-            const dayName = dayNames[date.getDay()];
-            return { formatted: `${day}/${month}/${year} ${dayName}`, sortKey: dateStr };
-        } catch {
-            return { formatted: 'TARİH BELİRSİZ', sortKey: '9999-99-99' };
-        }
-    };
-
     const groupedMatches = useMemo(() => {
         const matchesByDate: Record<string, { formatted: string; matches: Match[] }> = {};
         const upcomingMatches = groupMatches.filter(m => !m.isPlayed);
@@ -185,3 +166,21 @@ export default function OneLigDetailedGroupsClient({ initialTeams, initialMatche
         </main >
     );
 }
+
+// Helper functions moved outside component
+const dayNames = ['PAZAR', 'PAZARTESİ', 'SALI', 'ÇARŞAMBA', 'PERŞEMBE', 'CUMA', 'CUMARTESİ'];
+
+const formatDate = (dateStr?: string) => {
+    if (!dateStr || dateStr.trim() === '') return { formatted: 'TARİH BELİRSİZ', sortKey: '9999-99-99' };
+    try {
+        const date = new Date(dateStr);
+        if (isNaN(date.getTime())) return { formatted: 'TARİH BELİRSİZ', sortKey: '9999-99-99' };
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        const dayName = dayNames[date.getDay()];
+        return { formatted: `${day}/${month}/${year} ${dayName}`, sortKey: dateStr };
+    } catch {
+        return { formatted: 'TARİH BELİRSİZ', sortKey: '9999-99-99' };
+    }
+};

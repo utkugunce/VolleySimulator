@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default async function CEVChallengeStatsPage() {
     const filePath = path.join(process.cwd(), 'data', 'cev-challenge-cup-data.json');
     let teams: any[] = [];
-    let fixture: any[] = [];
+    const fixture: any[] = [];
 
     try {
         if (fs.existsSync(filePath)) {

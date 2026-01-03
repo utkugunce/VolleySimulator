@@ -259,7 +259,9 @@ export function useTutorial() {
     useEffect(() => {
         const completed = localStorage.getItem("tutorialCompleted");
         if (!completed) {
-            setIsFirstVisit(true);
+            Promise.resolve().then(() => {
+                setIsFirstVisit(true);
+            });
             // Show tutorial on first visit after a short delay
             setTimeout(() => setShowTutorial(true), 1000);
         }

@@ -19,7 +19,6 @@ export default function MiniBarChart({
     const barWidth = 100 / data.length;
 
     return (
-        // eslint-disable-next-line react-dom/no-unsafe-target-blank
         <div className="w-full" style={{ height }}>
             <div className="flex items-end justify-between h-full gap-0.5">
                 {data.map((value, i) => (
@@ -33,7 +32,6 @@ export default function MiniBarChart({
                         )}
                         <div
                             className="w-full rounded-t transition-all duration-300 hover:opacity-80"
-                            // eslint-disable-next-line react-dom/no-unsafe-target-blank
                             style={{
                                 height: `${(value / max) * 100}%`,
                                 backgroundColor: color,

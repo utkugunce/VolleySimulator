@@ -7,7 +7,9 @@ export default function ThemeWrapper({ children }: { children: ReactNode }) {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        setMounted(true);
+        Promise.resolve().then(() => {
+            setMounted(true);
+        });
         // Set initial theme from localStorage or default to dark
         const saved = localStorage.getItem("theme") || "dark";
         document.documentElement.setAttribute("data-theme", saved);

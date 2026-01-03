@@ -25,26 +25,29 @@ export default function OneLigPlayoffsClient({ initialTeams, initialMatches }: O
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        const savedPlayoff = localStorage.getItem('1ligPlayoffScenarios');
-        if (savedPlayoff) {
-            try {
-                setPlayoffOverrides(JSON.parse(savedPlayoff));
-            } catch (e) { console.error(e); }
-        }
+        const loadSaved = () => {
+            const savedPlayoff = localStorage.getItem('1ligPlayoffScenarios');
+            if (savedPlayoff) {
+                try {
+                    setPlayoffOverrides(JSON.parse(savedPlayoff));
+                } catch (e) { console.error(e); }
+            }
 
-        const savedGroup = localStorage.getItem('1ligGroupScenarios');
-        if (savedGroup) {
-            try {
-                const parsed = JSON.parse(savedGroup);
-                let flatOverrides: Record<string, string> = {};
-                Object.values(parsed).forEach((groupObj: any) => {
-                    flatOverrides = { ...flatOverrides, ...groupObj };
-                });
-                setGroupOverrides(flatOverrides);
-            } catch (e) { console.error(e); }
-        }
+            const savedGroup = localStorage.getItem('1ligGroupScenarios');
+            if (savedGroup) {
+                try {
+                    const parsed = JSON.parse(savedGroup);
+                    let flatOverrides: Record<string, string> = {};
+                    Object.values(parsed).forEach((groupObj: any) => {
+                        flatOverrides = { ...flatOverrides, ...groupObj };
+                    });
+                    setGroupOverrides(flatOverrides);
+                } catch (e) { console.error(e); }
+            }
+            setIsLoaded(true);
+        };
 
-        setIsLoaded(true);
+        Promise.resolve().then(loadSaved);
     }, []);
 
     const baseStandings = useMemo(() => {
@@ -177,7 +180,7 @@ export default function OneLigPlayoffsClient({ initialTeams, initialMatches }: O
                             <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2 relative z-10">
                                 <span className="text-3xl">🎉</span>
                                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200">
-                                    Sultanlar Ligi'ne Yükselen Takımlar
+                                    Sultanlar Ligi&apos;ne Yükselen Takımlar
                                 </span>
                             </h2>
 
@@ -209,7 +212,7 @@ export default function OneLigPlayoffsClient({ initialTeams, initialMatches }: O
                                         <div className="text-sm text-slate-400">1. Lig Play-Off 2025-26</div>
                                     </div>
                                     <div className="text-xs text-slate-500 mt-2 text-center">
-                                        🎊 Tebrikler! Sultanlar Ligi'ne yükselmeye hak kazandınız!
+                                        🎊 Tebrikler! Sultanlar Ligi&apos;ne yükselmeye hak kazandınız!
                                     </div>
                                 </div>
                             </div>

@@ -1,15 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useCustomLeagues } from "../context/CustomLeaguesContext";
 import { useAuth } from "../context/AuthContext";
 import Link from "next/link";
 
 export default function CustomLeaguesPage() {
   const { user } = useAuth();
-  const { 
-    myLeagues, 
-    joinedLeagues, 
+  const {
+    myLeagues,
+    joinedLeagues,
     pendingInvites,
     isLoading,
     createLeague,
@@ -17,12 +17,12 @@ export default function CustomLeaguesPage() {
     acceptInvite,
     rejectInvite,
   } = useCustomLeagues();
-  
+
   const [activeTab, setActiveTab] = useState<'my' | 'joined' | 'create' | 'join'>('my');
   const [joinCode, setJoinCode] = useState('');
   const [joinError, setJoinError] = useState('');
   const [showCreateModal, setShowCreateModal] = useState(false);
-  
+
   // Create league form state
   const [newLeague, setNewLeague] = useState({
     name: '',
@@ -30,16 +30,30 @@ export default function CustomLeaguesPage() {
     isPrivate: true,
     maxMembers: 20,
     leagues: ['vsl'],
-    startDate: new Date().toISOString().split('T')[0],
-    endDate: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    startDate: '',
+    endDate: '',
   });
+
+  // Initialize dates after render (Date.now() is impure, so must be in effect)
+  const [initialStartDate, setInitialStartDate] = useState('');
+  const [initialEndDate, setInitialEndDate] = useState('');
+
+  useEffect(() => {
+    const start = new Date().toISOString().split('T')[0];
+    const end = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    Promise.resolve().then(() => {
+      setInitialStartDate(start);
+      setInitialEndDate(end);
+      setNewLeague(prev => ({ ...prev, startDate: start, endDate: end }));
+    });
+  }, []);
 
   const handleJoinLeague = async () => {
     if (!joinCode.trim()) return;
-    
+
     setJoinError('');
     const success = await joinLeague(joinCode.trim());
-    
+
     if (success) {
       setJoinCode('');
       setActiveTab('joined');
@@ -50,9 +64,9 @@ export default function CustomLeaguesPage() {
 
   const handleCreateLeague = async () => {
     if (!newLeague.name.trim()) return;
-    
+
     const league = await createLeague(newLeague);
-    
+
     if (league) {
       setShowCreateModal(false);
       setActiveTab('my');
@@ -62,8 +76,8 @@ export default function CustomLeaguesPage() {
         isPrivate: true,
         maxMembers: 20,
         leagues: ['vsl'],
-        startDate: new Date().toISOString().split('T')[0],
-        endDate: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        startDate: initialStartDate,
+        endDate: initialEndDate,
       });
     }
   };
@@ -151,11 +165,10 @@ export default function CustomLeaguesPage() {
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key as typeof activeTab)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-                activeTab === tab.key
-                  ? 'bg-white/10 text-white'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
-              }`}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${activeTab === tab.key
+                ? 'bg-white/10 text-white'
+                : 'text-slate-400 hover:text-white hover:bg-white/5'
+                }`}
             >
               <span>{tab.icon}</span>
               <span>{tab.label}</span>
@@ -222,7 +235,7 @@ export default function CustomLeaguesPage() {
                 <p className="text-sm text-slate-400 mb-6">
                   Arkadaşınızdan aldığınız davet kodunu girin
                 </p>
-                
+
                 <div className="space-y-4">
                   <div>
                     <input
@@ -240,7 +253,7 @@ export default function CustomLeaguesPage() {
                       <p className="text-red-400 text-sm mt-2">{joinError}</p>
                     )}
                   </div>
-                  
+
                   <button
                     onClick={handleJoinLeague}
                     disabled={!joinCode.trim()}
@@ -305,21 +318,19 @@ export default function CustomLeaguesPage() {
                 <div className="flex gap-3">
                   <button
                     onClick={() => setNewLeague({ ...newLeague, isPrivate: true })}
-                    className={`flex-1 px-4 py-3 rounded-xl border transition-colors ${
-                      newLeague.isPrivate
-                        ? 'bg-indigo-600 border-indigo-500 text-white'
-                        : 'bg-slate-800 border-slate-700 text-slate-400'
-                    }`}
+                    className={`flex-1 px-4 py-3 rounded-xl border transition-colors ${newLeague.isPrivate
+                      ? 'bg-indigo-600 border-indigo-500 text-white'
+                      : 'bg-slate-800 border-slate-700 text-slate-400'
+                      }`}
                   >
                     🔒 Özel
                   </button>
                   <button
                     onClick={() => setNewLeague({ ...newLeague, isPrivate: false })}
-                    className={`flex-1 px-4 py-3 rounded-xl border transition-colors ${
-                      !newLeague.isPrivate
-                        ? 'bg-indigo-600 border-indigo-500 text-white'
-                        : 'bg-slate-800 border-slate-700 text-slate-400'
-                    }`}
+                    className={`flex-1 px-4 py-3 rounded-xl border transition-colors ${!newLeague.isPrivate
+                      ? 'bg-indigo-600 border-indigo-500 text-white'
+                      : 'bg-slate-800 border-slate-700 text-slate-400'
+                      }`}
                   >
                     🌐 Herkese Açık
                   </button>
@@ -356,11 +367,10 @@ export default function CustomLeaguesPage() {
                           : [...newLeague.leagues, league];
                         setNewLeague({ ...newLeague, leagues });
                       }}
-                      className={`px-3 py-1.5 rounded-lg text-sm transition-colors ${
-                        newLeague.leagues.includes(league)
-                          ? 'bg-indigo-600 text-white'
-                          : 'bg-slate-800 text-slate-400'
-                      }`}
+                      className={`px-3 py-1.5 rounded-lg text-sm transition-colors ${newLeague.leagues.includes(league)
+                        ? 'bg-indigo-600 text-white'
+                        : 'bg-slate-800 text-slate-400'
+                        }`}
                     >
                       {league.toUpperCase()}
                     </button>
@@ -418,7 +428,7 @@ function LeagueCard({ league, isOwner = false }: { league: any; isOwner?: boolea
         <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-2xl">
           {isOwner ? '👑' : '🏆'}
         </div>
-        
+
         <div className="flex-1">
           <div className="flex items-center gap-2">
             <h3 className="font-bold text-white text-lg">{league.name}</h3>
@@ -426,11 +436,11 @@ function LeagueCard({ league, isOwner = false }: { league: any; isOwner?: boolea
               <span className="text-xs bg-slate-700 text-slate-300 px-2 py-0.5 rounded">🔒 Özel</span>
             )}
           </div>
-          
+
           {league.description && (
             <p className="text-sm text-slate-400 mt-1">{league.description}</p>
           )}
-          
+
           <div className="flex items-center gap-4 mt-3 text-sm text-slate-500">
             <span>👥 {league.members?.length || 0}/{league.maxMembers}</span>
             <span>📅 {new Date(league.endDate).toLocaleDateString('tr-TR')}</span>
@@ -439,7 +449,7 @@ function LeagueCard({ league, isOwner = false }: { league: any; isOwner?: boolea
             )}
           </div>
         </div>
-        
+
         <Link
           href={`/custom-leagues/${league.id}`}
           className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-sm font-medium transition-colors"
