@@ -33,7 +33,7 @@ export default function Navbar() {
     const required = nextLevelXP - currentLevelXP;
     const xpProgress = Math.min((progress / required) * 100, 100);
 
-    const isInLeague = pathname?.startsWith('/1lig') || pathname?.startsWith('/2lig') || pathname?.startsWith('/vsl') || pathname?.startsWith('/cev-cl');
+    const isInLeague = pathname?.startsWith('/1lig') || pathname?.startsWith('/2lig') || pathname?.startsWith('/vsl') || pathname?.startsWith('/cev-cl') || pathname?.startsWith('/cev-cup');
     const isAnasayfa = pathname === '/' || pathname === '/anasayfa';
     const isAyarlar = pathname === '/ayarlar';
     const isProfile = pathname === '/profile' || pathname === '/login' || pathname === '/register';
@@ -297,6 +297,19 @@ export default function Navbar() {
                                             <div className="text-xs text-blue-400/70">Kadınlar • Grup Aşaması 2025-26</div>
                                         </div>
                                         <div className="text-blue-500/50 group-hover:text-blue-400 group-hover:translate-x-1 transition-all">→</div>
+                                    </Link>
+
+                                    {/* CEV Cup */}
+                                    <Link
+                                        href="/cev-cup/gunceldurum"
+                                        onClick={() => setShowLeagueModal(false)}
+                                        className="group flex items-center gap-4 p-4 bg-gradient-to-r from-amber-900/30 to-orange-800/10 hover:from-amber-800/40 hover:to-orange-700/20 rounded-2xl border border-amber-600/30 hover:border-amber-500/50 transition-all duration-300"
+                                    >
+                                        <div className="flex-1">
+                                            <div className="font-bold text-white group-hover:text-amber-300 transition-colors">CEV Cup</div>
+                                            <div className="text-xs text-amber-400/70">Kadınlar • Eleme Aşaması 2025-26</div>
+                                        </div>
+                                        <div className="text-amber-500/50 group-hover:text-amber-400 group-hover:translate-x-1 transition-all">→</div>
                                     </Link>
                                 </div>
                             </div>

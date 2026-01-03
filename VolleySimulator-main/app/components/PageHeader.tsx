@@ -27,7 +27,8 @@ export default function PageHeader({
     const is2Lig = pathname.startsWith('/2lig');
     const isVSL = pathname.startsWith('/vsl');
     const isCL = pathname.startsWith('/cev-cl');
-    const leaguePrefix = is1Lig ? '/1lig' : is2Lig ? '/2lig' : isVSL ? '/vsl' : isCL ? '/cev-cl' : '';
+    const isCEVCup = pathname.startsWith('/cev-cup');
+    const leaguePrefix = is1Lig ? '/1lig' : is2Lig ? '/2lig' : isVSL ? '/vsl' : isCL ? '/cev-cl' : isCEVCup ? '/cev-cup' : '';
 
     const getLinkClass = (path: string, isSpecial: boolean = false) => {
         const isActive = pathname === path || pathname.startsWith(path + '/');
@@ -86,7 +87,11 @@ export default function PageHeader({
                         </Link>
                         <Link href={`/cev-cl${currentPageType}`} className={getLeagueLinkClass('/cev-cl')}>
                             <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-                            Şampiyonlar Ligi
+                            ŞL
+                        </Link>
+                        <Link href={`/cev-cup${currentPageType}`} className={getLeagueLinkClass('/cev-cup')}>
+                            <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+                            Cup
                         </Link>
                     </nav>
                 )}
@@ -105,14 +110,14 @@ export default function PageHeader({
                     </Link>
 
                     {/* Stats link for all leagues */}
-                    {(is1Lig || is2Lig || isVSL || isCL) && (
+                    {(is1Lig || is2Lig || isVSL || isCL || isCEVCup) && (
                         <Link href={`${leaguePrefix}/stats`} className={getLinkClass(`${leaguePrefix}/stats`)}>
                             <span className="hidden sm:inline">İstatistikler</span>
                         </Link>
                     )}
 
                     {/* Playoffs link for all leagues */}
-                    {(is1Lig || is2Lig || isVSL || isCL) && (
+                    {(is1Lig || is2Lig || isVSL || isCL || isCEVCup) && (
                         <Link href={`${leaguePrefix}/playoffs`} className={getLinkClass(`${leaguePrefix}/playoffs`, true)}>
                             <span className="hidden sm:inline">Play-Off</span>
                         </Link>
