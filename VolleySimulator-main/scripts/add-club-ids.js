@@ -35,7 +35,7 @@ const CLUB_MAPPINGS = {
 // Find club ID for a team name
 function findClubId(teamName) {
     const upperName = teamName.toUpperCase();
-    
+
     for (const [clubId, keywords] of Object.entries(CLUB_MAPPINGS)) {
         for (const keyword of keywords) {
             if (upperName.includes(keyword.toUpperCase())) {
@@ -43,7 +43,7 @@ function findClubId(teamName) {
             }
         }
     }
-    
+
     return null; // No club association
 }
 
@@ -58,13 +58,13 @@ const clubStats = {};
 
 registry.teams = registry.teams.map(team => {
     const clubId = findClubId(team.name);
-    
+
     if (clubId) {
         clubAssignments++;
         if (!clubStats[clubId]) clubStats[clubId] = [];
         clubStats[clubId].push({ name: team.name, league: team.league });
     }
-    
+
     return {
         ...team,
         clubId: clubId
@@ -107,7 +107,7 @@ ${Object.keys(CLUB_MAPPINGS).map(c => `  | '${c}'`).join('\n')}
 
 export const CLUBS: Record<string, { clubId: ClubId; teams: TeamId[] }> = {
 ${Object.entries(clubStats).map(([clubId, teams]) => {
-    const teamIds = registry.teams.filter(t => t.clubId === clubId).map(t => `'${t.id}'`);
+    const teamIds = registry.teams.filter(t => t.clubId === clubId).map(t => t.id);
     return `  '${clubId}': { clubId: '${clubId}', teams: [${teamIds.join(', ')}] }`;
 }).join(',\n')}
 };

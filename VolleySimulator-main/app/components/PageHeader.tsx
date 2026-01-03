@@ -70,79 +70,21 @@ export default function PageHeader({
                     <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">{title}</h1>
                     <p className="text-[10px] text-slate-400 hidden sm:block">{subtitle}</p>
                 </div>
-                {/* League Navigation - Links preserve current page type */}
-                {showLeagueLinks && (
-                    <nav role="navigation" aria-label="Lig Seçimi" className="hidden md:flex items-center gap-1 ml-2 px-2 py-1 bg-slate-800/50 rounded-lg border border-slate-700/50">
-                        <Link href={`/vsl${currentPageType}`} className={getLeagueLinkClass('/vsl')}>
-                            <span className="w-2 h-2 rounded-full bg-rose-400"></span>
-                            VSL
-                        </Link>
-                        <Link href={`/1lig${currentPageType}`} className={getLeagueLinkClass('/1lig')}>
-                            <span className="w-2 h-2 rounded-full bg-amber-400"></span>
-                            1.Lig
-                        </Link>
-                        <Link href={`/2lig${currentPageType}`} className={getLeagueLinkClass('/2lig')}>
-                            <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                            2.Lig
-                        </Link>
-                        <Link href={`/cev-cl${currentPageType}`} className={getLeagueLinkClass('/cev-cl')}>
-                            <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-                            ŞL
-                        </Link>
-                        <Link href={`/cev-cup${currentPageType}`} className={getLeagueLinkClass('/cev-cup')}>
-                            <span className="w-2 h-2 rounded-full bg-amber-500"></span>
-                            Cup
-                        </Link>
-                    </nav>
+                {/* Groups Selection (if any) */}
+                {groups.length > 0 && onGroupChange && (
+                    <div className="flex items-center gap-1">
+                        <select
+                            value={selectedGroup || ""}
+                            onChange={(e) => onGroupChange(e.target.value || null)}
+                            aria-label="Grup Seç"
+                            className="appearance-none bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-600 text-slate-300 hover:text-white text-xs font-bold rounded px-3 py-1.5 focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 outline-none transition-all cursor-pointer"
+                        >
+                            {groups.map(g => (
+                                <option key={g} value={g} className="bg-slate-900 text-white font-semibold">{g}</option>
+                            ))}
+                        </select>
+                    </div>
                 )}
             </div>
-
-            {/* Quick Actions */}
-            {showQuickActions && (
-                <div className="flex items-center gap-2 w-full sm:w-auto flex-wrap justify-center">
-
-                    <Link href={leaguePrefix ? `${leaguePrefix}/tahminoyunu` : '/'} className={getLinkClass(leaguePrefix ? `${leaguePrefix}/tahminoyunu` : '/')}>
-                        <span className="hidden sm:inline">Tahmin Oyunu</span>
-                    </Link>
-
-                    <Link href={`${leaguePrefix}/gunceldurum`} className={getLinkClass(`${leaguePrefix}/gunceldurum`)}>
-                        <span className="hidden sm:inline">Güncel Durum</span>
-                    </Link>
-
-                    {/* Stats link for all leagues */}
-                    {(is1Lig || is2Lig || isVSL || isCL || isCEVCup) && (
-                        <Link href={`${leaguePrefix}/stats`} className={getLinkClass(`${leaguePrefix}/stats`)}>
-                            <span className="hidden sm:inline">İstatistikler</span>
-                        </Link>
-                    )}
-
-                    {/* Playoffs link for all leagues */}
-                    {(is1Lig || is2Lig || isVSL || isCL || isCEVCup) && (
-                        <Link href={`${leaguePrefix}/playoffs`} className={getLinkClass(`${leaguePrefix}/playoffs`, true)}>
-                            <span className="hidden sm:inline">Play-Off</span>
-                        </Link>
-                    )}
-
-                    {groups.length > 0 && onGroupChange && (
-                        <>
-                            <div className="h-6 w-px bg-slate-800 hidden sm:block"></div>
-
-                            <div className="flex items-center gap-1">
-                                <select
-                                    value={selectedGroup || ""}
-                                    onChange={(e) => onGroupChange(e.target.value || null)}
-                                    aria-label="Grup Seç"
-                                    className="appearance-none bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-600 text-slate-300 hover:text-white text-xs font-bold rounded px-3 py-1.5 focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 outline-none transition-all cursor-pointer"
-                                >
-                                    {groups.map(g => (
-                                        <option key={g} value={g} className="bg-slate-900 text-white font-semibold">{g}</option>
-                                    ))}
-                                </select>
-                            </div>
-                        </>
-                    )}
-                </div>
-            )}
-        </div>
-    );
+            );
 }

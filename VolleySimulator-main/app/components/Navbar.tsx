@@ -56,20 +56,82 @@ export default function Navbar() {
     return (
         <>
             {/* Top Header */}
-            <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b h-12 transition-all duration-300 ${scrolled
+            <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b h-14 transition-all duration-300 ${scrolled
                 ? 'bg-slate-900/95 border-slate-700 shadow-lg'
                 : 'bg-slate-900/80 border-slate-800'
                 }`}>
-                <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
-                    {/* Brand */}
-                    <Link href="/" className="flex items-center gap-2 group p-1 h-full" prefetch={true}>
-                        <Logo size="md" className="group-hover:scale-110 transition-transform duration-300" />
-                        <span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400 hidden sm:inline">
-                            VolleySimulator
-                        </span>
-                    </Link>
+                <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between gap-4">
+                    {/* Brand & Context Navigation */}
+                    <div className="flex items-center gap-6 overflow-x-auto no-scrollbar">
+                        <Link href="/" className="flex items-center gap-2 group shrink-0" prefetch={true}>
+                            <Logo size="md" className="group-hover:scale-110 transition-transform duration-300" />
+                            <span className={`text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400 ${isInLeague ? 'hidden xl:inline' : 'hidden sm:inline'}`}>
+                                VolleySimulator
+                            </span>
+                        </Link>
 
-                    {/* Theme Toggle + User Info or Login Button */}
+                        {/* Context Navigation (Moved from PageHeader) */}
+                        {isInLeague && (
+                            <div className="flex items-center gap-4">
+                                {/* League Switcher */}
+                                <div className="flex items-center bg-slate-800/50 rounded-lg p-1 border border-slate-700/50">
+                                    <Link href={getLeagueUrl('vsl')} className={`px-2 py-1 rounded text-[10px] font-bold transition-all flex items-center gap-1.5 ${pathname?.includes('/vsl') ? 'bg-slate-700 text-white shadow-sm' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}`}>
+                                        <span className="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
+                                        VSL
+                                    </Link>
+                                    <Link href={getLeagueUrl('1lig')} className={`px-2 py-1 rounded text-[10px] font-bold transition-all flex items-center gap-1.5 ${pathname?.includes('/1lig') ? 'bg-slate-700 text-white shadow-sm' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}`}>
+                                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                                        1.Lig
+                                    </Link>
+                                    <Link href={getLeagueUrl('2lig')} className={`px-2 py-1 rounded text-[10px] font-bold transition-all flex items-center gap-1.5 ${pathname?.includes('/2lig') ? 'bg-slate-700 text-white shadow-sm' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}`}>
+                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                                        2.Lig
+                                    </Link>
+                                    <Link href={getLeagueUrl('cev-cl')} className={`px-2 py-1 rounded text-[10px] font-bold transition-all flex items-center gap-1.5 ${pathname?.includes('/cev-cl') ? 'bg-slate-700 text-white shadow-sm' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}`}>
+                                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                                        ŞL
+                                    </Link>
+                                    <Link href={getLeagueUrl('cev-cup')} className={`px-2 py-1 rounded text-[10px] font-bold transition-all flex items-center gap-1.5 ${pathname?.includes('/cev-cup') ? 'bg-slate-700 text-white shadow-sm' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}`}>
+                                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                        Cup
+                                    </Link>
+                                </div>
+
+                                {/* Divider */}
+                                <div className="w-px h-4 bg-slate-800 hidden lg:block"></div>
+
+                                {/* Page Switcher */}
+                                <div className="hidden lg:flex items-center gap-1">
+                                    <Link
+                                        href={pathname?.replace(/\/(gunceldurum|stats|playoffs|tahminoyunu)/, '/tahminoyunu') || '#'}
+                                        className={`px-3 py-1.5 rounded text-xs font-bold transition-all ${pathname?.includes('/tahminoyunu') ? 'bg-gradient-to-r from-slate-700 to-slate-600 text-white shadow-md border border-slate-600' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                                    >
+                                        Tahmin
+                                    </Link>
+                                    <Link
+                                        href={pathname?.replace(/\/(gunceldurum|stats|playoffs|tahminoyunu)/, '/gunceldurum') || '#'}
+                                        className={`px-3 py-1.5 rounded text-xs font-bold transition-all ${pathname?.includes('/gunceldurum') ? 'bg-gradient-to-r from-slate-700 to-slate-600 text-white shadow-md border border-slate-600' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                                    >
+                                        Durum
+                                    </Link>
+                                    <Link
+                                        href={pathname?.replace(/\/(gunceldurum|stats|playoffs|tahminoyunu)/, '/stats') || '#'}
+                                        className={`px-3 py-1.5 rounded text-xs font-bold transition-all ${pathname?.includes('/stats') ? 'bg-gradient-to-r from-slate-700 to-slate-600 text-white shadow-md border border-slate-600' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                                    >
+                                        İstatistik
+                                    </Link>
+                                    <Link
+                                        href={pathname?.replace(/\/(gunceldurum|stats|playoffs|tahminoyunu)/, '/playoffs') || '#'}
+                                        className={`px-3 py-1.5 rounded text-xs font-bold transition-all ${pathname?.includes('/playoffs') ? 'bg-gradient-to-r from-amber-600 to-orange-500 text-white shadow-md' : 'text-amber-500/80 hover:text-amber-400 hover:bg-amber-900/10'}`}
+                                    >
+                                        Play-Off
+                                    </Link>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Right: User & Actions */}
                     <div className="flex items-center gap-2">
                         <ThemeToggle />
 
