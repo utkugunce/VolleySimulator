@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-01-03T16:30:43.518Z",
-  "version": "1.0.0",
+  "generatedAt": "2026-01-03T16:34:59.517Z",
+  "version": "1.1.0",
   "totalTeams": 352,
   "teamsByLeague": {
     "VSL": 14,
@@ -17,7 +17,8 @@
       "name": "ARAS KARGO",
       "league": "VSL",
       "country": "TUR",
-      "groupName": "Vodafone Sultanlar Ligi"
+      "groupName": "Vodafone Sultanlar Ligi",
+      "clubId": "CLUB_ARAS_KARGO"
     },
     {
       "id": "AYDINBÜYÜKŞEHİRBELED_57B10E",
@@ -25,7 +26,8 @@
       "name": "AYDIN BÜYÜKŞEHİR BELEDİYESPOR",
       "league": "VSL",
       "country": "TUR",
-      "groupName": "Vodafone Sultanlar Ligi"
+      "groupName": "Vodafone Sultanlar Ligi",
+      "clubId": "CLUB_AYDIN_BSB"
     },
     {
       "id": "BAHÇELİEVLERBLD_7BEE9F",
@@ -33,7 +35,8 @@
       "name": "BAHÇELİEVLER BLD.",
       "league": "VSL",
       "country": "TUR",
-      "groupName": "Vodafone Sultanlar Ligi"
+      "groupName": "Vodafone Sultanlar Ligi",
+      "clubId": "CLUB_BAHCELIEVLER"
     },
     {
       "id": "BEŞİKTAŞ_7AD79A",
@@ -41,7 +44,8 @@
       "name": "BEŞİKTAŞ",
       "league": "VSL",
       "country": "TUR",
-      "groupName": "Vodafone Sultanlar Ligi"
+      "groupName": "Vodafone Sultanlar Ligi",
+      "clubId": "CLUB_BESIKTAS"
     },
     {
       "id": "ECZACIBAŞIDYNAVİT_41201C",
@@ -49,7 +53,8 @@
       "name": "ECZACIBAŞI DYNAVİT",
       "league": "VSL",
       "country": "TUR",
-      "groupName": "Vodafone Sultanlar Ligi"
+      "groupName": "Vodafone Sultanlar Ligi",
+      "clubId": "CLUB_ECZACIBASI"
     },
     {
       "id": "FENERBAHÇEMEDICANA_80912F",
@@ -57,7 +62,8 @@
       "name": "FENERBAHÇE MEDICANA",
       "league": "VSL",
       "country": "TUR",
-      "groupName": "Vodafone Sultanlar Ligi"
+      "groupName": "Vodafone Sultanlar Ligi",
+      "clubId": "CLUB_FENERBAHCE"
     },
     {
       "id": "GALATASARAYDAIKIN_67B339",
@@ -65,7 +71,8 @@
       "name": "GALATASARAY DAIKIN",
       "league": "VSL",
       "country": "TUR",
-      "groupName": "Vodafone Sultanlar Ligi"
+      "groupName": "Vodafone Sultanlar Ligi",
+      "clubId": "CLUB_GALATASARAY"
     },
     {
       "id": "GÖZTEPE_9CF1DE",
@@ -73,7 +80,8 @@
       "name": "GÖZTEPE",
       "league": "VSL",
       "country": "TUR",
-      "groupName": "Vodafone Sultanlar Ligi"
+      "groupName": "Vodafone Sultanlar Ligi",
+      "clubId": "CLUB_GOZTEPE"
     },
     {
       "id": "İLBANK_315374",
@@ -81,7 +89,8 @@
       "name": "İLBANK",
       "league": "VSL",
       "country": "TUR",
-      "groupName": "Vodafone Sultanlar Ligi"
+      "groupName": "Vodafone Sultanlar Ligi",
+      "clubId": "CLUB_ILBANK"
     },
     {
       "id": "KUZEYBORU_FC1751",
@@ -89,7 +98,8 @@
       "name": "KUZEYBORU",
       "league": "VSL",
       "country": "TUR",
-      "groupName": "Vodafone Sultanlar Ligi"
+      "groupName": "Vodafone Sultanlar Ligi",
+      "clubId": "CLUB_KUZEYBORU"
     },
     {
       "id": "NİLÜFERBELEDİYESPORE_8A47A0",
@@ -97,7 +107,8 @@
       "name": "NİLÜFER BELEDİYESPOR EKER",
       "league": "VSL",
       "country": "TUR",
-      "groupName": "Vodafone Sultanlar Ligi"
+      "groupName": "Vodafone Sultanlar Ligi",
+      "clubId": "CLUB_NILUFER"
     },
     {
       "id": "TÜRKHAVAYOLLARI_B246A6",
@@ -105,7 +116,8 @@
       "name": "TÜRK HAVA YOLLARI",
       "league": "VSL",
       "country": "TUR",
-      "groupName": "Vodafone Sultanlar Ligi"
+      "groupName": "Vodafone Sultanlar Ligi",
+      "clubId": "CLUB_THY"
     },
     {
       "id": "VAKIFBANK_CEE9EF",
@@ -113,7 +125,8 @@
       "name": "VAKIFBANK",
       "league": "VSL",
       "country": "TUR",
-      "groupName": "Vodafone Sultanlar Ligi"
+      "groupName": "Vodafone Sultanlar Ligi",
+      "clubId": "CLUB_VAKIFBANK"
     },
     {
       "id": "ZERENSPOR_547415",
@@ -121,7 +134,8 @@
       "name": "ZEREN SPOR",
       "league": "VSL",
       "country": "TUR",
-      "groupName": "Vodafone Sultanlar Ligi"
+      "groupName": "Vodafone Sultanlar Ligi",
+      "clubId": "CLUB_ZEREN"
     },
     {
       "id": "AFYONBLDYÜNTAŞ_AC4016",
@@ -129,7 +143,8 @@
       "name": "AFYON BLD. YÜNTAŞ",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "B. Grup"
+      "groupName": "B. Grup",
+      "clubId": null
     },
     {
       "id": "ALFEMOZERENSPOR_5EB5B9",
@@ -137,7 +152,8 @@
       "name": "ALFEMO ZEREN SPOR",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "B. Grup"
+      "groupName": "B. Grup",
+      "clubId": "CLUB_ZEREN"
     },
     {
       "id": "ALTINORDU_922B12",
@@ -145,7 +161,8 @@
       "name": "ALTINORDU",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "A. Grup"
+      "groupName": "A. Grup",
+      "clubId": null
     },
     {
       "id": "BODRUMBLDBODRUMSPOR_2E3097",
@@ -153,7 +170,8 @@
       "name": "BODRUM BLD. BODRUMSPOR",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "A. Grup"
+      "groupName": "A. Grup",
+      "clubId": null
     },
     {
       "id": "ÇANAKKALEBLD_0DF050",
@@ -161,7 +179,8 @@
       "name": "ÇANAKKALE BLD.",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "A. Grup"
+      "groupName": "A. Grup",
+      "clubId": null
     },
     {
       "id": "DENİZLİBŞEHİRBLD_F6735D",
@@ -169,7 +188,8 @@
       "name": "DENİZLİ B.ŞEHİR BLD.",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "A. Grup"
+      "groupName": "A. Grup",
+      "clubId": "CLUB_DENIZLI_BSB"
     },
     {
       "id": "DİYARBAKIRBŞEHİRBLD_4DF16E",
@@ -177,7 +197,8 @@
       "name": "DİYARBAKIR B.ŞEHİR BLD.",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "B. Grup"
+      "groupName": "B. Grup",
+      "clubId": null
     },
     {
       "id": "ECZACIBAŞI_D25917",
@@ -185,7 +206,8 @@
       "name": "ECZACIBAŞI",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "A. Grup"
+      "groupName": "A. Grup",
+      "clubId": "CLUB_ECZACIBASI"
     },
     {
       "id": "ENDOKARŞIYAKA_9CC283",
@@ -193,7 +215,8 @@
       "name": "ENDO KARŞIYAKA",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "A. Grup"
+      "groupName": "A. Grup",
+      "clubId": "CLUB_KARSIYAKA"
     },
     {
       "id": "FDMYAPIKONYAEREĞLİBL_74D33D",
@@ -201,7 +224,8 @@
       "name": "FDM YAPI KONYA EREĞLİ BLD.",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "B. Grup"
+      "groupName": "B. Grup",
+      "clubId": null
     },
     {
       "id": "FENERBAHÇEMEDICANA_C729B9",
@@ -209,7 +233,8 @@
       "name": "FENERBAHÇE MEDICANA",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "A. Grup"
+      "groupName": "A. Grup",
+      "clubId": "CLUB_FENERBAHCE"
     },
     {
       "id": "HAVRANBLD_643B33",
@@ -217,7 +242,8 @@
       "name": "HAVRAN BLD.",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "A. Grup"
+      "groupName": "A. Grup",
+      "clubId": null
     },
     {
       "id": "İBAKİMYATEDANKARAKOL_7304D4",
@@ -225,7 +251,8 @@
       "name": "İBA KİMYA TED ANKARA KOLEJLİLER",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "B. Grup"
+      "groupName": "B. Grup",
+      "clubId": null
     },
     {
       "id": "İBBSPORKULÜBÜ_3F23C3",
@@ -233,7 +260,8 @@
       "name": "İBB SPOR KULÜBÜ",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "A. Grup"
+      "groupName": "A. Grup",
+      "clubId": "CLUB_ISTANBULBBSK"
     },
     {
       "id": "İLBANK_B9F38E",
@@ -241,7 +269,8 @@
       "name": "İLBANK",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "B. Grup"
+      "groupName": "B. Grup",
+      "clubId": "CLUB_ILBANK"
     },
     {
       "id": "KARAYOLLARI_1754C5",
@@ -249,7 +278,8 @@
       "name": "KARAYOLLARI",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "B. Grup"
+      "groupName": "B. Grup",
+      "clubId": null
     },
     {
       "id": "KUZEYBORUMAXİPİPESPO_0CF1B1",
@@ -257,7 +287,8 @@
       "name": "KUZEYBORU MAXİPİPE SPOR",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "B. Grup"
+      "groupName": "B. Grup",
+      "clubId": "CLUB_KUZEYBORU"
     },
     {
       "id": "MERİNOSVOLEYBOL_13D842",
@@ -265,7 +296,8 @@
       "name": "MERİNOS VOLEYBOL",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "B. Grup"
+      "groupName": "B. Grup",
+      "clubId": "CLUB_MERINOS"
     },
     {
       "id": "MURATPAŞABLDAÇIKOLEJ_2FAAE7",
@@ -273,7 +305,8 @@
       "name": "MURATPAŞA BLD. AÇI KOLEJİ",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "B. Grup"
+      "groupName": "B. Grup",
+      "clubId": null
     },
     {
       "id": "PTT_578234",
@@ -281,7 +314,8 @@
       "name": "PTT",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "B. Grup"
+      "groupName": "B. Grup",
+      "clubId": "CLUB_PTT"
     },
     {
       "id": "SAKARYAVOLEYBOL_391AEC",
@@ -289,7 +323,8 @@
       "name": "SAKARYA VOLEYBOL",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "B. Grup"
+      "groupName": "B. Grup",
+      "clubId": null
     },
     {
       "id": "SİGORTASHOPMKEANKARA_D6C234",
@@ -297,7 +332,8 @@
       "name": "SİGORTA SHOP MKE ANKARAGÜCÜ",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "B. Grup"
+      "groupName": "B. Grup",
+      "clubId": null
     },
     {
       "id": "TRENDYHOTELSMANAVGAT_15AD8B",
@@ -305,7 +341,8 @@
       "name": "TRENDY HOTELS MANAVGAT BLD.",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "B. Grup"
+      "groupName": "B. Grup",
+      "clubId": null
     },
     {
       "id": "VAKIFBANK_CBCA40",
@@ -313,7 +350,8 @@
       "name": "VAKIFBANK",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "A. Grup"
+      "groupName": "A. Grup",
+      "clubId": "CLUB_VAKIFBANK"
     },
     {
       "id": "VESTELMANİSABŞEHİRBL_F098F4",
@@ -321,7 +359,8 @@
       "name": "VESTEL MANİSA B.ŞEHİR BLD.",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "A. Grup"
+      "groupName": "A. Grup",
+      "clubId": null
     },
     {
       "id": "YEŞİLYURT_FE3819",
@@ -329,7 +368,8 @@
       "name": "YEŞİLYURT",
       "league": "1LIG",
       "country": "TUR",
-      "groupName": "A. Grup"
+      "groupName": "A. Grup",
+      "clubId": "CLUB_YESILYURT"
     },
     {
       "id": "07MEGASPOR_2D454B",
@@ -337,7 +377,8 @@
       "name": "07 MEGA SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "8. GRUP"
+      "groupName": "8. GRUP",
+      "clubId": null
     },
     {
       "id": "52ÇAMLIKSPOR_8AFEBC",
@@ -345,7 +386,8 @@
       "name": "52 ÇAMLIK SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "14. GRUP"
+      "groupName": "14. GRUP",
+      "clubId": null
     },
     {
       "id": "73ŞIRNAKBLD_3CC363",
@@ -353,7 +395,8 @@
       "name": "73 ŞIRNAK BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "16. GRUP"
+      "groupName": "16. GRUP",
+      "clubId": null
     },
     {
       "id": "91000DEVSPOR_A9CD95",
@@ -361,7 +404,8 @@
       "name": "91000 DEV SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "16. GRUP"
+      "groupName": "16. GRUP",
+      "clubId": null
     },
     {
       "id": "AÇIKOLEJİ_BFC9FE",
@@ -369,7 +413,8 @@
       "name": "AÇI KOLEJİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "8. GRUP"
+      "groupName": "8. GRUP",
+      "clubId": null
     },
     {
       "id": "ADANABŞEHİRBLD_8742E2",
@@ -377,7 +422,8 @@
       "name": "ADANA B.ŞEHİR BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "13. GRUP"
+      "groupName": "13. GRUP",
+      "clubId": null
     },
     {
       "id": "ADANASPORCUEĞİTİMSPO_A80394",
@@ -385,7 +431,8 @@
       "name": "ADANA SPORCU EĞİTİM SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "13. GRUP"
+      "groupName": "13. GRUP",
+      "clubId": null
     },
     {
       "id": "ADANATDS_87B960",
@@ -393,7 +440,8 @@
       "name": "ADANA T.D.S.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "13. GRUP"
+      "groupName": "13. GRUP",
+      "clubId": null
     },
     {
       "id": "AFYONGENÇLİKSPOR_E3166D",
@@ -401,7 +449,8 @@
       "name": "AFYON GENÇLİK SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "8. GRUP"
+      "groupName": "8. GRUP",
+      "clubId": null
     },
     {
       "id": "AHMETHAMDİTANPINAROR_049D58",
@@ -409,7 +458,8 @@
       "name": "AHMET HAMDİ TANPINAR ORTAOKULU",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "11. GRUP"
+      "groupName": "11. GRUP",
+      "clubId": null
     },
     {
       "id": "AKDENİZBİLGİSPOR_48AC1E",
@@ -417,7 +467,8 @@
       "name": "AKDENİZ BİLGİ SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "8. GRUP"
+      "groupName": "8. GRUP",
+      "clubId": null
     },
     {
       "id": "AKHİSARBLD_0D6D9A",
@@ -425,7 +476,8 @@
       "name": "AKHİSAR BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "6. GRUP"
+      "groupName": "6. GRUP",
+      "clubId": null
     },
     {
       "id": "AKHİSARGÜCÜ_B30E02",
@@ -433,7 +485,8 @@
       "name": "AKHİSAR GÜCÜ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "6. GRUP"
+      "groupName": "6. GRUP",
+      "clubId": null
     },
     {
       "id": "ALKAALTINKANATLAR_28023F",
@@ -441,7 +494,8 @@
       "name": "AL-KA ALTIN KANATLAR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "9. GRUP"
+      "groupName": "9. GRUP",
+      "clubId": null
     },
     {
       "id": "ALPSPOR_C31DB9",
@@ -449,7 +503,8 @@
       "name": "ALP SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "4. GRUP"
+      "groupName": "4. GRUP",
+      "clubId": null
     },
     {
       "id": "ALTAY_F8487E",
@@ -457,7 +512,8 @@
       "name": "ALTAY",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "6. GRUP"
+      "groupName": "6. GRUP",
+      "clubId": null
     },
     {
       "id": "ALTINAYSPOR_5D12B3",
@@ -465,7 +521,8 @@
       "name": "ALTINAY SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "6. GRUP"
+      "groupName": "6. GRUP",
+      "clubId": null
     },
     {
       "id": "ALTINYURT_2FE2DE",
@@ -473,7 +530,8 @@
       "name": "ALTINYURT",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "3. GRUP"
+      "groupName": "3. GRUP",
+      "clubId": null
     },
     {
       "id": "ANKARABAROSU_B9EDB0",
@@ -481,7 +539,8 @@
       "name": "ANKARA BAROSU",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "11. GRUP"
+      "groupName": "11. GRUP",
+      "clubId": null
     },
     {
       "id": "ANKARADSİ_606CEC",
@@ -489,7 +548,8 @@
       "name": "ANKARA DSİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "12. GRUP"
+      "groupName": "12. GRUP",
+      "clubId": "CLUB_ANKARA_DSI"
     },
     {
       "id": "ANTEPİA_FE9CC1",
@@ -497,7 +557,8 @@
       "name": "ANTEPİA",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "15. GRUP"
+      "groupName": "15. GRUP",
+      "clubId": null
     },
     {
       "id": "ARKASSPOR_C4941F",
@@ -505,7 +566,8 @@
       "name": "ARKAS SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "7. GRUP"
+      "groupName": "7. GRUP",
+      "clubId": "CLUB_ARKAS"
     },
     {
       "id": "ARNAVUTKÖYBLD_340423",
@@ -513,7 +575,8 @@
       "name": "ARNAVUTKÖY BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "1. GRUP"
+      "groupName": "1. GRUP",
+      "clubId": null
     },
     {
       "id": "ARSAVEVHATAYVOLEYBOL_52563F",
@@ -521,7 +584,8 @@
       "name": "ARSAVEV HATAY VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "13. GRUP"
+      "groupName": "13. GRUP",
+      "clubId": null
     },
     {
       "id": "ATAOKULSPOR_DE59AC",
@@ -529,7 +593,8 @@
       "name": "ATA OKUL SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "6. GRUP"
+      "groupName": "6. GRUP",
+      "clubId": null
     },
     {
       "id": "ATAŞEHİRKARTALLARI_B93771",
@@ -537,7 +602,8 @@
       "name": "ATAŞEHİR KARTALLARI",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "3. GRUP"
+      "groupName": "3. GRUP",
+      "clubId": null
     },
     {
       "id": "AVRUPAVOLEYBOLGELİŞİ_EBB0EB",
@@ -545,7 +611,8 @@
       "name": "AVRUPA VOLEYBOL GELİŞİM",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "1. GRUP"
+      "groupName": "1. GRUP",
+      "clubId": null
     },
     {
       "id": "AYDINBÜYÜKŞEHİRBELED_6E5808",
@@ -553,7 +620,8 @@
       "name": "AYDIN BÜYÜKŞEHİR BELEDİYESPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "7. GRUP"
+      "groupName": "7. GRUP",
+      "clubId": "CLUB_AYDIN_BSB"
     },
     {
       "id": "BŞEHİRBLDANKARASPOR_09161C",
@@ -561,7 +629,8 @@
       "name": "B.ŞEHİR BLD. ANKARA SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "12. GRUP"
+      "groupName": "12. GRUP",
+      "clubId": null
     },
     {
       "id": "BAHÇELİEVLERBLD_465BB0",
@@ -569,7 +638,8 @@
       "name": "BAHÇELİEVLER BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "2. GRUP"
+      "groupName": "2. GRUP",
+      "clubId": "CLUB_BAHCELIEVLER"
     },
     {
       "id": "BAHÇEŞEHİRKOLEJİDALA_655A70",
@@ -577,7 +647,8 @@
       "name": "BAHÇEŞEHİR KOLEJİ DALAMAN BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "8. GRUP"
+      "groupName": "8. GRUP",
+      "clubId": null
     },
     {
       "id": "BALIKESİRBŞEHİRBLD_183E40",
@@ -585,7 +656,8 @@
       "name": "BALIKESİR B.ŞEHİR BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "5. GRUP"
+      "groupName": "5. GRUP",
+      "clubId": null
     },
     {
       "id": "BALIKESİRDSİ_C3709C",
@@ -593,7 +665,8 @@
       "name": "BALIKESİR DSİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "5. GRUP"
+      "groupName": "5. GRUP",
+      "clubId": "CLUB_ANKARA_DSI"
     },
     {
       "id": "BANDIRMAÇELİKSPOR_1290EB",
@@ -601,7 +674,8 @@
       "name": "BANDIRMA ÇELİK SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "5. GRUP"
+      "groupName": "5. GRUP",
+      "clubId": null
     },
     {
       "id": "BARTINVOLLEYACADEMY_8A2926",
@@ -609,7 +683,8 @@
       "name": "BARTIN VOLLEY ACADEMY",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "10. GRUP"
+      "groupName": "10. GRUP",
+      "clubId": null
     },
     {
       "id": "BAŞAKŞEHİRVOLEYBOL_B99A1B",
@@ -617,7 +692,8 @@
       "name": "BAŞAKŞEHİR VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "2. GRUP"
+      "groupName": "2. GRUP",
+      "clubId": null
     },
     {
       "id": "BAŞKENTADASPOR_A98FF0",
@@ -625,7 +701,8 @@
       "name": "BAŞKENT ADA SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "11. GRUP"
+      "groupName": "11. GRUP",
+      "clubId": null
     },
     {
       "id": "BAŞKENTZİRVE_415094",
@@ -633,7 +710,8 @@
       "name": "BAŞKENT ZİRVE",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "12. GRUP"
+      "groupName": "12. GRUP",
+      "clubId": null
     },
     {
       "id": "BAYBURTGENÇLİKMERKEZ_84399C",
@@ -641,7 +719,8 @@
       "name": "BAYBURT GENÇLİK MERKEZİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "14. GRUP"
+      "groupName": "14. GRUP",
+      "clubId": null
     },
     {
       "id": "BAYRAKLIBLD_06E495",
@@ -649,7 +728,8 @@
       "name": "BAYRAKLI BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "6. GRUP"
+      "groupName": "6. GRUP",
+      "clubId": null
     },
     {
       "id": "BERGAMABLD_78C5F6",
@@ -657,7 +737,8 @@
       "name": "BERGAMA BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "6. GRUP"
+      "groupName": "6. GRUP",
+      "clubId": null
     },
     {
       "id": "BEŞİKDÜZÜ_AC8D83",
@@ -665,7 +746,8 @@
       "name": "BEŞİKDÜZÜ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "14. GRUP"
+      "groupName": "14. GRUP",
+      "clubId": null
     },
     {
       "id": "BEŞİKTAŞNAVIOSA_E497CD",
@@ -673,7 +755,8 @@
       "name": "BEŞİKTAŞ NAVIOSA",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "2. GRUP"
+      "groupName": "2. GRUP",
+      "clubId": "CLUB_BESIKTAS"
     },
     {
       "id": "BEYLİKDÜZÜBEYKENT_0D0EC9",
@@ -681,7 +764,8 @@
       "name": "BEYLİKDÜZÜ BEYKENT",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "1. GRUP"
+      "groupName": "1. GRUP",
+      "clubId": null
     },
     {
       "id": "BİZİMKENTVOLEYBOL_64F474",
@@ -689,7 +773,8 @@
       "name": "BİZİMKENT VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "1. GRUP"
+      "groupName": "1. GRUP",
+      "clubId": null
     },
     {
       "id": "BOLUATATÜRKANADOLULİ_EC4943",
@@ -697,7 +782,8 @@
       "name": "BOLU ATATÜRK ANADOLU LİSESİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "10. GRUP"
+      "groupName": "10. GRUP",
+      "clubId": null
     },
     {
       "id": "BURSABŞEHİRBLD_94A7C3",
@@ -705,7 +791,8 @@
       "name": "BURSA B.ŞEHİR BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "9. GRUP"
+      "groupName": "9. GRUP",
+      "clubId": "CLUB_BURSA_BSB"
     },
     {
       "id": "BURSAFETHİYE1973SPOR_191496",
@@ -713,7 +800,8 @@
       "name": "BURSA FETHİYE 1973 SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "9. GRUP"
+      "groupName": "9. GRUP",
+      "clubId": null
     },
     {
       "id": "BÜYÜKREŞİTPAŞAORTAOK_350B13",
@@ -721,7 +809,8 @@
       "name": "BÜYÜK REŞİTPAŞA ORTAOKULU",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "2. GRUP"
+      "groupName": "2. GRUP",
+      "clubId": null
     },
     {
       "id": "BÜYÜKÇEKMECEVOLEYBOL_32A058",
@@ -729,7 +818,8 @@
       "name": "BÜYÜKÇEKMECE VOLEYBOL AKADEMİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "1. GRUP"
+      "groupName": "1. GRUP",
+      "clubId": null
     },
     {
       "id": "CADENCEBOYAGÖLCÜKİHS_A39E08",
@@ -737,7 +827,8 @@
       "name": "CADENCE BOYA GÖLCÜK İHSANİYE",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "10. GRUP"
+      "groupName": "10. GRUP",
+      "clubId": null
     },
     {
       "id": "CANMİLANATLETİK_4476A3",
@@ -745,7 +836,8 @@
       "name": "CAN MİLAN ATLETİK",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "3. GRUP"
+      "groupName": "3. GRUP",
+      "clubId": null
     },
     {
       "id": "ÇABASPOR_C1284F",
@@ -753,7 +845,8 @@
       "name": "ÇABA SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "12. GRUP"
+      "groupName": "12. GRUP",
+      "clubId": null
     },
     {
       "id": "ÇANKALESPOR_61B85D",
@@ -761,7 +854,8 @@
       "name": "ÇAN KALE SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "5. GRUP"
+      "groupName": "5. GRUP",
+      "clubId": null
     },
     {
       "id": "ÇANAKKALEKEPEZ_0B106F",
@@ -769,7 +863,8 @@
       "name": "ÇANAKKALE KEPEZ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "5. GRUP"
+      "groupName": "5. GRUP",
+      "clubId": null
     },
     {
       "id": "ÇATALCABLD_B979A6",
@@ -777,7 +872,8 @@
       "name": "ÇATALCA BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "1. GRUP"
+      "groupName": "1. GRUP",
+      "clubId": null
     },
     {
       "id": "ÇEKMEKÖYİSTANBULSPOR_589AD5",
@@ -785,7 +881,8 @@
       "name": "ÇEKMEKÖY İSTANBUL SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "4. GRUP"
+      "groupName": "4. GRUP",
+      "clubId": null
     },
     {
       "id": "ÇENGELKÖYVOLEYBOL_549285",
@@ -793,7 +890,8 @@
       "name": "ÇENGELKÖY VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "3. GRUP"
+      "groupName": "3. GRUP",
+      "clubId": null
     },
     {
       "id": "ÇERKEZKÖYVOLEYBOLAKA_883783",
@@ -801,7 +899,8 @@
       "name": "ÇERKEZKÖY VOLEYBOL AKADEMİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "5. GRUP"
+      "groupName": "5. GRUP",
+      "clubId": null
     },
     {
       "id": "ÇORLUBLD_835F2A",
@@ -809,7 +908,8 @@
       "name": "ÇORLU BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "5. GRUP"
+      "groupName": "5. GRUP",
+      "clubId": null
     },
     {
       "id": "ÇORUMARENASPOR_BCA9B1",
@@ -817,7 +917,8 @@
       "name": "ÇORUM ARENA SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "14. GRUP"
+      "groupName": "14. GRUP",
+      "clubId": null
     },
     {
       "id": "ÇORUMVOLEYBOL_CA22C8",
@@ -825,7 +926,8 @@
       "name": "ÇORUM VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "14. GRUP"
+      "groupName": "14. GRUP",
+      "clubId": null
     },
     {
       "id": "DENİZLİBŞEHİRBLD_B60FB6",
@@ -833,7 +935,8 @@
       "name": "DENİZLİ B.ŞEHİR BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "8. GRUP"
+      "groupName": "8. GRUP",
+      "clubId": "CLUB_DENIZLI_BSB"
     },
     {
       "id": "DEVATAŞEHİR_3AAB71",
@@ -841,7 +944,8 @@
       "name": "DEV ATAŞEHİR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "3. GRUP"
+      "groupName": "3. GRUP",
+      "clubId": null
     },
     {
       "id": "DİYARBAKIRVOLEYBOLCU_930B6B",
@@ -849,7 +953,8 @@
       "name": "DİYARBAKIR VOLEYBOLCULAR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "15. GRUP"
+      "groupName": "15. GRUP",
+      "clubId": null
     },
     {
       "id": "DOĞUAKADEMİ_0FA8DA",
@@ -857,7 +962,8 @@
       "name": "DOĞU AKADEMİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "3. GRUP"
+      "groupName": "3. GRUP",
+      "clubId": null
     },
     {
       "id": "DÜZCEVOLEYBOL_F63501",
@@ -865,7 +971,8 @@
       "name": "DÜZCE VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "10. GRUP"
+      "groupName": "10. GRUP",
+      "clubId": null
     },
     {
       "id": "EFORGENÇLİK_A971A1",
@@ -873,7 +980,8 @@
       "name": "EFOR GENÇLİK",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "6. GRUP"
+      "groupName": "6. GRUP",
+      "clubId": null
     },
     {
       "id": "ELAZIĞBLD_324F7D",
@@ -881,7 +989,8 @@
       "name": "ELAZIĞ BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "16. GRUP"
+      "groupName": "16. GRUP",
+      "clubId": null
     },
     {
       "id": "ELİTAKDENİZ_3FC20F",
@@ -889,7 +998,8 @@
       "name": "ELİT AKDENİZ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "8. GRUP"
+      "groupName": "8. GRUP",
+      "clubId": null
     },
     {
       "id": "ENDOKARŞIYAKA_8CE42B",
@@ -897,7 +1007,8 @@
       "name": "ENDO KARŞIYAKA",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "7. GRUP"
+      "groupName": "7. GRUP",
+      "clubId": "CLUB_KARSIYAKA"
     },
     {
       "id": "ENGLISHTIMESPOR_724F9F",
@@ -905,7 +1016,8 @@
       "name": "ENGLISH TIME SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "11. GRUP"
+      "groupName": "11. GRUP",
+      "clubId": null
     },
     {
       "id": "EREĞLİSÜMERSPOR_42FE0E",
@@ -913,7 +1025,8 @@
       "name": "EREĞLİ SÜMER SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "13. GRUP"
+      "groupName": "13. GRUP",
+      "clubId": null
     },
     {
       "id": "ERYAMANGELİŞİM_62E77C",
@@ -921,7 +1034,8 @@
       "name": "ERYAMAN GELİŞİM",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "12. GRUP"
+      "groupName": "12. GRUP",
+      "clubId": null
     },
     {
       "id": "ESKİŞEHİRPEYMANSPOR_42FC94",
@@ -929,7 +1043,8 @@
       "name": "ESKİŞEHİR PEYMAN SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "9. GRUP"
+      "groupName": "9. GRUP",
+      "clubId": null
     },
     {
       "id": "ESKİŞEHİRŞEHİRKOLEJİ_46854A",
@@ -937,7 +1052,8 @@
       "name": "ESKİŞEHİR ŞEHİR KOLEJİ EĞT. KÜLTÜR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "9. GRUP"
+      "groupName": "9. GRUP",
+      "clubId": null
     },
     {
       "id": "ETİMESGUTBLDGELİŞİM_E63AB2",
@@ -945,7 +1061,8 @@
       "name": "ETİMESGUT BLD. GELİŞİM",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "11. GRUP"
+      "groupName": "11. GRUP",
+      "clubId": null
     },
     {
       "id": "EYÜPSULTANBLD_311D79",
@@ -953,7 +1070,8 @@
       "name": "EYÜPSULTAN BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "2. GRUP"
+      "groupName": "2. GRUP",
+      "clubId": null
     },
     {
       "id": "FENERBAHÇEMEDICANA_E6323E",
@@ -961,7 +1079,8 @@
       "name": "FENERBAHÇE MEDICANA",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "4. GRUP"
+      "groupName": "4. GRUP",
+      "clubId": "CLUB_FENERBAHCE"
     },
     {
       "id": "FETHİYEVOLEYBOL_CDA02D",
@@ -969,7 +1088,8 @@
       "name": "FETHİYE VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "8. GRUP"
+      "groupName": "8. GRUP",
+      "clubId": null
     },
     {
       "id": "FIRATÖZKAN_33828C",
@@ -977,7 +1097,8 @@
       "name": "FIRAT ÖZKAN",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "15. GRUP"
+      "groupName": "15. GRUP",
+      "clubId": null
     },
     {
       "id": "FORZASPOR_53611C",
@@ -985,7 +1106,8 @@
       "name": "FORZA SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "6. GRUP"
+      "groupName": "6. GRUP",
+      "clubId": null
     },
     {
       "id": "GALATASARAY_F06D8C",
@@ -993,7 +1115,8 @@
       "name": "GALATASARAY",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "3. GRUP"
+      "groupName": "3. GRUP",
+      "clubId": "CLUB_GALATASARAY"
     },
     {
       "id": "GAZİANTEPBLD_B516C9",
@@ -1001,7 +1124,8 @@
       "name": "GAZİANTEP BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "15. GRUP"
+      "groupName": "15. GRUP",
+      "clubId": null
     },
     {
       "id": "GAZİEMİRBLD_F2F9CB",
@@ -1009,7 +1133,8 @@
       "name": "GAZİEMİR BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "7. GRUP"
+      "groupName": "7. GRUP",
+      "clubId": null
     },
     {
       "id": "GEBZEGENÇLİKVESPOR_E941F1",
@@ -1017,7 +1142,8 @@
       "name": "GEBZE GENÇLİK VE SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "10. GRUP"
+      "groupName": "10. GRUP",
+      "clubId": null
     },
     {
       "id": "GELİŞİMKOLEJİ_DE31D7",
@@ -1025,7 +1151,8 @@
       "name": "GELİŞİM KOLEJİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "7. GRUP"
+      "groupName": "7. GRUP",
+      "clubId": null
     },
     {
       "id": "GEMLİKİSTİKLALSPOR_528393",
@@ -1033,7 +1160,8 @@
       "name": "GEMLİK İSTİKLAL SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "9. GRUP"
+      "groupName": "9. GRUP",
+      "clubId": null
     },
     {
       "id": "GÖLBAŞIİNCEKSPOR_9697A3",
@@ -1041,7 +1169,8 @@
       "name": "GÖLBAŞI İNCEK SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "11. GRUP"
+      "groupName": "11. GRUP",
+      "clubId": null
     },
     {
       "id": "GÖZTEPE_FE6189",
@@ -1049,7 +1178,8 @@
       "name": "GÖZTEPE",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "6. GRUP"
+      "groupName": "6. GRUP",
+      "clubId": "CLUB_GOZTEPE"
     },
     {
       "id": "GÜNGÖRENVOLEYBOL_6DBFD7",
@@ -1057,7 +1187,8 @@
       "name": "GÜNGÖREN VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "2. GRUP"
+      "groupName": "2. GRUP",
+      "clubId": null
     },
     {
       "id": "GÜRALPREMIERANTALYAS_92C711",
@@ -1065,7 +1196,8 @@
       "name": "GÜRAL PREMIER ANTALYASPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "8. GRUP"
+      "groupName": "8. GRUP",
+      "clubId": null
     },
     {
       "id": "HAKANAKIŞIKSPOR_38CC89",
@@ -1073,7 +1205,8 @@
       "name": "HAKAN AKIŞIK SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "11. GRUP"
+      "groupName": "11. GRUP",
+      "clubId": null
     },
     {
       "id": "HAKKARİMAEMTAL_598095",
@@ -1081,7 +1214,8 @@
       "name": "HAKKARİ MAEMTAL",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "16. GRUP"
+      "groupName": "16. GRUP",
+      "clubId": null
     },
     {
       "id": "HAKKARİSPORTİFFAALİY_60C78E",
@@ -1089,7 +1223,8 @@
       "name": "HAKKARİ SPORTİF FAALİYETLER",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "16. GRUP"
+      "groupName": "16. GRUP",
+      "clubId": null
     },
     {
       "id": "HARPUTLAHMACUNYAHYAK_C8E161",
@@ -1097,7 +1232,8 @@
       "name": "HARPUT LAHMACUN YAHYA KAPTAN",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "10. GRUP"
+      "groupName": "10. GRUP",
+      "clubId": null
     },
     {
       "id": "HEDEFANKARA_433D0E",
@@ -1105,7 +1241,8 @@
       "name": "HEDEF ANKARA",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "12. GRUP"
+      "groupName": "12. GRUP",
+      "clubId": null
     },
     {
       "id": "HEKİMOĞLUGLOBALCONNE_55E097",
@@ -1113,7 +1250,8 @@
       "name": "HEKİMOĞLU GLOBAL CONNECT TRAVEL BVİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "9. GRUP"
+      "groupName": "9. GRUP",
+      "clubId": null
     },
     {
       "id": "HOCAAHMETYESEVİANADO_A6483E",
@@ -1121,7 +1259,8 @@
       "name": "HOCA AHMET YESEVİ ANADOLU L. ES VOLEYBOL AKADEMİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "9. GRUP"
+      "groupName": "9. GRUP",
+      "clubId": null
     },
     {
       "id": "HOPABELEDİYE_B55796",
@@ -1129,7 +1268,8 @@
       "name": "HOPA BELEDİYE",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "14. GRUP"
+      "groupName": "14. GRUP",
+      "clubId": null
     },
     {
       "id": "ISPARTAGENÇLİKSPOR_FC462B",
@@ -1137,7 +1277,8 @@
       "name": "ISPARTA GENÇLİK SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "8. GRUP"
+      "groupName": "8. GRUP",
+      "clubId": null
     },
     {
       "id": "İLBANK_A250F5",
@@ -1145,7 +1286,8 @@
       "name": "İLBANK",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "11. GRUP"
+      "groupName": "11. GRUP",
+      "clubId": "CLUB_ILBANK"
     },
     {
       "id": "İSTANBULBİZİMKENTSPO_1F5D70",
@@ -1153,7 +1295,8 @@
       "name": "İSTANBUL BİZİMKENT SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "1. GRUP"
+      "groupName": "1. GRUP",
+      "clubId": null
     },
     {
       "id": "İZMİRBŞEHIRBLD_591CA3",
@@ -1161,7 +1304,8 @@
       "name": "İZMİR B.ŞEHIR BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "7. GRUP"
+      "groupName": "7. GRUP",
+      "clubId": null
     },
     {
       "id": "İZMİRDSİ_021412",
@@ -1169,7 +1313,8 @@
       "name": "İZMİR DSİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "7. GRUP"
+      "groupName": "7. GRUP",
+      "clubId": "CLUB_ANKARA_DSI"
     },
     {
       "id": "İZMİTSPOR_7D00C1",
@@ -1177,7 +1322,8 @@
       "name": "İZMİT SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "10. GRUP"
+      "groupName": "10. GRUP",
+      "clubId": null
     },
     {
       "id": "KAMARİNSPOR_379EE3",
@@ -1185,7 +1331,8 @@
       "name": "KAMARİN SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "4. GRUP"
+      "groupName": "4. GRUP",
+      "clubId": null
     },
     {
       "id": "KARABÜKGENÇLİKSPOR_F6B427",
@@ -1193,7 +1340,8 @@
       "name": "KARABÜK GENÇLİK SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "10. GRUP"
+      "groupName": "10. GRUP",
+      "clubId": null
     },
     {
       "id": "KARTALANADOLU_40573D",
@@ -1201,7 +1349,8 @@
       "name": "KARTAL ANADOLU",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "4. GRUP"
+      "groupName": "4. GRUP",
+      "clubId": null
     },
     {
       "id": "KARTALBLD_8558A7",
@@ -1209,7 +1358,8 @@
       "name": "KARTAL BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "4. GRUP"
+      "groupName": "4. GRUP",
+      "clubId": null
     },
     {
       "id": "KAVAKSPOR_8E3BEA",
@@ -1217,7 +1367,8 @@
       "name": "KAVAK SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "12. GRUP"
+      "groupName": "12. GRUP",
+      "clubId": null
     },
     {
       "id": "KAYSERİCİMNASTİKSPOR_9FDA98",
@@ -1225,7 +1376,8 @@
       "name": "KAYSERİ CİMNASTİK SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "15. GRUP"
+      "groupName": "15. GRUP",
+      "clubId": null
     },
     {
       "id": "KAYSERİVOLEYBOL_6536C2",
@@ -1233,7 +1385,8 @@
       "name": "KAYSERİ VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "15. GRUP"
+      "groupName": "15. GRUP",
+      "clubId": null
     },
     {
       "id": "KIRKLARELİGENÇLİKSPO_460251",
@@ -1241,7 +1394,8 @@
       "name": "KIRKLARELİ GENÇLİK SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "5. GRUP"
+      "groupName": "5. GRUP",
+      "clubId": null
     },
     {
       "id": "KOCAELİNİCOMEDİAAKAD_99F257",
@@ -1249,7 +1403,8 @@
       "name": "KOCAELİ NİCOMEDİA AKADEMİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "10. GRUP"
+      "groupName": "10. GRUP",
+      "clubId": null
     },
     {
       "id": "KOCAELİVOLEYBOLAKADE_B59FC7",
@@ -1257,7 +1412,8 @@
       "name": "KOCAELİ VOLEYBOL AKADEMİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "10. GRUP"
+      "groupName": "10. GRUP",
+      "clubId": null
     },
     {
       "id": "KUZEYYILDIZLARI_43C34D",
@@ -1265,7 +1421,8 @@
       "name": "KUZEY YILDIZLARI",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "4. GRUP"
+      "groupName": "4. GRUP",
+      "clubId": null
     },
     {
       "id": "KÜÇÜKÇEKMECEVOLEYBOL_73D1D3",
@@ -1273,7 +1430,8 @@
       "name": "KÜÇÜKÇEKMECE VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "1. GRUP"
+      "groupName": "1. GRUP",
+      "clubId": null
     },
     {
       "id": "KZYSPOR_73EDB5",
@@ -1281,7 +1439,8 @@
       "name": "KZY SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "6. GRUP"
+      "groupName": "6. GRUP",
+      "clubId": null
     },
     {
       "id": "LANUEVAKOZMETİKANADO_A7878F",
@@ -1289,7 +1448,8 @@
       "name": "LANUEVA KOZMETİK ANADOLU MARMARA",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "3. GRUP"
+      "groupName": "3. GRUP",
+      "clubId": null
     },
     {
       "id": "MAÇSAYISI_A0BAA4",
@@ -1297,7 +1457,8 @@
       "name": "MAÇ SAYISI",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "3. GRUP"
+      "groupName": "3. GRUP",
+      "clubId": null
     },
     {
       "id": "MALATYAVOLEYBOL_0BE2B0",
@@ -1305,7 +1466,8 @@
       "name": "MALATYA VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "16. GRUP"
+      "groupName": "16. GRUP",
+      "clubId": null
     },
     {
       "id": "MARGENÇ_916FDB",
@@ -1313,7 +1475,8 @@
       "name": "MARGENÇ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "16. GRUP"
+      "groupName": "16. GRUP",
+      "clubId": null
     },
     {
       "id": "MARMARİSBLD_F5BB56",
@@ -1321,7 +1484,8 @@
       "name": "MARMARİS BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "8. GRUP"
+      "groupName": "8. GRUP",
+      "clubId": null
     },
     {
       "id": "MEDIAFIRSTAYVALIKGEL_253CC0",
@@ -1329,7 +1493,8 @@
       "name": "MEDIA FIRST AYVALIK GELİŞİM SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "5. GRUP"
+      "groupName": "5. GRUP",
+      "clubId": null
     },
     {
       "id": "MEHMETEGEİNŞAATİNEGÖ_36338A",
@@ -1337,7 +1502,8 @@
       "name": "MEHMET EGE İNŞAAT İNEGÖL ORHANİYE VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "9. GRUP"
+      "groupName": "9. GRUP",
+      "clubId": null
     },
     {
       "id": "MEHMETERDEMMARMARAAK_E88C4E",
@@ -1345,7 +1511,8 @@
       "name": "MEHMET ERDEM MARMARA AKADEMİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "4. GRUP"
+      "groupName": "4. GRUP",
+      "clubId": null
     },
     {
       "id": "MERİNOSVOLEYBOL_CBD4F6",
@@ -1353,7 +1520,8 @@
       "name": "MERİNOS VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "15. GRUP"
+      "groupName": "15. GRUP",
+      "clubId": "CLUB_MERINOS"
     },
     {
       "id": "MGSPOR_680D97",
@@ -1361,7 +1529,8 @@
       "name": "MG SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "9. GRUP"
+      "groupName": "9. GRUP",
+      "clubId": null
     },
     {
       "id": "MISIROĞLUBEYTEPE_C75EE6",
@@ -1369,7 +1538,8 @@
       "name": "MISIROĞLU BEYTEPE",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "12. GRUP"
+      "groupName": "12. GRUP",
+      "clubId": null
     },
     {
       "id": "MKEANKARAGÜCÜ_3BF495",
@@ -1377,7 +1547,8 @@
       "name": "MKE ANKARAGÜCÜ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "12. GRUP"
+      "groupName": "12. GRUP",
+      "clubId": null
     },
     {
       "id": "MUŞOLİMPİKSPOR_F6961B",
@@ -1385,7 +1556,8 @@
       "name": "MUŞ OLİMPİK SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "16. GRUP"
+      "groupName": "16. GRUP",
+      "clubId": null
     },
     {
       "id": "NİCERHOTELVOLEYBOL_18543F",
@@ -1393,7 +1565,8 @@
       "name": "NİCER HOTEL VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "16. GRUP"
+      "groupName": "16. GRUP",
+      "clubId": null
     },
     {
       "id": "NİLÜFERBLD_078DCC",
@@ -1401,7 +1574,8 @@
       "name": "NİLÜFER BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "9. GRUP"
+      "groupName": "9. GRUP",
+      "clubId": "CLUB_NILUFER"
     },
     {
       "id": "OKURALOJİSTİKMERSİNİ_D20CDF",
@@ -1409,7 +1583,8 @@
       "name": "OKURA LOJİSTİK MERSİN İHTİSAS",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "13. GRUP"
+      "groupName": "13. GRUP",
+      "clubId": null
     },
     {
       "id": "OSMANCIKBLD_0703C1",
@@ -1417,7 +1592,8 @@
       "name": "OSMANCIK BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "14. GRUP"
+      "groupName": "14. GRUP",
+      "clubId": null
     },
     {
       "id": "POLATGROUPDİDİMBELED_6AEF55",
@@ -1425,7 +1601,8 @@
       "name": "POLAT GROUP DİDİM BELEDİYESPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "7. GRUP"
+      "groupName": "7. GRUP",
+      "clubId": null
     },
     {
       "id": "POLATLIDUATEPE_69A48E",
@@ -1433,7 +1610,8 @@
       "name": "POLATLI DUATEPE",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "12. GRUP"
+      "groupName": "12. GRUP",
+      "clubId": null
     },
     {
       "id": "PTT_8A836B",
@@ -1441,7 +1619,8 @@
       "name": "PTT",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "11. GRUP"
+      "groupName": "11. GRUP",
+      "clubId": "CLUB_PTT"
     },
     {
       "id": "RİZEENDÜSTRİMESLEKLİ_0CB40B",
@@ -1449,7 +1628,8 @@
       "name": "RİZE ENDÜSTRİ MESLEK LİSESİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "14. GRUP"
+      "groupName": "14. GRUP",
+      "clubId": null
     },
     {
       "id": "ROBERTEAM_A79F43",
@@ -1457,7 +1637,8 @@
       "name": "ROBERTEAM",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "2. GRUP"
+      "groupName": "2. GRUP",
+      "clubId": null
     },
     {
       "id": "ROTAKOLEJİ_64F899",
@@ -1465,7 +1646,8 @@
       "name": "ROTA KOLEJİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "7. GRUP"
+      "groupName": "7. GRUP",
+      "clubId": null
     },
     {
       "id": "SEMTASANSÖRBORDOMAVİ_E3CE93",
@@ -1473,7 +1655,8 @@
       "name": "SEMT ASANSÖR BORDO MAVİ 61",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "14. GRUP"
+      "groupName": "14. GRUP",
+      "clubId": null
     },
     {
       "id": "SERDİVANBLD_09CFB9",
@@ -1481,7 +1664,8 @@
       "name": "SERDİVAN BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "10. GRUP"
+      "groupName": "10. GRUP",
+      "clubId": null
     },
     {
       "id": "SEYHANBLD_CD697B",
@@ -1489,7 +1673,8 @@
       "name": "SEYHAN BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "13. GRUP"
+      "groupName": "13. GRUP",
+      "clubId": null
     },
     {
       "id": "SINAVKOLEJİSAMSUNSPO_E6AAD0",
@@ -1497,7 +1682,8 @@
       "name": "SINAV KOLEJİ SAMSUNSPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "14. GRUP"
+      "groupName": "14. GRUP",
+      "clubId": null
     },
     {
       "id": "SİBANETKOZANİMAMOĞLU_6E7FED",
@@ -1505,7 +1691,8 @@
       "name": "SİBANET KOZAN İMAMOĞLU SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "13. GRUP"
+      "groupName": "13. GRUP",
+      "clubId": null
     },
     {
       "id": "SİLİVRİÇAĞRIBEY_496BBC",
@@ -1513,7 +1700,8 @@
       "name": "SİLİVRİ ÇAĞRIBEY",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "1. GRUP"
+      "groupName": "1. GRUP",
+      "clubId": null
     },
     {
       "id": "SİLOPİBLDSPORTİFFAAL_0C677A",
@@ -1521,7 +1709,8 @@
       "name": "SİLOPİ BLD. SPORTİF FAALİYETLER",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "16. GRUP"
+      "groupName": "16. GRUP",
+      "clubId": null
     },
     {
       "id": "SİLOPİGELİŞİMFAALİYE_1ECF04",
@@ -1529,7 +1718,8 @@
       "name": "SİLOPİ GELİŞİM FAALİYETLERİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "16. GRUP"
+      "groupName": "16. GRUP",
+      "clubId": null
     },
     {
       "id": "SİVASTOPRAKGAYRİMENK_44C436",
@@ -1537,7 +1727,8 @@
       "name": "SİVAS TOPRAK GAYRİMENKUL PARS AKADEMİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "15. GRUP"
+      "groupName": "15. GRUP",
+      "clubId": null
     },
     {
       "id": "SMAÇSPOR_CA7776",
@@ -1545,7 +1736,8 @@
       "name": "SMAÇ SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "1. GRUP"
+      "groupName": "1. GRUP",
+      "clubId": null
     },
     {
       "id": "SMARTHOLDINGAŞÇAYELI_B3F3C9",
@@ -1553,7 +1745,8 @@
       "name": "SMART HOLDING A.Ş. ÇAYELI",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "14. GRUP"
+      "groupName": "14. GRUP",
+      "clubId": null
     },
     {
       "id": "SÖKEBELEDİYESALDOSVO_5FB81A",
@@ -1561,7 +1754,8 @@
       "name": "SÖKE BELEDİYE SALDOS VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "7. GRUP"
+      "groupName": "7. GRUP",
+      "clubId": null
     },
     {
       "id": "SUPERPOOLFINDIKLI197_B7D248",
@@ -1569,7 +1763,8 @@
       "name": "SUPERPOOL FINDIKLI 1974",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "14. GRUP"
+      "groupName": "14. GRUP",
+      "clubId": null
     },
     {
       "id": "TARSUSAMERİKANKOLEJİ_EF545D",
@@ -1577,7 +1772,8 @@
       "name": "TARSUS AMERİKAN KOLEJİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "13. GRUP"
+      "groupName": "13. GRUP",
+      "clubId": null
     },
     {
       "id": "TEDANKARAKOLEJLİLER_2D5172",
@@ -1585,7 +1781,8 @@
       "name": "TED ANKARA KOLEJLİLER",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "12. GRUP"
+      "groupName": "12. GRUP",
+      "clubId": null
     },
     {
       "id": "TEKMETALSPORTİF_AE72E6",
@@ -1593,7 +1790,8 @@
       "name": "TEK METAL SPORTİF",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "11. GRUP"
+      "groupName": "11. GRUP",
+      "clubId": null
     },
     {
       "id": "TEKİRDAĞVOLEYBOLİHTİ_654418",
@@ -1601,7 +1799,8 @@
       "name": "TEKİRDAĞ VOLEYBOL İHTİSAS",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "5. GRUP"
+      "groupName": "5. GRUP",
+      "clubId": null
     },
     {
       "id": "TEMİZENERJİBIRLİĞİ_E7FE8F",
@@ -1609,7 +1808,8 @@
       "name": "TEMİZ ENERJİ BIRLİĞİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "11. GRUP"
+      "groupName": "11. GRUP",
+      "clubId": null
     },
     {
       "id": "TOROSÜNIVERSİTESİVOL_8561B6",
@@ -1617,7 +1817,8 @@
       "name": "TOROS ÜNIVERSİTESİ VOLGEM",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "13. GRUP"
+      "groupName": "13. GRUP",
+      "clubId": null
     },
     {
       "id": "TOROSLARBLD_27C930",
@@ -1625,7 +1826,8 @@
       "name": "TOROSLAR BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "13. GRUP"
+      "groupName": "13. GRUP",
+      "clubId": null
     },
     {
       "id": "TOYZZSHOPDİNAMOSPOR_3CD024",
@@ -1633,7 +1835,8 @@
       "name": "TOYZZ SHOP DİNAMO SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "4. GRUP"
+      "groupName": "4. GRUP",
+      "clubId": null
     },
     {
       "id": "TURGUTLUBLDKÜLTÜRSAN_870C0D",
@@ -1641,7 +1844,8 @@
       "name": "TURGUTLU BLD. KÜLTÜR SANAT",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "6. GRUP"
+      "groupName": "6. GRUP",
+      "clubId": null
     },
     {
       "id": "TUZLAMERCAN_4E96C1",
@@ -1649,7 +1853,8 @@
       "name": "TUZLA MERCAN",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "4. GRUP"
+      "groupName": "4. GRUP",
+      "clubId": null
     },
     {
       "id": "TÜRKHAVAYOLLARI_3E2BC1",
@@ -1657,7 +1862,8 @@
       "name": "TÜRK HAVA YOLLARI",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "1. GRUP"
+      "groupName": "1. GRUP",
+      "clubId": "CLUB_THY"
     },
     {
       "id": "TÜRKOĞLUSPORKULÜBÜ_80E381",
@@ -1665,7 +1871,8 @@
       "name": "TÜRKOĞLU SPOR KULÜBÜ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "6. GRUP"
+      "groupName": "6. GRUP",
+      "clubId": null
     },
     {
       "id": "TVFSPORLİSESİ_8B1177",
@@ -1673,7 +1880,8 @@
       "name": "TVF SPOR LİSESİ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "11. GRUP"
+      "groupName": "11. GRUP",
+      "clubId": null
     },
     {
       "id": "UYSALLAROTOFETHİYEZİ_CF4466",
@@ -1681,7 +1889,8 @@
       "name": "UYSALLAR OTO FETHİYE ZİRVE",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "8. GRUP"
+      "groupName": "8. GRUP",
+      "clubId": null
     },
     {
       "id": "ÜLKÜSPOR_BE29CD",
@@ -1689,7 +1898,8 @@
       "name": "ÜLKÜ SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "7. GRUP"
+      "groupName": "7. GRUP",
+      "clubId": null
     },
     {
       "id": "ÜNSPED_D88123",
@@ -1697,7 +1907,8 @@
       "name": "ÜNSPED",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "2. GRUP"
+      "groupName": "2. GRUP",
+      "clubId": null
     },
     {
       "id": "VEFA_17A68B",
@@ -1705,7 +1916,8 @@
       "name": "VEFA",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "2. GRUP"
+      "groupName": "2. GRUP",
+      "clubId": null
     },
     {
       "id": "VENÜSSPOR_5ACCC9",
@@ -1713,7 +1925,8 @@
       "name": "VENÜS SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "7. GRUP"
+      "groupName": "7. GRUP",
+      "clubId": null
     },
     {
       "id": "VİRANŞEHİRVOLEYBOL_A9A211",
@@ -1721,7 +1934,8 @@
       "name": "VİRANŞEHİR VOLEYBOL",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "15. GRUP"
+      "groupName": "15. GRUP",
+      "clubId": null
     },
     {
       "id": "VOLKANGÜÇSPOR_D17E4E",
@@ -1729,7 +1943,8 @@
       "name": "VOLKAN GÜÇ SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "7. GRUP"
+      "groupName": "7. GRUP",
+      "clubId": null
     },
     {
       "id": "WORLDMEDICINEATEŞSPO_5F4F78",
@@ -1737,7 +1952,8 @@
       "name": "WORLD MEDICINE ATEŞ SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "3. GRUP"
+      "groupName": "3. GRUP",
+      "clubId": null
     },
     {
       "id": "YALOVAÇİFTLİKKÖYBLD_973B22",
@@ -1745,7 +1961,8 @@
       "name": "YALOVA ÇİFTLİKKÖY BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "9. GRUP"
+      "groupName": "9. GRUP",
+      "clubId": null
     },
     {
       "id": "YEDİDAĞSPOR_F782EF",
@@ -1753,7 +1970,8 @@
       "name": "YEDİDAĞ SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "12. GRUP"
+      "groupName": "12. GRUP",
+      "clubId": null
     },
     {
       "id": "YENİAYLOJİSTİKSARIYE_17E8F8",
@@ -1761,7 +1979,8 @@
       "name": "YENİAY LOJİSTİK SARIYER KONAK SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "2. GRUP"
+      "groupName": "2. GRUP",
+      "clubId": null
     },
     {
       "id": "YEŞİLBAYRAMİÇ_374BDE",
@@ -1769,7 +1988,8 @@
       "name": "YEŞİL BAYRAMİÇ",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "5. GRUP"
+      "groupName": "5. GRUP",
+      "clubId": null
     },
     {
       "id": "YEŞİLYURT_4B08E9",
@@ -1777,7 +1997,8 @@
       "name": "YEŞİLYURT",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "2. GRUP"
+      "groupName": "2. GRUP",
+      "clubId": "CLUB_YESILYURT"
     },
     {
       "id": "YUNUSEMREBLD_9E25B9",
@@ -1785,7 +2006,8 @@
       "name": "YUNUSEMRE BLD.",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "6. GRUP"
+      "groupName": "6. GRUP",
+      "clubId": null
     },
     {
       "id": "ZEUGMAGAZİANTEPSPOR_DAF0C3",
@@ -1793,7 +2015,8 @@
       "name": "ZEUGMA GAZİANTEP SPOR",
       "league": "2LIG",
       "country": "TUR",
-      "groupName": "15. GRUP"
+      "groupName": "15. GRUP",
+      "clubId": null
     },
     {
       "id": "ACARRAROPROSECCODOCC_DF2816",
@@ -1801,7 +2024,8 @@
       "name": "A. Carraro Prosecco DOC CONEGLIANO",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool D"
+      "groupName": "Pool D",
+      "clubId": null
     },
     {
       "id": "ANKARAZERENSPORKULÜB_CA4574",
@@ -1809,7 +2033,8 @@
       "name": "ANKARA Zeren Spor Kulübü",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool D"
+      "groupName": "Pool D",
+      "clubId": "CLUB_ZEREN"
     },
     {
       "id": "CSVOLEIALBABLAJ_8AAB0E",
@@ -1817,7 +2042,8 @@
       "name": "CS Volei Alba BLAJ",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool A"
+      "groupName": "Pool A",
+      "clubId": null
     },
     {
       "id": "DRESDNERSC_48B4E1",
@@ -1825,7 +2051,8 @@
       "name": "DRESDNER SC",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool D"
+      "groupName": "Pool D",
+      "clubId": null
     },
     {
       "id": "ECZACIBASIISTANBUL_BD2664",
@@ -1833,7 +2060,8 @@
       "name": "Eczacibasi ISTANBUL",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool C"
+      "groupName": "Pool C",
+      "clubId": "CLUB_ECZACIBASI"
     },
     {
       "id": "FENERBAHÇEMEDICANAIS_F3A44E",
@@ -1841,7 +2069,8 @@
       "name": "Fenerbahçe Medicana ISTANBUL",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool B"
+      "groupName": "Pool B",
+      "clubId": "CLUB_FENERBAHCE"
     },
     {
       "id": "IGORGORGONZOLANOVARA_4B8546",
@@ -1849,7 +2078,8 @@
       "name": "Igor Gorgonzola NOVARA",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool B"
+      "groupName": "Pool B",
+      "clubId": null
     },
     {
       "id": "KSDEVELOPRESRZESZW_8E4085",
@@ -1857,7 +2087,8 @@
       "name": "KS Developres RZESZÓW",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool E"
+      "groupName": "Pool E",
+      "clubId": null
     },
     {
       "id": "LEVALLOISPARISSAINTC_4B65AA",
@@ -1865,7 +2096,8 @@
       "name": "LEVALLOIS PARIS Saint Cloud",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool E"
+      "groupName": "Pool E",
+      "clubId": null
     },
     {
       "id": "KSCOMMERCECOND_B9ED4A",
@@ -1873,7 +2105,8 @@
       "name": "ŁKS Commercecon ŁÓDŹ",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool D"
+      "groupName": "Pool D",
+      "clubId": null
     },
     {
       "id": "MARITZAPLOVDIV_3A840F",
@@ -1881,7 +2114,8 @@
       "name": "Maritza PLOVDIV",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool E"
+      "groupName": "Pool E",
+      "clubId": null
     },
     {
       "id": "NUMIAVEROVOLLEYMILAN_BAE474",
@@ -1889,7 +2123,8 @@
       "name": "Numia Vero Volley MILANO",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool C"
+      "groupName": "Pool C",
+      "clubId": null
     },
     {
       "id": "OKELEZNIARLAJKOVAC_743E3E",
@@ -1897,7 +2132,8 @@
       "name": "OK Železničar LAJKOVAC",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool C"
+      "groupName": "Pool C",
+      "clubId": null
     },
     {
       "id": "OLYMPIACOSPIRAEUS_02AA62",
@@ -1905,7 +2141,8 @@
       "name": "Olympiacos PIRAEUS",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool C"
+      "groupName": "Pool C",
+      "clubId": null
     },
     {
       "id": "PGEBUDOWLANID_B7159C",
@@ -1913,7 +2150,8 @@
       "name": "PGE Budowlani ŁÓDŹ",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool B"
+      "groupName": "Pool B",
+      "clubId": null
     },
     {
       "id": "SAVINODELBENESCANDIC_CD7C13",
@@ -1921,7 +2159,8 @@
       "name": "Savino Del Bene SCANDICCI",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool A"
+      "groupName": "Pool A",
+      "clubId": null
     },
     {
       "id": "SPORTLISBOAEBENFICA_DF9546",
@@ -1929,7 +2168,8 @@
       "name": "Sport LISBOA e Benfica",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool B"
+      "groupName": "Pool B",
+      "clubId": null
     },
     {
       "id": "SSCPALMBERGSCHWERIN_CB95E7",
@@ -1937,7 +2177,8 @@
       "name": "SSC Palmberg SCHWERIN",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool E"
+      "groupName": "Pool E",
+      "clubId": null
     },
     {
       "id": "VAKIFBANKISTANBUL_F27D00",
@@ -1945,7 +2186,8 @@
       "name": "VakifBank ISTANBUL",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool A"
+      "groupName": "Pool A",
+      "clubId": "CLUB_VAKIFBANK"
     },
     {
       "id": "VOLEROLECANNET_A5CC2F",
@@ -1953,7 +2195,8 @@
       "name": "Volero LE CANNET",
       "league": "CEV_CL",
       "country": null,
-      "groupName": "Pool A"
+      "groupName": "Pool A",
+      "clubId": null
     },
     {
       "id": "ACPAOKTHESSALONIKI_73A5F3",
@@ -1961,7 +2204,8 @@
       "name": "AC PAOK THESSALONIKI",
       "league": "CEV_CUP",
       "country": "GRE",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "ALLIANZMTVSTUTTGART_0EC839",
@@ -1969,7 +2213,8 @@
       "name": "Allianz MTV STUTTGART",
       "league": "CEV_CUP",
       "country": "GER",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "ASTERIXAVOBEVEREN_3A33B9",
@@ -1977,7 +2222,8 @@
       "name": "Asterix Avo BEVEREN",
       "league": "CEV_CUP",
       "country": "BEL",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "AVARCADEMENORCA_BC8517",
@@ -1985,7 +2231,8 @@
       "name": "Avarca de MENORCA",
       "league": "CEV_CUP",
       "country": "ESP",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "BKSBOSTIKBIELSKOBIAA_FC5C28",
@@ -1993,7 +2240,8 @@
       "name": "BKS Bostik BIELSKO-BIAŁA",
       "league": "CEV_CUP",
       "country": "POL",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "CSOVOLUNTARI2005_782C00",
@@ -2001,7 +2249,8 @@
       "name": "C.S.O. VOLUNTARI 2005",
       "league": "CEV_CUP",
       "country": "ROU",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "CDHEIDELBERGLASPALMA_F4B6E6",
@@ -2009,7 +2258,8 @@
       "name": "CD Heidelberg LAS PALMAS",
       "league": "CEV_CUP",
       "country": "ESP",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "DARTABEVOROESELARE_417D2B",
@@ -2017,7 +2267,8 @@
       "name": "Darta Bevo ROESELARE",
       "league": "CEV_CUP",
       "country": "BEL",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "DINAMOBUCURESTI_1E4157",
@@ -2025,7 +2276,8 @@
       "name": "Dinamo BUCURESTI",
       "league": "CEV_CUP",
       "country": "ROU",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "DUKLALIBEREC_778B61",
@@ -2033,7 +2285,8 @@
       "name": "Dukla LIBEREC",
       "league": "CEV_CUP",
       "country": "CZE",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "FCPORTO_FDD815",
@@ -2041,7 +2294,8 @@
       "name": "FC PORTO",
       "league": "CEV_CUP",
       "country": "POR",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "GALATASARAYDAIKINIST_C32C2E",
@@ -2049,7 +2303,8 @@
       "name": "Galatasaray Daikin ISTANBUL",
       "league": "CEV_CUP",
       "country": "TUR",
-      "groupName": null
+      "groupName": null,
+      "clubId": "CLUB_GALATASARAY"
     },
     {
       "id": "JANTAVOLEJKISELAVODA_08FC49",
@@ -2057,7 +2312,8 @@
       "name": "Janta Volej KISELA VODA",
       "league": "CEV_CUP",
       "country": "MKD",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "MBHBKSCSABA_7C01BD",
@@ -2065,7 +2321,8 @@
       "name": "MBH - BÉKÉSCSABA",
       "league": "CEV_CUP",
       "country": "HUN",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "MLADOSTZAGREB_356A91",
@@ -2073,7 +2330,8 @@
       "name": "Mladost ZAGREB",
       "league": "CEV_CUP",
       "country": "CRO",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "MOYARADOMKARADOM_0E2A1E",
@@ -2081,7 +2339,8 @@
       "name": "MOYA Radomka RADOM",
       "league": "CEV_CUP",
       "country": "POL",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "OKDINAMOZAGREB_F14AD7",
@@ -2089,7 +2348,8 @@
       "name": "OK Dinamo ZAGREB",
       "league": "CEV_CUP",
       "country": "CRO",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "OTPBANKABRANIKMARIBO_87FC33",
@@ -2097,7 +2357,8 @@
       "name": "OTP Banka Branik MARIBOR",
       "league": "CEV_CUP",
       "country": "SLO",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "REALEMUTUAFENERACHIE_C1330D",
@@ -2105,7 +2366,8 @@
       "name": "Reale Mutua Fenera CHIERI'76",
       "league": "CEV_CUP",
       "country": "ITA",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "SPORTINGCPLISBOA_DBDFE2",
@@ -2113,7 +2375,8 @@
       "name": "Sporting CP LISBOA",
       "league": "CEV_CUP",
       "country": "POR",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "TENTOBRENOVAC_218E0A",
@@ -2121,7 +2384,8 @@
       "name": "Tent OBRENOVAC",
       "league": "CEV_CUP",
       "country": "SRB",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "THYISTANBUL_D3D381",
@@ -2129,7 +2393,8 @@
       "name": "THY ISTANBUL",
       "league": "CEV_CUP",
       "country": "TUR",
-      "groupName": null
+      "groupName": null,
+      "clubId": "CLUB_THY"
     },
     {
       "id": "VANDOEUVRENANCYVB_7B50A2",
@@ -2137,7 +2402,8 @@
       "name": "Vandoeuvre NANCY VB",
       "league": "CEV_CUP",
       "country": "FRA",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "VASASBUDABUDAPEST_A45ABA",
@@ -2145,7 +2411,8 @@
       "name": "Vasas Óbuda BUDAPEST",
       "league": "CEV_CUP",
       "country": "HUN",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "VFBSUHLTHÜRINGEN_292F8D",
@@ -2153,7 +2420,8 @@
       "name": "VfB SUHL Thüringen",
       "league": "CEV_CUP",
       "country": "GER",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "VITEOSNEUCHATELUC_4AA5D9",
@@ -2161,7 +2429,8 @@
       "name": "Viteos NEUCHATEL UC",
       "league": "CEV_CUP",
       "country": "SUI",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "VKUPOLOMOUC_334CB7",
@@ -2169,7 +2438,8 @@
       "name": "VK UP OLOMOUC",
       "league": "CEV_CUP",
       "country": "CZE",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "VOLLEYMULHOUSEALSACE_C7D93B",
@@ -2177,7 +2447,8 @@
       "name": "Volley MULHOUSE Alsace",
       "league": "CEV_CUP",
       "country": "FRA",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "OKGACKORDSWISSLION_3A28C9",
@@ -2185,7 +2456,8 @@
       "name": "ŽOK GACKO RD Swisslion",
       "league": "CEV_CUP",
       "country": "BIH",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "OKRIBOLAKATELA_B5BCAB",
@@ -2193,7 +2465,8 @@
       "name": "ŽOK Ribola KAŠTELA",
       "league": "CEV_CUP",
       "country": "CRO",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "ZOKUB_28221B",
@@ -2201,7 +2474,8 @@
       "name": "ZOK UB",
       "league": "CEV_CUP",
       "country": "SRB",
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "AEKATHENS_66CD30",
@@ -2209,7 +2483,8 @@
       "name": "AEK ATHENS",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "AEKATHENSGRE_720B10",
@@ -2217,7 +2492,8 @@
       "name": "AEK ATHENS GRE",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "AOTHIRAS_513593",
@@ -2225,7 +2501,8 @@
       "name": "AO THIRAS",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "AOTHIRASGRE_F5D8E1",
@@ -2233,7 +2510,8 @@
       "name": "AO THIRAS GRE",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "BUDUCNOSTPODGORICA_4B268F",
@@ -2241,7 +2519,8 @@
       "name": "Buducnost PODGORICA",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "BUDUCNOSTPODGORICAMN_716AAB",
@@ -2249,7 +2528,8 @@
       "name": "Buducnost PODGORICA MNE",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "CSMLUGOJ_FA79AB",
@@ -2257,7 +2537,8 @@
       "name": "C.S.M LUGOJ",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "CSMLUGOJROU_D2CE73",
@@ -2265,7 +2546,8 @@
       "name": "C.S.M LUGOJ ROU",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "DRAISMADYNAMOAPELDOO_58D452",
@@ -2273,7 +2555,8 @@
       "name": "Draisma Dynamo APELDOORN",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "DRAISMADYNAMOAPELDOO_3356CB",
@@ -2281,7 +2564,8 @@
       "name": "Draisma Dynamo APELDOORN NED",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "ERZBERGMTROFAIACHEIS_755FF8",
@@ -2289,7 +2573,8 @@
       "name": "Erzbergm TROFAIACH EISENERZ",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "ERZBERGMTROFAIACHEIS_EA68D4",
@@ -2297,7 +2582,8 @@
       "name": "Erzbergm TROFAIACH EISENERZ AUT",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "FATUMNYREGYHZA_5B4082",
@@ -2305,7 +2591,8 @@
       "name": "Fatum NYÍREGYHÁZA",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "FATUMNYREGYHZAHUN_556337",
@@ -2313,7 +2600,8 @@
       "name": "Fatum NYÍREGYHÁZA HUN",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "FLEYRTRSHAVN_B5F233",
@@ -2321,7 +2609,8 @@
       "name": "Fleyr TÓRSHAVN",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "FLEYRTRSHAVNFAR_B63BFE",
@@ -2329,7 +2618,8 @@
       "name": "Fleyr TÓRSHAVN FAR",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "FRISOSNEEK_88D5F3",
@@ -2337,7 +2627,8 @@
       "name": "Friso SNEEK",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "FRISOSNEEKNED_BBC3F1",
@@ -2345,7 +2636,8 @@
       "name": "Friso SNEEK NED",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "FUNDACINCAJASOLANDAL_49C385",
@@ -2353,7 +2645,8 @@
       "name": "Fundación Cajasol ANDALUCÍA",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "FUNDACINCAJASOLANDAL_0E33EB",
@@ -2361,7 +2654,8 @@
       "name": "Fundación Cajasol ANDALUCÍA ESP",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "GSPANIONIOSNEASMYRNI_567A21",
@@ -2369,7 +2663,8 @@
       "name": "GS Panionios NEA SMYRNI",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "GSPANIONIOSNEASMYRNI_AD29C0",
@@ -2377,7 +2672,8 @@
       "name": "GS Panionios NEA SMYRNI GRE",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "GZOKSREMSREMSKAMITRO_4D8C6D",
@@ -2385,7 +2681,8 @@
       "name": "GZOK Srem SREMSKA MITROVICA",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "GZOKSREMSREMSKAMITRO_F20701",
@@ -2393,7 +2690,8 @@
       "name": "GZOK Srem SREMSKA MITROVICA SRB",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "HOLTEIF_2761ED",
@@ -2401,7 +2699,8 @@
       "name": "HOLTE IF",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "HOLTEIFDEN_647338",
@@ -2409,7 +2708,8 @@
       "name": "HOLTE IF DEN",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "KAUNASVDU_C6D0C7",
@@ -2417,7 +2717,8 @@
       "name": "KAUNAS VDU",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "KAUNASVDULTU_C3F8B8",
@@ -2425,7 +2726,8 @@
       "name": "KAUNAS VDU LTU",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "KVFERVOLLEYFERIZAJ_BE9FCC",
@@ -2433,7 +2735,8 @@
       "name": "KV Fer Volley FERIZAJ",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "KVFERVOLLEYFERIZAJKO_228A0F",
@@ -2441,7 +2744,8 @@
       "name": "KV Fer Volley FERIZAJ KOS",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "LEVSKISOFIA_FDEA1F",
@@ -2449,7 +2753,8 @@
       "name": "Levski SOFIA",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "LEVSKISOFIABUL_9A6C05",
@@ -2457,7 +2762,8 @@
       "name": "Levski SOFIA BUL",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "LPSALO_593563",
@@ -2465,7 +2771,8 @@
       "name": "LP SALO",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "LPSALOFIN_7CA75A",
@@ -2473,7 +2780,8 @@
       "name": "LP SALO FIN",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "NAKOVSKIVOLEJSTRUMIC_D54FAA",
@@ -2481,7 +2789,8 @@
       "name": "Nakovski Volej STRUMICA",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "NAKOVSKIVOLEJSTRUMIC_B0EB60",
@@ -2489,7 +2798,8 @@
       "name": "Nakovski Volej STRUMICA MKD",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "OCISAHARORIOJA_178653",
@@ -2497,7 +2807,8 @@
       "name": "Ocisa HARO Rioja",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "OCISAHARORIOJAESP_DE8F08",
@@ -2505,7 +2816,8 @@
       "name": "Ocisa HARO Rioja ESP",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "OKBRDASPLIT_CB1A2D",
@@ -2513,7 +2825,8 @@
       "name": "OK BRDA SPLIT",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "OKBRDASPLITCRO_0B2045",
@@ -2521,7 +2834,8 @@
       "name": "OK BRDA SPLIT CRO",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "KSYLMYRE_AB144F",
@@ -2529,7 +2843,8 @@
       "name": "Øksyl MYRE",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "KSYLMYRENOR_4FA6C0",
@@ -2537,7 +2852,8 @@
       "name": "Øksyl MYRE NOR",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "OLYMPIADANEAPOLISNIC_9D3C1E",
@@ -2545,7 +2861,8 @@
       "name": "Olympiada Neapolis NICOSIA",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "OLYMPIADANEAPOLISNIC_FB70DF",
@@ -2553,7 +2870,8 @@
       "name": "Olympiada Neapolis NICOSIA CYP",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "RABOTNICKISKOPJE_BC3403",
@@ -2561,7 +2879,8 @@
       "name": "Rabotnicki SKOPJE",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "RABOTNICKISKOPJEMKD_5A7F48",
@@ -2569,7 +2888,8 @@
       "name": "Rabotnicki SKOPJE MKD",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "RAESPORDIKOOLVIASTON_96C6A4",
@@ -2577,7 +2897,8 @@
       "name": "RAE Spordikool Viaston JÜRI",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "RAESPORDIKOOLVIASTON_66A48C",
@@ -2585,7 +2906,8 @@
       "name": "RAE Spordikool Viaston JÜRI EST",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "SCBALTA_04FDE4",
@@ -2593,7 +2915,8 @@
       "name": "SC BALTA",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "SCBALTAUKR_6E5681",
@@ -2601,7 +2924,8 @@
       "name": "SC BALTA UKR",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "TCHALOUCHAPELLELEZHE_9ED227",
@@ -2609,7 +2933,8 @@
       "name": "Tchalou CHAPELLE-LEZ-HERLAIMONT",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "TCHALOUCHAPELLELEZHE_91AA2F",
@@ -2617,7 +2942,8 @@
       "name": "Tchalou CHAPELLE-LEZ-HERLAIMONT BEL",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "TIFVIKINGBERGEN_6E116A",
@@ -2625,7 +2951,8 @@
       "name": "TIF Viking BERGEN",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "TIFVIKINGBERGENNOR_98607E",
@@ -2633,7 +2960,8 @@
       "name": "TIF Viking BERGEN NOR",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "TJOSTRAVA_546715",
@@ -2641,7 +2969,8 @@
       "name": "TJ OSTRAVA",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "TJOSTRAVACZE_05F0BC",
@@ -2649,7 +2978,8 @@
       "name": "TJ OSTRAVA CZE",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "VAUNIZAZILINA_6BD732",
@@ -2657,7 +2987,8 @@
       "name": "VA Uniza ZILINA",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "VAUNIZAZILINASVK_56A58F",
@@ -2665,7 +2996,8 @@
       "name": "VA Uniza ZILINA SVK",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "VBCCHESEAUX_F722C4",
@@ -2673,7 +3005,8 @@
       "name": "VBC CHESEAUX",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "VBCCHESEAUXSUI_B36F51",
@@ -2681,7 +3014,8 @@
       "name": "VBC CHESEAUX SUI",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "VKPIRANEBRUSNO_FDF6CA",
@@ -2689,7 +3023,8 @@
       "name": "VK Pirane BRUSNO",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "VKPIRANEBRUSNOSVK_D27316",
@@ -2697,7 +3032,8 @@
       "name": "VK Pirane BRUSNO SVK",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "VKPROSTEJOV_B1760A",
@@ -2705,7 +3041,8 @@
       "name": "VK PROSTEJOV",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "VKPROSTEJOVCZE_E0254F",
@@ -2713,7 +3050,8 @@
       "name": "VK PROSTEJOV CZE",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "VKSLOVANBRATISLAVA_D9EE31",
@@ -2721,7 +3059,8 @@
       "name": "VK Slovan BRATISLAVA",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "VKSLOVANBRATISLAVASV_BCFE97",
@@ -2729,7 +3068,8 @@
       "name": "VK Slovan BRATISLAVA SVK",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "VOLLEYDÜDINGEN_337032",
@@ -2737,7 +3077,8 @@
       "name": "Volley DÜDINGEN",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "VOLLEYDÜDINGENSUI_AFD153",
@@ -2745,7 +3086,8 @@
       "name": "Volley DÜDINGEN SUI",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "WINNERCHCM6768_6D9BB1",
@@ -2753,7 +3095,8 @@
       "name": "Winner CHCM 67/68",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "WINNERCHCW6970_91B148",
@@ -2761,7 +3104,8 @@
       "name": "Winner CHCW 69/70",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "WINNERCHCW7172_E600A0",
@@ -2769,7 +3113,8 @@
       "name": "Winner CHCW 71/72",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "WINNERCHCW7374_B43212",
@@ -2777,7 +3122,8 @@
       "name": "Winner CHCW 73/74",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "WINNERCHCW7576_CCC588",
@@ -2785,7 +3131,8 @@
       "name": "Winner CHCW 75/76",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "WINNERCHCW7778_9071D2",
@@ -2793,7 +3140,8 @@
       "name": "Winner CHCW 77/78",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "WINNERCHCW7980_5C506F",
@@ -2801,7 +3149,8 @@
       "name": "Winner CHCW 79/80",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "WINNERCHCW8182_6DB1F4",
@@ -2809,7 +3158,8 @@
       "name": "Winner CHCW 81/82",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "WINNERCHCW9192_1EA6A0",
@@ -2817,7 +3167,8 @@
       "name": "Winner CHCW 91/92",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     },
     {
       "id": "WINNERCHCW9394_E329E6",
@@ -2825,7 +3176,9 @@
       "name": "Winner CHCW 93/94",
       "league": "CEV_CHALLENGE",
       "country": null,
-      "groupName": null
+      "groupName": null,
+      "clubId": null
     }
-  ]
+  ],
+  "clubsCount": 23
 }
