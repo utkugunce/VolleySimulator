@@ -209,8 +209,9 @@ export default function AdvancedStatsPage() {
             {/* Team Selectors */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm text-slate-400 mb-2">1. Takım</label>
+                <label htmlFor="team1-select" className="block text-sm text-slate-400 mb-2">1. Takım</label>
                 <select
+                  id="team1-select"
                   value={selectedTeam1}
                   onChange={(e) => setSelectedTeam1(e.target.value)}
                   className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500"
@@ -225,8 +226,9 @@ export default function AdvancedStatsPage() {
               </div>
 
               <div>
-                <label className="block text-sm text-slate-400 mb-2">2. Takım</label>
+                <label htmlFor="team2-select" className="block text-sm text-slate-400 mb-2">2. Takım</label>
                 <select
+                  id="team2-select"
                   value={selectedTeam2}
                   onChange={(e) => setSelectedTeam2(e.target.value)}
                   className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500"
