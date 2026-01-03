@@ -417,7 +417,7 @@ export default function TwoLigCalculatorClient({ initialTeams, initialMatches }:
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-4 relative">
-                        <div ref={standingsRef} className="sticky top-14 z-10">
+                        <div ref={standingsRef} className="sticky top-14 z-10 max-h-[calc(100vh-120px)] overflow-auto custom-scrollbar">
                             <StandingsTable teams={liveStandings} initialRanks={initialRanks} compact={true} />
                         </div>
                     </div>

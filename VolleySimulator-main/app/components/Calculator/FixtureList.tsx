@@ -95,9 +95,14 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
         return null;
     };
 
+    // Helper function for robust isPlayed check
+    const isMatchPlayed = (m: Match) => {
+        return m.isPlayed || (m.homeScore !== undefined && m.homeScore !== null && m.awayScore !== undefined && m.awayScore !== null);
+    };
+
     // Split matches into upcoming and past
-    const upcomingMatches = matches.filter(m => !m.isPlayed);
-    const pastMatches = matches.filter(m => m.isPlayed);
+    const upcomingMatches = matches.filter(m => !isMatchPlayed(m));
+    const pastMatches = matches.filter(m => isMatchPlayed(m));
     const currentMatches = activeTab === 'upcoming' ? upcomingMatches : pastMatches;
 
     // Group matches by date
@@ -193,7 +198,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                     const matchId = `${match.homeTeam}-${match.awayTeam}`;
                                     const currentScore = overrides[matchId];
                                     // ROBUST: Treat as played if isPlayed is true OR scores are present
-                                    const isPlayed = match.isPlayed || (match.homeScore !== undefined && match.homeScore !== null && match.awayScore !== undefined && match.awayScore !== null);
+                                    const isPlayed = isMatchPlayed(match);
 
                                     const homeRank = getTeamRank(match.homeTeam);
                                     const awayRank = getTeamRank(match.awayTeam);
@@ -211,14 +216,12 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                                     : 'bg-slate-800 border-slate-700 hover:border-slate-600'
                                                 }`}
                                         >
-                                            {/* Match Time Badge */}
-                                            {matchTime && (
-                                                <div className="flex justify-center -mt-1 mb-1.5">
-                                                    <span className="text-[9px] font-mono bg-slate-950/80 px-1.5 py-0.5 rounded text-slate-400 border border-slate-800/50">
-                                                        {matchTime}
-                                                    </span>
-                                                </div>
-                                            )}
+                                            {/* Match Time Badge - Always show */}
+                                            <div className="flex justify-center -mt-1 mb-1.5">
+                                                <span className="text-[9px] font-mono bg-slate-950/80 px-1.5 py-0.5 rounded text-slate-400 border border-slate-800/50">
+                                                    {matchTime || '--:--'}
+                                                </span>
+                                            </div>
 
                                             {/* Match Importance Badge */}
                                             {matchImportance && !isPlayed && (

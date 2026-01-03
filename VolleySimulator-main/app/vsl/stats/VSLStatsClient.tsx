@@ -50,24 +50,25 @@ export default function VSLStatsClient({ initialTeams }: VSLStatsClientProps) {
         const maxValue = Math.max(...teams.map(t => Number(t[statKey])), 1);
 
         return (
-            <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 transition-all duration-300 group">
-                <div className={`${gradient} px-4 py-3 border-b border-white/10`}>
-                    <div className="flex items-center justify-between">
-                        <h3 className="font-bold text-white text-sm flex items-center gap-2">
-                            <span className="text-lg">{icon}</span> {title}
+            <div className="bg-slate-950/50 backdrop-blur-md rounded-xl border border-slate-800/60 overflow-hidden hover:border-slate-700/80 transition-all duration-300 group shadow-md hover:shadow-lg">
+                <div className={`${gradient} px-2.5 py-2 border-b border-white/10 relative overflow-hidden`}>
+                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="flex items-center justify-between relative z-10">
+                        <h3 className="font-bold text-white text-[11px] uppercase tracking-wider flex items-center gap-1.5">
+                            <span className="text-sm">{icon}</span> {title}
                         </h3>
-                        <span className="text-xs text-white/60 bg-white/10 px-2 py-0.5 rounded-full">TOP 5</span>
+                        <span className="text-[9px] font-bold text-white/70 bg-black/20 px-1.5 py-0.5 rounded-full border border-white/10">TOP 5</span>
                     </div>
                 </div>
 
-                <div className="p-3 space-y-2">
+                <div className="p-1.5 space-y-1">
                     {teams.map((t, idx) => (
                         <div
                             key={t.name}
-                            className={`flex items-center gap-3 p-2 rounded-xl transition-all ${idx === 0 ? 'bg-gradient-to-r from-red-500/10 to-transparent border border-red-500/20' : 'hover:bg-slate-800/50'
+                            className={`flex items-center gap-2 p-1.5 rounded-lg transition-all ${idx === 0 ? 'bg-gradient-to-r from-red-500/10 to-transparent border border-red-500/20' : 'hover:bg-slate-800/50'
                                 }`}
                         >
-                            <div className={`w-7 h-7 rounded-lg flex items-center justify-center font-bold text-sm ${idx === 0 ? 'bg-gradient-to-br from-red-500 to-rose-600 text-white shadow-lg shadow-red-500/30' :
+                            <div className={`w-5 h-5 rounded flex items-center justify-center font-bold text-[10px] ${idx === 0 ? 'bg-gradient-to-br from-red-500 to-rose-600 text-white shadow-sm' :
                                 idx === 1 ? 'bg-gradient-to-br from-slate-300 to-slate-400 text-slate-800' :
                                     idx === 2 ? 'bg-gradient-to-br from-amber-600 to-amber-700 text-white' :
                                         'bg-slate-800 text-slate-500'
@@ -77,14 +78,14 @@ export default function VSLStatsClient({ initialTeams }: VSLStatsClientProps) {
                             <TeamAvatar name={t.name} size="xs" />
 
                             <div className="flex-1 min-w-0">
-                                <span className={`text-sm font-medium truncate block ${idx === 0 ? 'text-red-300' : 'text-white'}`} title={t.name}>
+                                <span className={`text-[11px] font-medium truncate block ${idx === 0 ? 'text-red-300' : 'text-white'}`} title={t.name}>
                                     {t.name}
                                 </span>
                             </div>
 
-                            <div className="flex items-center gap-2 w-24">
+                            <div className="flex items-center gap-1.5 w-16">
                                 <BarChart value={Number(t[statKey])} max={maxValue} color={color} />
-                                <span className={`text-sm font-bold min-w-[40px] text-right ${idx === 0 ? 'text-red-400' : 'text-slate-300'}`}>
+                                <span className={`text-[11px] font-bold min-w-[28px] text-right ${idx === 0 ? 'text-red-400' : 'text-slate-300'}`}>
                                     {t[statKey]}{suffix}
                                 </span>
                             </div>

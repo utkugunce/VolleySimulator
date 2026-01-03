@@ -140,7 +140,7 @@ export default function TwoLigDetailedGroupsClient({ initialTeams, initialMatche
                             <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2 px-1">
                                 <span>📋</span> Puan Durumu Detayları
                             </h3>
-                            <div className="bg-slate-950/40 rounded-xl overflow-hidden border border-slate-800/50 flex-1">
+                            <div className="bg-slate-950/40 rounded-xl overflow-hidden border border-slate-800/50 flex-1 max-h-[calc(100vh-200px)]">
                                 <StandingsTable teams={groupTeams} playoffSpots={2} relegationSpots={2} compact={true} />
                             </div>
                         </div>

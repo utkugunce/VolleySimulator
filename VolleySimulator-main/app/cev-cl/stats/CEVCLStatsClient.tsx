@@ -49,23 +49,22 @@ export default function CEVCLStatsClient({ initialTeams }: CEVCLStatsClientProps
         const maxValue = Math.max(...teams.map(t => Number(t[statKey])), 1);
 
         return (
-            <div className="bg-slate-950/50 backdrop-blur-md rounded-xl border border-slate-800/60 overflow-hidden hover:border-slate-700/80 transition-all duration-300 group shadow-lg hover:shadow-xl">
-                <div className={`${gradient} px-3 py-2.5 border-b border-white/10 relative overflow-hidden`}>
-                    {/* Gloss effect */}
+            <div className="bg-slate-950/50 backdrop-blur-md rounded-xl border border-slate-800/60 overflow-hidden hover:border-slate-700/80 transition-all duration-300 group shadow-md hover:shadow-lg">
+                <div className={`${gradient} px-2.5 py-2 border-b border-white/10 relative overflow-hidden`}>
                     <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div className="flex items-center justify-between relative z-10">
-                        <h3 className="font-bold text-white text-xs uppercase tracking-wider flex items-center gap-2">
-                            <span className="text-base">{icon}</span> {title}
+                        <h3 className="font-bold text-white text-[11px] uppercase tracking-wider flex items-center gap-1.5">
+                            <span className="text-sm">{icon}</span> {title}
                         </h3>
-                        <span className="text-[10px] font-bold text-white/80 bg-black/20 px-2 py-0.5 rounded-full backdrop-blur-sm border border-white/10">TOP 5</span>
+                        <span className="text-[9px] font-bold text-white/70 bg-black/20 px-1.5 py-0.5 rounded-full border border-white/10">TOP 5</span>
                     </div>
                 </div>
 
-                <div className="p-2 space-y-1.5">
+                <div className="p-1.5 space-y-1">
                     {teams.map((t, idx) => (
                         <div
                             key={t.name}
-                            className={`flex items-center gap-2.5 p-1.5 rounded-lg transition-all ${idx === 0 ? 'bg-gradient-to-r from-white/5 to-transparent border border-white/10' : 'hover:bg-white/5'
+                            className={`flex items-center gap-2 p-1.5 rounded-lg transition-all ${idx === 0 ? 'bg-gradient-to-r from-white/5 to-transparent border border-white/10' : 'hover:bg-white/5'
                                 }`}
                         >
                             <div className={`w-5 h-5 rounded flex items-center justify-center font-bold text-[10px] shadow-sm ${idx === 0 ? 'bg-amber-400 text-amber-950' :
@@ -78,16 +77,16 @@ export default function CEVCLStatsClient({ initialTeams }: CEVCLStatsClientProps
                             <TeamAvatar name={t.name} size="xs" />
 
                             <div className="flex-1 min-w-0">
-                                <span className={`text-xs font-bold truncate block ${idx === 0 ? 'text-white' : 'text-slate-300'}`} title={t.name}>
+                                <span className={`text-[11px] font-bold truncate block ${idx === 0 ? 'text-white' : 'text-slate-300'}`} title={t.name}>
                                     {t.name}
                                 </span>
                             </div>
 
-                            <div className="flex items-center gap-2 w-20 justify-end">
-                                <div className="h-1 bg-slate-800/50 rounded-full overflow-hidden flex-1 max-w-[40px]">
+                            <div className="flex items-center gap-1.5 w-16 justify-end">
+                                <div className="h-1 bg-slate-800/50 rounded-full overflow-hidden flex-1 max-w-[30px]">
                                     <div className={`h-full ${color} opacity-80`} style={{ width: `${Math.min((Number(t[statKey]) / maxValue) * 100, 100)}%` }}></div>
                                 </div>
-                                <span className={`text-xs font-bold min-w-[30px] text-right ${idx === 0 ? 'text-white' : 'text-slate-400'}`}>
+                                <span className={`text-[11px] font-bold min-w-[24px] text-right ${idx === 0 ? 'text-white' : 'text-slate-400'}`}>
                                     {t[statKey]}{suffix}
                                 </span>
                             </div>
