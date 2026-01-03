@@ -1,6 +1,8 @@
 "use client";
 
 import { useRef, useEffect } from 'react';
+import { Button } from "@/components/ui/button";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 interface SwipeableTabsProps {
     tabs: { id: string; label: string }[];
@@ -24,64 +26,46 @@ export default function SwipeableTabs({
     onChange,
     className = ''
 }: SwipeableTabsProps) {
-    const containerRef = useRef<HTMLDivElement>(null);
     const activeTabRef = useRef<HTMLButtonElement>(null);
 
     // Auto-scroll to active tab when it changes
     useEffect(() => {
-        if (activeTabRef.current && containerRef.current) {
-            const container = containerRef.current;
-            const activeElement = activeTabRef.current;
-
-            const containerRect = container.getBoundingClientRect();
-            const elementRect = activeElement.getBoundingClientRect();
-
-            // Check if element is outside visible area
-            const isOutsideLeft = elementRect.left < containerRect.left;
-            const isOutsideRight = elementRect.right > containerRect.right;
-
-            if (isOutsideLeft || isOutsideRight) {
-                activeElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'nearest',
-                    inline: 'center'
-                });
-            }
+        if (activeTabRef.current) {
+            activeTabRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+                inline: 'center'
+            });
         }
     }, [activeTab]);
 
     return (
-        <div
-            ref={containerRef}
-            className={`flex gap-2 overflow-x-auto scrollbar-hide scroll-smooth pb-1 ${className}`}
-            style={{
-                WebkitOverflowScrolling: 'touch',
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none'
-            }}
-        >
-            {tabs.map((tab) => {
-                const isActive = tab.id === activeTab;
+        <ScrollArea className={`w-full ${className}`}>
+            <div className="flex gap-2 pb-3">
+                {tabs.map((tab) => {
+                    const isActive = tab.id === activeTab;
 
-                return (
-                    <button
-                        key={tab.id}
-                        ref={isActive ? activeTabRef : null}
-                        onClick={() => onChange(tab.id)}
-                        className={`
-                            px-4 py-2 rounded-full text-sm font-medium
-                            whitespace-nowrap transition-all duration-200
-                            min-h-[44px] flex-shrink-0
-                            ${isActive
-                                ? 'bg-emerald-700 text-white shadow-lg shadow-emerald-600/30'
-                                : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-slate-200'
-                            }
-                        `}
-                    >
-                        {tab.label}
-                    </button>
-                );
-            })}
-        </div>
+                    return (
+                        <Button
+                            key={tab.id}
+                            ref={isActive ? activeTabRef : null}
+                            onClick={() => onChange(tab.id)}
+                            variant={isActive ? "default" : "secondary"}
+                            size="sm"
+                            className={`
+                                rounded-full whitespace-nowrap min-h-[44px] flex-shrink-0
+                                ${isActive
+                                    ? 'bg-primary text-primary-foreground shadow-lg'
+                                    : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+                                }
+                            `}
+                        >
+                            {tab.label}
+                        </Button>
+                    );
+                })}
+            </div>
+            <ScrollBar orientation="horizontal" />
+        </ScrollArea>
     );
 }

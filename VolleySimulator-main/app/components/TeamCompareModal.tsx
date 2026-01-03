@@ -1,6 +1,12 @@
 "use client";
 
-import { useState } from 'react';
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 interface TeamCompareModalProps {
     isOpen: boolean;
@@ -20,7 +26,7 @@ interface TeamData {
 }
 
 export default function TeamCompareModal({ isOpen, onClose, team1, team2 }: TeamCompareModalProps) {
-    if (!isOpen || !team1 || !team2) return null;
+    if (!team1 || !team2) return null;
 
     const stats: { label: string; key: keyof TeamData; icon: string; inverse?: boolean }[] = [
         { label: 'Oynanan', key: 'played', icon: '🎮' },
@@ -39,26 +45,22 @@ export default function TeamCompareModal({ isOpen, onClose, team1, team2 }: Team
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in" onClick={onClose}>
-            <div
-                className="bg-slate-900 rounded-xl border border-slate-700 w-full max-w-lg p-6 animate-slide-up"
-                onClick={e => e.stopPropagation()}
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="compare-title"
-            >
-                <h2 id="compare-title" className="text-lg font-bold text-white text-center mb-6">⚔️ Takım Karşılaştırması</h2>
+        <Dialog open={isOpen} onOpenChange={() => onClose()}>
+            <DialogContent className="sm:max-w-lg">
+                <DialogHeader>
+                    <DialogTitle className="text-center">⚔️ Takım Karşılaştırması</DialogTitle>
+                </DialogHeader>
 
                 {/* Team Headers */}
                 <div className="flex justify-between items-center mb-6">
                     <div className="text-center flex-1">
                         <div className="text-2xl mb-2">🔵</div>
-                        <h3 className="font-bold text-white text-sm truncate px-2">{team1.name}</h3>
+                        <h3 className="font-bold text-foreground text-sm truncate px-2">{team1.name}</h3>
                     </div>
-                    <div className="text-2xl text-slate-500">VS</div>
+                    <div className="text-2xl text-muted-foreground">VS</div>
                     <div className="text-center flex-1">
                         <div className="text-2xl mb-2">🔴</div>
-                        <h3 className="font-bold text-white text-sm truncate px-2">{team2.name}</h3>
+                        <h3 className="font-bold text-foreground text-sm truncate px-2">{team2.name}</h3>
                     </div>
                 </div>
 
@@ -71,25 +73,23 @@ export default function TeamCompareModal({ isOpen, onClose, team1, team2 }: Team
                         const max = Math.max(v1, v2) || 1;
 
                         return (
-                            <div key={stat.key} className="bg-slate-950 rounded-lg p-3">
-                                <div className="text-xs text-slate-400 text-center mb-2">{stat.icon} {stat.label}</div>
+                            <div key={stat.key} className="bg-muted rounded-lg p-3">
+                                <div className="text-xs text-muted-foreground text-center mb-2">{stat.icon} {stat.label}</div>
                                 <div className="flex items-center gap-2">
-                                    <span className={`text-sm font-bold w-8 text-right ${winner === 1 ? 'text-emerald-400' : 'text-white'}`}>
+                                    <span className={`text-sm font-bold w-8 text-right ${winner === 1 ? 'text-emerald-400' : 'text-foreground'}`}>
                                         {v1}
                                     </span>
                                     <div className="flex-1 flex gap-1 h-3">
                                         <div
-                                            className={`h-full rounded-l transition-all ${winner === 1 ? 'bg-emerald-500' : 'bg-slate-600'}`}
-                                            // eslint-disable-next-line react-dom/no-unsafe-target-blank
+                                            className={`h-full rounded-l transition-all ${winner === 1 ? 'bg-emerald-500' : 'bg-muted-foreground/30'}`}
                                             style={{ width: `${(v1 / max) * 50}%` }}
                                         />
                                         <div
-                                            className={`h-full rounded-r transition-all ${winner === 2 ? 'bg-emerald-500' : 'bg-slate-600'}`}
-                                            // eslint-disable-next-line react-dom/no-unsafe-target-blank
+                                            className={`h-full rounded-r transition-all ${winner === 2 ? 'bg-emerald-500' : 'bg-muted-foreground/30'}`}
                                             style={{ width: `${(v2 / max) * 50}%` }}
                                         />
                                     </div>
-                                    <span className={`text-sm font-bold w-8 ${winner === 2 ? 'text-emerald-400' : 'text-white'}`}>
+                                    <span className={`text-sm font-bold w-8 ${winner === 2 ? 'text-emerald-400' : 'text-foreground'}`}>
                                         {v2}
                                     </span>
                                 </div>
@@ -99,13 +99,10 @@ export default function TeamCompareModal({ isOpen, onClose, team1, team2 }: Team
                 </div>
 
                 {/* Close Button */}
-                <button
-                    onClick={onClose}
-                    className="w-full mt-6 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition-colors"
-                >
+                <Button onClick={onClose} variant="secondary" className="w-full mt-4">
                     Kapat
-                </button>
-            </div>
-        </div>
+                </Button>
+            </DialogContent>
+        </Dialog>
     );
 }

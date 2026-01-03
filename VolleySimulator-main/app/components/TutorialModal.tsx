@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import {
+    Dialog,
+    DialogContent,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
 
 interface TutorialStep {
     id: string;
@@ -150,37 +155,24 @@ export default function TutorialModal({ isOpen, onClose, onComplete }: TutorialM
         onClose();
     };
 
-    if (!isOpen) return null;
+    const progressValue = ((currentStep + 1) / TUTORIAL_STEPS.length) * 100;
 
     return (
-        <div className="fixed inset-0 z-[200] bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-            <div
-                className="bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-700 rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden animate-scale-in"
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="tutorial-title"
-            >
+        <Dialog open={isOpen} onOpenChange={() => onClose()}>
+            <DialogContent className="sm:max-w-lg p-0 overflow-hidden">
                 {/* Progress Bar */}
-                <div className="h-1 bg-slate-800">
-                    <div
-                        className="h-full bg-gradient-to-r from-emerald-500 to-cyan-500 transition-all duration-300"
-                        style={{ width: `${((currentStep + 1) / TUTORIAL_STEPS.length) * 100}%` }}
-                    />
-                </div>
+                <Progress value={progressValue} className="h-1 rounded-none" />
 
                 {/* Header */}
-                <div className="flex items-center justify-between p-4 border-b border-slate-800">
+                <div className="flex items-center justify-between px-4 py-3 border-b">
                     <div className="flex items-center gap-2">
-                        <span className="text-xs text-slate-500 font-medium">
+                        <span className="text-xs text-muted-foreground font-medium">
                             {currentStep + 1} / {TUTORIAL_STEPS.length}
                         </span>
                     </div>
-                    <button
-                        onClick={handleSkip}
-                        className="text-xs text-slate-500 hover:text-slate-300 transition-colors"
-                    >
+                    <Button variant="ghost" size="sm" onClick={handleSkip} className="text-xs">
                         Atla
-                    </button>
+                    </Button>
                 </div>
 
                 {/* Content */}
@@ -193,22 +185,22 @@ export default function TutorialModal({ isOpen, onClose, onComplete }: TutorialM
                     </div>
 
                     {/* Title & Description */}
-                    <h2 id="tutorial-title" className="text-xl font-bold text-white text-center mb-3">
+                    <h2 className="text-xl font-bold text-foreground text-center mb-3">
                         {step.title}
                     </h2>
-                    <p className="text-slate-400 text-center text-sm leading-relaxed mb-6">
+                    <p className="text-muted-foreground text-center text-sm leading-relaxed mb-6">
                         {step.description}
                     </p>
 
                     {/* Tips */}
                     {step.tips && (
-                        <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
-                            <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
+                        <div className="bg-muted rounded-xl p-4 border">
+                            <div className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">
                                 💡 İpuçları
                             </div>
                             <ul className="space-y-2">
                                 {step.tips.map((tip, index) => (
-                                    <li key={index} className="flex items-start gap-2 text-sm text-slate-300">
+                                    <li key={index} className="flex items-start gap-2 text-sm text-foreground/80">
                                         <span className="text-emerald-400 mt-0.5">•</span>
                                         {tip}
                                     </li>
@@ -219,17 +211,15 @@ export default function TutorialModal({ isOpen, onClose, onComplete }: TutorialM
                 </div>
 
                 {/* Navigation */}
-                <div className="flex items-center justify-between p-4 border-t border-slate-800 bg-slate-900/50">
-                    <button
+                <div className="flex items-center justify-between p-4 border-t bg-muted/50">
+                    <Button
+                        variant="ghost"
                         onClick={handlePrev}
                         disabled={isFirstStep}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${isFirstStep
-                            ? 'text-slate-600 cursor-not-allowed'
-                            : 'text-slate-400 hover:text-white hover:bg-slate-800'
-                            }`}
+                        className="text-sm"
                     >
                         ← Geri
-                    </button>
+                    </Button>
 
                     {/* Step Dots */}
                     <div className="flex gap-1.5">
@@ -238,44 +228,26 @@ export default function TutorialModal({ isOpen, onClose, onComplete }: TutorialM
                                 key={index}
                                 onClick={() => setCurrentStep(index)}
                                 title={`Adım ${index + 1}'e git`}
-                                className={`w-2 h-2 rounded-full transition-all ${index === currentStep
+                                className={`h-2 rounded-full transition-all ${index === currentStep
                                     ? 'bg-emerald-500 w-6'
                                     : index < currentStep
-                                        ? 'bg-emerald-500/50'
-                                        : 'bg-slate-700'
+                                        ? 'bg-emerald-500/50 w-2'
+                                        : 'bg-muted-foreground/30 w-2'
                                     }`}
                             />
                         ))}
                     </div>
 
-                    <button
+                    <Button
                         onClick={handleNext}
-                        className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${isLastStep
-                            ? 'bg-gradient-to-r from-emerald-600 to-cyan-600 text-white shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40'
-                            : 'bg-slate-800 text-white hover:bg-slate-700'
-                            }`}
+                        className={isLastStep ? 'bg-gradient-to-r from-emerald-600 to-cyan-600 text-white' : ''}
+                        variant={isLastStep ? 'default' : 'secondary'}
                     >
                         {isLastStep ? 'Başla! 🚀' : 'İleri →'}
-                    </button>
+                    </Button>
                 </div>
-            </div>
-
-            <style jsx>{`
-                @keyframes scale-in {
-                    from {
-                        transform: scale(0.9);
-                        opacity: 0;
-                    }
-                    to {
-                        transform: scale(1);
-                        opacity: 1;
-                    }
-                }
-                .animate-scale-in {
-                    animation: scale-in 0.3s ease-out forwards;
-                }
-            `}</style>
-        </div>
+            </DialogContent>
+        </Dialog>
     );
 }
 

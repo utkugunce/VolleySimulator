@@ -1,17 +1,16 @@
 "use client";
 
-import { ReactNode } from 'react';
+import { Skeleton as BaseSkeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/utils';
 
 interface SkeletonProps {
     className?: string;
 }
 
-// Base skeleton with shimmer animation
+// Base skeleton with shimmer animation (using shadcn/ui)
 export function Skeleton({ className = '' }: SkeletonProps) {
     return (
-        <div
-            className={`animate-pulse bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 bg-[length:200%_100%] rounded ${className}`}
-        />
+        <BaseSkeleton className={cn("bg-muted", className)} />
     );
 }
 

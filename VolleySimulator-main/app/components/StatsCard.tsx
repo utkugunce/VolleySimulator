@@ -1,5 +1,8 @@
 "use client";
 
+import { Card, CardContent } from "@/components/ui/card";
+import { ArrowUp, ArrowDown, ArrowRight } from "lucide-react";
+
 interface StatsCardProps {
     title: string;
     value: string | number;
@@ -30,27 +33,27 @@ export default function StatsCard({
     const trendColors = {
         up: 'text-emerald-400',
         down: 'text-rose-400',
-        neutral: 'text-slate-400'
+        neutral: 'text-muted-foreground'
     };
 
-    const trendIcons = {
-        up: '↑',
-        down: '↓',
-        neutral: '→'
+    const TrendIcon = {
+        up: ArrowUp,
+        down: ArrowDown,
+        neutral: ArrowRight
     };
 
     return (
-        <div className="bg-surface rounded-lg border border-border-main overflow-hidden shadow-sm hover:shadow-md transition-all group">
+        <Card className="overflow-hidden shadow-sm hover:shadow-md transition-all group">
             <div className={`h-1 bg-gradient-to-r ${colors[color]}`} />
-            <div className="p-4">
+            <CardContent className="p-4">
                 <div className="flex items-start justify-between">
                     <div>
-                        <p className="text-xs text-text-muted mb-1">{title}</p>
+                        <p className="text-xs text-muted-foreground mb-1">{title}</p>
                         <p className="text-2xl font-bold text-foreground group-hover:scale-105 transition-transform origin-left">
                             {value}
                         </p>
                         {subtitle && (
-                            <p className="text-xs text-text-muted mt-1">{subtitle}</p>
+                            <p className="text-xs text-muted-foreground mt-1">{subtitle}</p>
                         )}
                     </div>
                     {icon && (
@@ -61,11 +64,14 @@ export default function StatsCard({
                 </div>
                 {trend && trendValue && (
                     <div className={`flex items-center gap-1 mt-2 text-xs ${trendColors[trend]}`}>
-                        <span>{trendIcons[trend]}</span>
+                        {(() => {
+                            const Icon = TrendIcon[trend];
+                            return <Icon className="h-3 w-3" />;
+                        })()}
                         <span>{trendValue}</span>
                     </div>
                 )}
-            </div>
-        </div>
+            </CardContent>
+        </Card>
     );
 }

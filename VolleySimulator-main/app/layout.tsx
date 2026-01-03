@@ -13,6 +13,7 @@ import { AuthProvider } from "./context/AuthContext";
 import AuthGuard from "./components/AuthGuard";
 import { QueryProvider } from "./providers/QueryProvider";
 import { LocaleProvider } from "./context/LocaleContext";
+import { OrganizationSchema, WebsiteSchema } from "./components/SEOSchema";
 
 // Lazy load non-critical components (will be client-side only)
 const ScrollToTop = dynamic(() => import("./components/ScrollToTop"));
@@ -36,9 +37,30 @@ export const viewport = {
   themeColor: "#0f172a",
 };
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://volleysimulator.com';
+
 export const metadata: Metadata = {
-  title: "VolleySimulator",
-  description: "Voleybol simülasyon ve tahmin platformu",
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: "VolleySimulator - Voleybol Tahmin ve Simülasyon Platformu",
+    template: "%s | VolleySimulator",
+  },
+  description: "Türkiye voleybol ligleri için puan durumu, maç tahminleri, playoff simülasyonu ve liderlik tablosu. Sultanlar Ligi, 1. Lig, 2. Lig ve CEV turnuvalarını takip edin.",
+  keywords: [
+    "voleybol",
+    "voleybol tahmin",
+    "Sultanlar Ligi",
+    "voleybol simülasyon",
+    "puan durumu",
+    "playoff",
+    "CEV Şampiyonlar Ligi",
+    "Türkiye voleybol",
+    "maç tahmini",
+    "voleybol istatistikleri",
+  ],
+  authors: [{ name: "VolleySimulator" }],
+  creator: "VolleySimulator",
+  publisher: "VolleySimulator",
   manifest: "/manifest.json",
   icons: {
     icon: "/favicon.svg",
@@ -48,6 +70,52 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "black-translucent",
     title: "VolleySim",
+  },
+  openGraph: {
+    type: "website",
+    locale: "tr_TR",
+    alternateLocale: "en_US",
+    url: BASE_URL,
+    siteName: "VolleySimulator",
+    title: "VolleySimulator - Voleybol Tahmin ve Simülasyon Platformu",
+    description: "Türkiye voleybol ligleri için puan durumu, maç tahminleri, playoff simülasyonu ve liderlik tablosu.",
+    images: [
+      {
+        url: "/volley_simulator_logo.png",
+        width: 1200,
+        height: 630,
+        alt: "VolleySimulator Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "VolleySimulator - Voleybol Tahmin ve Simülasyon Platformu",
+    description: "Türkiye voleybol ligleri için puan durumu, maç tahminleri, playoff simülasyonu ve liderlik tablosu.",
+    images: ["/volley_simulator_logo.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    // Add your verification codes when you have them
+    // google: "your-google-verification-code",
+    // yandex: "your-yandex-verification-code",
+  },
+  alternates: {
+    canonical: BASE_URL,
+    languages: {
+      "tr-TR": BASE_URL,
+      "en-US": `${BASE_URL}/en`,
+    },
   },
 };
 
@@ -61,6 +129,10 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head>
+        <OrganizationSchema />
+        <WebsiteSchema />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-950`}
         suppressHydrationWarning

@@ -1,34 +1,40 @@
 'use client';
 
 import { useLocale } from '@/app/context/LocaleContext';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Globe } from "lucide-react";
 
 export function LanguageSwitcher() {
   const { locale, setLocale } = useLocale();
 
   return (
-    <div className="flex items-center gap-1 bg-slate-800/50 rounded-lg p-1">
-      <button
-        onClick={() => setLocale('tr')}
-        className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
-          locale === 'tr'
-            ? 'bg-emerald-600 text-white'
-            : 'text-slate-400 hover:text-white hover:bg-slate-700'
-        }`}
-        aria-label="Türkçe"
-      >
-        🇹🇷 TR
-      </button>
-      <button
-        onClick={() => setLocale('en')}
-        className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
-          locale === 'en'
-            ? 'bg-emerald-600 text-white'
-            : 'text-slate-400 hover:text-white hover:bg-slate-700'
-        }`}
-        aria-label="English"
-      >
-        🇬🇧 EN
-      </button>
-    </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" size="icon" className="h-9 w-9">
+          <Globe className="h-4 w-4" />
+          <span className="sr-only">Dil değiştir</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem
+          onClick={() => setLocale('tr')}
+          className={locale === 'tr' ? 'bg-accent' : ''}
+        >
+          🇹🇷 Türkçe
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => setLocale('en')}
+          className={locale === 'en' ? 'bg-accent' : ''}
+        >
+          🇬🇧 English
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

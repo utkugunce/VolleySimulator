@@ -1,5 +1,14 @@
 import Link from "next/link";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+    title: "Ligler - Türkiye Kadınlar Voleybol Ligleri",
+    description: "Sultanlar Ligi, 1. Lig, 2. Lig ve CEV Avrupa turnuvaları. 2025-2026 sezonu maç tahminleri ve puan durumları.",
+    openGraph: {
+        title: "Ligler - Türkiye Kadınlar Voleybol Ligleri",
+        description: "Sultanlar Ligi, 1. Lig, 2. Lig ve CEV Avrupa turnuvaları. 2025-2026 sezonu maç tahminleri ve puan durumları.",
+    },
+};
 
 export default function LiglerPage() {
     return (
