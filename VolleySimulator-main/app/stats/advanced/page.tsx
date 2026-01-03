@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { useAdvancedStats } from "@/app/hooks/useAdvancedStats";
+import { TeamFormDisplay, HeadToHeadDisplay } from "@/app/components/TeamFormDisplay";
 
 const LEAGUES = [
   { id: 'vsl', name: 'Sultanlar Ligi', icon: '👑' },
@@ -41,20 +43,30 @@ export default function AdvancedStatsPage() {
     { homeTeam: SAMPLE_TEAMS[selectedLeague]?.[1] || '', awayTeam: SAMPLE_TEAMS[selectedLeague]?.[2] || '', homeScore: 2, awayScore: 3, date: '2024-01-02' },
   ];
 
-  const { 
-    getHeadToHead, 
-    getTeamForm, 
+  const {
+    getHeadToHead,
+    getTeamForm,
     getTopPerformers,
     compareTeams,
   } = useAdvancedStats(mockTeams, mockMatches);
 
   const teams = SAMPLE_TEAMS[selectedLeague] || [];
-  const topPerformers = useMemo(() => getTopPerformers('points', 5), [selectedLeague, getTopPerformers]);
+  const topPerformers = useMemo(() => {
+    const stats = getTopPerformers('points', 5);
+    return stats.map(stat => {
+      const form = getTeamForm(stat.teamName);
+      return {
+        ...stat,
+        winPercentage: Math.round(form.winRate),
+        trend: form.trend === 'improving' ? 'up' : form.trend === 'declining' ? 'down' : 'stable'
+      };
+    });
+  }, [selectedLeague, getTopPerformers, getTeamForm]);
 
   const team1Form = selectedTeam1 ? getTeamForm(selectedTeam1) : null;
   const team2Form = selectedTeam2 ? getTeamForm(selectedTeam2) : null;
-  const h2hStats = selectedTeam1 && selectedTeam2 
-    ? getHeadToHead(selectedTeam1, selectedTeam2) 
+  const h2hStats = selectedTeam1 && selectedTeam2
+    ? getHeadToHead(selectedTeam1, selectedTeam2)
     : null;
   const comparison = selectedTeam1 && selectedTeam2
     ? compareTeams(selectedTeam1, selectedTeam2)
@@ -83,11 +95,10 @@ export default function AdvancedStatsPage() {
                 setSelectedTeam1('');
                 setSelectedTeam2('');
               }}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium whitespace-nowrap transition-colors ${
-                selectedLeague === league.id
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-slate-800 text-slate-400 hover:text-white'
-              }`}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium whitespace-nowrap transition-colors ${selectedLeague === league.id
+                ? 'bg-blue-600 text-white'
+                : 'bg-slate-800 text-slate-400 hover:text-white'
+                }`}
             >
               <span>{league.icon}</span>
               <span>{league.name}</span>
@@ -105,11 +116,10 @@ export default function AdvancedStatsPage() {
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key as typeof activeTab)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-colors ${
-                activeTab === tab.key
-                  ? 'bg-white/10 text-white'
-                  : 'text-slate-400 hover:text-white'
-              }`}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-colors ${activeTab === tab.key
+                ? 'bg-white/10 text-white'
+                : 'text-slate-400 hover:text-white'
+                }`}
             >
               <span>{tab.icon}</span>
               <span>{tab.label}</span>
@@ -121,7 +131,7 @@ export default function AdvancedStatsPage() {
         {activeTab === 'rankings' && (
           <div className="space-y-4">
             <h2 className="text-lg font-bold text-white">ELO Güç Sıralaması</h2>
-            
+
             <div className="bg-slate-900/50 border border-slate-800 rounded-xl overflow-hidden">
               <table className="w-full">
                 <thead>
@@ -138,12 +148,11 @@ export default function AdvancedStatsPage() {
                   {topPerformers.map((team, index) => (
                     <tr key={team.teamName} className="hover:bg-slate-800/30 transition-colors">
                       <td className="px-4 py-3">
-                        <span className={`w-6 h-6 rounded flex items-center justify-center text-sm font-bold ${
-                          index === 0 ? 'bg-amber-500 text-slate-900' :
+                        <span className={`w-6 h-6 rounded flex items-center justify-center text-sm font-bold ${index === 0 ? 'bg-amber-500 text-slate-900' :
                           index === 1 ? 'bg-slate-400 text-slate-900' :
-                          index === 2 ? 'bg-amber-700 text-white' :
-                          'bg-slate-700 text-slate-300'
-                        }`}>
+                            index === 2 ? 'bg-amber-700 text-white' :
+                              'bg-slate-700 text-slate-300'
+                          }`}>
                           {index + 1}
                         </span>
                       </td>
@@ -155,34 +164,31 @@ export default function AdvancedStatsPage() {
                       </td>
                       <td className="px-4 py-3 text-center">
                         <div className="flex justify-center gap-1">
-                          {team.lastFiveMatches?.map((result, i) => (
-                            <span 
+                          {team.last10?.slice(0, 5).map((result, i) => (
+                            <span
                               key={i}
-                              className={`w-5 h-5 rounded text-xs flex items-center justify-center font-bold ${
-                                result === 'W' ? 'bg-emerald-500/30 text-emerald-400' :
-                                result === 'D' ? 'bg-amber-500/30 text-amber-400' :
+                              className={`w-5 h-5 rounded text-xs flex items-center justify-center font-bold ${result === 'W' ? 'bg-emerald-500/30 text-emerald-400' :
                                 'bg-red-500/30 text-red-400'
-                              }`}
+                                }`}
                             >
-                              {result === 'W' ? 'G' : result === 'D' ? 'B' : 'M'}
+                              {result === 'W' ? 'G' : 'M'}
                             </span>
                           ))}
                         </div>
                       </td>
                       <td className="px-4 py-3 text-center">
-                        <span className={`font-medium ${
-                          team.winPercentage >= 70 ? 'text-emerald-400' :
+                        <span className={`font-medium ${team.winPercentage >= 70 ? 'text-emerald-400' :
                           team.winPercentage >= 50 ? 'text-amber-400' :
-                          'text-red-400'
-                        }`}>
+                            'text-red-400'
+                          }`}>
                           %{team.winPercentage}
                         </span>
                       </td>
                       <td className="px-4 py-3 text-center">
                         <span className={
                           team.trend === 'up' ? 'text-emerald-400' :
-                          team.trend === 'down' ? 'text-red-400' :
-                          'text-slate-400'
+                            team.trend === 'down' ? 'text-red-400' :
+                              'text-slate-400'
                         }>
                           {team.trend === 'up' ? '↑' : team.trend === 'down' ? '↓' : '−'}
                         </span>
@@ -199,7 +205,7 @@ export default function AdvancedStatsPage() {
         {activeTab === 'compare' && (
           <div className="space-y-6">
             <h2 className="text-lg font-bold text-white">Takım Karşılaştır</h2>
-            
+
             {/* Team Selectors */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -217,7 +223,7 @@ export default function AdvancedStatsPage() {
                   ))}
                 </select>
               </div>
-              
+
               <div>
                 <label className="block text-sm text-slate-400 mb-2">2. Takım</label>
                 <select
@@ -245,10 +251,10 @@ export default function AdvancedStatsPage() {
                 {/* Head to Head */}
                 {h2hStats && (
                   <div className="md:col-span-2">
-                    <HeadToHeadDisplay 
-                      stats={h2hStats} 
-                      homeTeam={selectedTeam1} 
-                      awayTeam={selectedTeam2} 
+                    <HeadToHeadDisplay
+                      stats={h2hStats}
+                      homeTeam={selectedTeam1}
+                      awayTeam={selectedTeam2}
                     />
                   </div>
                 )}
@@ -258,19 +264,17 @@ export default function AdvancedStatsPage() {
                   <div className="md:col-span-2 bg-slate-900/50 border border-slate-800 rounded-xl p-6">
                     <h3 className="font-bold text-white mb-4">Karşılaştırma</h3>
                     <div className="grid grid-cols-3 gap-4">
-                      {Object.entries(comparison.categories || {}).map(([category, data]) => (
+                      {Object.entries(comparison.comparison || {}).map(([category, data]) => (
                         <div key={category} className="text-center">
                           <div className="text-xs text-slate-500 mb-2">{category}</div>
                           <div className="flex items-center justify-center gap-2">
-                            <span className={`font-bold ${
-                              (data as { team1: number; team2: number }).team1 > (data as { team1: number; team2: number }).team2 ? 'text-blue-400' : 'text-slate-400'
-                            }`}>
+                            <span className={`font-bold ${(data as { team1: number; team2: number }).team1 > (data as { team1: number; team2: number }).team2 ? 'text-blue-400' : 'text-slate-400'
+                              }`}>
                               {(data as { team1: number; team2: number }).team1}
                             </span>
                             <span className="text-slate-600">vs</span>
-                            <span className={`font-bold ${
-                              (data as { team1: number; team2: number }).team2 > (data as { team1: number; team2: number }).team1 ? 'text-orange-400' : 'text-slate-400'
-                            }`}>
+                            <span className={`font-bold ${(data as { team1: number; team2: number }).team2 > (data as { team1: number; team2: number }).team1 ? 'text-orange-400' : 'text-slate-400'
+                              }`}>
                               {(data as { team1: number; team2: number }).team2}
                             </span>
                           </div>
@@ -288,7 +292,7 @@ export default function AdvancedStatsPage() {
         {activeTab === 'trends' && (
           <div className="space-y-6">
             <h2 className="text-lg font-bold text-white">Sezon Trendleri</h2>
-            
+
             {/* Hot & Cold Teams */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Hot Teams */}
