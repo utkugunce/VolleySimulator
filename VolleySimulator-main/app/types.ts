@@ -436,13 +436,20 @@ export interface FormComparison {
 
 export interface TeamForm {
   teamName: string;
-  last5Results: ('W' | 'L')[];
+  last5Results: ('W' | 'L' | 'D')[];
   last5Scores: string[];
   winRate: number;
   avgPointsScored: number;
   avgPointsConceded: number;
   trend: 'improving' | 'declining' | 'stable';
   strengthRating: number;
+  // Additional form fields for components
+  lastFiveMatches?: ('W' | 'L' | 'D')[];
+  formPercentage?: number;
+  goalsScored?: number;
+  goalsConceded?: number;
+  winStreak?: number;
+  recentOpponents?: string[];
 }
 
 export interface TeamDetailedStats {
@@ -510,7 +517,7 @@ export interface LiveMatch {
   homeTeam: string;
   awayTeam: string;
   league: string;
-  status: 'scheduled' | 'live' | 'finished' | 'postponed';
+  status: 'scheduled' | 'live' | 'finished' | 'postponed' | 'upcoming';
   currentSet: number;
   homeSetScore: number;
   awaySetScore: number;
@@ -520,6 +527,12 @@ export interface LiveMatch {
   startTime: string;
   lastUpdated: string;
   venue?: string;
+  viewers?: number;
+  isHighlighted?: boolean;
+  homeScore?: number[];
+  awayScore?: number[];
+  currentSetScore?: { home: number; away: number };
+  setWins?: { home: number; away: number };
   // Live betting odds (if available)
   liveOdds?: {
     homeWin: number;

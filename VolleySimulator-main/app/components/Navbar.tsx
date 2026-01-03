@@ -8,6 +8,9 @@ import { useState, useEffect } from "react";
 import { useGameState, getLevelTitle, getXPForNextLevel } from "../utils/gameState";
 import { useAuth } from "../context/AuthContext";
 import { LEVEL_THRESHOLDS } from "../types";
+import NotificationBell from "./NotificationBell";
+import { StreakBadge } from "./StreakWidget";
+import { LiveMatchCounter } from "./LiveMatchCard";
 
 
 export default function Navbar() {
@@ -137,6 +140,21 @@ export default function Navbar() {
 
                     {/* Right: User & Actions */}
                     <div className="flex items-center gap-2">
+                        {/* Live Match Counter */}
+                        <Link href="/live" className="hidden md:block">
+                            <LiveMatchCounter count={2} />
+                        </Link>
+                        
+                        {/* Streak Badge */}
+                        {user && (
+                            <Link href="/quests" className="hidden sm:block">
+                                <StreakBadge />
+                            </Link>
+                        )}
+                        
+                        {/* Notification Bell */}
+                        {user && <NotificationBell />}
+                        
                         <ThemeToggle />
 
                         {!loading && (

@@ -110,6 +110,73 @@
     "roster": "Kadro",
     "statistics": "İstatistikler"
   },
+  "features": {
+    "friends": {
+      "title": "Arkadaşlar",
+      "addFriend": "Arkadaş Ekle",
+      "requests": "İstekler",
+      "search": "Kullanıcı Ara",
+      "activity": "Aktivite",
+      "compare": "Karşılaştır"
+    },
+    "quests": {
+      "title": "Görevler",
+      "daily": "Günlük Görevler",
+      "weekly": "Haftalık Meydan Okuma",
+      "badges": "Rozetler",
+      "streak": "Günlük Seri",
+      "claim": "Ödül Al"
+    },
+    "notifications": {
+      "title": "Bildirimler",
+      "markAllRead": "Tümünü Okundu İşaretle",
+      "settings": "Bildirim Ayarları",
+      "empty": "Bildirim yok"
+    },
+    "live": {
+      "title": "Canlı Maçlar",
+      "watching": "İzliyor",
+      "chat": "Canlı Sohbet",
+      "comments": "Yorumlar"
+    },
+    "customLeagues": {
+      "title": "Özel Ligler",
+      "create": "Lig Oluştur",
+      "join": "Liga Katıl",
+      "inviteCode": "Davet Kodu",
+      "members": "Üyeler"
+    },
+    "premium": {
+      "title": "Premium",
+      "subscribe": "Abone Ol",
+      "features": "Özellikler",
+      "trial": "Ücretsiz Deneme"
+    },
+    "simulation": {
+      "title": "Maç Simülasyonu",
+      "start": "Başlat",
+      "pause": "Duraklat",
+      "speed": "Hız"
+    },
+    "ai": {
+      "title": "AI Asistan",
+      "getPrediction": "Tahmin Al",
+      "analysis": "Analiz",
+      "confidence": "Güven"
+    },
+    "stats": {
+      "advanced": "Gelişmiş İstatistikler",
+      "elo": "ELO Puanı",
+      "form": "Form",
+      "h2h": "Karşılaşma Geçmişi"
+    },
+    "tournaments": {
+      "title": "Turnuva Tahminleri",
+      "season": "Sezon Sonu",
+      "playoffs": "Playoff",
+      "champion": "Şampiyon"
+    }
+  },
   "meta": {
     "title": "VolleySimulator - Türkiye Voleybol Tahmin Oyunu",
     "description": "Türkiye voleybol liglerinde maç sonuçlarını tahmin edin ve rakiplerinizle yarışın."

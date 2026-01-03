@@ -27,6 +27,7 @@ interface MatchResult {
 
 export function useAdvancedStats(teams: TeamStatsInput[], matches: MatchResult[]) {
   const [selectedTeam, setSelectedTeam] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Calculate detailed stats for all teams
   const teamStats = useMemo((): Map<string, TeamDetailedStats> => {
@@ -284,6 +285,7 @@ export function useAdvancedStats(teams: TeamStatsInput[], matches: MatchResult[]
     getTeamForm,
     getTopPerformers,
     compareTeams,
+    isLoading,
     getTeamDetails: (name: string) => teamStats.get(name),
   };
 }

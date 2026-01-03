@@ -65,19 +65,19 @@ export default function Home() {
         {/* Left Side: Brand & Features (Desktop) */}
         <div className="hidden lg:block space-y-8 animate-fade-in-left">
           <div className="space-y-2">
-            <span className="text-4xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400">
+            <h1 className="text-4xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400">
               VolleySimulator
-            </span>
-            <h2 className="text-2xl font-light text-slate-300">
+            </h1>
+            <p className="text-2xl font-light text-slate-300">
               Voleybol Tutkunları İçin <br />
               <span className="font-semibold text-white">Yeni Nesil Simülasyon</span>
-            </h2>
+            </p>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 p-4 rounded-2xl">
               <div className="text-3xl mb-2">🏆</div>
-              <h3 className="font-bold text-white mb-1">Tahmin Oyunu</h3>
+              <h2 className="font-bold text-white mb-1">Tahmin Oyunu</h2>
               <p className="text-sm text-slate-400">Maç skorlarını tahmin et, puanları topla ve liderliğe yüksel.</p>
             </div>
             <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 p-4 rounded-2xl">
@@ -104,14 +104,14 @@ export default function Home() {
 
             {/* Mobile Header (Visible only on mobile) */}
             <div className="text-center mb-8 lg:hidden">
-              <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200">
+              <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200">
                 VolleySimulator
-              </span>
-              <h1 className="text-2xl font-bold text-white mt-2">Hoş Geldiniz</h1>
+              </h1>
+              <p className="text-2xl font-bold text-white mt-2">Hoş Geldiniz</p>
             </div>
 
             <div className="text-center mb-6 hidden lg:block">
-              <h1 className="text-2xl font-bold text-white">Giriş Yap</h1>
+              <p className="text-2xl font-bold text-white">Giriş Yap</p>
               <p className="text-slate-400 text-sm">Hesabınıza erişmek için bilgilerinizi girin</p>
             </div>
 

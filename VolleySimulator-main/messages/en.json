@@ -110,6 +110,73 @@
     "roster": "Roster",
     "statistics": "Statistics"
   },
+  "features": {
+    "friends": {
+      "title": "Friends",
+      "addFriend": "Add Friend",
+      "requests": "Requests",
+      "search": "Search Users",
+      "activity": "Activity",
+      "compare": "Compare"
+    },
+    "quests": {
+      "title": "Quests",
+      "daily": "Daily Quests",
+      "weekly": "Weekly Challenge",
+      "badges": "Badges",
+      "streak": "Daily Streak",
+      "claim": "Claim Reward"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "markAllRead": "Mark All Read",
+      "settings": "Notification Settings",
+      "empty": "No notifications"
+    },
+    "live": {
+      "title": "Live Matches",
+      "watching": "Watching",
+      "chat": "Live Chat",
+      "comments": "Comments"
+    },
+    "customLeagues": {
+      "title": "Custom Leagues",
+      "create": "Create League",
+      "join": "Join League",
+      "inviteCode": "Invite Code",
+      "members": "Members"
+    },
+    "premium": {
+      "title": "Premium",
+      "subscribe": "Subscribe",
+      "features": "Features",
+      "trial": "Free Trial"
+    },
+    "simulation": {
+      "title": "Match Simulation",
+      "start": "Start",
+      "pause": "Pause",
+      "speed": "Speed"
+    },
+    "ai": {
+      "title": "AI Assistant",
+      "getPrediction": "Get Prediction",
+      "analysis": "Analysis",
+      "confidence": "Confidence"
+    },
+    "stats": {
+      "advanced": "Advanced Statistics",
+      "elo": "ELO Rating",
+      "form": "Form",
+      "h2h": "Head to Head"
+    },
+    "tournaments": {
+      "title": "Tournament Predictions",
+      "season": "Season End",
+      "playoffs": "Playoffs",
+      "champion": "Champion"
+    }
+  },
   "meta": {
     "title": "VolleySimulator - Turkey Volleyball Prediction Game",
     "description": "Predict match results in Turkish volleyball leagues and compete with other players."

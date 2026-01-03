@@ -14,6 +14,12 @@ import AuthGuard from "./components/AuthGuard";
 import { QueryProvider } from "./providers/QueryProvider";
 import { LocaleProvider } from "./context/LocaleContext";
 import { OrganizationSchema, WebsiteSchema } from "./components/SEOSchema";
+import { ThemeProvider } from "./context/ThemeContext";
+import { FriendsProvider } from "./context/FriendsContext";
+import { NotificationsProvider } from "./context/NotificationsContext";
+import { QuestsProvider } from "./context/QuestsContext";
+import { CustomLeaguesProvider } from "./context/CustomLeaguesContext";
+import { LiveMatchProvider } from "./context/LiveMatchContext";
 
 // Lazy load non-critical components (will be client-side only)
 const ScrollToTop = dynamic(() => import("./components/ScrollToTop"));
@@ -37,7 +43,7 @@ export const viewport = {
   themeColor: "#0f172a",
 };
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://volleysimulator.com';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://volleysimulator.com.tr';
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -132,15 +138,27 @@ export default async function RootLayout({
           <LocaleProvider>
             <QueryProvider>
               <AuthProvider>
-                <ToastProvider>
-                  <Navbar />
-                  <div className="pt-12 pb-16 min-h-screen flex flex-col">
-                    <AuthGuard>
-                      {children}
-                    </AuthGuard>
-                    <ScrollToTop />
-                  </div>
-                </ToastProvider>
+                <ThemeProvider>
+                  <NotificationsProvider>
+                    <FriendsProvider>
+                      <QuestsProvider>
+                        <CustomLeaguesProvider>
+                          <LiveMatchProvider>
+                            <ToastProvider>
+                              <Navbar />
+                              <div className="pt-12 pb-16 min-h-screen flex flex-col">
+                                <AuthGuard>
+                                  {children}
+                                </AuthGuard>
+                                <ScrollToTop />
+                              </div>
+                            </ToastProvider>
+                          </LiveMatchProvider>
+                        </CustomLeaguesProvider>
+                      </QuestsProvider>
+                    </FriendsProvider>
+                  </NotificationsProvider>
+                </ThemeProvider>
               </AuthProvider>
             </QueryProvider>
           </LocaleProvider>

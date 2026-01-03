@@ -68,14 +68,14 @@ export default function LoginPage() {
                 <div className="hidden lg:block space-y-8 animate-fade-in-left">
                     <div className="space-y-2">
                         <Link href="/" className="inline-block">
-                            <h1 className="text-4xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400">
+                            <span className="text-4xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400">
                                 VolleySimulator
-                            </h1>
+                            </span>
                         </Link>
-                        <h2 className="text-2xl font-light text-slate-300">
+                        <h1 className="text-2xl font-light text-slate-300">
                             Voleybol Tutkunları İçin <br />
                             <span className="font-semibold text-white">Yeni Nesil Simülasyon</span>
-                        </h2>
+                        </h1>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
@@ -109,9 +109,9 @@ export default function LoginPage() {
                             {/* Mobile Header (Visible only on mobile) */}
                             <div className="lg:hidden mb-4">
                                 <Link href="/" className="inline-block mb-2">
-                                    <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200">
+                                    <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200">
                                         VolleySimulator
-                                    </h1>
+                                    </span>
                                 </Link>
                             </div>
                             <CardTitle className="text-2xl">Giriş Yap</CardTitle>
