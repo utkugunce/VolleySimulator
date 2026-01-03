@@ -273,6 +273,58 @@ export default function AnasayfaClient({ initialLig1, initialLig2, initialVsl }:
                         <div className="text-[10px] text-slate-400">Başarım</div>
                     </div>
                 </div>
+
+                {/* Changelog */}
+                <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+                    <div className="bg-gradient-to-r from-purple-600 to-indigo-600 px-4 py-3 flex items-center gap-2">
+                        <span className="text-lg">🆕</span>
+                        <h2 className="font-bold text-white">Son Güncellemeler</h2>
+                    </div>
+                    <div className="p-4 space-y-3">
+                        <div className="flex gap-3 items-start">
+                            <div className="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0"></div>
+                            <div>
+                                <div className="text-sm font-medium text-white">Oynanmış maçlar artık doğru gösteriliyor</div>
+                                <div className="text-xs text-slate-500">3 Ocak 2026</div>
+                            </div>
+                        </div>
+                        <div className="flex gap-3 items-start">
+                            <div className="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0"></div>
+                            <div>
+                                <div className="text-sm font-medium text-white">Puan tabloları artık ekrana sığıyor</div>
+                                <div className="text-xs text-slate-500">3 Ocak 2026</div>
+                            </div>
+                        </div>
+                        <div className="flex gap-3 items-start">
+                            <div className="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0"></div>
+                            <div>
+                                <div className="text-sm font-medium text-white">Maç saatleri artık tüm maçlarda görünüyor</div>
+                                <div className="text-xs text-slate-500">3 Ocak 2026</div>
+                            </div>
+                        </div>
+                        <div className="flex gap-3 items-start">
+                            <div className="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0"></div>
+                            <div>
+                                <div className="text-sm font-medium text-white">İstatistik kartları daha kompakt ve şık hale getirildi</div>
+                                <div className="text-xs text-slate-500">3 Ocak 2026</div>
+                            </div>
+                        </div>
+                        <div className="flex gap-3 items-start">
+                            <div className="w-2 h-2 rounded-full bg-blue-500 mt-1.5 flex-shrink-0"></div>
+                            <div>
+                                <div className="text-sm font-medium text-white">CEV Şampiyonlar Ligi, CEV Cup ve Challenge Cup eklendi</div>
+                                <div className="text-xs text-slate-500">Aralık 2025</div>
+                            </div>
+                        </div>
+                        <div className="flex gap-3 items-start">
+                            <div className="w-2 h-2 rounded-full bg-blue-500 mt-1.5 flex-shrink-0"></div>
+                            <div>
+                                <div className="text-sm font-medium text-white">Tahmin oyunu ve liderlik tablosu sistemi eklendi</div>
+                                <div className="text-xs text-slate-500">Aralık 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             {/* Tutorial Modal */}
