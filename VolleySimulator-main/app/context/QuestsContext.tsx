@@ -42,44 +42,43 @@ export function QuestsProvider({ children }: { children: React.ReactNode }) {
   // Fetch daily quests
   const fetchQuests = useCallback(async () => {
     if (!user) return;
-    
+
     setIsLoading(true);
-    
+
     try {
-      const [questsRes, challengeRes, streakRes, badgesRes] = await Promise.all([
-        fetch('/api/quests/daily', {
-          headers: { 'Authorization': `Bearer ${user.id}` },
-        }),
-        fetch('/api/quests/weekly', {
-          headers: { 'Authorization': `Bearer ${user.id}` },
-        }),
-        fetch('/api/streak', {
-          headers: { 'Authorization': `Bearer ${user.id}` },
-        }),
-        fetch('/api/badges', {
-          headers: { 'Authorization': `Bearer ${user.id}` },
-        }),
-      ]);
-      
-      if (questsRes.ok) {
-        const data = await questsRes.json();
-        setDailyQuests(data.quests || generateDefaultQuests());
-      }
-      
-      if (challengeRes.ok) {
-        const data = await challengeRes.json();
-        setWeeklyChallenge(data.challenge);
-      }
-      
-      if (streakRes.ok) {
-        const data = await streakRes.json();
-        setStreakData(data.streak || defaultStreakData);
-      }
-      
-      if (badgesRes.ok) {
-        const data = await badgesRes.json();
-        setBadges(data.allBadges || []);
-        setUnlockedBadges(data.unlockedBadges || []);
+      // Use consolidated API endpoint
+      const response = await fetch('/api/quests', {
+        headers: { 'Authorization': `Bearer ${user.id}` },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        if (data.dailyQuests) {
+          setDailyQuests(data.dailyQuests);
+        } else {
+          setDailyQuests(generateDefaultQuests());
+        }
+
+        if (data.weeklyChallenge) {
+          setWeeklyChallenge(data.weeklyChallenge);
+        }
+
+        if (data.streak) {
+          setStreakData(data.streak);
+        } else {
+          setStreakData(defaultStreakData);
+        }
+
+        if (data.badges) {
+          setBadges(data.badges);
+          // Assuming unlockedBadges are part of badges or separate property, 
+          // but API returns 'badges' which likely contains status.
+          // For now, filtering if structure supports it, or setting empty if separate property missing
+          setUnlockedBadges(data.badges.filter((b: Badge) => b.unlockedAt) || []);
+        }
+      } else {
+        throw new Error('Failed to fetch quests');
       }
     } catch (err) {
       console.error('Failed to fetch quests:', err);
@@ -95,7 +94,7 @@ export function QuestsProvider({ children }: { children: React.ReactNode }) {
     const today = new Date();
     today.setHours(23, 59, 59, 999);
     const expiresAt = today.toISOString();
-    
+
     return [
       {
         id: 'daily_predict_3',
@@ -159,10 +158,10 @@ export function QuestsProvider({ children }: { children: React.ReactNode }) {
   // Claim quest reward
   const claimQuestReward = useCallback(async (questId: string): Promise<{ xp: number; coins: number } | null> => {
     if (!user) return null;
-    
+
     const quest = dailyQuests.find(q => q.id === questId);
     if (!quest || !quest.completed || quest.claimed) return null;
-    
+
     try {
       const response = await fetch(`/api/quests/${questId}/claim`, {
         method: 'POST',
@@ -170,19 +169,19 @@ export function QuestsProvider({ children }: { children: React.ReactNode }) {
           'Authorization': `Bearer ${user.id}`,
         },
       });
-      
+
       if (!response.ok) throw new Error('Failed to claim reward');
-      
+
       const data = await response.json();
-      
+
       // Update local state
-      setDailyQuests(prev => 
+      setDailyQuests(prev =>
         prev.map(q => q.id === questId ? { ...q, claimed: true } : q)
       );
-      
+
       // Add XP
       addXP(quest.xpReward);
-      
+
       return { xp: quest.xpReward, coins: quest.coinReward };
     } catch (err) {
       console.error('Failed to claim reward:', err);
@@ -193,7 +192,7 @@ export function QuestsProvider({ children }: { children: React.ReactNode }) {
   // Use streak freeze
   const useStreakFreeze = useCallback(async (): Promise<boolean> => {
     if (!user || streakData.streakFreezeAvailable <= 0) return false;
-    
+
     try {
       const response = await fetch('/api/streak/freeze', {
         method: 'POST',
@@ -201,14 +200,14 @@ export function QuestsProvider({ children }: { children: React.ReactNode }) {
           'Authorization': `Bearer ${user.id}`,
         },
       });
-      
+
       if (!response.ok) throw new Error('Failed to use streak freeze');
-      
+
       setStreakData(prev => ({
         ...prev,
         streakFreezeAvailable: prev.streakFreezeAvailable - 1,
       }));
-      
+
       return true;
     } catch (err) {
       console.error('Failed to use streak freeze:', err);
@@ -219,9 +218,9 @@ export function QuestsProvider({ children }: { children: React.ReactNode }) {
   // Track quest progress
   const trackQuestProgress = useCallback(async (questType: string, amount: number = 1) => {
     if (!user) return;
-    
+
     // Update local state optimistically
-    setDailyQuests(prev => 
+    setDailyQuests(prev =>
       prev.map(q => {
         if (q.type === questType && !q.completed) {
           const newProgress = Math.min(q.progress + amount, q.target);
@@ -234,7 +233,7 @@ export function QuestsProvider({ children }: { children: React.ReactNode }) {
         return q;
       })
     );
-    
+
     // Send to server
     try {
       await fetch('/api/quests/progress', {
@@ -267,12 +266,12 @@ export function QuestsProvider({ children }: { children: React.ReactNode }) {
     const checkDailyReset = () => {
       const now = new Date();
       const questExpiry = dailyQuests[0]?.expiresAt;
-      
+
       if (questExpiry && new Date(questExpiry) < now) {
         fetchQuests();
       }
     };
-    
+
     const interval = setInterval(checkDailyReset, 60000); // Check every minute
     return () => clearInterval(interval);
   }, [dailyQuests, fetchQuests]);

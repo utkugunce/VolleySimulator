@@ -1,11 +1,11 @@
 "use client";
 
 import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
-import { 
-  LiveMatch, 
-  MatchComment, 
+import {
+  LiveMatch,
+  MatchComment,
   LiveChatMessage,
-  MatchSimulation 
+  MatchSimulation
 } from "../types";
 import { useAuth } from "./AuthContext";
 
@@ -42,14 +42,17 @@ export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
   // Fetch live matches
   const fetchLiveMatches = useCallback(async () => {
     setIsLoading(true);
-    
+
     try {
-      const response = await fetch('/api/live/matches');
-      
+      // Use consolidated API endpoint
+      const response = await fetch('/api/live');
+
       if (!response.ok) throw new Error('Failed to fetch live matches');
-      
+
       const data = await response.json();
-      setLiveMatches(data.matches || []);
+      // API returns liveMatches, context expects matches but state is named liveMatches
+      // The previous code expected data.matches, but route returns data.liveMatches
+      setLiveMatches(data.liveMatches || []);
     } catch (err) {
       console.error('Failed to fetch live matches:', err);
     } finally {
@@ -61,7 +64,7 @@ export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
   const selectMatch = useCallback((matchId: string) => {
     const match = liveMatches.find(m => m.id === matchId);
     setCurrentMatch(match || null);
-    
+
     if (match) {
       // Fetch comments for this match
       fetchComments(matchId);
@@ -72,7 +75,7 @@ export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
   const fetchComments = async (matchId: string) => {
     try {
       const response = await fetch(`/api/live/matches/${matchId}/comments`);
-      
+
       if (response.ok) {
         const data = await response.json();
         setComments(data.comments || []);
@@ -85,7 +88,7 @@ export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
   // Add comment
   const addComment = useCallback(async (matchId: string, message: string): Promise<boolean> => {
     if (!user) return false;
-    
+
     try {
       const response = await fetch(`/api/live/matches/${matchId}/comments`, {
         method: 'POST',
@@ -95,12 +98,12 @@ export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
         },
         body: JSON.stringify({ message }),
       });
-      
+
       if (!response.ok) throw new Error('Failed to add comment');
-      
+
       const data = await response.json();
       setComments(prev => [data.comment, ...prev]);
-      
+
       return true;
     } catch (err) {
       console.error('Failed to add comment:', err);
@@ -111,7 +114,7 @@ export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
   // Like comment
   const likeComment = useCallback(async (commentId: string): Promise<boolean> => {
     if (!user) return false;
-    
+
     try {
       const response = await fetch(`/api/live/comments/${commentId}/like`, {
         method: 'POST',
@@ -119,13 +122,13 @@ export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
           'Authorization': `Bearer ${user.id}`,
         },
       });
-      
+
       if (!response.ok) throw new Error('Failed to like comment');
-      
-      setComments(prev => 
+
+      setComments(prev =>
         prev.map(c => c.id === commentId ? { ...c, likes: c.likes + 1 } : c)
       );
-      
+
       return true;
     } catch (err) {
       console.error('Failed to like comment:', err);
@@ -136,7 +139,7 @@ export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
   // Send chat message (WebSocket)
   const sendChatMessage = useCallback(async (matchId: string, message: string): Promise<boolean> => {
     if (!user || !websocket || websocket.readyState !== WebSocket.OPEN) return false;
-    
+
     try {
       websocket.send(JSON.stringify({
         type: 'chat_message',
@@ -144,7 +147,7 @@ export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
         message,
         userId: user.id,
       }));
-      
+
       return true;
     } catch (err) {
       console.error('Failed to send chat message:', err);
@@ -158,19 +161,19 @@ export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
     if (websocket) {
       websocket.close();
     }
-    
+
     // Create new WebSocket connection
     const ws = new WebSocket(`${process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:3001'}/live/${matchId}`);
-    
+
     ws.onopen = () => {
       setIsConnected(true);
       console.log('Connected to live match:', matchId);
     };
-    
+
     ws.onmessage = (event) => {
       try {
         const data = JSON.parse(event.data);
-        
+
         switch (data.type) {
           case 'match_update':
             setCurrentMatch(prev => prev ? { ...prev, ...data.match } : null);
@@ -208,17 +211,17 @@ export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
         console.error('Failed to parse WebSocket message:', err);
       }
     };
-    
+
     ws.onclose = () => {
       setIsConnected(false);
       console.log('Disconnected from live match');
     };
-    
+
     ws.onerror = (error) => {
       console.error('WebSocket error:', error);
       setIsConnected(false);
     };
-    
+
     setWebsocket(ws);
   }, [websocket]);
 
@@ -234,7 +237,7 @@ export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
 
   // Simulate a match
   const simulateMatch = useCallback(async (
-    homeTeam: string, 
+    homeTeam: string,
     awayTeam: string
   ): Promise<MatchSimulation | null> => {
     try {
@@ -245,9 +248,9 @@ export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
         },
         body: JSON.stringify({ homeTeam, awayTeam }),
       });
-      
+
       if (!response.ok) throw new Error('Failed to simulate match');
-      
+
       const data = await response.json();
       return data.simulation;
     } catch (err) {
@@ -264,10 +267,10 @@ export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
   // Initial fetch and polling
   useEffect(() => {
     fetchLiveMatches();
-    
+
     // Poll for updates every 30 seconds
     const interval = setInterval(fetchLiveMatches, 30000);
-    
+
     return () => clearInterval(interval);
   }, [fetchLiveMatches]);
 
