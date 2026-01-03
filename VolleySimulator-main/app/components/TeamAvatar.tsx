@@ -76,6 +76,9 @@ function TeamAvatar({ name, size = 'md', showName = false, position, priority = 
                         onError={() => setHasError(true)}
                         priority={priority}
                         loading={priority ? "eager" : "lazy"}
+                        placeholder="blur"
+                        blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMWUyOTNiIiByeD0iMjAiLz48L3N2Zz4="
+                        sizes={`${pixelSizes[size]}px`}
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center">

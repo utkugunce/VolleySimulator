@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+// Revalidate every 5 minutes
+export const revalidate = 300;
+
 export async function GET(req: NextRequest) {
     try {
         // Read the 1. Lig data from local JSON file
@@ -17,7 +20,12 @@ export async function GET(req: NextRequest) {
             !withdrawnTeams.includes(match.homeTeam) && !withdrawnTeams.includes(match.awayTeam)
         );
 
-        return NextResponse.json(data);
+        // Return with cache headers
+        return NextResponse.json(data, {
+            headers: {
+                'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+            }
+        });
     } catch (error) {
         console.error('Error reading 1. Lig data:', error);
         return NextResponse.json(

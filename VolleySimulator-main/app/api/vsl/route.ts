@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+// Revalidate every 5 minutes
+export const revalidate = 300;
+
 export async function GET(req: NextRequest) {
     try {
         // Read the VSL data from local JSON file
@@ -17,7 +20,12 @@ export async function GET(req: NextRequest) {
         const jsonData = fs.readFileSync(dataPath, 'utf-8');
         const data = JSON.parse(jsonData);
 
-        return NextResponse.json(data);
+        // Return with cache headers
+        return NextResponse.json(data, {
+            headers: {
+                'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+            }
+        });
     } catch (error) {
         console.error('Error reading VSL data:', error);
         return NextResponse.json(

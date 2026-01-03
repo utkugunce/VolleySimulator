@@ -1,0 +1,117 @@
+{
+  "navigation": {
+    "home": "Ana Sayfa",
+    "leagues": "Ligler",
+    "leaderboard": "Liderlik",
+    "profile": "Profil",
+    "settings": "Ayarlar",
+    "login": "Giriş",
+    "register": "Kayıt Ol",
+    "logout": "Çıkış"
+  },
+  "leagues": {
+    "vsl": "Vestel Sultanlar Ligi",
+    "1lig": "1. Lig",
+    "2lig": "2. Lig",
+    "cevCl": "CEV Şampiyonlar Ligi",
+    "cevCup": "CEV Kupası",
+    "cevChallenge": "CEV Challenge Kupası"
+  },
+  "pages": {
+    "standings": "Güncel Durum",
+    "predictions": "Tahmin Oyunu",
+    "stats": "İstatistikler",
+    "playoffs": "Playoff"
+  },
+  "predictions": {
+    "title": "Tahmin Oyunu",
+    "subtitle": "Maç sonuçlarını tahmin et, puan kazan!",
+    "submitPrediction": "Tahmini Gönder",
+    "updatePrediction": "Tahmini Güncelle",
+    "points": "Puan",
+    "correctScore": "Doğru Skor",
+    "correctWinner": "Doğru Kazanan",
+    "noMatch": "Tahmin için maç yok",
+    "matchStarted": "Maç başladı",
+    "deadline": "Son tarih"
+  },
+  "standings": {
+    "title": "Puan Durumu",
+    "rank": "Sıra",
+    "team": "Takım",
+    "played": "O",
+    "won": "G",
+    "lost": "M",
+    "setsWon": "AS",
+    "setsLost": "YS",
+    "setsDiff": "Av",
+    "pointsWon": "AP",
+    "pointsLost": "YP",
+    "points": "P"
+  },
+  "leaderboard": {
+    "title": "Liderlik Tablosu",
+    "rank": "Sıra",
+    "user": "Kullanıcı",
+    "points": "Puan",
+    "predictions": "Tahmin",
+    "accuracy": "İsabet"
+  },
+  "auth": {
+    "loginTitle": "Giriş Yap",
+    "registerTitle": "Kayıt Ol",
+    "email": "E-posta",
+    "password": "Şifre",
+    "confirmPassword": "Şifre Tekrar",
+    "username": "Kullanıcı Adı",
+    "loginButton": "Giriş Yap",
+    "registerButton": "Kayıt Ol",
+    "forgotPassword": "Şifremi Unuttum",
+    "noAccount": "Hesabınız yok mu?",
+    "hasAccount": "Hesabınız var mı?",
+    "orContinueWith": "veya şununla devam et",
+    "google": "Google ile Giriş"
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "retry": "Tekrar Dene",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "confirm": "Onayla",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "back": "Geri",
+    "next": "İleri",
+    "previous": "Önceki",
+    "search": "Ara",
+    "noResults": "Sonuç bulunamadı",
+    "seeAll": "Tümünü Gör"
+  },
+  "errors": {
+    "networkError": "Bağlantı hatası",
+    "serverError": "Sunucu hatası",
+    "notFound": "Sayfa bulunamadı",
+    "unauthorized": "Giriş yapmanız gerekiyor",
+    "forbidden": "Bu işleme yetkiniz yok"
+  },
+  "offline": {
+    "title": "İnternet Bağlantısı Yok",
+    "description": "Şu anda çevrimdışısınız. Lütfen internet bağlantınızı kontrol edin.",
+    "cachedInfo": "Bazı sayfalar önbellekte saklanmıştır",
+    "predictionsInfo": "Tahminleriniz yerel olarak kaydedilmiştir",
+    "syncInfo": "Bağlantı sağlandığında senkronize olacaktır",
+    "retry": "Yenile",
+    "goHome": "Ana Sayfaya Dön"
+  },
+  "teams": {
+    "details": "Takım Detayları",
+    "matches": "Maçlar",
+    "roster": "Kadro",
+    "statistics": "İstatistikler"
+  },
+  "meta": {
+    "title": "VolleySimulator - Türkiye Voleybol Tahmin Oyunu",
+    "description": "Türkiye voleybol liglerinde maç sonuçlarını tahmin edin ve rakiplerinizle yarışın."
+  }
+}

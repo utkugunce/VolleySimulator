@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerSupabaseClient } from '../../utils/supabase-server';
 
+// Revalidate every 2 minutes for leaderboard
+export const revalidate = 120;
+
 // GET - Fetch leaderboard
 export async function GET(request: NextRequest) {
     try {
@@ -70,6 +73,10 @@ export async function GET(request: NextRequest) {
             userEntry,
             userRank,
             type
+        }, {
+            headers: {
+                'Cache-Control': 'public, s-maxage=120, stale-while-revalidate=300',
+            }
         });
     } catch (error) {
         console.error('Leaderboard GET error:', error);

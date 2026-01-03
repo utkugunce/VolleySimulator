@@ -4,12 +4,15 @@ import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, getLocale } from 'next-intl/server';
 import "./globals.css";
 import { ToastProvider } from "./components/Toast";
 import Navbar from "./components/Navbar";
 import { AuthProvider } from "./context/AuthContext";
 import AuthGuard from "./components/AuthGuard";
 import { QueryProvider } from "./providers/QueryProvider";
+import { LocaleProvider } from "./context/LocaleContext";
 
 // Lazy load non-critical components (will be client-side only)
 const ScrollToTop = dynamic(() => import("./components/ScrollToTop"));
@@ -48,30 +51,37 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="tr" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-950`}
         suppressHydrationWarning
       >
-        <QueryProvider>
-          <AuthProvider>
-            <ToastProvider>
-              <Navbar />
-              <div className="pt-12 pb-16 min-h-screen flex flex-col">
-                <AuthGuard>
-                  {children}
-                </AuthGuard>
-                <ScrollToTop />
-              </div>
-            </ToastProvider>
-          </AuthProvider>
-        </QueryProvider>
+        <NextIntlClientProvider messages={messages}>
+          <LocaleProvider>
+            <QueryProvider>
+              <AuthProvider>
+                <ToastProvider>
+                  <Navbar />
+                  <div className="pt-12 pb-16 min-h-screen flex flex-col">
+                    <AuthGuard>
+                      {children}
+                    </AuthGuard>
+                    <ScrollToTop />
+                  </div>
+                </ToastProvider>
+              </AuthProvider>
+            </QueryProvider>
+          </LocaleProvider>
+        </NextIntlClientProvider>
         {/* Service Worker Registration */}
         <Script id="sw-register" strategy="lazyOnload">
           {`

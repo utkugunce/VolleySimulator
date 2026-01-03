@@ -149,4 +149,54 @@ export function SkeletonPage() {
     );
 }
 
+// Bracket skeleton for playoff views
+export function SkeletonBracket({ rounds = 3 }: { rounds?: number }) {
+    return (
+        <div className="space-y-4 p-4">
+            <Skeleton className="h-8 w-48 mb-6" />
+            <div className="flex gap-8 overflow-x-auto pb-4">
+                {Array.from({ length: rounds }).map((_, roundIdx) => (
+                    <div key={roundIdx} className="flex flex-col gap-4 min-w-[200px]">
+                        <Skeleton className="h-5 w-24 mb-2" />
+                        {Array.from({ length: Math.pow(2, rounds - roundIdx - 1) }).map((_, matchIdx) => (
+                            <div key={matchIdx} className="bg-slate-900/50 border border-slate-800 rounded-lg p-3 space-y-2">
+                                <div className="flex items-center gap-2">
+                                    <SkeletonAvatar size="sm" />
+                                    <Skeleton className="h-4 w-20 flex-1" />
+                                    <Skeleton className="h-4 w-6" />
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <SkeletonAvatar size="sm" />
+                                    <Skeleton className="h-4 w-20 flex-1" />
+                                    <Skeleton className="h-4 w-6" />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+// Leaderboard skeleton
+export function SkeletonLeaderboard({ count = 10 }: { count?: number }) {
+    return (
+        <div className="space-y-2 p-4">
+            <Skeleton className="h-8 w-48 mb-4" />
+            {Array.from({ length: count }).map((_, i) => (
+                <div key={i} className="flex items-center gap-3 p-3 bg-slate-900/50 border border-slate-800 rounded-lg">
+                    <Skeleton className="h-6 w-8 rounded" />
+                    <SkeletonAvatar size="sm" />
+                    <div className="flex-1">
+                        <Skeleton className="h-4 w-32 mb-1" />
+                        <Skeleton className="h-3 w-20" />
+                    </div>
+                    <Skeleton className="h-6 w-16 rounded-lg" />
+                </div>
+            ))}
+        </div>
+    );
+}
+
 export default Skeleton;

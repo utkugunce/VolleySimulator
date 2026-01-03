@@ -59,11 +59,18 @@ export function createRateLimiter(config: RateLimitConfig) {
  * }
  */
 
+// Auto-cleanup interval reference
+let cleanupInterval: NodeJS.Timeout | null = null;
+
 /**
- * Cleanup old entries periodically (optional)
+ * Cleanup old entries periodically
+ * Automatically starts on first rateLimiter use
  */
 export function startRateLimitCleanup(intervalMs = 60000) {
-    setInterval(() => {
+    // Prevent multiple intervals
+    if (cleanupInterval) return;
+    
+    cleanupInterval = setInterval(() => {
         const now = Date.now();
         for (const [key, limit] of rateLimits.entries()) {
             if (now > limit.resetTime) {
@@ -71,4 +78,14 @@ export function startRateLimitCleanup(intervalMs = 60000) {
             }
         }
     }, intervalMs);
+    
+    // Don't block Node.js from exiting
+    if (cleanupInterval.unref) {
+        cleanupInterval.unref();
+    }
+}
+
+// Auto-start cleanup when module is loaded
+if (typeof window === 'undefined') {
+    startRateLimitCleanup();
 }

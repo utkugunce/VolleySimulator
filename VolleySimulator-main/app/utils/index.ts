@@ -2,6 +2,7 @@
 export * from './apiValidation';
 export * from './rateLimit';
 export * from './validation';
+export * from './performance';
 
 // Re-export commonly used utilities
 export { calculateLiveStandings, normalizeTeamName } from './calculatorUtils';

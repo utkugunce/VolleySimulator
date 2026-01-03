@@ -1,0 +1,117 @@
+{
+  "navigation": {
+    "home": "Home",
+    "leagues": "Leagues",
+    "leaderboard": "Leaderboard",
+    "profile": "Profile",
+    "settings": "Settings",
+    "login": "Login",
+    "register": "Sign Up",
+    "logout": "Logout"
+  },
+  "leagues": {
+    "vsl": "Vestel Sultans League",
+    "1lig": "1st League",
+    "2lig": "2nd League",
+    "cevCl": "CEV Champions League",
+    "cevCup": "CEV Cup",
+    "cevChallenge": "CEV Challenge Cup"
+  },
+  "pages": {
+    "standings": "Standings",
+    "predictions": "Prediction Game",
+    "stats": "Statistics",
+    "playoffs": "Playoffs"
+  },
+  "predictions": {
+    "title": "Prediction Game",
+    "subtitle": "Predict match results and earn points!",
+    "submitPrediction": "Submit Prediction",
+    "updatePrediction": "Update Prediction",
+    "points": "Points",
+    "correctScore": "Correct Score",
+    "correctWinner": "Correct Winner",
+    "noMatch": "No matches to predict",
+    "matchStarted": "Match started",
+    "deadline": "Deadline"
+  },
+  "standings": {
+    "title": "Standings",
+    "rank": "Rank",
+    "team": "Team",
+    "played": "P",
+    "won": "W",
+    "lost": "L",
+    "setsWon": "SW",
+    "setsLost": "SL",
+    "setsDiff": "SD",
+    "pointsWon": "PW",
+    "pointsLost": "PL",
+    "points": "Pts"
+  },
+  "leaderboard": {
+    "title": "Leaderboard",
+    "rank": "Rank",
+    "user": "User",
+    "points": "Points",
+    "predictions": "Predictions",
+    "accuracy": "Accuracy"
+  },
+  "auth": {
+    "loginTitle": "Login",
+    "registerTitle": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "username": "Username",
+    "loginButton": "Login",
+    "registerButton": "Sign Up",
+    "forgotPassword": "Forgot Password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "orContinueWith": "or continue with",
+    "google": "Sign in with Google"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "noResults": "No results found",
+    "seeAll": "See All"
+  },
+  "errors": {
+    "networkError": "Network error",
+    "serverError": "Server error",
+    "notFound": "Page not found",
+    "unauthorized": "You need to login",
+    "forbidden": "You don't have permission"
+  },
+  "offline": {
+    "title": "No Internet Connection",
+    "description": "You are currently offline. Please check your internet connection.",
+    "cachedInfo": "Some pages are cached",
+    "predictionsInfo": "Your predictions are saved locally",
+    "syncInfo": "Will sync when connection is restored",
+    "retry": "Refresh",
+    "goHome": "Go to Home"
+  },
+  "teams": {
+    "details": "Team Details",
+    "matches": "Matches",
+    "roster": "Roster",
+    "statistics": "Statistics"
+  },
+  "meta": {
+    "title": "VolleySimulator - Turkey Volleyball Prediction Game",
+    "description": "Predict match results in Turkish volleyball leagues and compete with other players."
+  }
+}
