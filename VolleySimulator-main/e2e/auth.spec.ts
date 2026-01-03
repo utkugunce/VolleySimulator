@@ -55,7 +55,7 @@ test.describe('Profile Page (Authenticated)', () => {
   // These tests would require authentication setup
   // Skipping for now as they need test user credentials
   
-  test.skip('should show user profile when authenticated', async ({ page }) => {
+  test.skip('should show user profile when authenticated', async () => {
     // TODO: Implement with test user authentication
   });
 });

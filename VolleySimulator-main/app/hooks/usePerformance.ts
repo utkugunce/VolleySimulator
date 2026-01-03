@@ -2,6 +2,27 @@
 
 import { useEffect } from 'react';
 
+declare global {
+    interface Window {
+        gtag?: (...args: unknown[]) => void;
+    }
+}
+
+// Extended PerformanceEntry types for Web Vitals
+interface LCPEntry extends PerformanceEntry {
+    renderTime?: number;
+    loadTime?: number;
+}
+
+interface LayoutShiftEntry extends PerformanceEntry {
+    hadRecentInput?: boolean;
+    value: number;
+}
+
+interface InteractionEntry extends PerformanceEntry {
+    processingDuration?: number;
+}
+
 interface WebVitals {
     name: string;
     value: number;
@@ -19,7 +40,7 @@ export function useWebVitals() {
             try {
                 const lcpObserver = new PerformanceObserver((entryList) => {
                     const entries = entryList.getEntries();
-                    const lastEntry = entries[entries.length - 1] as any;
+                    const lastEntry = entries[entries.length - 1] as LCPEntry;
                     if (lastEntry) {
                         const vital: WebVitals = {
                             name: 'LCP',
@@ -37,7 +58,7 @@ export function useWebVitals() {
                     }
                 });
                 lcpObserver.observe({ entryTypes: ['largest-contentful-paint'], buffered: true });
-            } catch (e) {
+            } catch {
                 console.warn('LCP observer not supported');
             }
 
@@ -46,8 +67,9 @@ export function useWebVitals() {
                 const clsObserver = new PerformanceObserver((entryList) => {
                     let clsValue = 0;
                     for (const entry of entryList.getEntries()) {
-                        if ((entry as any).hadRecentInput) continue;
-                        clsValue += (entry as any).value;
+                        const shiftEntry = entry as LayoutShiftEntry;
+                        if (shiftEntry.hadRecentInput) continue;
+                        clsValue += shiftEntry.value;
                     }
                     const vital: WebVitals = {
                         name: 'CLS',
@@ -64,7 +86,7 @@ export function useWebVitals() {
                     sendAnalytics(vital);
                 });
                 clsObserver.observe({ type: 'layout-shift', buffered: true });
-            } catch (e) {
+            } catch {
                 console.warn('CLS observer not supported');
             }
 
@@ -73,10 +95,10 @@ export function useWebVitals() {
                 const ttpObserver = new PerformanceObserver((entryList) => {
                     const entries = entryList.getEntries();
                     if (entries.length > 0) {
-                        const entry = entries[0];
+                        const entry = entries[0] as InteractionEntry;
                         const vital: WebVitals = {
                             name: 'INP',
-                            value: (entry as any).processingDuration || 0,
+                            value: entry.processingDuration || 0,
                         };
                         // INP > 500ms is poor
                         if (vital.value > 500) {
@@ -90,7 +112,7 @@ export function useWebVitals() {
                     }
                 });
                 ttpObserver.observe({ entryTypes: ['first-input', 'interaction'], buffered: true });
-            } catch (e) {
+            } catch {
                 console.warn('INP observer not supported');
             }
         }
@@ -99,8 +121,8 @@ export function useWebVitals() {
 
 function sendAnalytics(vital: WebVitals) {
     // Send to Google Analytics if available
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', vital.name, {
+    if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', vital.name, {
             value: Math.round(vital.value),
             event_category: 'Web Vitals',
             event_label: vital.name,

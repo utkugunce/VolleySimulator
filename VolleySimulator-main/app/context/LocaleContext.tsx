@@ -11,20 +11,22 @@ interface LocaleContextType {
 
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 
-export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>('tr');
+function getInitialLocale(): Locale {
+  if (typeof document === 'undefined') return 'tr';
+  
+  const savedLocale = document.cookie
+    .split('; ')
+    .find(row => row.startsWith('NEXT_LOCALE='))
+    ?.split('=')[1];
+  
+  if (savedLocale === 'tr' || savedLocale === 'en') {
+    return savedLocale;
+  }
+  return 'tr';
+}
 
-  useEffect(() => {
-    // Read from cookie on mount
-    const savedLocale = document.cookie
-      .split('; ')
-      .find(row => row.startsWith('NEXT_LOCALE='))
-      ?.split('=')[1] as Locale | undefined;
-    
-    if (savedLocale && (savedLocale === 'tr' || savedLocale === 'en')) {
-      setLocaleState(savedLocale);
-    }
-  }, []);
+export function LocaleProvider({ children }: { children: ReactNode }) {
+  const [locale, setLocaleState] = useState<Locale>(getInitialLocale);
 
   const setLocale = (newLocale: Locale) => {
     setLocaleState(newLocale);

@@ -2,10 +2,12 @@
  * Performance utilities for throttling, debouncing, and optimization
  */
 
+type AnyFunction = (...args: never[]) => void;
+
 /**
  * Throttle function execution to at most once per wait period
  */
-export function throttle<T extends (...args: any[]) => void>(
+export function throttle<T extends AnyFunction>(
     func: T,
     wait: number
 ): T & { cancel: () => void } {
@@ -13,7 +15,7 @@ export function throttle<T extends (...args: any[]) => void>(
     let lastArgs: Parameters<T> | null = null;
     let lastCallTime = 0;
 
-    const throttled = function (this: any, ...args: Parameters<T>) {
+    const throttled = function (this: unknown, ...args: Parameters<T>) {
         const now = Date.now();
         const remaining = wait - (now - lastCallTime);
 
@@ -53,7 +55,7 @@ export function throttle<T extends (...args: any[]) => void>(
 /**
  * Debounce function execution until after wait period has elapsed since last call
  */
-export function debounce<T extends (...args: any[]) => void>(
+export function debounce<T extends AnyFunction>(
     func: T,
     wait: number,
     options: { leading?: boolean } = {}
@@ -61,7 +63,7 @@ export function debounce<T extends (...args: any[]) => void>(
     let timeout: NodeJS.Timeout | null = null;
     let lastArgs: Parameters<T> | null = null;
 
-    const debounced = function (this: any, ...args: Parameters<T>) {
+    const debounced = function (this: unknown, ...args: Parameters<T>) {
         lastArgs = args;
 
         if (options.leading && !timeout) {
@@ -95,13 +97,13 @@ export function debounce<T extends (...args: any[]) => void>(
 /**
  * Request animation frame based throttle for scroll/resize handlers
  */
-export function rafThrottle<T extends (...args: any[]) => void>(
+export function rafThrottle<T extends AnyFunction>(
     func: T
 ): T & { cancel: () => void } {
     let rafId: number | null = null;
     let lastArgs: Parameters<T> | null = null;
 
-    const throttled = function (this: any, ...args: Parameters<T>) {
+    const throttled = function (this: unknown, ...args: Parameters<T>) {
         lastArgs = args;
 
         if (rafId === null) {
@@ -125,23 +127,25 @@ export function rafThrottle<T extends (...args: any[]) => void>(
     return throttled;
 }
 
+type AnyReturnFunction = (...args: never[]) => unknown;
+
 /**
  * Memoize function results based on arguments
  */
-export function memoize<T extends (...args: any[]) => any>(
+export function memoize<T extends AnyReturnFunction>(
     func: T,
     keyResolver?: (...args: Parameters<T>) => string
 ): T {
-    const cache = new Map<string, ReturnType<T>>();
+    const cache = new Map<string, unknown>();
 
-    return function (this: any, ...args: Parameters<T>) {
+    return function (this: unknown, ...args: Parameters<T>) {
         const key = keyResolver ? keyResolver(...args) : JSON.stringify(args);
 
         if (cache.has(key)) {
-            return cache.get(key)!;
+            return cache.get(key) as ReturnType<T>;
         }
 
-        const result = func.apply(this, args);
+        const result = func.apply(this, args) as ReturnType<T>;
         cache.set(key, result);
         return result;
     } as T;

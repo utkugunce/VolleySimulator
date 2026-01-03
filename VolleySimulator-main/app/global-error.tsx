@@ -11,8 +11,8 @@ export default function GlobalError({
 }) {
     useEffect(() => {
         // Report to error tracking service
-        if (typeof window !== 'undefined' && (window as any).gtag) {
-            (window as any).gtag('event', 'exception', {
+        if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'exception', {
                 description: `Global Error: ${error.message}`,
                 fatal: true,
                 error_digest: error.digest,

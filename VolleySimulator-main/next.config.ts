@@ -3,10 +3,10 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
-const withBundleAnalyzer = process.env.ANALYZE === 'true'
-  ? require('@next/bundle-analyzer')({
-      enabled: process.env.ANALYZE === 'true',
-    })
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const bundleAnalyzer = process.env.ANALYZE === 'true' ? require('@next/bundle-analyzer') : null;
+const withBundleAnalyzer = bundleAnalyzer
+  ? bundleAnalyzer({ enabled: true })
   : (config: NextConfig) => config;
 
 const nextConfig: NextConfig = {

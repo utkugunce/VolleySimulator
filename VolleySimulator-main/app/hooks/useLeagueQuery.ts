@@ -3,12 +3,22 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { TeamStats, Match } from '../types';
 
+interface RoundData {
+    name?: string;
+    matches?: Match[];
+}
+
+interface PoolData {
+    name?: string;
+    teams?: TeamStats[];
+}
+
 interface LeagueData {
     teams: TeamStats[];
     fixture: Match[];
     groups?: string[];
-    rounds?: any[];
-    pools?: any[];
+    rounds?: RoundData[];
+    pools?: PoolData[];
 }
 
 interface LeagueConfig {
@@ -51,8 +61,6 @@ export function useLeagueQuery(
 }
 
 export function useLeagueData(leagueId: string, config: LeagueConfig) {
-    const queryClient = useQueryClient();
-
     return useQuery({
         queryKey: ['league', leagueId, 'data'],
         queryFn: async () => {

@@ -42,7 +42,7 @@ export function usePushNotifications() {
         isSubscribed: !!subscription,
         isLoading: false,
       }));
-    } catch (error) {
+    } catch {
       setState(prev => ({
         ...prev,
         error: 'Bildirim durumu kontrol edilemedi',
@@ -140,7 +140,7 @@ export function usePushNotifications() {
       }));
 
       return true;
-    } catch (error) {
+    } catch {
       setState(prev => ({
         ...prev,
         error: 'Abonelik iptal edilemedi',

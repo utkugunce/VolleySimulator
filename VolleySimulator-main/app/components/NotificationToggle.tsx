@@ -37,6 +37,9 @@ export function NotificationToggle({ className = '' }: NotificationToggleProps) 
         <button
           onClick={handleToggle}
           disabled={isLoading}
+          aria-label={isSubscribed ? 'Bildirimleri kapat' : 'Bildirimleri aç'}
+          role="switch"
+          aria-checked={isSubscribed ? 'true' : 'false'}
           className={`relative w-14 h-8 rounded-full transition-colors ${
             isSubscribed ? 'bg-emerald-600' : 'bg-slate-700'
           } ${isLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}

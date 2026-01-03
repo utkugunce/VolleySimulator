@@ -3,11 +3,18 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 
+// Extend Window interface for gtag
+declare global {
+    interface Window {
+        gtag?: (...args: unknown[]) => void;
+    }
+}
+
 // Error tracking - could be Sentry, LogRocket, etc.
 function reportError(error: Error, digest?: string) {
     // Send to external error tracking service
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'exception', {
+    if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'exception', {
             description: error.message,
             fatal: true,
             error_digest: digest,
