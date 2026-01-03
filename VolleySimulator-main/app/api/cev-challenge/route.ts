@@ -14,7 +14,7 @@ export async function GET() {
         const sourceData = JSON.parse(fileContent);
 
         // Transform to CEV Cup format
-        const fixture = [];
+        const fixture: any[] = [];
         const teamsMap = new Map();
 
         // Helper to parse score "3-0" -> { home: 3, away: 0 }
