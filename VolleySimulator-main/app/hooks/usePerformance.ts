@@ -19,11 +19,11 @@ export function useWebVitals() {
             try {
                 const lcpObserver = new PerformanceObserver((entryList) => {
                     const entries = entryList.getEntries();
-                    const lastEntry = entries[entries.length - 1];
+                    const lastEntry = entries[entries.length - 1] as any;
                     if (lastEntry) {
                         const vital: WebVitals = {
                             name: 'LCP',
-                            value: lastEntry.renderTime || lastEntry.loadTime,
+                            value: lastEntry.renderTime || lastEntry.loadTime || lastEntry.startTime || 0,
                         };
                         // LCP > 2.5s is poor
                         if (vital.value > 2500) {
