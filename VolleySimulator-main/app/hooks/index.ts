@@ -4,3 +4,5 @@ export { usePredictions } from './usePredictions';
 export { useSimulationEngine } from './useSimulationEngine';
 export { useUndoableAction } from './useUndoableAction';
 export { useUserStats } from './useUserStats';
+export { useLeagueQuery, useLeagueData, useInvalidateLeague } from './useLeagueQuery';
+export { useWebVitals, useNavigationTiming } from './usePerformance';
