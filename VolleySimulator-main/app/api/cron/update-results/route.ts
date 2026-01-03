@@ -1,288 +1,246 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import * as cheerio from 'cheerio';
+import { createServiceRoleClient } from '../../utils/supabase-server';
 
-// Cron job endpoint - runs daily at 08:00 Turkey time
-// Updates match results from TVF website
+// Cron job endpoint - fetches all league results from TVF Calendar (Takvim)
+// Updates VSL, 1. Lig, and 2. Lig in one pass
 
 export const dynamic = 'force-dynamic';
-export const maxDuration = 60; // Allow up to 60 seconds for scraping
+export const maxDuration = 60; // Allow up to 60 seconds
+
+const TVF_TAKVIM_URL = "https://fikstur.tvf.org.tr/Takvim";
 
 interface MatchResult {
+    league: string;
     homeTeam: string;
     awayTeam: string;
     homeScore: number;
     awayScore: number;
-    matchDate: string;
-    groupName: string;
+    resultScore: string;
 }
 
-// 1. Lig TVF URL - Women's 1st League
-const TVF_1LIG_URL = "https://fikstur.tvf.org.tr/PTW/MjAyNS0yMDI2/Sw%3D%3D/MUxL/S2FkxLFubGFyIDEuIExpZw%3D%3D";
-
-// 2. Lig TVF URL - Women's 2nd League  
-const TVF_2LIG_URL = "https://fikstur.tvf.org.tr/PTW/MjAyNS0yMDI2/Sw%3d%3d/MkxL/S2FkxLFubGFyIDIuIExpZw%3d%3d";
-
-// VSL TVF URL - Vodafone Sultanlar Ligi
-const TVF_VSL_URL = "https://fikstur.tvf.org.tr/FSW/MjAyNS0yMDI2/Sw%3d%3d/U1VMVEFOTEFS/Vm9kYWZvbmUgU3VsdGFubGFyIExpZ2k%3d";
-
-async function fetchTVFResults(url: string): Promise<MatchResult[]> {
+async function fetchAllLeagueResults(): Promise<MatchResult[]> {
     try {
-        // TVF uses server-side rendered pages, we can try to fetch HTML
-        // Note: If this doesn't work due to JavaScript rendering, we'll need
-        // to fall back to GitHub Actions with Puppeteer
-
-        const response = await fetch(url, {
+        const response = await fetch(TVF_TAKVIM_URL, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                'Accept-Language': 'tr-TR,tr;q=0.9,en;q=0.8',
             },
             next: { revalidate: 0 }
         });
 
         if (!response.ok) {
-            console.log(`TVF fetch failed with status: ${response.status}`);
+            console.error(`TVF Calendar fetch failed: ${response.status}`);
             return [];
         }
 
         const html = await response.text();
-
-        // Parse HTML to extract match results
-        // This is a simplified parser - TVF's actual HTML structure may differ
+        const $ = cheerio.load(html);
         const results: MatchResult[] = [];
 
-        // Look for match result patterns in HTML
-        // Format varies by TVF page structure
-        const matchPattern = /gevsahibi.*?>(.*?)<.*?gmisafir.*?>(.*?)<.*?gseta.*?>([\d])<.*?gsetb.*?>([\d])</gi;
-        let match;
+        // On the Takvim page, matches are grouped under league headers
+        // We find all league containers or iterate through rows
+        // Headers usually have class .tvf-fixture-league-header (found by subagent)
 
-        while ((match = matchPattern.exec(html)) !== null) {
-            const homeTeam = match[1].trim();
-            const awayTeam = match[2].trim();
-            const homeScore = parseInt(match[3]);
-            const awayScore = parseInt(match[4]);
+        $('.tvf-fixture-league-header').each((_, header) => {
+            const leagueName = $(header).text().trim();
 
-            if (homeTeam && awayTeam && !isNaN(homeScore) && !isNaN(awayScore)) {
-                results.push({
-                    homeTeam,
-                    awayTeam,
-                    homeScore,
-                    awayScore,
-                    matchDate: new Date().toISOString().split('T')[0],
-                    groupName: ''
-                });
-            }
+            // Find the table/container immediately following this header
+            // TVF structure usually has rows following the header in the same parent or next sibling
+            const $container = $(header).next('table, .tvf-fixture-league-matches, div');
+
+            $container.find('tr').each((_, row) => {
+                const $row = $(row);
+
+                const homeTeam = $row.find('span[id*="_gevsahibi"]').text().trim();
+                const awayTeam = $row.find('span[id*="_gmisafir"], span[id*="_gdeplasman"]').text().trim();
+                const homeScoreStr = $row.find('span[id*="_gseta"]').text().trim();
+                const awayScoreStr = $row.find('span[id*="_gsetb"], span[id*="_gsetd"]').text().trim();
+
+                const homeScore = parseInt(homeScoreStr);
+                const awayScore = parseInt(awayScoreStr);
+
+                if (homeTeam && awayTeam && !isNaN(homeScore) && !isNaN(awayScore)) {
+                    results.push({
+                        league: leagueName,
+                        homeTeam,
+                        awayTeam,
+                        homeScore,
+                        awayScore,
+                        resultScore: `${homeScore}-${awayScore}`
+                    });
+                }
+            });
+        });
+
+        // Fallback: If no headers found, try scraping all rows and inferring league (less reliable)
+        if (results.length === 0) {
+            console.log('No league headers found, attempting broad row scrape...');
+            $('tr').each((_, row) => {
+                const $row = $(row);
+                const homeTeam = $row.find('span[id*="_gevsahibi"]').text().trim();
+                const awayTeam = $row.find('span[id*="_gmisafir"], span[id*="_gdeplasman"]').text().trim();
+                const homeScoreStr = $row.find('span[id*="_gseta"]').text().trim();
+                const awayScoreStr = $row.find('span[id*="_gsetb"], span[id*="_gsetd"]').text().trim();
+
+                if (homeTeam && awayTeam && homeScoreStr !== '' && awayScoreStr !== '') {
+                    // Find nearest preceding league header if possible
+                    let leagueName = "Unknown League";
+                    const prevHeader = $row.closest('table').prevAll('.tvf-fixture-league-header').first();
+                    if (prevHeader.length) leagueName = prevHeader.text().trim();
+
+                    results.push({
+                        league: leagueName,
+                        homeTeam,
+                        awayTeam,
+                        homeScore: parseInt(homeScoreStr),
+                        awayScore: parseInt(awayScoreStr),
+                        resultScore: `${homeScoreStr}-${awayScoreStr}`
+                    });
+                }
+            });
         }
 
         return results;
     } catch (error) {
-        console.error('Error fetching TVF results:', error);
+        console.error('Error in fetchAllLeagueResults:', error);
         return [];
     }
 }
 
-function updateDataFile(filePath: string, newResults: MatchResult[]): number {
-    try {
-        if (!fs.existsSync(filePath)) {
-            console.log(`Data file not found: ${filePath}`);
-            return 0;
+async function syncToDatabaseAndLocal(results: MatchResult[]) {
+    const supabase = createServiceRoleClient();
+    let synced = 0;
+    const localUpdates: Record<string, number> = { vsl: 0, '1lig': 0, '2lig': 0 };
+
+    // Group results by our internal league keys
+    const leagueMapping: Record<string, string> = {
+        'vsl': 'Sultanlar Ligi',
+        '1lig': '1. Lig',
+        '2lig': '2. Lig'
+    };
+
+    const reverseMapping: Record<string, string> = {
+        'Vodafone Sultanlar Ligi': 'vsl',
+        'KADINLAR 1. LİG': '1lig',
+        'KADINLAR 2. LİG': '2lig',
+        'Sultanlar Ligi': 'vsl' // Catch-all variations
+    };
+
+    // Helper to find our internal league key from TVF name
+    const findInternalKey = (tvfLeague: string) => {
+        const upper = tvfLeague.toUpperCase();
+        if (upper.includes('SULTANLAR')) return 'vsl';
+        if (upper.includes('1. LİG') || upper.includes('1.LİG')) return '1lig';
+        if (upper.includes('2. LİG') || upper.includes('2.LİG')) return '2lig';
+        return null;
+    };
+
+    const dataFiles: Record<string, string> = {
+        'vsl': 'vsl-data.json',
+        '1lig': '1lig-data.json',
+        '2lig': 'tvf-data.json'
+    };
+
+    for (const res of results) {
+        const internalKey = findInternalKey(res.league);
+        if (!internalKey) continue;
+
+        // 1. Database Sync (Persistent)
+        const dbLeagueName = leagueMapping[internalKey];
+        try {
+            const { error } = await supabase
+                .from('match_results')
+                .upsert({
+                    league: dbLeagueName,
+                    home_team: res.homeTeam,
+                    away_team: res.awayTeam,
+                    result_score: res.resultScore,
+                    is_verified: true,
+                    updated_at: new Date().toISOString()
+                }, {
+                    onConflict: 'league,home_team,away_team'
+                });
+
+            if (!error) synced++;
+        } catch (e) {
+            console.error(`DB Sync Error for ${res.homeTeam}:`, e);
         }
 
-        const fileContent = fs.readFileSync(filePath, 'utf-8');
-        const data = JSON.parse(fileContent);
+        // 2. Local File Update (Dev Mode)
+        try {
+            const fileName = dataFiles[internalKey];
+            const filePath = path.join(process.cwd(), 'data', fileName);
+            if (fs.existsSync(filePath)) {
+                const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+                let fileModified = false;
 
-        let updatedCount = 0;
+                const fixture = data.fixture || data.matches;
+                if (fixture && Array.isArray(fixture)) {
+                    for (const match of fixture) {
+                        if (match.homeTeam.toUpperCase() === res.homeTeam.toUpperCase() &&
+                            match.awayTeam.toUpperCase() === res.awayTeam.toUpperCase() &&
+                            !match.isPlayed) {
+                            match.isPlayed = true;
+                            match.homeScore = res.homeScore;
+                            match.awayScore = res.awayScore;
+                            match.resultScore = res.resultScore;
+                            fileModified = true;
+                            localUpdates[internalKey]++;
+                        }
+                    }
+                }
 
-        if (data.fixture && Array.isArray(data.fixture)) {
-            for (const match of data.fixture) {
-                // Find matching result
-                const result = newResults.find(r =>
-                    r.homeTeam === match.homeTeam &&
-                    r.awayTeam === match.awayTeam
-                );
-
-                if (result && !match.isPlayed) {
-                    match.isPlayed = true;
-                    match.homeScore = result.homeScore;
-                    match.awayScore = result.awayScore;
-                    match.resultScore = `${result.homeScore}-${result.awayScore}`;
-                    updatedCount++;
+                if (fileModified) {
+                    data.lastUpdated = new Date().toISOString();
+                    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
                 }
             }
-
-            // Recalculate team standings
-            if (updatedCount > 0) {
-                recalculateStandings(data);
-            }
-
-            // Update timestamp
-            data.lastUpdated = new Date().toISOString();
-
-            // Write back to file
-            fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
-        }
-
-        return updatedCount;
-    } catch (error) {
-        console.error(`Error updating data file ${filePath}:`, error);
-        return 0;
-    }
-}
-
-function recalculateStandings(data: any): void {
-    if (!data.teams || !data.fixture) return;
-
-    // Reset all team stats
-    for (const team of data.teams) {
-        team.played = 0;
-        team.wins = 0;
-        team.points = 0;
-        team.setsWon = 0;
-        team.setsLost = 0;
-    }
-
-    // Recalculate from all played matches
-    for (const match of data.fixture) {
-        if (!match.isPlayed) continue;
-
-        const homeTeam = data.teams.find((t: any) => t.name === match.homeTeam);
-        const awayTeam = data.teams.find((t: any) => t.name === match.awayTeam);
-
-        if (!homeTeam || !awayTeam) continue;
-
-        const homeScore = match.homeScore ?? 0;
-        const awayScore = match.awayScore ?? 0;
-
-        // Update games played
-        homeTeam.played++;
-        awayTeam.played++;
-
-        // Update sets
-        homeTeam.setsWon += homeScore;
-        homeTeam.setsLost += awayScore;
-        awayTeam.setsWon += awayScore;
-        awayTeam.setsLost += homeScore;
-
-        // Calculate points (3-0 or 3-1 = 3pts winner, 0 loser; 3-2 = 2pts winner, 1pt loser)
-        if (homeScore > awayScore) {
-            homeTeam.wins++;
-            if (awayScore < 2) {
-                homeTeam.points += 3;
-            } else {
-                homeTeam.points += 2;
-                awayTeam.points += 1;
-            }
-        } else {
-            awayTeam.wins++;
-            if (homeScore < 2) {
-                awayTeam.points += 3;
-            } else {
-                awayTeam.points += 2;
-                homeTeam.points += 1;
-            }
+        } catch (e) {
+            // Ignore write errors in Vercel environment
         }
     }
+
+    return { synced, localUpdates };
 }
 
 export async function GET(request: NextRequest) {
     try {
-        // Verify cron secret for security
         const authHeader = request.headers.get('authorization');
         const cronSecret = process.env.CRON_SECRET;
+        const vercelCron = request.headers.get('x-vercel-cron');
 
-        // In production, always check the secret
-        // Vercel automatically adds the secret for cron jobs
-        if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
-            // Also check for Vercel's internal cron header
-            const vercelCron = request.headers.get('x-vercel-cron');
-            if (!vercelCron) {
-                return NextResponse.json(
-                    { error: 'Unauthorized' },
-                    { status: 401 }
-                );
-            }
+        if (cronSecret && authHeader !== `Bearer ${cronSecret}` && !vercelCron) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
-        console.log('Starting daily match results update...');
+        console.log('Starting results sync via TVF Takvim...');
         const startTime = Date.now();
 
-        const dataDir = path.join(process.cwd(), 'data');
+        const allResults = await fetchAllLeagueResults();
+        console.log(`Fetched ${allResults.length} total matches from Takvim`);
 
-        // Fetch results from TVF
-        console.log('Fetching VSL results...');
-        const resultsVSL = await fetchTVFResults(TVF_VSL_URL);
-
-        console.log('Fetching 1. Lig results...');
-        const results1Lig = await fetchTVFResults(TVF_1LIG_URL);
-
-        console.log('Fetching 2. Lig results...');
-        const results2Lig = await fetchTVFResults(TVF_2LIG_URL);
-
-        // Update data files
-        let updatedVSL = 0;
-        let updated1Lig = 0;
-        let updated2Lig = 0;
-
-        if (resultsVSL.length > 0) {
-            const fileVSL = path.join(dataDir, 'vsl-data.json');
-            updatedVSL = updateDataFile(fileVSL, resultsVSL);
-            console.log(`Updated ${updatedVSL} matches in VSL`);
-        }
-
-        if (results1Lig.length > 0) {
-            const file1Lig = path.join(dataDir, '1lig-data.json');
-            updated1Lig = updateDataFile(file1Lig, results1Lig);
-            console.log(`Updated ${updated1Lig} matches in 1. Lig`);
-        }
-
-        if (results2Lig.length > 0) {
-            const file2Lig = path.join(dataDir, 'tvf-data.json');
-            updated2Lig = updateDataFile(file2Lig, results2Lig);
-            console.log(`Updated ${updated2Lig} matches in 2. Lig`);
-        }
+        const syncStats = await syncToDatabaseAndLocal(allResults);
 
         const duration = Date.now() - startTime;
 
-        const response = {
+        return NextResponse.json({
             success: true,
-            message: 'Daily update completed',
-            timestamp: new Date().toISOString(),
             duration: `${duration}ms`,
-            results: {
-                'vsl': {
-                    fetched: resultsVSL.length,
-                    updated: updatedVSL
-                },
-                '1lig': {
-                    fetched: results1Lig.length,
-                    updated: updated1Lig
-                },
-                '2lig': {
-                    fetched: results2Lig.length,
-                    updated: updated2Lig
-                }
-            }
-        };
-
-        console.log('Update completed:', response);
-
-        return NextResponse.json(response);
+            timestamp: new Date().toISOString(),
+            fetchedCount: allResults.length,
+            syncedCount: syncStats.synced,
+            localUpdates: syncStats.localUpdates,
+            sampleLeagues: [...new Set(allResults.map(r => r.league))]
+        });
 
     } catch (error: any) {
-        console.error('Cron job error:', error);
-        return NextResponse.json(
-            {
-                success: false,
-                error: error.message || 'Unknown error',
-                timestamp: new Date().toISOString()
-            },
-            { status: 500 }
-        );
+        console.error('Unified Cron job error:', error);
+        return NextResponse.json({ success: false, error: error.message }, { status: 500 });
     }
 }
 
-// Also allow POST for manual triggers
 export async function POST(request: NextRequest) {
     return GET(request);
 }
