@@ -17,6 +17,7 @@ export async function GET(request: NextRequest) {
         if (type === 'weekly') orderColumn = 'weekly_points';
         if (type === 'monthly') orderColumn = 'monthly_points';
 
+        // Fetch Top N
         const { data, error } = await supabase
             .from('leaderboard')
             .select('*')
@@ -40,29 +41,30 @@ export async function GET(request: NextRequest) {
         let userRank = null;
 
         if (user) {
-            // Find user in the full leaderboard
-            const { data: allData } = await supabase
-                .from('leaderboard')
-                .select('user_id')
-                .order(orderColumn, { ascending: false });
+            // Check if user is already in top N
+            const inTopKeys = rankedData?.findIndex(e => e.user_id === user.id);
 
-            if (allData) {
-                const userIndex = allData.findIndex(e => e.user_id === user.id);
-                if (userIndex !== -1) {
-                    userRank = userIndex + 1;
-                    userEntry = rankedData?.find(e => e.user_id === user.id) || null;
+            if (inTopKeys !== undefined && inTopKeys !== -1) {
+                userRank = inTopKeys + 1;
+                userEntry = rankedData![inTopKeys];
+            } else {
+                // If not in top results, fetch their entry specifically
+                const { data: userData } = await supabase
+                    .from('leaderboard')
+                    .select('*')
+                    .eq('user_id', user.id)
+                    .single();
 
-                    // If user not in top results, fetch their entry
-                    if (!userEntry) {
-                        const { data: userData } = await supabase
-                            .from('leaderboard')
-                            .select('*')
-                            .eq('user_id', user.id)
-                            .single();
+                if (userData) {
+                    // Calculate rank efficiently: Count how many have more points
+                    const { count, error: rankError } = await supabase
+                        .from('leaderboard')
+                        .select('*', { count: 'exact', head: true })
+                        .gt(orderColumn, userData[orderColumn]);
 
-                        if (userData) {
-                            userEntry = { ...userData, rank: userRank };
-                        }
+                    if (!rankError) {
+                        userRank = (count || 0) + 1;
+                        userEntry = { ...userData, rank: userRank };
                     }
                 }
             }

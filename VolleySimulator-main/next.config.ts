@@ -30,7 +30,15 @@ const nextConfig: NextConfig = {
 
   // Experimental features for better performance
   experimental: {
-    optimizePackageImports: ['@supabase/supabase-js', '@tanstack/react-query', 'cheerio'],
+    optimizePackageImports: [
+      '@supabase/supabase-js',
+      '@tanstack/react-query',
+      'cheerio',
+      'lucide-react',
+      'date-fns',
+      'lodash',
+      'recharts'
+    ],
   },
 
   // Production optimizations
