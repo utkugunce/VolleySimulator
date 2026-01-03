@@ -11,9 +11,9 @@ import { AuthProvider } from "./context/AuthContext";
 import AuthGuard from "./components/AuthGuard";
 import { QueryProvider } from "./providers/QueryProvider";
 
-// Lazy load non-critical components
-const ScrollToTop = dynamic(() => import("./components/ScrollToTop"), { ssr: false });
-const AccessiBeWidget = dynamic(() => import("./components/AccessiBeWidget"), { ssr: false });
+// Lazy load non-critical components (will be client-side only)
+const ScrollToTop = dynamic(() => import("./components/ScrollToTop"));
+const AccessiBeWidget = dynamic(() => import("./components/AccessiBeWidget"));
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
