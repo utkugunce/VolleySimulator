@@ -9,7 +9,7 @@ import {
     QuestId,
     LEVEL_THRESHOLDS,
     LEVEL_TITLES
-} from '../types';
+} from '../../types';
 
 // ============================================
 // ACHIEVEMENT DEFINITIONS

@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { createClient } from "../utils/supabase";
 import { useAuth } from "../context/AuthContext";
 
@@ -17,6 +18,65 @@ export interface Prediction {
 }
 
 export type PredictionOverrides = Record<string, string>;
+
+const SYNC_QUEUE_KEY = 'prediction_sync_queue';
+
+interface SyncItem {
+    userId: string;
+    league: string;
+    matchId: string;
+    score: string;
+    groupName?: string;
+    timestamp: number;
+}
+
+function addToSyncQueue(item: SyncItem) {
+    if (typeof window === 'undefined') return;
+    const queue = JSON.parse(localStorage.getItem(SYNC_QUEUE_KEY) || '[]');
+    queue.push(item);
+    localStorage.setItem(SYNC_QUEUE_KEY, JSON.stringify(queue));
+}
+
+async function processSyncQueue() {
+    if (typeof window === 'undefined') return;
+    const queue: SyncItem[] = JSON.parse(localStorage.getItem(SYNC_QUEUE_KEY) || '[]');
+    if (queue.length === 0) return;
+
+    const supabase = createClient();
+    if (!supabase) return;
+
+    const remaining: SyncItem[] = [];
+
+    for (const item of queue) {
+        try {
+            if (!item.score) {
+                 await supabase
+                    .from("predictions")
+                    .delete()
+                    .eq("user_id", item.userId)
+                    .eq("league", item.league)
+                    .eq("match_id", item.matchId);
+            } else {
+                await supabase.from("predictions").upsert(
+                    {
+                        user_id: item.userId,
+                        league: item.league,
+                        group_name: item.groupName || null,
+                        match_id: item.matchId,
+                        score: item.score,
+                    },
+                    { onConflict: "user_id,league,match_id" }
+                );
+            }
+        } catch (e) {
+            console.error("Sync failed for item", item, e);
+            remaining.push(item);
+        }
+    }
+
+    localStorage.setItem(SYNC_QUEUE_KEY, JSON.stringify(remaining));
+}
+
 
 // ============================================
 // FETCH PREDICTIONS
@@ -78,8 +138,9 @@ async function savePrediction(
     groupName?: string
 ): Promise<void> {
     const supabase = createClient();
-    if (!supabase) {
-        // Fallback to localStorage
+
+    // Helper to save to local storage
+    const saveToLocal = () => {
         const storageKey = getStorageKey(league);
         const saved = localStorage.getItem(storageKey);
         const existing = saved ? JSON.parse(saved) : {};
@@ -100,29 +161,39 @@ async function savePrediction(
         }
 
         localStorage.setItem(storageKey, JSON.stringify(existing));
+    };
+
+    if (!supabase) {
+        saveToLocal();
         return;
     }
 
-    if (!score) {
-        // Delete prediction
-        await supabase
-            .from("predictions")
-            .delete()
-            .eq("user_id", userId)
-            .eq("league", league)
-            .eq("match_id", matchId);
-    } else {
-        // Upsert prediction
-        await supabase.from("predictions").upsert(
-            {
-                user_id: userId,
-                league,
-                group_name: groupName || null,
-                match_id: matchId,
-                score,
-            },
-            { onConflict: "user_id,league,match_id" }
-        );
+    try {
+        if (!score) {
+            // Delete prediction
+            await supabase
+                .from("predictions")
+                .delete()
+                .eq("user_id", userId)
+                .eq("league", league)
+                .eq("match_id", matchId);
+        } else {
+            // Upsert prediction
+            await supabase.from("predictions").upsert(
+                {
+                    user_id: userId,
+                    league,
+                    group_name: groupName || null,
+                    match_id: matchId,
+                    score,
+                },
+                { onConflict: "user_id,league,match_id" }
+            );
+        }
+    } catch (error) {
+        console.error("Supabase save failed, falling back to local + sync queue", error);
+        saveToLocal();
+        addToSyncQueue({ userId, league, matchId, score, groupName, timestamp: Date.now() });
     }
 }
 
@@ -233,6 +304,16 @@ export function usePredictions(league: string, groupName?: string) {
     const queryClient = useQueryClient();
 
     const userId = user?.id || "anonymous";
+
+    useEffect(() => {
+        const handleOnline = () => {
+            processSyncQueue();
+        };
+        window.addEventListener('online', handleOnline);
+        // Try processing on mount too
+        processSyncQueue();
+        return () => window.removeEventListener('online', handleOnline);
+    }, []);
 
     const query = useQuery({
         queryKey: ["predictions", league, groupName, userId],

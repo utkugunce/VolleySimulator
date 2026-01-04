@@ -1,0 +1,202 @@
+﻿
+> web_app@0.1.0 test
+> jest __tests__/components/TeamAvatar.test.tsx
+
+node.exe : FAIL __tests__/components/TeamAvatar.test.tsx
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node
+_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~
+    + CategoryInfo          : NotSpecified: (FAIL __tests__/...Avat 
+   ar.test.tsx:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  TeamAvatar
+    ÔêÜ renders image with correct src by default (21 ms)
+    ├ù renders initials when image fails to load (18 ms)
+    ÔêÜ renders name when showName is true (3 ms)
+    ├ù applies correct size classes (4 ms)
+    ÔêÜ applies ring for top positions (1 ms)
+    ÔêÜ handles single word names correctly for initials (4 ms)
+
+  ÔùÅ TeamAvatar ÔÇ║ renders initials when image fails to load
+
+    TestingLibraryElementError: Unable to find an element with the t
+ext: Ec. This could be because the text is broken up by multiple ele
+ments. In this case, you can provide a function for your text matche
+r to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex items-center gap-2"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-label[39m=[32m"Eczac─▒ba┼ş─▒ Dynavit"[39m
+            [33mclass[39m=[32m"w-8 h-8 text-xs rounded-full flex 
+items-center justify-center font-bold text-white uppercase relative 
+overflow-hidden  "[39m
+            [33mrole[39m=[32m"img"[39m
+            [33mstyle[39m=[32m"background-color: rgb(116, 41, 163
+);"[39m
+            [33mtitle[39m=[32m"Eczac─▒ba┼ş─▒ Dynavit"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"w-full h-full flex items-center 
+justify-center"[39m
+            [36m>[39m
+              [0mED[0m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 41 |[39m
+     [90m 42 |[39m         [90m// Should show "Ec" (Eczac─▒ba┼ş─▒
+ Dynavit split into words)[39m
+    [31m[1m>[22m[39m[90m 43 |[39m         expect(screen[33m.
+[39mgetByText([32m'Ec'[39m))[33m.[39mtoBeInTheDocument()[33m;[
+39m
+     [90m    |[39m                       [31m[1m^[22m[39m
+     [90m 44 |[39m     })[33m;[39m
+     [90m 45 |[39m
+     [90m 46 |[39m     it([32m'renders name when showName is true
+'[39m[33m,[39m () [33m=>[39m {[0m
+
+      at Object.getElementError (node_modules/@testing-library/dom/d
+ist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:
+38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:
+17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:
+19
+      at Object.getByText (__tests__/components/TeamAvatar.test.tsx:
+43:23)
+
+  ÔùÅ TeamAvatar ÔÇ║ applies correct size classes
+
+    TestingLibraryElementError: Found multiple elements with the tex
+t of: Test
+
+    Here are the matching elements:
+
+    Ignored nodes: comments, script, style
+    [36m<div[39m
+      [33maria-label[39m=[32m"Test"[39m
+      [33mclass[39m=[32m"w-4 h-4 text-[8px] rounded-full flex ite
+ms-center justify-center font-bold text-white uppercase relative ove
+rflow-hidden bg-slate-800 "[39m
+      [33mrole[39m=[32m"img"[39m
+      [33mtitle[39m=[32m"Test"[39m
+    [36m>[39m
+      [36m<img[39m
+        [33malt[39m=[32m"Test"[39m
+        [33mclass[39m=[32m"w-full h-full object-contain p-0.5"[3
+9m
+        [33msrc[39m=[32m"/logos/Test.png"[39m
+      [36m/>[39m
+    [36m</div>[39m
+
+    Ignored nodes: comments, script, style
+    [36m<div[39m
+      [33maria-label[39m=[32m"Test"[39m
+      [33mclass[39m=[32m"w-12 h-12 text-sm rounded-full flex item
+s-center justify-center font-bold text-white uppercase relative over
+flow-hidden bg-slate-800 "[39m
+      [33mrole[39m=[32m"img"[39m
+      [33mtitle[39m=[32m"Test"[39m
+    [36m>[39m
+      [36m<img[39m
+        [33malt[39m=[32m"Test"[39m
+        [33mclass[39m=[32m"w-full h-full object-contain p-0.5"[3
+9m
+        [33msrc[39m=[32m"/logos/Test.png"[39m
+      [36m/>[39m
+    [36m</div>[39m
+
+    (If this is intentional, then use the `*AllBy*` variant of the q
+uery (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex items-center gap-2"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-label[39m=[32m"Test"[39m
+            [33mclass[39m=[32m"w-4 h-4 text-[8px] rounded-full fl
+ex items-center justify-center font-bold text-white uppercase relati
+ve overflow-hidden bg-slate-800 "[39m
+            [33mrole[39m=[32m"img"[39m
+            [33mtitle[39m=[32m"Test"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m"Test"[39m
+              [33mclass[39m=[32m"w-full h-full object-contain p-0
+.5"[39m
+              [33msrc[39m=[32m"/logos/Test.png"[39m
+            [36m/>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex items-center gap-2"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-label[39m=[32m"Test"[39m
+            [33mclass[39m=[32m"w-12 h-12 text-sm rounded-full fle
+x items-center justify-center font-bold text-white uppercase relativ
+e overflow-hidden bg-slate-800 "[39m
+            [33mrole[39m=[32m"img"[39m
+            [33mtitle[39m=[32m"Test"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m"Test"[39m
+              [33mclass[39m=[32m"w-full h-full object-contain p-0
+.5"[39m
+              [33msrc[39m=[32m"/logos/Test.png"[39m
+            [36m/>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 55 |[39m
+     [90m 56 |[39m         render([33m<[39m[33mTeamAvatar[39m 
+name[33m=[39m[32m"Test"[39m size[33m=[39m[32m"lg"[39m [33m/
+[39m[33m>[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 57 |[39m         [36mconst[39m avat
+arLg [33m=[39m screen[33m.[39mgetByLabelText([32m'Test'[39m)[
+33m;[39m
+     [90m    |[39m                                 [31m[1m^[22m
+[39m
+     [90m 58 |[39m         expect(avatarLg)[33m.[39mtoHaveClass(
+[32m'w-12 h-12'[39m)[33m;[39m
+     [90m 59 |[39m     })[33m;[39m
+     [90m 60 |[39m[0m
+
+      at Object.getElementError (node_modules/@testing-library/dom/d
+ist/config.js:37:19)
+      at getElementError (node_modules/@testing-library/dom/dist/que
+ry-helpers.js:20:35)
+      at getMultipleElementsFoundError (node_modules/@testing-librar
+y/dom/dist/query-helpers.js:23:10)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:55:
+13
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:
+19
+      at Object.getByLabelText (__tests__/components/TeamAvatar.test
+.tsx:57:33)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 4 passed, 6 total
+Snapshots:   0 total
+Time:        1.03 s
+Ran all test suites matching __tests__/components/TeamAvatar.test.ts
+x.

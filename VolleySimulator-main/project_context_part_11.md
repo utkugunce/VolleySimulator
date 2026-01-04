@@ -1,19 +1,1626 @@
 # Project Application Context - Part 11
 
+## File: app\context\FriendsContext.tsx
+```
+"use client";
+
+import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
+import { Friend, UserProfile, FriendActivity, FriendshipStatus } from "../types";
+import { useAuth } from "./AuthContext";
+
+interface FriendsContextType {
+  friends: Friend[];
+  pendingRequests: Friend[];
+  friendActivities: FriendActivity[];
+  isLoading: boolean;
+  error: string | null;
+  // Actions
+  sendFriendRequest: (userId: string) => Promise<boolean>;
+  acceptFriendRequest: (friendshipId: string) => Promise<boolean>;
+  rejectFriendRequest: (friendshipId: string) => Promise<boolean>;
+  removeFriend: (friendshipId: string) => Promise<boolean>;
+  blockUser: (userId: string) => Promise<boolean>;
+  searchUsers: (query: string) => Promise<UserProfile[]>;
+  getFriendProfile: (userId: string) => Promise<UserProfile | null>;
+  comparePredictions: (friendId: string, league?: string) => Promise<PredictionComparison | null>;
+  refreshFriends: () => Promise<void>;
+}
+
+interface PredictionComparison {
+  userId: string;
+  friendId: string;
+  userStats: {
+    totalPredictions: number;
+    correctPredictions: number;
+    accuracy: number;
+    points: number;
+  };
+  friendStats: {
+    totalPredictions: number;
+    correctPredictions: number;
+    accuracy: number;
+    points: number;
+  };
+  commonMatches: CommonMatchPrediction[];
+}
+
+interface CommonMatchPrediction {
+  matchId: string;
+  homeTeam: string;
+  awayTeam: string;
+  userPrediction: string;
+  friendPrediction: string;
+  actualResult?: string;
+  userCorrect?: boolean;
+  friendCorrect?: boolean;
+}
+
+const FriendsContext = createContext<FriendsContextType | undefined>(undefined);
+
+export function FriendsProvider({ children }: { children: React.ReactNode }) {
+  const { user } = useAuth();
+  const [friends, setFriends] = useState<Friend[]>([]);
+  const [pendingRequests, setPendingRequests] = useState<Friend[]>([]);
+  const [friendActivities, setFriendActivities] = useState<FriendActivity[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch friends list
+  const fetchFriends = useCallback(async () => {
+    if (!user) return;
+    
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      const response = await fetch('/api/friends', {
+        headers: {
+          'Authorization': `Bearer ${user.id}`,
+        },
+      });
+      
+      if (!response.ok) throw new Error('Failed to fetch friends');
+      
+      const data = await response.json();
+      setFriends(data.friends || []);
+      setPendingRequests(data.pendingRequests || []);
+      setFriendActivities(data.activities || []);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+    } finally {
+      setIsLoading(false);
+    }
+  }, [user]);
+
+  // Send friend request
+  const sendFriendRequest = useCallback(async (userId: string): Promise<boolean> => {
+    if (!user) return false;
+    
+    try {
+      const response = await fetch('/api/friends/request', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.id}`,
+        },
+        body: JSON.stringify({ friendId: userId }),
+      });
+      
+      if (!response.ok) throw new Error('Failed to send friend request');
+      
+      await fetchFriends();
+      return true;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      return false;
+    }
+  }, [user, fetchFriends]);
+
+  // Accept friend request
+  const acceptFriendRequest = useCallback(async (friendshipId: string): Promise<boolean> => {
+    if (!user) return false;
+    
+    try {
+      const response = await fetch(`/api/friends/request/${friendshipId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.id}`,
+        },
+        body: JSON.stringify({ action: 'accept' }),
+      });
+      
+      if (!response.ok) throw new Error('Failed to accept friend request');
+      
+      await fetchFriends();
+      return true;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      return false;
+    }
+  }, [user, fetchFriends]);
+
+  // Reject friend request
+  const rejectFriendRequest = useCallback(async (friendshipId: string): Promise<boolean> => {
+    if (!user) return false;
+    
+    try {
+      const response = await fetch(`/api/friends/request/${friendshipId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.id}`,
+        },
+        body: JSON.stringify({ action: 'reject' }),
+      });
+      
+      if (!response.ok) throw new Error('Failed to reject friend request');
+      
+      await fetchFriends();
+      return true;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      return false;
+    }
+  }, [user, fetchFriends]);
+
+  // Remove friend
+  const removeFriend = useCallback(async (friendshipId: string): Promise<boolean> => {
+    if (!user) return false;
+    
+    try {
+      const response = await fetch(`/api/friends/${friendshipId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${user.id}`,
+        },
+      });
+      
+      if (!response.ok) throw new Error('Failed to remove friend');
+      
+      await fetchFriends();
+      return true;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      return false;
+    }
+  }, [user, fetchFriends]);
+
+  // Block user
+  const blockUser = useCallback(async (userId: string): Promise<boolean> => {
+    if (!user) return false;
+    
+    try {
+      const response = await fetch('/api/friends/block', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.id}`,
+        },
+        body: JSON.stringify({ userId }),
+      });
+      
+      if (!response.ok) throw new Error('Failed to block user');
+      
+      await fetchFriends();
+      return true;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      return false;
+    }
+  }, [user, fetchFriends]);
+
+  // Search users
+  const searchUsers = useCallback(async (query: string): Promise<UserProfile[]> => {
+    if (!user || query.length < 2) return [];
+    
+    try {
+      const response = await fetch(`/api/users/search?q=${encodeURIComponent(query)}`, {
+        headers: {
+          'Authorization': `Bearer ${user.id}`,
+        },
+      });
+      
+      if (!response.ok) throw new Error('Failed to search users');
+      
+      const data = await response.json();
+      return data.users || [];
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      return [];
+    }
+  }, [user]);
+
+  // Get friend profile
+  const getFriendProfile = useCallback(async (userId: string): Promise<UserProfile | null> => {
+    if (!user) return null;
+    
+    try {
+      const response = await fetch(`/api/users/${userId}/profile`, {
+        headers: {
+          'Authorization': `Bearer ${user.id}`,
+        },
+      });
+      
+      if (!response.ok) throw new Error('Failed to get user profile');
+      
+      const data = await response.json();
+      return data.profile;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      return null;
+    }
+  }, [user]);
+
+  // Compare predictions with friend
+  const comparePredictions = useCallback(async (
+    friendId: string,
+    league?: string
+  ): Promise<PredictionComparison | null> => {
+    if (!user) return null;
+    
+    try {
+      const url = league 
+        ? `/api/friends/${friendId}/compare?league=${encodeURIComponent(league)}`
+        : `/api/friends/${friendId}/compare`;
+        
+      const response = await fetch(url, {
+        headers: {
+          'Authorization': `Bearer ${user.id}`,
+        },
+      });
+      
+      if (!response.ok) throw new Error('Failed to compare predictions');
+      
+      const data = await response.json();
+      return data.comparison;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      return null;
+    }
+  }, [user]);
+
+  // Refresh friends data
+  const refreshFriends = useCallback(async () => {
+    await fetchFriends();
+  }, [fetchFriends]);
+
+  // Initial fetch
+  useEffect(() => {
+    if (user) {
+      fetchFriends();
+    }
+  }, [user, fetchFriends]);
+
+  return (
+    <FriendsContext.Provider
+      value={{
+        friends,
+        pendingRequests,
+        friendActivities,
+        isLoading,
+        error,
+        sendFriendRequest,
+        acceptFriendRequest,
+        rejectFriendRequest,
+        removeFriend,
+        blockUser,
+        searchUsers,
+        getFriendProfile,
+        comparePredictions,
+        refreshFriends,
+      }}
+    >
+      {children}
+    </FriendsContext.Provider>
+  );
+}
+
+export function useFriends() {
+  const context = useContext(FriendsContext);
+  if (context === undefined) {
+    throw new Error('useFriends must be used within a FriendsProvider');
+  }
+  return context;
+}
+
+```
+
+## File: app\context\LiveMatchContext.tsx
+```
+"use client";
+
+import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
+import {
+  LiveMatch,
+  MatchComment,
+  LiveChatMessage,
+  MatchSimulation
+} from "../types";
+import { useAuth } from "./AuthContext";
+
+interface LiveMatchContextType {
+  liveMatches: LiveMatch[];
+  currentMatch: LiveMatch | null;
+  comments: MatchComment[];
+  chatMessages: LiveChatMessage[];
+  isLoading: boolean;
+  isConnected: boolean;
+  // Actions
+  selectMatch: (matchId: string) => void;
+  addComment: (matchId: string, message: string) => Promise<boolean>;
+  likeComment: (commentId: string) => Promise<boolean>;
+  sendChatMessage: (matchId: string, message: string) => Promise<boolean>;
+  subscribeToMatch: (matchId: string) => void;
+  unsubscribeFromMatch: () => void;
+  simulateMatch: (homeTeam: string, awayTeam: string) => Promise<MatchSimulation | null>;
+  refreshLiveMatches: () => Promise<void>;
+}
+
+const LiveMatchContext = createContext<LiveMatchContextType | undefined>(undefined);
+
+export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
+  const { user } = useAuth();
+  const [liveMatches, setLiveMatches] = useState<LiveMatch[]>([]);
+  const [currentMatch, setCurrentMatch] = useState<LiveMatch | null>(null);
+  const [comments, setComments] = useState<MatchComment[]>([]);
+  const [chatMessages, setChatMessages] = useState<LiveChatMessage[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isConnected, setIsConnected] = useState(false);
+  const [websocket, setWebsocket] = useState<WebSocket | null>(null);
+
+  // Fetch live matches
+  const fetchLiveMatches = useCallback(async () => {
+    setIsLoading(true);
+
+    try {
+      // Use consolidated API endpoint
+      const response = await fetch('/api/live');
+
+      if (!response.ok) throw new Error('Failed to fetch live matches');
+
+      const data = await response.json();
+      // API returns liveMatches, context expects matches but state is named liveMatches
+      // The previous code expected data.matches, but route returns data.liveMatches
+      setLiveMatches(data.liveMatches || []);
+    } catch (err) {
+      console.error('Failed to fetch live matches:', err);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  // Select a match to follow
+  const selectMatch = useCallback((matchId: string) => {
+    const match = liveMatches.find(m => m.id === matchId);
+    setCurrentMatch(match || null);
+
+    if (match) {
+      // Fetch comments for this match
+      fetchComments(matchId);
+    }
+  }, [liveMatches]);
+
+  // Fetch comments for a match
+  const fetchComments = async (matchId: string) => {
+    try {
+      const response = await fetch(`/api/live/matches/${matchId}/comments`);
+
+      if (response.ok) {
+        const data = await response.json();
+        setComments(data.comments || []);
+      }
+    } catch (err) {
+      console.error('Failed to fetch comments:', err);
+    }
+  };
+
+  // Add comment
+  const addComment = useCallback(async (matchId: string, message: string): Promise<boolean> => {
+    if (!user) return false;
+
+    try {
+      const response = await fetch(`/api/live/matches/${matchId}/comments`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.id}`,
+        },
+        body: JSON.stringify({ message }),
+      });
+
+      if (!response.ok) throw new Error('Failed to add comment');
+
+      const data = await response.json();
+      setComments(prev => [data.comment, ...prev]);
+
+      return true;
+    } catch (err) {
+      console.error('Failed to add comment:', err);
+      return false;
+    }
+  }, [user]);
+
+  // Like comment
+  const likeComment = useCallback(async (commentId: string): Promise<boolean> => {
+    if (!user) return false;
+
+    try {
+      const response = await fetch(`/api/live/comments/${commentId}/like`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${user.id}`,
+        },
+      });
+
+      if (!response.ok) throw new Error('Failed to like comment');
+
+      setComments(prev =>
+        prev.map(c => c.id === commentId ? { ...c, likes: c.likes + 1 } : c)
+      );
+
+      return true;
+    } catch (err) {
+      console.error('Failed to like comment:', err);
+      return false;
+    }
+  }, [user]);
+
+  // Send chat message (WebSocket)
+  const sendChatMessage = useCallback(async (matchId: string, message: string): Promise<boolean> => {
+    if (!user || !websocket || websocket.readyState !== WebSocket.OPEN) return false;
+
+    try {
+      websocket.send(JSON.stringify({
+        type: 'chat_message',
+        matchId,
+        message,
+        userId: user.id,
+      }));
+
+      return true;
+    } catch (err) {
+      console.error('Failed to send chat message:', err);
+      return false;
+    }
+  }, [user, websocket]);
+
+  // Subscribe to live match updates (WebSocket)
+  const subscribeToMatch = useCallback((matchId: string) => {
+    // Close existing connection
+    if (websocket) {
+      websocket.close();
+    }
+
+    // Create new WebSocket connection
+    const ws = new WebSocket(`${process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:3001'}/live/${matchId}`);
+
+    ws.onopen = () => {
+      setIsConnected(true);
+      setIsConnected(true);
+      // Connected
+    };
+
+    ws.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+
+        switch (data.type) {
+          case 'match_update':
+            setCurrentMatch(prev => prev ? { ...prev, ...data.match } : null);
+            break;
+          case 'chat_message':
+            setChatMessages(prev => [...prev, data.message]);
+            break;
+          case 'score_update':
+            setCurrentMatch(prev => {
+              if (!prev) return null;
+              return {
+                ...prev,
+                currentSetHomePoints: data.homePoints,
+                currentSetAwayPoints: data.awayPoints,
+              };
+            });
+            break;
+          case 'set_end':
+            setCurrentMatch(prev => {
+              if (!prev) return null;
+              return {
+                ...prev,
+                homeSetScore: data.homeSetScore,
+                awaySetScore: data.awaySetScore,
+                currentSet: data.currentSet,
+                setScores: data.setScores,
+              };
+            });
+            break;
+          case 'match_end':
+            setCurrentMatch(prev => prev ? { ...prev, status: 'finished' } : null);
+            break;
+        }
+      } catch (err) {
+        console.error('Failed to parse WebSocket message:', err);
+      }
+    };
+
+    ws.onclose = () => {
+      setIsConnected(false);
+      setIsConnected(false);
+      // Disconnected
+    };
+
+    ws.onerror = (error) => {
+      console.error('WebSocket error:', error);
+      setIsConnected(false);
+    };
+
+    setWebsocket(ws);
+  }, [websocket]);
+
+  // Unsubscribe from match
+  const unsubscribeFromMatch = useCallback(() => {
+    if (websocket) {
+      websocket.close();
+      setWebsocket(null);
+    }
+    setIsConnected(false);
+    setChatMessages([]);
+  }, [websocket]);
+
+  // Simulate a match
+  const simulateMatch = useCallback(async (
+    homeTeam: string,
+    awayTeam: string
+  ): Promise<MatchSimulation | null> => {
+    try {
+      const response = await fetch('/api/simulation/match', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ homeTeam, awayTeam }),
+      });
+
+      if (!response.ok) throw new Error('Failed to simulate match');
+
+      const data = await response.json();
+      return data.simulation;
+    } catch (err) {
+      console.error('Failed to simulate match:', err);
+      return null;
+    }
+  }, []);
+
+  // Refresh live matches
+  const refreshLiveMatches = useCallback(async () => {
+    await fetchLiveMatches();
+  }, [fetchLiveMatches]);
+
+  // Initial fetch and polling
+  useEffect(() => {
+    fetchLiveMatches();
+
+    // Poll for updates every 30 seconds
+    const interval = setInterval(fetchLiveMatches, 30000);
+
+    return () => clearInterval(interval);
+  }, [fetchLiveMatches]);
+
+  // Cleanup WebSocket on unmount
+  useEffect(() => {
+    return () => {
+      if (websocket) {
+        websocket.close();
+      }
+    };
+  }, [websocket]);
+
+  return (
+    <LiveMatchContext.Provider
+      value={{
+        liveMatches,
+        currentMatch,
+        comments,
+        chatMessages,
+        isLoading,
+        isConnected,
+        selectMatch,
+        addComment,
+        likeComment,
+        sendChatMessage,
+        subscribeToMatch,
+        unsubscribeFromMatch,
+        simulateMatch,
+        refreshLiveMatches,
+      }}
+    >
+      {children}
+    </LiveMatchContext.Provider>
+  );
+}
+
+export function useLiveMatch() {
+  const context = useContext(LiveMatchContext);
+  if (context === undefined) {
+    throw new Error('useLiveMatch must be used within a LiveMatchProvider');
+  }
+  return context;
+}
+
+```
+
+## File: app\context\LocaleContext.tsx
+```
+'use client';
+
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+
+type Locale = 'tr' | 'en';
+
+interface LocaleContextType {
+  locale: Locale;
+  setLocale: (locale: Locale) => void;
+}
+
+const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
+
+function getInitialLocale(): Locale {
+  if (typeof document === 'undefined') return 'tr';
+  
+  const savedLocale = document.cookie
+    .split('; ')
+    .find(row => row.startsWith('NEXT_LOCALE='))
+    ?.split('=')[1];
+  
+  if (savedLocale === 'tr' || savedLocale === 'en') {
+    return savedLocale;
+  }
+  return 'tr';
+}
+
+export function LocaleProvider({ children }: { children: ReactNode }) {
+  const [locale, setLocaleState] = useState<Locale>(getInitialLocale);
+
+  const setLocale = (newLocale: Locale) => {
+    setLocaleState(newLocale);
+    // Set cookie for 1 year
+    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000`;
+    // Reload to apply new locale
+    window.location.reload();
+  };
+
+  return (
+    <LocaleContext.Provider value={{ locale, setLocale }}>
+      {children}
+    </LocaleContext.Provider>
+  );
+}
+
+export function useLocale() {
+  const context = useContext(LocaleContext);
+  if (!context) {
+    throw new Error('useLocale must be used within a LocaleProvider');
+  }
+  return context;
+}
+
+```
+
+## File: app\context\NotificationsContext.tsx
+```
+"use client";
+
+import React, { createContext, useContext, useState, useCallback, useEffect, useRef } from "react";
+import type { Notification, NotificationPreferences, NotificationType } from "../types";
+import { useAuth } from "./AuthContext";
+
+interface NotificationsContextType {
+  notifications: Notification[];
+  unreadCount: number;
+  preferences: NotificationPreferences;
+  isLoading: boolean;
+  // Actions
+  markAsRead: (notificationId: string) => Promise<void>;
+  markAllAsRead: () => Promise<void>;
+  deleteNotification: (notificationId: string) => Promise<void>;
+  clearAll: () => Promise<void>;
+  updatePreferences: (prefs: Partial<NotificationPreferences>) => Promise<void>;
+  requestPushPermission: () => Promise<boolean>;
+  // Real-time
+  subscribeToNotifications: () => void;
+  unsubscribeFromNotifications: () => void;
+}
+
+const defaultPreferences: NotificationPreferences = {
+  matchReminders: true,
+  matchResults: true,
+  friendRequests: true,
+  friendActivity: true,
+  achievements: true,
+  leaderboardChanges: true,
+  dailyQuests: true,
+  weeklyDigest: true,
+  pushEnabled: false,
+  emailEnabled: true,
+};
+
+const NotificationsContext = createContext<NotificationsContextType | undefined>(undefined);
+
+export function NotificationsProvider({ children }: { children: React.ReactNode }) {
+  const { user } = useAuth();
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [preferences, setPreferences] = useState<NotificationPreferences>(defaultPreferences);
+  const [isLoading, setIsLoading] = useState(false);
+  const eventSourceRef = useRef<EventSource | null>(null);
+
+  const unreadCount = notifications.filter(n => !n.isRead).length;
+
+  // Fetch notifications
+  const fetchNotifications = useCallback(async () => {
+    if (!user) return;
+    
+    setIsLoading(true);
+    
+    try {
+      const response = await fetch('/api/notifications', {
+        headers: {
+          'Authorization': `Bearer ${user.id}`,
+        },
+      });
+      
+      if (!response.ok) throw new Error('Failed to fetch notifications');
+      
+      const data = await response.json();
+      setNotifications(data.notifications || []);
+    } catch (err) {
+      console.error('Failed to fetch notifications:', err);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [user]);
+
+  // Fetch preferences
+  const fetchPreferences = useCallback(async () => {
+    if (!user) return;
+    
+    try {
+      const response = await fetch('/api/notifications/preferences', {
+        headers: {
+          'Authorization': `Bearer ${user.id}`,
+        },
+      });
+      
+      if (!response.ok) throw new Error('Failed to fetch preferences');
+      
+      const data = await response.json();
+      setPreferences(data.preferences || defaultPreferences);
+    } catch (err) {
+      console.error('Failed to fetch preferences:', err);
+    }
+  }, [user]);
+
+  // Mark single notification as read
+  const markAsRead = useCallback(async (notificationId: string) => {
+    if (!user) return;
+    
+    try {
+      await fetch(`/api/notifications/${notificationId}/read`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${user.id}`,
+        },
+      });
+      
+      setNotifications(prev => 
+        prev.map(n => n.id === notificationId ? { ...n, isRead: true } : n)
+      );
+    } catch (err) {
+      console.error('Failed to mark notification as read:', err);
+    }
+  }, [user]);
+
+  // Mark all as read
+  const markAllAsRead = useCallback(async () => {
+    if (!user) return;
+    
+    try {
+      await fetch('/api/notifications/read-all', {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${user.id}`,
+        },
+      });
+      
+      setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
+    } catch (err) {
+      console.error('Failed to mark all as read:', err);
+    }
+  }, [user]);
+
+  // Delete notification
+  const deleteNotification = useCallback(async (notificationId: string) => {
+    if (!user) return;
+    
+    try {
+      await fetch(`/api/notifications/${notificationId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${user.id}`,
+        },
+      });
+      
+      setNotifications(prev => prev.filter(n => n.id !== notificationId));
+    } catch (err) {
+      console.error('Failed to delete notification:', err);
+    }
+  }, [user]);
+
+  // Clear all notifications
+  const clearAll = useCallback(async () => {
+    if (!user) return;
+    
+    try {
+      await fetch('/api/notifications', {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${user.id}`,
+        },
+      });
+      
+      setNotifications([]);
+    } catch (err) {
+      console.error('Failed to clear notifications:', err);
+    }
+  }, [user]);
+
+  // Update preferences
+  const updatePreferences = useCallback(async (prefs: Partial<NotificationPreferences>) => {
+    if (!user) return;
+    
+    try {
+      const response = await fetch('/api/notifications/preferences', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.id}`,
+        },
+        body: JSON.stringify(prefs),
+      });
+      
+      if (!response.ok) throw new Error('Failed to update preferences');
+      
+      setPreferences(prev => ({ ...prev, ...prefs }));
+    } catch (err) {
+      console.error('Failed to update preferences:', err);
+    }
+  }, [user]);
+
+  // Request push permission
+  const requestPushPermission = useCallback(async (): Promise<boolean> => {
+    if (!('Notification' in window)) {
+      console.log('This browser does not support notifications');
+      return false;
+    }
+    
+    if (Notification.permission === 'granted') {
+      await updatePreferences({ pushEnabled: true });
+      return true;
+    }
+    
+    if (Notification.permission !== 'denied') {
+      const permission = await Notification.requestPermission();
+      if (permission === 'granted') {
+        await updatePreferences({ pushEnabled: true });
+        
+        // Register service worker for push
+        if ('serviceWorker' in navigator) {
+          try {
+            const registration = await navigator.serviceWorker.ready;
+            // Here you would subscribe to push notifications
+            console.log('Push notification registered');
+          } catch (err) {
+            console.error('Failed to register push:', err);
+          }
+        }
+        
+        return true;
+      }
+    }
+    
+    return false;
+  }, [updatePreferences]);
+
+  // Subscribe to real-time notifications (SSE)
+  const subscribeToNotifications = useCallback(() => {
+    if (!user || eventSourceRef.current) return;
+    
+    eventSourceRef.current = new EventSource(`/api/notifications/stream?userId=${user.id}`);
+    
+    eventSourceRef.current.onmessage = (event) => {
+      try {
+        const notification = JSON.parse(event.data) as Notification;
+        setNotifications(prev => [notification, ...prev]);
+        
+        // Show browser notification if enabled
+        if (preferences.pushEnabled && Notification.permission === 'granted') {
+          new Notification(notification.title, {
+            body: notification.message,
+            icon: '/icons/icon-192x192.png',
+          });
+        }
+      } catch (err) {
+        console.error('Failed to parse notification:', err);
+      }
+    };
+    
+    eventSourceRef.current.onerror = () => {
+      eventSourceRef.current?.close();
+      eventSourceRef.current = null;
+      
+      // Retry after 5 seconds
+      setTimeout(subscribeToNotifications, 5000);
+    };
+  }, [user, preferences.pushEnabled]);
+
+  // Unsubscribe from notifications
+  const unsubscribeFromNotifications = useCallback(() => {
+    if (eventSourceRef.current) {
+      eventSourceRef.current.close();
+      eventSourceRef.current = null;
+    }
+  }, []);
+
+  // Initial fetch
+  useEffect(() => {
+    if (user) {
+      fetchNotifications();
+      fetchPreferences();
+    }
+  }, [user, fetchNotifications, fetchPreferences]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      unsubscribeFromNotifications();
+    };
+  }, [unsubscribeFromNotifications]);
+
+  return (
+    <NotificationsContext.Provider
+      value={{
+        notifications,
+        unreadCount,
+        preferences,
+        isLoading,
+        markAsRead,
+        markAllAsRead,
+        deleteNotification,
+        clearAll,
+        updatePreferences,
+        requestPushPermission,
+        subscribeToNotifications,
+        unsubscribeFromNotifications,
+      }}
+    >
+      {children}
+    </NotificationsContext.Provider>
+  );
+}
+
+export function useNotifications() {
+  const context = useContext(NotificationsContext);
+  if (context === undefined) {
+    throw new Error('useNotifications must be used within a NotificationsProvider');
+  }
+  return context;
+}
+
+```
+
+## File: app\context\QuestsContext.tsx
+```
+"use client";
+
+import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
+import { DailyQuest, WeeklyChallenge, StreakData, Badge } from "../types";
+import { useAuth } from "./AuthContext";
+import { useGameState } from "../utils/gameState";
+
+interface QuestsContextType {
+  dailyQuests: DailyQuest[];
+  weeklyChallenge: WeeklyChallenge | null;
+  streakData: StreakData;
+  badges: Badge[];
+  unlockedBadges: Badge[];
+  isLoading: boolean;
+  // Actions
+  claimQuestReward: (questId: string) => Promise<{ xp: number; coins: number } | null>;
+  useStreakFreeze: () => Promise<boolean>;
+  refreshQuests: () => Promise<void>;
+  trackQuestProgress: (questType: string, amount?: number) => Promise<void>;
+}
+
+const defaultStreakData: StreakData = {
+  currentStreak: 0,
+  longestStreak: 0,
+  lastPredictionDate: '',
+  streakFreezeAvailable: 0,
+  streakHistory: [],
+};
+
+const QuestsContext = createContext<QuestsContextType | undefined>(undefined);
+
+export function QuestsProvider({ children }: { children: React.ReactNode }) {
+  const { user } = useAuth();
+  const { addXP } = useGameState();
+  const [dailyQuests, setDailyQuests] = useState<DailyQuest[]>([]);
+  const [weeklyChallenge, setWeeklyChallenge] = useState<WeeklyChallenge | null>(null);
+  const [streakData, setStreakData] = useState<StreakData>(defaultStreakData);
+  const [badges, setBadges] = useState<Badge[]>([]);
+  const [unlockedBadges, setUnlockedBadges] = useState<Badge[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Fetch daily quests
+  const fetchQuests = useCallback(async () => {
+    if (!user) return;
+
+    setIsLoading(true);
+
+    try {
+      // Use consolidated API endpoint
+      const response = await fetch('/api/quests', {
+        headers: { 'Authorization': `Bearer ${user.id}` },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        if (data.dailyQuests) {
+          setDailyQuests(data.dailyQuests);
+        } else {
+          setDailyQuests(generateDefaultQuests());
+        }
+
+        if (data.weeklyChallenge) {
+          setWeeklyChallenge(data.weeklyChallenge);
+        }
+
+        if (data.streak) {
+          setStreakData(data.streak);
+        } else {
+          setStreakData(defaultStreakData);
+        }
+
+        if (data.badges) {
+          setBadges(data.badges);
+          // Assuming unlockedBadges are part of badges or separate property, 
+          // but API returns 'badges' which likely contains status.
+          // For now, filtering if structure supports it, or setting empty if separate property missing
+          setUnlockedBadges(data.badges.filter((b: Badge) => b.unlockedAt) || []);
+        }
+      } else {
+        throw new Error('Failed to fetch quests');
+      }
+    } catch (err) {
+      console.error('Failed to fetch quests:', err);
+      // Use default quests on error
+      setDailyQuests(generateDefaultQuests());
+    } finally {
+      setIsLoading(false);
+    }
+  }, [user]);
+
+  // Generate default daily quests
+  function generateDefaultQuests(): DailyQuest[] {
+    const today = new Date();
+    today.setHours(23, 59, 59, 999);
+    const expiresAt = today.toISOString();
+
+    return [
+      {
+        id: 'daily_predict_3',
+        type: 'make_predictions',
+        title: '3 Tahmin Yap',
+        description: 'Bugün en az 3 maç tahmini yap',
+        icon: '🎯',
+        target: 3,
+        progress: 0,
+        xpReward: 50,
+        coinReward: 10,
+        expiresAt,
+        completed: false,
+        claimed: false,
+      },
+      {
+        id: 'daily_correct_1',
+        type: 'correct_predictions',
+        title: 'Doğru Tahmin',
+        description: '1 doğru tahmin yap',
+        icon: '✅',
+        target: 1,
+        progress: 0,
+        xpReward: 75,
+        coinReward: 15,
+        expiresAt,
+        completed: false,
+        claimed: false,
+      },
+      {
+        id: 'daily_underdog',
+        type: 'predict_underdog',
+        title: 'Underdog Tahmini',
+        description: 'Bir maçta sürpriz sonuç tahmin et',
+        icon: '🐺',
+        target: 1,
+        progress: 0,
+        xpReward: 100,
+        coinReward: 25,
+        expiresAt,
+        completed: false,
+        claimed: false,
+      },
+      {
+        id: 'daily_view_stats',
+        type: 'view_stats',
+        title: 'İstatistikleri İncele',
+        description: 'Takım istatistiklerini görüntüle',
+        icon: '📊',
+        target: 1,
+        progress: 0,
+        xpReward: 25,
+        coinReward: 5,
+        expiresAt,
+        completed: false,
+        claimed: false,
+      },
+    ];
+  }
+
+  // Claim quest reward
+  const claimQuestReward = useCallback(async (questId: string): Promise<{ xp: number; coins: number } | null> => {
+    if (!user) return null;
+
+    const quest = dailyQuests.find(q => q.id === questId);
+    if (!quest || !quest.completed || quest.claimed) return null;
+
+    try {
+      const response = await fetch(`/api/quests/${questId}/claim`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${user.id}`,
+        },
+      });
+
+      if (!response.ok) throw new Error('Failed to claim reward');
+
+      const data = await response.json();
+
+      // Update local state
+      setDailyQuests(prev =>
+        prev.map(q => q.id === questId ? { ...q, claimed: true } : q)
+      );
+
+      // Add XP
+      addXP(quest.xpReward);
+
+      return { xp: quest.xpReward, coins: quest.coinReward };
+    } catch (err) {
+      console.error('Failed to claim reward:', err);
+      return null;
+    }
+  }, [user, dailyQuests, addXP]);
+
+  // Use streak freeze
+  const useStreakFreeze = useCallback(async (): Promise<boolean> => {
+    if (!user || streakData.streakFreezeAvailable <= 0) return false;
+
+    try {
+      const response = await fetch('/api/streak/freeze', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${user.id}`,
+        },
+      });
+
+      if (!response.ok) throw new Error('Failed to use streak freeze');
+
+      setStreakData(prev => ({
+        ...prev,
+        streakFreezeAvailable: prev.streakFreezeAvailable - 1,
+      }));
+
+      return true;
+    } catch (err) {
+      console.error('Failed to use streak freeze:', err);
+      return false;
+    }
+  }, [user, streakData.streakFreezeAvailable]);
+
+  // Track quest progress
+  const trackQuestProgress = useCallback(async (questType: string, amount: number = 1) => {
+    if (!user) return;
+
+    // Update local state optimistically
+    setDailyQuests(prev =>
+      prev.map(q => {
+        if (q.type === questType && !q.completed) {
+          const newProgress = Math.min(q.progress + amount, q.target);
+          return {
+            ...q,
+            progress: newProgress,
+            completed: newProgress >= q.target,
+          };
+        }
+        return q;
+      })
+    );
+
+    // Send to server
+    try {
+      await fetch('/api/quests/progress', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.id}`,
+        },
+        body: JSON.stringify({ questType, amount }),
+      });
+    } catch (err) {
+      console.error('Failed to track quest progress:', err);
+    }
+  }, [user]);
+
+  // Refresh quests
+  const refreshQuests = useCallback(async () => {
+    await fetchQuests();
+  }, [fetchQuests]);
+
+  // Initial fetch
+  useEffect(() => {
+    if (user) {
+      fetchQuests();
+    }
+  }, [user, fetchQuests]);
+
+  // Check for new day and reset quests
+  useEffect(() => {
+    const checkDailyReset = () => {
+      const now = new Date();
+      const questExpiry = dailyQuests[0]?.expiresAt;
+
+      if (questExpiry && new Date(questExpiry) < now) {
+        fetchQuests();
+      }
+    };
+
+    const interval = setInterval(checkDailyReset, 60000); // Check every minute
+    return () => clearInterval(interval);
+  }, [dailyQuests, fetchQuests]);
+
+  return (
+    <QuestsContext.Provider
+      value={{
+        dailyQuests,
+        weeklyChallenge,
+        streakData,
+        badges,
+        unlockedBadges,
+        isLoading,
+        claimQuestReward,
+        useStreakFreeze,
+        refreshQuests,
+        trackQuestProgress,
+      }}
+    >
+      {children}
+    </QuestsContext.Provider>
+  );
+}
+
+export function useQuests() {
+  const context = useContext(QuestsContext);
+  if (context === undefined) {
+    throw new Error('useQuests must be used within a QuestsProvider');
+  }
+  return context;
+}
+
+```
+
+## File: app\context\ThemeContext.tsx
+```
+"use client";
+
+import { createContext, useContext, useState, useEffect, ReactNode, useCallback } from "react";
+import { ThemeMode, AccentColor, UIPreferences, DashboardWidget } from "../types";
+
+type Theme = "dark" | "light";
+
+interface ThemeContextType {
+    theme: Theme;
+    themeMode: ThemeMode;
+    accentColor: AccentColor;
+    preferences: UIPreferences;
+    isDark: boolean;
+    toggleTheme: () => void;
+    setTheme: (theme: Theme) => void;
+    setThemeMode: (mode: ThemeMode) => void;
+    setAccentColor: (color: AccentColor) => void;
+    updatePreferences: (prefs: Partial<UIPreferences>) => void;
+    updateDashboardLayout: (widgets: DashboardWidget[]) => void;
+    playSound: (sound: SoundType) => void;
+}
+
+type SoundType = 'success' | 'error' | 'notification' | 'levelUp' | 'achievement' | 'click';
+
+const defaultPreferences: UIPreferences = {
+    theme: 'dark',
+    accentColor: 'emerald',
+    soundEffects: true,
+    hapticFeedback: true,
+    compactMode: false,
+    showAnimations: true,
+    fontSize: 'medium',
+    dashboardLayout: [
+        { id: 'standings', type: 'standings', position: 1, size: 'large', visible: true },
+        { id: 'upcoming', type: 'upcoming', position: 2, size: 'medium', visible: true },
+        { id: 'quests', type: 'quests', position: 3, size: 'small', visible: true },
+        { id: 'streak', type: 'streak', position: 4, size: 'small', visible: true },
+        { id: 'leaderboard', type: 'leaderboard', position: 5, size: 'medium', visible: true },
+        { id: 'friends', type: 'friends', position: 6, size: 'medium', visible: true },
+    ],
+};
+
+const SOUNDS: Record<SoundType, string> = {
+    success: '/sounds/success.mp3',
+    error: '/sounds/error.mp3',
+    notification: '/sounds/notification.mp3',
+    levelUp: '/sounds/level-up.mp3',
+    achievement: '/sounds/achievement.mp3',
+    click: '/sounds/click.mp3',
+};
+
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
+export function ThemeProvider({ children }: { children: ReactNode }) {
+    const [theme, setThemeState] = useState<Theme>("dark");
+    const [themeMode, setThemeModeState] = useState<ThemeMode>("dark");
+    const [accentColor, setAccentColorState] = useState<AccentColor>("emerald");
+    const [preferences, setPreferences] = useState<UIPreferences>(defaultPreferences);
+    const [mounted, setMounted] = useState(false);
+    const [systemTheme, setSystemTheme] = useState<'light' | 'dark'>('dark');
+
+    const isDark = themeMode === 'dark' || (themeMode === 'system' && systemTheme === 'dark');
+
+    // Listen for system theme changes
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        // Initialize system theme
+        Promise.resolve().then(() => setSystemTheme(mediaQuery.matches ? 'dark' : 'light'));
+
+        const handleChange = (e: MediaQueryListEvent) => {
+            setSystemTheme(e.matches ? 'dark' : 'light');
+        };
+
+        mediaQuery.addEventListener('change', handleChange);
+
+        return () => mediaQuery.removeEventListener('change', handleChange);
+    }, []);
+
+    useEffect(() => {
+        Promise.resolve().then(() => setMounted(true));
+    }, []);
+
+    useEffect(() => {
+        if (!mounted) return;
+
+        const saved = localStorage.getItem("theme") as Theme | null;
+        const savedPrefs = localStorage.getItem("ui-preferences");
+
+        if (saved) {
+            Promise.resolve().then(() => {
+                setThemeState(saved);
+                document.documentElement.setAttribute("data-theme", saved);
+            });
+        }
+
+        if (savedPrefs) {
+            try {
+                const prefs = JSON.parse(savedPrefs);
+                Promise.resolve().then(() => {
+                    setPreferences(prefs);
+                    setThemeModeState(prefs.theme || 'dark');
+                    setAccentColorState(prefs.accentColor || 'emerald');
+                });
+            } catch (e) {
+                // Ignore parse errors
+            }
+        }
+    }, []);
+
+    // Apply accent color as CSS variable
+    useEffect(() => {
+        if (!mounted) return;
+
+        const root = document.documentElement;
+        const colors: Record<AccentColor, string> = {
+            emerald: '#10b981',
+            blue: '#3b82f6',
+            purple: '#8b5cf6',
+            rose: '#f43f5e',
+            amber: '#f59e0b',
+            cyan: '#06b6d4',
+        };
+        root.style.setProperty('--accent-color', colors[accentColor]);
+
+        // Apply font size
+        const fontSizes = { small: '14px', medium: '16px', large: '18px' };
+        root.style.setProperty('--base-font-size', fontSizes[preferences.fontSize]);
+    }, [mounted, accentColor, preferences.fontSize]);
+
+    const setTheme = (newTheme: Theme) => {
+        setThemeState(newTheme);
+        localStorage.setItem("theme", newTheme);
+        document.documentElement.setAttribute("data-theme", newTheme);
+    };
+
+    const toggleTheme = () => {
+        setTheme(theme === "dark" ? "light" : "dark");
+    };
+
+    const setThemeMode = useCallback((mode: ThemeMode) => {
+        setThemeModeState(mode);
+        const newPrefs = { ...preferences, theme: mode };
+        setPreferences(newPrefs);
+        localStorage.setItem("ui-preferences", JSON.stringify(newPrefs));
+
+        // Also update legacy theme
+        const actualTheme = mode === 'system' ? systemTheme : mode;
+        setTheme(actualTheme as Theme);
+    }, [preferences, systemTheme]);
+
+    const setAccentColor = useCallback((color: AccentColor) => {
+        setAccentColorState(color);
+        const newPrefs = { ...preferences, accentColor: color };
+        setPreferences(newPrefs);
+        localStorage.setItem("ui-preferences", JSON.stringify(newPrefs));
+    }, [preferences]);
+
+    const updatePreferences = useCallback((prefs: Partial<UIPreferences>) => {
+        const newPrefs = { ...preferences, ...prefs };
+        setPreferences(newPrefs);
+        localStorage.setItem("ui-preferences", JSON.stringify(newPrefs));
+    }, [preferences]);
+
+    const updateDashboardLayout = useCallback((widgets: DashboardWidget[]) => {
+        const newPrefs = { ...preferences, dashboardLayout: widgets };
+        setPreferences(newPrefs);
+        localStorage.setItem("ui-preferences", JSON.stringify(newPrefs));
+    }, [preferences]);
+
+    const playSound = useCallback((sound: SoundType) => {
+        if (!preferences.soundEffects) return;
+
+        try {
+            const audio = new Audio(SOUNDS[sound]);
+            audio.volume = 0.5;
+            audio.play().catch(() => {
+                // Ignore errors (e.g., user hasn't interacted with page yet)
+            });
+        } catch (err) {
+            // Ignore sound errors
+        }
+    }, [preferences.soundEffects]);
+
+    // Prevent flash of wrong theme
+    if (!mounted) {
+        return <>{children}</>;
+    }
+
+    return (
+        <ThemeContext.Provider value={{
+            theme,
+            themeMode,
+            accentColor,
+            preferences,
+            isDark,
+            toggleTheme,
+            setTheme,
+            setThemeMode,
+            setAccentColor,
+            updatePreferences,
+            updateDashboardLayout,
+            playSound,
+        }}>
+            {children}
+        </ThemeContext.Provider>
+    );
+}
+
+export function useTheme() {
+    const context = useContext(ThemeContext);
+    if (!context) {
+        throw new Error("useTheme must be used within a ThemeProvider");
+    }
+    return context;
+}
+
+// Hook for accent color classes
+export function useAccentClasses() {
+    const { accentColor } = useTheme();
+
+    const classes: Record<AccentColor, {
+        bg: string;
+        bgHover: string;
+        text: string;
+        border: string;
+        gradient: string;
+    }> = {
+        emerald: {
+            bg: 'bg-emerald-500',
+            bgHover: 'hover:bg-emerald-600',
+            text: 'text-emerald-500',
+            border: 'border-emerald-500',
+            gradient: 'from-emerald-500 to-teal-500',
+        },
+        blue: {
+            bg: 'bg-blue-500',
+            bgHover: 'hover:bg-blue-600',
+            text: 'text-blue-500',
+            border: 'border-blue-500',
+            gradient: 'from-blue-500 to-cyan-500',
+        },
+        purple: {
+            bg: 'bg-purple-500',
+            bgHover: 'hover:bg-purple-600',
+            text: 'text-purple-500',
+            border: 'border-purple-500',
+            gradient: 'from-purple-500 to-pink-500',
+        },
+        rose: {
+            bg: 'bg-rose-500',
+            bgHover: 'hover:bg-rose-600',
+            text: 'text-rose-500',
+            border: 'border-rose-500',
+            gradient: 'from-rose-500 to-red-500',
+        },
+        amber: {
+            bg: 'bg-amber-500',
+            bgHover: 'hover:bg-amber-600',
+            text: 'text-amber-500',
+            border: 'border-amber-500',
+            gradient: 'from-amber-500 to-orange-500',
+        },
+        cyan: {
+            bg: 'bg-cyan-500',
+            bgHover: 'hover:bg-cyan-600',
+            text: 'text-cyan-500',
+            border: 'border-cyan-500',
+            gradient: 'from-cyan-500 to-blue-500',
+        },
+    };
+
+    return classes[accentColor];
+}
+
+```
+
 ## File: app\custom-leagues\page.tsx
 ```
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useCustomLeagues } from "../context/CustomLeaguesContext";
 import { useAuth } from "../context/AuthContext";
 import Link from "next/link";
 
 export default function CustomLeaguesPage() {
   const { user } = useAuth();
-  const { 
-    myLeagues, 
-    joinedLeagues, 
+  const {
+    myLeagues,
+    joinedLeagues,
     pendingInvites,
     isLoading,
     createLeague,
@@ -21,12 +1628,12 @@ export default function CustomLeaguesPage() {
     acceptInvite,
     rejectInvite,
   } = useCustomLeagues();
-  
+
   const [activeTab, setActiveTab] = useState<'my' | 'joined' | 'create' | 'join'>('my');
   const [joinCode, setJoinCode] = useState('');
   const [joinError, setJoinError] = useState('');
   const [showCreateModal, setShowCreateModal] = useState(false);
-  
+
   // Create league form state
   const [newLeague, setNewLeague] = useState({
     name: '',
@@ -34,16 +1641,30 @@ export default function CustomLeaguesPage() {
     isPrivate: true,
     maxMembers: 20,
     leagues: ['vsl'],
-    startDate: new Date().toISOString().split('T')[0],
-    endDate: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    startDate: '',
+    endDate: '',
   });
+
+  // Initialize dates after render (Date.now() is impure, so must be in effect)
+  const [initialStartDate, setInitialStartDate] = useState('');
+  const [initialEndDate, setInitialEndDate] = useState('');
+
+  useEffect(() => {
+    const start = new Date().toISOString().split('T')[0];
+    const end = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    Promise.resolve().then(() => {
+      setInitialStartDate(start);
+      setInitialEndDate(end);
+      setNewLeague(prev => ({ ...prev, startDate: start, endDate: end }));
+    });
+  }, []);
 
   const handleJoinLeague = async () => {
     if (!joinCode.trim()) return;
-    
+
     setJoinError('');
     const success = await joinLeague(joinCode.trim());
-    
+
     if (success) {
       setJoinCode('');
       setActiveTab('joined');
@@ -54,9 +1675,9 @@ export default function CustomLeaguesPage() {
 
   const handleCreateLeague = async () => {
     if (!newLeague.name.trim()) return;
-    
+
     const league = await createLeague(newLeague);
-    
+
     if (league) {
       setShowCreateModal(false);
       setActiveTab('my');
@@ -66,8 +1687,8 @@ export default function CustomLeaguesPage() {
         isPrivate: true,
         maxMembers: 20,
         leagues: ['vsl'],
-        startDate: new Date().toISOString().split('T')[0],
-        endDate: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        startDate: initialStartDate,
+        endDate: initialEndDate,
       });
     }
   };
@@ -155,11 +1776,10 @@ export default function CustomLeaguesPage() {
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key as typeof activeTab)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-                activeTab === tab.key
-                  ? 'bg-white/10 text-white'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
-              }`}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${activeTab === tab.key
+                ? 'bg-white/10 text-white'
+                : 'text-slate-400 hover:text-white hover:bg-white/5'
+                }`}
             >
               <span>{tab.icon}</span>
               <span>{tab.label}</span>
@@ -226,7 +1846,7 @@ export default function CustomLeaguesPage() {
                 <p className="text-sm text-slate-400 mb-6">
                   Arkadaşınızdan aldığınız davet kodunu girin
                 </p>
-                
+
                 <div className="space-y-4">
                   <div>
                     <input
@@ -244,7 +1864,7 @@ export default function CustomLeaguesPage() {
                       <p className="text-red-400 text-sm mt-2">{joinError}</p>
                     )}
                   </div>
-                  
+
                   <button
                     onClick={handleJoinLeague}
                     disabled={!joinCode.trim()}
@@ -309,21 +1929,19 @@ export default function CustomLeaguesPage() {
                 <div className="flex gap-3">
                   <button
                     onClick={() => setNewLeague({ ...newLeague, isPrivate: true })}
-                    className={`flex-1 px-4 py-3 rounded-xl border transition-colors ${
-                      newLeague.isPrivate
-                        ? 'bg-indigo-600 border-indigo-500 text-white'
-                        : 'bg-slate-800 border-slate-700 text-slate-400'
-                    }`}
+                    className={`flex-1 px-4 py-3 rounded-xl border transition-colors ${newLeague.isPrivate
+                      ? 'bg-indigo-600 border-indigo-500 text-white'
+                      : 'bg-slate-800 border-slate-700 text-slate-400'
+                      }`}
                   >
                     🔒 Özel
                   </button>
                   <button
                     onClick={() => setNewLeague({ ...newLeague, isPrivate: false })}
-                    className={`flex-1 px-4 py-3 rounded-xl border transition-colors ${
-                      !newLeague.isPrivate
-                        ? 'bg-indigo-600 border-indigo-500 text-white'
-                        : 'bg-slate-800 border-slate-700 text-slate-400'
-                    }`}
+                    className={`flex-1 px-4 py-3 rounded-xl border transition-colors ${!newLeague.isPrivate
+                      ? 'bg-indigo-600 border-indigo-500 text-white'
+                      : 'bg-slate-800 border-slate-700 text-slate-400'
+                      }`}
                   >
                     🌐 Herkese Açık
                   </button>
@@ -332,16 +1950,18 @@ export default function CustomLeaguesPage() {
 
               {/* Max Members */}
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-2">
+                <label htmlFor="max-members" className="block text-sm font-medium text-slate-400 mb-2">
                   Maksimum Üye: {newLeague.maxMembers}
                 </label>
                 <input
+                  id="max-members"
                   type="range"
                   min="5"
                   max="100"
                   value={newLeague.maxMembers}
                   onChange={(e) => setNewLeague({ ...newLeague, maxMembers: parseInt(e.target.value) })}
                   className="w-full"
+                  aria-label="Maksimum Üye Sayısı"
                 />
               </div>
 
@@ -360,11 +1980,10 @@ export default function CustomLeaguesPage() {
                           : [...newLeague.leagues, league];
                         setNewLeague({ ...newLeague, leagues });
                       }}
-                      className={`px-3 py-1.5 rounded-lg text-sm transition-colors ${
-                        newLeague.leagues.includes(league)
-                          ? 'bg-indigo-600 text-white'
-                          : 'bg-slate-800 text-slate-400'
-                      }`}
+                      className={`px-3 py-1.5 rounded-lg text-sm transition-colors ${newLeague.leagues.includes(league)
+                        ? 'bg-indigo-600 text-white'
+                        : 'bg-slate-800 text-slate-400'
+                        }`}
                     >
                       {league.toUpperCase()}
                     </button>
@@ -375,25 +1994,29 @@ export default function CustomLeaguesPage() {
               {/* Dates */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-400 mb-2">
+                  <label htmlFor="start-date" className="block text-sm font-medium text-slate-400 mb-2">
                     Başlangıç
                   </label>
                   <input
+                    id="start-date"
                     type="date"
                     value={newLeague.startDate}
                     onChange={(e) => setNewLeague({ ...newLeague, startDate: e.target.value })}
                     className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500"
+                    aria-label="Başlangıç Tarihi"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-400 mb-2">
+                  <label htmlFor="end-date" className="block text-sm font-medium text-slate-400 mb-2">
                     Bitiş
                   </label>
                   <input
+                    id="end-date"
                     type="date"
                     value={newLeague.endDate}
                     onChange={(e) => setNewLeague({ ...newLeague, endDate: e.target.value })}
                     className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500"
+                    aria-label="Bitiş Tarihi"
                   />
                 </div>
               </div>
@@ -422,7 +2045,7 @@ function LeagueCard({ league, isOwner = false }: { league: any; isOwner?: boolea
         <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-2xl">
           {isOwner ? '👑' : '🏆'}
         </div>
-        
+
         <div className="flex-1">
           <div className="flex items-center gap-2">
             <h3 className="font-bold text-white text-lg">{league.name}</h3>
@@ -430,11 +2053,11 @@ function LeagueCard({ league, isOwner = false }: { league: any; isOwner?: boolea
               <span className="text-xs bg-slate-700 text-slate-300 px-2 py-0.5 rounded">🔒 Özel</span>
             )}
           </div>
-          
+
           {league.description && (
             <p className="text-sm text-slate-400 mt-1">{league.description}</p>
           )}
-          
+
           <div className="flex items-center gap-4 mt-3 text-sm text-slate-500">
             <span>👥 {league.members?.length || 0}/{league.maxMembers}</span>
             <span>📅 {new Date(league.endDate).toLocaleDateString('tr-TR')}</span>
@@ -443,7 +2066,7 @@ function LeagueCard({ league, isOwner = false }: { league: any; isOwner?: boolea
             )}
           </div>
         </div>
-        
+
         <Link
           href={`/custom-leagues/${league.id}`}
           className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-sm font-medium transition-colors"
@@ -1207,1786 +2830,6 @@ export { useLeagueQuery, useLeagueData, useInvalidateLeague } from './useLeagueQ
 export { useWebVitals, useNavigationTiming } from './usePerformance';
 export { usePushNotifications } from './usePushNotifications';
 export { useModal } from './useModal';
-
-```
-
-## File: app\hooks\useAdvancedStats.ts
-```
-"use client";
-
-import { useState, useCallback, useEffect, useMemo } from "react";
-import { 
-  TeamDetailedStats, 
-  UserPredictionStats, 
-  HeadToHeadStats,
-  TeamForm
-} from "../types";
-
-interface TeamStatsInput {
-  name: string;
-  played: number;
-  wins: number;
-  points: number;
-  setsWon: number;
-  setsLost: number;
-}
-
-interface MatchResult {
-  homeTeam: string;
-  awayTeam: string;
-  homeScore: number;
-  awayScore: number;
-  date?: string;
-}
-
-export function useAdvancedStats(teams: TeamStatsInput[], matches: MatchResult[]) {
-  const [selectedTeam, setSelectedTeam] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  // Calculate detailed stats for all teams
-  const teamStats = useMemo((): Map<string, TeamDetailedStats> => {
-    const stats = new Map<string, TeamDetailedStats>();
-    
-    teams.forEach(team => {
-      const teamMatches = matches.filter(
-        m => m.homeTeam === team.name || m.awayTeam === team.name
-      );
-      
-      const homeMatches = teamMatches.filter(m => m.homeTeam === team.name);
-      const awayMatches = teamMatches.filter(m => m.awayTeam === team.name);
-      
-      const homeWins = homeMatches.filter(m => m.homeScore > m.awayScore).length;
-      const awayWins = awayMatches.filter(m => m.awayScore > m.homeScore).length;
-      
-      // Calculate score-specific wins/losses
-      const threeZeroWins = teamMatches.filter(m => 
-        (m.homeTeam === team.name && m.homeScore === 3 && m.awayScore === 0) ||
-        (m.awayTeam === team.name && m.awayScore === 3 && m.homeScore === 0)
-      ).length;
-      
-      const threeOneWins = teamMatches.filter(m => 
-        (m.homeTeam === team.name && m.homeScore === 3 && m.awayScore === 1) ||
-        (m.awayTeam === team.name && m.awayScore === 3 && m.homeScore === 1)
-      ).length;
-      
-      const threeTwoWins = teamMatches.filter(m => 
-        (m.homeTeam === team.name && m.homeScore === 3 && m.awayScore === 2) ||
-        (m.awayTeam === team.name && m.awayScore === 3 && m.homeScore === 2)
-      ).length;
-      
-      const threeZeroLosses = teamMatches.filter(m => 
-        (m.homeTeam === team.name && m.homeScore === 0 && m.awayScore === 3) ||
-        (m.awayTeam === team.name && m.awayScore === 0 && m.homeScore === 3)
-      ).length;
-      
-      const threeOneLosses = teamMatches.filter(m => 
-        (m.homeTeam === team.name && m.homeScore === 1 && m.awayScore === 3) ||
-        (m.awayTeam === team.name && m.awayScore === 1 && m.homeScore === 3)
-      ).length;
-      
-      const threeTwoLosses = teamMatches.filter(m => 
-        (m.homeTeam === team.name && m.homeScore === 2 && m.awayScore === 3) ||
-        (m.awayTeam === team.name && m.awayScore === 2 && m.homeScore === 3)
-      ).length;
-      
-      // Calculate last 10 results
-      const sortedMatches = [...teamMatches].sort((a, b) => 
-        new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime()
-      );
-      
-      const last10: ('W' | 'L')[] = sortedMatches.slice(0, 10).map(m => {
-        const isHome = m.homeTeam === team.name;
-        const won = isHome ? m.homeScore > m.awayScore : m.awayScore > m.homeScore;
-        return won ? 'W' : 'L';
-      });
-      
-      // Calculate current streak
-      let currentStreak = 0;
-      let streakType: 'W' | 'L' = 'W';
-      
-      for (const result of last10) {
-        if (currentStreak === 0) {
-          streakType = result;
-          currentStreak = 1;
-        } else if (result === streakType) {
-          currentStreak++;
-        } else {
-          break;
-        }
-      }
-      
-      // ELO rating calculation (simplified)
-      const eloRating = 1500 + (team.wins * 30) - ((team.played - team.wins) * 20) + 
-        (team.setsWon - team.setsLost) * 2;
-      
-      stats.set(team.name, {
-        teamName: team.name,
-        league: '',
-        season: '',
-        played: team.played,
-        wins: team.wins,
-        losses: team.played - team.wins,
-        points: team.points,
-        setsWon: team.setsWon,
-        setsLost: team.setsLost,
-        setRatio: team.setsLost > 0 ? team.setsWon / team.setsLost : team.setsWon,
-        avgPointsPerSet: team.setsWon > 0 ? (team.points / team.setsWon) * 25 : 0,
-        avgPointsConcededPerSet: team.setsLost > 0 ? (team.points / team.setsLost) * 20 : 0,
-        homeRecord: { wins: homeWins, losses: homeMatches.length - homeWins },
-        awayRecord: { wins: awayWins, losses: awayMatches.length - awayWins },
-        threeZeroWins,
-        threeOneWins,
-        threeTwoWins,
-        threeZeroLosses,
-        threeOneLosses,
-        threeTwoLosses,
-        currentStreak,
-        streakType,
-        last10,
-        eloRating,
-        strengthRank: 0, // Will be calculated after
-      });
-    });
-    
-    // Calculate strength rank
-    const sortedByElo = [...stats.entries()]
-      .sort((a, b) => b[1].eloRating - a[1].eloRating);
-    
-    sortedByElo.forEach(([name, teamStat], index) => {
-      teamStat.strengthRank = index + 1;
-      stats.set(name, teamStat);
-    });
-    
-    return stats;
-  }, [teams, matches]);
-
-  // Get head-to-head stats between two teams
-  const getHeadToHead = useCallback((team1: string, team2: string): HeadToHeadStats => {
-    const h2hMatches = matches.filter(
-      m => (m.homeTeam === team1 && m.awayTeam === team2) ||
-           (m.homeTeam === team2 && m.awayTeam === team1)
-    );
-    
-    let team1Wins = 0;
-    let team2Wins = 0;
-    let team1Sets = 0;
-    let team2Sets = 0;
-    
-    h2hMatches.forEach(m => {
-      const isTeam1Home = m.homeTeam === team1;
-      if (isTeam1Home) {
-        if (m.homeScore > m.awayScore) team1Wins++;
-        else team2Wins++;
-        team1Sets += m.homeScore;
-        team2Sets += m.awayScore;
-      } else {
-        if (m.awayScore > m.homeScore) team1Wins++;
-        else team2Wins++;
-        team1Sets += m.awayScore;
-        team2Sets += m.homeScore;
-      }
-    });
-    
-    return {
-      totalMatches: h2hMatches.length,
-      homeWins: team1Wins,
-      awayWins: team2Wins,
-      homeSetWins: team1Sets,
-      awaySetWins: team2Sets,
-      lastMeetings: h2hMatches.slice(0, 5).map(m => ({
-        date: m.date || '',
-        homeTeam: m.homeTeam,
-        awayTeam: m.awayTeam,
-        score: `${m.homeScore}-${m.awayScore}`,
-        venue: '',
-        competition: '',
-      })),
-      averageHomeScore: h2hMatches.length > 0 ? team1Sets / h2hMatches.length : 0,
-      averageAwayScore: h2hMatches.length > 0 ? team2Sets / h2hMatches.length : 0,
-    };
-  }, [matches]);
-
-  // Get team form
-  const getTeamForm = useCallback((teamName: string): TeamForm => {
-    const teamData = teamStats.get(teamName);
-    
-    if (!teamData) {
-      return {
-        teamName,
-        last5Results: [],
-        last5Scores: [],
-        winRate: 0,
-        avgPointsScored: 0,
-        avgPointsConceded: 0,
-        trend: 'stable',
-        strengthRating: 0,
-      };
-    }
-    
-    const last5 = teamData.last10.slice(0, 5) as ('W' | 'L')[];
-    const recentWins = last5.filter(r => r === 'W').length;
-    const previousWins = teamData.last10.slice(5, 10).filter(r => r === 'W').length;
-    
-    let trend: 'improving' | 'declining' | 'stable' = 'stable';
-    if (recentWins > previousWins + 1) trend = 'improving';
-    else if (recentWins < previousWins - 1) trend = 'declining';
-    
-    return {
-      teamName,
-      last5Results: last5,
-      last5Scores: [],
-      winRate: teamData.played > 0 ? (teamData.wins / teamData.played) * 100 : 0,
-      avgPointsScored: teamData.avgPointsPerSet,
-      avgPointsConceded: teamData.avgPointsConcededPerSet,
-      trend,
-      strengthRating: teamData.eloRating,
-    };
-  }, [teamStats]);
-
-  // Get top performers in various categories
-  const getTopPerformers = useCallback((category: keyof TeamDetailedStats, count: number = 5) => {
-    return [...teamStats.values()]
-      .sort((a, b) => {
-        const aVal = a[category];
-        const bVal = b[category];
-        if (typeof aVal === 'number' && typeof bVal === 'number') {
-          return bVal - aVal;
-        }
-        return 0;
-      })
-      .slice(0, count);
-  }, [teamStats]);
-
-  // Get comparison between teams
-  const compareTeams = useCallback((team1: string, team2: string) => {
-    const stats1 = teamStats.get(team1);
-    const stats2 = teamStats.get(team2);
-    
-    if (!stats1 || !stats2) return null;
-    
-    const h2h = getHeadToHead(team1, team2);
-    
-    return {
-      team1: stats1,
-      team2: stats2,
-      headToHead: h2h,
-      comparison: {
-        winRate: {
-          team1: stats1.played > 0 ? (stats1.wins / stats1.played) * 100 : 0,
-          team2: stats2.played > 0 ? (stats2.wins / stats2.played) * 100 : 0,
-        },
-        setRatio: {
-          team1: stats1.setRatio,
-          team2: stats2.setRatio,
-        },
-        elo: {
-          team1: stats1.eloRating,
-          team2: stats2.eloRating,
-        },
-        form: {
-          team1: stats1.last10.slice(0, 5).filter(r => r === 'W').length,
-          team2: stats2.last10.slice(0, 5).filter(r => r === 'W').length,
-        },
-      },
-    };
-  }, [teamStats, getHeadToHead]);
-
-  return {
-    teamStats,
-    selectedTeam,
-    setSelectedTeam,
-    getHeadToHead,
-    getTeamForm,
-    getTopPerformers,
-    compareTeams,
-    isLoading,
-    getTeamDetails: (name: string) => teamStats.get(name),
-  };
-}
-
-// Hook for user prediction stats
-export function useUserPredictionStats(userId: string) {
-  const [stats, setStats] = useState<UserPredictionStats | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchStats = useCallback(async () => {
-    if (!userId) return;
-    
-    setIsLoading(true);
-    setError(null);
-    
-    try {
-      const response = await fetch(`/api/users/${userId}/prediction-stats`);
-      
-      if (!response.ok) throw new Error('Failed to fetch prediction stats');
-      
-      const data = await response.json();
-      setStats(data.stats);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-    } finally {
-      setIsLoading(false);
-    }
-  }, [userId]);
-
-  useEffect(() => {
-    fetchStats();
-  }, [fetchStats]);
-
-  return {
-    stats,
-    isLoading,
-    error,
-    refetch: fetchStats,
-  };
-}
-
-```
-
-## File: app\hooks\useAIPredictions.ts
-```
-"use client";
-
-import { useState, useCallback } from "react";
-import { 
-  AIPrediction, 
-  AIMatchAnalysis, 
-  HeadToHeadStats, 
-  TeamForm 
-} from "../types";
-
-interface UseAIPredictionsOptions {
-  cacheTime?: number; // ms
-}
-
-interface UseAIPredictionsReturn {
-  isLoading: boolean;
-  error: string | null;
-  getPrediction: (homeTeam: string, awayTeam: string, league: string) => Promise<AIPrediction | null>;
-  getMatchAnalysis: (homeTeam: string, awayTeam: string, league: string) => Promise<AIMatchAnalysis | null>;
-  getHeadToHead: (team1: string, team2: string) => Promise<HeadToHeadStats | null>;
-  getTeamForm: (teamName: string, league: string) => Promise<TeamForm | null>;
-  getBulkPredictions: (matches: { homeTeam: string; awayTeam: string }[], league: string) => Promise<AIPrediction[]>;
-}
-
-// Simple in-memory cache
-const predictionCache = new Map<string, { data: AIPrediction; timestamp: number }>();
-const analysisCache = new Map<string, { data: AIMatchAnalysis; timestamp: number }>();
-
-export function useAIPredictions(options: UseAIPredictionsOptions = {}): UseAIPredictionsReturn {
-  const { cacheTime = 5 * 60 * 1000 } = options; // 5 minutes default
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  // Get AI prediction for a match
-  const getPrediction = useCallback(async (
-    homeTeam: string, 
-    awayTeam: string, 
-    league: string
-  ): Promise<AIPrediction | null> => {
-    const cacheKey = `${league}-${homeTeam}-${awayTeam}`;
-    
-    // Check cache
-    const cached = predictionCache.get(cacheKey);
-    if (cached && Date.now() - cached.timestamp < cacheTime) {
-      return cached.data;
-    }
-    
-    setIsLoading(true);
-    setError(null);
-    
-    try {
-      const response = await fetch('/api/ai/predict', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ homeTeam, awayTeam, league }),
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to get AI prediction');
-      }
-      
-      const data = await response.json();
-      const prediction = data.prediction as AIPrediction;
-      
-      // Cache result
-      predictionCache.set(cacheKey, { data: prediction, timestamp: Date.now() });
-      
-      return prediction;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-      return null;
-    } finally {
-      setIsLoading(false);
-    }
-  }, [cacheTime]);
-
-  // Get detailed match analysis
-  const getMatchAnalysis = useCallback(async (
-    homeTeam: string, 
-    awayTeam: string, 
-    league: string
-  ): Promise<AIMatchAnalysis | null> => {
-    const cacheKey = `analysis-${league}-${homeTeam}-${awayTeam}`;
-    
-    // Check cache
-    const cached = analysisCache.get(cacheKey);
-    if (cached && Date.now() - cached.timestamp < cacheTime) {
-      return cached.data;
-    }
-    
-    setIsLoading(true);
-    setError(null);
-    
-    try {
-      const response = await fetch('/api/ai/analyze', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ homeTeam, awayTeam, league }),
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to get match analysis');
-      }
-      
-      const data = await response.json();
-      const analysis = data.analysis as AIMatchAnalysis;
-      
-      // Cache result
-      analysisCache.set(cacheKey, { data: analysis, timestamp: Date.now() });
-      
-      return analysis;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-      return null;
-    } finally {
-      setIsLoading(false);
-    }
-  }, [cacheTime]);
-
-  // Get head-to-head stats
-  const getHeadToHead = useCallback(async (
-    team1: string, 
-    team2: string
-  ): Promise<HeadToHeadStats | null> => {
-    setIsLoading(true);
-    setError(null);
-    
-    try {
-      const response = await fetch(`/api/stats/h2h?team1=${encodeURIComponent(team1)}&team2=${encodeURIComponent(team2)}`);
-      
-      if (!response.ok) {
-        throw new Error('Failed to get head-to-head stats');
-      }
-      
-      const data = await response.json();
-      return data.stats as HeadToHeadStats;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-      return null;
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-  // Get team form
-  const getTeamForm = useCallback(async (
-    teamName: string, 
-    league: string
-  ): Promise<TeamForm | null> => {
-    setIsLoading(true);
-    setError(null);
-    
-    try {
-      const response = await fetch(`/api/stats/form?team=${encodeURIComponent(teamName)}&league=${encodeURIComponent(league)}`);
-      
-      if (!response.ok) {
-        throw new Error('Failed to get team form');
-      }
-      
-      const data = await response.json();
-      return data.form as TeamForm;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-      return null;
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-  // Get bulk predictions for multiple matches
-  const getBulkPredictions = useCallback(async (
-    matches: { homeTeam: string; awayTeam: string }[],
-    league: string
-  ): Promise<AIPrediction[]> => {
-    setIsLoading(true);
-    setError(null);
-    
-    try {
-      const response = await fetch('/api/ai/predict/bulk', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ matches, league }),
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to get bulk predictions');
-      }
-      
-      const data = await response.json();
-      return data.predictions as AIPrediction[];
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-      return [];
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-  return {
-    isLoading,
-    error,
-    getPrediction,
-    getMatchAnalysis,
-    getHeadToHead,
-    getTeamForm,
-    getBulkPredictions,
-  };
-}
-
-// Utility function to generate simple AI prediction locally (fallback)
-export function generateLocalPrediction(
-  homeTeam: string,
-  awayTeam: string,
-  homeStats: { wins: number; played: number; setsWon: number; setsLost: number },
-  awayStats: { wins: number; played: number; setsWon: number; setsLost: number }
-): AIPrediction {
-  // Calculate win rates
-  const homeWinRate = homeStats.played > 0 ? homeStats.wins / homeStats.played : 0.5;
-  const awayWinRate = awayStats.played > 0 ? awayStats.wins / awayStats.played : 0.5;
-  
-  // Calculate set ratios
-  const homeSetRatio = homeStats.setsLost > 0 ? homeStats.setsWon / homeStats.setsLost : homeStats.setsWon || 1;
-  const awaySetRatio = awayStats.setsLost > 0 ? awayStats.setsWon / awayStats.setsLost : awayStats.setsWon || 1;
-  
-  // Home advantage factor
-  const homeAdvantage = 0.05;
-  
-  // Calculate probabilities
-  let homeWinProb = (homeWinRate + homeAdvantage + (1 - awayWinRate)) / 2;
-  let awayWinProb = 1 - homeWinProb;
-  
-  // Adjust based on set ratio
-  const setRatioFactor = homeSetRatio / (homeSetRatio + awaySetRatio);
-  homeWinProb = (homeWinProb + setRatioFactor) / 2;
-  awayWinProb = 1 - homeWinProb;
-  
-  // Normalize to percentages
-  homeWinProb = Math.round(homeWinProb * 100);
-  awayWinProb = Math.round(awayWinProb * 100);
-  
-  // Determine predicted score
-  let predictedScore: string;
-  if (homeWinProb > 65) {
-    predictedScore = '3-0';
-  } else if (homeWinProb > 55) {
-    predictedScore = '3-1';
-  } else if (homeWinProb > 45) {
-    predictedScore = homeWinProb > 50 ? '3-2' : '2-3';
-  } else if (awayWinProb > 55) {
-    predictedScore = '1-3';
-  } else {
-    predictedScore = '0-3';
-  }
-  
-  // Calculate confidence
-  const confidence = Math.max(homeWinProb, awayWinProb);
-  
-  return {
-    matchId: `${homeTeam}-${awayTeam}`,
-    homeTeam,
-    awayTeam,
-    predictedScore,
-    confidence,
-    homeWinProbability: homeWinProb,
-    awayWinProbability: awayWinProb,
-    analysis: generateAnalysisText(homeTeam, awayTeam, homeWinProb, awayWinProb),
-    factors: [
-      {
-        name: 'Galibiyet Oranı',
-        description: `${homeTeam}: ${Math.round(homeWinRate * 100)}%, ${awayTeam}: ${Math.round(awayWinRate * 100)}%`,
-        impact: homeWinRate > awayWinRate ? 'positive' : 'negative',
-        weight: 0.4,
-        team: homeWinRate > awayWinRate ? 'home' : 'away',
-      },
-      {
-        name: 'Set Oranı',
-        description: `${homeTeam}: ${homeSetRatio.toFixed(2)}, ${awayTeam}: ${awaySetRatio.toFixed(2)}`,
-        impact: homeSetRatio > awaySetRatio ? 'positive' : 'negative',
-        weight: 0.3,
-        team: homeSetRatio > awaySetRatio ? 'home' : 'away',
-      },
-      {
-        name: 'Ev Sahibi Avantajı',
-        description: `${homeTeam} ev sahibi olarak oynuyor`,
-        impact: 'positive',
-        weight: 0.15,
-        team: 'home',
-      },
-    ],
-    lastUpdated: new Date().toISOString(),
-  };
-}
-
-function generateAnalysisText(
-  homeTeam: string, 
-  awayTeam: string, 
-  homeWinProb: number, 
-  awayWinProb: number
-): string {
-  if (homeWinProb > 70) {
-    return `${homeTeam} bu maçta açık favori. Ev sahibi avantajı ve form durumu göz önüne alındığında rahat bir galibiyet bekleniyor.`;
-  } else if (homeWinProb > 55) {
-    return `${homeTeam} hafif favori görünüyor. Ancak ${awayTeam} sürpriz yapabilecek kapasitede. Çekişmeli bir maç olması bekleniyor.`;
-  } else if (awayWinProb > 55) {
-    return `${awayTeam} deplasmana rağmen favorisi. ${homeTeam} ev sahibi avantajını kullanmakta zorlanabilir.`;
-  } else {
-    return `İki takım arasında dengeli bir mücadele bekleniyor. Her iki taraf da galibiyete yakın, maç son setlere gidebilir.`;
-  }
-}
-
-```
-
-## File: app\hooks\useLeagueQuery.ts
-```
-"use client";
-
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { TeamStats, Match } from '../types';
-
-interface RoundData {
-    name?: string;
-    matches?: Match[];
-}
-
-interface PoolData {
-    name?: string;
-    teams?: TeamStats[];
-}
-
-interface LeagueData {
-    teams: TeamStats[];
-    fixture: Match[];
-    groups?: string[];
-    rounds?: RoundData[];
-    pools?: PoolData[];
-}
-
-interface LeagueConfig {
-    hasGroups: boolean;
-    apiEndpoint: string;
-    name: string;
-}
-
-export function useLeagueQuery(
-    leagueId: string,
-    config: LeagueConfig,
-    options?: {
-        enabled?: boolean;
-    }
-) {
-    return useQuery({
-        queryKey: ['league', leagueId],
-        queryFn: async () => {
-            const res = await fetch(config.apiEndpoint);
-            if (!res.ok) throw new Error(`Failed to fetch ${leagueId} data`);
-
-            const json = await res.json();
-
-            // Normalize data structure
-            const normalizedData: LeagueData = {
-                teams: json.teams || [],
-                fixture: json.fixture || json.matches || [],
-                groups: json.groups || (config.hasGroups ? extractGroups(json.teams) : undefined),
-                rounds: json.rounds || undefined,
-                pools: json.pools || undefined
-            };
-
-            return normalizedData;
-        },
-        staleTime: 1000 * 60 * 10, // 10 minutes
-        gcTime: 1000 * 60 * 30, // 30 minutes
-        retry: 2,
-        enabled: options?.enabled !== false,
-    });
-}
-
-export function useLeagueData(leagueId: string, config: LeagueConfig) {
-    return useQuery({
-        queryKey: ['league', leagueId, 'data'],
-        queryFn: async () => {
-            const res = await fetch(config.apiEndpoint);
-            if (!res.ok) throw new Error(`Failed to fetch ${leagueId} data`);
-            return res.json();
-        },
-        staleTime: 1000 * 60 * 10,
-        gcTime: 1000 * 60 * 30,
-        retry: 2,
-    });
-}
-
-export function useInvalidateLeague(leagueId: string) {
-    const queryClient = useQueryClient();
-    
-    return {
-        invalidate: () => {
-            queryClient.invalidateQueries({
-                queryKey: ['league', leagueId]
-            });
-        },
-        refetch: () => {
-            queryClient.refetchQueries({
-                queryKey: ['league', leagueId]
-            });
-        }
-    };
-}
-
-// Helper to extract unique groups from teams
-function extractGroups(teams: TeamStats[]): string[] {
-    const groups = [...new Set(teams.map(t => t.groupName))].filter(Boolean);
-    return groups.sort((a, b) => {
-        const numA = parseInt(a.match(/\d+/)?.[0] || '0');
-        const numB = parseInt(b.match(/\d+/)?.[0] || '0');
-        return numA - numB;
-    });
-}
-
-```
-
-## File: app\hooks\useLocalStorage.ts
-```
-"use client";
-
-import { useState, useEffect, useCallback } from 'react';
-
-/**
- * Type-safe localStorage hook with SSR support
- */
-export function useLocalStorage<T>(
-    key: string,
-    initialValue: T
-): [T, (value: T | ((prev: T) => T)) => void, () => void] {
-    // State to store our value
-    const [storedValue, setStoredValue] = useState<T>(initialValue);
-    const [isHydrated, setIsHydrated] = useState(false);
-
-    // Hydrate from localStorage after mount
-    useEffect(() => {
-        try {
-            const item = window.localStorage.getItem(key);
-            if (item) {
-                setStoredValue(JSON.parse(item));
-            }
-        } catch (error) {
-            console.warn(`Error reading localStorage key "${key}":`, error);
-        }
-        setIsHydrated(true);
-    }, [key]);
-
-    // Return a wrapped version of useState's setter function
-    const setValue = useCallback((value: T | ((prev: T) => T)) => {
-        try {
-            // Allow value to be a function for same API as useState
-            const valueToStore = value instanceof Function ? value(storedValue) : value;
-            setStoredValue(valueToStore);
-
-            if (typeof window !== 'undefined') {
-                window.localStorage.setItem(key, JSON.stringify(valueToStore));
-            }
-        } catch (error) {
-            console.warn(`Error setting localStorage key "${key}":`, error);
-        }
-    }, [key, storedValue]);
-
-    // Remove from localStorage
-    const removeValue = useCallback(() => {
-        try {
-            setStoredValue(initialValue);
-            if (typeof window !== 'undefined') {
-                window.localStorage.removeItem(key);
-            }
-        } catch (error) {
-            console.warn(`Error removing localStorage key "${key}":`, error);
-        }
-    }, [key, initialValue]);
-
-    return [storedValue, setValue, removeValue];
-}
-
-export default useLocalStorage;
-
-```
-
-## File: app\hooks\useMatchSimulation.ts
-```
-"use client";
-
-import { useState, useCallback, useEffect, useRef } from "react";
-import { 
-  MatchSimulation, 
-  SimulatedSet, 
-  SimulatedPoint,
-  SimulationMoment 
-} from "../types";
-
-interface UseMatchSimulationOptions {
-  speed?: number; // Animation speed multiplier
-  autoPlay?: boolean;
-}
-
-interface UseMatchSimulationReturn {
-  simulation: MatchSimulation | null;
-  isSimulating: boolean;
-  isPlaying: boolean;
-  currentSet: number;
-  currentPoint: number;
-  progress: number; // 0-100
-  // Actions
-  startSimulation: (homeTeam: string, awayTeam: string) => Promise<void>;
-  play: () => void;
-  pause: () => void;
-  reset: () => void;
-  skipToEnd: () => void;
-  setSpeed: (speed: number) => void;
-}
-
-export function useMatchSimulation(
-  options: UseMatchSimulationOptions = {}
-): UseMatchSimulationReturn {
-  const { speed: initialSpeed = 1, autoPlay = true } = options;
-  
-  const [simulation, setSimulation] = useState<MatchSimulation | null>(null);
-  const [isSimulating, setIsSimulating] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentSet, setCurrentSet] = useState(0);
-  const [currentPoint, setCurrentPoint] = useState(0);
-  const [speed, setSpeedState] = useState(initialSpeed);
-  
-  const animationRef = useRef<NodeJS.Timeout | null>(null);
-  const progressRef = useRef(0);
-
-  // Calculate progress
-  const progress = simulation 
-    ? (progressRef.current / simulation.duration) * 100 
-    : 0;
-
-  // Generate a simulated match
-  const generateSimulation = useCallback((
-    homeTeam: string, 
-    awayTeam: string
-  ): MatchSimulation => {
-    const sets: SimulatedSet[] = [];
-    let homeSetsWon = 0;
-    let awaySetsWon = 0;
-    let setNumber = 0;
-    const moments: SimulationMoment[] = [];
-    let totalDuration = 0;
-    
-    // Simulate sets until one team wins 3
-    while (homeSetsWon < 3 && awaySetsWon < 3) {
-      setNumber++;
-      const isDecidingSet = homeSetsWon === 2 && awaySetsWon === 2;
-      const setEndScore = isDecidingSet ? 15 : 25;
-      
-      const set = simulateSet(setNumber, setEndScore, homeTeam, awayTeam);
-      sets.push(set);
-      
-      if (set.winner === 'home') {
-        homeSetsWon++;
-      } else {
-        awaySetsWon++;
-      }
-      
-      // Add set end moment
-      moments.push({
-        time: totalDuration + set.pointByPoint.length * 2,
-        type: 'set_point',
-        description: `${set.winner === 'home' ? homeTeam : awayTeam} ${setNumber}. seti kazandı (${set.homePoints}-${set.awayPoints})`,
-      });
-      
-      totalDuration += set.pointByPoint.length * 2;
-    }
-    
-    const winner = homeSetsWon === 3 ? homeTeam : awayTeam;
-    
-    // Add match end moment
-    moments.push({
-      time: totalDuration,
-      type: 'match_point',
-      description: `${winner} maçı kazandı! (${homeSetsWon}-${awaySetsWon})`,
-    });
-    
-    return {
-      matchId: `sim-${Date.now()}`,
-      homeTeam,
-      awayTeam,
-      simulatedSets: sets,
-      finalScore: `${homeSetsWon}-${awaySetsWon}`,
-      winner,
-      keyMoments: moments,
-      duration: totalDuration,
-    };
-  }, []);
-
-  // Simulate a single set
-  const simulateSet = (
-    setNumber: number, 
-    endScore: number,
-    homeTeam: string,
-    awayTeam: string
-  ): SimulatedSet => {
-    const points: SimulatedPoint[] = [];
-    let homeScore = 0;
-    let awayScore = 0;
-    let pointNumber = 0;
-    
-    // Randomly determine which team is slightly favored
-    const homeBias = 0.48 + Math.random() * 0.08; // 48-56% for home
-    
-    while (true) {
-      pointNumber++;
-      
-      // Determine point type
-      const types: Array<'attack' | 'block' | 'ace' | 'error'> = ['attack', 'attack', 'attack', 'block', 'ace', 'error'];
-      const type = types[Math.floor(Math.random() * types.length)];
-      
-      // Determine scorer
-      const scorer = Math.random() < homeBias ? 'home' : 'away';
-      
-      if (scorer === 'home') {
-        homeScore++;
-      } else {
-        awayScore++;
-      }
-      
-      points.push({
-        pointNumber,
-        homeScore,
-        awayScore,
-        scorer,
-        type,
-      });
-      
-      // Check if set is over
-      const maxScore = Math.max(homeScore, awayScore);
-      const minScore = Math.min(homeScore, awayScore);
-      
-      if (maxScore >= endScore && maxScore - minScore >= 2) {
-        break;
-      }
-      
-      // Safety limit
-      if (pointNumber > 100) break;
-    }
-    
-    return {
-      setNumber,
-      homePoints: homeScore,
-      awayPoints: awayScore,
-      winner: homeScore > awayScore ? 'home' : 'away',
-      pointByPoint: points,
-    };
-  };
-
-  // Start simulation
-  const startSimulation = useCallback(async (
-    homeTeam: string, 
-    awayTeam: string
-  ) => {
-    setIsSimulating(true);
-    setCurrentSet(0);
-    setCurrentPoint(0);
-    progressRef.current = 0;
-    
-    // Generate simulation
-    const sim = generateSimulation(homeTeam, awayTeam);
-    setSimulation(sim);
-    setIsSimulating(false);
-    
-    if (autoPlay) {
-      setIsPlaying(true);
-    }
-  }, [generateSimulation, autoPlay]);
-
-  // Play animation
-  const play = useCallback(() => {
-    if (!simulation) return;
-    setIsPlaying(true);
-  }, [simulation]);
-
-  // Pause animation
-  const pause = useCallback(() => {
-    setIsPlaying(false);
-    if (animationRef.current) {
-      clearTimeout(animationRef.current);
-      animationRef.current = null;
-    }
-  }, []);
-
-  // Reset simulation
-  const reset = useCallback(() => {
-    pause();
-    setCurrentSet(0);
-    setCurrentPoint(0);
-    progressRef.current = 0;
-  }, [pause]);
-
-  // Skip to end
-  const skipToEnd = useCallback(() => {
-    if (!simulation) return;
-    
-    pause();
-    setCurrentSet(simulation.simulatedSets.length - 1);
-    const lastSet = simulation.simulatedSets[simulation.simulatedSets.length - 1];
-    setCurrentPoint(lastSet.pointByPoint.length - 1);
-    progressRef.current = simulation.duration;
-  }, [simulation, pause]);
-
-  // Set speed
-  const setSpeed = useCallback((newSpeed: number) => {
-    setSpeedState(Math.max(0.25, Math.min(4, newSpeed)));
-  }, []);
-
-  // Animation loop
-  useEffect(() => {
-    if (!isPlaying || !simulation) return;
-    
-    const animate = () => {
-      progressRef.current += 2 * speed;
-      
-      // Find current set and point based on progress
-      let elapsed = 0;
-      let foundSet = 0;
-      let foundPoint = 0;
-      
-      for (let s = 0; s < simulation.simulatedSets.length; s++) {
-        const set = simulation.simulatedSets[s];
-        for (let p = 0; p < set.pointByPoint.length; p++) {
-          elapsed += 2;
-          if (elapsed >= progressRef.current) {
-            foundSet = s;
-            foundPoint = p;
-            break;
-          }
-        }
-        if (elapsed >= progressRef.current) break;
-      }
-      
-      setCurrentSet(foundSet);
-      setCurrentPoint(foundPoint);
-      
-      // Check if animation is complete
-      if (progressRef.current >= simulation.duration) {
-        setIsPlaying(false);
-        return;
-      }
-      
-      animationRef.current = setTimeout(animate, 50 / speed);
-    };
-    
-    animationRef.current = setTimeout(animate, 50 / speed);
-    
-    return () => {
-      if (animationRef.current) {
-        clearTimeout(animationRef.current);
-      }
-    };
-  }, [isPlaying, simulation, speed]);
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      if (animationRef.current) {
-        clearTimeout(animationRef.current);
-      }
-    };
-  }, []);
-
-  return {
-    simulation,
-    isSimulating,
-    isPlaying,
-    currentSet,
-    currentPoint,
-    progress,
-    startSimulation,
-    play,
-    pause,
-    reset,
-    skipToEnd,
-    setSpeed,
-  };
-}
-
-// Utility to get current state of simulation
-export function getSimulationState(
-  simulation: MatchSimulation,
-  setIndex: number,
-  pointIndex: number
-) {
-  const currentSetData = simulation.simulatedSets[setIndex];
-  const currentPointData = currentSetData?.pointByPoint[pointIndex];
-  
-  let homeSetsWon = 0;
-  let awaySetsWon = 0;
-  
-  for (let i = 0; i < setIndex; i++) {
-    if (simulation.simulatedSets[i].winner === 'home') {
-      homeSetsWon++;
-    } else {
-      awaySetsWon++;
-    }
-  }
-  
-  return {
-    setScore: { home: homeSetsWon, away: awaySetsWon },
-    currentSetScore: currentPointData 
-      ? { home: currentPointData.homeScore, away: currentPointData.awayScore }
-      : { home: 0, away: 0 },
-    lastPoint: currentPointData,
-    isComplete: setIndex >= simulation.simulatedSets.length - 1 && 
-      pointIndex >= currentSetData.pointByPoint.length - 1,
-  };
-}
-
-```
-
-## File: app\hooks\useModal.ts
-```
-'use client';
-
-import { useEffect, useCallback, useRef } from 'react';
-
-interface UseModalOptions {
-  isOpen: boolean;
-  onClose: () => void;
-  closeOnEscape?: boolean;
-  closeOnBackdrop?: boolean;
-  trapFocus?: boolean;
-}
-
-/**
- * Hook for accessible modal behavior
- * - Escape key to close
- * - Focus trap within modal
- * - Click outside to close
- * - Prevents body scroll when open
- */
-export function useModal({
-  isOpen,
-  onClose,
-  closeOnEscape = true,
-  closeOnBackdrop = true,
-  trapFocus = true,
-}: UseModalOptions) {
-  const modalRef = useRef<HTMLDivElement>(null);
-  const previousActiveElement = useRef<HTMLElement | null>(null);
-
-  // Handle escape key
-  const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
-      if (closeOnEscape && e.key === 'Escape') {
-        e.preventDefault();
-        onClose();
-      }
-
-      // Focus trap
-      if (trapFocus && e.key === 'Tab' && modalRef.current) {
-        const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        );
-        
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-
-        if (e.shiftKey && document.activeElement === firstElement) {
-          e.preventDefault();
-          lastElement?.focus();
-        } else if (!e.shiftKey && document.activeElement === lastElement) {
-          e.preventDefault();
-          firstElement?.focus();
-        }
-      }
-    },
-    [closeOnEscape, trapFocus, onClose]
-  );
-
-  // Handle backdrop click
-  const handleBackdropClick = useCallback(
-    (e: React.MouseEvent) => {
-      if (closeOnBackdrop && e.target === e.currentTarget) {
-        onClose();
-      }
-    },
-    [closeOnBackdrop, onClose]
-  );
-
-  useEffect(() => {
-    if (isOpen) {
-      // Store current active element
-      previousActiveElement.current = document.activeElement as HTMLElement;
-      
-      // Add event listener
-      document.addEventListener('keydown', handleKeyDown);
-      
-      // Prevent body scroll
-      document.body.style.overflow = 'hidden';
-      
-      // Focus first focusable element in modal
-      if (trapFocus && modalRef.current) {
-        const firstFocusable = modalRef.current.querySelector<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        );
-        firstFocusable?.focus();
-      }
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
-      
-      // Restore focus to previous element
-      if (previousActiveElement.current) {
-        previousActiveElement.current.focus();
-      }
-    };
-  }, [isOpen, handleKeyDown, trapFocus]);
-
-  return {
-    modalRef,
-    handleBackdropClick,
-  };
-}
-
-```
-
-## File: app\hooks\usePerformance.ts
-```
-"use client";
-
-import { useEffect } from 'react';
-
-declare global {
-    interface Window {
-        gtag?: (...args: unknown[]) => void;
-    }
-}
-
-// Extended PerformanceEntry types for Web Vitals
-interface LCPEntry extends PerformanceEntry {
-    renderTime?: number;
-    loadTime?: number;
-}
-
-interface LayoutShiftEntry extends PerformanceEntry {
-    hadRecentInput?: boolean;
-    value: number;
-}
-
-interface InteractionEntry extends PerformanceEntry {
-    processingDuration?: number;
-}
-
-interface WebVitals {
-    name: string;
-    value: number;
-    rating?: 'good' | 'needs-improvement' | 'poor';
-}
-
-/**
- * Track Web Vitals (LCP, FID, CLS)
- * Useful for performance monitoring and optimization
- */
-export function useWebVitals() {
-    useEffect(() => {
-        // Largest Contentful Paint
-        if ('PerformanceObserver' in window) {
-            try {
-                const lcpObserver = new PerformanceObserver((entryList) => {
-                    const entries = entryList.getEntries();
-                    const lastEntry = entries[entries.length - 1] as LCPEntry;
-                    if (lastEntry) {
-                        const vital: WebVitals = {
-                            name: 'LCP',
-                            value: lastEntry.renderTime || lastEntry.loadTime || lastEntry.startTime || 0,
-                        };
-                        // LCP > 2.5s is poor
-                        if (vital.value > 2500) {
-                            vital.rating = 'poor';
-                        } else if (vital.value > 1200) {
-                            vital.rating = 'needs-improvement';
-                        } else {
-                            vital.rating = 'good';
-                        }
-                        sendAnalytics(vital);
-                    }
-                });
-                lcpObserver.observe({ entryTypes: ['largest-contentful-paint'], buffered: true });
-            } catch {
-                console.warn('LCP observer not supported');
-            }
-
-            // Cumulative Layout Shift
-            try {
-                const clsObserver = new PerformanceObserver((entryList) => {
-                    let clsValue = 0;
-                    for (const entry of entryList.getEntries()) {
-                        const shiftEntry = entry as LayoutShiftEntry;
-                        if (shiftEntry.hadRecentInput) continue;
-                        clsValue += shiftEntry.value;
-                    }
-                    const vital: WebVitals = {
-                        name: 'CLS',
-                        value: clsValue,
-                    };
-                    // CLS > 0.25 is poor
-                    if (vital.value > 0.25) {
-                        vital.rating = 'poor';
-                    } else if (vital.value > 0.1) {
-                        vital.rating = 'needs-improvement';
-                    } else {
-                        vital.rating = 'good';
-                    }
-                    sendAnalytics(vital);
-                });
-                clsObserver.observe({ type: 'layout-shift', buffered: true });
-            } catch {
-                console.warn('CLS observer not supported');
-            }
-
-            // First Input Delay / Interaction to Next Paint
-            try {
-                const ttpObserver = new PerformanceObserver((entryList) => {
-                    const entries = entryList.getEntries();
-                    if (entries.length > 0) {
-                        const entry = entries[0] as InteractionEntry;
-                        const vital: WebVitals = {
-                            name: 'INP',
-                            value: entry.processingDuration || 0,
-                        };
-                        // INP > 500ms is poor
-                        if (vital.value > 500) {
-                            vital.rating = 'poor';
-                        } else if (vital.value > 200) {
-                            vital.rating = 'needs-improvement';
-                        } else {
-                            vital.rating = 'good';
-                        }
-                        sendAnalytics(vital);
-                    }
-                });
-                ttpObserver.observe({ entryTypes: ['first-input', 'interaction'], buffered: true });
-            } catch {
-                console.warn('INP observer not supported');
-            }
-        }
-    }, []);
-}
-
-function sendAnalytics(vital: WebVitals) {
-    // Send to Google Analytics if available
-    if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('event', vital.name, {
-            value: Math.round(vital.value),
-            event_category: 'Web Vitals',
-            event_label: vital.name,
-            non_interaction: true,
-        });
-    }
-
-    // Log to console in development
-    if (process.env.NODE_ENV === 'development') {
-        console.log(`[${vital.name}] ${vital.value}ms - ${vital.rating}`);
-    }
-}
-
-/**
- * Track Navigation Timing
- */
-export function useNavigationTiming() {
-    useEffect(() => {
-        const logNavigationMetrics = () => {
-            if (typeof window !== 'undefined' && 'performance' in window) {
-                const perfData = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
-                
-                if (perfData) {
-                    const metrics = {
-                        'DNS Lookup': perfData.domainLookupEnd - perfData.domainLookupStart,
-                        'TCP Connection': perfData.connectEnd - perfData.connectStart,
-                        'Request Time': perfData.responseStart - perfData.requestStart,
-                        'Response Time': perfData.responseEnd - perfData.responseStart,
-                        'DOM Processing': perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart,
-                        'Page Load Time': perfData.loadEventEnd - perfData.loadEventStart,
-                        'Total Time to Interactive': perfData.loadEventEnd - perfData.fetchStart,
-                    };
-
-                    if (process.env.NODE_ENV === 'development') {
-                        console.group('Navigation Timing Metrics');
-                        Object.entries(metrics).forEach(([key, value]) => {
-                            console.log(`${key}: ${Math.round(value)}ms`);
-                        });
-                        console.groupEnd();
-                    }
-                }
-            }
-        };
-
-        // Wait for page to fully load
-        window.addEventListener('load', logNavigationMetrics);
-        return () => window.removeEventListener('load', logNavigationMetrics);
-    }, []);
-}
-
-```
-
-## File: app\hooks\usePredictions.ts
-```
-"use client";
-
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { createClient } from "../utils/supabase";
-import { useAuth } from "../context/AuthContext";
-
-// Types
-export interface Prediction {
-    id?: string;
-    user_id: string;
-    league: "vsl" | "1lig" | "2lig" | "cev-cl";
-    group_name?: string;
-    match_id: string;
-    score: string;
-    created_at?: string;
-    updated_at?: string;
-}
-
-export type PredictionOverrides = Record<string, string>;
-
-// ============================================
-// FETCH PREDICTIONS
-// ============================================
-async function fetchPredictions(
-    userId: string,
-    league: string,
-    groupName?: string
-): Promise<PredictionOverrides> {
-    const supabase = createClient();
-    if (!supabase) {
-        // Fallback to localStorage if Supabase is not configured
-        const storageKey = getStorageKey(league);
-        const saved = localStorage.getItem(storageKey);
-        if (saved) {
-            const parsed = JSON.parse(saved);
-            if (groupName && parsed[groupName]) {
-                return parsed[groupName];
-            }
-            return parsed;
-        }
-        return {};
-    }
-
-    let query = supabase
-        .from("predictions")
-        .select("match_id, score")
-        .eq("user_id", userId)
-        .eq("league", league);
-
-    if (groupName) {
-        query = query.eq("group_name", groupName);
-    }
-
-    const { data, error } = await query;
-
-    if (error) {
-        console.error("Error fetching predictions:", error);
-        return {};
-    }
-
-    // Convert array to Record<matchId, score>
-    const overrides: PredictionOverrides = {};
-    data?.forEach((p) => {
-        overrides[p.match_id] = p.score;
-    });
-
-    return overrides;
-}
-
-// ============================================
-// SAVE PREDICTION
-// ============================================
-async function savePrediction(
-    userId: string,
-    league: string,
-    matchId: string,
-    score: string,
-    groupName?: string
-): Promise<void> {
-    const supabase = createClient();
-    if (!supabase) {
-        // Fallback to localStorage
-        const storageKey = getStorageKey(league);
-        const saved = localStorage.getItem(storageKey);
-        const existing = saved ? JSON.parse(saved) : {};
-
-        if (groupName) {
-            if (!existing[groupName]) existing[groupName] = {};
-            if (score) {
-                existing[groupName][matchId] = score;
-            } else {
-                delete existing[groupName][matchId];
-            }
-        } else {
-            if (score) {
-                existing[matchId] = score;
-            } else {
-                delete existing[matchId];
-            }
-        }
-
-        localStorage.setItem(storageKey, JSON.stringify(existing));
-        return;
-    }
-
-    if (!score) {
-        // Delete prediction
-        await supabase
-            .from("predictions")
-            .delete()
-            .eq("user_id", userId)
-            .eq("league", league)
-            .eq("match_id", matchId);
-    } else {
-        // Upsert prediction
-        await supabase.from("predictions").upsert(
-            {
-                user_id: userId,
-                league,
-                group_name: groupName || null,
-                match_id: matchId,
-                score,
-            },
-            { onConflict: "user_id,league,match_id" }
-        );
-    }
-}
-
-// ============================================
-// BULK SAVE PREDICTIONS
-// ============================================
-async function bulkSavePredictions(
-    userId: string,
-    league: string,
-    overrides: PredictionOverrides,
-    groupName?: string
-): Promise<void> {
-    const supabase = createClient();
-    if (!supabase) {
-        // Fallback to localStorage
-        const storageKey = getStorageKey(league);
-        const saved = localStorage.getItem(storageKey);
-        const existing = saved ? JSON.parse(saved) : {};
-
-        if (groupName) {
-            existing[groupName] = overrides;
-        } else {
-            Object.assign(existing, overrides);
-        }
-
-        localStorage.setItem(storageKey, JSON.stringify(existing));
-        return;
-    }
-
-    // Convert overrides to array of predictions
-    const predictions = Object.entries(overrides).map(([matchId, score]) => ({
-        user_id: userId,
-        league,
-        group_name: groupName || null,
-        match_id: matchId,
-        score,
-    }));
-
-    if (predictions.length > 0) {
-        await supabase
-            .from("predictions")
-            .upsert(predictions, { onConflict: "user_id,league,match_id" });
-    }
-}
-
-// ============================================
-// CLEAR PREDICTIONS
-// ============================================
-async function clearPredictions(
-    userId: string,
-    league: string,
-    groupName?: string
-): Promise<void> {
-    const supabase = createClient();
-    if (!supabase) {
-        const storageKey = getStorageKey(league);
-        if (groupName) {
-            const saved = localStorage.getItem(storageKey);
-            const existing = saved ? JSON.parse(saved) : {};
-            delete existing[groupName];
-            localStorage.setItem(storageKey, JSON.stringify(existing));
-        } else {
-            localStorage.removeItem(storageKey);
-        }
-        return;
-    }
-
-    let query = supabase
-        .from("predictions")
-        .delete()
-        .eq("user_id", userId)
-        .eq("league", league);
-
-    if (groupName) {
-        query = query.eq("group_name", groupName);
-    }
-
-    await query;
-}
-
-// ============================================
-// STORAGE KEY HELPER
-// ============================================
-function getStorageKey(league: string): string {
-    switch (league) {
-        case "1lig":
-            return "1ligGroupScenarios";
-        case "2lig":
-            return "groupScenarios";
-        case "cev-cl":
-            return "cevclGroupScenarios";
-        case "vsl":
-            return "vslGroupScenarios";
-        default:
-            return `${league}Scenarios`;
-    }
-}
-
-// ============================================
-// REACT QUERY HOOKS
-// ============================================
-
-/**
- * Hook to fetch and manage predictions for a specific league
- */
-export function usePredictions(league: string, groupName?: string) {
-    const { user } = useAuth();
-    const queryClient = useQueryClient();
-
-    const userId = user?.id || "anonymous";
-
-    const query = useQuery({
-        queryKey: ["predictions", league, groupName, userId],
-        queryFn: () => fetchPredictions(userId, league, groupName),
-        enabled: true, // Always enabled, will use localStorage fallback
-    });
-
-    const saveMutation = useMutation({
-        mutationFn: ({
-            matchId,
-            score,
-        }: {
-            matchId: string;
-            score: string;
-        }) => savePrediction(userId, league, matchId, score, groupName),
-        onMutate: async ({ matchId, score }) => {
-            // Optimistic update
-            await queryClient.cancelQueries({
-                queryKey: ["predictions", league, groupName, userId],
-            });
-            const previousData = queryClient.getQueryData<PredictionOverrides>([
-                "predictions",
-                league,
-                groupName,
-                userId,
-            ]);
-
-            queryClient.setQueryData<PredictionOverrides>(
-                ["predictions", league, groupName, userId],
-                (old = {}) => {
-                    const newData = { ...old };
-                    if (score) {
-                        newData[matchId] = score;
-                    } else {
-                        delete newData[matchId];
-                    }
-                    return newData;
-                }
-            );
-
-            return { previousData };
-        },
-        onError: (err, variables, context) => {
-            if (context?.previousData) {
-                queryClient.setQueryData(
-                    ["predictions", league, groupName, userId],
-                    context.previousData
-                );
-            }
-        },
-        onSettled: () => {
-            queryClient.invalidateQueries({
-                queryKey: ["predictions", league, groupName, userId],
-            });
-        },
-    });
-
-    const bulkSaveMutation = useMutation({
-        mutationFn: (overrides: PredictionOverrides) =>
-            bulkSavePredictions(userId, league, overrides, groupName),
-        onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: ["predictions", league, groupName, userId],
-            });
-        },
-    });
-
-    const clearMutation = useMutation({
-        mutationFn: () => clearPredictions(userId, league, groupName),
-        onSuccess: () => {
-            queryClient.setQueryData(
-                ["predictions", league, groupName, userId],
-                {}
-            );
-        },
-    });
-
-    return {
-        overrides: query.data || {},
-        isLoading: query.isLoading,
-        isError: query.isError,
-        error: query.error,
-        // Actions
-        setPrediction: (matchId: string, score: string) =>
-            saveMutation.mutate({ matchId, score }),
-        bulkSave: (overrides: PredictionOverrides) =>
-            bulkSaveMutation.mutate(overrides),
-        clear: () => clearMutation.mutate(),
-        // Mutation states
-        isSaving: saveMutation.isPending,
-        isClearing: clearMutation.isPending,
-    };
-}
 
 ```
 

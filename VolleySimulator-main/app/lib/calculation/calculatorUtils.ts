@@ -1,4 +1,4 @@
-import { Match, MatchOutcome, TeamStats } from "../types";
+import { Match, MatchOutcome, TeamStats } from "../../types";
 
 export const SCORES = ['3-0', '3-1', '3-2', '2-3', '1-3', '0-3'];
 

@@ -10,6 +10,8 @@ const rateLimits = new Map<string, { count: number; resetTime: number }>();
 /**
  * Simple in-memory rate limiter
  * For production, use external service like Upstash Redis
+ * TODO: In a serverless environment (like Vercel), this in-memory cache is not shared across instances.
+ * For consistent rate limiting, migrate to Vercel KV or Upstash Redis.
  */
 export function createRateLimiter(config: RateLimitConfig) {
     return function rateLimit(req: NextRequest): NextResponse | null {

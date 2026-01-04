@@ -313,7 +313,12 @@ interface AuthGuardProps {
 }
 
 // Public paths that don't require authentication
-const PUBLIC_PATHS = ["/", "/login", "/register", "/auth/callback", "/oauth", "/1lig/tahminoyunu", "/2lig/tahminoyunu", "/1lig/gunceldurum", "/2lig/gunceldurum", "/1lig/stats", "/2lig/stats"];
+const PUBLIC_PATHS = [
+    "/", "/login", "/register", "/auth/callback", "/oauth",
+    "/1lig/tahminoyunu", "/2lig/tahminoyunu", "/1lig/gunceldurum", "/2lig/gunceldurum", "/1lig/stats", "/2lig/stats",
+    "/vsl/tahminoyunu", "/vsl/gunceldurum", "/vsl/stats",
+    "/cev-cl/tahminoyunu", "/cev-cl/gunceldurum", "/cev-cl/stats"
+];
 
 export default function AuthGuard({ children }: AuthGuardProps) {
     const { user, loading } = useAuth();
@@ -705,6 +710,28 @@ function ConnectorLine() {
 
 ```
 
+## File: app\components\ClientSideComponents.tsx
+```
+"use client";
+
+import dynamic from "next/dynamic";
+
+const ScrollToTop = dynamic(() => import("./ScrollToTop"), { ssr: false });
+const OnboardingTour = dynamic(() => import("./ui/OnboardingTour"), { ssr: false });
+const AccessiBeWidget = dynamic(() => import("./AccessiBeWidget"), { ssr: false });
+
+export function ClientSideComponents() {
+    return (
+        <>
+            <ScrollToTop />
+            <OnboardingTour />
+            <AccessiBeWidget />
+        </>
+    );
+}
+
+```
+
 ## File: app\components\Confetti.tsx
 ```
 "use client";
@@ -723,6 +750,8 @@ export default function Confetti({ trigger, onComplete }: ConfettiProps) {
         color: string;
         delay: number;
         size: number;
+        borderRadius: string;
+        duration: string;
     }>>([]);
 
     useEffect(() => {
@@ -733,9 +762,11 @@ export default function Confetti({ trigger, onComplete }: ConfettiProps) {
                 x: Math.random() * 100,
                 color: colors[Math.floor(Math.random() * colors.length)],
                 delay: Math.random() * 0.5,
-                size: Math.random() * 8 + 4
+                size: Math.random() * 8 + 4,
+                borderRadius: Math.random() > 0.5 ? '50%' : '0',
+                duration: `${1 + Math.random()}s`
             }));
-            setParticles(newParticles);
+            Promise.resolve().then(() => setParticles(newParticles));
 
             const timer = setTimeout(() => {
                 setParticles([]);
@@ -754,21 +785,63 @@ export default function Confetti({ trigger, onComplete }: ConfettiProps) {
                 <div
                     key={p.id}
                     className="absolute animate-confetti"
-                    // eslint-disable-next-line react-dom/no-unsafe-target-blank
                     style={{
-                        left: `${p.x}%`,
-                        top: '-20px',
-                        width: p.size,
-                        height: p.size,
-                        backgroundColor: p.color,
-                        borderRadius: Math.random() > 0.5 ? '50%' : '0',
-                        animationDelay: `${p.delay}s`,
-                        animationDuration: `${1 + Math.random()}s`
-                    }}
+                        '--c-left': `${p.x}%`,
+                        '--c-size': p.size,
+                        '--c-bg': p.color,
+                        '--c-radius': p.borderRadius,
+                        '--c-delay': `${p.delay}s`,
+                        '--c-duration': p.duration,
+                        left: 'var(--c-left)',
+                        width: 'var(--c-size)',
+                        height: 'var(--c-size)',
+                        backgroundColor: 'var(--c-bg)',
+                        borderRadius: 'var(--c-radius)',
+                        animationDelay: 'var(--c-delay)',
+                        animationDuration: 'var(--c-duration)',
+                        top: '-20px'
+                    } as any}
                 />
             ))}
         </div>
     );
+}
+
+```
+
+## File: app\components\DynamicTeamTheme.tsx
+```
+"use client";
+
+import { useEffect } from 'react';
+import { useGameState } from '../utils/gameState';
+import { getTeamTheme } from '../utils/team-themes';
+
+export function DynamicTeamTheme() {
+    const { gameState, isLoaded } = useGameState();
+
+    useEffect(() => {
+        if (!isLoaded) return;
+
+        const teamTheme = getTeamTheme(gameState.favoriteTeam);
+        const root = document.documentElement;
+
+        if (gameState.favoriteTeam) {
+            root.style.setProperty('--color-primary', teamTheme.primary);
+            root.style.setProperty('--shadow-glow-primary', `0 0 20px ${teamTheme.primary}40`);
+            root.style.setProperty('--color-primary-muted', `${teamTheme.primary}20`);
+            // Add a flag for components to know a team theme is active
+            root.setAttribute('data-team-theme', 'true');
+        } else {
+            // Revert to defaults (or remove)
+            root.style.removeProperty('--color-primary');
+            root.style.removeProperty('--shadow-glow-primary');
+            root.style.removeProperty('--color-primary-muted');
+            root.removeAttribute('data-team-theme');
+        }
+    }, [gameState.favoriteTeam, isLoaded]);
+
+    return null;
 }
 
 ```
@@ -1238,8 +1311,7 @@ export default function MiniBarChart({
     const barWidth = 100 / data.length;
 
     return (
-        // eslint-disable-next-line react-dom/no-unsafe-target-blank
-        <div className="w-full" style={{ height }}>
+        <div className="w-full" style={{ '--chart-height': height, height: 'var(--chart-height)' } as any}>
             <div className="flex items-end justify-between h-full gap-0.5">
                 {data.map((value, i) => (
                     <div
@@ -1252,12 +1324,13 @@ export default function MiniBarChart({
                         )}
                         <div
                             className="w-full rounded-t transition-all duration-300 hover:opacity-80"
-                            // eslint-disable-next-line react-dom/no-unsafe-target-blank
                             style={{
-                                height: `${(value / max) * 100}%`,
-                                backgroundColor: color,
+                                '--bar-height': `${(value / max) * 100}%`,
+                                '--bar-color': color,
+                                height: 'var(--bar-height)',
+                                backgroundColor: 'var(--bar-color)',
                                 minHeight: value > 0 ? '2px' : '0'
-                            }}
+                            } as any}
                         />
                     </div>
                 ))}
@@ -1425,17 +1498,17 @@ export default function Navbar() {
                         <Link href="/live" className="hidden md:block">
                             <LiveMatchCounter count={2} />
                         </Link>
-                        
+
                         {/* Streak Badge */}
                         {user && (
                             <Link href="/quests" className="hidden sm:block">
                                 <StreakBadge />
                             </Link>
                         )}
-                        
+
                         {/* Notification Bell */}
                         {user && <NotificationBell />}
-                        
+
                         <ThemeToggle />
 
                         {!loading && (
@@ -1452,8 +1525,7 @@ export default function Navbar() {
                                             <div className="w-20 h-1.5 bg-slate-700 rounded-full overflow-hidden">
                                                 <div
                                                     className="h-full bg-gradient-to-r from-amber-400 to-orange-400 transition-all"
-                                                    // eslint-disable-next-line
-                                                    style={{ width: `${xpProgress}%` }}
+                                                    style={{ '--xp-progress': `${xpProgress}%`, width: 'var(--xp-progress)' } as any}
                                                 />
                                             </div>
                                         </div>
@@ -1498,11 +1570,12 @@ export default function Navbar() {
             </nav>
 
             {/* Bottom Navigation Bar */}
-            <nav className="fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 h-14 shadow-[0_-4px_20px_rgba(0,0,0,0.3)]">
+            <nav className="fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 h-14 pb-safe shadow-[0_-4px_20px_rgba(0,0,0,0.3)] safe-p-bottom content-box">
                 <div className="max-w-lg mx-auto h-full flex items-center justify-around px-2">
                     {/* Anasayfa */}
                     <Link
                         href={user ? "/anasayfa" : "/"}
+                        onClick={() => navigator.vibrate?.(10)}
                         className={`relative flex flex-col items-center gap-0.5 px-5 py-2 rounded-xl transition-all duration-200 active:scale-95 ${isAnasayfa
                             ? 'text-emerald-400'
                             : 'text-slate-400 hover:text-white'
@@ -1520,6 +1593,7 @@ export default function Navbar() {
                     {/* Ligler */}
                     <Link
                         href="/ligler"
+                        onClick={() => navigator.vibrate?.(10)}
                         className={`relative flex flex-col items-center gap-0.5 px-5 py-2 rounded-xl transition-all duration-200 active:scale-95 ${isInLeague || pathname === '/ligler'
                             ? 'text-indigo-400'
                             : 'text-slate-400 hover:text-white'
@@ -1535,6 +1609,7 @@ export default function Navbar() {
                     {/* Ayarlar */}
                     <Link
                         href="/ayarlar"
+                        onClick={() => navigator.vibrate?.(10)}
                         className={`relative flex flex-col items-center gap-0.5 px-5 py-2 rounded-xl transition-all duration-200 active:scale-95 ${isAyarlar
                             ? 'text-cyan-400'
                             : 'text-slate-400 hover:text-white'
@@ -1550,6 +1625,7 @@ export default function Navbar() {
                     {/* Profil */}
                     <Link
                         href={user ? "/profile" : "/login"}
+                        onClick={() => navigator.vibrate?.(10)}
                         className={`relative flex flex-col items-center gap-0.5 px-5 py-2 rounded-xl transition-all duration-200 active:scale-95 ${isProfile
                             ? 'text-amber-400'
                             : 'text-slate-400 hover:text-white'
@@ -2213,17 +2289,19 @@ export default function QuestPanel({
     // Reset quests at midnight
     useEffect(() => {
         const saved = localStorage.getItem('questLastReset');
-        if (saved !== today) {
-            setCompletedQuests(new Set());
-            localStorage.setItem('questLastReset', today);
-            localStorage.removeItem('completedQuests');
-        } else {
-            const savedCompleted = localStorage.getItem('completedQuests');
-            if (savedCompleted) {
-                setCompletedQuests(new Set(JSON.parse(savedCompleted)));
+        Promise.resolve().then(() => {
+            if (saved !== today) {
+                setCompletedQuests(new Set());
+                localStorage.setItem('questLastReset', today);
+                localStorage.removeItem('completedQuests');
+            } else {
+                const savedCompleted = localStorage.getItem('completedQuests');
+                if (savedCompleted) {
+                    setCompletedQuests(new Set(JSON.parse(savedCompleted)));
+                }
             }
-        }
-        setLastResetDate(today);
+            setLastResetDate(today);
+        });
     }, [today]);
 
     // Build quests with current progress
@@ -2253,17 +2331,24 @@ export default function QuestPanel({
 
     // Check for newly completed quests and award XP
     useEffect(() => {
-        quests.forEach(quest => {
-            if (quest.progress >= quest.target && !completedQuests.has(quest.id)) {
+        const newlyCompletedQuests = quests.filter(
+            quest => quest.progress >= quest.target && !completedQuests.has(quest.id)
+        );
+
+        if (newlyCompletedQuests.length > 0) {
+            // Defer update to avoid "cascading renders" warning
+            Promise.resolve().then(() => {
                 setCompletedQuests(prev => {
                     const newSet = new Set(prev);
-                    newSet.add(quest.id);
+                    newlyCompletedQuests.forEach(quest => {
+                        newSet.add(quest.id);
+                        addXP(quest.xpReward);
+                    });
                     localStorage.setItem('completedQuests', JSON.stringify([...newSet]));
                     return newSet;
                 });
-                addXP(quest.xpReward);
-            }
-        });
+            });
+        }
     }, [quests, completedQuests, addXP]);
 
     const completedCount = quests.filter(q => q.completed).length;
@@ -2318,7 +2403,7 @@ export default function QuestPanel({
                                                     ? 'bg-emerald-500'
                                                     : 'bg-gradient-to-r from-purple-500 to-indigo-500'
                                                     }`}
-                                                style={{ width: `${progressPercent}%` }}
+                                                style={{ '--quest-progress': `${progressPercent}%`, width: 'var(--quest-progress)' } as any}
                                             />
                                         </div>
                                         <span className="text-[10px] text-slate-500 font-mono">

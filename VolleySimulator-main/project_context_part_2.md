@@ -29,26 +29,29 @@ export default function OneLigPlayoffsClient({ initialTeams, initialMatches }: O
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        const savedPlayoff = localStorage.getItem('1ligPlayoffScenarios');
-        if (savedPlayoff) {
-            try {
-                setPlayoffOverrides(JSON.parse(savedPlayoff));
-            } catch (e) { console.error(e); }
-        }
+        const loadSaved = () => {
+            const savedPlayoff = localStorage.getItem('1ligPlayoffScenarios');
+            if (savedPlayoff) {
+                try {
+                    setPlayoffOverrides(JSON.parse(savedPlayoff));
+                } catch (e) { console.error(e); }
+            }
 
-        const savedGroup = localStorage.getItem('1ligGroupScenarios');
-        if (savedGroup) {
-            try {
-                const parsed = JSON.parse(savedGroup);
-                let flatOverrides: Record<string, string> = {};
-                Object.values(parsed).forEach((groupObj: any) => {
-                    flatOverrides = { ...flatOverrides, ...groupObj };
-                });
-                setGroupOverrides(flatOverrides);
-            } catch (e) { console.error(e); }
-        }
+            const savedGroup = localStorage.getItem('1ligGroupScenarios');
+            if (savedGroup) {
+                try {
+                    const parsed = JSON.parse(savedGroup);
+                    let flatOverrides: Record<string, string> = {};
+                    Object.values(parsed).forEach((groupObj: any) => {
+                        flatOverrides = { ...flatOverrides, ...groupObj };
+                    });
+                    setGroupOverrides(flatOverrides);
+                } catch (e) { console.error(e); }
+            }
+            setIsLoaded(true);
+        };
 
-        setIsLoaded(true);
+        Promise.resolve().then(loadSaved);
     }, []);
 
     const baseStandings = useMemo(() => {
@@ -181,7 +184,7 @@ export default function OneLigPlayoffsClient({ initialTeams, initialMatches }: O
                             <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2 relative z-10">
                                 <span className="text-3xl">🎉</span>
                                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200">
-                                    Sultanlar Ligi'ne Yükselen Takımlar
+                                    Sultanlar Ligi&apos;ne Yükselen Takımlar
                                 </span>
                             </h2>
 
@@ -213,7 +216,7 @@ export default function OneLigPlayoffsClient({ initialTeams, initialMatches }: O
                                         <div className="text-sm text-slate-400">1. Lig Play-Off 2025-26</div>
                                     </div>
                                     <div className="text-xs text-slate-500 mt-2 text-center">
-                                        🎊 Tebrikler! Sultanlar Ligi'ne yükselmeye hak kazandınız!
+                                        🎊 Tebrikler! Sultanlar Ligi&apos;ne yükselmeye hak kazandınız!
                                     </div>
                                 </div>
                             </div>
@@ -609,6 +612,12 @@ interface OneLigStatsClientProps {
     initialTeams: TeamStats[];
 }
 
+interface ExtendedTeamStats extends TeamStats {
+    losses: number;
+    winRate: number;
+    setRatioDisplay: string;
+}
+
 export default function OneLigStatsClient({ initialTeams }: OneLigStatsClientProps) {
     const [activeTab, setActiveTab] = useState("GENEL");
 
@@ -624,7 +633,7 @@ export default function OneLigStatsClient({ initialTeams }: OneLigStatsClientPro
         ...t,
         losses: (t.played || 0) - (t.wins || 0),
         winRate: (t.played || 0) > 0 ? Math.round(((t.wins || 0) / (t.played || 0)) * 100) : 0,
-        setRatio: (t.setsLost || 0) > 0 ? ((t.setsWon || 0) / (t.setsLost || 0)).toFixed(2) : (t.setsWon || 0).toString()
+        setRatioDisplay: (t.setsLost || 0) > 0 ? ((t.setsWon || 0) / (t.setsLost || 0)).toFixed(2) : (t.setsWon || 0).toString()
     })), [filteredTeams]);
 
     const totalMatches = useMemo(() => teamsWithStats.reduce((sum, t) => sum + (t.played || 0), 0) / 2, [teamsWithStats]);
@@ -639,77 +648,6 @@ export default function OneLigStatsClient({ initialTeams }: OneLigStatsClientPro
     const mostPoints = useMemo(() => [...teamsWithStats].sort((a, b) => b.points - a.points).slice(0, 5), [teamsWithStats]);
     const leastSetsLost = useMemo(() => [...teamsWithStats].sort((a, b) => a.setsLost - b.setsLost || b.wins - a.wins).slice(0, 5), [teamsWithStats]);
     const bestWinRate = useMemo(() => [...teamsWithStats].filter(t => (t.played || 0) >= 3).sort((a, b) => b.winRate - a.winRate).slice(0, 5), [teamsWithStats]);
-
-    const BarChart = ({ value, max, color }: { value: number; max: number; color: string }) => (
-        <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden flex-1">
-            <div
-                className={`h-full ${color} transition-all duration-500`}
-                style={{ width: `${Math.min((value / (max || 1)) * 100, 100)}%` }}
-            />
-        </div>
-    );
-
-    const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
-        title: string; icon: string;
-        teams: typeof teamsWithStats;
-        statKey: 'losses' | 'wins' | 'setsWon' | 'setsLost' | 'points' | 'winRate';
-        color: string;
-        gradient: string;
-        suffix?: string;
-    }) => {
-        const maxValue = Math.max(...teams.map(t => Number(t[statKey])), 1);
-
-        return (
-            <div className="bg-slate-950/50 backdrop-blur-md rounded-xl border border-slate-800/60 overflow-hidden hover:border-slate-700/80 transition-all duration-300 group shadow-md hover:shadow-lg">
-                <div className={`${gradient} px-2.5 py-2 border-b border-white/10 relative overflow-hidden`}>
-                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div className="flex items-center justify-between relative z-10">
-                        <h3 className="font-bold text-white text-[11px] uppercase tracking-wider flex items-center gap-1.5">
-                            <span className="text-sm">{icon}</span> {title}
-                        </h3>
-                        <span className="text-[9px] font-bold text-white/70 bg-black/20 px-1.5 py-0.5 rounded-full border border-white/10">TOP 5</span>
-                    </div>
-                </div>
-
-                <div className="p-1.5 space-y-1">
-                    {teams.map((t, idx) => (
-                        <div
-                            key={t.name}
-                            className={`flex items-center gap-2 p-1.5 rounded-lg transition-all ${idx === 0 ? 'bg-gradient-to-r from-white/5 to-transparent border border-white/10' : 'hover:bg-white/5'
-                                }`}
-                        >
-                            <div className={`w-5 h-5 rounded flex items-center justify-center font-bold text-[10px] shadow-sm ${idx === 0 ? 'bg-amber-400 text-amber-950' :
-                                idx === 1 ? 'bg-slate-300 text-slate-800' :
-                                    idx === 2 ? 'bg-amber-700 text-amber-100' :
-                                        'bg-slate-800 text-slate-500'
-                                }`}>
-                                {idx + 1}
-                            </div>
-                            <TeamAvatar name={t.name} size="xs" />
-
-                            <div className="flex-1 min-w-0">
-                                <span className={`text-[11px] font-bold truncate block ${idx === 0 ? 'text-white' : 'text-slate-300'}`} title={t.name}>
-                                    {t.name}
-                                </span>
-                                {t.groupName && (
-                                    <span className="text-[8px] text-slate-500 block leading-tight">{t.groupName}</span>
-                                )}
-                            </div>
-
-                            <div className="flex items-center gap-1.5 w-16 justify-end">
-                                <div className="h-1 bg-slate-800/50 rounded-full overflow-hidden flex-1 max-w-[30px]">
-                                    <div className={`h-full ${color} opacity-80`} style={{ width: `${Math.min((Number(t[statKey]) / maxValue) * 100, 100)}%` }}></div>
-                                </div>
-                                <span className={`text-[11px] font-bold min-w-[24px] text-right ${idx === 0 ? 'text-white' : 'text-slate-400'}`}>
-                                    {t[statKey]}{suffix}
-                                </span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        );
-    };
 
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">
@@ -816,6 +754,70 @@ export default function OneLigStatsClient({ initialTeams }: OneLigStatsClientPro
         </main>
     );
 }
+
+// Extracted Component
+const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
+    title: string; icon: string;
+    teams: ExtendedTeamStats[];
+    statKey: 'losses' | 'wins' | 'setsWon' | 'setsLost' | 'points' | 'winRate';
+    color: string;
+    gradient: string;
+    suffix?: string;
+}) => {
+    // Handling potential missing type issues gracefully
+    const maxValue = Math.max(...teams.map(t => Number(t[statKey] || 0)), 1);
+
+    return (
+        <div className="bg-slate-950/50 backdrop-blur-md rounded-xl border border-slate-800/60 overflow-hidden hover:border-slate-700/80 transition-all duration-300 group shadow-md hover:shadow-lg">
+            <div className={`${gradient} px-2.5 py-2 border-b border-white/10 relative overflow-hidden`}>
+                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="flex items-center justify-between relative z-10">
+                    <h3 className="font-bold text-white text-[11px] uppercase tracking-wider flex items-center gap-1.5">
+                        <span className="text-sm">{icon}</span> {title}
+                    </h3>
+                    <span className="text-[9px] font-bold text-white/70 bg-black/20 px-1.5 py-0.5 rounded-full border border-white/10">TOP 5</span>
+                </div>
+            </div>
+
+            <div className="p-1.5 space-y-1">
+                {teams.map((t, idx) => (
+                    <div
+                        key={t.name}
+                        className={`flex items-center gap-2 p-1.5 rounded-lg transition-all ${idx === 0 ? 'bg-gradient-to-r from-white/5 to-transparent border border-white/10' : 'hover:bg-white/5'
+                            }`}
+                    >
+                        <div className={`w-5 h-5 rounded flex items-center justify-center font-bold text-[10px] shadow-sm ${idx === 0 ? 'bg-amber-400 text-amber-950' :
+                            idx === 1 ? 'bg-slate-300 text-slate-800' :
+                                idx === 2 ? 'bg-amber-700 text-amber-100' :
+                                    'bg-slate-800 text-slate-500'
+                            }`}>
+                            {idx + 1}
+                        </div>
+                        <TeamAvatar name={t.name} size="xs" />
+
+                        <div className="flex-1 min-w-0">
+                            <span className={`text-[11px] font-bold truncate block ${idx === 0 ? 'text-white' : 'text-slate-300'}`} title={t.name}>
+                                {t.name}
+                            </span>
+                            {t.groupName && (
+                                <span className="text-[8px] text-slate-500 block leading-tight">{t.groupName}</span>
+                            )}
+                        </div>
+
+                        <div className="flex items-center gap-1.5 w-16 justify-end">
+                            <div className="h-1 bg-slate-800/50 rounded-full overflow-hidden flex-1 max-w-[30px]">
+                                <div className={`h-full ${color} opacity-80`} style={{ '--stat-width': `${Math.min((Number(t[statKey] || 0) / maxValue) * 100, 100)}%`, width: 'var(--stat-width)' } as any}></div>
+                            </div>
+                            <span className={`text-[11px] font-bold min-w-[24px] text-right ${idx === 0 ? 'text-white' : 'text-slate-400'}`}>
+                                {t[statKey]}{suffix}
+                            </span>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
 
 ```
 

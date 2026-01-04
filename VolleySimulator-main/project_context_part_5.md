@@ -197,11 +197,14 @@ export async function GET() {
             );
         };
 
+        interface BaseTeam { name: string;[key: string]: unknown }
+        interface BaseMatch { homeTeam: string; awayTeam: string;[key: string]: unknown }
+
         // Filter teams
-        const filteredTeams = data.teams.filter((t: any) => !isRelegated(t.name));
+        const filteredTeams = data.teams.filter((t: BaseTeam) => !isRelegated(t.name));
 
         // Filter fixtures (remove matches where either team is relegated)
-        const filteredFixture = data.fixture.filter((m: any) =>
+        const filteredFixture = data.fixture.filter((m: BaseMatch) =>
             !isRelegated(m.homeTeam) && !isRelegated(m.awayTeam)
         );
 
@@ -211,8 +214,9 @@ export async function GET() {
             fixture: filteredFixture
         });
 
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        return NextResponse.json({ error: errorMessage }, { status: 500 });
     }
 }
 
@@ -222,19 +226,22 @@ export async function GET() {
 ```
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerSupabaseClient } from '../../../utils/supabase-server';
+import { withAuth } from '@/lib/api-middleware';
+import { z } from 'zod';
+
+const ProfileUpdateSchema = z.object({
+    display_name: z.string().min(2).max(50).optional(),
+    avatar_url: z.string().url().optional().or(z.literal('')),
+    favorite_team: z.string().optional()
+});
 
 // GET - Fetch user profile
-export async function GET() {
-    try {
+export async function GET(request: NextRequest) {
+    return withAuth(request, async (req, { user }) => {
         const supabase = await createServerSupabaseClient();
-        const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-        if (authError || !user) {
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-        }
 
         // Get profile
-        const { data: profile, error: profileError } = await supabase
+        const { data: profile } = await supabase
             .from('user_profiles')
             .select('*')
             .eq('id', user.id)
@@ -283,33 +290,27 @@ export async function GET() {
             rank,
             recentPredictions: recentPredictions || []
         });
-    } catch (error) {
-        console.error('Profile GET error:', error);
-        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-    }
+    });
 }
 
 // PUT - Update user profile
 export async function PUT(request: NextRequest) {
-    try {
+    return withAuth(request, async (req, { user }) => {
         const supabase = await createServerSupabaseClient();
-        const { data: { user }, error: authError } = await supabase.auth.getUser();
+        const body = await req.json();
 
-        if (authError || !user) {
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-        }
-
-        const body = await request.json();
-        const allowedFields = ['display_name', 'avatar_url', 'favorite_team'];
-
-        const updates: Record<string, any> = {};
-        for (const field of allowedFields) {
-            if (body[field] !== undefined) {
-                updates[field] = body[field];
+        // Validate input with Zod
+        let validatedData;
+        try {
+            validatedData = ProfileUpdateSchema.parse(body);
+        } catch (error) {
+            if (error instanceof z.ZodError) {
+                return NextResponse.json({ error: 'Invalid data', details: error.errors }, { status: 400 });
             }
+            throw error;
         }
 
-        if (Object.keys(updates).length === 0) {
+        if (Object.keys(validatedData).length === 0) {
             return NextResponse.json({ error: 'No valid fields to update' }, { status: 400 });
         }
 
@@ -317,7 +318,7 @@ export async function PUT(request: NextRequest) {
             .from('user_profiles')
             .upsert({
                 id: user.id,
-                ...updates,
+                ...validatedData,
                 updated_at: new Date().toISOString()
             })
             .select()
@@ -329,18 +330,15 @@ export async function PUT(request: NextRequest) {
         }
 
         // Also update display_name in leaderboard
-        if (updates.display_name) {
+        if (validatedData.display_name) {
             await supabase
                 .from('leaderboard')
-                .update({ display_name: updates.display_name })
+                .update({ display_name: validatedData.display_name })
                 .eq('user_id', user.id);
         }
 
         return NextResponse.json({ success: true, profile: data });
-    } catch (error) {
-        console.error('Profile PUT error:', error);
-        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-    }
+    });
 }
 
 ```
@@ -499,13 +497,22 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useGameState } from "../utils/gameState";
 import { useToast } from "../components/Toast";
+import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/Card";
+import { Button } from "../components/ui/Button";
+import { Badge } from "../components/ui/Badge";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+    Volume2, VolumeX, Sun, Moon, Bell, BellOff, Download,
+    Trash2, HelpCircle, RefreshCcw, User, ShieldCheck, Mail, Info
+} from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const TutorialModal = dynamic(() => import("../components/TutorialModal"), {
     loading: () => null,
     ssr: false,
 });
 
-// Theme handling inline since we need to update document
+// Theme handling integrated with system design
 function useLocalTheme() {
     const [theme, setThemeState] = useState<'dark' | 'light'>('dark');
 
@@ -536,13 +543,11 @@ export default function AyarlarPage() {
 
     const handleResetData = () => {
         if (confirm("Tüm oyun verileriniz (XP, seviye, başarımlar, tahminler) silinecek. Bu işlem geri alınamaz. Emin misiniz?")) {
-            // Clear all game-related localStorage
             localStorage.removeItem('volleySimGameState');
             localStorage.removeItem('1ligGroupScenarios');
             localStorage.removeItem('groupScenarios');
             localStorage.removeItem('playoffScenarios');
             showToast("Tüm veriler sıfırlandı. Sayfa yenileniyor...", "success");
-            // Reload to reset React state
             setTimeout(() => window.location.reload(), 1000);
         }
     };
@@ -567,176 +572,228 @@ export default function AyarlarPage() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-950">
-            {/* Header */}
-            <div className="bg-gradient-to-br from-slate-800 to-slate-900 px-4 py-6 border-b border-slate-800">
-                <div className="max-w-2xl mx-auto">
-                    <h1 className="text-2xl font-bold text-white">Ayarlar</h1>
-                    <p className="text-slate-400 text-sm mt-1">Uygulama tercihlerini yönetin</p>
-                </div>
-            </div>
+        <main className="min-h-screen bg-background text-text-primary p-4 sm:p-6 lg:p-8 animate-in fade-in duration-500">
+            <div className="max-w-2xl mx-auto space-y-8">
 
-            <div className="max-w-2xl mx-auto px-4 py-6 space-y-4">
-
-                {/* Sound Settings */}
-                <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                    <h2 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Ses Ayarları</h2>
-
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <div className="font-medium text-white">Ses Efektleri</div>
-                            <div className="text-xs text-slate-500">Tahmin ve başarım sesleri</div>
-                        </div>
-                        <button
-                            onClick={toggleSound}
-                            title="Ses Efektlerini Aç/Kapat"
-                            className={`w-14 h-7 rounded-full transition-all relative ${gameState.soundEnabled ? 'bg-emerald-600' : 'bg-slate-700'
-                                }`}
-                        >
-                            <div className={`w-6 h-6 bg-white rounded-full shadow-md absolute top-0.5 transition-transform ${gameState.soundEnabled ? 'translate-x-7' : 'translate-x-0.5'
-                                }`} />
-                        </button>
-                    </div>
+                {/* Header Section */}
+                <div className="space-y-1 border-b border-border-subtle pb-6">
+                    <h1 className="text-4xl font-black tracking-tighter text-text-primary uppercase italic">
+                        UYGULAMA <span className="text-primary shadow-glow-primary">AYARLARI</span>
+                    </h1>
+                    <p className="text-text-secondary font-medium">Uygulama deneyiminizi kişiselleştirin ve verilerinizi yönetin.</p>
                 </div>
 
-                {/* Display Settings */}
-                <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                    <h2 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Görünüm</h2>
+                <div className="space-y-4">
+                    {/* General Settings */}
+                    <SectionHeader title="GENEL TERCİHLER" icon={<Info className="w-4 h-4" />} />
 
-                    <div className="flex items-center justify-between mb-4">
-                        <div>
-                            <div className="font-medium text-white">Tema</div>
-                            <div className="text-xs text-slate-500">Uygulama renk teması</div>
-                        </div>
-                        <select
-                            value={theme}
-                            onChange={(e) => setTheme(e.target.value as 'dark' | 'light')}
-                            title="Tema Seçin"
-                            className="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white"
-                        >
-                            <option value="dark">Koyu</option>
-                            <option value="light">Açık</option>
-                        </select>
+                    <div className="grid grid-cols-1 gap-3">
+                        {/* Sound Toggle */}
+                        <SettingCard
+                            title="Ses Efektleri"
+                            desc="Tahmin ve başarımlarda geri bildirim sesleri."
+                            icon={gameState.soundEnabled ? <Volume2 className="text-emerald-500" /> : <VolumeX className="text-text-muted" />}
+                            action={
+                                <Toggle
+                                    enabled={gameState.soundEnabled}
+                                    onClick={toggleSound}
+                                    activeColor="bg-emerald-500 shadow-glow-primary"
+                                />
+                            }
+                        />
+
+                        {/* Theme Select */}
+                        <SettingCard
+                            title="Arayüz Teması"
+                            desc="Koyu veya Açık mod arasında geçiş yapın."
+                            icon={theme === 'dark' ? <Moon className="text-primary" /> : <Sun className="text-amber-500" />}
+                            action={
+                                <select
+                                    value={theme}
+                                    onChange={(e) => setTheme(e.target.value as 'dark' | 'light')}
+                                    className="bg-surface-secondary border border-border-subtle rounded-lg px-3 py-1.5 text-xs font-black uppercase text-text-primary outline-none focus:border-primary/50 transition-all"
+                                    aria-label="Tema Seçimi"
+                                >
+                                    <option value="dark">KOYU</option>
+                                    <option value="light">AÇIK</option>
+                                </select>
+                            }
+                        />
+
+                        {/* Notifications */}
+                        <SettingCard
+                            title="Bildirimler"
+                            desc="Uygulama içi anlık bildirimler ve duyurular."
+                            icon={notifications ? <Bell className="text-primary" /> : <BellOff className="text-text-muted" />}
+                            action={
+                                <Toggle
+                                    enabled={notifications}
+                                    onClick={() => setNotifications(!notifications)}
+                                />
+                            }
+                        />
                     </div>
 
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <div className="font-medium text-white">Bildirimler</div>
-                            <div className="text-xs text-slate-500">Uygulama içi bildirimler</div>
-                        </div>
-                        <button
-                            onClick={() => setNotifications(!notifications)}
-                            title="Bildirimleri Aç/Kapat"
-                            className={`w-14 h-7 rounded-full transition-all relative ${notifications ? 'bg-emerald-600' : 'bg-slate-700'
-                                }`}
-                        >
-                            <div className={`w-6 h-6 bg-white rounded-full shadow-md absolute top-0.5 transition-transform ${notifications ? 'translate-x-7' : 'translate-x-0.5'
-                                }`} />
-                        </button>
-                    </div>
-                </div>
+                    {/* Data Management */}
+                    <SectionHeader title="VERİ YÖNETİMİ" icon={<ShieldCheck className="w-4 h-4" />} />
 
-                {/* Data Management */}
-                <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                    <h2 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Veri Yönetimi</h2>
-
-                    <div className="space-y-3">
-                        <button
+                    <div className="grid grid-cols-1 gap-3">
+                        <ActionButton
+                            title="Tahmin Verilerini Yedekle"
+                            desc="Tüm ilerlemenizi JSON formatında cihazınıza kaydedin."
+                            icon={<Download className="w-5 h-5 text-emerald-500" />}
                             onClick={handleExportData}
-                            className="w-full flex items-center justify-between p-3 bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors"
-                        >
-                            <div className="text-left">
-                                <div className="font-medium text-white">Verileri İndir</div>
-                                <div className="text-xs text-slate-500">Tüm tahminler ve ilerleme</div>
-                            </div>
-                            <span className="text-emerald-400">↓</span>
-                        </button>
-
-                        <button
+                        />
+                        <ActionButton
+                            title="Tüm Verileri Sıfırla"
+                            desc="XP, seviye ve tüm yerel tahmin geçmişini kalıcı olarak siler."
+                            icon={<Trash2 className="w-5 h-5 text-rose-500" />}
+                            danger
                             onClick={handleResetData}
-                            className="w-full flex items-center justify-between p-3 bg-slate-800 hover:bg-rose-900/50 rounded-lg transition-colors group"
-                        >
-                            <div className="text-left">
-                                <div className="font-medium text-white group-hover:text-rose-400">Verileri Sıfırla</div>
-                                <div className="text-xs text-slate-500 group-hover:text-rose-400/70">Tüm ilerlemeyi sil</div>
-                            </div>
-                            <span className="text-rose-400">✕</span>
-                        </button>
+                        />
                     </div>
-                </div>
 
-                {/* Help Section */}
-                <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                    <h2 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Yardım</h2>
+                    {/* Help & Support */}
+                    <SectionHeader title="YARDIM VE DESTEK" icon={<HelpCircle className="w-4 h-4" />} />
 
-                    <div className="space-y-3">
-                        <button
+                    <div className="grid grid-cols-1 gap-3">
+                        <ActionButton
+                            title="Uygulama Rehberini Başlat"
+                            desc="Temel özelliklerin nasıl kullanılacağını gösterir."
+                            icon={<HelpCircle className="w-5 h-5 text-primary" />}
+                            highlight
                             onClick={() => setShowTutorial(true)}
-                            className="w-full flex items-center justify-between p-3 bg-gradient-to-r from-emerald-900/30 to-emerald-800/10 hover:from-emerald-800/40 hover:to-emerald-700/20 border border-emerald-600/30 hover:border-emerald-500/50 rounded-lg transition-all group"
-                        >
-                            <div className="text-left">
-                                <div className="font-medium text-white group-hover:text-emerald-300">Uygulama Rehberi</div>
-                                <div className="text-xs text-slate-500">Nasıl kullanılacağını öğrenin</div>
-                            </div>
-                            <span className="text-emerald-400">İ</span>
-                        </button>
-
-                        <button
+                        />
+                        <ActionButton
+                            title="Rehber Durumunu Sıfırla"
+                            desc="Rehberin bir sonraki girişte tekrar otomatik görünmesini sağlar."
+                            icon={<RefreshCcw className="w-5 h-5 text-text-muted" />}
                             onClick={() => {
                                 localStorage.removeItem('tutorialCompleted');
-                                setShowTutorial(true);
+                                showToast("Rehber sıfırlandı", "success");
                             }}
-                            className="w-full flex items-center justify-between p-3 bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors"
-                        >
-                            <div className="text-left">
-                                <div className="font-medium text-white">Rehberi Sıfırla</div>
-                                <div className="text-xs text-slate-500">Rehberi baştan göster</div>
-                            </div>
-                            <span className="text-cyan-400">↻</span>
-                        </button>
+                        />
                     </div>
-                </div>
 
-                {/* Account Info */}
-                <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                    <h2 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Hesap</h2>
+                    {/* Account Info */}
+                    <SectionHeader title="HESAP BİLGİLERİ" icon={<User className="w-4 h-4" />} />
 
-                    {user ? (
-                        <div className="space-y-3">
-                            <div className="flex items-center justify-between p-3 bg-slate-800 rounded-lg">
-                                <span className="text-slate-400 text-sm">E-posta</span>
-                                <span className="text-white text-sm">{user.email}</span>
-                            </div>
-                            <div className="flex items-center justify-between p-3 bg-slate-800 rounded-lg">
-                                <span className="text-slate-400 text-sm">Hesap Türü</span>
-                                <span className="text-emerald-400 text-sm">Kayıtlı Kullanıcı</span>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="text-center p-4">
-                            <p className="text-slate-400 text-sm mb-3">Giriş yaparak verilerinizi kaydedin</p>
-                            <a
-                                href="/login"
-                                className="inline-block px-4 py-2 bg-emerald-700 hover:bg-emerald-600 text-white font-bold rounded-lg transition-colors"
-                            >
-                                Giriş Yap
-                            </a>
-                        </div>
-                    )}
-                </div>
+                    <Card className="bg-surface-secondary/20 border-border-main border-dashed">
+                        <CardContent className="p-4 sm:p-6">
+                            {user ? (
+                                <div className="flex flex-col sm:flex-row justify-between gap-4 items-center">
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30">
+                                            <Mail className="w-6 h-6 text-primary" />
+                                        </div>
+                                        <div>
+                                            <p className="font-black text-text-primary tracking-tight">{user.email}</p>
+                                            <Badge variant="success" className="h-5 px-2 py-0 text-[8px] font-black uppercase tracking-widest mt-1">KAYITLI KULLANICI</Badge>
+                                        </div>
+                                    </div>
+                                    <Button variant="ghost" onClick={() => window.location.href = '/profile'} className="text-xs font-black uppercase tracking-widest text-primary">PROFİLE GİT</Button>
+                                </div>
+                            ) : (
+                                <div className="text-center space-y-4">
+                                    <p className="text-sm text-text-secondary font-medium italic">Giriş yaparak tüm cihazlarınızdan ilerlemenize erişebilirsiniz.</p>
+                                    <Button variant="primary" onClick={() => window.location.href = '/login'} className="shadow-glow-primary font-black uppercase tracking-widest text-xs px-8">GİRİŞ YAP</Button>
+                                </div>
+                            )}
+                        </CardContent>
+                    </Card>
 
-                {/* App Info */}
-                <div className="text-center py-4">
-                    <div className="text-slate-500 text-xs">VolleySimulator v1.0.0</div>
-                    <div className="text-slate-600 text-xs mt-1">© 2025 Tüm hakları saklıdır</div>
+                    {/* App Version */}
+                    <div className="text-center pt-8 opacity-30">
+                        <p className="text-[10px] font-black uppercase tracking-[0.4em] text-text-muted">VolleySimulator • Build v1.0.b • 2026</p>
+                    </div>
                 </div>
             </div>
 
-            {/* Tutorial Modal */}
             <TutorialModal isOpen={showTutorial} onClose={() => setShowTutorial(false)} />
-        </div>
+        </main>
     );
 }
+
+const SectionHeader = ({ title, icon }: { title: string; icon: React.ReactNode }) => (
+    <div className="flex items-center gap-2 pt-4 pb-2 border-b border-border-subtle mb-4">
+        <div className="text-primary">{icon}</div>
+        <h2 className="text-[10px] font-black tracking-[0.2em] text-text-muted uppercase">{title}</h2>
+    </div>
+);
+
+const SettingCard = ({ title, desc, icon, action }: { title: string; desc: string; icon: React.ReactNode; action: React.ReactNode }) => (
+    <Card className="bg-surface-primary border-border-main/50 overflow-hidden">
+        <CardContent className="p-4 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-4 overflow-hidden">
+                <div className="w-10 h-10 rounded-xl bg-surface-secondary flex items-center justify-center shrink-0">
+                    {icon}
+                </div>
+                <div className="overflow-hidden">
+                    <h3 className="text-sm font-black text-text-primary uppercase tracking-tight truncate">{title}</h3>
+                    <p className="text-[10px] text-text-secondary font-medium line-clamp-1">{desc}</p>
+                </div>
+            </div>
+            {action}
+        </CardContent>
+    </Card>
+);
+
+const ActionButton = ({ title, desc, icon, onClick, danger, highlight }: { title: string; desc: string; icon: React.ReactNode; onClick: () => void; danger?: boolean; highlight?: boolean }) => (
+    <button
+        onClick={onClick}
+        className={cn(
+            "w-full text-left group transition-all duration-300",
+            highlight ? "" : ""
+        )}
+    >
+        <Card className={cn(
+            "transition-all duration-300 border-border-main/50 group-hover:bg-surface-secondary/50",
+            highlight ? "bg-primary/5 border-primary/20 group-hover:bg-primary/10 group-hover:border-primary/40" : "bg-surface-primary",
+            danger ? "group-hover:border-rose-500/40" : ""
+        )}>
+            <CardContent className="p-4 flex items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                    <div className={cn(
+                        "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-110 duration-500",
+                        highlight ? "bg-primary/20" : "bg-surface-secondary"
+                    )}>
+                        {icon}
+                    </div>
+                    <div>
+                        <h3 className={cn(
+                            "text-sm font-black uppercase tracking-tight",
+                            danger ? "group-hover:text-rose-500" : highlight ? "text-primary" : "text-text-primary"
+                        )}>
+                            {title}
+                        </h3>
+                        <p className="text-[10px] text-text-secondary font-medium">{desc}</p>
+                    </div>
+                </div>
+                <span className={cn(
+                    "text-lg transition-transform group-hover:translate-x-1 duration-300",
+                    danger ? "text-rose-400" : highlight ? "text-primary" : "text-text-muted"
+                )}>→</span>
+            </CardContent>
+        </Card>
+    </button>
+);
+
+const Toggle = ({ enabled, onClick, activeColor = "bg-primary shadow-glow-primary" }: { enabled: boolean; onClick: () => void; activeColor?: string }) => (
+    <button
+        onClick={onClick}
+        className={cn(
+            "w-10 h-5 rounded-full transition-all relative border border-border-subtle shrink-0",
+            enabled ? activeColor : "bg-surface-dark"
+        )}
+        aria-label="Seçeneği Değiştir"
+    >
+        <motion.div
+            layout
+            className="w-3.5 h-3.5 bg-white rounded-full absolute top-0.5"
+            animate={{ x: enabled ? 20 : 2 }}
+        />
+    </button>
+);
 
 ```
 
@@ -1415,13 +1472,17 @@ export default function CEVChallengePlayoffsClient({ initialData }: { initialDat
 
     // Load saved predictions
     useEffect(() => {
-        const saved = localStorage.getItem('cevChallengePredictions');
-        if (saved) {
-            try {
-                setOverrides(JSON.parse(saved));
-            } catch (e) { console.error(e); }
-        }
-        setIsLoaded(true);
+        const loadSaved = () => {
+            const saved = localStorage.getItem('cevChallengePredictions');
+            if (saved) {
+                try {
+                    setOverrides(JSON.parse(saved));
+                } catch (e) { console.error(e); }
+            }
+            setIsLoaded(true);
+        };
+
+        Promise.resolve().then(loadSaved);
     }, []);
 
     // Save predictions
@@ -1561,6 +1622,7 @@ export default function CEVChallengePlayoffsClient({ initialData }: { initialDat
                 value={pred || ''}
                 onChange={(e) => handleScoreChange(match.id, e.target.value)}
                 className={`bg-slate-900 border text-xs rounded px-1 py-1 font-mono w-16 text-center appearance-none cursor-pointer hover:bg-slate-800 focus:ring-2 focus:ring-blue-500 outline-none transition-all ${pred ? 'border-blue-500 text-white' : 'border-slate-700 text-slate-500'}`}
+                aria-label="Skor Geç"
             >
                 <option value="">v</option>
                 {SCORES.map(s => <option key={s} value={s}>{s}</option>)}
@@ -1950,73 +2012,6 @@ export default function CEVChallengeStatsClient({ teams, fixture }: CEVChallenge
     const bestWinRate = useMemo(() => [...teamsWithStats].filter(t => t.played >= 2).sort((a, b) => b.winRate - a.winRate).slice(0, 5), [teamsWithStats]);
     const leastLosses = useMemo(() => [...teamsWithStats].sort((a, b) => a.losses - b.losses || b.wins - a.wins).slice(0, 5), [teamsWithStats]);
 
-    const BarChart = ({ value, max, color }: { value: number; max: number; color: string }) => (
-        <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden flex-1">
-            <div
-                className={`h-full ${color} transition-all duration-500`}
-                // eslint-disable-next-line
-                style={{ width: `${Math.min((value / (max || 1)) * 100, 100)}%` }}
-            />
-        </div>
-    );
-
-    const StatCard = ({ title, icon, teamStats, statKey, color, gradient, suffix = "" }: {
-        title: string; icon: string;
-        teamStats: TeamStats[];
-        statKey: 'losses' | 'wins' | 'setsWon' | 'setsLost' | 'winRate';
-        color: string;
-        gradient: string;
-        suffix?: string;
-    }) => {
-        const maxValue = Math.max(...teamStats.map(t => Number(t[statKey])), 1);
-
-        return (
-            <div className="bg-slate-950/50 backdrop-blur-md rounded-xl border border-slate-800/60 overflow-hidden hover:border-slate-700/80 transition-all duration-300 group shadow-md hover:shadow-lg">
-                <div className={`${gradient} px-2.5 py-2 border-b border-white/10 relative overflow-hidden`}>
-                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div className="flex items-center justify-between relative z-10">
-                        <h3 className="font-bold text-white text-[11px] uppercase tracking-wider flex items-center gap-1.5">
-                            <span className="text-sm">{icon}</span> {title}
-                        </h3>
-                        <span className="text-[9px] font-bold text-white/70 bg-black/20 px-1.5 py-0.5 rounded-full border border-white/10">TOP 5</span>
-                    </div>
-                </div>
-
-                <div className="p-1.5 space-y-1">
-                    {teamStats.map((t, idx) => (
-                        <div
-                            key={t.name}
-                            className={`flex items-center gap-2 p-1.5 rounded-lg transition-all ${idx === 0 ? 'bg-gradient-to-r from-emerald-500/10 to-transparent border border-emerald-500/20' : 'hover:bg-slate-800/50'
-                                }`}
-                        >
-                            <div className={`w-5 h-5 rounded flex items-center justify-center font-bold text-[10px] shadow-sm ${idx === 0 ? 'bg-gradient-to-br from-emerald-500 to-teal-600 text-white' :
-                                idx === 1 ? 'bg-slate-300 text-slate-800' :
-                                    idx === 2 ? 'bg-emerald-700 text-white' :
-                                        'bg-slate-800 text-slate-500'
-                                }`}>
-                                {idx + 1}
-                            </div>
-                            <TeamAvatar name={t.name} size="xs" />
-
-                            <div className="flex-1 min-w-0">
-                                <span className={`text-[11px] font-medium truncate block ${idx === 0 ? 'text-emerald-300' : 'text-white'}`} title={t.name}>
-                                    {t.name}
-                                </span>
-                            </div>
-
-                            <div className="flex items-center gap-1.5 w-16">
-                                <BarChart value={Number(t[statKey])} max={maxValue} color={color} />
-                                <span className={`text-[11px] font-bold min-w-[24px] text-right ${idx === 0 ? 'text-emerald-400' : 'text-slate-300'}`}>
-                                    {t[statKey]}{suffix}
-                                </span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        );
-    };
-
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">
             <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
@@ -2082,6 +2077,73 @@ export default function CEVChallengeStatsClient({ teams, fixture }: CEVChallenge
     );
 }
 
+// Extracted Components
+const BarChart = ({ value, max, color }: { value: number; max: number; color: string }) => (
+    <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden flex-1">
+        <div
+            className={`h-full ${color} opacity-80`}
+            style={{ '--stat-width': `${Math.min((value / (max || 1)) * 100, 100)}%`, width: 'var(--stat-width)' } as any}
+        />
+    </div>
+);
+
+const StatCard = ({ title, icon, teamStats, statKey, color, gradient, suffix = "" }: {
+    title: string; icon: string;
+    teamStats: TeamStats[];
+    statKey: 'losses' | 'wins' | 'setsWon' | 'setsLost' | 'winRate';
+    color: string;
+    gradient: string;
+    suffix?: string;
+}) => {
+    const maxValue = Math.max(...teamStats.map(t => Number(t[statKey])), 1);
+
+    return (
+        <div className="bg-slate-950/50 backdrop-blur-md rounded-xl border border-slate-800/60 overflow-hidden hover:border-slate-700/80 transition-all duration-300 group shadow-md hover:shadow-lg">
+            <div className={`${gradient} px-2.5 py-2 border-b border-white/10 relative overflow-hidden`}>
+                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="flex items-center justify-between relative z-10">
+                    <h3 className="font-bold text-white text-[11px] uppercase tracking-wider flex items-center gap-1.5">
+                        <span className="text-sm">{icon}</span> {title}
+                    </h3>
+                    <span className="text-[9px] font-bold text-white/70 bg-black/20 px-1.5 py-0.5 rounded-full border border-white/10">TOP 5</span>
+                </div>
+            </div>
+
+            <div className="p-1.5 space-y-1">
+                {teamStats.map((t, idx) => (
+                    <div
+                        key={t.name}
+                        className={`flex items-center gap-2 p-1.5 rounded-lg transition-all ${idx === 0 ? 'bg-gradient-to-r from-emerald-500/10 to-transparent border border-emerald-500/20' : 'hover:bg-slate-800/50'
+                            }`}
+                    >
+                        <div className={`w-5 h-5 rounded flex items-center justify-center font-bold text-[10px] shadow-sm ${idx === 0 ? 'bg-gradient-to-br from-emerald-500 to-teal-600 text-white' :
+                            idx === 1 ? 'bg-slate-300 text-slate-800' :
+                                idx === 2 ? 'bg-emerald-700 text-white' :
+                                    'bg-slate-800 text-slate-500'
+                            }`}>
+                            {idx + 1}
+                        </div>
+                        <TeamAvatar name={t.name} size="xs" />
+
+                        <div className="flex-1 min-w-0">
+                            <span className={`text-[11px] font-medium truncate block ${idx === 0 ? 'text-emerald-300' : 'text-white'}`} title={t.name}>
+                                {t.name}
+                            </span>
+                        </div>
+
+                        <div className="flex items-center gap-1.5 w-16">
+                            <BarChart value={Number(t[statKey])} max={maxValue} color={color} />
+                            <span className={`text-[11px] font-bold min-w-[24px] text-right ${idx === 0 ? 'text-emerald-400' : 'text-slate-300'}`}>
+                                {t[statKey]}{suffix}
+                            </span>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
 ```
 
 ## File: app\cev-challenge\stats\page.tsx
@@ -2103,7 +2165,7 @@ export const metadata: Metadata = {
 export default async function CEVChallengeStatsPage() {
     const filePath = path.join(process.cwd(), 'data', 'cev-challenge-cup-data.json');
     let teams: any[] = [];
-    let fixture: any[] = [];
+    const fixture: any[] = [];
 
     try {
         if (fs.existsSync(filePath)) {

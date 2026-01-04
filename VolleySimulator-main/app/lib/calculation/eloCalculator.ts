@@ -1,8 +1,8 @@
-import { Match, TeamStats } from "../types";
+import { Match, TeamStats } from "../../types";
 
 export function calculateElo(teams: TeamStats[], matches: Match[]): Map<string, number> {
     const ratings = new Map<string, number>();
-    
+
     // Initialize all teams with 1200
     teams.forEach(t => ratings.set(t.name, 1200));
 
@@ -17,12 +17,12 @@ export function calculateElo(teams: TeamStats[], matches: Match[]): Map<string, 
     playedMatches.forEach(m => {
         const homeName = m.homeTeam;
         const awayName = m.awayTeam;
-        
+
         const homeRating = ratings.get(homeName) || 1200;
         const awayRating = ratings.get(awayName) || 1200;
-        
+
         const [hSets, aSets] = (m.resultScore || '0-0').split('-').map(Number);
-        
+
         // Skip invalid scores
         if (isNaN(hSets) || isNaN(aSets)) return;
 

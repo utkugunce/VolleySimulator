@@ -1,0 +1,42 @@
+﻿
+> web_app@0.1.0 test
+> jest __tests__/calculatorUtils.test.ts
+
+node.exe : FAIL __tests__/calculatorUtils.test.ts
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node
+_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~
+    + CategoryInfo          : NotSpecified: (FAIL __tests__/calcula 
+   torUtils.test.ts:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  ÔùÅ calculateLiveStandings ÔÇ║ should handle turkish characters in
+ team names correctly
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3
+    Received: 0
+
+    [0m [90m  95 |[39m
+     [90m  96 |[39m         [90m// Should find match and apply sc
+ore despite potential minor string diffs if normalization works[39m
+    [31m[1m>[22m[39m[90m  97 |[39m         expect(winner[33m?
+[39m[33m.[39mpoints)[33m.[39mtoBe([35m3[39m)[33m;[39m
+     [90m     |[39m                                [31m[1m^[22m
+[39m
+     [90m  98 |[39m     })[33m;[39m
+     [90m  99 |[39m })[33m;[39m
+     [90m 100 |[39m[0m
+
+      at Object.toBe (__tests__/calculatorUtils.test.ts:97:32)
+
+PASS app/utils/__tests__/calculatorUtils.test.ts
+
+Test Suites: 1 failed, 1 passed, 2 total
+Tests:       1 failed, 22 passed, 23 total
+Snapshots:   0 total
+Time:        0.956 s, estimated 1 s
+Ran all test suites matching __tests__/calculatorUtils.test.ts.

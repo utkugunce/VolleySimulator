@@ -1,0 +1,294 @@
+﻿
+> web_app@0.1.0 test
+> jest __tests__/components/TeamAvatar.test.tsx
+
+node.exe : FAIL __tests__/components/TeamAvatar.test.tsx
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node
+_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~
+    + CategoryInfo          : NotSpecified: (FAIL __tests__/...Avat 
+   ar.test.tsx:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  TeamAvatar
+    ├ù renders image with correct src by default (47 ms)
+    ├ù renders initials when image fails to load (5 ms)
+    ÔêÜ renders name when showName is true (3 ms)
+    ÔêÜ applies correct size classes (3 ms)
+    ÔêÜ applies ring for top positions (2 ms)
+    ├ù handles single word names correctly for initials (3 ms)
+
+  ÔùÅ TeamAvatar ÔÇ║ renders image with correct src by default
+
+    TestingLibraryElementError: Found multiple elements with the rol
+e "img"
+
+    Here are the matching elements:
+
+    Ignored nodes: comments, script, style
+    [36m<div[39m
+      [33maria-label[39m=[32m"Vak─▒fBank"[39m
+      [33mclass[39m=[32m"w-8 h-8 text-xs rounded-full flex items-
+center justify-center font-bold text-white uppercase relative overfl
+ow-hidden bg-slate-800 "[39m
+      [33mrole[39m=[32m"img"[39m
+      [33mtitle[39m=[32m"Vak─▒fBank"[39m
+    [36m>[39m
+      [36m<img[39m
+        [33malt[39m=[32m"Vak─▒fBank"[39m
+        [33mclass[39m=[32m"w-full h-full object-contain p-0.5"[3
+9m
+        [33msrc[39m=[32m"/logos/Vak─▒fBank.png"[39m
+      [36m/>[39m
+    [36m</div>[39m
+
+    Ignored nodes: comments, script, style
+    [36m<img[39m
+      [33malt[39m=[32m"Vak─▒fBank"[39m
+      [33mclass[39m=[32m"w-full h-full object-contain p-0.5"[39m
+      [33msrc[39m=[32m"/logos/Vak─▒fBank.png"[39m
+    [36m/>[39m
+
+    (If this is intentional, then use the `*AllBy*` variant of the q
+uery (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex items-center gap-2"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-label[39m=[32m"Vak─▒fBank"[39m
+            [33mclass[39m=[32m"w-8 h-8 text-xs rounded-full flex 
+items-center justify-center font-bold text-white uppercase relative 
+overflow-hidden bg-slate-800 "[39m
+            [33mrole[39m=[32m"img"[39m
+            [33mtitle[39m=[32m"Vak─▒fBank"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m"Vak─▒fBank"[39m
+              [33mclass[39m=[32m"w-full h-full object-contain p-0
+.5"[39m
+              [33msrc[39m=[32m"/logos/Vak─▒fBank.png"[39m
+            [36m/>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 23 |[39m     it([32m'renders image with correct src
+ by default'[39m[33m,[39m () [33m=>[39m {
+     [90m 24 |[39m         render([33m<[39m[33mTeamAvatar[39m 
+name[33m=[39m[32m"Vak─▒fBank"[39m [33m/[39m[33m>[39m)[33m;
+[39m
+    [31m[1m>[22m[39m[90m 25 |[39m         [36mconst[39m img 
+[33m=[39m screen[33m.[39mgetByRole([32m'img'[39m)[33m;[39m
+     [90m    |[39m                            [31m[1m^[22m[39m
+     [90m 26 |[39m         [36mconst[39m imageElement [33m=[39
+m img[33m.[39mquerySelector([32m'img'[39m)[33m;[39m
+     [90m 27 |[39m         expect(imageElement)[33m.[39mtoHaveAt
+tribute([32m'src'[39m[33m,[39m [32m'/logos/Vak─▒fBank.png'[39m
+)[33m;[39m
+     [90m 28 |[39m         expect(imageElement)[33m.[39mtoHaveAt
+tribute([32m'alt'[39m[33m,[39m [32m'Vak─▒fBank'[39m)[33m;[39
+m[0m
+
+      at Object.getElementError (node_modules/@testing-library/dom/d
+ist/config.js:37:19)
+      at getElementError (node_modules/@testing-library/dom/dist/que
+ry-helpers.js:20:35)
+      at getMultipleElementsFoundError (node_modules/@testing-librar
+y/dom/dist/query-helpers.js:23:10)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:55:
+13
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:
+19
+      at Object.getByRole (__tests__/components/TeamAvatar.test.tsx:
+25:28)
+
+  ÔùÅ TeamAvatar ÔÇ║ renders initials when image fails to load
+
+    TestingLibraryElementError: Found multiple elements with the rol
+e "img"
+
+    Here are the matching elements:
+
+    Ignored nodes: comments, script, style
+    [36m<div[39m
+      [33maria-label[39m=[32m"Eczac─▒ba┼ş─▒ Dynavit"[39m
+      [33mclass[39m=[32m"w-8 h-8 text-xs rounded-full flex items-
+center justify-center font-bold text-white uppercase relative overfl
+ow-hidden bg-slate-800 "[39m
+      [33mrole[39m=[32m"img"[39m
+      [33mtitle[39m=[32m"Eczac─▒ba┼ş─▒ Dynavit"[39m
+    [36m>[39m
+      [36m<img[39m
+        [33malt[39m=[32m"Eczac─▒ba┼ş─▒ Dynavit"[39m
+        [33mclass[39m=[32m"w-full h-full object-contain p-0.5"[3
+9m
+        [33msrc[39m=[32m"/logos/Eczac─▒ba┼ş─▒ Dynavit.png"[39m
+      [36m/>[39m
+    [36m</div>[39m
+
+    Ignored nodes: comments, script, style
+    [36m<img[39m
+      [33malt[39m=[32m"Eczac─▒ba┼ş─▒ Dynavit"[39m
+      [33mclass[39m=[32m"w-full h-full object-contain p-0.5"[39m
+      [33msrc[39m=[32m"/logos/Eczac─▒ba┼ş─▒ Dynavit.png"[39m
+    [36m/>[39m
+
+    (If this is intentional, then use the `*AllBy*` variant of the q
+uery (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex items-center gap-2"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-label[39m=[32m"Eczac─▒ba┼ş─▒ Dynavit"[39m
+            [33mclass[39m=[32m"w-8 h-8 text-xs rounded-full flex 
+items-center justify-center font-bold text-white uppercase relative 
+overflow-hidden bg-slate-800 "[39m
+            [33mrole[39m=[32m"img"[39m
+            [33mtitle[39m=[32m"Eczac─▒ba┼ş─▒ Dynavit"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m"Eczac─▒ba┼ş─▒ Dynavit"[39m
+              [33mclass[39m=[32m"w-full h-full object-contain p-0
+.5"[39m
+              [33msrc[39m=[32m"/logos/Eczac─▒ba┼ş─▒ Dynavit.png"
+[39m
+            [36m/>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 31 |[39m     it([32m'renders initials when image fa
+ils to load'[39m[33m,[39m () [33m=>[39m {
+     [90m 32 |[39m         render([33m<[39m[33mTeamAvatar[39m 
+name[33m=[39m[32m"Eczac─▒ba┼ş─▒ Dynavit"[39m [33m/[39m[33m>[
+39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 33 |[39m         [36mconst[39m imgE
+lement [33m=[39m screen[33m.[39mgetByRole([32m'img'[39m)[33m.
+[39mquerySelector([32m'img'[39m)[33m![39m[33m;[39m
+     [90m    |[39m                                   [31m[1m^[2
+2m[39m
+     [90m 34 |[39m
+     [90m 35 |[39m         [90m// Simulate error[39m
+     [90m 36 |[39m         fireEvent[33m.[39merror(imgElement)[
+33m;[39m[0m
+
+      at Object.getElementError (node_modules/@testing-library/dom/d
+ist/config.js:37:19)
+      at getElementError (node_modules/@testing-library/dom/dist/que
+ry-helpers.js:20:35)
+      at getMultipleElementsFoundError (node_modules/@testing-librar
+y/dom/dist/query-helpers.js:23:10)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:55:
+13
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:
+19
+      at Object.getByRole (__tests__/components/TeamAvatar.test.tsx:
+33:35)
+
+  ÔùÅ TeamAvatar ÔÇ║ handles single word names correctly for initial
+s
+
+    TestingLibraryElementError: Found multiple elements with the rol
+e "img"
+
+    Here are the matching elements:
+
+    Ignored nodes: comments, script, style
+    [36m<div[39m
+      [33maria-label[39m=[32m"Kuzeyboru"[39m
+      [33mclass[39m=[32m"w-8 h-8 text-xs rounded-full flex items-
+center justify-center font-bold text-white uppercase relative overfl
+ow-hidden bg-slate-800 "[39m
+      [33mrole[39m=[32m"img"[39m
+      [33mtitle[39m=[32m"Kuzeyboru"[39m
+    [36m>[39m
+      [36m<img[39m
+        [33malt[39m=[32m"Kuzeyboru"[39m
+        [33mclass[39m=[32m"w-full h-full object-contain p-0.5"[3
+9m
+        [33msrc[39m=[32m"/logos/Kuzeyboru.png"[39m
+      [36m/>[39m
+    [36m</div>[39m
+
+    Ignored nodes: comments, script, style
+    [36m<img[39m
+      [33malt[39m=[32m"Kuzeyboru"[39m
+      [33mclass[39m=[32m"w-full h-full object-contain p-0.5"[39m
+      [33msrc[39m=[32m"/logos/Kuzeyboru.png"[39m
+    [36m/>[39m
+
+    (If this is intentional, then use the `*AllBy*` variant of the q
+uery (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex items-center gap-2"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-label[39m=[32m"Kuzeyboru"[39m
+            [33mclass[39m=[32m"w-8 h-8 text-xs rounded-full flex 
+items-center justify-center font-bold text-white uppercase relative 
+overflow-hidden bg-slate-800 "[39m
+            [33mrole[39m=[32m"img"[39m
+            [33mtitle[39m=[32m"Kuzeyboru"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m"Kuzeyboru"[39m
+              [33mclass[39m=[32m"w-full h-full object-contain p-0
+.5"[39m
+              [33msrc[39m=[32m"/logos/Kuzeyboru.png"[39m
+            [36m/>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 63 |[39m     it([32m'handles single word names corr
+ectly for initials'[39m[33m,[39m () [33m=>[39m {
+     [90m 64 |[39m         render([33m<[39m[33mTeamAvatar[39m 
+name[33m=[39m[32m"Kuzeyboru"[39m [33m/[39m[33m>[39m)[33m;[
+39m
+    [31m[1m>[22m[39m[90m 65 |[39m         [36mconst[39m imgE
+lement [33m=[39m screen[33m.[39mgetByRole([32m'img'[39m)[33m.
+[39mquerySelector([32m'img'[39m)[33m![39m[33m;[39m
+     [90m    |[39m                                   [31m[1m^[2
+2m[39m
+     [90m 66 |[39m         fireEvent[33m.[39merror(imgElement)[
+33m;[39m
+     [90m 67 |[39m         expect(screen[33m.[39mgetByText([32m
+'Ku'[39m))[33m.[39mtoBeInTheDocument()[33m;[39m
+     [90m 68 |[39m     })[33m;[39m[0m
+
+      at Object.getElementError (node_modules/@testing-library/dom/d
+ist/config.js:37:19)
+      at getElementError (node_modules/@testing-library/dom/dist/que
+ry-helpers.js:20:35)
+      at getMultipleElementsFoundError (node_modules/@testing-librar
+y/dom/dist/query-helpers.js:23:10)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:55:
+13
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:
+19
+      at Object.getByRole (__tests__/components/TeamAvatar.test.tsx:
+65:35)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 passed, 6 total
+Snapshots:   0 total
+Time:        1.057 s
+Ran all test suites matching __tests__/components/TeamAvatar.test.ts
+x.

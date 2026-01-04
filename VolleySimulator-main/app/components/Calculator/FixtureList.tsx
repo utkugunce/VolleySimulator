@@ -1,5 +1,7 @@
 import { useState, memo, useMemo } from "react";
 import Link from "next/link";
+import { AutoSizer } from "react-virtualized-auto-sizer";
+import { List } from "react-window";
 import { Match } from "../../types";
 import { SCORES, normalizeTeamName } from "../../utils/calculatorUtils";
 import { generateTeamSlug } from "../../utils/teamSlug";
@@ -110,6 +112,166 @@ function FixtureList({ matches, overrides, onScoreChange, teamRanks, totalTeams 
         return `${date.toLocaleDateString('tr-TR')} ${days[date.getDay()]}`;
     };
 
+    // Virtualization Logic
+    type ListItem = 
+        | { type: 'header'; dateStr: string; count: number; isCollapsed: boolean }
+        | { type: 'match'; match: Match; dateStr: string };
+
+    const listItems = useMemo(() => {
+        const items: ListItem[] = [];
+        sortedGroups.forEach(([dateStr, dateMatches]) => {
+            const isCollapsed = collapsedGroups.has(dateStr);
+            items.push({ type: 'header', dateStr, count: dateMatches.length, isCollapsed });
+            if (!isCollapsed) {
+                dateMatches.forEach(match => {
+                    items.push({ type: 'match', match, dateStr });
+                });
+            }
+        });
+        return items;
+    }, [sortedGroups, collapsedGroups]);
+
+    const getItemSize = (index: number) => {
+        const item = listItems[index];
+        if (item.type === 'header') return 40;
+        // Estimate match card height: base ~180px + importance banner ~20px + padding
+        return 220; 
+    };
+
+    const Row = ({ index, style }: { index: number; style: React.CSSProperties }) => {
+        const item = listItems[index];
+        
+        if (item.type === 'header') {
+            return (
+                <div style={style} className="px-3">
+                    <button
+                        onClick={() => toggleGroupCollapse(item.dateStr)}
+                        className="w-full flex items-center justify-between group py-1 border-b border-border-subtle hover:border-text-muted transition-colors h-full"
+                    >
+                        <h3 className="text-[11px] font-bold text-text-secondary uppercase tracking-widest flex items-center gap-2">
+                            <ChevronRight className={cn("w-3.5 h-3.5 transition-transform duration-300", !item.isCollapsed && "rotate-90")} />
+                            {formatDateDisplay(item.dateStr)}
+                        </h3>
+                        <Badge variant="secondary" className="px-2 py-0 h-5 text-[9px] font-bold">
+                            {item.count} Maç
+                        </Badge>
+                    </button>
+                </div>
+            );
+        }
+
+        const match = item.match;
+        const matchId = `${match.homeTeam}-${match.awayTeam}`;
+        const currentScore = overrides[matchId];
+        const isPlayed = isMatchPlayed(match);
+        const homeRank = getTeamRank(match.homeTeam);
+        const awayRank = getTeamRank(match.awayTeam);
+        const importance = getMatchImportance(homeRank, awayRank);
+        const matchTime = match.matchTime || (match as any).time;
+
+        return (
+            <div style={style} className="px-3 py-1.5">
+                <Card
+                    onClick={() => !isPlayed && setSelectedMatchForPredict(match)}
+                    className={cn(
+                        "relative overflow-hidden group/m transition-all duration-300 p-0 shadow-sm cursor-pointer sm:cursor-default h-full",
+                        !isPlayed && currentScore ? "ring-1 ring-primary/50 bg-primary/5" : "hover:shadow-md"
+                    )}
+                >
+                    {importance && !isPlayed && (
+                        <div className={cn(
+                            "w-full text-[9px] font-bold py-0.5 text-center uppercase tracking-tighter bg-gradient-to-r",
+                            importance.variant === 'success' ? 'from-emerald-600 to-emerald-400 text-white' :
+                                importance.variant === 'destructive' ? 'from-rose-600 to-rose-400 text-white' :
+                                    importance.variant === 'warning' ? 'from-amber-600 to-amber-400 text-white' :
+                                        'from-slate-600 to-slate-400 text-white'
+                        )}>
+                            {importance.label}
+                        </div>
+                    )}
+
+                    <div className="p-3 pt-4 sm:p-4">
+                        <div className="flex justify-between items-center mb-4">
+                            <div className="flex items-center gap-2">
+                                <span className="text-[10px] bg-surface-secondary px-2 py-0.5 rounded-full font-mono text-text-muted border border-border-subtle">
+                                    {matchTime || '--:--'}
+                                </span>
+                                {isPlayed && <Badge variant="secondary" className="text-[9px] h-5">Oynandı</Badge>}
+                                {!isPlayed && (
+                                    <div className="sm:hidden text-[10px] text-primary flex items-center gap-1 font-bold">
+                                        <Edit2 className="w-3 h-3" />
+                                        TAHMİN YAP
+                                    </div>
+                                )}
+                            </div>
+                            {!isPlayed && currentScore && (
+                                <Badge variant="success" className="text-[9px] h-5">Tahmin Girildi</Badge>
+                            )}
+                        </div>
+
+                        <div className="flex items-center justify-between gap-2 mb-6">
+                            <TeamInfo
+                                name={match.homeTeam}
+                                rank={homeRank}
+                                align="end"
+                                winner={isPlayed ? match.homeScore! > match.awayScore! : currentScore ? getScoreWinner(currentScore) === 'home' : false}
+                            />
+                            <div className="flex flex-col items-center justify-center px-4">
+                                <span className="text-xs text-text-secondary font-bold opacity-30 italic">VS</span>
+                                {isPlayed && (
+                                    <div className="mt-2 text-xl font-black font-mono tracking-tighter">
+                                        {match.homeScore}-{match.awayScore}
+                                    </div>
+                                )}
+                            </div>
+                            <TeamInfo
+                                name={match.awayTeam}
+                                rank={awayRank}
+                                align="start"
+                                winner={isPlayed ? match.awayScore! > match.homeScore! : currentScore ? getScoreWinner(currentScore) === 'away' : false}
+                            />
+                        </div>
+
+                        {/* Prediction Area - Hidden on small screens unless QuickPredict is ON */}
+                        {!isPlayed && (
+                            <div className={cn(
+                                "hidden sm:flex overflow-x-auto gap-1.5 pb-1 custom-scrollbar",
+                                quickPredictMode ? "grid grid-cols-4 sm:flex sm:justify-center" : "justify-center"
+                            )}>
+                                {SCORES.map(score => {
+                                    const isSelected = currentScore === score;
+                                    const [h, a] = score.split('-').map(Number);
+                                    const isHomeWin = h > a;
+                                    return (
+                                        <button
+                                            key={score}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                onScoreChange(matchId, isSelected ? '' : score);
+                                                if (isSelected) navigator.vibrate?.(10);
+                                                else navigator.vibrate?.(50);
+                                            }}
+                                            className={cn(
+                                                "h-8 min-w-[36px] flex items-center justify-center rounded-lg text-[10px] font-black transition-all border shrink-0",
+                                                isSelected
+                                                    ? isHomeWin
+                                                        ? "bg-emerald-600 border-emerald-500 text-white shadow-lg scale-105 z-10"
+                                                        : "bg-rose-600 border-rose-500 text-white shadow-lg scale-105 z-10"
+                                                    : "bg-surface-secondary/50 border-border-subtle text-text-muted hover:border-text-secondary hover:bg-surface-secondary"
+                                            )}
+                                        >
+                                            {score}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </div>
+                </Card>
+            </div>
+        );
+    };
+
     return (
         <Card className="flex flex-col h-full bg-surface-primary/50 backdrop-blur-sm border-border-main/50">
             <CardHeader className="p-2 sm:p-4 bg-surface-secondary/30 border-b border-border-main">
@@ -157,7 +319,7 @@ function FixtureList({ matches, overrides, onScoreChange, teamRanks, totalTeams 
                 </div>
             </CardHeader>
 
-            <div className="flex-1 overflow-y-auto p-3 space-y-6 custom-scrollbar">
+            <div className="flex-1 p-3 space-y-6 custom-scrollbar" style={{ minHeight: 400 }}>
                 {sortedGroups.length === 0 ? (
                     <EmptyState
                         title="Maç Bulunamadı"
@@ -166,142 +328,20 @@ function FixtureList({ matches, overrides, onScoreChange, teamRanks, totalTeams 
                         className="min-h-[300px] border-none bg-transparent"
                     />
                 ) : (
-                    sortedGroups.map(([dateStr, dateMatches]) => {
-                        const isCollapsed = collapsedGroups.has(dateStr);
-                        return (
-                            <div key={dateStr} className="space-y-3">
-                                <button
-                                    onClick={() => toggleGroupCollapse(dateStr)}
-                                    className="w-full flex items-center justify-between group py-1 border-b border-border-subtle hover:border-text-muted transition-colors"
-                                >
-                                    <h3 className="text-[11px] font-bold text-text-secondary uppercase tracking-widest flex items-center gap-2">
-                                        <ChevronRight className={cn("w-3.5 h-3.5 transition-transform duration-300", !isCollapsed && "rotate-90")} />
-                                        {formatDateDisplay(dateStr)}
-                                    </h3>
-                                    <Badge variant="secondary" className="px-2 py-0 h-5 text-[9px] font-bold">
-                                        {dateMatches.length} Maç
-                                    </Badge>
-                                </button>
-
-                                {!isCollapsed && (
-                                    <div className="grid grid-cols-1 gap-3">
-                                        {dateMatches.map((match) => {
-                                            const matchId = `${match.homeTeam}-${match.awayTeam}`;
-                                            const currentScore = overrides[matchId];
-                                            const isPlayed = isMatchPlayed(match);
-                                            const homeRank = getTeamRank(match.homeTeam);
-                                            const awayRank = getTeamRank(match.awayTeam);
-                                            const importance = getMatchImportance(homeRank, awayRank);
-                                            const matchTime = match.matchTime || (match as any).time;
-
-                                            return (
-                                                <Card
-                                                    key={matchId}
-                                                    onClick={() => !isPlayed && setSelectedMatchForPredict(match)}
-                                                    className={cn(
-                                                        "relative overflow-hidden group/m transition-all duration-300 p-0 shadow-sm cursor-pointer sm:cursor-default",
-                                                        !isPlayed && currentScore ? "ring-1 ring-primary/50 bg-primary/5" : "hover:shadow-md"
-                                                    )}
-                                                >
-                                                    {importance && !isPlayed && (
-                                                        <div className={cn(
-                                                            "w-full text-[9px] font-bold py-0.5 text-center uppercase tracking-tighter bg-gradient-to-r",
-                                                            importance.variant === 'success' ? 'from-emerald-600 to-emerald-400 text-white' :
-                                                                importance.variant === 'destructive' ? 'from-rose-600 to-rose-400 text-white' :
-                                                                    importance.variant === 'warning' ? 'from-amber-600 to-amber-400 text-white' :
-                                                                        'from-slate-600 to-slate-400 text-white'
-                                                        )}>
-                                                            {importance.label}
-                                                        </div>
-                                                    )}
-
-                                                    <div className="p-3 pt-4 sm:p-4">
-                                                        <div className="flex justify-between items-center mb-4">
-                                                            <div className="flex items-center gap-2">
-                                                                <span className="text-[10px] bg-surface-secondary px-2 py-0.5 rounded-full font-mono text-text-muted border border-border-subtle">
-                                                                    {matchTime || '--:--'}
-                                                                </span>
-                                                                {isPlayed && <Badge variant="secondary" className="text-[9px] h-5">Oynandı</Badge>}
-                                                                {!isPlayed && (
-                                                                    <div className="sm:hidden text-[10px] text-primary flex items-center gap-1 font-bold">
-                                                                        <Edit2 className="w-3 h-3" />
-                                                                        TAHMİN YAP
-                                                                    </div>
-                                                                )}
-                                                            </div>
-                                                            {!isPlayed && currentScore && (
-                                                                <Badge variant="success" className="text-[9px] h-5">Tahmin Girildi</Badge>
-                                                            )}
-                                                        </div>
-
-                                                        <div className="flex items-center justify-between gap-2 mb-6">
-                                                            <TeamInfo
-                                                                name={match.homeTeam}
-                                                                rank={homeRank}
-                                                                align="end"
-                                                                winner={isPlayed ? match.homeScore! > match.awayScore! : currentScore ? getScoreWinner(currentScore) === 'home' : false}
-                                                            />
-                                                            <div className="flex flex-col items-center justify-center px-4">
-                                                                <span className="text-xs text-text-secondary font-bold opacity-30 italic">VS</span>
-                                                                {isPlayed && (
-                                                                    <div className="mt-2 text-xl font-black font-mono tracking-tighter">
-                                                                        {match.homeScore}-{match.awayScore}
-                                                                    </div>
-                                                                )}
-                                                            </div>
-                                                            <TeamInfo
-                                                                name={match.awayTeam}
-                                                                rank={awayRank}
-                                                                align="start"
-                                                                winner={isPlayed ? match.awayScore! > match.homeScore! : currentScore ? getScoreWinner(currentScore) === 'away' : false}
-                                                            />
-                                                        </div>
-
-                                                        {/* Prediction Area - Hidden on small screens unless QuickPredict is ON */}
-                                                        {!isPlayed && (
-                                                            <div className={cn(
-                                                                "hidden sm:flex overflow-x-auto gap-1.5 pb-1 custom-scrollbar",
-                                                                quickPredictMode ? "grid grid-cols-4 sm:flex sm:justify-center" : "justify-center"
-                                                            )}>
-                                                                {SCORES.map(score => {
-                                                                    const isSelected = currentScore === score;
-                                                                    const [h, a] = score.split('-').map(Number);
-                                                                    const isHomeWin = h > a;
-                                                                    return (
-                                                                        <button
-                                                                            key={score}
-                                                                            onClick={(e) => {
-                                                                                e.stopPropagation();
-                                                                                onScoreChange(matchId, isSelected ? '' : score);
-                                                                                if (isSelected) navigator.vibrate?.(10);
-                                                                                else navigator.vibrate?.(50);
-                                                                            }}
-                                                                            className={cn(
-                                                                                "h-8 min-w-[36px] flex items-center justify-center rounded-lg text-[10px] font-black transition-all border shrink-0",
-                                                                                isSelected
-                                                                                    ? isHomeWin
-                                                                                        ? "bg-emerald-600 border-emerald-500 text-white shadow-lg scale-105 z-10"
-                                                                                        : "bg-rose-600 border-rose-500 text-white shadow-lg scale-105 z-10"
-                                                                                    : "bg-surface-secondary/50 border-border-subtle text-text-muted hover:border-text-secondary hover:bg-surface-secondary"
-                                                                            )}
-                                                                        >
-                                                                            {score}
-                                                                        </button>
-                                                                    );
-                                                                })}
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                </Card>
-                                            );
-                                        })}
-                                    </div>
-                                )}
-                            </div>
-                        );
-                    })
+                    <AutoSizer
+                        renderProp={({ height, width }) => (
+                            <List
+                                style={{ width: width ?? '100%', height: height ?? '100%' }}
+                                rowCount={listItems.length}
+                                rowHeight={getItemSize}
+                                rowComponent={Row}
+                                rowProps={{} as any}
+                            />
+                        )}
+                    />
                 )}
             </div>
+
 
             {/* Mobile Prediction Bottom Sheet */}
             <BottomSheet

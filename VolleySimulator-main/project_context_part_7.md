@@ -1570,75 +1570,6 @@ export default function CEVCupStatsClient({ teams, fixture }: CEVCupStatsClientP
     const bestWinRate = useMemo(() => [...teamsWithStats].filter(t => t.played >= 2).sort((a, b) => b.winRate - a.winRate).slice(0, 5), [teamsWithStats]);
     const leastLosses = useMemo(() => [...teamsWithStats].sort((a, b) => a.losses - b.losses || b.wins - a.wins).slice(0, 5), [teamsWithStats]);
 
-    const BarChart = ({ value, max, color }: { value: number; max: number; color: string }) => (
-        <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden flex-1">
-            <div
-                className={`h-full ${color} transition-all duration-500`}
-                // eslint-disable-next-line
-                style={{ width: `${Math.min((value / (max || 1)) * 100, 100)}%` }}
-            />
-        </div>
-    );
-
-    const StatCard = ({ title, icon, teamStats, statKey, color, gradient, suffix = "" }: {
-        title: string; icon: string;
-        teamStats: TeamStats[];
-        statKey: 'losses' | 'wins' | 'setsWon' | 'setsLost' | 'winRate';
-        color: string;
-        gradient: string;
-        suffix?: string;
-    }) => {
-        const maxValue = Math.max(...teamStats.map(t => Number(t[statKey])), 1);
-
-        return (
-            <div className="bg-slate-950/50 backdrop-blur-md rounded-xl border border-slate-800/60 overflow-hidden hover:border-slate-700/80 transition-all duration-300 group shadow-md hover:shadow-lg">
-                <div className={`${gradient} px-2.5 py-2 border-b border-white/10 relative overflow-hidden`}>
-                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div className="flex items-center justify-between relative z-10">
-                        <h3 className="font-bold text-white text-[11px] uppercase tracking-wider flex items-center gap-1.5">
-                            <span className="text-sm">{icon}</span> {title}
-                        </h3>
-                        <span className="text-[9px] font-bold text-white/70 bg-black/20 px-1.5 py-0.5 rounded-full border border-white/10">TOP 5</span>
-                    </div>
-                </div>
-
-                <div className="p-1.5 space-y-1">
-                    {teamStats.map((t, idx) => (
-                        <div
-                            key={t.name}
-                            className={`flex items-center gap-2 p-1.5 rounded-lg transition-all ${idx === 0 ? 'bg-gradient-to-r from-white/5 to-transparent border border-white/10' : 'hover:bg-white/5'
-                                }`}
-                        >
-                            <div className={`w-5 h-5 rounded flex items-center justify-center font-bold text-[10px] shadow-sm ${idx === 0 ? 'bg-amber-400 text-amber-950' :
-                                idx === 1 ? 'bg-slate-300 text-slate-800' :
-                                    idx === 2 ? 'bg-amber-700 text-amber-100' :
-                                        'bg-slate-800 text-slate-500'
-                                }`}>
-                                {idx + 1}
-                            </div>
-                            <TeamAvatar name={t.name} size="xs" />
-
-                            <div className="flex-1 min-w-0">
-                                <span className={`text-[11px] font-bold truncate block ${idx === 0 ? 'text-white' : 'text-slate-300'}`} title={t.name}>
-                                    {t.name}
-                                </span>
-                            </div>
-
-                            <div className="flex items-center gap-1.5 w-16 justify-end">
-                                <div className="h-1 bg-slate-800/50 rounded-full overflow-hidden flex-1 max-w-[30px]">
-                                    <div className={`h-full ${color} opacity-80`} style={{ width: `${Math.min((Number(t[statKey]) / maxValue) * 100, 100)}%` }}></div>
-                                </div>
-                                <span className={`text-[11px] font-bold min-w-[24px] text-right ${idx === 0 ? 'text-white' : 'text-slate-400'}`}>
-                                    {t[statKey]}{suffix}
-                                </span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        );
-    };
-
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">
             <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
@@ -1703,6 +1634,65 @@ export default function CEVCupStatsClient({ teams, fixture }: CEVCupStatsClientP
         </main>
     );
 }
+
+const StatCard = ({ title, icon, teamStats, statKey, color, gradient, suffix = "" }: {
+    title: string; icon: string;
+    teamStats: TeamStats[];
+    statKey: 'losses' | 'wins' | 'setsWon' | 'setsLost' | 'winRate';
+    color: string;
+    gradient: string;
+    suffix?: string;
+}) => {
+    const maxValue = Math.max(...teamStats.map(t => Number(t[statKey])), 1);
+
+    return (
+        <div className="bg-slate-950/50 backdrop-blur-md rounded-xl border border-slate-800/60 overflow-hidden hover:border-slate-700/80 transition-all duration-300 group shadow-md hover:shadow-lg">
+            <div className={`${gradient} px-2.5 py-2 border-b border-white/10 relative overflow-hidden`}>
+                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="flex items-center justify-between relative z-10">
+                    <h3 className="font-bold text-white text-[11px] uppercase tracking-wider flex items-center gap-1.5">
+                        <span className="text-sm">{icon}</span> {title}
+                    </h3>
+                    <span className="text-[9px] font-bold text-white/70 bg-black/20 px-1.5 py-0.5 rounded-full border border-white/10">TOP 5</span>
+                </div>
+            </div>
+
+            <div className="p-1.5 space-y-1">
+                {teamStats.map((t, idx) => (
+                    <div
+                        key={t.name}
+                        className={`flex items-center gap-2 p-1.5 rounded-lg transition-all ${idx === 0 ? 'bg-gradient-to-r from-white/5 to-transparent border border-white/10' : 'hover:bg-white/5'
+                            }`}
+                    >
+                        <div className={`w-5 h-5 rounded flex items-center justify-center font-bold text-[10px] shadow-sm ${idx === 0 ? 'bg-amber-400 text-amber-950' :
+                            idx === 1 ? 'bg-slate-300 text-slate-800' :
+                                idx === 2 ? 'bg-amber-700 text-amber-100' :
+                                    'bg-slate-800 text-slate-500'
+                            }`}>
+                            {idx + 1}
+                        </div>
+                        <TeamAvatar name={t.name} size="xs" />
+
+                        <div className="flex-1 min-w-0">
+                            <span className={`text-[11px] font-bold truncate block ${idx === 0 ? 'text-white' : 'text-slate-300'}`} title={t.name}>
+                                {t.name}
+                            </span>
+                        </div>
+
+                        <div className="flex items-center gap-1.5 w-16 justify-end">
+                            <div className="h-1 bg-slate-800/50 rounded-full overflow-hidden flex-1 max-w-[30px]">
+                                <div className={`h-full ${color} opacity-80`} style={{ '--stat-width': `${Math.min((Number(t[statKey]) / maxValue) * 100, 100)}%`, width: 'var(--stat-width)' } as any}></div>
+                            </div>
+                            <span className={`text-[11px] font-bold min-w-[24px] text-right ${idx === 0 ? 'text-white' : 'text-slate-400'}`}>
+                                {t[statKey]}{suffix}
+                            </span>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
 
 ```
 
@@ -1925,7 +1915,7 @@ export default function CEVCupTahminOyunuClient({ initialData }: { initialData: 
                             <div className="w-16 h-1.5 bg-slate-800 rounded-full overflow-hidden">
                                 <div
                                     className="h-full bg-amber-500 transition-all"
-                                    // eslint-disable-next-line
+                                     
                                     style={{ width: `${totalUnplayed > 0 ? (predictedCount / totalUnplayed) * 100 : 0}%` }}
                                 />
                             </div>
@@ -2103,9 +2093,9 @@ export default function AccessiBeWidget() {
             src="https://acsbapp.com/apps/app/dist/js/app.js"
             strategy="lazyOnload"
             onLoad={() => {
-                // @ts-ignore
+                // @ts-expect-error - acsbJS is loaded from external script
                 if (typeof acsbJS !== 'undefined') {
-                    // @ts-ignore
+                    // @ts-expect-error - acsbJS is loaded from external script
                     acsbJS.init({
                         statementLink: '',
                         footerHtml: '',

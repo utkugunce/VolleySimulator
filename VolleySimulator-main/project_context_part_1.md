@@ -42,18 +42,21 @@
     "@supabase/supabase-js": "^2.89.0",
     "@tailwindcss/postcss": "^4.1.18",
     "@tanstack/react-query": "^5.90.16",
+    "@types/canvas-confetti": "^1.9.0",
     "@types/node": "^25.0.3",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vercel/analytics": "^1.6.1",
     "@vercel/speed-insights": "^1.3.1",
     "autoprefixer": "^10.4.23",
+    "canvas-confetti": "^1.9.4",
     "cheerio": "^1.1.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "eslint": "^9.39.2",
     "eslint-config-next": "^16.1.1",
+    "framer-motion": "^12.23.26",
     "html-to-image": "^1.11.13",
     "iconv-lite": "^0.7.1",
     "lucide-react": "^0.562.0",
@@ -65,6 +68,7 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-hot-toast": "^2.6.0",
+    "recharts": "^3.6.0",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.18",
@@ -122,7 +126,15 @@ const nextConfig: NextConfig = {
 
   // Experimental features for better performance
   experimental: {
-    optimizePackageImports: ['@supabase/supabase-js', '@tanstack/react-query', 'cheerio'],
+    optimizePackageImports: [
+      '@supabase/supabase-js',
+      '@tanstack/react-query',
+      'cheerio',
+      'lucide-react',
+      'date-fns',
+      'lodash',
+      'recharts'
+    ],
   },
 
   // Production optimizations
@@ -285,14 +297,32 @@ const config: Config = {
                 'text-muted': 'var(--text-muted)',
                 // Brand Colors
                 primary: {
+                    50: '#ecfdf5',
+                    100: '#d1fae5',
+                    200: '#a7f3d0',
+                    300: '#6ee7b7',
+                    400: '#34d399',
+                    500: 'var(--color-primary)',
                     DEFAULT: 'var(--color-primary)',
-                    light: 'var(--color-primary-light)',
-                    dark: 'var(--color-primary-dark)',
+                    600: 'var(--color-primary-dark)',
+                    700: '#047857',
+                    800: '#065f46',
+                    900: '#064e3b',
+                    950: '#022c22',
                 },
                 accent: {
+                    50: '#fffbeb',
+                    100: '#fef3c7',
+                    200: '#fde68a',
+                    300: '#fcd34d',
+                    400: '#fbbf24',
+                    500: 'var(--color-accent)',
                     DEFAULT: 'var(--color-accent)',
-                    light: 'var(--color-accent-light)',
-                    dark: 'var(--color-accent-dark)',
+                    600: 'var(--color-accent-dark)',
+                    700: '#b45309',
+                    800: '#92400e',
+                    900: '#78350f',
+                    950: '#451a03',
                 },
                 // Borders
                 'border-main': 'var(--border-color)',
@@ -302,11 +332,27 @@ const config: Config = {
                 'glow-primary': '0 0 20px var(--glow-primary)',
                 'glow-accent': '0 0 20px var(--glow-accent)',
                 'glow-blue': '0 0 20px var(--glow-blue)',
+                'premium-sm': '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+                'premium-md': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+                'premium-lg': '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+            },
+            borderRadius: {
+                sm: 'calc(var(--radius) - 4px)',
+                md: 'calc(var(--radius) - 2px)',
+                lg: 'var(--radius)',
+                xl: 'calc(var(--radius) + 4px)',
             },
             fontFamily: {
                 sans: ['var(--font-geist-sans)', 'Arial', 'sans-serif'],
                 mono: ['var(--font-geist-mono)', 'monospace'],
             },
+            spacing: {
+                xs: '0.25rem',
+                sm: '0.5rem',
+                md: '1rem',
+                lg: '1.5rem',
+                xl: '2rem',
+            }
         },
     },
     plugins: [],
@@ -960,6 +1006,14 @@ body {
     min-height: 36px;
     padding: 0.5rem;
   }
+
+  .safe-p-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-m-bottom {
+    margin-bottom: env(safe-area-inset-bottom);
+  }
 }
 
 /* ============================================================================
@@ -1514,10 +1568,10 @@ import { NotificationsProvider } from "./context/NotificationsContext";
 import { QuestsProvider } from "./context/QuestsContext";
 import { CustomLeaguesProvider } from "./context/CustomLeaguesContext";
 import { LiveMatchProvider } from "./context/LiveMatchContext";
+import { DynamicTeamTheme } from "./components/DynamicTeamTheme";
+import { LevelUpModal } from "./components/ui/LevelUpModal";
 
-// Lazy load non-critical components (will be client-side only)
-const ScrollToTop = dynamic(() => import("./components/ScrollToTop"));
-const AccessiBeWidget = dynamic(() => import("./components/AccessiBeWidget"));
+import { ClientSideComponents } from "./components/ClientSideComponents";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -1633,6 +1687,8 @@ export default async function RootLayout({
             <QueryProvider>
               <AuthProvider>
                 <ThemeProvider>
+                  <DynamicTeamTheme />
+                  <LevelUpModal />
                   <NotificationsProvider>
                     <FriendsProvider>
                       <QuestsProvider>
@@ -1644,7 +1700,6 @@ export default async function RootLayout({
                                 <AuthGuard>
                                   {children}
                                 </AuthGuard>
-                                <ScrollToTop />
                               </div>
                             </ToastProvider>
                           </LiveMatchProvider>
@@ -1663,9 +1718,9 @@ export default async function RootLayout({
               if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function() {
                   navigator.serviceWorker.register('/sw.js').then(function(registration) {
-                    console.log('ServiceWorker registration successful');
+                    // Registration successful
                   }, function(err) {
-                    console.log('ServiceWorker registration failed: ', err);
+                    // Registration failed
                   });
                 });
               }
@@ -1690,8 +1745,7 @@ export default async function RootLayout({
           `}
         </Script>
 
-        {/* accessiBe Widget */}
-        <AccessiBeWidget />
+        <ClientSideComponents />
       </body>
     </html>
   );
@@ -3069,25 +3123,6 @@ export default function OneLigDetailedGroupsClient({ initialTeams, initialMatche
     const totalCount = groupMatches.length;
     const completionRate = totalCount > 0 ? Math.round((playedCount / totalCount) * 100) : 0;
 
-    // Turkish day names
-    const dayNames = ['PAZAR', 'PAZARTESİ', 'SALI', 'ÇARŞAMBA', 'PERŞEMBE', 'CUMA', 'CUMARTESİ'];
-
-    // Format date as DD/MM/YYYY + Day
-    const formatDate = (dateStr?: string) => {
-        if (!dateStr || dateStr.trim() === '') return { formatted: 'TARİH BELİRSİZ', sortKey: '9999-99-99' };
-        try {
-            const date = new Date(dateStr);
-            if (isNaN(date.getTime())) return { formatted: 'TARİH BELİRSİZ', sortKey: '9999-99-99' };
-            const day = String(date.getDate()).padStart(2, '0');
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const year = date.getFullYear();
-            const dayName = dayNames[date.getDay()];
-            return { formatted: `${day}/${month}/${year} ${dayName}`, sortKey: dateStr };
-        } catch {
-            return { formatted: 'TARİH BELİRSİZ', sortKey: '9999-99-99' };
-        }
-    };
-
     const groupedMatches = useMemo(() => {
         const matchesByDate: Record<string, { formatted: string; matches: Match[] }> = {};
         const upcomingMatches = groupMatches.filter(m => !m.isPlayed);
@@ -3219,6 +3254,24 @@ export default function OneLigDetailedGroupsClient({ initialTeams, initialMatche
         </main >
     );
 }
+
+// Helper functions moved outside component
+const dayNames = ['PAZAR', 'PAZARTESİ', 'SALI', 'ÇARŞAMBA', 'PERŞEMBE', 'CUMA', 'CUMARTESİ'];
+
+const formatDate = (dateStr?: string) => {
+    if (!dateStr || dateStr.trim() === '') return { formatted: 'TARİH BELİRSİZ', sortKey: '9999-99-99' };
+    try {
+        const date = new Date(dateStr);
+        if (isNaN(date.getTime())) return { formatted: 'TARİH BELİRSİZ', sortKey: '9999-99-99' };
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        const dayName = dayNames[date.getDay()];
+        return { formatted: `${day}/${month}/${year} ${dayName}`, sortKey: dateStr };
+    } catch {
+        return { formatted: 'TARİH BELİRSİZ', sortKey: '9999-99-99' };
+    }
+};
 
 ```
 

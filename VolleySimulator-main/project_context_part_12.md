@@ -1,5 +1,1797 @@
 # Project Application Context - Part 12
 
+## File: app\hooks\useAdvancedStats.ts
+```
+"use client";
+
+import { useState, useCallback, useEffect, useMemo } from "react";
+import { 
+  TeamDetailedStats, 
+  UserPredictionStats, 
+  HeadToHeadStats,
+  TeamForm
+} from "../types";
+
+interface TeamStatsInput {
+  name: string;
+  played: number;
+  wins: number;
+  points: number;
+  setsWon: number;
+  setsLost: number;
+}
+
+interface MatchResult {
+  homeTeam: string;
+  awayTeam: string;
+  homeScore: number;
+  awayScore: number;
+  date?: string;
+}
+
+export function useAdvancedStats(teams: TeamStatsInput[], matches: MatchResult[]) {
+  const [selectedTeam, setSelectedTeam] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Calculate detailed stats for all teams
+  const teamStats = useMemo((): Map<string, TeamDetailedStats> => {
+    const stats = new Map<string, TeamDetailedStats>();
+    
+    teams.forEach(team => {
+      const teamMatches = matches.filter(
+        m => m.homeTeam === team.name || m.awayTeam === team.name
+      );
+      
+      const homeMatches = teamMatches.filter(m => m.homeTeam === team.name);
+      const awayMatches = teamMatches.filter(m => m.awayTeam === team.name);
+      
+      const homeWins = homeMatches.filter(m => m.homeScore > m.awayScore).length;
+      const awayWins = awayMatches.filter(m => m.awayScore > m.homeScore).length;
+      
+      // Calculate score-specific wins/losses
+      const threeZeroWins = teamMatches.filter(m => 
+        (m.homeTeam === team.name && m.homeScore === 3 && m.awayScore === 0) ||
+        (m.awayTeam === team.name && m.awayScore === 3 && m.homeScore === 0)
+      ).length;
+      
+      const threeOneWins = teamMatches.filter(m => 
+        (m.homeTeam === team.name && m.homeScore === 3 && m.awayScore === 1) ||
+        (m.awayTeam === team.name && m.awayScore === 3 && m.homeScore === 1)
+      ).length;
+      
+      const threeTwoWins = teamMatches.filter(m => 
+        (m.homeTeam === team.name && m.homeScore === 3 && m.awayScore === 2) ||
+        (m.awayTeam === team.name && m.awayScore === 3 && m.homeScore === 2)
+      ).length;
+      
+      const threeZeroLosses = teamMatches.filter(m => 
+        (m.homeTeam === team.name && m.homeScore === 0 && m.awayScore === 3) ||
+        (m.awayTeam === team.name && m.awayScore === 0 && m.homeScore === 3)
+      ).length;
+      
+      const threeOneLosses = teamMatches.filter(m => 
+        (m.homeTeam === team.name && m.homeScore === 1 && m.awayScore === 3) ||
+        (m.awayTeam === team.name && m.awayScore === 1 && m.homeScore === 3)
+      ).length;
+      
+      const threeTwoLosses = teamMatches.filter(m => 
+        (m.homeTeam === team.name && m.homeScore === 2 && m.awayScore === 3) ||
+        (m.awayTeam === team.name && m.awayScore === 2 && m.homeScore === 3)
+      ).length;
+      
+      // Calculate last 10 results
+      const sortedMatches = [...teamMatches].sort((a, b) => 
+        new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime()
+      );
+      
+      const last10: ('W' | 'L')[] = sortedMatches.slice(0, 10).map(m => {
+        const isHome = m.homeTeam === team.name;
+        const won = isHome ? m.homeScore > m.awayScore : m.awayScore > m.homeScore;
+        return won ? 'W' : 'L';
+      });
+      
+      // Calculate current streak
+      let currentStreak = 0;
+      let streakType: 'W' | 'L' = 'W';
+      
+      for (const result of last10) {
+        if (currentStreak === 0) {
+          streakType = result;
+          currentStreak = 1;
+        } else if (result === streakType) {
+          currentStreak++;
+        } else {
+          break;
+        }
+      }
+      
+      // ELO rating calculation (simplified)
+      const eloRating = 1500 + (team.wins * 30) - ((team.played - team.wins) * 20) + 
+        (team.setsWon - team.setsLost) * 2;
+      
+      stats.set(team.name, {
+        teamName: team.name,
+        league: '',
+        season: '',
+        played: team.played,
+        wins: team.wins,
+        losses: team.played - team.wins,
+        points: team.points,
+        setsWon: team.setsWon,
+        setsLost: team.setsLost,
+        setRatio: team.setsLost > 0 ? team.setsWon / team.setsLost : team.setsWon,
+        avgPointsPerSet: team.setsWon > 0 ? (team.points / team.setsWon) * 25 : 0,
+        avgPointsConcededPerSet: team.setsLost > 0 ? (team.points / team.setsLost) * 20 : 0,
+        homeRecord: { wins: homeWins, losses: homeMatches.length - homeWins },
+        awayRecord: { wins: awayWins, losses: awayMatches.length - awayWins },
+        threeZeroWins,
+        threeOneWins,
+        threeTwoWins,
+        threeZeroLosses,
+        threeOneLosses,
+        threeTwoLosses,
+        currentStreak,
+        streakType,
+        last10,
+        eloRating,
+        strengthRank: 0, // Will be calculated after
+      });
+    });
+    
+    // Calculate strength rank
+    const sortedByElo = [...stats.entries()]
+      .sort((a, b) => b[1].eloRating - a[1].eloRating);
+    
+    sortedByElo.forEach(([name, teamStat], index) => {
+      teamStat.strengthRank = index + 1;
+      stats.set(name, teamStat);
+    });
+    
+    return stats;
+  }, [teams, matches]);
+
+  // Get head-to-head stats between two teams
+  const getHeadToHead = useCallback((team1: string, team2: string): HeadToHeadStats => {
+    const h2hMatches = matches.filter(
+      m => (m.homeTeam === team1 && m.awayTeam === team2) ||
+           (m.homeTeam === team2 && m.awayTeam === team1)
+    );
+    
+    let team1Wins = 0;
+    let team2Wins = 0;
+    let team1Sets = 0;
+    let team2Sets = 0;
+    
+    h2hMatches.forEach(m => {
+      const isTeam1Home = m.homeTeam === team1;
+      if (isTeam1Home) {
+        if (m.homeScore > m.awayScore) team1Wins++;
+        else team2Wins++;
+        team1Sets += m.homeScore;
+        team2Sets += m.awayScore;
+      } else {
+        if (m.awayScore > m.homeScore) team1Wins++;
+        else team2Wins++;
+        team1Sets += m.awayScore;
+        team2Sets += m.homeScore;
+      }
+    });
+    
+    return {
+      totalMatches: h2hMatches.length,
+      homeWins: team1Wins,
+      awayWins: team2Wins,
+      homeSetWins: team1Sets,
+      awaySetWins: team2Sets,
+      lastMeetings: h2hMatches.slice(0, 5).map(m => ({
+        date: m.date || '',
+        homeTeam: m.homeTeam,
+        awayTeam: m.awayTeam,
+        score: `${m.homeScore}-${m.awayScore}`,
+        venue: '',
+        competition: '',
+      })),
+      averageHomeScore: h2hMatches.length > 0 ? team1Sets / h2hMatches.length : 0,
+      averageAwayScore: h2hMatches.length > 0 ? team2Sets / h2hMatches.length : 0,
+    };
+  }, [matches]);
+
+  // Get team form
+  const getTeamForm = useCallback((teamName: string): TeamForm => {
+    const teamData = teamStats.get(teamName);
+    
+    if (!teamData) {
+      return {
+        teamName,
+        last5Results: [],
+        last5Scores: [],
+        winRate: 0,
+        avgPointsScored: 0,
+        avgPointsConceded: 0,
+        trend: 'stable',
+        strengthRating: 0,
+      };
+    }
+    
+    const last5 = teamData.last10.slice(0, 5) as ('W' | 'L')[];
+    const recentWins = last5.filter(r => r === 'W').length;
+    const previousWins = teamData.last10.slice(5, 10).filter(r => r === 'W').length;
+    
+    let trend: 'improving' | 'declining' | 'stable' = 'stable';
+    if (recentWins > previousWins + 1) trend = 'improving';
+    else if (recentWins < previousWins - 1) trend = 'declining';
+    
+    return {
+      teamName,
+      last5Results: last5,
+      last5Scores: [],
+      winRate: teamData.played > 0 ? (teamData.wins / teamData.played) * 100 : 0,
+      avgPointsScored: teamData.avgPointsPerSet,
+      avgPointsConceded: teamData.avgPointsConcededPerSet,
+      trend,
+      strengthRating: teamData.eloRating,
+    };
+  }, [teamStats]);
+
+  // Get top performers in various categories
+  const getTopPerformers = useCallback((category: keyof TeamDetailedStats, count: number = 5) => {
+    return [...teamStats.values()]
+      .sort((a, b) => {
+        const aVal = a[category];
+        const bVal = b[category];
+        if (typeof aVal === 'number' && typeof bVal === 'number') {
+          return bVal - aVal;
+        }
+        return 0;
+      })
+      .slice(0, count);
+  }, [teamStats]);
+
+  // Get comparison between teams
+  const compareTeams = useCallback((team1: string, team2: string) => {
+    const stats1 = teamStats.get(team1);
+    const stats2 = teamStats.get(team2);
+    
+    if (!stats1 || !stats2) return null;
+    
+    const h2h = getHeadToHead(team1, team2);
+    
+    return {
+      team1: stats1,
+      team2: stats2,
+      headToHead: h2h,
+      comparison: {
+        winRate: {
+          team1: stats1.played > 0 ? (stats1.wins / stats1.played) * 100 : 0,
+          team2: stats2.played > 0 ? (stats2.wins / stats2.played) * 100 : 0,
+        },
+        setRatio: {
+          team1: stats1.setRatio,
+          team2: stats2.setRatio,
+        },
+        elo: {
+          team1: stats1.eloRating,
+          team2: stats2.eloRating,
+        },
+        form: {
+          team1: stats1.last10.slice(0, 5).filter(r => r === 'W').length,
+          team2: stats2.last10.slice(0, 5).filter(r => r === 'W').length,
+        },
+      },
+    };
+  }, [teamStats, getHeadToHead]);
+
+  return {
+    teamStats,
+    selectedTeam,
+    setSelectedTeam,
+    getHeadToHead,
+    getTeamForm,
+    getTopPerformers,
+    compareTeams,
+    isLoading,
+    getTeamDetails: (name: string) => teamStats.get(name),
+  };
+}
+
+// Hook for user prediction stats
+export function useUserPredictionStats(userId: string) {
+  const [stats, setStats] = useState<UserPredictionStats | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchStats = useCallback(async () => {
+    if (!userId) return;
+    
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      const response = await fetch(`/api/users/${userId}/prediction-stats`);
+      
+      if (!response.ok) throw new Error('Failed to fetch prediction stats');
+      
+      const data = await response.json();
+      setStats(data.stats);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+    } finally {
+      setIsLoading(false);
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    fetchStats();
+  }, [fetchStats]);
+
+  return {
+    stats,
+    isLoading,
+    error,
+    refetch: fetchStats,
+  };
+}
+
+```
+
+## File: app\hooks\useAIPredictions.ts
+```
+"use client";
+
+import { useState, useCallback } from "react";
+import { 
+  AIPrediction, 
+  AIMatchAnalysis, 
+  HeadToHeadStats, 
+  TeamForm 
+} from "../types";
+
+interface UseAIPredictionsOptions {
+  cacheTime?: number; // ms
+}
+
+interface UseAIPredictionsReturn {
+  isLoading: boolean;
+  error: string | null;
+  getPrediction: (homeTeam: string, awayTeam: string, league: string) => Promise<AIPrediction | null>;
+  getMatchAnalysis: (homeTeam: string, awayTeam: string, league: string) => Promise<AIMatchAnalysis | null>;
+  getHeadToHead: (team1: string, team2: string) => Promise<HeadToHeadStats | null>;
+  getTeamForm: (teamName: string, league: string) => Promise<TeamForm | null>;
+  getBulkPredictions: (matches: { homeTeam: string; awayTeam: string }[], league: string) => Promise<AIPrediction[]>;
+}
+
+// Simple in-memory cache
+const predictionCache = new Map<string, { data: AIPrediction; timestamp: number }>();
+const analysisCache = new Map<string, { data: AIMatchAnalysis; timestamp: number }>();
+
+export function useAIPredictions(options: UseAIPredictionsOptions = {}): UseAIPredictionsReturn {
+  const { cacheTime = 5 * 60 * 1000 } = options; // 5 minutes default
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Get AI prediction for a match
+  const getPrediction = useCallback(async (
+    homeTeam: string, 
+    awayTeam: string, 
+    league: string
+  ): Promise<AIPrediction | null> => {
+    const cacheKey = `${league}-${homeTeam}-${awayTeam}`;
+    
+    // Check cache
+    const cached = predictionCache.get(cacheKey);
+    if (cached && Date.now() - cached.timestamp < cacheTime) {
+      return cached.data;
+    }
+    
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      const response = await fetch('/api/ai/predict', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ homeTeam, awayTeam, league }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to get AI prediction');
+      }
+      
+      const data = await response.json();
+      const prediction = data.prediction as AIPrediction;
+      
+      // Cache result
+      predictionCache.set(cacheKey, { data: prediction, timestamp: Date.now() });
+      
+      return prediction;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      return null;
+    } finally {
+      setIsLoading(false);
+    }
+  }, [cacheTime]);
+
+  // Get detailed match analysis
+  const getMatchAnalysis = useCallback(async (
+    homeTeam: string, 
+    awayTeam: string, 
+    league: string
+  ): Promise<AIMatchAnalysis | null> => {
+    const cacheKey = `analysis-${league}-${homeTeam}-${awayTeam}`;
+    
+    // Check cache
+    const cached = analysisCache.get(cacheKey);
+    if (cached && Date.now() - cached.timestamp < cacheTime) {
+      return cached.data;
+    }
+    
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      const response = await fetch('/api/ai/analyze', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ homeTeam, awayTeam, league }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to get match analysis');
+      }
+      
+      const data = await response.json();
+      const analysis = data.analysis as AIMatchAnalysis;
+      
+      // Cache result
+      analysisCache.set(cacheKey, { data: analysis, timestamp: Date.now() });
+      
+      return analysis;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      return null;
+    } finally {
+      setIsLoading(false);
+    }
+  }, [cacheTime]);
+
+  // Get head-to-head stats
+  const getHeadToHead = useCallback(async (
+    team1: string, 
+    team2: string
+  ): Promise<HeadToHeadStats | null> => {
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      const response = await fetch(`/api/stats/h2h?team1=${encodeURIComponent(team1)}&team2=${encodeURIComponent(team2)}`);
+      
+      if (!response.ok) {
+        throw new Error('Failed to get head-to-head stats');
+      }
+      
+      const data = await response.json();
+      return data.stats as HeadToHeadStats;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      return null;
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  // Get team form
+  const getTeamForm = useCallback(async (
+    teamName: string, 
+    league: string
+  ): Promise<TeamForm | null> => {
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      const response = await fetch(`/api/stats/form?team=${encodeURIComponent(teamName)}&league=${encodeURIComponent(league)}`);
+      
+      if (!response.ok) {
+        throw new Error('Failed to get team form');
+      }
+      
+      const data = await response.json();
+      return data.form as TeamForm;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      return null;
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  // Get bulk predictions for multiple matches
+  const getBulkPredictions = useCallback(async (
+    matches: { homeTeam: string; awayTeam: string }[],
+    league: string
+  ): Promise<AIPrediction[]> => {
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      const response = await fetch('/api/ai/predict/bulk', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ matches, league }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to get bulk predictions');
+      }
+      
+      const data = await response.json();
+      return data.predictions as AIPrediction[];
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      return [];
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  return {
+    isLoading,
+    error,
+    getPrediction,
+    getMatchAnalysis,
+    getHeadToHead,
+    getTeamForm,
+    getBulkPredictions,
+  };
+}
+
+// Utility function to generate simple AI prediction locally (fallback)
+export function generateLocalPrediction(
+  homeTeam: string,
+  awayTeam: string,
+  homeStats: { wins: number; played: number; setsWon: number; setsLost: number },
+  awayStats: { wins: number; played: number; setsWon: number; setsLost: number }
+): AIPrediction {
+  // Calculate win rates
+  const homeWinRate = homeStats.played > 0 ? homeStats.wins / homeStats.played : 0.5;
+  const awayWinRate = awayStats.played > 0 ? awayStats.wins / awayStats.played : 0.5;
+  
+  // Calculate set ratios
+  const homeSetRatio = homeStats.setsLost > 0 ? homeStats.setsWon / homeStats.setsLost : homeStats.setsWon || 1;
+  const awaySetRatio = awayStats.setsLost > 0 ? awayStats.setsWon / awayStats.setsLost : awayStats.setsWon || 1;
+  
+  // Home advantage factor
+  const homeAdvantage = 0.05;
+  
+  // Calculate probabilities
+  let homeWinProb = (homeWinRate + homeAdvantage + (1 - awayWinRate)) / 2;
+  let awayWinProb = 1 - homeWinProb;
+  
+  // Adjust based on set ratio
+  const setRatioFactor = homeSetRatio / (homeSetRatio + awaySetRatio);
+  homeWinProb = (homeWinProb + setRatioFactor) / 2;
+  awayWinProb = 1 - homeWinProb;
+  
+  // Normalize to percentages
+  homeWinProb = Math.round(homeWinProb * 100);
+  awayWinProb = Math.round(awayWinProb * 100);
+  
+  // Determine predicted score
+  let predictedScore: string;
+  if (homeWinProb > 65) {
+    predictedScore = '3-0';
+  } else if (homeWinProb > 55) {
+    predictedScore = '3-1';
+  } else if (homeWinProb > 45) {
+    predictedScore = homeWinProb > 50 ? '3-2' : '2-3';
+  } else if (awayWinProb > 55) {
+    predictedScore = '1-3';
+  } else {
+    predictedScore = '0-3';
+  }
+  
+  // Calculate confidence
+  const confidence = Math.max(homeWinProb, awayWinProb);
+  
+  return {
+    matchId: `${homeTeam}-${awayTeam}`,
+    homeTeam,
+    awayTeam,
+    predictedScore,
+    confidence,
+    homeWinProbability: homeWinProb,
+    awayWinProbability: awayWinProb,
+    analysis: generateAnalysisText(homeTeam, awayTeam, homeWinProb, awayWinProb),
+    factors: [
+      {
+        name: 'Galibiyet Oranı',
+        description: `${homeTeam}: ${Math.round(homeWinRate * 100)}%, ${awayTeam}: ${Math.round(awayWinRate * 100)}%`,
+        impact: homeWinRate > awayWinRate ? 'positive' : 'negative',
+        weight: 0.4,
+        team: homeWinRate > awayWinRate ? 'home' : 'away',
+      },
+      {
+        name: 'Set Oranı',
+        description: `${homeTeam}: ${homeSetRatio.toFixed(2)}, ${awayTeam}: ${awaySetRatio.toFixed(2)}`,
+        impact: homeSetRatio > awaySetRatio ? 'positive' : 'negative',
+        weight: 0.3,
+        team: homeSetRatio > awaySetRatio ? 'home' : 'away',
+      },
+      {
+        name: 'Ev Sahibi Avantajı',
+        description: `${homeTeam} ev sahibi olarak oynuyor`,
+        impact: 'positive',
+        weight: 0.15,
+        team: 'home',
+      },
+    ],
+    lastUpdated: new Date().toISOString(),
+  };
+}
+
+function generateAnalysisText(
+  homeTeam: string, 
+  awayTeam: string, 
+  homeWinProb: number, 
+  awayWinProb: number
+): string {
+  if (homeWinProb > 70) {
+    return `${homeTeam} bu maçta açık favori. Ev sahibi avantajı ve form durumu göz önüne alındığında rahat bir galibiyet bekleniyor.`;
+  } else if (homeWinProb > 55) {
+    return `${homeTeam} hafif favori görünüyor. Ancak ${awayTeam} sürpriz yapabilecek kapasitede. Çekişmeli bir maç olması bekleniyor.`;
+  } else if (awayWinProb > 55) {
+    return `${awayTeam} deplasmana rağmen favorisi. ${homeTeam} ev sahibi avantajını kullanmakta zorlanabilir.`;
+  } else {
+    return `İki takım arasında dengeli bir mücadele bekleniyor. Her iki taraf da galibiyete yakın, maç son setlere gidebilir.`;
+  }
+}
+
+```
+
+## File: app\hooks\useLeagueQuery.ts
+```
+"use client";
+
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { TeamStats, Match } from '../types';
+
+interface RoundData {
+    name?: string;
+    matches?: Match[];
+}
+
+interface PoolData {
+    name?: string;
+    teams?: TeamStats[];
+}
+
+interface LeagueData {
+    teams: TeamStats[];
+    fixture: Match[];
+    groups?: string[];
+    rounds?: RoundData[];
+    pools?: PoolData[];
+}
+
+interface LeagueConfig {
+    hasGroups: boolean;
+    apiEndpoint: string;
+    name: string;
+}
+
+export function useLeagueQuery(
+    leagueId: string,
+    config: LeagueConfig,
+    options?: {
+        enabled?: boolean;
+    }
+) {
+    return useQuery({
+        queryKey: ['league', leagueId],
+        queryFn: async () => {
+            const res = await fetch(config.apiEndpoint);
+            if (!res.ok) throw new Error(`Failed to fetch ${leagueId} data`);
+
+            const json = await res.json();
+
+            // Normalize data structure
+            const normalizedData: LeagueData = {
+                teams: json.teams || [],
+                fixture: json.fixture || json.matches || [],
+                groups: json.groups || (config.hasGroups ? extractGroups(json.teams) : undefined),
+                rounds: json.rounds || undefined,
+                pools: json.pools || undefined
+            };
+
+            return normalizedData;
+        },
+        staleTime: 1000 * 60 * 10, // 10 minutes
+        gcTime: 1000 * 60 * 30, // 30 minutes
+        retry: 2,
+        enabled: options?.enabled !== false,
+    });
+}
+
+export function useLeagueData(leagueId: string, config: LeagueConfig) {
+    return useQuery({
+        queryKey: ['league', leagueId, 'data'],
+        queryFn: async () => {
+            const res = await fetch(config.apiEndpoint);
+            if (!res.ok) throw new Error(`Failed to fetch ${leagueId} data`);
+            return res.json();
+        },
+        staleTime: 1000 * 60 * 10,
+        gcTime: 1000 * 60 * 30,
+        retry: 2,
+    });
+}
+
+export function useInvalidateLeague(leagueId: string) {
+    const queryClient = useQueryClient();
+    
+    return {
+        invalidate: () => {
+            queryClient.invalidateQueries({
+                queryKey: ['league', leagueId]
+            });
+        },
+        refetch: () => {
+            queryClient.refetchQueries({
+                queryKey: ['league', leagueId]
+            });
+        }
+    };
+}
+
+// Helper to extract unique groups from teams
+function extractGroups(teams: TeamStats[]): string[] {
+    const groups = [...new Set(teams.map(t => t.groupName))].filter(Boolean);
+    return groups.sort((a, b) => {
+        const numA = parseInt(a.match(/\d+/)?.[0] || '0');
+        const numB = parseInt(b.match(/\d+/)?.[0] || '0');
+        return numA - numB;
+    });
+}
+
+```
+
+## File: app\hooks\useLocalStorage.ts
+```
+"use client";
+
+import { useState, useEffect, useCallback } from 'react';
+
+/**
+ * Type-safe localStorage hook with SSR support
+ */
+export function useLocalStorage<T>(
+    key: string,
+    initialValue: T
+): [T, (value: T | ((prev: T) => T)) => void, () => void] {
+    // State to store our value
+    const [storedValue, setStoredValue] = useState<T>(initialValue);
+    const [isHydrated, setIsHydrated] = useState(false);
+
+    // Hydrate from localStorage after mount
+    useEffect(() => {
+        const value = (() => {
+            try {
+                const item = window.localStorage.getItem(key);
+                return item ? JSON.parse(item) : initialValue;
+            } catch (error) {
+                console.warn(`Error reading localStorage key "${key}":`, error);
+                return initialValue;
+            }
+        })();
+
+        // Defer state updates to avoid "cascading renders" warning 
+        // and ensure the initial render matches the server output.
+        Promise.resolve().then(() => {
+            setStoredValue(value);
+            setIsHydrated(true);
+        });
+    }, [key, initialValue]);
+
+    // Return a wrapped version of useState's setter function
+    const setValue = useCallback((value: T | ((prev: T) => T)) => {
+        try {
+            // Allow value to be a function for same API as useState
+            const valueToStore = value instanceof Function ? value(storedValue) : value;
+            setStoredValue(valueToStore);
+
+            if (typeof window !== 'undefined') {
+                window.localStorage.setItem(key, JSON.stringify(valueToStore));
+            }
+        } catch (error) {
+            console.warn(`Error setting localStorage key "${key}":`, error);
+        }
+    }, [key, storedValue]);
+
+    // Remove from localStorage
+    const removeValue = useCallback(() => {
+        try {
+            setStoredValue(initialValue);
+            if (typeof window !== 'undefined') {
+                window.localStorage.removeItem(key);
+            }
+        } catch (error) {
+            console.warn(`Error removing localStorage key "${key}":`, error);
+        }
+    }, [key, initialValue]);
+
+    return [storedValue, setValue, removeValue];
+}
+
+export default useLocalStorage;
+
+```
+
+## File: app\hooks\useMatchSimulation.ts
+```
+"use client";
+
+import { useState, useCallback, useEffect, useRef } from "react";
+import {
+  MatchSimulation,
+  SimulatedSet,
+  SimulatedPoint,
+  SimulationMoment
+} from "../types";
+
+interface UseMatchSimulationOptions {
+  speed?: number; // Animation speed multiplier
+  autoPlay?: boolean;
+}
+
+interface UseMatchSimulationReturn {
+  simulation: MatchSimulation | null;
+  isSimulating: boolean;
+  isPlaying: boolean;
+  currentSet: number;
+  currentPoint: number;
+  progress: number; // 0-100
+  // Actions
+  startSimulation: (homeTeam: string, awayTeam: string) => Promise<void>;
+  play: () => void;
+  pause: () => void;
+  reset: () => void;
+  skipToEnd: () => void;
+  setSpeed: (speed: number) => void;
+}
+
+// Simulate a single set
+const simulateSet = (
+  setNumber: number,
+  endScore: number,
+  homeTeam: string,
+  awayTeam: string
+): SimulatedSet => {
+  const points: SimulatedPoint[] = [];
+  let homeScore = 0;
+  let awayScore = 0;
+  let pointNumber = 0;
+
+  // Randomly determine which team is slightly favored
+  const homeBias = 0.48 + Math.random() * 0.08; // 48-56% for home
+
+  while (true) {
+    pointNumber++;
+
+    // Determine point type
+    const types: Array<'attack' | 'block' | 'ace' | 'error'> = ['attack', 'attack', 'attack', 'block', 'ace', 'error'];
+    const type = types[Math.floor(Math.random() * types.length)];
+
+    // Determine scorer
+    const scorer = Math.random() < homeBias ? 'home' : 'away';
+
+    if (scorer === 'home') {
+      homeScore++;
+    } else {
+      awayScore++;
+    }
+
+    points.push({
+      pointNumber,
+      homeScore,
+      awayScore,
+      scorer,
+      type,
+    });
+
+    // Check if set is over
+    const maxScore = Math.max(homeScore, awayScore);
+    const minScore = Math.min(homeScore, awayScore);
+
+    if (maxScore >= endScore && maxScore - minScore >= 2) {
+      break;
+    }
+
+    // Safety limit
+    if (pointNumber > 100) break;
+  }
+
+  return {
+    setNumber,
+    homePoints: homeScore,
+    awayPoints: awayScore,
+    winner: homeScore > awayScore ? 'home' : 'away',
+    pointByPoint: points,
+  };
+};
+
+export function useMatchSimulation(
+  options: UseMatchSimulationOptions = {}
+): UseMatchSimulationReturn {
+  const { speed: initialSpeed = 1, autoPlay = true } = options;
+
+  const [simulation, setSimulation] = useState<MatchSimulation | null>(null);
+  const [isSimulating, setIsSimulating] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentSet, setCurrentSet] = useState(0);
+  const [currentPoint, setCurrentPoint] = useState(0);
+  const [speed, setSpeedState] = useState(initialSpeed);
+
+  const animationRef = useRef<NodeJS.Timeout | null>(null);
+  const progressRef = useRef(0);
+  const [progressState, setProgressState] = useState(0);
+
+  // Generate a simulated match
+  const generateSimulation = useCallback((
+    homeTeam: string,
+    awayTeam: string
+  ): MatchSimulation => {
+    const sets: SimulatedSet[] = [];
+    let homeSetsWon = 0;
+    let awaySetsWon = 0;
+    let setNumber = 0;
+    const moments: SimulationMoment[] = [];
+    let totalDuration = 0;
+
+    // Simulate sets until one team wins 3
+    while (homeSetsWon < 3 && awaySetsWon < 3) {
+      setNumber++;
+      const isDecidingSet = homeSetsWon === 2 && awaySetsWon === 2;
+      const setEndScore = isDecidingSet ? 15 : 25;
+
+      const set = simulateSet(setNumber, setEndScore, homeTeam, awayTeam);
+      sets.push(set);
+
+      if (set.winner === 'home') {
+        homeSetsWon++;
+      } else {
+        awaySetsWon++;
+      }
+
+      // Add set end moment
+      moments.push({
+        time: totalDuration + set.pointByPoint.length * 2,
+        type: 'set_point',
+        description: `${set.winner === 'home' ? homeTeam : awayTeam} ${setNumber}. seti kazandı (${set.homePoints}-${set.awayPoints})`,
+      });
+
+      totalDuration += set.pointByPoint.length * 2;
+    }
+
+    const winner = homeSetsWon === 3 ? homeTeam : awayTeam;
+
+    // Add match end moment
+    moments.push({
+      time: totalDuration,
+      type: 'match_point',
+      description: `${winner} maçı kazandı! (${homeSetsWon}-${awaySetsWon})`,
+    });
+
+    return {
+      matchId: `sim-${Date.now()}`,
+      homeTeam,
+      awayTeam,
+      simulatedSets: sets,
+      finalScore: `${homeSetsWon}-${awaySetsWon}`,
+      winner,
+      keyMoments: moments,
+      duration: totalDuration,
+    };
+  }, []);
+
+  // Calculate progress - use state to avoid accessing ref during render
+  const progress = simulation
+    ? (progressState / simulation.duration) * 100
+    : 0;
+
+  // Start simulation
+  const startSimulation = useCallback(async (
+    homeTeam: string,
+    awayTeam: string
+  ) => {
+    setIsSimulating(true);
+    setCurrentSet(0);
+    setCurrentPoint(0);
+    progressRef.current = 0;
+    setProgressState(0);
+
+    // Generate simulation
+    const sim = generateSimulation(homeTeam, awayTeam);
+    setSimulation(sim);
+    setIsSimulating(false);
+
+    if (autoPlay) {
+      setIsPlaying(true);
+    }
+  }, [generateSimulation, autoPlay]);
+
+  // Play animation
+  const play = useCallback(() => {
+    if (!simulation) return;
+    setIsPlaying(true);
+  }, [simulation]);
+
+  // Pause animation
+  const pause = useCallback(() => {
+    setIsPlaying(false);
+    if (animationRef.current) {
+      clearTimeout(animationRef.current);
+      animationRef.current = null;
+    }
+  }, []);
+
+  // Reset simulation
+  const reset = useCallback(() => {
+    pause();
+    setCurrentSet(0);
+    setCurrentPoint(0);
+    progressRef.current = 0;
+    setProgressState(0);
+  }, [pause]);
+
+  // Skip to end
+  const skipToEnd = useCallback(() => {
+    if (!simulation) return;
+
+    pause();
+    setCurrentSet(simulation.simulatedSets.length - 1);
+    const lastSet = simulation.simulatedSets[simulation.simulatedSets.length - 1];
+    setCurrentPoint(lastSet.pointByPoint.length - 1);
+    progressRef.current = simulation.duration;
+    setProgressState(simulation.duration);
+  }, [simulation, pause]);
+
+  // Set speed
+  const setSpeed = useCallback((newSpeed: number) => {
+    setSpeedState(Math.max(0.25, Math.min(4, newSpeed)));
+  }, []);
+
+  // Animation loop
+  useEffect(() => {
+    if (!isPlaying || !simulation) return;
+
+    const animate = () => {
+      progressRef.current += 2 * speed;
+      setProgressState(progressRef.current);
+
+      // Find current set and point based on progress
+      let elapsed = 0;
+      let foundSet = 0;
+      let foundPoint = 0;
+
+      for (let s = 0; s < simulation.simulatedSets.length; s++) {
+        const set = simulation.simulatedSets[s];
+        for (let p = 0; p < set.pointByPoint.length; p++) {
+          elapsed += 2;
+          if (elapsed >= progressRef.current) {
+            foundSet = s;
+            foundPoint = p;
+            break;
+          }
+        }
+        if (elapsed >= progressRef.current) break;
+      }
+
+      setCurrentSet(foundSet);
+      setCurrentPoint(foundPoint);
+
+      // Check if animation is complete
+      if (progressRef.current >= simulation.duration) {
+        setIsPlaying(false);
+        return;
+      }
+
+      animationRef.current = setTimeout(animate, 50 / speed);
+    };
+
+    animationRef.current = setTimeout(animate, 50 / speed);
+
+    return () => {
+      if (animationRef.current) {
+        clearTimeout(animationRef.current);
+      }
+    };
+  }, [isPlaying, simulation, speed]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (animationRef.current) {
+        clearTimeout(animationRef.current);
+      }
+    };
+  }, []);
+
+  return {
+    simulation,
+    isSimulating,
+    isPlaying,
+    currentSet,
+    currentPoint,
+    progress,
+    startSimulation,
+    play,
+    pause,
+    reset,
+    skipToEnd,
+    setSpeed,
+  };
+}
+
+// Utility to get current state of simulation
+export function getSimulationState(
+  simulation: MatchSimulation,
+  setIndex: number,
+  pointIndex: number
+) {
+  const currentSetData = simulation.simulatedSets[setIndex];
+  const currentPointData = currentSetData?.pointByPoint[pointIndex];
+
+  let homeSetsWon = 0;
+  let awaySetsWon = 0;
+
+  for (let i = 0; i < setIndex; i++) {
+    if (simulation.simulatedSets[i].winner === 'home') {
+      homeSetsWon++;
+    } else {
+      awaySetsWon++;
+    }
+  }
+
+  return {
+    setScore: { home: homeSetsWon, away: awaySetsWon },
+    currentSetScore: currentPointData
+      ? { home: currentPointData.homeScore, away: currentPointData.awayScore }
+      : { home: 0, away: 0 },
+    lastPoint: currentPointData,
+    isComplete: setIndex >= simulation.simulatedSets.length - 1 &&
+      pointIndex >= currentSetData.pointByPoint.length - 1,
+  };
+}
+
+```
+
+## File: app\hooks\useModal.ts
+```
+'use client';
+
+import { useEffect, useCallback, useRef } from 'react';
+
+interface UseModalOptions {
+  isOpen: boolean;
+  onClose: () => void;
+  closeOnEscape?: boolean;
+  closeOnBackdrop?: boolean;
+  trapFocus?: boolean;
+}
+
+/**
+ * Hook for accessible modal behavior
+ * - Escape key to close
+ * - Focus trap within modal
+ * - Click outside to close
+ * - Prevents body scroll when open
+ */
+export function useModal({
+  isOpen,
+  onClose,
+  closeOnEscape = true,
+  closeOnBackdrop = true,
+  trapFocus = true,
+}: UseModalOptions) {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const previousActiveElement = useRef<HTMLElement | null>(null);
+
+  // Handle escape key
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (closeOnEscape && e.key === 'Escape') {
+        e.preventDefault();
+        onClose();
+      }
+
+      // Focus trap
+      if (trapFocus && e.key === 'Tab' && modalRef.current) {
+        const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey && document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement?.focus();
+        } else if (!e.shiftKey && document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement?.focus();
+        }
+      }
+    },
+    [closeOnEscape, trapFocus, onClose]
+  );
+
+  // Handle backdrop click
+  const handleBackdropClick = useCallback(
+    (e: React.MouseEvent) => {
+      if (closeOnBackdrop && e.target === e.currentTarget) {
+        onClose();
+      }
+    },
+    [closeOnBackdrop, onClose]
+  );
+
+  useEffect(() => {
+    if (isOpen) {
+      // Store current active element
+      previousActiveElement.current = document.activeElement as HTMLElement;
+      
+      // Add event listener
+      document.addEventListener('keydown', handleKeyDown);
+      
+      // Prevent body scroll
+      document.body.style.overflow = 'hidden';
+      
+      // Focus first focusable element in modal
+      if (trapFocus && modalRef.current) {
+        const firstFocusable = modalRef.current.querySelector<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        firstFocusable?.focus();
+      }
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+      
+      // Restore focus to previous element
+      if (previousActiveElement.current) {
+        previousActiveElement.current.focus();
+      }
+    };
+  }, [isOpen, handleKeyDown, trapFocus]);
+
+  return {
+    modalRef,
+    handleBackdropClick,
+  };
+}
+
+```
+
+## File: app\hooks\usePerformance.ts
+```
+"use client";
+
+import { useEffect } from 'react';
+
+declare global {
+    interface Window {
+        gtag?: (...args: unknown[]) => void;
+    }
+}
+
+// Extended PerformanceEntry types for Web Vitals
+interface LCPEntry extends PerformanceEntry {
+    renderTime?: number;
+    loadTime?: number;
+}
+
+interface LayoutShiftEntry extends PerformanceEntry {
+    hadRecentInput?: boolean;
+    value: number;
+}
+
+interface InteractionEntry extends PerformanceEntry {
+    processingDuration?: number;
+}
+
+interface WebVitals {
+    name: string;
+    value: number;
+    rating?: 'good' | 'needs-improvement' | 'poor';
+}
+
+/**
+ * Track Web Vitals (LCP, FID, CLS)
+ * Useful for performance monitoring and optimization
+ */
+export function useWebVitals() {
+    useEffect(() => {
+        // Largest Contentful Paint
+        if ('PerformanceObserver' in window) {
+            try {
+                const lcpObserver = new PerformanceObserver((entryList) => {
+                    const entries = entryList.getEntries();
+                    const lastEntry = entries[entries.length - 1] as LCPEntry;
+                    if (lastEntry) {
+                        const vital: WebVitals = {
+                            name: 'LCP',
+                            value: lastEntry.renderTime || lastEntry.loadTime || lastEntry.startTime || 0,
+                        };
+                        // LCP > 2.5s is poor
+                        if (vital.value > 2500) {
+                            vital.rating = 'poor';
+                        } else if (vital.value > 1200) {
+                            vital.rating = 'needs-improvement';
+                        } else {
+                            vital.rating = 'good';
+                        }
+                        sendAnalytics(vital);
+                    }
+                });
+                lcpObserver.observe({ entryTypes: ['largest-contentful-paint'], buffered: true });
+            } catch {
+                console.warn('LCP observer not supported');
+            }
+
+            // Cumulative Layout Shift
+            try {
+                const clsObserver = new PerformanceObserver((entryList) => {
+                    let clsValue = 0;
+                    for (const entry of entryList.getEntries()) {
+                        const shiftEntry = entry as LayoutShiftEntry;
+                        if (shiftEntry.hadRecentInput) continue;
+                        clsValue += shiftEntry.value;
+                    }
+                    const vital: WebVitals = {
+                        name: 'CLS',
+                        value: clsValue,
+                    };
+                    // CLS > 0.25 is poor
+                    if (vital.value > 0.25) {
+                        vital.rating = 'poor';
+                    } else if (vital.value > 0.1) {
+                        vital.rating = 'needs-improvement';
+                    } else {
+                        vital.rating = 'good';
+                    }
+                    sendAnalytics(vital);
+                });
+                clsObserver.observe({ type: 'layout-shift', buffered: true });
+            } catch {
+                console.warn('CLS observer not supported');
+            }
+
+            // First Input Delay / Interaction to Next Paint
+            try {
+                const ttpObserver = new PerformanceObserver((entryList) => {
+                    const entries = entryList.getEntries();
+                    if (entries.length > 0) {
+                        const entry = entries[0] as InteractionEntry;
+                        const vital: WebVitals = {
+                            name: 'INP',
+                            value: entry.processingDuration || 0,
+                        };
+                        // INP > 500ms is poor
+                        if (vital.value > 500) {
+                            vital.rating = 'poor';
+                        } else if (vital.value > 200) {
+                            vital.rating = 'needs-improvement';
+                        } else {
+                            vital.rating = 'good';
+                        }
+                        sendAnalytics(vital);
+                    }
+                });
+                ttpObserver.observe({ entryTypes: ['first-input', 'interaction'], buffered: true });
+            } catch {
+                console.warn('INP observer not supported');
+            }
+        }
+    }, []);
+}
+
+function sendAnalytics(vital: WebVitals) {
+    // Send to Google Analytics if available
+    if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', vital.name, {
+            value: Math.round(vital.value),
+            event_category: 'Web Vitals',
+            event_label: vital.name,
+            non_interaction: true,
+        });
+    }
+
+    // Log to console in development
+    if (process.env.NODE_ENV === 'development') {
+        console.log(`[${vital.name}] ${vital.value}ms - ${vital.rating}`);
+    }
+}
+
+/**
+ * Track Navigation Timing
+ */
+export function useNavigationTiming() {
+    useEffect(() => {
+        const logNavigationMetrics = () => {
+            if (typeof window !== 'undefined' && 'performance' in window) {
+                const perfData = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+                
+                if (perfData) {
+                    const metrics = {
+                        'DNS Lookup': perfData.domainLookupEnd - perfData.domainLookupStart,
+                        'TCP Connection': perfData.connectEnd - perfData.connectStart,
+                        'Request Time': perfData.responseStart - perfData.requestStart,
+                        'Response Time': perfData.responseEnd - perfData.responseStart,
+                        'DOM Processing': perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart,
+                        'Page Load Time': perfData.loadEventEnd - perfData.loadEventStart,
+                        'Total Time to Interactive': perfData.loadEventEnd - perfData.fetchStart,
+                    };
+
+                    if (process.env.NODE_ENV === 'development') {
+                        console.group('Navigation Timing Metrics');
+                        Object.entries(metrics).forEach(([key, value]) => {
+                            console.log(`${key}: ${Math.round(value)}ms`);
+                        });
+                        console.groupEnd();
+                    }
+                }
+            }
+        };
+
+        // Wait for page to fully load
+        window.addEventListener('load', logNavigationMetrics);
+        return () => window.removeEventListener('load', logNavigationMetrics);
+    }, []);
+}
+
+```
+
+## File: app\hooks\usePredictions.ts
+```
+"use client";
+
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { createClient } from "../utils/supabase";
+import { useAuth } from "../context/AuthContext";
+
+// Types
+export interface Prediction {
+    id?: string;
+    user_id: string;
+    league: "vsl" | "1lig" | "2lig" | "cev-cl";
+    group_name?: string;
+    match_id: string;
+    score: string;
+    created_at?: string;
+    updated_at?: string;
+}
+
+export type PredictionOverrides = Record<string, string>;
+
+// ============================================
+// FETCH PREDICTIONS
+// ============================================
+async function fetchPredictions(
+    userId: string,
+    league: string,
+    groupName?: string
+): Promise<PredictionOverrides> {
+    const supabase = createClient();
+    if (!supabase) {
+        // Fallback to localStorage if Supabase is not configured
+        const storageKey = getStorageKey(league);
+        const saved = localStorage.getItem(storageKey);
+        if (saved) {
+            const parsed = JSON.parse(saved);
+            if (groupName && parsed[groupName]) {
+                return parsed[groupName];
+            }
+            return parsed;
+        }
+        return {};
+    }
+
+    let query = supabase
+        .from("predictions")
+        .select("match_id, score")
+        .eq("user_id", userId)
+        .eq("league", league);
+
+    if (groupName) {
+        query = query.eq("group_name", groupName);
+    }
+
+    const { data, error } = await query;
+
+    if (error) {
+        console.error("Error fetching predictions:", error);
+        return {};
+    }
+
+    // Convert array to Record<matchId, score>
+    const overrides: PredictionOverrides = {};
+    data?.forEach((p) => {
+        overrides[p.match_id] = p.score;
+    });
+
+    return overrides;
+}
+
+// ============================================
+// SAVE PREDICTION
+// ============================================
+async function savePrediction(
+    userId: string,
+    league: string,
+    matchId: string,
+    score: string,
+    groupName?: string
+): Promise<void> {
+    const supabase = createClient();
+    if (!supabase) {
+        // Fallback to localStorage
+        const storageKey = getStorageKey(league);
+        const saved = localStorage.getItem(storageKey);
+        const existing = saved ? JSON.parse(saved) : {};
+
+        if (groupName) {
+            if (!existing[groupName]) existing[groupName] = {};
+            if (score) {
+                existing[groupName][matchId] = score;
+            } else {
+                delete existing[groupName][matchId];
+            }
+        } else {
+            if (score) {
+                existing[matchId] = score;
+            } else {
+                delete existing[matchId];
+            }
+        }
+
+        localStorage.setItem(storageKey, JSON.stringify(existing));
+        return;
+    }
+
+    if (!score) {
+        // Delete prediction
+        await supabase
+            .from("predictions")
+            .delete()
+            .eq("user_id", userId)
+            .eq("league", league)
+            .eq("match_id", matchId);
+    } else {
+        // Upsert prediction
+        await supabase.from("predictions").upsert(
+            {
+                user_id: userId,
+                league,
+                group_name: groupName || null,
+                match_id: matchId,
+                score,
+            },
+            { onConflict: "user_id,league,match_id" }
+        );
+    }
+}
+
+// ============================================
+// BULK SAVE PREDICTIONS
+// ============================================
+async function bulkSavePredictions(
+    userId: string,
+    league: string,
+    overrides: PredictionOverrides,
+    groupName?: string
+): Promise<void> {
+    const supabase = createClient();
+    if (!supabase) {
+        // Fallback to localStorage
+        const storageKey = getStorageKey(league);
+        const saved = localStorage.getItem(storageKey);
+        const existing = saved ? JSON.parse(saved) : {};
+
+        if (groupName) {
+            existing[groupName] = overrides;
+        } else {
+            Object.assign(existing, overrides);
+        }
+
+        localStorage.setItem(storageKey, JSON.stringify(existing));
+        return;
+    }
+
+    // Convert overrides to array of predictions
+    const predictions = Object.entries(overrides).map(([matchId, score]) => ({
+        user_id: userId,
+        league,
+        group_name: groupName || null,
+        match_id: matchId,
+        score,
+    }));
+
+    if (predictions.length > 0) {
+        await supabase
+            .from("predictions")
+            .upsert(predictions, { onConflict: "user_id,league,match_id" });
+    }
+}
+
+// ============================================
+// CLEAR PREDICTIONS
+// ============================================
+async function clearPredictions(
+    userId: string,
+    league: string,
+    groupName?: string
+): Promise<void> {
+    const supabase = createClient();
+    if (!supabase) {
+        const storageKey = getStorageKey(league);
+        if (groupName) {
+            const saved = localStorage.getItem(storageKey);
+            const existing = saved ? JSON.parse(saved) : {};
+            delete existing[groupName];
+            localStorage.setItem(storageKey, JSON.stringify(existing));
+        } else {
+            localStorage.removeItem(storageKey);
+        }
+        return;
+    }
+
+    let query = supabase
+        .from("predictions")
+        .delete()
+        .eq("user_id", userId)
+        .eq("league", league);
+
+    if (groupName) {
+        query = query.eq("group_name", groupName);
+    }
+
+    await query;
+}
+
+// ============================================
+// STORAGE KEY HELPER
+// ============================================
+function getStorageKey(league: string): string {
+    switch (league) {
+        case "1lig":
+            return "1ligGroupScenarios";
+        case "2lig":
+            return "groupScenarios";
+        case "cev-cl":
+            return "cevclGroupScenarios";
+        case "vsl":
+            return "vslGroupScenarios";
+        default:
+            return `${league}Scenarios`;
+    }
+}
+
+// ============================================
+// REACT QUERY HOOKS
+// ============================================
+
+/**
+ * Hook to fetch and manage predictions for a specific league
+ */
+export function usePredictions(league: string, groupName?: string) {
+    const { user } = useAuth();
+    const queryClient = useQueryClient();
+
+    const userId = user?.id || "anonymous";
+
+    const query = useQuery({
+        queryKey: ["predictions", league, groupName, userId],
+        queryFn: () => fetchPredictions(userId, league, groupName),
+        enabled: true, // Always enabled, will use localStorage fallback
+    });
+
+    const saveMutation = useMutation({
+        mutationFn: ({
+            matchId,
+            score,
+        }: {
+            matchId: string;
+            score: string;
+        }) => savePrediction(userId, league, matchId, score, groupName),
+        onMutate: async ({ matchId, score }) => {
+            // Optimistic update
+            await queryClient.cancelQueries({
+                queryKey: ["predictions", league, groupName, userId],
+            });
+            const previousData = queryClient.getQueryData<PredictionOverrides>([
+                "predictions",
+                league,
+                groupName,
+                userId,
+            ]);
+
+            queryClient.setQueryData<PredictionOverrides>(
+                ["predictions", league, groupName, userId],
+                (old = {}) => {
+                    const newData = { ...old };
+                    if (score) {
+                        newData[matchId] = score;
+                    } else {
+                        delete newData[matchId];
+                    }
+                    return newData;
+                }
+            );
+
+            return { previousData };
+        },
+        onError: (err, variables, context) => {
+            if (context?.previousData) {
+                queryClient.setQueryData(
+                    ["predictions", league, groupName, userId],
+                    context.previousData
+                );
+            }
+        },
+        onSettled: () => {
+            queryClient.invalidateQueries({
+                queryKey: ["predictions", league, groupName, userId],
+            });
+        },
+    });
+
+    const bulkSaveMutation = useMutation({
+        mutationFn: (overrides: PredictionOverrides) =>
+            bulkSavePredictions(userId, league, overrides, groupName),
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ["predictions", league, groupName, userId],
+            });
+        },
+    });
+
+    const clearMutation = useMutation({
+        mutationFn: () => clearPredictions(userId, league, groupName),
+        onSuccess: () => {
+            queryClient.setQueryData(
+                ["predictions", league, groupName, userId],
+                {}
+            );
+        },
+    });
+
+    return {
+        overrides: query.data || {},
+        isLoading: query.isLoading,
+        isError: query.isError,
+        error: query.error,
+        // Actions
+        setPrediction: (matchId: string, score: string) =>
+            saveMutation.mutate({ matchId, score }),
+        bulkSave: (overrides: PredictionOverrides) =>
+            bulkSaveMutation.mutate(overrides),
+        clear: () => clearMutation.mutate(),
+        // Mutation states
+        isSaving: saveMutation.isPending,
+        isClearing: clearMutation.isPending,
+    };
+}
+
+```
+
 ## File: app\hooks\usePushNotifications.ts
 ```
 'use client';
@@ -789,8 +2581,14 @@ export function useUserStats() {
 "use client";
 
 import { useState, useEffect } from "react";
-
 import { useAuth } from "../context/AuthContext";
+import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/Card";
+import { Button } from "../components/ui/Button";
+import { Badge } from "../components/ui/Badge";
+import { Skeleton } from "../components/ui/Skeleton";
+import { EmptyState } from "../components/ui/EmptyState";
+import { Trophy, TrendingUp, Calendar, Zap, Info, Award } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface LeaderboardEntry {
     rank: number;
@@ -825,7 +2623,6 @@ export default function LeaderboardClient({
     const [userRank, setUserRank] = useState<number | null>(initialUserRank);
     const [type, setType] = useState<LeaderboardType>('total');
 
-    // Only fetch if type changes (initial load is served by SSR)
     useEffect(() => {
         if (type !== 'total' || leaderboard !== initialLeaderboard) {
             fetchLeaderboard();
@@ -856,145 +2653,236 @@ export default function LeaderboardClient({
     };
 
     return (
-        <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">
-            <div className="max-w-4xl mx-auto space-y-4">
-                <div className="flex flex-col gap-1 px-1">
-                    <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">Sıralama Tablosu</h1>
-                    <p className="text-[10px] text-slate-400 hidden sm:block">En iyi tahmin uzmanları</p>
+        <main className="min-h-screen bg-background text-text-primary p-4 sm:p-6 lg:p-8 animate-in fade-in duration-500">
+            <div className="max-w-4xl mx-auto space-y-8">
+
+                {/* Header Section */}
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border-subtle pb-6">
+                    <div className="space-y-1">
+                        <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 mb-2">
+                            PREMIUM ANALİTİK
+                        </Badge>
+                        <h1 className="text-4xl font-black tracking-tighter text-text-primary uppercase italic">
+                            Sıralama <span className="text-primary shadow-glow-primary">Tablosu</span>
+                        </h1>
+                        <p className="text-text-secondary font-medium">En iyi voleybol tahmin uzmanları arasında yerini al.</p>
+                    </div>
+
+                    {/* Filter Tabs */}
+                    <div className="inline-flex p-1 bg-surface-secondary/50 backdrop-blur-sm rounded-xl border border-border-main">
+                        {(['total', 'weekly', 'monthly'] as LeaderboardType[]).map((t) => (
+                            <Button
+                                key={t}
+                                variant={type === t ? 'primary' : 'ghost'}
+                                size="sm"
+                                onClick={() => setType(t)}
+                                className={cn(
+                                    "rounded-lg text-xs font-black transition-all px-4 h-9 uppercase",
+                                    type === t && "shadow-glow-primary"
+                                )}
+                            >
+                                {typeLabels[t]}
+                            </Button>
+                        ))}
+                    </div>
                 </div>
 
-                {/* Type Selector */}
-                <div className="flex gap-2 p-1 bg-slate-900 rounded-xl border border-slate-800">
-                    {(['total', 'weekly', 'monthly'] as LeaderboardType[]).map((t) => (
-                        <button
-                            key={t}
-                            onClick={() => setType(t)}
-                            className={`flex-1 px-4 py-2 rounded-lg text-sm font-bold transition-all ${type === t
-                                ? 'bg-emerald-700 text-white shadow-lg'
-                                : 'text-slate-400 hover:text-white hover:bg-slate-800'
-                                }`}
-                        >
-                            {typeLabels[t]}
-                        </button>
-                    ))}
-                </div>
-
-                {/* User's Position (if not in top 50) */}
-                {userEntry && userRank && userRank > 50 && (
-                    <div className="bg-gradient-to-r from-emerald-900/30 to-teal-900/30 rounded-xl border border-emerald-600/30 p-4">
-                        <div className="text-xs text-emerald-400 mb-2">Senin Sıran</div>
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center font-bold text-white">
-                                    #{userRank}
-                                </div>
-                                <div>
-                                    <div className="font-bold text-white">{userEntry.display_name || 'Anonim'}</div>
-                                    <div className="text-xs text-slate-400">
-                                        {userEntry.correct_predictions}/{userEntry.total_predictions} doğru
+                {/* Top 3 Podium (Visual) - Only on Desktop and if data exists */}
+                {leaderboard.length >= 3 && !loading && (
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                        {[leaderboard[1], leaderboard[0], leaderboard[2]].map((entry, i) => {
+                            const isFirst = entry.rank === 1;
+                            return (
+                                <Card
+                                    key={entry.user_id}
+                                    className={cn(
+                                        "relative border-none overflow-hidden",
+                                        isFirst ? "bg-gradient-to-br from-amber-400/20 via-amber-600/10 to-transparent ring-2 ring-amber-500/50 scale-105 z-10 sm:-translate-y-2" : "bg-surface-secondary/30",
+                                        user?.id === entry.user_id && "ring-2 ring-primary/50"
+                                    )}
+                                >
+                                    <div className="p-6 flex flex-col items-center">
+                                        <div className={cn(
+                                            "w-16 h-16 rounded-full flex items-center justify-center text-3xl mb-4 relative",
+                                            entry.rank === 1 ? "bg-amber-500 shadow-glow-accent" : "bg-surface-dark border border-border-main"
+                                        )}>
+                                            {entry.rank === 1 ? '🥇' : entry.rank === 2 ? '🥈' : '🥉'}
+                                            {user?.id === entry.user_id && (
+                                                <div className="absolute -bottom-1 -right-1">
+                                                    <Badge variant="success" className="p-0.5 rounded-full"><TrendingUp className="w-3 h-3" /></Badge>
+                                                </div>
+                                            )}
+                                        </div>
+                                        <h3 className="font-black text-lg truncate w-full px-2">{entry.display_name || 'Anonim'}</h3>
+                                        <div className="text-2xl font-black text-text-primary mt-2">
+                                            {type === 'weekly' ? entry.weekly_points :
+                                                type === 'monthly' ? entry.monthly_points :
+                                                    entry.total_points}
+                                            <span className="text-[10px] text-text-muted ml-0.5 uppercase tracking-tighter">Puan</span>
+                                        </div>
+                                        <Badge variant="secondary" className="mt-4 text-[10px] font-black tracking-widest uppercase">
+                                            {entry.correct_predictions} Doğru
+                                        </Badge>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="text-2xl font-bold text-emerald-400">
-                                {type === 'weekly' ? userEntry.weekly_points :
-                                    type === 'monthly' ? userEntry.monthly_points :
-                                        userEntry.total_points}
-                                <span className="text-xs ml-1">P</span>
-                            </div>
-                        </div>
+                                </Card>
+                            );
+                        })}
                     </div>
                 )}
 
-                {/* Leaderboard Table */}
-                <div className="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden shadow-2xl relative">
-                    {loading && (
-                        <div className="absolute inset-0 bg-slate-950/50 backdrop-blur-sm z-10 flex items-center justify-center">
-                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500"></div>
-                        </div>
-                    )}
-
-                    {leaderboard.length === 0 && !loading ? (
-                        <div className="p-12 text-center text-slate-500">
-                            <div className="text-4xl mb-3">😴</div>
-                            Henüz sıralama verisi yok
-                        </div>
-                    ) : (
-                        <div className="divide-y divide-slate-800">
-                            {leaderboard.map((entry) => {
-                                const isCurrentUser = user?.id === entry.user_id;
-                                const points = type === 'weekly' ? entry.weekly_points :
-                                    type === 'monthly' ? entry.monthly_points :
-                                        entry.total_points;
-
-                                return (
-                                    <div
-                                        key={entry.user_id}
-                                        className={`flex items-center justify-between p-3 sm:p-4 transition-colors ${isCurrentUser ? 'bg-emerald-900/20' : 'hover:bg-slate-800/50'
-                                            }`}
-                                    >
-                                        <div className="flex items-center gap-3 sm:gap-4">
-                                            {/* Rank */}
-                                            <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center font-bold text-sm ${entry.rank === 1 ? 'bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-lg shadow-amber-500/30' :
-                                                entry.rank === 2 ? 'bg-gradient-to-br from-slate-300 to-slate-400 text-slate-800' :
-                                                    entry.rank === 3 ? 'bg-gradient-to-br from-amber-600 to-amber-700 text-white' :
-                                                        'bg-slate-800 text-slate-500'
-                                                }`}>
-                                                {entry.rank === 1 ? '👑' : entry.rank}
-                                            </div>
-
-                                            {/* Avatar Fallback / Decoration */}
-                                            <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-[10px] text-slate-400 font-bold border border-slate-700">
-                                                {(entry.display_name || 'A').slice(0, 1).toUpperCase()}
-                                            </div>
-
-                                            {/* Name & Stats */}
-                                            <div>
-                                                <div className={`font-bold flex items-center gap-2 ${isCurrentUser ? 'text-emerald-400' : 'text-white'}`}>
-                                                    <span className="truncate max-w-[120px] sm:max-w-none">{entry.display_name || 'Anonim'}</span>
-                                                    {isCurrentUser && <span className="text-[9px] px-1.5 py-0.5 bg-emerald-500/20 text-emerald-400 rounded uppercase tracking-wider">Sen</span>}
-                                                </div>
-                                                <div className="text-[10px] sm:text-xs text-slate-500 flex gap-2">
-                                                    <span>✓ {entry.correct_predictions} Doğru</span>
-                                                    <span>🔥 {entry.best_streak} Seri</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Points */}
-                                        <div className={`text-lg sm:text-xl font-bold ${entry.rank <= 3 ? 'text-amber-400' : 'text-slate-300'
-                                            }`}>
-                                            {points}
-                                            <span className="text-xs text-slate-500 ml-1">P</span>
-                                        </div>
+                {/* User's Current Status Banner */}
+                {userEntry && userRank && userRank > 3 && (
+                    <Card className="bg-primary/5 border-primary/20 overflow-hidden relative group">
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent group-hover:from-primary/20 transition-all duration-700" />
+                        <CardContent className="p-4 sm:p-6 relative z-10">
+                            <div className="flex items-center justify-between gap-4">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center font-black text-primary text-xl shadow-glow-primary">
+                                        #{userRank}
                                     </div>
-                                );
-                            })}
-                        </div>
-                    )}
-                </div>
+                                    <div>
+                                        <div className="text-[10px] font-black text-primary uppercase tracking-widest mb-1">Senin Mevcut Sıran</div>
+                                        <div className="font-black text-xl text-text-primary tracking-tight">{userEntry.display_name || 'Kullanıcı'}</div>
+                                    </div>
+                                </div>
+                                <div className="text-right">
+                                    <div className="text-3xl font-black text-primary tabular-nums">
+                                        {type === 'weekly' ? userEntry.weekly_points :
+                                            type === 'monthly' ? userEntry.monthly_points :
+                                                userEntry.total_points}
+                                        <span className="text-xs ml-1 font-medium text-text-muted uppercase">Puan</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                )}
 
-                {/* Stats Info */}
-                <div className="bg-slate-900/50 rounded-xl p-4 border border-slate-800/50">
-                    <h4 className="text-xs font-bold text-slate-500 uppercase mb-3 text-center tracking-widest">Sistem Bilgisi</h4>
-                    <div className="flex flex-wrap gap-x-8 gap-y-3 text-[10px] text-slate-500 justify-center">
-                        <div className="flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                            <span>Doğru Tahmin: +10 Puan</span>
+                {/* Main List */}
+                <Card className="bg-surface-primary/50 backdrop-blur-sm border-border-main/50 overflow-hidden">
+                    <CardHeader className="bg-surface-secondary/30 p-4 border-b border-border-main">
+                        <CardTitle className="text-sm font-black flex items-center gap-2 tracking-widest uppercase">
+                            <TrendingUp className="w-4 h-4 text-primary" />
+                            TOP 50 Tahminci
+                        </CardTitle>
+                    </CardHeader>
+
+                    <CardContent className="p-0 relative">
+                        {loading && (
+                            <div className="absolute inset-0 bg-background/50 backdrop-blur-[2px] z-50 flex flex-col items-center justify-center gap-3">
+                                <Zap className="w-8 h-8 text-primary animate-pulse shadow-glow-primary" />
+                                <span className="text-[10px] font-black uppercase tracking-[0.2em] animate-pulse">Veriler Çekiliyor</span>
+                            </div>
+                        )}
+
+                        {leaderboard.length === 0 && !loading ? (
+                            <EmptyState
+                                title="Henüz Skor Yok"
+                                description="Bu kategori için henüz sıralama verisi oluşturulmamış. İlk tahmini sen yap!"
+                                icon={Award}
+                                className="min-h-[400px] border-none"
+                                actionLabel="Hemen Tahmin Yap"
+                                onAction={() => window.location.href = '/ligler'}
+                            />
+                        ) : (
+                            <div className="divide-y divide-border-subtle">
+                                {leaderboard.map((entry) => {
+                                    const isCurrentUser = user?.id === entry.user_id;
+                                    const points = type === 'weekly' ? entry.weekly_points :
+                                        type === 'monthly' ? entry.monthly_points :
+                                            entry.total_points;
+                                    const isTop3 = entry.rank <= 3;
+
+                                    return (
+                                        <div
+                                            key={entry.user_id}
+                                            className={cn(
+                                                "flex items-center justify-between p-4 transition-all duration-300 group",
+                                                isCurrentUser ? "bg-primary/5" : "hover:bg-surface-secondary/50"
+                                            )}
+                                        >
+                                            <div className="flex items-center gap-4">
+                                                <div className={cn(
+                                                    "w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm transition-transform group-hover:scale-110",
+                                                    entry.rank === 1 ? "bg-amber-500 text-white shadow-glow-accent" :
+                                                        entry.rank === 2 ? "bg-slate-300 text-slate-800" :
+                                                            entry.rank === 3 ? "bg-amber-600 text-white shadow-md shadow-amber-900/20" :
+                                                                "bg-surface-secondary text-text-muted border border-border-subtle"
+                                                )}>
+                                                    #{entry.rank}
+                                                </div>
+
+                                                <div className="flex flex-col">
+                                                    <div className="flex items-center gap-2">
+                                                        <span className={cn(
+                                                            "font-black tracking-tight",
+                                                            isCurrentUser ? "text-primary" : "text-text-primary"
+                                                        )}>
+                                                            {entry.display_name || 'Anonim Tahminci'}
+                                                        </span>
+                                                        {isCurrentUser && (
+                                                            <Badge variant="default" className="h-4 px-1.5 py-0 text-[8px] font-black uppercase tracking-widest">Sen</Badge>
+                                                        )}
+                                                    </div>
+                                                    <div className="flex items-center gap-3 mt-1 underline-offset-4">
+                                                        <span className="text-[10px] font-medium text-text-muted flex items-center gap-1">
+                                                            <Badge variant="secondary" className="px-1 py-0 h-4 text-[8px]">{entry.correct_predictions}</Badge> İsabet
+                                                        </span>
+                                                        {entry.current_streak >= 3 && (
+                                                            <span className="text-[10px] font-black text-primary italic flex items-center gap-1">
+                                                                <Zap className="w-2.5 h-2.5 fill-current" />
+                                                                {entry.current_streak} SERİ!
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="text-right">
+                                                <div className={cn(
+                                                    "text-xl font-black tabular-nums tracking-tighter",
+                                                    isTop3 ? "text-amber-500" : "text-text-primary"
+                                                )}>
+                                                    {points}
+                                                    <span className="text-[9px] text-text-muted ml-0.5 uppercase">pts</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </CardContent>
+                </Card>
+
+                {/* Legend / Info Footer */}
+                <Card className="bg-surface-secondary/20 border-border-main/30 border-dashed">
+                    <CardContent className="p-6">
+                        <div className="flex items-center gap-2 mb-4">
+                            <Info className="w-4 h-4 text-primary" />
+                            <h4 className="text-[10px] font-black text-text-muted uppercase tracking-[0.2em]">Puanlama Sistemi</h4>
                         </div>
-                        <div className="flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-                            <span>Seri Bonusu: Her 3 maçta +5 Puan</span>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <InfoCard title="Tahmin" value="+10" desc="Skoru tam bilenlere" />
+                            <InfoCard title="Seri Bonusu" value="+5" desc="Üst üste 3 doğru maça" />
+                            <InfoCard title="Sıralama" value="15 DK" desc="Güncelleme aralığı" />
                         </div>
-                        <div className="flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                            <span>Sıralama her 15 dakikada bir güncellenir</span>
-                        </div>
-                    </div>
-                </div>
+                    </CardContent>
+                </Card>
             </div>
         </main>
     );
 }
+
+const InfoCard = ({ title, value, desc }: { title: string; value: string; desc: string }) => (
+    <div className="flex flex-col gap-1">
+        <div className="flex items-center justify-between">
+            <span className="text-[10px] font-black text-text-muted uppercase">{title}</span>
+            <span className="text-xs font-black text-primary">{value}</span>
+        </div>
+        <p className="text-[10px] text-text-secondary leading-tight">{desc}</p>
+    </div>
+);
 
 ```
 
@@ -1110,1310 +2998,6 @@ export default function LiglerLoading() {
                     {[...Array(4)].map((_, i) => (
                         <SkeletonCard key={i} className="h-48" />
                     ))}
-                </div>
-            </div>
-        </div>
-    );
-}
-
-```
-
-## File: app\ligler\page.tsx
-```
-import Link from "next/link";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-    title: "Ligler - Türkiye Kadınlar Voleybol Ligleri",
-    description: "Sultanlar Ligi, 1. Lig, 2. Lig ve CEV Avrupa turnuvaları. 2025-2026 sezonu maç tahminleri ve puan durumları.",
-    openGraph: {
-        title: "Ligler - Türkiye Kadınlar Voleybol Ligleri",
-        description: "Sultanlar Ligi, 1. Lig, 2. Lig ve CEV Avrupa turnuvaları. 2025-2026 sezonu maç tahminleri ve puan durumları.",
-    },
-};
-
-export default function LiglerPage() {
-    return (
-        <div className="min-h-screen bg-slate-950">
-            <div className="max-w-5xl mx-auto px-4 py-6 space-y-6">
-                <div className="flex flex-col gap-1 items-center md:items-start text-center md:text-left">
-                    <h1 className="font-bold text-white text-2xl tracking-tight leading-none">Ligler</h1>
-                    <p className="text-sm text-slate-400">Türkiye Kadınlar Voleybol Ligleri • 2025-2026 Sezonu</p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Vodafone Sultanlar Ligi */}
-                    <Link href="/vsl/tahminoyunu" className="group bg-slate-900 border border-red-500/30 rounded-2xl p-8 hover:bg-slate-800 hover:border-red-500/60 transition-all flex flex-col items-center text-center gap-4 shadow-lg hover:shadow-red-900/20">
-                        <div>
-                            <h2 className="text-2xl font-bold text-white mb-2">Vodafone Sultanlar Ligi</h2>
-                            <p className="text-slate-400">Türkiye'nin en üst düzey kadınlar voleybol ligi</p>
-                        </div>
-                        <div className="mt-2 px-4 py-2 bg-red-600/20 text-red-400 rounded-full text-sm font-bold group-hover:bg-red-700 group-hover:text-white transition-colors">
-                            Lige Git →
-                        </div>
-                    </Link>
-
-                    {/* Arabica Coffee House 1. Lig */}
-                    <Link href="/1lig/tahminoyunu" className="group bg-slate-900 border border-amber-500/30 rounded-2xl p-8 hover:bg-slate-800 hover:border-amber-500/60 transition-all flex flex-col items-center text-center gap-4 shadow-lg hover:shadow-amber-900/20">
-                        <div>
-                            <h2 className="text-2xl font-bold text-white mb-2">Arabica Coffee House 1. Lig</h2>
-                            <p className="text-slate-400">2 Gruplu 1. Lig Sistemi</p>
-                        </div>
-                        <div className="mt-2 px-4 py-2 bg-amber-600/20 text-amber-400 rounded-full text-sm font-bold group-hover:bg-amber-600 group-hover:text-white transition-colors">
-                            Lige Git →
-                        </div>
-                    </Link>
-
-                    {/* Kadınlar 2. Lig */}
-                    <Link href="/2lig/tahminoyunu" className="group bg-slate-900 border border-emerald-500/30 rounded-2xl p-8 hover:bg-slate-800 hover:border-emerald-500/60 transition-all flex flex-col items-center text-center gap-4 shadow-lg hover:shadow-emerald-900/20">
-                        <div>
-                            <h2 className="text-2xl font-bold text-white mb-2">Kadınlar 2. Lig</h2>
-                            <p className="text-slate-400">5 Gruplu 2. Lig Sistemi</p>
-                        </div>
-                        <div className="mt-2 px-4 py-2 bg-emerald-600/20 text-emerald-400 rounded-full text-sm font-bold group-hover:bg-emerald-700 group-hover:text-white transition-colors">
-                            Lige Git →
-                        </div>
-                    </Link>
-
-                    {/* Şampiyonlar Ligi */}
-                    <Link href="/cev-cl/tahminoyunu" className="group bg-slate-900 border border-blue-500/30 rounded-2xl p-8 hover:bg-slate-800 hover:border-blue-500/60 transition-all flex flex-col items-center text-center gap-4 shadow-lg hover:shadow-blue-900/20">
-                        <div>
-                            <h2 className="text-2xl font-bold text-white mb-2">CEV Şampiyonlar Ligi</h2>
-                            <p className="text-slate-400">Avrupa'nın en iyi takımları</p>
-                        </div>
-                        <div className="mt-2 px-4 py-2 bg-blue-600/20 text-blue-400 rounded-full text-sm font-bold group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                            Lige Git →
-                        </div>
-                    </Link>
-                </div>
-            </div>
-        </div>
-    );
-}
-
-```
-
-## File: app\live\page.tsx
-```
-"use client";
-
-import { useState, useEffect } from "react";
-import { useLiveMatch } from "../context/LiveMatchContext";
-import { useAuth } from "../context/AuthContext";
-import { LiveMatch, SetScore } from "../types";
-import Link from "next/link";
-
-export default function LivePage() {
-  const { user } = useAuth();
-  const { 
-    liveMatches, 
-    currentMatch,
-    comments,
-    chatMessages,
-    isConnected,
-    selectMatch,
-    addComment,
-    likeComment,
-    sendChatMessage,
-    subscribeToMatch,
-    unsubscribeFromMatch,
-    refreshLiveMatches,
-    isLoading
-  } = useLiveMatch();
-  
-  const [newComment, setNewComment] = useState('');
-  const [newChatMessage, setNewChatMessage] = useState('');
-  const [activeTab, setActiveTab] = useState<'matches' | 'chat' | 'comments'>('matches');
-
-  useEffect(() => {
-    if (currentMatch) {
-      subscribeToMatch(currentMatch.id);
-    }
-    
-    return () => {
-      unsubscribeFromMatch();
-    };
-  }, [currentMatch?.id]);
-
-  const handleSendComment = async () => {
-    if (!currentMatch || !newComment.trim()) return;
-    
-    await addComment(currentMatch.id, newComment.trim());
-    setNewComment('');
-  };
-
-  const handleSendChat = async () => {
-    if (!currentMatch || !newChatMessage.trim()) return;
-    
-    await sendChatMessage(currentMatch.id, newChatMessage.trim());
-    setNewChatMessage('');
-  };
-
-  return (
-    <main className="min-h-screen bg-slate-950 text-slate-100">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-red-600 to-orange-600 px-4 py-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-                <span className="animate-pulse">🔴</span> Canlı Maçlar
-              </h1>
-              <p className="text-white/70 text-sm mt-1">
-                {liveMatches.filter(m => m.status === 'live').length} canlı maç
-              </p>
-            </div>
-            <button
-              onClick={refreshLiveMatches}
-              className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-xl text-sm font-medium transition-colors"
-            >
-              🔄 Yenile
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-4xl mx-auto px-4 py-6">
-        {/* Live Matches Grid */}
-        {!currentMatch ? (
-          <div className="space-y-4">
-            {liveMatches.length === 0 ? (
-              <div className="text-center py-12">
-                <div className="text-5xl mb-4">📺</div>
-                <p className="text-slate-400">Şu anda canlı maç bulunmuyor</p>
-                <p className="text-sm text-slate-500 mt-2">
-                  Yaklaşan maçlar için tahminlerinizi yapmayı unutmayın!
-                </p>
-              </div>
-            ) : (
-              <div className="grid gap-4">
-                {liveMatches.map(match => (
-                  <LiveMatchCard 
-                    key={match.id} 
-                    match={match} 
-                    onClick={() => selectMatch(match.id)}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        ) : (
-          // Match Detail View
-          <div className="space-y-4">
-            {/* Back Button */}
-            <button
-              onClick={() => selectMatch('')}
-              className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
-            >
-              ← Geri
-            </button>
-
-            {/* Match Score Board */}
-            <div className="bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl p-6">
-              {/* Connection Status */}
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <span className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`} />
-                <span className="text-xs text-slate-500">
-                  {isConnected ? 'Canlı Bağlantı' : 'Bağlantı Bekleniyor...'}
-                </span>
-              </div>
-
-              {/* Teams and Score */}
-              <div className="flex items-center justify-between">
-                <div className="flex-1 text-center">
-                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-3">
-                    🏐
-                  </div>
-                  <h3 className="font-bold text-white text-lg">{currentMatch.homeTeam}</h3>
-                </div>
-
-                <div className="px-8 text-center">
-                  <div className="text-5xl font-black text-white">
-                    {currentMatch.homeSetScore} - {currentMatch.awaySetScore}
-                  </div>
-                  <div className="text-sm text-slate-400 mt-2">Set Skoru</div>
-                  
-                  {currentMatch.status === 'live' && (
-                    <div className="mt-4 bg-red-500/20 border border-red-500/30 rounded-lg px-4 py-2">
-                      <div className="text-2xl font-bold text-white">
-                        {currentMatch.currentSetHomePoints} - {currentMatch.currentSetAwayPoints}
-                      </div>
-                      <div className="text-xs text-red-400">{currentMatch.currentSet}. Set</div>
-                    </div>
-                  )}
-                </div>
-
-                <div className="flex-1 text-center">
-                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center text-3xl mb-3">
-                    🏐
-                  </div>
-                  <h3 className="font-bold text-white text-lg">{currentMatch.awayTeam}</h3>
-                </div>
-              </div>
-
-              {/* Set Scores */}
-              {currentMatch.setScores.length > 0 && (
-                <div className="mt-6 flex justify-center gap-4">
-                  {currentMatch.setScores.map((set, index) => (
-                    <div 
-                      key={index}
-                      className={`px-4 py-2 rounded-lg text-center ${
-                        set.winner === 'home' 
-                          ? 'bg-blue-500/20 border border-blue-500/30' 
-                          : 'bg-orange-500/20 border border-orange-500/30'
-                      }`}
-                    >
-                      <div className="text-xs text-slate-400">{index + 1}. Set</div>
-                      <div className="font-bold text-white">{set.homePoints}-{set.awayPoints}</div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Tabs */}
-            <div className="flex gap-2 border-b border-slate-800 pb-4">
-              {[
-                { key: 'chat', label: 'Canlı Sohbet', icon: '💬' },
-                { key: 'comments', label: 'Yorumlar', icon: '📝' },
-              ].map(tab => (
-                <button
-                  key={tab.key}
-                  onClick={() => setActiveTab(tab.key as typeof activeTab)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-                    activeTab === tab.key
-                      ? 'bg-white/10 text-white'
-                      : 'text-slate-400 hover:text-white hover:bg-white/5'
-                  }`}
-                >
-                  <span>{tab.icon}</span>
-                  <span>{tab.label}</span>
-                </button>
-              ))}
-            </div>
-
-            {/* Chat */}
-            {activeTab === 'chat' && (
-              <div className="bg-slate-900/50 border border-slate-800 rounded-xl">
-                <div className="h-64 overflow-y-auto p-4 space-y-3">
-                  {chatMessages.length === 0 ? (
-                    <div className="text-center text-slate-500 py-8">
-                      Henüz mesaj yok. İlk mesajı sen yaz!
-                    </div>
-                  ) : (
-                    chatMessages.map(msg => (
-                      <div key={msg.id} className="flex items-start gap-3">
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white text-xs font-bold">
-                          {msg.user?.displayName?.charAt(0) || '?'}
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <span className="font-bold text-white text-sm">
-                              {msg.user?.displayName}
-                            </span>
-                            <span className="text-xs text-slate-500">
-                              {new Date(msg.timestamp).toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}
-                            </span>
-                          </div>
-                          <p className="text-slate-300 text-sm">{msg.message}</p>
-                        </div>
-                      </div>
-                    ))
-                  )}
-                </div>
-
-                {user && (
-                  <div className="border-t border-slate-800 p-4">
-                    <div className="flex gap-2">
-                      <input
-                        type="text"
-                        value={newChatMessage}
-                        onChange={(e) => setNewChatMessage(e.target.value)}
-                        onKeyPress={(e) => e.key === 'Enter' && handleSendChat()}
-                        placeholder="Mesaj yaz..."
-                        className="flex-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500"
-                      />
-                      <button
-                        onClick={handleSendChat}
-                        className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-xl font-medium transition-colors"
-                      >
-                        Gönder
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* Comments */}
-            {activeTab === 'comments' && (
-              <div className="space-y-4">
-                {user && (
-                  <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <textarea
-                      value={newComment}
-                      onChange={(e) => setNewComment(e.target.value)}
-                      placeholder="Maç hakkında yorumunuzu yazın..."
-                      className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500 resize-none h-20"
-                    />
-                    <div className="flex justify-end mt-2">
-                      <button
-                        onClick={handleSendComment}
-                        className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-xl text-sm font-medium transition-colors"
-                      >
-                        Yorum Yap
-                      </button>
-                    </div>
-                  </div>
-                )}
-
-                <div className="space-y-3">
-                  {comments.length === 0 ? (
-                    <div className="text-center py-8 text-slate-500">
-                      Henüz yorum yok
-                    </div>
-                  ) : (
-                    comments.map(comment => (
-                      <div 
-                        key={comment.id}
-                        className="bg-slate-900/50 border border-slate-800 rounded-xl p-4"
-                      >
-                        <div className="flex items-start gap-3">
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white font-bold">
-                            {comment.user?.displayName?.charAt(0) || '?'}
-                          </div>
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2">
-                              <span className="font-bold text-white">{comment.user?.displayName}</span>
-                              <span className="text-xs text-slate-500">
-                                {new Date(comment.createdAt).toLocaleString('tr-TR')}
-                              </span>
-                            </div>
-                            <p className="text-slate-300 mt-1">{comment.message}</p>
-                            <button
-                              onClick={() => likeComment(comment.id)}
-                              className="flex items-center gap-1 text-sm text-slate-500 hover:text-red-400 mt-2 transition-colors"
-                            >
-                              ❤️ {comment.likes}
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    ))
-                  )}
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-    </main>
-  );
-}
-
-// Live Match Card Component
-function LiveMatchCard({ match, onClick }: { match: LiveMatch; onClick: () => void }) {
-  const isLive = match.status === 'live';
-  
-  return (
-    <button
-      onClick={onClick}
-      className={`w-full bg-slate-900/50 border rounded-xl p-4 text-left transition-all hover:border-slate-600 ${
-        isLive ? 'border-red-500/50' : 'border-slate-800'
-      }`}
-    >
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4 flex-1">
-          {/* Home Team */}
-          <div className="flex-1 text-right">
-            <span className="font-bold text-white">{match.homeTeam}</span>
-          </div>
-
-          {/* Score */}
-          <div className="text-center px-4">
-            {isLive ? (
-              <div>
-                <div className="flex items-center gap-2 justify-center">
-                  <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-                  <span className="text-xs text-red-400 font-medium">CANLI</span>
-                </div>
-                <div className="text-2xl font-black text-white mt-1">
-                  {match.homeSetScore} - {match.awaySetScore}
-                </div>
-                <div className="text-xs text-slate-400">
-                  {match.currentSetHomePoints}-{match.currentSetAwayPoints} ({match.currentSet}. Set)
-                </div>
-              </div>
-            ) : match.status === 'finished' ? (
-              <div>
-                <span className="text-xs text-slate-500">Bitti</span>
-                <div className="text-2xl font-black text-white mt-1">
-                  {match.homeSetScore} - {match.awaySetScore}
-                </div>
-              </div>
-            ) : (
-              <div>
-                <span className="text-xs text-slate-500">
-                  {new Date(match.startTime).toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}
-                </span>
-                <div className="text-lg font-bold text-slate-400 mt-1">vs</div>
-              </div>
-            )}
-          </div>
-
-          {/* Away Team */}
-          <div className="flex-1 text-left">
-            <span className="font-bold text-white">{match.awayTeam}</span>
-          </div>
-        </div>
-
-        <span className="text-slate-400 ml-4">→</span>
-      </div>
-
-      <div className="mt-3 text-xs text-slate-500 text-center">
-        {match.league} {match.venue && `• ${match.venue}`}
-      </div>
-    </button>
-  );
-}
-
-```
-
-## File: app\login\layout.tsx
-```
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-    title: "Giriş Yap",
-    description: "VolleySimulator hesabınıza giriş yapın. Maç tahminleri yapın, puan kazanın ve liderlik tablosunda yerinizi alın.",
-    openGraph: {
-        title: "Giriş Yap | VolleySimulator",
-        description: "VolleySimulator hesabınıza giriş yapın ve tahmin oyununa katılın.",
-    },
-    robots: {
-        index: false,
-        follow: true,
-    },
-};
-
-export default function LoginLayout({
-    children,
-}: {
-    children: React.ReactNode;
-}) {
-    return children;
-}
-
-```
-
-## File: app\login\page.tsx
-```
-"use client";
-
-// Prevent static prerendering - this page requires auth context
-export const dynamic = 'force-dynamic';
-
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useAuth } from "../context/AuthContext";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Separator } from "@/components/ui/separator";
-import { Loader2, ArrowRight, AlertCircle } from "lucide-react";
-
-import LoginBackground from "../components/LoginBackground";
-
-export default function LoginPage() {
-    const router = useRouter();
-    const { signIn, signInWithGoogle, user } = useAuth();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState("");
-
-    // Redirect if already logged in
-    useEffect(() => {
-        if (user) {
-            router.push('/ligler');
-        }
-    }, [user, router]);
-
-    if (user) {
-        return null;
-    }
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsLoading(true);
-        setError("");
-
-        const { error } = await signIn(email, password);
-
-        if (error) {
-            setError(error.message === "Invalid login credentials"
-                ? "E-posta veya şifre hatalı"
-                : error.message
-            );
-            setIsLoading(false);
-        } else {
-            router.push('/ligler');
-        }
-    };
-
-    const handleGoogleLogin = async () => {
-        await signInWithGoogle();
-    };
-
-    return (
-        <main className="min-h-screen relative flex flex-col items-center justify-center p-4 overflow-hidden">
-            <LoginBackground />
-
-            <div className="w-full max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
-
-                {/* Left Side: Brand & Features (Desktop) */}
-                <div className="hidden lg:block space-y-8 animate-fade-in-left">
-                    <div className="space-y-2">
-                        <Link href="/" className="inline-block">
-                            <span className="text-4xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400">
-                                VolleySimulator
-                            </span>
-                        </Link>
-                        <h1 className="text-2xl font-light text-slate-300">
-                            Voleybol Tutkunları İçin <br />
-                            <span className="font-semibold text-white">Yeni Nesil Simülasyon</span>
-                        </h1>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 p-4 rounded-2xl">
-                            <div className="text-3xl mb-2">🏆</div>
-                            <h3 className="font-bold text-white mb-1">Tahmin Oyunu</h3>
-                            <p className="text-sm text-slate-400">Maç skorlarını tahmin et, puanları topla ve liderliğe yüksel.</p>
-                        </div>
-                        <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 p-4 rounded-2xl">
-                            <div className="text-3xl mb-2">📊</div>
-                            <h3 className="font-bold text-white mb-1">Detaylı Analiz</h3>
-                            <p className="text-sm text-slate-400">Takım form durumları ve yapay zeka destekli maç analizleri.</p>
-                        </div>
-                        <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 p-4 rounded-2xl">
-                            <div className="text-3xl mb-2">⚡</div>
-                            <h3 className="font-bold text-white mb-1">Canlı Skor</h3>
-                            <p className="text-sm text-slate-400">Maç sonuçlarını anlık takip et, ligdeki gelişmeleri kaçırma.</p>
-                        </div>
-                        <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 p-4 rounded-2xl">
-                            <div className="text-3xl mb-2">🌍</div>
-                            <h3 className="font-bold text-white mb-1">Topluluk</h3>
-                            <p className="text-sm text-slate-400">Diğer voleybol severlerle yarış ve sıralamada yerini al.</p>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Right Side: Login Card */}
-                <div className="w-full max-w-md mx-auto lg:ml-auto">
-                    <Card className="bg-background/60 backdrop-blur-xl border-border/50 shadow-2xl">
-                        <CardHeader className="text-center">
-                            {/* Mobile Header (Visible only on mobile) */}
-                            <div className="lg:hidden mb-4">
-                                <Link href="/" className="inline-block mb-2">
-                                    <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200">
-                                        VolleySimulator
-                                    </span>
-                                </Link>
-                            </div>
-                            <CardTitle className="text-2xl">Giriş Yap</CardTitle>
-                            <CardDescription>Hesabınıza erişmek için bilgilerinizi girin</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            {/* Login Form */}
-                            <form onSubmit={handleSubmit} className="space-y-4">
-                                {error && (
-                                    <Alert variant="destructive">
-                                        <AlertCircle className="h-4 w-4" />
-                                        <AlertDescription>{error}</AlertDescription>
-                                    </Alert>
-                                )}
-
-                                <div className="space-y-2">
-                                    <Label htmlFor="email">E-posta</Label>
-                                    <Input
-                                        id="email"
-                                        type="email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        placeholder="ornek@email.com"
-                                        required
-                                    />
-                                </div>
-
-                                <div className="space-y-2">
-                                    <div className="flex items-center justify-between">
-                                        <Label htmlFor="password">Şifre</Label>
-                                        <Link href="#" className="text-xs text-primary hover:underline">
-                                            Unuttum?
-                                        </Link>
-                                    </div>
-                                    <Input
-                                        id="password"
-                                        type="password"
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        placeholder="••••••••"
-                                        required
-                                    />
-                                </div>
-
-                                <Button
-                                    type="submit"
-                                    disabled={isLoading}
-                                    className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500"
-                                >
-                                    {isLoading ? (
-                                        <Loader2 className="h-4 w-4 animate-spin" />
-                                    ) : (
-                                        <>
-                                            Giriş Yap
-                                            <ArrowRight className="ml-2 h-4 w-4" />
-                                        </>
-                                    )}
-                                </Button>
-                            </form>
-
-                            <div className="relative my-6">
-                                <Separator />
-                                <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-card px-2 text-xs text-muted-foreground">
-                                    veya
-                                </span>
-                            </div>
-
-                            <Button
-                                type="button"
-                                variant="outline"
-                                onClick={handleGoogleLogin}
-                                className="w-full"
-                            >
-                                <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
-                                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
-                                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-                                </svg>
-                                Google ile devam et
-                            </Button>
-
-                            <p className="mt-6 text-center text-sm text-muted-foreground">
-                                Hesabın yok mu?{" "}
-                                <Link href="/register" className="text-primary font-medium hover:underline">
-                                    Hemen Kayıt Ol
-                                </Link>
-                            </p>
-                        </CardContent>
-                    </Card>
-
-                    {/* Skip Link (Subtle) */}
-                    <div className="text-center mt-6">
-                        <Link href="/1lig/tahminoyunu" className="text-muted-foreground text-xs hover:text-foreground transition-colors flex items-center justify-center gap-1 group">
-                            Giriş yapmadan siteye göz at
-                            <span className="group-hover:translate-x-1 transition-transform">→</span>
-                        </Link>
-                    </div>
-                </div>
-            </div>
-
-            <style jsx>{`
-                @keyframes fade-in-up {
-                    from { opacity: 0; transform: translateY(20px); }
-                    to { opacity: 1; transform: translateY(0); }
-                }
-                @keyframes fade-in-left {
-                    from { opacity: 0; transform: translateX(-20px); }
-                    to { opacity: 1; transform: translateX(0); }
-                }
-                .animate-fade-in-up {
-                    animation: fade-in-up 0.6s ease-out forwards;
-                }
-                .animate-fade-in-left {
-                    animation: fade-in-left 0.6s ease-out forwards;
-                    animation-delay: 0.2s;
-                    opacity: 0;
-                }
-            `}</style>
-        </main>
-    );
-}
-
-```
-
-## File: app\notifications\page.tsx
-```
-"use client";
-
-import { useState, useMemo } from "react";
-import { useNotifications } from "../context/NotificationsContext";
-import { useAuth } from "../context/AuthContext";
-import { Notification, NotificationType } from "../types";
-import Link from "next/link";
-
-export default function NotificationsPage() {
-  const { user } = useAuth();
-  const { 
-    notifications, 
-    unreadCount,
-    preferences,
-    markAsRead, 
-    markAllAsRead,
-    deleteNotification,
-    clearAll,
-    updatePreferences,
-    requestPushPermission,
-    isLoading 
-  } = useNotifications();
-  
-  const [activeTab, setActiveTab] = useState<'all' | 'unread' | 'settings'>('all');
-  const [filter, setFilter] = useState<NotificationType | 'all'>('all');
-
-  // Filter notifications
-  const filteredNotifications = useMemo(() => {
-    let filtered = notifications;
-    
-    if (activeTab === 'unread') {
-      filtered = filtered.filter(n => !n.isRead);
-    }
-    
-    if (filter !== 'all') {
-      filtered = filtered.filter(n => n.type === filter);
-    }
-    
-    return filtered;
-  }, [notifications, activeTab, filter]);
-
-  // Group notifications by date
-  const groupedNotifications = useMemo(() => {
-    const groups: Record<string, Notification[]> = {};
-    
-    filteredNotifications.forEach(notification => {
-      const date = new Date(notification.createdAt).toLocaleDateString('tr-TR');
-      if (!groups[date]) {
-        groups[date] = [];
-      }
-      groups[date].push(notification);
-    });
-    
-    return groups;
-  }, [filteredNotifications]);
-
-  if (!user) {
-    return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-slate-400 mb-4">Bu sayfayı görüntülemek için giriş yapmalısınız.</p>
-          <Link href="/" className="text-emerald-400 hover:underline">Giriş Yap</Link>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <main className="min-h-screen bg-slate-950 text-slate-100">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-cyan-600 to-blue-600 px-4 py-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-white">Bildirimler</h1>
-              <p className="text-white/70 text-sm mt-1">
-                {unreadCount > 0 ? `${unreadCount} okunmamış bildirim` : 'Tüm bildirimler okundu'}
-              </p>
-            </div>
-            {unreadCount > 0 && (
-              <button
-                onClick={markAllAsRead}
-                className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-xl text-sm font-medium transition-colors"
-              >
-                Tümünü Okundu İşaretle
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Tabs */}
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="flex gap-2 py-4 border-b border-slate-800">
-          {[
-            { key: 'all', label: 'Tümü', icon: '📬', count: notifications.length },
-            { key: 'unread', label: 'Okunmamış', icon: '🔔', count: unreadCount },
-            { key: 'settings', label: 'Ayarlar', icon: '⚙️' },
-          ].map(tab => (
-            <button
-              key={tab.key}
-              onClick={() => setActiveTab(tab.key as typeof activeTab)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-                activeTab === tab.key
-                  ? 'bg-white/10 text-white'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              <span>{tab.icon}</span>
-              <span>{tab.label}</span>
-              {tab.count !== undefined && tab.count > 0 && (
-                <span className="bg-cyan-500 text-white text-xs px-2 py-0.5 rounded-full">
-                  {tab.count}
-                </span>
-              )}
-            </button>
-          ))}
-        </div>
-
-        {/* Content */}
-        <div className="py-6">
-          {/* Notification List */}
-          {(activeTab === 'all' || activeTab === 'unread') && (
-            <div className="space-y-6">
-              {/* Filter */}
-              <div className="flex gap-2 overflow-x-auto pb-2">
-                {[
-                  { key: 'all', label: 'Tümü' },
-                  { key: 'match_reminder', label: 'Maç Hatırlatma' },
-                  { key: 'match_result', label: 'Sonuçlar' },
-                  { key: 'friend_request', label: 'Arkadaşlık' },
-                  { key: 'achievement', label: 'Başarımlar' },
-                  { key: 'leaderboard_change', label: 'Sıralama' },
-                ].map(f => (
-                  <button
-                    key={f.key}
-                    onClick={() => setFilter(f.key as typeof filter)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors ${
-                      filter === f.key
-                        ? 'bg-cyan-600 text-white'
-                        : 'bg-slate-800 text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    {f.label}
-                  </button>
-                ))}
-              </div>
-
-              {/* Notifications */}
-              {Object.keys(groupedNotifications).length === 0 ? (
-                <div className="text-center py-12">
-                  <div className="text-5xl mb-4">🔔</div>
-                  <p className="text-slate-400">Bildirim yok</p>
-                </div>
-              ) : (
-                Object.entries(groupedNotifications).map(([date, notifs]) => (
-                  <div key={date}>
-                    <h3 className="text-sm font-medium text-slate-500 mb-3">{date}</h3>
-                    <div className="space-y-2">
-                      {notifs.map(notification => (
-                        <NotificationItem
-                          key={notification.id}
-                          notification={notification}
-                          onRead={() => markAsRead(notification.id)}
-                          onDelete={() => deleteNotification(notification.id)}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                ))
-              )}
-
-              {notifications.length > 0 && (
-                <div className="text-center pt-4">
-                  <button
-                    onClick={clearAll}
-                    className="text-sm text-slate-500 hover:text-red-400 transition-colors"
-                  >
-                    Tüm Bildirimleri Temizle
-                  </button>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Settings */}
-          {activeTab === 'settings' && (
-            <div className="space-y-6">
-              {/* Push Notifications */}
-              <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="font-bold text-white">Push Bildirimleri</h3>
-                    <p className="text-sm text-slate-400 mt-1">
-                      Tarayıcı bildirimleri alın
-                    </p>
-                  </div>
-                  {preferences.pushEnabled ? (
-                    <span className="text-emerald-400 text-sm">✓ Aktif</span>
-                  ) : (
-                    <button
-                      onClick={requestPushPermission}
-                      className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 rounded-lg text-sm font-medium transition-colors"
-                    >
-                      Etkinleştir
-                    </button>
-                  )}
-                </div>
-              </div>
-
-              {/* Notification Types */}
-              <div className="bg-slate-900/50 border border-slate-800 rounded-xl overflow-hidden">
-                <div className="p-4 border-b border-slate-800">
-                  <h3 className="font-bold text-white">Bildirim Türleri</h3>
-                </div>
-                
-                <div className="divide-y divide-slate-800">
-                  {[
-                    { key: 'matchReminders', label: 'Maç Hatırlatmaları', icon: '⏰', desc: 'Tahmin edilmemiş maçlar için hatırlatma' },
-                    { key: 'matchResults', label: 'Maç Sonuçları', icon: '⚽', desc: 'Tahmin edilen maçların sonuçları' },
-                    { key: 'friendRequests', label: 'Arkadaşlık İstekleri', icon: '👥', desc: 'Yeni arkadaşlık istekleri' },
-                    { key: 'friendActivity', label: 'Arkadaş Aktiviteleri', icon: '📊', desc: 'Arkadaşların tahminleri ve başarımları' },
-                    { key: 'achievements', label: 'Başarımlar', icon: '🏆', desc: 'Yeni rozetler ve başarımlar' },
-                    { key: 'leaderboardChanges', label: 'Sıralama Değişiklikleri', icon: '📈', desc: 'Liderlik tablosu güncellemeleri' },
-                    { key: 'dailyQuests', label: 'Günlük Görevler', icon: '📋', desc: 'Günlük görev hatırlatmaları' },
-                    { key: 'weeklyDigest', label: 'Haftalık Özet', icon: '📰', desc: 'Haftalık performans özeti' },
-                  ].map(setting => (
-                    <div key={setting.key} className="flex items-center justify-between p-4">
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl">{setting.icon}</span>
-                        <div>
-                          <h4 className="font-medium text-white">{setting.label}</h4>
-                          <p className="text-xs text-slate-500">{setting.desc}</p>
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => updatePreferences({ 
-                          [setting.key]: !preferences[setting.key as keyof typeof preferences]
-                        })}
-                        className={`relative w-12 h-6 rounded-full transition-colors ${
-                          preferences[setting.key as keyof typeof preferences]
-                            ? 'bg-cyan-600'
-                            : 'bg-slate-700'
-                        }`}
-                      >
-                        <span 
-                          className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${
-                            preferences[setting.key as keyof typeof preferences]
-                              ? 'left-7'
-                              : 'left-1'
-                          }`}
-                        />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Quiet Hours */}
-              <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
-                <h3 className="font-bold text-white mb-4">Sessiz Saatler</h3>
-                <p className="text-sm text-slate-400 mb-4">
-                  Bu saatler arasında bildirim almayın
-                </p>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs text-slate-500 mb-2">Başlangıç</label>
-                    <input
-                      type="time"
-                      value={preferences.quietHoursStart || '23:00'}
-                      onChange={(e) => updatePreferences({ quietHoursStart: e.target.value })}
-                      className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs text-slate-500 mb-2">Bitiş</label>
-                    <input
-                      type="time"
-                      value={preferences.quietHoursEnd || '08:00'}
-                      onChange={(e) => updatePreferences({ quietHoursEnd: e.target.value })}
-                      className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Email Notifications */}
-              <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="font-bold text-white">E-posta Bildirimleri</h3>
-                    <p className="text-sm text-slate-400 mt-1">
-                      Önemli güncellemeler için e-posta alın
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => updatePreferences({ emailEnabled: !preferences.emailEnabled })}
-                    className={`relative w-12 h-6 rounded-full transition-colors ${
-                      preferences.emailEnabled ? 'bg-cyan-600' : 'bg-slate-700'
-                    }`}
-                  >
-                    <span 
-                      className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${
-                        preferences.emailEnabled ? 'left-7' : 'left-1'
-                      }`}
-                    />
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    </main>
-  );
-}
-
-// Notification Item Component
-function NotificationItem({ 
-  notification, 
-  onRead, 
-  onDelete 
-}: { 
-  notification: Notification; 
-  onRead: () => void;
-  onDelete: () => void;
-}) {
-  const icon = getNotificationIcon(notification.type);
-  
-  return (
-    <div 
-      className={`bg-slate-900/50 border rounded-xl p-4 transition-all ${
-        notification.isRead 
-          ? 'border-slate-800 opacity-70' 
-          : 'border-cyan-500/30 bg-cyan-500/5'
-      }`}
-    >
-      <div className="flex items-start gap-3">
-        <div className="text-2xl">{icon}</div>
-        <div className="flex-1">
-          <h4 className={`font-medium ${notification.isRead ? 'text-slate-300' : 'text-white'}`}>
-            {notification.title}
-          </h4>
-          <p className="text-sm text-slate-400 mt-1">{notification.message}</p>
-          <div className="flex items-center gap-4 mt-2">
-            <span className="text-xs text-slate-500">
-              {new Date(notification.createdAt).toLocaleTimeString('tr-TR', { 
-                hour: '2-digit', 
-                minute: '2-digit' 
-              })}
-            </span>
-            {notification.link && (
-              <Link 
-                href={notification.link}
-                className="text-xs text-cyan-400 hover:underline"
-              >
-                Görüntüle →
-              </Link>
-            )}
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          {!notification.isRead && (
-            <button
-              onClick={onRead}
-              className="p-1 text-slate-400 hover:text-white transition-colors"
-              title="Okundu işaretle"
-            >
-              ✓
-            </button>
-          )}
-          <button
-            onClick={onDelete}
-            className="p-1 text-slate-400 hover:text-red-400 transition-colors"
-            title="Sil"
-          >
-            ✕
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function getNotificationIcon(type: NotificationType): string {
-  switch (type) {
-    case 'match_reminder': return '⏰';
-    case 'match_result': return '⚽';
-    case 'prediction_result': return '🎯';
-    case 'friend_request': return '👥';
-    case 'friend_activity': return '📊';
-    case 'achievement': return '🏆';
-    case 'level_up': return '⬆️';
-    case 'leaderboard_change': return '📈';
-    case 'daily_quest': return '📋';
-    case 'weekly_challenge': return '🏅';
-    case 'system': return '📢';
-    default: return '🔔';
-  }
-}
-
-```
-
-## File: app\oauth\consent\page.tsx
-```
-"use client";
-
-import { useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { createClient } from "../../utils/supabase";
-import Link from "next/link";
-import { Suspense } from "react";
-
-function ConsentContent() {
-    const router = useRouter();
-    const searchParams = useSearchParams();
-    const supabase = createClient();
-
-    useEffect(() => {
-        // Check if there's an auth code to exchange
-        const code = searchParams.get('code');
-        if (code && supabase) {
-            supabase.auth.exchangeCodeForSession(code).then(() => {
-                router.push('/profile');
-            });
-        }
-    }, [searchParams, router, supabase]);
-
-    return (
-        <main className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4">
-            <div className="w-full max-w-md text-center">
-                {/* Header */}
-                <div className="mb-8">
-                    <Link href="/" className="inline-block mb-6">
-                        <span className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200">
-                            VolleySimulator
-                        </span>
-                    </Link>
-                </div>
-
-                {/* Consent Card */}
-                <div className="bg-slate-900/80 rounded-2xl border border-slate-700 p-8 space-y-6">
-                    <div className="w-16 h-16 mx-auto bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-500/30">
-                        <span className="text-3xl">🔐</span>
-                    </div>
-
-                    <div>
-                        <h1 className="text-2xl font-black text-white mb-2">Giriş Onayı</h1>
-                        <p className="text-slate-400 text-sm">
-                            VolleySimulator uygulamasına erişim izni verin
-                        </p>
-                    </div>
-
-                    <div className="bg-slate-800/50 rounded-xl p-4 text-left space-y-3">
-                        <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
-                            İzin Verilen Erişimler:
-                        </div>
-                        <div className="flex items-center gap-3 text-sm text-slate-300">
-                            <span className="text-emerald-400">✓</span>
-                            <span>Profil bilgileriniz</span>
-                        </div>
-                        <div className="flex items-center gap-3 text-sm text-slate-300">
-                            <span className="text-emerald-400">✓</span>
-                            <span>E-posta adresiniz</span>
-                        </div>
-                        <div className="flex items-center gap-3 text-sm text-slate-300">
-                            <span className="text-emerald-400">✓</span>
-                            <span>Tahmin ve oyun ilerlemeniz</span>
-                        </div>
-                    </div>
-
-                    <div className="space-y-3">
-                        <Link
-                            href="/profile"
-                            className="block w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all text-center"
-                        >
-                            ✓ İzin Ver ve Devam Et
-                        </Link>
-                        <Link
-                            href="/"
-                            className="block w-full py-3 bg-slate-800 border border-slate-700 text-slate-400 font-medium rounded-xl hover:bg-slate-700 transition-all text-center"
-                        >
-                            İptal
-                        </Link>
-                    </div>
-                </div>
-
-                <p className="mt-6 text-xs text-slate-500">
-                    Giriş yaparak{" "}
-                    <a href="#" className="text-emerald-400 hover:underline">Kullanım Koşulları</a>
-                    {" "}ve{" "}
-                    <a href="#" className="text-emerald-400 hover:underline">Gizlilik Politikası</a>
-                    &apos;nı kabul etmiş olursunuz.
-                </p>
-            </div>
-        </main>
-    );
-}
-
-export default function OAuthConsentPage() {
-    return (
-        <Suspense fallback={
-            <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500"></div>
-            </div>
-        }>
-            <ConsentContent />
-        </Suspense>
-    );
-}
-
-```
-
-## File: app\offline\page.tsx
-```
-'use client';
-
-import Link from 'next/link';
-
-export default function OfflinePage() {
-    return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-950 to-slate-900 flex flex-col items-center justify-center p-4">
-            <div className="text-center space-y-6 max-w-md">
-                {/* Icon */}
-                <div className="text-6xl">📡</div>
-
-                {/* Title */}
-                <h1 className="text-3xl font-bold text-white">
-                    İnternet Bağlantısı Yok
-                </h1>
-
-                {/* Description */}
-                <p className="text-slate-400 text-lg">
-                    Şu anda çevrimdışısınız. Lütfen internet bağlantınızı kontrol edin.
-                </p>
-
-                {/* Cached Content Info */}
-                <div className="bg-slate-900/50 border border-slate-800 rounded-lg p-4 text-sm text-slate-300">
-                    <p className="mb-2">✓ Kacak sayfa önbellekte saklanmıştır</p>
-                    <p className="mb-2">✓ Tahminleriniz yerel olarak kaydedilmiştir</p>
-                    <p>✓ Bağlantı sağlandığında senkronize olacaktır</p>
-                </div>
-
-                {/* Actions */}
-                <div className="space-y-3 pt-4">
-                    <button
-                        onClick={() => window.location.reload()}
-                        className="w-full px-4 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg transition-colors"
-                    >
-                        Yenile
-                    </button>
-
-                    <Link
-                        href="/"
-                        className="block w-full px-4 py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-lg transition-colors text-center"
-                    >
-                        Ana Sayfaya Dön
-                    </Link>
-                </div>
-
-                {/* Tips */}
-                <div className="text-xs text-slate-500 space-y-1 pt-4 border-t border-slate-800">
-                    <p>💡 WiFi bağlantınızı kontrol edin</p>
-                    <p>💡 Mobil veri bağlantınızı açmayı deneyin</p>
-                    <p>💡 Uçak modu kapalı olduğundan emin olun</p>
                 </div>
             </div>
         </div>

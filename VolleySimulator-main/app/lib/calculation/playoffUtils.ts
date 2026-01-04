@@ -1,4 +1,4 @@
-import { Match, TeamStats, MatchOverride } from "../types";
+import { Match, TeamStats, MatchOverride } from "../../types";
 import { normalizeTeamName } from "./calculatorUtils";
 import { calculateElo } from "./eloCalculator";
 

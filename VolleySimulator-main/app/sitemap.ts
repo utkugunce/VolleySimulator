@@ -1,4 +1,6 @@
 import { MetadataRoute } from 'next';
+import { getLeagueData } from './lib/data/serverData';
+import { generateTeamSlug } from './utils/teamSlug';
 
 // Your production domain
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://volleysimulator.com';
@@ -53,14 +55,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }))
     );
 
-    // TODO: Add dynamic team pages from team-registry.json
-    // const teamsData = await import('@/data/team-registry.json');
-    // const teamPages = teamsData.teams.map(team => ({
-    //     url: `${BASE_URL}/takimlar/${team.slug}`,
-    //     lastModified: now,
-    //     changeFrequency: 'weekly' as const,
-    //     priority: 0.6,
-    // }));
+    // Dynamic Team Pages
+    let teamPages: MetadataRoute.Sitemap = [];
+    try {
+        for (const league of leagues) {
+            const data = await getLeagueData(league);
+            const leagueTeams = data.teams.map(t => ({
+                url: `${BASE_URL}/${league}/takim/${generateTeamSlug(t.name)}`,
+                lastModified: now,
+                changeFrequency: 'weekly' as const,
+                priority: 0.6
+            }));
+            teamPages = [...teamPages, ...leagueTeams];
+        }
+    } catch (e) {
+        console.error("Sitemap generation error", e);
+    }
 
-    return [...staticPages, ...leaguePages];
+    return [...staticPages, ...leaguePages, ...teamPages];
 }

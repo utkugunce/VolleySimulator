@@ -1,0 +1,539 @@
+﻿
+> web_app@0.1.0 test:e2e
+> playwright test e2e/predictions.spec.ts
+
+
+Running 18 tests using 8 workers
+
+node.exe : [2m[WebServer] [22m[getLeagueData] Database override fe
+tch failed for vsl: Error: Supabase environment variables (NEXT_PUBL
+IC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node
+_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~
+    + CategoryInfo          : NotSpecified: ([2m[WebServer]...Y) a 
+   re missing.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at VSLTahminOyunuPage (app\vsl\tahminoyunu\
+page.tsx:18:51)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+[2m[WebServer] [22m[getLeagueData] Returning 14 teams for vsl (Fal
+lback/Normal)
+[2m[WebServer] [22m[getLeagueData] Database override fetch failed 
+for vsl: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE
+_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at VSLTahminOyunuPage (app\vsl\tahminoyunu\
+page.tsx:18:51)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+[2m[WebServer] [22m[getLeagueData] Returning 14 teams for vsl (Fal
+lback/Normal)
+[2m[WebServer] [22m[getLeagueData] Database override fetch failed 
+for vsl: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE
+_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at VSLTahminOyunuPage (app\vsl\tahminoyunu\
+page.tsx:18:51)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+[2m[WebServer] [22m[getLeagueData] Returning 14 teams for vsl (Fal
+lback/Normal)
+[2m[WebServer] [22m[getLeagueData] Database override fetch failed 
+for vsl: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE
+_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at VSLDetailedPage (app\vsl\gunceldurum\pag
+e.tsx:15:51)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+[2m[WebServer] [22m[getLeagueData] Returning 14 teams for vsl (Fal
+lback/Normal)
+[2m[WebServer] [22m[getLeagueData] Database override fetch failed 
+for vsl: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE
+_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at VSLDetailedPage (app\vsl\gunceldurum\pag
+e.tsx:15:51)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+[2m[WebServer] [22m[getLeagueData] Returning 14 teams for vsl (Fal
+lback/Normal)
+[2m[WebServer] [22m[getLeagueData] Database override fetch failed 
+for vsl: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE
+_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at VSLStatsPage (app\vsl\stats\page.tsx:15:
+51)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+[2m[WebServer] [22m[getLeagueData] Returning 14 teams for vsl (Fal
+lback/Normal)
+[2m[WebServer] [22m[getLeagueData] Database override fetch failed 
+for 1lig: Error: Supabase environment variables (NEXT_PUBLIC_SUPABAS
+E_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at OneLigTahminOyunuPage (app\1lig\tahminoy
+unu\page.tsx:18:51)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+[2m[WebServer] [22m[getLeagueData] Returning 26 teams for 1lig (Fa
+llback/Normal)
+[2m[WebServer] [22m[getLeagueData] Database override fetch failed 
+for cev-cl: Error: Supabase environment variables (NEXT_PUBLIC_SUPAB
+ASE_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at CEVCLTahminOyunuPage (app\cev-cl\tahmino
+yunu\page.tsx:18:51)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+[2m[WebServer] [22m[getLeagueData] Returning 20 teams for cev-cl (
+Fallback/Normal)
+  Ô£ô   8 [chromium] ÔÇ║ e2e\predictions.spec.ts:77:7 ÔÇ║ Stats Pages ÔÇ║ should load VSL stats page (18.2s)
+  Ô£ô   6 [chromium] ÔÇ║ e2e\predictions.spec.ts:44:7 ÔÇ║ Prediction Game ÔÇ║ should load CEV CL prediction page (18.2s)
+  Ô£ô   2 [chromium] ÔÇ║ e2e\predictions.spec.ts:52:7 ÔÇ║ Standings Calculator ÔÇ║ should load standings page (18.3s)
+  Ô£ô   1 [chromium] ÔÇ║ e2e\predictions.spec.ts:14:7 ÔÇ║ Prediction Game ÔÇ║ should show match cards or fixture list (18.6s)
+  Ô£ô   5 [chromium] ÔÇ║ e2e\predictions.spec.ts:25:7 ÔÇ║ Prediction Game ÔÇ║ should show prediction inputs when available (18.6s)
+  Ô£ô   3 [chromium] ÔÇ║ e2e\predictions.spec.ts:4:7 ÔÇ║ Prediction Game ÔÇ║ should load VSL prediction page (18.6s)
+  Ô£ô   4 [chromium] ÔÇ║ e2e\predictions.spec.ts:38:7 ÔÇ║ Prediction Game ÔÇ║ should load 1.Lig prediction page (19.0s)
+[2m[WebServer] [22m[getLeagueData] Database override fetch failed 
+for 1lig: Error: Supabase environment variables (NEXT_PUBLIC_SUPABAS
+E_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at OneLigStatsPage (app\1lig\stats\page.tsx
+:15:42)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+[2m[WebServer] [22m[getLeagueData] Returning 26 teams for 1lig (Fa
+llback/Normal)
+  Ô£İ   7 [chromium] ÔÇ║ e2e\predictions.spec.ts:63:7 ÔÇ║ Standings Calculator ÔÇ║ should display team information (18.6s)
+  Ô£ô   9 [chromium] ÔÇ║ e2e\predictions.spec.ts:83:7 ÔÇ║ Stats Pages ÔÇ║ should load 1.Lig stats page (1.8s)
+[2m[WebServer] [22m[31m[1mÔ¿»[22m[39m The requested resource i
+sn't a valid image for /logos/PTT.png received [1mnull[22m
+[2m[WebServer] [22m[31m[1mÔ¿»[22m[39m The requested resource i
+sn't a valid image for /logos/S─░GORTA SHOP MKE ANKARAG├£C├£.png rec
+eived [1mnull[22m
+[2m[WebServer] [22m[getLeagueData] Database override fetch failed 
+for cev-cl: Error: Supabase environment variables (NEXT_PUBLIC_SUPAB
+ASE_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at CEVCLTahminOyunuPage (app\cev-cl\tahmino
+yunu\page.tsx:18:51)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+[2m[WebServer] [22m[getLeagueData] Returning 20 teams for cev-cl (
+Fallback/Normal)
+[2m[WebServer] [22m[getLeagueData] Database override fetch failed 
+for vsl: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE
+_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at VSLTahminOyunuPage (app\vsl\tahminoyunu\
+page.tsx:18:51)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+[2m[WebServer] [22m[getLeagueData] Returning 14 teams for vsl (Fal
+lback/Normal)
+[2m[WebServer] [22m[getLeagueData] Database override fetch failed 
+for vsl: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE
+_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at VSLDetailedPage (app\vsl\gunceldurum\pag
+e.tsx:15:51)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+[2m[WebServer] [22m[getLeagueData] Returning 14 teams for vsl (Fal
+lback/Normal)
+[2m[WebServer] [22m[getLeagueData] Database override fetch failed 
+for vsl: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE
+_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at VSLTahminOyunuPage (app\vsl\tahminoyunu\
+page.tsx:18:51)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+[2m[WebServer] [22m[getLeagueData] Returning 14 teams for vsl (Fal
+lback/Normal)
+[2m[WebServer] [22m[getLeagueData] Database override fetch failed 
+for vsl: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE
+_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at VSLTahminOyunuPage (app\vsl\tahminoyunu\
+page.tsx:18:51)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+[2m[WebServer] [22m[getLeagueData] Returning 14 teams for vsl (Fal
+lback/Normal)
+[2m[WebServer] [22m[getLeagueData] Database override fetch failed 
+for 1lig: Error: Supabase environment variables (NEXT_PUBLIC_SUPABAS
+E_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at OneLigTahminOyunuPage (app\1lig\tahminoy
+unu\page.tsx:18:51)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+[2m[WebServer] [22m[getLeagueData] Returning 26 teams for 1lig (Fa
+llback/Normal)
+[2m[WebServer] [22m[getLeagueData] Database override fetch failed 
+for vsl: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE
+_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at VSLDetailedPage (app\vsl\gunceldurum\pag
+e.tsx:15:51)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+[2m[WebServer] [22m[getLeagueData] Returning 14 teams for vsl (Fal
+lback/Normal)
+[2m[WebServer] [22m[getLeagueData] Database override fetch failed 
+for vsl: Error: Supabase environment variables (NEXT_PUBLIC_SUPABASE
+_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at VSLStatsPage (app\vsl\stats\page.tsx:15:
+51)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+[2m[WebServer] [22m[getLeagueData] Returning 14 teams for vsl (Fal
+lback/Normal)
+  Ô£ô  11 [mobile-chrome] ÔÇ║ e2e\predictions.spec.ts:44:7 ÔÇ║ Prediction Game ÔÇ║ should load CEV CL prediction page (4.6s)
+[2m[WebServer] [22m[getLeagueData] Database override fetch failed 
+for 1lig: Error: Supabase environment variables (NEXT_PUBLIC_SUPABAS
+E_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at OneLigStatsPage (app\1lig\stats\page.tsx
+:15:42)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+[2m[WebServer] [22m[getLeagueData] Returning 26 teams for 1lig (Fa
+llback/Normal)
+  Ô£ô  13 [mobile-chrome] ÔÇ║ e2e\predictions.spec.ts:4:7 ÔÇ║ Prediction Game ÔÇ║ should load VSL prediction page (5.6s)
+  Ô£ô  15 [mobile-chrome] ÔÇ║ e2e\predictions.spec.ts:38:7 ÔÇ║ Prediction Game ÔÇ║ should load 1.Lig prediction page (6.1s)
+  Ô£ô  14 [mobile-chrome] ÔÇ║ e2e\predictions.spec.ts:25:7 ÔÇ║ Prediction Game ÔÇ║ should show prediction inputs when available (7.3s)
+  Ô£ô  10 [mobile-chrome] ÔÇ║ e2e\predictions.spec.ts:52:7 ÔÇ║ Standings Calculator ÔÇ║ should load standings page (7.4s)
+  Ô£ô  17 [mobile-chrome] ÔÇ║ e2e\predictions.spec.ts:77:7 ÔÇ║ Stats Pages ÔÇ║ should load VSL stats page (6.6s)
+[2m[WebServer] [22m[31m[1mÔ¿»[22m[39m The requested resource i
+sn't a valid image for /logos/PTT.png received [1mnull[22m
+[2m[WebServer] [22m[31m[1mÔ¿»[22m[39m The requested resource i
+sn't a valid image for /logos/S─░GORTA SHOP MKE ANKARAG├£C├£.png rec
+eived [1mnull[22m
+  Ô£ô  18 [mobile-chrome] ÔÇ║ e2e\predictions.spec.ts:83:7 ÔÇ║ Stats Pages ÔÇ║ should load 1.Lig stats page (4.0s)
+  Ô£ô  12 [mobile-chrome] ÔÇ║ e2e\predictions.spec.ts:14:7 ÔÇ║ Prediction Game ÔÇ║ should show match cards or fixture list (8.7s)
+  Ô£İ  16 [mobile-chrome] ÔÇ║ e2e\predictions.spec.ts:63:7 ÔÇ║ Standings Calculator ÔÇ║ should display team information (8.2s)
+
+
+  1) [chromium] ÔÇ║ e2e\predictions.spec.ts:63:7 ÔÇ║ Standings Calculator ÔÇ║ should display team information 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      70 |     const count = await teamElements.count();
+      71 |     
+    > 72 |     expect(count).toBeGreaterThan(0);
+         |                   ^
+      73 |   });
+      74 | });
+      75 |
+        at C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\e2e\predictions.spec.ts:72:19
+
+    attachment #1: screenshot (image/png) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\predictions-Standings-Calc-d677f-ld-display-team-information-chromium\test-failed-1.png
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    attachment #2: video (video/webm) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\predictions-Standings-Calc-d677f-ld-display-team-information-chromium\video.webm
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    Error Context: test-results\predictions-Standings-Calc-d677f-ld-display-team-information-chromium\error-context.md
+
+  2) [mobile-chrome] ÔÇ║ e2e\predictions.spec.ts:63:7 ÔÇ║ Standings Calculator ÔÇ║ should display team information 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      70 |     const count = await teamElements.count();
+      71 |     
+    > 72 |     expect(count).toBeGreaterThan(0);
+         |                   ^
+      73 |   });
+      74 | });
+      75 |
+        at C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\e2e\predictions.spec.ts:72:19
+
+    attachment #1: screenshot (image/png) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\predictions-Standings-Calc-d677f-ld-display-team-information-mobile-chrome\test-failed-1.png
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    attachment #2: video (video/webm) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\predictions-Standings-Calc-d677f-ld-display-team-information-mobile-chrome\video.webm
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    Error Context: test-results\predictions-Standings-Calc-d677f-ld-display-team-information-mobile-chrome\error-context.md
+
+  2 failed
+    [chromium] ÔÇ║ e2e\predictions.spec.ts:63:7 ÔÇ║ Standings Calculator ÔÇ║ should display team information 
+    [mobile-chrome] ÔÇ║ e2e\predictions.spec.ts:63:7 ÔÇ║ Standings Calculator ÔÇ║ should display team information 
+  16 passed (35.0s)
+
+To open last HTML report run:
+[36m[39m
+[36m  npx playwright show-report[39m
+[36m[39m

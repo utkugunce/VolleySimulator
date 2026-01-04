@@ -868,18 +868,21 @@ export interface SimulationMoment {
     "@supabase/supabase-js": "^2.89.0",
     "@tailwindcss/postcss": "^4.1.18",
     "@tanstack/react-query": "^5.90.16",
+    "@types/canvas-confetti": "^1.9.0",
     "@types/node": "^25.0.3",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vercel/analytics": "^1.6.1",
     "@vercel/speed-insights": "^1.3.1",
     "autoprefixer": "^10.4.23",
+    "canvas-confetti": "^1.9.4",
     "cheerio": "^1.1.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "eslint": "^9.39.2",
     "eslint-config-next": "^16.1.1",
+    "framer-motion": "^12.23.26",
     "html-to-image": "^1.11.13",
     "iconv-lite": "^0.7.1",
     "lucide-react": "^0.562.0",
@@ -891,6 +894,7 @@ export interface SimulationMoment {
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-hot-toast": "^2.6.0",
+    "recharts": "^3.6.0",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.18",
@@ -948,7 +952,15 @@ const nextConfig: NextConfig = {
 
   // Experimental features for better performance
   experimental: {
-    optimizePackageImports: ['@supabase/supabase-js', '@tanstack/react-query', 'cheerio'],
+    optimizePackageImports: [
+      '@supabase/supabase-js',
+      '@tanstack/react-query',
+      'cheerio',
+      'lucide-react',
+      'date-fns',
+      'lodash',
+      'recharts'
+    ],
   },
 
   // Production optimizations
@@ -2136,7 +2148,8 @@ export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
 
     ws.onopen = () => {
       setIsConnected(true);
-      console.log('Connected to live match:', matchId);
+      setIsConnected(true);
+      // Connected
     };
 
     ws.onmessage = (event) => {
@@ -2183,7 +2196,8 @@ export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
 
     ws.onclose = () => {
       setIsConnected(false);
-      console.log('Disconnected from live match');
+      setIsConnected(false);
+      // Disconnected
     };
 
     ws.onerror = (error) => {
@@ -3031,34 +3045,46 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     // Listen for system theme changes
     useEffect(() => {
+        if (typeof window === 'undefined') return;
+
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        
+        // Initialize system theme
+        Promise.resolve().then(() => setSystemTheme(mediaQuery.matches ? 'dark' : 'light'));
+
         const handleChange = (e: MediaQueryListEvent) => {
             setSystemTheme(e.matches ? 'dark' : 'light');
         };
-        
-        setSystemTheme(mediaQuery.matches ? 'dark' : 'light');
+
         mediaQuery.addEventListener('change', handleChange);
-        
+
         return () => mediaQuery.removeEventListener('change', handleChange);
     }, []);
 
     useEffect(() => {
-        setMounted(true);
+        Promise.resolve().then(() => setMounted(true));
+    }, []);
+
+    useEffect(() => {
+        if (!mounted) return;
+
         const saved = localStorage.getItem("theme") as Theme | null;
         const savedPrefs = localStorage.getItem("ui-preferences");
-        
+
         if (saved) {
-            setThemeState(saved);
-            document.documentElement.setAttribute("data-theme", saved);
+            Promise.resolve().then(() => {
+                setThemeState(saved);
+                document.documentElement.setAttribute("data-theme", saved);
+            });
         }
-        
+
         if (savedPrefs) {
             try {
                 const prefs = JSON.parse(savedPrefs);
-                setPreferences(prefs);
-                setThemeModeState(prefs.theme || 'dark');
-                setAccentColorState(prefs.accentColor || 'emerald');
+                Promise.resolve().then(() => {
+                    setPreferences(prefs);
+                    setThemeModeState(prefs.theme || 'dark');
+                    setAccentColorState(prefs.accentColor || 'emerald');
+                });
             } catch (e) {
                 // Ignore parse errors
             }
@@ -3068,7 +3094,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     // Apply accent color as CSS variable
     useEffect(() => {
         if (!mounted) return;
-        
+
         const root = document.documentElement;
         const colors: Record<AccentColor, string> = {
             emerald: '#10b981',
@@ -3079,7 +3105,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
             cyan: '#06b6d4',
         };
         root.style.setProperty('--accent-color', colors[accentColor]);
-        
+
         // Apply font size
         const fontSizes = { small: '14px', medium: '16px', large: '18px' };
         root.style.setProperty('--base-font-size', fontSizes[preferences.fontSize]);
@@ -3100,7 +3126,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         const newPrefs = { ...preferences, theme: mode };
         setPreferences(newPrefs);
         localStorage.setItem("ui-preferences", JSON.stringify(newPrefs));
-        
+
         // Also update legacy theme
         const actualTheme = mode === 'system' ? systemTheme : mode;
         setTheme(actualTheme as Theme);
@@ -3127,7 +3153,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     const playSound = useCallback((sound: SoundType) => {
         if (!preferences.soundEffects) return;
-        
+
         try {
             const audio = new Audio(SOUNDS[sound]);
             audio.volume = 0.5;
@@ -3145,13 +3171,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
 
     return (
-        <ThemeContext.Provider value={{ 
-            theme, 
+        <ThemeContext.Provider value={{
+            theme,
             themeMode,
             accentColor,
             preferences,
             isDark,
-            toggleTheme, 
+            toggleTheme,
             setTheme,
             setThemeMode,
             setAccentColor,
@@ -3175,7 +3201,7 @@ export function useTheme() {
 // Hook for accent color classes
 export function useAccentClasses() {
     const { accentColor } = useTheme();
-    
+
     const classes: Record<AccentColor, {
         bg: string;
         bgHover: string;
@@ -3226,7 +3252,7 @@ export function useAccentClasses() {
             gradient: 'from-cyan-500 to-blue-500',
         },
     };
-    
+
     return classes[accentColor];
 }
 
@@ -4027,16 +4053,23 @@ export function useLocalStorage<T>(
 
     // Hydrate from localStorage after mount
     useEffect(() => {
-        try {
-            const item = window.localStorage.getItem(key);
-            if (item) {
-                setStoredValue(JSON.parse(item));
+        const value = (() => {
+            try {
+                const item = window.localStorage.getItem(key);
+                return item ? JSON.parse(item) : initialValue;
+            } catch (error) {
+                console.warn(`Error reading localStorage key "${key}":`, error);
+                return initialValue;
             }
-        } catch (error) {
-            console.warn(`Error reading localStorage key "${key}":`, error);
-        }
-        setIsHydrated(true);
-    }, [key]);
+        })();
+
+        // Defer state updates to avoid "cascading renders" warning 
+        // and ensure the initial render matches the server output.
+        Promise.resolve().then(() => {
+            setStoredValue(value);
+            setIsHydrated(true);
+        });
+    }, [key, initialValue]);
 
     // Return a wrapped version of useState's setter function
     const setValue = useCallback((value: T | ((prev: T) => T)) => {
@@ -4077,11 +4110,11 @@ export default useLocalStorage;
 "use client";
 
 import { useState, useCallback, useEffect, useRef } from "react";
-import { 
-  MatchSimulation, 
-  SimulatedSet, 
+import {
+  MatchSimulation,
+  SimulatedSet,
   SimulatedPoint,
-  SimulationMoment 
+  SimulationMoment
 } from "../types";
 
 interface UseMatchSimulationOptions {
@@ -4105,29 +4138,85 @@ interface UseMatchSimulationReturn {
   setSpeed: (speed: number) => void;
 }
 
+// Simulate a single set
+const simulateSet = (
+  setNumber: number,
+  endScore: number,
+  homeTeam: string,
+  awayTeam: string
+): SimulatedSet => {
+  const points: SimulatedPoint[] = [];
+  let homeScore = 0;
+  let awayScore = 0;
+  let pointNumber = 0;
+
+  // Randomly determine which team is slightly favored
+  const homeBias = 0.48 + Math.random() * 0.08; // 48-56% for home
+
+  while (true) {
+    pointNumber++;
+
+    // Determine point type
+    const types: Array<'attack' | 'block' | 'ace' | 'error'> = ['attack', 'attack', 'attack', 'block', 'ace', 'error'];
+    const type = types[Math.floor(Math.random() * types.length)];
+
+    // Determine scorer
+    const scorer = Math.random() < homeBias ? 'home' : 'away';
+
+    if (scorer === 'home') {
+      homeScore++;
+    } else {
+      awayScore++;
+    }
+
+    points.push({
+      pointNumber,
+      homeScore,
+      awayScore,
+      scorer,
+      type,
+    });
+
+    // Check if set is over
+    const maxScore = Math.max(homeScore, awayScore);
+    const minScore = Math.min(homeScore, awayScore);
+
+    if (maxScore >= endScore && maxScore - minScore >= 2) {
+      break;
+    }
+
+    // Safety limit
+    if (pointNumber > 100) break;
+  }
+
+  return {
+    setNumber,
+    homePoints: homeScore,
+    awayPoints: awayScore,
+    winner: homeScore > awayScore ? 'home' : 'away',
+    pointByPoint: points,
+  };
+};
+
 export function useMatchSimulation(
   options: UseMatchSimulationOptions = {}
 ): UseMatchSimulationReturn {
   const { speed: initialSpeed = 1, autoPlay = true } = options;
-  
+
   const [simulation, setSimulation] = useState<MatchSimulation | null>(null);
   const [isSimulating, setIsSimulating] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSet, setCurrentSet] = useState(0);
   const [currentPoint, setCurrentPoint] = useState(0);
   const [speed, setSpeedState] = useState(initialSpeed);
-  
+
   const animationRef = useRef<NodeJS.Timeout | null>(null);
   const progressRef = useRef(0);
-
-  // Calculate progress
-  const progress = simulation 
-    ? (progressRef.current / simulation.duration) * 100 
-    : 0;
+  const [progressState, setProgressState] = useState(0);
 
   // Generate a simulated match
   const generateSimulation = useCallback((
-    homeTeam: string, 
+    homeTeam: string,
     awayTeam: string
   ): MatchSimulation => {
     const sets: SimulatedSet[] = [];
@@ -4136,41 +4225,41 @@ export function useMatchSimulation(
     let setNumber = 0;
     const moments: SimulationMoment[] = [];
     let totalDuration = 0;
-    
+
     // Simulate sets until one team wins 3
     while (homeSetsWon < 3 && awaySetsWon < 3) {
       setNumber++;
       const isDecidingSet = homeSetsWon === 2 && awaySetsWon === 2;
       const setEndScore = isDecidingSet ? 15 : 25;
-      
+
       const set = simulateSet(setNumber, setEndScore, homeTeam, awayTeam);
       sets.push(set);
-      
+
       if (set.winner === 'home') {
         homeSetsWon++;
       } else {
         awaySetsWon++;
       }
-      
+
       // Add set end moment
       moments.push({
         time: totalDuration + set.pointByPoint.length * 2,
         type: 'set_point',
         description: `${set.winner === 'home' ? homeTeam : awayTeam} ${setNumber}. seti kazandı (${set.homePoints}-${set.awayPoints})`,
       });
-      
+
       totalDuration += set.pointByPoint.length * 2;
     }
-    
+
     const winner = homeSetsWon === 3 ? homeTeam : awayTeam;
-    
+
     // Add match end moment
     moments.push({
       time: totalDuration,
       type: 'match_point',
       description: `${winner} maçı kazandı! (${homeSetsWon}-${awaySetsWon})`,
     });
-    
+
     return {
       matchId: `sim-${Date.now()}`,
       homeTeam,
@@ -4183,81 +4272,27 @@ export function useMatchSimulation(
     };
   }, []);
 
-  // Simulate a single set
-  const simulateSet = (
-    setNumber: number, 
-    endScore: number,
-    homeTeam: string,
-    awayTeam: string
-  ): SimulatedSet => {
-    const points: SimulatedPoint[] = [];
-    let homeScore = 0;
-    let awayScore = 0;
-    let pointNumber = 0;
-    
-    // Randomly determine which team is slightly favored
-    const homeBias = 0.48 + Math.random() * 0.08; // 48-56% for home
-    
-    while (true) {
-      pointNumber++;
-      
-      // Determine point type
-      const types: Array<'attack' | 'block' | 'ace' | 'error'> = ['attack', 'attack', 'attack', 'block', 'ace', 'error'];
-      const type = types[Math.floor(Math.random() * types.length)];
-      
-      // Determine scorer
-      const scorer = Math.random() < homeBias ? 'home' : 'away';
-      
-      if (scorer === 'home') {
-        homeScore++;
-      } else {
-        awayScore++;
-      }
-      
-      points.push({
-        pointNumber,
-        homeScore,
-        awayScore,
-        scorer,
-        type,
-      });
-      
-      // Check if set is over
-      const maxScore = Math.max(homeScore, awayScore);
-      const minScore = Math.min(homeScore, awayScore);
-      
-      if (maxScore >= endScore && maxScore - minScore >= 2) {
-        break;
-      }
-      
-      // Safety limit
-      if (pointNumber > 100) break;
-    }
-    
-    return {
-      setNumber,
-      homePoints: homeScore,
-      awayPoints: awayScore,
-      winner: homeScore > awayScore ? 'home' : 'away',
-      pointByPoint: points,
-    };
-  };
+  // Calculate progress - use state to avoid accessing ref during render
+  const progress = simulation
+    ? (progressState / simulation.duration) * 100
+    : 0;
 
   // Start simulation
   const startSimulation = useCallback(async (
-    homeTeam: string, 
+    homeTeam: string,
     awayTeam: string
   ) => {
     setIsSimulating(true);
     setCurrentSet(0);
     setCurrentPoint(0);
     progressRef.current = 0;
-    
+    setProgressState(0);
+
     // Generate simulation
     const sim = generateSimulation(homeTeam, awayTeam);
     setSimulation(sim);
     setIsSimulating(false);
-    
+
     if (autoPlay) {
       setIsPlaying(true);
     }
@@ -4284,17 +4319,19 @@ export function useMatchSimulation(
     setCurrentSet(0);
     setCurrentPoint(0);
     progressRef.current = 0;
+    setProgressState(0);
   }, [pause]);
 
   // Skip to end
   const skipToEnd = useCallback(() => {
     if (!simulation) return;
-    
+
     pause();
     setCurrentSet(simulation.simulatedSets.length - 1);
     const lastSet = simulation.simulatedSets[simulation.simulatedSets.length - 1];
     setCurrentPoint(lastSet.pointByPoint.length - 1);
     progressRef.current = simulation.duration;
+    setProgressState(simulation.duration);
   }, [simulation, pause]);
 
   // Set speed
@@ -4305,15 +4342,16 @@ export function useMatchSimulation(
   // Animation loop
   useEffect(() => {
     if (!isPlaying || !simulation) return;
-    
+
     const animate = () => {
       progressRef.current += 2 * speed;
-      
+      setProgressState(progressRef.current);
+
       // Find current set and point based on progress
       let elapsed = 0;
       let foundSet = 0;
       let foundPoint = 0;
-      
+
       for (let s = 0; s < simulation.simulatedSets.length; s++) {
         const set = simulation.simulatedSets[s];
         for (let p = 0; p < set.pointByPoint.length; p++) {
@@ -4326,21 +4364,21 @@ export function useMatchSimulation(
         }
         if (elapsed >= progressRef.current) break;
       }
-      
+
       setCurrentSet(foundSet);
       setCurrentPoint(foundPoint);
-      
+
       // Check if animation is complete
       if (progressRef.current >= simulation.duration) {
         setIsPlaying(false);
         return;
       }
-      
+
       animationRef.current = setTimeout(animate, 50 / speed);
     };
-    
+
     animationRef.current = setTimeout(animate, 50 / speed);
-    
+
     return () => {
       if (animationRef.current) {
         clearTimeout(animationRef.current);
@@ -4381,10 +4419,10 @@ export function getSimulationState(
 ) {
   const currentSetData = simulation.simulatedSets[setIndex];
   const currentPointData = currentSetData?.pointByPoint[pointIndex];
-  
+
   let homeSetsWon = 0;
   let awaySetsWon = 0;
-  
+
   for (let i = 0; i < setIndex; i++) {
     if (simulation.simulatedSets[i].winner === 'home') {
       homeSetsWon++;
@@ -4392,14 +4430,14 @@ export function getSimulationState(
       awaySetsWon++;
     }
   }
-  
+
   return {
     setScore: { home: homeSetsWon, away: awaySetsWon },
-    currentSetScore: currentPointData 
+    currentSetScore: currentPointData
       ? { home: currentPointData.homeScore, away: currentPointData.awayScore }
       : { home: 0, away: 0 },
     lastPoint: currentPointData,
-    isComplete: setIndex >= simulation.simulatedSets.length - 1 && 
+    isComplete: setIndex >= simulation.simulatedSets.length - 1 &&
       pointIndex >= currentSetData.pointByPoint.length - 1,
   };
 }
@@ -5818,7 +5856,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 // Validation schemas for API routes
 export const ScoreSchema = z.string()
-    .regex(/^\d+-\d+$/, 'Geçerli skor formatı: "X-Y" (örn: "3-0")');
+    .regex(/^[0-3]-[0-3]$/, 'Geçerli skor formatı: "X-Y" (örn: "3-0")');
 
 export const PredictionSchema = z.object({
     matchId: z.string().min(1),
@@ -5879,7 +5917,7 @@ export function successResponse<T>(data: T, status: number = 200) {
 export function isValidScore(score: string): boolean {
     const result = ScoreSchema.safeParse(score);
     if (!result.success) return false;
-    
+
     const [home, away] = score.split('-').map(Number);
     // Valid volleyball scores: one team must have 3, other must have 0-2
     return (home === 3 && away >= 0 && away <= 2) || (away === 3 && home >= 0 && home <= 2);
@@ -5948,11 +5986,21 @@ export function sortStandings(teams: TeamStats[]): TeamStats[] {
 export const normalizeTeamName = (name: string) => {
     return name
         .replace(/İ/g, 'I')
-        .replace(/ı/g, 'I') // Standardize Turkish I
-        .replace(/i/g, 'I') // Uppercase i becomes I
+        .replace(/ı/g, 'I')
+        .replace(/Ş/g, 'S')
+        .replace(/ş/g, 'S')
+        .replace(/Ğ/g, 'G')
+        .replace(/ğ/g, 'G')
+        .replace(/Ü/g, 'U')
+        .replace(/ü/g, 'U')
+        .replace(/Ö/g, 'O')
+        .replace(/ö/g, 'O')
+        .replace(/Ç/g, 'C')
+        .replace(/ç/g, 'C')
+        .replace(/i/g, 'I')
         .toUpperCase()
-        .replace(/\s+/g, '') // remove spaces
-        .replace(/[^A-Z0-9]/g, '') // Keep only alphanumeric
+        .replace(/\s+/g, '')
+        .replace(/[^A-Z0-9]/g, '')
         .trim();
 };
 
@@ -6209,19 +6257,24 @@ const STORAGE_KEY = 'volleySimGameState';
 export function useGameState() {
     const [gameState, setGameState] = useState<GameState>(getInitialGameState);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [showLevelUp, setShowLevelUp] = useState(false);
 
     // Load from localStorage on mount
     useEffect(() => {
-        try {
-            const saved = localStorage.getItem(STORAGE_KEY);
-            if (saved) {
-                const parsed = JSON.parse(saved);
-                setGameState(prev => ({ ...prev, ...parsed }));
+        const loadState = () => {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    setGameState(prev => ({ ...prev, ...parsed }));
+                }
+            } catch (e) {
+                console.error('Failed to load game state:', e);
             }
-        } catch (e) {
-            console.error('Failed to load game state:', e);
-        }
-        setIsLoaded(true);
+            setIsLoaded(true);
+        };
+
+        Promise.resolve().then(loadState);
     }, []);
 
     // Save to localStorage on change
@@ -6236,6 +6289,9 @@ export function useGameState() {
         setGameState(prev => {
             const newXP = prev.xp + amount;
             const newLevel = calculateLevel(newXP);
+            if (newLevel > prev.level) {
+                setShowLevelUp(true);
+            }
             return {
                 ...prev,
                 xp: newXP,
@@ -6314,6 +6370,8 @@ export function useGameState() {
     return {
         gameState,
         isLoaded,
+        showLevelUp,
+        clearLevelUp: () => setShowLevelUp(false),
         addXP,
         recordPrediction,
         unlockAchievement,
@@ -6950,7 +7008,7 @@ export function createRateLimiter(config: RateLimitConfig) {
         if (limit.count >= config.requests) {
             return NextResponse.json(
                 { error: 'Çok fazla istek. Lütfen daha sonra tekrar deneyin.' },
-                { 
+                {
                     status: 429,
                     headers: {
                         'Retry-After': String(Math.ceil((limit.resetTime - now) / 1000))
@@ -6988,7 +7046,7 @@ let cleanupInterval: NodeJS.Timeout | null = null;
 export function startRateLimitCleanup(intervalMs = 60000) {
     // Prevent multiple intervals
     if (cleanupInterval) return;
-    
+
     cleanupInterval = setInterval(() => {
         const now = Date.now();
         for (const [key, limit] of rateLimits.entries()) {
@@ -6997,7 +7055,7 @@ export function startRateLimitCleanup(intervalMs = 60000) {
             }
         }
     }, intervalMs);
-    
+
     // Don't block Node.js from exiting
     if (cleanupInterval.unref) {
         cleanupInterval.unref();
@@ -7005,9 +7063,36 @@ export function startRateLimitCleanup(intervalMs = 60000) {
 }
 
 // Auto-start cleanup when module is loaded
+// Auto-start cleanup when module is loaded
 if (typeof window === 'undefined') {
     startRateLimitCleanup();
 }
+
+// Export a direct check function for use in middleware
+export async function checkRateLimit(identifier: string, limit: number, windowMs: number): Promise<{ success: boolean; retryAfter?: number }> {
+    const key = `${identifier}`;
+    const now = Date.now();
+    const entry = rateLimits.get(key);
+
+    if (!entry || now > entry.resetTime) {
+        rateLimits.set(key, {
+            count: 1,
+            resetTime: now + windowMs
+        });
+        return { success: true };
+    }
+
+    if (entry.count >= limit) {
+        return {
+            success: false,
+            retryAfter: Math.ceil((entry.resetTime - now) / 1000)
+        };
+    }
+
+    entry.count++;
+    return { success: true };
+}
+
 
 ```
 
@@ -7078,12 +7163,13 @@ export async function getLeagueData(league: string): Promise<LeagueData> {
         const data = JSON.parse(content);
 
         // Filter out withdrawn teams (ligden çekilen takımlar)
+        // Filter out withdrawn teams (ligden çekilen takımlar)
         if (league === '1lig') {
             const withdrawnTeams = ['Edremit Bld. Altınoluk', 'İzmirspor'];
             if (data.teams) {
-                data.teams = data.teams.filter((t: any) => !withdrawnTeams.includes(t.name));
+                data.teams = data.teams.filter((t: TeamStats) => !withdrawnTeams.includes(t.name));
             }
-            const filterMatches = (matches: any[]) => matches.filter((m: any) =>
+            const filterMatches = (matches: Match[]) => matches.filter((m: Match) =>
                 !withdrawnTeams.includes(m.homeTeam) && !withdrawnTeams.includes(m.awayTeam)
             );
             if (data.fixture) data.fixture = filterMatches(data.fixture);
@@ -7102,13 +7188,13 @@ export async function getLeagueData(league: string): Promise<LeagueData> {
             const renameTeam = (name: string) => teamNameMapping[name] || name;
 
             if (data.teams) {
-                data.teams = data.teams.map((t: any) => ({
+                data.teams = data.teams.map((t: TeamStats) => ({
                     ...t,
                     name: renameTeam(t.name)
                 }));
             }
 
-            const renameMatches = (matches: any[]) => matches.map((m: any) => ({
+            const renameMatches = (matches: Match[]) => matches.map((m: Match) => ({
                 ...m,
                 homeTeam: renameTeam(m.homeTeam),
                 awayTeam: renameTeam(m.awayTeam)
@@ -7119,7 +7205,7 @@ export async function getLeagueData(league: string): Promise<LeagueData> {
         }
 
         // Normalize fixture data
-        let fixture = (data.fixture || data.matches || []).map((m: any) => ({
+        let fixture = (data.fixture || data.matches || []).map((m: Match & { date?: string }) => ({
             ...m,
             matchDate: m.matchDate || m.date
         }));
@@ -7145,7 +7231,7 @@ export async function getLeagueData(league: string): Promise<LeagueData> {
                 .eq('is_verified', true);
 
             if (dbResults && dbResults.length > 0) {
-                console.log(`[getLeagueData] Found ${dbResults.length} database overrides for ${league}`);
+                // console.log(`[getLeagueData] Found ${dbResults.length} database overrides for ${league}`);
 
                 // Create a map for easy lookup
                 const overridesMap = new Map();
@@ -7214,6 +7300,7 @@ export async function getLeagueData(league: string): Promise<LeagueData> {
             // Fallback to JSON only
         }
 
+        // console.log(`[getLeagueData] Returning ${data.teams?.length} teams for ${league} (Fallback/Normal)`);
         return {
             teams: data.teams || [],
             fixture: fixture
@@ -7347,16 +7434,21 @@ export async function createServerSupabaseClient() {
 }
 
 // Service role client for admin operations (bypasses RLS)
+// Service role client for admin operations (bypasses RLS)
 export function createServiceRoleClient() {
-    return createClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.SUPABASE_SERVICE_ROLE_KEY!,
-        {
-            auth: {
-                autoRefreshToken: false,
-                persistSession: false
-            }
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+    if (!url || !key) {
+        throw new Error('Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.');
+    }
+
+    return createClient(url, key, {
+        auth: {
+            autoRefreshToken: false,
+            persistSession: false
         }
+    }
     );
 }
 
@@ -7390,6 +7482,101 @@ export function createClient(): SupabaseClient | null {
     }
 
     return supabaseClient;
+}
+
+```
+
+## File: app\utils\team-themes.ts
+```typescript
+export interface TeamTheme {
+    primary: string;
+    secondary: string;
+    accent: string;
+    logo?: string;
+}
+
+export const TEAM_THEMES: Record<string, TeamTheme> = {
+    "VakıfBank": {
+        primary: "#ffcc00", // Gold
+        secondary: "#000000", // Black
+        accent: "#ffdd44"
+    },
+    "Eczacıbaşı Dynavit": {
+        primary: "#ff6600", // Orange
+        secondary: "#ffffff",
+        accent: "#ff8844"
+    },
+    "Fenerbahçe Medicana": {
+        primary: "#003366", // Navy
+        secondary: "#ffed00", // Yellow
+        accent: "#004488"
+    },
+    "Türk Hava Yolları": {
+        primary: "#cc0000", // Red
+        secondary: "#ffffff",
+        accent: "#ee0000"
+    },
+    "Galatasaray Daikin": {
+        primary: "#800000", // Maroon
+        secondary: "#ffcc00", // Gold
+        accent: "#a00000"
+    },
+    "Kuzeyboru": {
+        primary: "#000000",
+        secondary: "#ffffff",
+        accent: "#333333"
+    },
+    "Zeren Spor": {
+        primary: "#004488",
+        secondary: "#ffffff",
+        accent: "#0066aa"
+    },
+    "Aydın B.Ş.B.": {
+        primary: "#003399",
+        secondary: "#ffffff",
+        accent: "#0055bb"
+    },
+    "Aras Kargo": {
+        primary: "#ee3322",
+        secondary: "#ffffff",
+        accent: "#ff4433"
+    },
+    "Beşiktaş": {
+        primary: "#000000",
+        secondary: "#ffffff",
+        accent: "#333333"
+    },
+    "Nilüfer Bld.": {
+        primary: "#0066ff",
+        secondary: "#ffffff",
+        accent: "#3388ff"
+    },
+    "Sigorta Shop": {
+        primary: "#ff0066",
+        secondary: "#ffffff",
+        accent: "#ff3388"
+    },
+    "Sarıyer Bld.": {
+        primary: "#22aa44",
+        secondary: "#ffffff",
+        accent: "#33bb55"
+    },
+    "Bahçelievler Bld.": {
+        primary: "#0088cc",
+        secondary: "#ffffff",
+        accent: "#22aacc"
+    }
+};
+
+export const DEFAULT_THEME: TeamTheme = {
+    primary: "#10b981", // Emerald
+    secondary: "#0f172a", // Slate 900
+    accent: "#34d399"
+};
+
+export function getTeamTheme(teamName: string | null): TeamTheme {
+    if (!teamName) return DEFAULT_THEME;
+    return TEAM_THEMES[teamName] || DEFAULT_THEME;
 }
 
 ```
@@ -8569,200 +8756,94 @@ export default { validators, validate, schemas, sanitize };
 
 ```
 
-## File: app\utils\__tests__\calculatorUtils.test.ts
+## File: lib\api-middleware.ts
 ```typescript
-import {
-    SCORES,
-    getOutcomeFromScore,
-    sortStandings,
-    normalizeTeamName,
-    calculateLiveStandings
-} from '../calculatorUtils';
-import { TeamStats, Match } from '../../types';
+import { NextRequest, NextResponse } from 'next/server';
+import { createServerSupabaseClient } from '@/app/utils/supabase-server';
+import { checkRateLimit } from '@/app/utils/rateLimit';
 
-describe('calculatorUtils', () => {
-    describe('SCORES', () => {
-        it('should contain all valid volleyball scores', () => {
-            expect(SCORES).toEqual(['3-0', '3-1', '3-2', '2-3', '1-3', '0-3']);
+type ProtectedHandler = (
+    req: NextRequest,
+    session: { user: any },
+    params?: any
+) => Promise<NextResponse>;
+
+interface AuthOptions {
+    rateLimit?: {
+        limit: number;
+        windowMs: number;
+    };
+}
+
+export async function withAuth(
+    req: NextRequest,
+    handler: ProtectedHandler,
+    options: AuthOptions = {}
+) {
+    try {
+        // 1. Rate Limiting
+        const rateLimitConfig = options.rateLimit || { limit: 20, windowMs: 60 * 1000 };
+        // Use IP or a simplified identifier if possible, for now falling back to simple check
+        // In a real edge environment, get IP from headers
+        const ip = req.headers.get('x-forwarded-for') || 'unknown';
+
+        const rateLimitResult = await checkRateLimit(ip, rateLimitConfig.limit, rateLimitConfig.windowMs);
+        if (!rateLimitResult.success) {
+            return NextResponse.json(
+                { error: 'Too many requests', retryAfter: rateLimitResult.retryAfter },
+                { status: 429 }
+            );
+        }
+
+        // 2. Authentication
+        const supabase = await createServerSupabaseClient();
+        const { data: { user }, error } = await supabase.auth.getUser();
+
+        if (error || !user) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+
+        // 3. Handover to handler
+        return handler(req, { user }, undefined); // params passed separately usually
+    } catch (error) {
+        console.error('API Middleware Error:', error);
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    }
+}
+
+```
+
+## File: lib\error-tracking.ts
+```typescript
+/**
+ * Utility to track errors to the server
+ */
+export const trackError = async (error: Error, context: Record<string, any> = {}) => {
+    // Log to console in development
+    if (process.env.NODE_ENV === 'development') {
+        console.error('[ErrorTracker]', error, context);
+    }
+
+    try {
+        await fetch('/api/errors', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                message: error.message,
+                stack: error.stack,
+                context,
+                timestamp: new Date().toISOString(),
+                url: typeof window !== 'undefined' ? window.location.href : '',
+                userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
+            }),
         });
-    });
-
-    describe('getOutcomeFromScore', () => {
-        it('should return correct outcome for 3-0 (home win)', () => {
-            const outcome = getOutcomeFromScore('3-0');
-            expect(outcome).toEqual({
-                homeSets: 3,
-                awaySets: 0,
-                homePoints: 3,
-                awayPoints: 0,
-                homeWin: true
-            });
-        });
-
-        it('should return correct outcome for 3-1 (home win)', () => {
-            const outcome = getOutcomeFromScore('3-1');
-            expect(outcome).toEqual({
-                homeSets: 3,
-                awaySets: 1,
-                homePoints: 3,
-                awayPoints: 0,
-                homeWin: true
-            });
-        });
-
-        it('should return correct outcome for 3-2 (home win with bonus)', () => {
-            const outcome = getOutcomeFromScore('3-2');
-            expect(outcome).toEqual({
-                homeSets: 3,
-                awaySets: 2,
-                homePoints: 2,
-                awayPoints: 1,
-                homeWin: true
-            });
-        });
-
-        it('should return correct outcome for 2-3 (away win with bonus)', () => {
-            const outcome = getOutcomeFromScore('2-3');
-            expect(outcome).toEqual({
-                homeSets: 2,
-                awaySets: 3,
-                homePoints: 1,
-                awayPoints: 2,
-                homeWin: false
-            });
-        });
-
-        it('should return correct outcome for 1-3 (away win)', () => {
-            const outcome = getOutcomeFromScore('1-3');
-            expect(outcome).toEqual({
-                homeSets: 1,
-                awaySets: 3,
-                homePoints: 0,
-                awayPoints: 3,
-                homeWin: false
-            });
-        });
-
-        it('should return correct outcome for 0-3 (away win)', () => {
-            const outcome = getOutcomeFromScore('0-3');
-            expect(outcome).toEqual({
-                homeSets: 0,
-                awaySets: 3,
-                homePoints: 0,
-                awayPoints: 3,
-                homeWin: false
-            });
-        });
-
-        it('should return null for invalid scores', () => {
-            expect(getOutcomeFromScore('2-2')).toBeNull();
-            expect(getOutcomeFromScore('4-0')).toBeNull();
-            expect(getOutcomeFromScore('invalid')).toBeNull();
-            expect(getOutcomeFromScore('')).toBeNull();
-        });
-    });
-
-    describe('normalizeTeamName', () => {
-        it('should normalize Turkish characters', () => {
-            expect(normalizeTeamName('İstanbul')).toBe('ISTANBUL');
-            expect(normalizeTeamName('Fenerbahçe')).toBe('FENERBAHE');
-        });
-
-        it('should remove spaces and special characters', () => {
-            expect(normalizeTeamName('Team A B')).toBe('TEAMAB');
-            expect(normalizeTeamName('Team-Name')).toBe('TEAMNAME');
-        });
-
-        it('should uppercase all characters', () => {
-            expect(normalizeTeamName('vakifbank')).toBe('VAKIFBANK');
-        });
-    });
-
-    describe('sortStandings', () => {
-        const createTeam = (name: string, wins: number, points: number, setsWon: number, setsLost: number): TeamStats => ({
-            name,
-            groupName: 'A',
-            played: wins + 1,
-            wins,
-            points,
-            setsWon,
-            setsLost
-        });
-
-        it('should sort by wins first', () => {
-            const teams = [
-                createTeam('Team B', 5, 15, 15, 5),
-                createTeam('Team A', 10, 30, 30, 10),
-            ];
-            const sorted = sortStandings(teams);
-            expect(sorted[0].name).toBe('Team A');
-            expect(sorted[1].name).toBe('Team B');
-        });
-
-        it('should sort by points when wins are equal', () => {
-            const teams = [
-                createTeam('Team B', 5, 12, 15, 5),
-                createTeam('Team A', 5, 15, 15, 5),
-            ];
-            const sorted = sortStandings(teams);
-            expect(sorted[0].name).toBe('Team A');
-        });
-
-        it('should sort by set ratio when wins and points are equal', () => {
-            const teams = [
-                createTeam('Team B', 5, 15, 15, 10), // ratio: 1.5
-                createTeam('Team A', 5, 15, 20, 10), // ratio: 2.0
-            ];
-            const sorted = sortStandings(teams);
-            expect(sorted[0].name).toBe('Team A');
-        });
-    });
-
-    describe('calculateLiveStandings', () => {
-        const initialTeams: TeamStats[] = [
-            { name: 'Team A', groupName: 'G1', played: 0, wins: 0, points: 0, setsWon: 0, setsLost: 0 },
-            { name: 'Team B', groupName: 'G1', played: 0, wins: 0, points: 0, setsWon: 0, setsLost: 0 },
-        ];
-
-        const matches: Match[] = [
-            { homeTeam: 'Team A', awayTeam: 'Team B', groupName: 'G1', isPlayed: false }
-        ];
-
-        it('should apply overrides to unplayed matches', () => {
-            const overrides = { 'Team A|||Team B': '3-0' };
-            const standings = calculateLiveStandings(initialTeams, matches, overrides);
-
-            const teamA = standings.find(t => t.name === 'Team A');
-            const teamB = standings.find(t => t.name === 'Team B');
-
-            expect(teamA?.wins).toBe(1);
-            expect(teamA?.points).toBe(3);
-            expect(teamA?.setsWon).toBe(3);
-            expect(teamA?.setsLost).toBe(0);
-
-            expect(teamB?.wins).toBe(0);
-            expect(teamB?.points).toBe(0);
-            expect(teamB?.setsWon).toBe(0);
-            expect(teamB?.setsLost).toBe(3);
-        });
-
-        it('should not apply overrides to played matches', () => {
-            const playedMatches: Match[] = [
-                { homeTeam: 'Team A', awayTeam: 'Team B', groupName: 'G1', isPlayed: true }
-            ];
-            const overrides = { 'Team A|||Team B': '3-0' };
-            const standings = calculateLiveStandings(initialTeams, playedMatches, overrides);
-
-            const teamA = standings.find(t => t.name === 'Team A');
-            expect(teamA?.wins).toBe(0); // Should remain unchanged
-        });
-
-        it('should return sorted standings', () => {
-            const standings = calculateLiveStandings(initialTeams, matches, { 'Team A|||Team B': '3-0' });
-            expect(standings[0].name).toBe('Team A'); // Winner should be first
-        });
-    });
-});
+    } catch (loggingError) {
+        // Fallback if logging fails
+        console.error('Failed to report error:', loggingError);
+    }
+};
 
 ```
 

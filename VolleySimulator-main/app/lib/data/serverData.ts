@@ -1,15 +1,25 @@
 import fs from 'fs';
 import path from 'path';
-import { TeamStats, Match } from '../types';
-import { createServiceRoleClient } from './supabase-server';
-import { getOutcomeFromScore, sortStandings } from './calculatorUtils';
+import { TeamStats, Match } from "../../types";
+import { createServiceRoleClient } from "../supabase/supabase-server";
+import { getOutcomeFromScore, sortStandings } from "../calculation/calculatorUtils";
 
 export interface LeagueData {
     teams: TeamStats[];
     fixture: Match[];
 }
 
+// Simple in-memory cache
+const CACHE_TTL = 60 * 1000; // 1 minute
+const cache = new Map<string, { data: LeagueData; timestamp: number }>();
+
 export async function getLeagueData(league: string): Promise<LeagueData> {
+    // Check cache
+    const cached = cache.get(league);
+    if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+        return cached.data;
+    }
+
     try {
         const filePath = path.join(process.cwd(), 'data', `${league}-data.json`);
         if (!fs.existsSync(filePath)) {
@@ -150,7 +160,9 @@ export async function getLeagueData(league: string): Promise<LeagueData> {
                     // Update teams and sort (preserve group structure if possible, though calculateStandings might need to know groups)
                     // For now, let's just return the recalculated list sorted
                     const finalTeams = sortStandings(Object.values(newTeams));
-                    return { teams: finalTeams, fixture };
+                    const result = { teams: finalTeams, fixture };
+                    cache.set(league, { data: result, timestamp: Date.now() });
+                    return result;
                 }
             }
         } catch (dbError) {
@@ -159,10 +171,12 @@ export async function getLeagueData(league: string): Promise<LeagueData> {
         }
 
         // console.log(`[getLeagueData] Returning ${data.teams?.length} teams for ${league} (Fallback/Normal)`);
-        return {
+        const result = {
             teams: data.teams || [],
             fixture: fixture
         };
+        cache.set(league, { data: result, timestamp: Date.now() });
+        return result;
     } catch (error) {
         console.error(`Error reading ${league} data:`, error);
         return { teams: [], fixture: [] };

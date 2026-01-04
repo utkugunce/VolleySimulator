@@ -1,5 +1,1397 @@
 # Project Application Context - Part 13
 
+## File: app\ligler\page.tsx
+```
+import Link from "next/link";
+import { Metadata } from "next";
+import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/Card";
+import { Badge } from "../components/ui/Badge";
+import { Button } from "../components/ui/Button";
+import { Trophy, Globe, Zap, ArrowRight, Star } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+export const metadata: Metadata = {
+    title: "Ligler - Türkiye Kadınlar Voleybol Ligleri",
+    description: "Sultanlar Ligi, 1. Lig, 2. Lig ve CEV Avrupa turnuvaları. 2025-2026 sezonu maç tahminleri ve puan durumları.",
+};
+
+const leagues = [
+    {
+        name: "Vodafone Sultanlar Ligi",
+        desc: "Türkiye'nin en üst düzey kadınlar voleybol ligi",
+        href: "/vsl/tahminoyunu",
+        color: "from-red-600 to-rose-700",
+        badge: "PRO LİG",
+        icon: Trophy,
+        stats: "14 Takım • Play-off Sistemi"
+    },
+    {
+        name: "Arabica Coffee House 1. Lig",
+        desc: "2 Gruplu 1. Lig Heyecanı",
+        href: "/1lig/tahminoyunu",
+        color: "from-amber-500 to-orange-600",
+        badge: "YENİ",
+        icon: Zap,
+        stats: "2 Grup • 24 Takım"
+    },
+    {
+        name: "Kadınlar 2. Lig",
+        desc: "5 Gruplu Geniş Kapsamlı 2. Lig",
+        href: "/2lig/tahminoyunu",
+        color: "from-emerald-600 to-teal-700",
+        badge: "AKTİF",
+        icon: Star,
+        stats: "5 Grup • Bölgesel Lig"
+    },
+    {
+        name: "CEV Şampiyonlar Ligi",
+        desc: "Avrupa'nın En İyilerinin Mücadelesi",
+        href: "/cev-cl/tahminoyunu",
+        color: "from-blue-600 to-indigo-700",
+        badge: "AVRUPA",
+        icon: Globe,
+        stats: "Grup Aşaması • Play-off"
+    }
+];
+
+export default function LiglerPage() {
+    return (
+        <main className="min-h-screen bg-background text-text-primary p-4 sm:p-8 lg:p-12 animate-in fade-in duration-500">
+            <div className="max-w-6xl mx-auto space-y-12">
+
+                {/* Hero / Header */}
+                <div className="text-center space-y-4">
+                    <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 uppercase tracking-widest px-4">
+                        Sezon 2025-2026
+                    </Badge>
+                    <h1 className="text-5xl md:text-6xl font-black tracking-tighter text-text-primary uppercase italic">
+                        AKTİF <span className="text-primary shadow-glow-primary">LİGLER</span>
+                    </h1>
+                    <p className="max-w-xl mx-auto text-text-secondary text-lg font-medium leading-relaxed">
+                        Tahmin yapmak istediğin ligi seç ve simülasyona başla. Puanları toplayarak liderlik koltuğuna otur!
+                    </p>
+                </div>
+
+                {/* Leagues Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                    {leagues.map((league) => (
+                        <Link
+                            key={league.name}
+                            href={league.href}
+                            className="group block"
+                        >
+                            <Card className="h-full relative overflow-hidden border-border-main/50 transition-all duration-500 group-hover:scale-[1.02] group-hover:border-primary/30 group-hover:shadow-premium-lg">
+                                {/* Gradient Background overlay */}
+                                <div className={cn(
+                                    "absolute top-0 right-0 w-32 h-32 blur-[64px] opacity-10 transition-opacity group-hover:opacity-20 bg-gradient-to-br",
+                                    league.color
+                                )} />
+
+                                <CardContent className="p-8">
+                                    <div className="flex justify-between items-start mb-6">
+                                        <div className={cn(
+                                            "w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg transition-transform duration-500 group-hover:rotate-6 bg-gradient-to-br",
+                                            league.color
+                                        )}>
+                                            <league.icon className="w-7 h-7 text-white" />
+                                        </div>
+                                        <Badge variant="secondary" className="font-black text-[10px] tracking-widest px-3">
+                                            {league.badge}
+                                        </Badge>
+                                    </div>
+
+                                    <div className="space-y-4">
+                                        <div className="space-y-1">
+                                            <h2 className="text-2xl font-black text-text-primary tracking-tight group-hover:text-primary transition-colors">
+                                                {league.name}
+                                            </h2>
+                                            <p className="text-text-secondary text-sm font-medium line-clamp-1">
+                                                {league.desc}
+                                            </p>
+                                        </div>
+
+                                        <div className="pt-4 flex items-center justify-between border-t border-border-subtle">
+                                            <span className="text-[10px] font-black text-text-muted uppercase tracking-widest">
+                                                {league.stats}
+                                            </span>
+                                            <div className="flex items-center gap-1.5 text-primary font-bold text-sm">
+                                                Giriş Yap
+                                                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </Link>
+                    ))}
+                </div>
+
+                {/* Info Section */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pt-12 border-t border-border-subtle">
+                    <div className="flex gap-4">
+                        <div className="shrink-0 w-10 h-10 rounded-full bg-surface-secondary flex items-center justify-center">
+                            <Zap className="w-5 h-5 text-amber-500" />
+                        </div>
+                        <div className="space-y-1">
+                            <h4 className="font-black text-xs uppercase tracking-widest">Hızlı Tahmin</h4>
+                            <p className="text-xs text-text-secondary leading-relaxed">Özel arayüz ile saniyeler içinde tüm haftayı tahmin et.</p>
+                        </div>
+                    </div>
+                    <div className="flex gap-4">
+                        <div className="shrink-0 w-10 h-10 rounded-full bg-surface-secondary flex items-center justify-center">
+                            <Trophy className="w-5 h-5 text-emerald-500" />
+                        </div>
+                        <div className="space-y-1">
+                            <h4 className="font-black text-xs uppercase tracking-widest">Liderlik Yarışı</h4>
+                            <p className="text-xs text-text-secondary leading-relaxed">Tahmin başarılarına göre global sıralamada yüksel.</p>
+                        </div>
+                    </div>
+                    <div className="flex gap-4">
+                        <div className="shrink-0 w-10 h-10 rounded-full bg-surface-secondary flex items-center justify-center">
+                            <ArrowRight className="w-5 h-5 text-blue-500" />
+                        </div>
+                        <div className="space-y-1">
+                            <h4 className="font-black text-xs uppercase tracking-widest">Gelişmiş Veriler</h4>
+                            <p className="text-xs text-text-secondary leading-relaxed">Yapay zeka destekli form durumlarını ve analizleri gör.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    );
+}
+
+```
+
+## File: app\live\page.tsx
+```
+"use client";
+
+import { useState, useEffect } from "react";
+import { useLiveMatch } from "../context/LiveMatchContext";
+import { useAuth } from "../context/AuthContext";
+import { LiveMatch, SetScore } from "../types";
+import Link from "next/link";
+
+export default function LivePage() {
+  const { user } = useAuth();
+  const { 
+    liveMatches, 
+    currentMatch,
+    comments,
+    chatMessages,
+    isConnected,
+    selectMatch,
+    addComment,
+    likeComment,
+    sendChatMessage,
+    subscribeToMatch,
+    unsubscribeFromMatch,
+    refreshLiveMatches,
+    isLoading
+  } = useLiveMatch();
+  
+  const [newComment, setNewComment] = useState('');
+  const [newChatMessage, setNewChatMessage] = useState('');
+  const [activeTab, setActiveTab] = useState<'matches' | 'chat' | 'comments'>('matches');
+
+  useEffect(() => {
+    if (currentMatch) {
+      subscribeToMatch(currentMatch.id);
+    }
+    
+    return () => {
+      unsubscribeFromMatch();
+    };
+  }, [currentMatch?.id]);
+
+  const handleSendComment = async () => {
+    if (!currentMatch || !newComment.trim()) return;
+    
+    await addComment(currentMatch.id, newComment.trim());
+    setNewComment('');
+  };
+
+  const handleSendChat = async () => {
+    if (!currentMatch || !newChatMessage.trim()) return;
+    
+    await sendChatMessage(currentMatch.id, newChatMessage.trim());
+    setNewChatMessage('');
+  };
+
+  return (
+    <main className="min-h-screen bg-slate-950 text-slate-100">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-red-600 to-orange-600 px-4 py-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+                <span className="animate-pulse">🔴</span> Canlı Maçlar
+              </h1>
+              <p className="text-white/70 text-sm mt-1">
+                {liveMatches.filter(m => m.status === 'live').length} canlı maç
+              </p>
+            </div>
+            <button
+              onClick={refreshLiveMatches}
+              className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-xl text-sm font-medium transition-colors"
+            >
+              🔄 Yenile
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 py-6">
+        {/* Live Matches Grid */}
+        {!currentMatch ? (
+          <div className="space-y-4">
+            {liveMatches.length === 0 ? (
+              <div className="text-center py-12">
+                <div className="text-5xl mb-4">📺</div>
+                <p className="text-slate-400">Şu anda canlı maç bulunmuyor</p>
+                <p className="text-sm text-slate-500 mt-2">
+                  Yaklaşan maçlar için tahminlerinizi yapmayı unutmayın!
+                </p>
+              </div>
+            ) : (
+              <div className="grid gap-4">
+                {liveMatches.map(match => (
+                  <LiveMatchCard 
+                    key={match.id} 
+                    match={match} 
+                    onClick={() => selectMatch(match.id)}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        ) : (
+          // Match Detail View
+          <div className="space-y-4">
+            {/* Back Button */}
+            <button
+              onClick={() => selectMatch('')}
+              className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
+            >
+              ← Geri
+            </button>
+
+            {/* Match Score Board */}
+            <div className="bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl p-6">
+              {/* Connection Status */}
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <span className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`} />
+                <span className="text-xs text-slate-500">
+                  {isConnected ? 'Canlı Bağlantı' : 'Bağlantı Bekleniyor...'}
+                </span>
+              </div>
+
+              {/* Teams and Score */}
+              <div className="flex items-center justify-between">
+                <div className="flex-1 text-center">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-3">
+                    🏐
+                  </div>
+                  <h3 className="font-bold text-white text-lg">{currentMatch.homeTeam}</h3>
+                </div>
+
+                <div className="px-8 text-center">
+                  <div className="text-5xl font-black text-white">
+                    {currentMatch.homeSetScore} - {currentMatch.awaySetScore}
+                  </div>
+                  <div className="text-sm text-slate-400 mt-2">Set Skoru</div>
+                  
+                  {currentMatch.status === 'live' && (
+                    <div className="mt-4 bg-red-500/20 border border-red-500/30 rounded-lg px-4 py-2">
+                      <div className="text-2xl font-bold text-white">
+                        {currentMatch.currentSetHomePoints} - {currentMatch.currentSetAwayPoints}
+                      </div>
+                      <div className="text-xs text-red-400">{currentMatch.currentSet}. Set</div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex-1 text-center">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center text-3xl mb-3">
+                    🏐
+                  </div>
+                  <h3 className="font-bold text-white text-lg">{currentMatch.awayTeam}</h3>
+                </div>
+              </div>
+
+              {/* Set Scores */}
+              {currentMatch.setScores.length > 0 && (
+                <div className="mt-6 flex justify-center gap-4">
+                  {currentMatch.setScores.map((set, index) => (
+                    <div 
+                      key={index}
+                      className={`px-4 py-2 rounded-lg text-center ${
+                        set.winner === 'home' 
+                          ? 'bg-blue-500/20 border border-blue-500/30' 
+                          : 'bg-orange-500/20 border border-orange-500/30'
+                      }`}
+                    >
+                      <div className="text-xs text-slate-400">{index + 1}. Set</div>
+                      <div className="font-bold text-white">{set.homePoints}-{set.awayPoints}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Tabs */}
+            <div className="flex gap-2 border-b border-slate-800 pb-4">
+              {[
+                { key: 'chat', label: 'Canlı Sohbet', icon: '💬' },
+                { key: 'comments', label: 'Yorumlar', icon: '📝' },
+              ].map(tab => (
+                <button
+                  key={tab.key}
+                  onClick={() => setActiveTab(tab.key as typeof activeTab)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                    activeTab === tab.key
+                      ? 'bg-white/10 text-white'
+                      : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  <span>{tab.icon}</span>
+                  <span>{tab.label}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Chat */}
+            {activeTab === 'chat' && (
+              <div className="bg-slate-900/50 border border-slate-800 rounded-xl">
+                <div className="h-64 overflow-y-auto p-4 space-y-3">
+                  {chatMessages.length === 0 ? (
+                    <div className="text-center text-slate-500 py-8">
+                      Henüz mesaj yok. İlk mesajı sen yaz!
+                    </div>
+                  ) : (
+                    chatMessages.map(msg => (
+                      <div key={msg.id} className="flex items-start gap-3">
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white text-xs font-bold">
+                          {msg.user?.displayName?.charAt(0) || '?'}
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="font-bold text-white text-sm">
+                              {msg.user?.displayName}
+                            </span>
+                            <span className="text-xs text-slate-500">
+                              {new Date(msg.timestamp).toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}
+                            </span>
+                          </div>
+                          <p className="text-slate-300 text-sm">{msg.message}</p>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+
+                {user && (
+                  <div className="border-t border-slate-800 p-4">
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value={newChatMessage}
+                        onChange={(e) => setNewChatMessage(e.target.value)}
+                        onKeyPress={(e) => e.key === 'Enter' && handleSendChat()}
+                        placeholder="Mesaj yaz..."
+                        className="flex-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500"
+                      />
+                      <button
+                        onClick={handleSendChat}
+                        className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-xl font-medium transition-colors"
+                      >
+                        Gönder
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Comments */}
+            {activeTab === 'comments' && (
+              <div className="space-y-4">
+                {user && (
+                  <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <textarea
+                      value={newComment}
+                      onChange={(e) => setNewComment(e.target.value)}
+                      placeholder="Maç hakkında yorumunuzu yazın..."
+                      className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500 resize-none h-20"
+                    />
+                    <div className="flex justify-end mt-2">
+                      <button
+                        onClick={handleSendComment}
+                        className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-xl text-sm font-medium transition-colors"
+                      >
+                        Yorum Yap
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                <div className="space-y-3">
+                  {comments.length === 0 ? (
+                    <div className="text-center py-8 text-slate-500">
+                      Henüz yorum yok
+                    </div>
+                  ) : (
+                    comments.map(comment => (
+                      <div 
+                        key={comment.id}
+                        className="bg-slate-900/50 border border-slate-800 rounded-xl p-4"
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white font-bold">
+                            {comment.user?.displayName?.charAt(0) || '?'}
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2">
+                              <span className="font-bold text-white">{comment.user?.displayName}</span>
+                              <span className="text-xs text-slate-500">
+                                {new Date(comment.createdAt).toLocaleString('tr-TR')}
+                              </span>
+                            </div>
+                            <p className="text-slate-300 mt-1">{comment.message}</p>
+                            <button
+                              onClick={() => likeComment(comment.id)}
+                              className="flex items-center gap-1 text-sm text-slate-500 hover:text-red-400 mt-2 transition-colors"
+                            >
+                              ❤️ {comment.likes}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </main>
+  );
+}
+
+// Live Match Card Component
+function LiveMatchCard({ match, onClick }: { match: LiveMatch; onClick: () => void }) {
+  const isLive = match.status === 'live';
+  
+  return (
+    <button
+      onClick={onClick}
+      className={`w-full bg-slate-900/50 border rounded-xl p-4 text-left transition-all hover:border-slate-600 ${
+        isLive ? 'border-red-500/50' : 'border-slate-800'
+      }`}
+    >
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-4 flex-1">
+          {/* Home Team */}
+          <div className="flex-1 text-right">
+            <span className="font-bold text-white">{match.homeTeam}</span>
+          </div>
+
+          {/* Score */}
+          <div className="text-center px-4">
+            {isLive ? (
+              <div>
+                <div className="flex items-center gap-2 justify-center">
+                  <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+                  <span className="text-xs text-red-400 font-medium">CANLI</span>
+                </div>
+                <div className="text-2xl font-black text-white mt-1">
+                  {match.homeSetScore} - {match.awaySetScore}
+                </div>
+                <div className="text-xs text-slate-400">
+                  {match.currentSetHomePoints}-{match.currentSetAwayPoints} ({match.currentSet}. Set)
+                </div>
+              </div>
+            ) : match.status === 'finished' ? (
+              <div>
+                <span className="text-xs text-slate-500">Bitti</span>
+                <div className="text-2xl font-black text-white mt-1">
+                  {match.homeSetScore} - {match.awaySetScore}
+                </div>
+              </div>
+            ) : (
+              <div>
+                <span className="text-xs text-slate-500">
+                  {new Date(match.startTime).toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}
+                </span>
+                <div className="text-lg font-bold text-slate-400 mt-1">vs</div>
+              </div>
+            )}
+          </div>
+
+          {/* Away Team */}
+          <div className="flex-1 text-left">
+            <span className="font-bold text-white">{match.awayTeam}</span>
+          </div>
+        </div>
+
+        <span className="text-slate-400 ml-4">→</span>
+      </div>
+
+      <div className="mt-3 text-xs text-slate-500 text-center">
+        {match.league} {match.venue && `• ${match.venue}`}
+      </div>
+    </button>
+  );
+}
+
+```
+
+## File: app\login\layout.tsx
+```
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Giriş Yap",
+    description: "VolleySimulator hesabınıza giriş yapın. Maç tahminleri yapın, puan kazanın ve liderlik tablosunda yerinizi alın.",
+    openGraph: {
+        title: "Giriş Yap | VolleySimulator",
+        description: "VolleySimulator hesabınıza giriş yapın ve tahmin oyununa katılın.",
+    },
+    robots: {
+        index: false,
+        follow: true,
+    },
+};
+
+export default function LoginLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
+    return children;
+}
+
+```
+
+## File: app\login\page.tsx
+```
+"use client";
+
+// Prevent static prerendering - this page requires auth context
+export const dynamic = 'force-dynamic';
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../context/AuthContext";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Separator } from "@/components/ui/separator";
+import { Loader2, ArrowRight, AlertCircle } from "lucide-react";
+
+import LoginBackground from "../components/LoginBackground";
+
+export default function LoginPage() {
+    const router = useRouter();
+    const { signIn, signInWithGoogle, user } = useAuth();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState("");
+
+    // Redirect if already logged in
+    useEffect(() => {
+        if (user) {
+            router.push('/ligler');
+        }
+    }, [user, router]);
+
+    if (user) {
+        return null;
+    }
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setError("");
+
+        const { error } = await signIn(email, password);
+
+        if (error) {
+            setError(error.message === "Invalid login credentials"
+                ? "E-posta veya şifre hatalı"
+                : error.message
+            );
+            setIsLoading(false);
+        } else {
+            router.push('/ligler');
+        }
+    };
+
+    const handleGoogleLogin = async () => {
+        await signInWithGoogle();
+    };
+
+    return (
+        <main className="min-h-screen relative flex flex-col items-center justify-center p-4 overflow-hidden">
+            <LoginBackground />
+
+            <div className="w-full max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
+
+                {/* Left Side: Brand & Features (Desktop) */}
+                <div className="hidden lg:block space-y-8 animate-fade-in-left">
+                    <div className="space-y-2">
+                        <Link href="/" className="inline-block">
+                            <span className="text-4xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400">
+                                VolleySimulator
+                            </span>
+                        </Link>
+                        <h1 className="text-2xl font-light text-slate-300">
+                            Voleybol Tutkunları İçin <br />
+                            <span className="font-semibold text-white">Yeni Nesil Simülasyon</span>
+                        </h1>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 p-4 rounded-2xl">
+                            <div className="text-3xl mb-2">🏆</div>
+                            <h3 className="font-bold text-white mb-1">Tahmin Oyunu</h3>
+                            <p className="text-sm text-slate-400">Maç skorlarını tahmin et, puanları topla ve liderliğe yüksel.</p>
+                        </div>
+                        <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 p-4 rounded-2xl">
+                            <div className="text-3xl mb-2">📊</div>
+                            <h3 className="font-bold text-white mb-1">Detaylı Analiz</h3>
+                            <p className="text-sm text-slate-400">Takım form durumları ve yapay zeka destekli maç analizleri.</p>
+                        </div>
+                        <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 p-4 rounded-2xl">
+                            <div className="text-3xl mb-2">⚡</div>
+                            <h3 className="font-bold text-white mb-1">Canlı Skor</h3>
+                            <p className="text-sm text-slate-400">Maç sonuçlarını anlık takip et, ligdeki gelişmeleri kaçırma.</p>
+                        </div>
+                        <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 p-4 rounded-2xl">
+                            <div className="text-3xl mb-2">🌍</div>
+                            <h3 className="font-bold text-white mb-1">Topluluk</h3>
+                            <p className="text-sm text-slate-400">Diğer voleybol severlerle yarış ve sıralamada yerini al.</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Right Side: Login Card */}
+                <div className="w-full max-w-md mx-auto lg:ml-auto">
+                    <Card className="bg-background/60 backdrop-blur-xl border-border/50 shadow-2xl">
+                        <CardHeader className="text-center">
+                            {/* Mobile Header (Visible only on mobile) */}
+                            <div className="lg:hidden mb-4">
+                                <Link href="/" className="inline-block mb-2">
+                                    <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200">
+                                        VolleySimulator
+                                    </span>
+                                </Link>
+                            </div>
+                            <CardTitle className="text-2xl">Giriş Yap</CardTitle>
+                            <CardDescription>Hesabınıza erişmek için bilgilerinizi girin</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            {/* Login Form */}
+                            <form onSubmit={handleSubmit} className="space-y-4">
+                                {error && (
+                                    <Alert variant="destructive">
+                                        <AlertCircle className="h-4 w-4" />
+                                        <AlertDescription>{error}</AlertDescription>
+                                    </Alert>
+                                )}
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="email">E-posta</Label>
+                                    <Input
+                                        id="email"
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder="ornek@email.com"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="space-y-2">
+                                    <div className="flex items-center justify-between">
+                                        <Label htmlFor="password">Şifre</Label>
+                                        <Link href="#" className="text-xs text-primary hover:underline">
+                                            Unuttum?
+                                        </Link>
+                                    </div>
+                                    <Input
+                                        id="password"
+                                        type="password"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        placeholder="••••••••"
+                                        required
+                                    />
+                                </div>
+
+                                <Button
+                                    type="submit"
+                                    disabled={isLoading}
+                                    className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500"
+                                >
+                                    {isLoading ? (
+                                        <Loader2 className="h-4 w-4 animate-spin" />
+                                    ) : (
+                                        <>
+                                            Giriş Yap
+                                            <ArrowRight className="ml-2 h-4 w-4" />
+                                        </>
+                                    )}
+                                </Button>
+                            </form>
+
+                            <div className="relative my-6">
+                                <Separator />
+                                <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-card px-2 text-xs text-muted-foreground">
+                                    veya
+                                </span>
+                            </div>
+
+                            <Button
+                                type="button"
+                                variant="outline"
+                                onClick={handleGoogleLogin}
+                                className="w-full"
+                            >
+                                <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
+                                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+                                </svg>
+                                Google ile devam et
+                            </Button>
+
+                            <p className="mt-6 text-center text-sm text-muted-foreground">
+                                Hesabın yok mu?{" "}
+                                <Link href="/register" className="text-primary font-medium hover:underline">
+                                    Hemen Kayıt Ol
+                                </Link>
+                            </p>
+                        </CardContent>
+                    </Card>
+
+                    {/* Skip Link (Subtle) */}
+                    <div className="text-center mt-6">
+                        <Link href="/1lig/tahminoyunu" className="text-muted-foreground text-xs hover:text-foreground transition-colors flex items-center justify-center gap-1 group">
+                            Giriş yapmadan siteye göz at
+                            <span className="group-hover:translate-x-1 transition-transform">→</span>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+
+            <style jsx>{`
+                @keyframes fade-in-up {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                @keyframes fade-in-left {
+                    from { opacity: 0; transform: translateX(-20px); }
+                    to { opacity: 1; transform: translateX(0); }
+                }
+                .animate-fade-in-up {
+                    animation: fade-in-up 0.6s ease-out forwards;
+                }
+                .animate-fade-in-left {
+                    animation: fade-in-left 0.6s ease-out forwards;
+                    animation-delay: 0.2s;
+                    opacity: 0;
+                }
+            `}</style>
+        </main>
+    );
+}
+
+```
+
+## File: app\notifications\page.tsx
+```
+"use client";
+
+import { useState, useMemo } from "react";
+import { useNotifications } from "../context/NotificationsContext";
+import { useAuth } from "../context/AuthContext";
+import { Notification, NotificationType } from "../types";
+import Link from "next/link";
+
+export default function NotificationsPage() {
+  const { user } = useAuth();
+  const { 
+    notifications, 
+    unreadCount,
+    preferences,
+    markAsRead, 
+    markAllAsRead,
+    deleteNotification,
+    clearAll,
+    updatePreferences,
+    requestPushPermission,
+    isLoading 
+  } = useNotifications();
+  
+  const [activeTab, setActiveTab] = useState<'all' | 'unread' | 'settings'>('all');
+  const [filter, setFilter] = useState<NotificationType | 'all'>('all');
+
+  // Filter notifications
+  const filteredNotifications = useMemo(() => {
+    let filtered = notifications;
+    
+    if (activeTab === 'unread') {
+      filtered = filtered.filter(n => !n.isRead);
+    }
+    
+    if (filter !== 'all') {
+      filtered = filtered.filter(n => n.type === filter);
+    }
+    
+    return filtered;
+  }, [notifications, activeTab, filter]);
+
+  // Group notifications by date
+  const groupedNotifications = useMemo(() => {
+    const groups: Record<string, Notification[]> = {};
+    
+    filteredNotifications.forEach(notification => {
+      const date = new Date(notification.createdAt).toLocaleDateString('tr-TR');
+      if (!groups[date]) {
+        groups[date] = [];
+      }
+      groups[date].push(notification);
+    });
+    
+    return groups;
+  }, [filteredNotifications]);
+
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-slate-400 mb-4">Bu sayfayı görüntülemek için giriş yapmalısınız.</p>
+          <Link href="/" className="text-emerald-400 hover:underline">Giriş Yap</Link>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <main className="min-h-screen bg-slate-950 text-slate-100">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-cyan-600 to-blue-600 px-4 py-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-white">Bildirimler</h1>
+              <p className="text-white/70 text-sm mt-1">
+                {unreadCount > 0 ? `${unreadCount} okunmamış bildirim` : 'Tüm bildirimler okundu'}
+              </p>
+            </div>
+            {unreadCount > 0 && (
+              <button
+                onClick={markAllAsRead}
+                className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-xl text-sm font-medium transition-colors"
+              >
+                Tümünü Okundu İşaretle
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Tabs */}
+      <div className="max-w-4xl mx-auto px-4">
+        <div className="flex gap-2 py-4 border-b border-slate-800">
+          {[
+            { key: 'all', label: 'Tümü', icon: '📬', count: notifications.length },
+            { key: 'unread', label: 'Okunmamış', icon: '🔔', count: unreadCount },
+            { key: 'settings', label: 'Ayarlar', icon: '⚙️' },
+          ].map(tab => (
+            <button
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key as typeof activeTab)}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                activeTab === tab.key
+                  ? 'bg-white/10 text-white'
+                  : 'text-slate-400 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <span>{tab.icon}</span>
+              <span>{tab.label}</span>
+              {tab.count !== undefined && tab.count > 0 && (
+                <span className="bg-cyan-500 text-white text-xs px-2 py-0.5 rounded-full">
+                  {tab.count}
+                </span>
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* Content */}
+        <div className="py-6">
+          {/* Notification List */}
+          {(activeTab === 'all' || activeTab === 'unread') && (
+            <div className="space-y-6">
+              {/* Filter */}
+              <div className="flex gap-2 overflow-x-auto pb-2">
+                {[
+                  { key: 'all', label: 'Tümü' },
+                  { key: 'match_reminder', label: 'Maç Hatırlatma' },
+                  { key: 'match_result', label: 'Sonuçlar' },
+                  { key: 'friend_request', label: 'Arkadaşlık' },
+                  { key: 'achievement', label: 'Başarımlar' },
+                  { key: 'leaderboard_change', label: 'Sıralama' },
+                ].map(f => (
+                  <button
+                    key={f.key}
+                    onClick={() => setFilter(f.key as typeof filter)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors ${
+                      filter === f.key
+                        ? 'bg-cyan-600 text-white'
+                        : 'bg-slate-800 text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    {f.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Notifications */}
+              {Object.keys(groupedNotifications).length === 0 ? (
+                <div className="text-center py-12">
+                  <div className="text-5xl mb-4">🔔</div>
+                  <p className="text-slate-400">Bildirim yok</p>
+                </div>
+              ) : (
+                Object.entries(groupedNotifications).map(([date, notifs]) => (
+                  <div key={date}>
+                    <h3 className="text-sm font-medium text-slate-500 mb-3">{date}</h3>
+                    <div className="space-y-2">
+                      {notifs.map(notification => (
+                        <NotificationItem
+                          key={notification.id}
+                          notification={notification}
+                          onRead={() => markAsRead(notification.id)}
+                          onDelete={() => deleteNotification(notification.id)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                ))
+              )}
+
+              {notifications.length > 0 && (
+                <div className="text-center pt-4">
+                  <button
+                    onClick={clearAll}
+                    className="text-sm text-slate-500 hover:text-red-400 transition-colors"
+                  >
+                    Tüm Bildirimleri Temizle
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Settings */}
+          {activeTab === 'settings' && (
+            <div className="space-y-6">
+              {/* Push Notifications */}
+              <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-bold text-white">Push Bildirimleri</h3>
+                    <p className="text-sm text-slate-400 mt-1">
+                      Tarayıcı bildirimleri alın
+                    </p>
+                  </div>
+                  {preferences.pushEnabled ? (
+                    <span className="text-emerald-400 text-sm">✓ Aktif</span>
+                  ) : (
+                    <button
+                      onClick={requestPushPermission}
+                      className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 rounded-lg text-sm font-medium transition-colors"
+                    >
+                      Etkinleştir
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Notification Types */}
+              <div className="bg-slate-900/50 border border-slate-800 rounded-xl overflow-hidden">
+                <div className="p-4 border-b border-slate-800">
+                  <h3 className="font-bold text-white">Bildirim Türleri</h3>
+                </div>
+                
+                <div className="divide-y divide-slate-800">
+                  {[
+                    { key: 'matchReminders', label: 'Maç Hatırlatmaları', icon: '⏰', desc: 'Tahmin edilmemiş maçlar için hatırlatma' },
+                    { key: 'matchResults', label: 'Maç Sonuçları', icon: '⚽', desc: 'Tahmin edilen maçların sonuçları' },
+                    { key: 'friendRequests', label: 'Arkadaşlık İstekleri', icon: '👥', desc: 'Yeni arkadaşlık istekleri' },
+                    { key: 'friendActivity', label: 'Arkadaş Aktiviteleri', icon: '📊', desc: 'Arkadaşların tahminleri ve başarımları' },
+                    { key: 'achievements', label: 'Başarımlar', icon: '🏆', desc: 'Yeni rozetler ve başarımlar' },
+                    { key: 'leaderboardChanges', label: 'Sıralama Değişiklikleri', icon: '📈', desc: 'Liderlik tablosu güncellemeleri' },
+                    { key: 'dailyQuests', label: 'Günlük Görevler', icon: '📋', desc: 'Günlük görev hatırlatmaları' },
+                    { key: 'weeklyDigest', label: 'Haftalık Özet', icon: '📰', desc: 'Haftalık performans özeti' },
+                  ].map(setting => (
+                    <div key={setting.key} className="flex items-center justify-between p-4">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">{setting.icon}</span>
+                        <div>
+                          <h4 className="font-medium text-white">{setting.label}</h4>
+                          <p className="text-xs text-slate-500">{setting.desc}</p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => updatePreferences({ 
+                          [setting.key]: !preferences[setting.key as keyof typeof preferences]
+                        })}
+                        className={`relative w-12 h-6 rounded-full transition-colors ${
+                          preferences[setting.key as keyof typeof preferences]
+                            ? 'bg-cyan-600'
+                            : 'bg-slate-700'
+                        }`}
+                      >
+                        <span 
+                          className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${
+                            preferences[setting.key as keyof typeof preferences]
+                              ? 'left-7'
+                              : 'left-1'
+                          }`}
+                        />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Quiet Hours */}
+              <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+                <h3 className="font-bold text-white mb-4">Sessiz Saatler</h3>
+                <p className="text-sm text-slate-400 mb-4">
+                  Bu saatler arasında bildirim almayın
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs text-slate-500 mb-2">Başlangıç</label>
+                    <input
+                      type="time"
+                      value={preferences.quietHoursStart || '23:00'}
+                      onChange={(e) => updatePreferences({ quietHoursStart: e.target.value })}
+                      className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs text-slate-500 mb-2">Bitiş</label>
+                    <input
+                      type="time"
+                      value={preferences.quietHoursEnd || '08:00'}
+                      onChange={(e) => updatePreferences({ quietHoursEnd: e.target.value })}
+                      className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Email Notifications */}
+              <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-bold text-white">E-posta Bildirimleri</h3>
+                    <p className="text-sm text-slate-400 mt-1">
+                      Önemli güncellemeler için e-posta alın
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => updatePreferences({ emailEnabled: !preferences.emailEnabled })}
+                    className={`relative w-12 h-6 rounded-full transition-colors ${
+                      preferences.emailEnabled ? 'bg-cyan-600' : 'bg-slate-700'
+                    }`}
+                  >
+                    <span 
+                      className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${
+                        preferences.emailEnabled ? 'left-7' : 'left-1'
+                      }`}
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </main>
+  );
+}
+
+// Notification Item Component
+function NotificationItem({ 
+  notification, 
+  onRead, 
+  onDelete 
+}: { 
+  notification: Notification; 
+  onRead: () => void;
+  onDelete: () => void;
+}) {
+  const icon = getNotificationIcon(notification.type);
+  
+  return (
+    <div 
+      className={`bg-slate-900/50 border rounded-xl p-4 transition-all ${
+        notification.isRead 
+          ? 'border-slate-800 opacity-70' 
+          : 'border-cyan-500/30 bg-cyan-500/5'
+      }`}
+    >
+      <div className="flex items-start gap-3">
+        <div className="text-2xl">{icon}</div>
+        <div className="flex-1">
+          <h4 className={`font-medium ${notification.isRead ? 'text-slate-300' : 'text-white'}`}>
+            {notification.title}
+          </h4>
+          <p className="text-sm text-slate-400 mt-1">{notification.message}</p>
+          <div className="flex items-center gap-4 mt-2">
+            <span className="text-xs text-slate-500">
+              {new Date(notification.createdAt).toLocaleTimeString('tr-TR', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+              })}
+            </span>
+            {notification.link && (
+              <Link 
+                href={notification.link}
+                className="text-xs text-cyan-400 hover:underline"
+              >
+                Görüntüle →
+              </Link>
+            )}
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          {!notification.isRead && (
+            <button
+              onClick={onRead}
+              className="p-1 text-slate-400 hover:text-white transition-colors"
+              title="Okundu işaretle"
+            >
+              ✓
+            </button>
+          )}
+          <button
+            onClick={onDelete}
+            className="p-1 text-slate-400 hover:text-red-400 transition-colors"
+            title="Sil"
+          >
+            ✕
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function getNotificationIcon(type: NotificationType): string {
+  switch (type) {
+    case 'match_reminder': return '⏰';
+    case 'match_result': return '⚽';
+    case 'prediction_result': return '🎯';
+    case 'friend_request': return '👥';
+    case 'friend_activity': return '📊';
+    case 'achievement': return '🏆';
+    case 'level_up': return '⬆️';
+    case 'leaderboard_change': return '📈';
+    case 'daily_quest': return '📋';
+    case 'weekly_challenge': return '🏅';
+    case 'system': return '📢';
+    default: return '🔔';
+  }
+}
+
+```
+
+## File: app\oauth\consent\page.tsx
+```
+"use client";
+
+import { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { createClient } from "../../utils/supabase";
+import Link from "next/link";
+import { Suspense } from "react";
+
+function ConsentContent() {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const supabase = createClient();
+
+    useEffect(() => {
+        // Check if there's an auth code to exchange
+        const code = searchParams.get('code');
+        if (code && supabase) {
+            supabase.auth.exchangeCodeForSession(code).then(() => {
+                router.push('/profile');
+            });
+        }
+    }, [searchParams, router, supabase]);
+
+    return (
+        <main className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4">
+            <div className="w-full max-w-md text-center">
+                {/* Header */}
+                <div className="mb-8">
+                    <Link href="/" className="inline-block mb-6">
+                        <span className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200">
+                            VolleySimulator
+                        </span>
+                    </Link>
+                </div>
+
+                {/* Consent Card */}
+                <div className="bg-slate-900/80 rounded-2xl border border-slate-700 p-8 space-y-6">
+                    <div className="w-16 h-16 mx-auto bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-500/30">
+                        <span className="text-3xl">🔐</span>
+                    </div>
+
+                    <div>
+                        <h1 className="text-2xl font-black text-white mb-2">Giriş Onayı</h1>
+                        <p className="text-slate-400 text-sm">
+                            VolleySimulator uygulamasına erişim izni verin
+                        </p>
+                    </div>
+
+                    <div className="bg-slate-800/50 rounded-xl p-4 text-left space-y-3">
+                        <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                            İzin Verilen Erişimler:
+                        </div>
+                        <div className="flex items-center gap-3 text-sm text-slate-300">
+                            <span className="text-emerald-400">✓</span>
+                            <span>Profil bilgileriniz</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-sm text-slate-300">
+                            <span className="text-emerald-400">✓</span>
+                            <span>E-posta adresiniz</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-sm text-slate-300">
+                            <span className="text-emerald-400">✓</span>
+                            <span>Tahmin ve oyun ilerlemeniz</span>
+                        </div>
+                    </div>
+
+                    <div className="space-y-3">
+                        <Link
+                            href="/profile"
+                            className="block w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all text-center"
+                        >
+                            ✓ İzin Ver ve Devam Et
+                        </Link>
+                        <Link
+                            href="/"
+                            className="block w-full py-3 bg-slate-800 border border-slate-700 text-slate-400 font-medium rounded-xl hover:bg-slate-700 transition-all text-center"
+                        >
+                            İptal
+                        </Link>
+                    </div>
+                </div>
+
+                <p className="mt-6 text-xs text-slate-500">
+                    Giriş yaparak{" "}
+                    <a href="#" className="text-emerald-400 hover:underline">Kullanım Koşulları</a>
+                    {" "}ve{" "}
+                    <a href="#" className="text-emerald-400 hover:underline">Gizlilik Politikası</a>
+                    &apos;nı kabul etmiş olursunuz.
+                </p>
+            </div>
+        </main>
+    );
+}
+
+export default function OAuthConsentPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500"></div>
+            </div>
+        }>
+            <ConsentContent />
+        </Suspense>
+    );
+}
+
+```
+
+## File: app\offline\page.tsx
+```
+'use client';
+
+import Link from 'next/link';
+
+export default function OfflinePage() {
+    return (
+        <div className="min-h-screen bg-gradient-to-b from-slate-950 to-slate-900 flex flex-col items-center justify-center p-4">
+            <div className="text-center space-y-6 max-w-md">
+                {/* Icon */}
+                <div className="text-6xl">📡</div>
+
+                {/* Title */}
+                <h1 className="text-3xl font-bold text-white">
+                    İnternet Bağlantısı Yok
+                </h1>
+
+                {/* Description */}
+                <p className="text-slate-400 text-lg">
+                    Şu anda çevrimdışısınız. Lütfen internet bağlantınızı kontrol edin.
+                </p>
+
+                {/* Cached Content Info */}
+                <div className="bg-slate-900/50 border border-slate-800 rounded-lg p-4 text-sm text-slate-300">
+                    <p className="mb-2">✓ Kacak sayfa önbellekte saklanmıştır</p>
+                    <p className="mb-2">✓ Tahminleriniz yerel olarak kaydedilmiştir</p>
+                    <p>✓ Bağlantı sağlandığında senkronize olacaktır</p>
+                </div>
+
+                {/* Actions */}
+                <div className="space-y-3 pt-4">
+                    <button
+                        onClick={() => window.location.reload()}
+                        className="w-full px-4 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg transition-colors"
+                    >
+                        Yenile
+                    </button>
+
+                    <Link
+                        href="/"
+                        className="block w-full px-4 py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-lg transition-colors text-center"
+                    >
+                        Ana Sayfaya Dön
+                    </Link>
+                </div>
+
+                {/* Tips */}
+                <div className="text-xs text-slate-500 space-y-1 pt-4 border-t border-slate-800">
+                    <p>💡 WiFi bağlantınızı kontrol edin</p>
+                    <p>💡 Mobil veri bağlantınızı açmayı deneyin</p>
+                    <p>💡 Uçak modu kapalı olduğundan emin olun</p>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+```
+
 ## File: app\premium\page.tsx
 ```
 "use client";
@@ -353,6 +1745,13 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
 import { useGameState, ACHIEVEMENTS, getLevelTitle, getXPForNextLevel } from "../utils/gameState";
 import { LEVEL_THRESHOLDS } from "../types";
+import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/Card";
+import { Button } from "../components/ui/Button";
+import { Badge } from "../components/ui/Badge";
+import { Skeleton } from "../components/ui/Skeleton";
+import { motion } from "framer-motion";
+import { LogOut, Trophy, Zap, Target, TrendingUp, Settings as SettingsIcon, Heart, Home, Edit2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function ProfilePage() {
     const router = useRouter();
@@ -382,166 +1781,235 @@ export default function ProfilePage() {
 
     if (authLoading) {
         return (
-            <main className="min-h-screen bg-slate-950 flex items-center justify-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500"></div>
+            <main className="min-h-screen bg-background flex items-center justify-center">
+                <div className="flex flex-col items-center gap-4">
+                    <Zap className="w-12 h-12 text-primary animate-pulse shadow-glow-primary" />
+                    <span className="text-xs font-black uppercase tracking-widest text-text-muted">Profil Yükleniyor</span>
+                </div>
             </main>
         );
     }
 
     return (
-        <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">
-            <div className="max-w-2xl mx-auto space-y-3 sm:space-y-4">
+        <main className="min-h-screen bg-background text-text-primary p-4 sm:p-6 lg:p-8 animate-in fade-in duration-500">
+            <div className="max-w-2xl mx-auto space-y-6">
 
-                {/* Compact Header Card */}
-                <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl border border-slate-700 p-3 sm:p-4 shadow-xl">
-                    <div className="flex items-center gap-3 sm:gap-4">
-                        {/* Level Badge */}
-                        <div className="relative shrink-0">
-                            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30">
-                                <span className="text-2xl sm:text-3xl font-black text-white">{gameState.level}</span>
-                            </div>
-                        </div>
-
-                        {/* Info */}
-                        <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2 flex-wrap">
-                                <h1 className="font-bold text-white text-lg sm:text-xl truncate">
-                                    {user?.user_metadata?.name || 'Oyuncu'}
-                                </h1>
-                                <span className="text-[10px] sm:text-xs bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full font-bold">
-                                    {getLevelTitle(gameState.level)}
-                                </span>
-                            </div>
-                            <p className="text-[11px] sm:text-xs text-slate-500 truncate">
-                                {user?.email || 'Giriş yapılmamış'}
-                            </p>
-
-                            {/* XP Mini Bar */}
-                            <div className="mt-2">
-                                <div className="h-1.5 bg-slate-700 rounded-full overflow-hidden">
-                                    <div
-                                        className="h-full bg-gradient-to-r from-amber-400 to-orange-400 transition-all"
-                                        style={{ width: `${Math.min(percentage, 100)}%` }}
-                                    />
-                                </div>
-                                <div className="flex justify-between text-[10px] text-slate-500 mt-0.5">
-                                    <span>{gameState.xp.toLocaleString()} XP</span>
-                                    <span>{progress}/{required}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Sign Out */}
-                        {user && (
-                            <button
-                                onClick={handleSignOut}
-                                className="shrink-0 px-2 sm:px-3 py-1.5 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 text-xs font-bold rounded-lg transition-all"
-                            >
-                                Çıkış
-                            </button>
-                        )}
-                    </div>
-                </div>
-
-                {/* Stats Grid - More Compact */}
-                <div className="grid grid-cols-4 gap-2">
-                    <StatMini icon="🎯" value={gameState.stats.totalPredictions} label="Tahmin" color="blue" />
-                    <StatMini icon="✓" value={gameState.stats.correctPredictions} label="Doğru" color="emerald" />
-                    <StatMini icon="📊" value={`${accuracy}%`} label="İsabet" color="amber" />
-                    <StatMini icon="🔥" value={gameState.stats.bestStreak} label="Seri" color="orange" />
-                </div>
-
-                {/* Favorite Team - Compact */}
-                {gameState.favoriteTeam && (
-                    <div className="bg-gradient-to-r from-rose-900/20 to-pink-900/20 rounded-xl border border-rose-600/30 p-2 sm:p-3 flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                            <span className="text-lg">❤️</span>
-                            <div>
-                                <div className="text-[10px] text-rose-400/80 uppercase tracking-wider">Favori</div>
-                                <div className="text-sm font-bold text-white truncate">{gameState.favoriteTeam}</div>
-                            </div>
-                        </div>
-                        <button
-                            onClick={() => setFavoriteTeam(null)}
-                            className="text-rose-400/60 hover:text-rose-400 text-xs"
-                        >
-                            ✕
-                        </button>
-                    </div>
-                )}
-
-                {/* Quick Settings */}
-                <div className="bg-slate-900 rounded-xl border border-slate-800 p-3">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                            <span className="text-slate-500">🔊</span>
-                            <span className="text-sm text-slate-300">Ses</span>
-                        </div>
-                        <button
-                            onClick={toggleSound}
-                            title="Ses Efektlerini Aç/Kapat"
-                            className={`w-10 h-5 rounded-full transition-all relative ${gameState.soundEnabled ? 'bg-emerald-600' : 'bg-slate-700'}`}
-                        >
-                            <div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform ${gameState.soundEnabled ? 'translate-x-5' : 'translate-x-0.5'}`} />
-                        </button>
-                    </div>
-                </div>
-
-                {/* Achievements - Compact Grid */}
-                <div className="bg-slate-900 rounded-xl border border-slate-800 p-3">
-                    <div className="flex items-center justify-between mb-3">
-                        <h3 className="text-sm font-bold text-slate-300 flex items-center gap-2">
-                            🏆 Başarılar
-                        </h3>
-                        <span className="text-xs bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full font-bold">
-                            {unlockedCount}/{allAchievements.length}
-                        </span>
-                    </div>
-
-                    <div className="grid grid-cols-4 gap-1.5 sm:gap-2">
-                        {allAchievements.map(achievement => {
-                            const isUnlocked = gameState.achievements.some(a => a.id === achievement.id);
-                            return (
-                                <div
-                                    key={achievement.id}
-                                    className={`p-2 rounded-lg border text-center transition-all ${isUnlocked
-                                        ? 'bg-gradient-to-br from-amber-900/30 to-orange-900/30 border-amber-600/40'
-                                        : 'bg-slate-800/30 border-slate-700/30 opacity-40'
-                                        }`}
-                                    title={`${achievement.name}: ${achievement.description}`}
-                                >
-                                    <div className={`text-xl ${!isUnlocked && 'grayscale'}`}>
-                                        {achievement.icon}
+                {/* Profile Header Block */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                >
+                    <Card className="relative overflow-hidden border-border-main/50 bg-surface-primary/50 shadow-premium-lg">
+                        <div className="absolute top-0 right-0 w-48 h-48 bg-primary/10 blur-[64px] -z-10" />
+                        <CardContent className="p-6">
+                            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                                {/* Large Avatar/Level Badge */}
+                                <div className="relative group">
+                                    <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-primary via-primary-dark to-black flex flex-col items-center justify-center shadow-glow-primary transition-transform duration-500 group-hover:rotate-3">
+                                        <span className="text-[10px] font-black text-white/50 uppercase tracking-tighter -mb-1">LVL</span>
+                                        <span className="text-4xl font-black text-white italic">{gameState.level}</span>
                                     </div>
-                                    <div className="text-[9px] font-bold text-white truncate mt-1">{achievement.name}</div>
-                                    <div className="text-[8px] text-amber-400/70">+{achievement.xpReward}</div>
+                                    <div className="absolute -bottom-2 -right-2">
+                                        <Badge variant="success" className="h-6 w-6 rounded-full flex items-center justify-center p-0 border-2 border-surface-primary ring-2 ring-emerald-500/20">
+                                            <TrendingUp className="w-3.5 h-3.5" />
+                                        </Badge>
+                                    </div>
                                 </div>
-                            );
-                        })}
-                    </div>
+
+                                {/* User Meta Info */}
+                                <div className="flex-1 text-center sm:text-left space-y-2">
+                                    <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                                        <h1 className="text-2xl font-black tracking-tight text-text-primary uppercase italic">
+                                            {user?.user_metadata?.name || 'Voleybol Tutkunu'}
+                                        </h1>
+                                        <Badge variant="outline" className="text-[10px] font-black tracking-widest text-primary border-primary/20 bg-primary/5 self-center sm:self-auto italic">
+                                            {getLevelTitle(gameState.level)}
+                                        </Badge>
+                                    </div>
+                                    <p className="text-sm text-text-secondary font-medium">
+                                        {user?.email || 'Anonim Hesap'}
+                                    </p>
+
+                                    {/* XP Progress Bar */}
+                                    <div className="pt-2">
+                                        <div className="flex justify-between items-end mb-1.5">
+                                            <span className="text-[10px] font-black text-text-muted uppercase tracking-widest">Tecrübe (XP)</span>
+                                            <span className="text-[10px] font-black text-text-primary">{gameState.xp.toLocaleString()} / {required.toLocaleString()}</span>
+                                        </div>
+                                        <div className="h-2 bg-surface-secondary/50 rounded-full overflow-hidden border border-border-subtle p-0.5">
+                                            <motion.div
+                                                initial={{ width: 0 }}
+                                                animate={{ width: `${Math.min(percentage, 100)}%` }}
+                                                className="h-full bg-gradient-to-r from-primary to-primary-light rounded-full shadow-glow-primary"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Actions */}
+                                <div className="flex flex-col gap-2 w-full sm:w-auto">
+                                    {user && (
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            className="h-9 font-black uppercase text-[10px] tracking-widest border-rose-500/30 text-rose-500 hover:bg-rose-500 hover:text-white"
+                                            onClick={handleSignOut}
+                                            leftIcon={<LogOut className="w-3 h-3" />}
+                                        >
+                                            ÇIKIŞ YAP
+                                        </Button>
+                                    )}
+                                    <Button
+                                        variant="secondary"
+                                        size="sm"
+                                        className="h-9 font-black uppercase text-[10px] tracking-widest"
+                                        onClick={() => router.push('/ayarlar')}
+                                        leftIcon={<SettingsIcon className="w-3 h-3" />}
+                                    >
+                                        AYARLAR
+                                    </Button>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </motion.div>
+
+                {/* Primary Stats Grid */}
+                <motion.div
+                    className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                >
+                    <StatMini icon={<Trophy className="w-4 h-4" />} value={gameState.stats.totalPredictions} label="Toplam Tahmin" />
+                    <StatMini icon={<Target className="w-4 h-4" />} value={gameState.stats.correctPredictions} label="Doğru Skor" />
+                    <StatMini icon={<TrendingUp className="w-4 h-4" />} value={`${accuracy}%`} label="Başarı Oranı" />
+                    <StatMini icon={<Zap className="w-4 h-4" />} value={gameState.stats.bestStreak} label="En İyi Seri" />
+                </motion.div>
+
+                {/* Favorite Team & Shared Space */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {gameState.favoriteTeam && (
+                        <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}>
+                            <Card className="bg-primary/5 border-primary/20 overflow-hidden group">
+                                <CardContent className="p-4 flex items-center justify-between">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+                                            <Heart className="w-5 h-5 text-primary fill-current" />
+                                        </div>
+                                        <div>
+                                            <p className="text-[10px] font-black text-primary uppercase tracking-widest">Favori Takım</p>
+                                            <p className="text-lg font-black text-text-primary italic uppercase tracking-tighter">{gameState.favoriteTeam}</p>
+                                        </div>
+                                    </div>
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="h-8 w-8 text-text-muted hover:text-rose-500"
+                                        onClick={() => setFavoriteTeam(null)}
+                                    >
+                                        <Edit2 className="w-4 h-4" />
+                                    </Button>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+                    )}
+
+                    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}>
+                        <Card className="bg-surface-secondary/20 border-border-main/50">
+                            <CardContent className="p-4 flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-xl bg-surface-secondary/50 flex items-center justify-center">
+                                        <Zap className="w-5 h-5 text-amber-500" />
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] font-black text-text-muted uppercase tracking-widest">Ses Efektleri</p>
+                                        <p className="text-sm font-black text-text-primary uppercase">{gameState.soundEnabled ? 'Aktif' : 'Pasif'}</p>
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={toggleSound}
+                                    className={cn(
+                                        "w-10 h-5 rounded-full transition-all relative border border-border-subtle",
+                                        gameState.soundEnabled ? "bg-primary shadow-glow-primary" : "bg-surface-dark"
+                                    )}
+                                    aria-label="Ses Efektlerini Değiştir"
+                                >
+                                    <motion.div
+                                        layout
+                                        className="w-3.5 h-3.5 bg-white rounded-full absolute top-0.5"
+                                        animate={{ x: gameState.soundEnabled ? 20 : 2 }}
+                                    />
+                                </button>
+                            </CardContent>
+                        </Card>
+                    </motion.div>
                 </div>
 
-                {/* Auth Card - Only if not logged in */}
-                {!user && (
-                    <div className="bg-amber-900/20 border border-amber-600/30 rounded-xl p-3 flex items-center justify-between">
-                        <span className="text-amber-400 text-sm">Giriş yaparak ilerlemenizi kaydedin</span>
-                        <a
-                            href="/login"
-                            className="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold rounded-lg transition-all"
-                        >
-                            Giriş Yap
-                        </a>
-                    </div>
-                )}
+                {/* Achievements Showcase */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                >
+                    <Card className="bg-surface-primary border-border-main/50 overflow-hidden shadow-2xl">
+                        <CardHeader className="bg-surface-secondary/30 p-4 border-b border-border-main flex-row justify-between items-center space-y-0">
+                            <CardTitle className="text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2">
+                                <Trophy className="w-4 h-4 text-primary" />
+                                Başarı Başarımları
+                            </CardTitle>
+                            <Badge variant="secondary" className="px-2 py-0 h-5 text-[10px] font-black">
+                                {unlockedCount}/{allAchievements.length}
+                            </Badge>
+                        </CardHeader>
+                        <CardContent className="p-4">
+                            <div className="grid grid-cols-4 sm:grid-cols-6 gap-3">
+                                {allAchievements.map((achievement, idx) => {
+                                    const isUnlocked = gameState.achievements.some(a => a.id === achievement.id);
+                                    return (
+                                        <motion.div
+                                            key={achievement.id}
+                                            initial={{ opacity: 0, scale: 0.8 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            transition={{ delay: 0.4 + (idx * 0.05) }}
+                                            className={cn(
+                                                "relative flex flex-col items-center justify-center p-3 rounded-2xl border transition-all aspect-square",
+                                                isUnlocked
+                                                    ? "bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20 shadow-premium-sm"
+                                                    : "bg-surface-dark/50 border-border-subtle opacity-30 grayscale"
+                                            )}
+                                            title={`${achievement.name}: ${achievement.description}`}
+                                        >
+                                            <span className="text-2xl mb-1">{achievement.icon}</span>
+                                            <div className="text-[8px] font-black text-center truncate w-full uppercase tracking-tighter text-text-primary px-1">
+                                                {achievement.name}
+                                            </div>
+                                            {isUnlocked && (
+                                                <div className="absolute -top-1 -right-1">
+                                                    <div className="w-4 h-4 bg-primary rounded-full flex items-center justify-center shadow-glow-primary">
+                                                        <Zap className="w-2 h-2 text-white fill-current" />
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </motion.div>
+                                    );
+                                })}
+                            </div>
+                        </CardContent>
+                    </Card>
+                </motion.div>
 
-                {/* Back to Game */}
-                <div className="text-center pb-4">
-                    <a
-                        href="/anasayfa"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-sm font-bold rounded-lg transition-all"
+                {/* Footer Navigation */}
+                <div className="flex items-center justify-center gap-4 py-8">
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => router.push('/anasayfa')}
+                        className="text-text-muted hover:text-text-primary font-black uppercase text-[10px] tracking-widest"
+                        leftIcon={<Home className="w-4 h-4" />}
                     >
-                        ← Ana Sayfa
-                    </a>
+                        Ana Sayfa
+                    </Button>
                 </div>
 
             </div>
@@ -549,23 +2017,18 @@ export default function ProfilePage() {
     );
 }
 
-// Compact stat mini component
-function StatMini({ icon, value, label, color }: { icon: string; value: string | number; label: string; color: string }) {
-    const colors: Record<string, string> = {
-        blue: 'from-blue-900/30 to-blue-800/20 border-blue-600/30 text-blue-400',
-        emerald: 'from-emerald-900/30 to-emerald-800/20 border-emerald-600/30 text-emerald-400',
-        amber: 'from-amber-900/30 to-amber-800/20 border-amber-600/30 text-amber-400',
-        orange: 'from-orange-900/30 to-orange-800/20 border-orange-600/30 text-orange-400',
-    };
-
+function StatMini({ icon, value, label }: { icon: React.ReactNode; value: string | number; label: string }) {
     return (
-        <div className={`bg-gradient-to-br ${colors[color]} rounded-xl border p-2 text-center`}>
-            <div className="text-sm">{icon}</div>
-            <div className="text-lg sm:text-xl font-bold text-white">{value}</div>
-            <div className="text-[9px] text-slate-400 uppercase">{label}</div>
-        </div>
+        <Card className="bg-surface-primary border-border-main/50 p-4 flex flex-col items-center justify-center gap-1 group hover:border-primary/30 transition-all duration-300">
+            <div className="w-8 h-8 rounded-xl bg-surface-secondary/50 flex items-center justify-center text-primary transition-transform group-hover:scale-110 group-hover:bg-primary/10">
+                {icon}
+            </div>
+            <div className="text-xl font-black text-text-primary italic tabular-nums mt-1">{value}</div>
+            <div className="text-[9px] font-black text-text-muted uppercase tracking-[0.1em]">{label}</div>
+        </Card>
     );
 }
+
 
 ```
 
@@ -595,1482 +2058,6 @@ export function QueryProvider({ children }: { children: ReactNode }) {
         <QueryClientProvider client={queryClient}>
             {children}
         </QueryClientProvider>
-    );
-}
-
-```
-
-## File: app\quests\page.tsx
-```
-"use client";
-
-import { useState, useMemo } from "react";
-import { useQuests } from "../context/QuestsContext";
-import { useAuth } from "../context/AuthContext";
-import { useGameState } from "../utils/gameState";
-import { BADGE_RARITY_COLORS, Badge } from "../types";
-import Link from "next/link";
-
-export default function QuestsPage() {
-  const { user } = useAuth();
-  const { gameState } = useGameState();
-  const { 
-    dailyQuests, 
-    weeklyChallenge, 
-    streakData, 
-    badges,
-    unlockedBadges,
-    claimQuestReward,
-    useStreakFreeze,
-    isLoading 
-  } = useQuests();
-  
-  const [activeTab, setActiveTab] = useState<'quests' | 'badges' | 'streak'>('quests');
-  const [showRewardModal, setShowRewardModal] = useState<{ xp: number; coins: number } | null>(null);
-
-  // Calculate streak status
-  const streakStatus = useMemo(() => {
-    if (!streakData.lastPredictionDate) return 'inactive';
-    
-    const lastDate = new Date(streakData.lastPredictionDate);
-    const today = new Date();
-    const diffDays = Math.floor((today.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24));
-    
-    if (diffDays === 0) return 'active';
-    if (diffDays === 1) return 'at_risk';
-    return 'broken';
-  }, [streakData.lastPredictionDate]);
-
-  const handleClaimReward = async (questId: string) => {
-    const reward = await claimQuestReward(questId);
-    if (reward) {
-      setShowRewardModal(reward);
-      setTimeout(() => setShowRewardModal(null), 3000);
-    }
-  };
-
-  if (!user) {
-    return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-slate-400 mb-4">Bu sayfayı görüntülemek için giriş yapmalısınız.</p>
-          <Link href="/" className="text-emerald-400 hover:underline">Giriş Yap</Link>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <main className="min-h-screen bg-slate-950 text-slate-100">
-      {/* Header with Streak */}
-      <div className="bg-gradient-to-r from-orange-600 to-red-600 px-4 py-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-white">Görevler & Başarımlar</h1>
-              <p className="text-white/70 text-sm mt-1">
-                Günlük görevleri tamamla, XP kazan!
-              </p>
-            </div>
-            
-            {/* Streak Display */}
-            <div className="text-center">
-              <div className={`text-4xl font-black ${
-                streakStatus === 'active' ? 'text-white' : 
-                streakStatus === 'at_risk' ? 'text-amber-300' : 'text-slate-300'
-              }`}>
-                {streakData.currentStreak}🔥
-              </div>
-              <div className="text-xs text-white/70">Günlük Seri</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Tabs */}
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="flex gap-2 py-4 border-b border-slate-800">
-          {[
-            { key: 'quests', label: 'Günlük Görevler', icon: '📋' },
-            { key: 'badges', label: 'Rozetler', icon: '🎖️' },
-            { key: 'streak', label: 'Seri', icon: '🔥' },
-          ].map(tab => (
-            <button
-              key={tab.key}
-              onClick={() => setActiveTab(tab.key as typeof activeTab)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-                activeTab === tab.key
-                  ? 'bg-white/10 text-white'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              <span>{tab.icon}</span>
-              <span>{tab.label}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* Content */}
-        <div className="py-6">
-          {/* Daily Quests */}
-          {activeTab === 'quests' && (
-            <div className="space-y-4">
-              {/* Daily Quest Progress */}
-              <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-bold text-white">Günlük İlerleme</h3>
-                  <span className="text-sm text-slate-400">
-                    {dailyQuests.filter(q => q.completed).length}/{dailyQuests.length} tamamlandı
-                  </span>
-                </div>
-                <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-gradient-to-r from-orange-500 to-red-500 transition-all duration-500"
-                    style={{ width: `${(dailyQuests.filter(q => q.completed).length / dailyQuests.length) * 100}%` }}
-                  />
-                </div>
-              </div>
-
-              {/* Quest Cards */}
-              <div className="space-y-3">
-                {dailyQuests.map(quest => (
-                  <div
-                    key={quest.id}
-                    className={`bg-slate-900/50 border rounded-xl p-4 transition-all ${
-                      quest.completed 
-                        ? quest.claimed 
-                          ? 'border-slate-700 opacity-60' 
-                          : 'border-emerald-500/50 bg-emerald-500/10'
-                        : 'border-slate-800'
-                    }`}
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className="text-3xl">{quest.icon}</div>
-                      <div className="flex-1">
-                        <h3 className="font-bold text-white">{quest.title}</h3>
-                        <p className="text-sm text-slate-400">{quest.description}</p>
-                        
-                        {/* Progress Bar */}
-                        <div className="mt-2">
-                          <div className="flex items-center justify-between text-xs text-slate-500 mb-1">
-                            <span>{quest.progress}/{quest.target}</span>
-                            <span>{Math.round((quest.progress / quest.target) * 100)}%</span>
-                          </div>
-                          <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                            <div 
-                              className={`h-full transition-all duration-300 ${
-                                quest.completed ? 'bg-emerald-500' : 'bg-orange-500'
-                              }`}
-                              style={{ width: `${Math.min((quest.progress / quest.target) * 100, 100)}%` }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Rewards */}
-                      <div className="text-right">
-                        <div className="flex items-center gap-2 text-sm">
-                          <span className="text-amber-400">+{quest.xpReward} XP</span>
-                          <span className="text-yellow-400">+{quest.coinReward} 🪙</span>
-                        </div>
-                        
-                        {quest.completed && !quest.claimed && (
-                          <button
-                            onClick={() => handleClaimReward(quest.id)}
-                            className="mt-2 px-4 py-1.5 bg-emerald-600 hover:bg-emerald-700 rounded-lg text-sm font-medium transition-colors"
-                          >
-                            Ödülü Al
-                          </button>
-                        )}
-                        
-                        {quest.claimed && (
-                          <span className="text-xs text-slate-500">✓ Alındı</span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Weekly Challenge */}
-              {weeklyChallenge && (
-                <div className="mt-8">
-                  <h2 className="text-lg font-bold text-white mb-4">🏆 Haftalık Meydan Okuma</h2>
-                  <div className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 border border-purple-500/30 rounded-xl p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="text-4xl">{weeklyChallenge.icon}</div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold text-white">{weeklyChallenge.title}</h3>
-                        <p className="text-slate-300 mt-1">{weeklyChallenge.description}</p>
-                        
-                        <div className="mt-4">
-                          <div className="flex items-center justify-between text-sm text-slate-400 mb-2">
-                            <span>{weeklyChallenge.progress}/{weeklyChallenge.target}</span>
-                            <span>{weeklyChallenge.participants} katılımcı</span>
-                          </div>
-                          <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
-                            <div 
-                              className="h-full bg-gradient-to-r from-purple-500 to-pink-500"
-                              style={{ width: `${(weeklyChallenge.progress / weeklyChallenge.target) * 100}%` }}
-                            />
-                          </div>
-                        </div>
-                        
-                        <div className="mt-4 flex items-center gap-4">
-                          <span className="text-amber-400 font-bold">+{weeklyChallenge.xpReward} XP</span>
-                          {weeklyChallenge.badgeReward && (
-                            <span className="text-purple-400">🎖️ Özel Rozet</span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Badges */}
-          {activeTab === 'badges' && (
-            <div className="space-y-6">
-              {/* Unlocked Badges */}
-              <div>
-                <h2 className="text-lg font-bold text-white mb-4">
-                  Kazanılan Rozetler ({unlockedBadges.length})
-                </h2>
-                {unlockedBadges.length === 0 ? (
-                  <div className="text-center py-8 bg-slate-900/50 border border-slate-800 rounded-xl">
-                    <div className="text-5xl mb-4">🎖️</div>
-                    <p className="text-slate-400">Henüz rozet kazanmadınız</p>
-                    <p className="text-sm text-slate-500 mt-2">Görevleri tamamlayarak rozetler kazanın!</p>
-                  </div>
-                ) : (
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {unlockedBadges.map(badge => (
-                      <BadgeCard key={badge.id} badge={badge} unlocked />
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* All Badges */}
-              <div>
-                <h2 className="text-lg font-bold text-white mb-4">
-                  Tüm Rozetler ({badges.length})
-                </h2>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {badges.map(badge => {
-                    const isUnlocked = unlockedBadges.some(b => b.id === badge.id);
-                    return (
-                      <BadgeCard 
-                        key={badge.id} 
-                        badge={badge} 
-                        unlocked={isUnlocked}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Streak */}
-          {activeTab === 'streak' && (
-            <div className="space-y-6">
-              {/* Current Streak */}
-              <div className="bg-gradient-to-br from-orange-900/50 to-red-900/50 border border-orange-500/30 rounded-xl p-8 text-center">
-                <div className="text-6xl font-black text-white mb-2">
-                  {streakData.currentStreak}
-                </div>
-                <div className="text-2xl mb-4">🔥</div>
-                <p className="text-slate-300">Günlük Seri</p>
-                
-                {streakStatus === 'at_risk' && (
-                  <div className="mt-4 p-3 bg-amber-500/20 border border-amber-500/30 rounded-lg">
-                    <p className="text-amber-300 text-sm">
-                      ⚠️ Seriniz risk altında! Bugün tahmin yaparak koruyun.
-                    </p>
-                  </div>
-                )}
-                
-                {streakStatus === 'broken' && (
-                  <div className="mt-4 p-3 bg-red-500/20 border border-red-500/30 rounded-lg">
-                    <p className="text-red-300 text-sm">
-                      ❌ Seriniz kırıldı. Yeni bir seri başlatın!
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              {/* Stats Grid */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4 text-center">
-                  <div className="text-3xl font-bold text-amber-400">{streakData.longestStreak}</div>
-                  <p className="text-sm text-slate-400 mt-1">En Uzun Seri</p>
-                </div>
-                <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4 text-center">
-                  <div className="text-3xl font-bold text-cyan-400">{streakData.streakFreezeAvailable}</div>
-                  <p className="text-sm text-slate-400 mt-1">Dondurma Hakkı</p>
-                </div>
-              </div>
-
-              {/* Streak Freeze */}
-              {streakData.streakFreezeAvailable > 0 && streakStatus === 'at_risk' && (
-                <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="font-bold text-white">❄️ Seri Dondurma</h3>
-                      <p className="text-sm text-slate-400">Bugün oynayamazsanız serinizi koruyun</p>
-                    </div>
-                    <button
-                      onClick={useStreakFreeze}
-                      className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 rounded-lg text-sm font-medium transition-colors"
-                    >
-                      Kullan
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* Streak History */}
-              {streakData.streakHistory.length > 0 && (
-                <div>
-                  <h3 className="font-bold text-white mb-4">Son 7 Gün</h3>
-                  <div className="flex gap-2">
-                    {streakData.streakHistory.slice(0, 7).map((entry, index) => (
-                      <div
-                        key={index}
-                        className={`flex-1 text-center p-3 rounded-xl ${
-                          entry.predictionsCount > 0
-                            ? 'bg-emerald-500/20 border border-emerald-500/30'
-                            : 'bg-slate-800/50 border border-slate-700'
-                        }`}
-                      >
-                        <div className="text-lg">
-                          {entry.predictionsCount > 0 ? '✅' : '❌'}
-                        </div>
-                        <div className="text-xs text-slate-400 mt-1">
-                          {new Date(entry.date).toLocaleDateString('tr-TR', { weekday: 'short' })}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Reward Modal */}
-      {showRewardModal && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-          <div className="bg-slate-900 border border-slate-700 rounded-2xl p-8 text-center animate-bounce-in">
-            <div className="text-5xl mb-4">🎉</div>
-            <h2 className="text-2xl font-bold text-white mb-4">Ödül Kazandınız!</h2>
-            <div className="flex items-center justify-center gap-6">
-              <div className="text-amber-400 text-xl font-bold">+{showRewardModal.xp} XP</div>
-              <div className="text-yellow-400 text-xl font-bold">+{showRewardModal.coins} 🪙</div>
-            </div>
-          </div>
-        </div>
-      )}
-    </main>
-  );
-}
-
-// Badge Card Component
-function BadgeCard({ badge, unlocked }: { badge: Badge; unlocked: boolean }) {
-  return (
-    <div 
-      className={`relative bg-slate-900/50 border rounded-xl p-4 text-center transition-all ${
-        unlocked 
-          ? 'border-slate-700 hover:border-slate-600' 
-          : 'border-slate-800 opacity-50 grayscale'
-      }`}
-    >
-      <div className="text-4xl mb-2">{badge.icon}</div>
-      <h3 className={`font-bold text-sm ${unlocked ? 'text-white' : 'text-slate-500'}`}>
-        {badge.name}
-      </h3>
-      <p className="text-xs text-slate-500 mt-1">{badge.description}</p>
-      
-      {/* Rarity indicator */}
-      <div className={`mt-3 text-xs font-medium px-2 py-0.5 rounded-full bg-gradient-to-r ${BADGE_RARITY_COLORS[badge.rarity]} text-white inline-block`}>
-        {badge.rarity.toUpperCase()}
-      </div>
-      
-      {/* Progress bar for locked badges */}
-      {!unlocked && badge.progress !== undefined && badge.target !== undefined && (
-        <div className="mt-2">
-          <div className="h-1 bg-slate-800 rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-slate-600"
-              style={{ width: `${(badge.progress / badge.target) * 100}%` }}
-            />
-          </div>
-          <p className="text-xs text-slate-600 mt-1">{badge.progress}/{badge.target}</p>
-        </div>
-      )}
-      
-      {unlocked && badge.unlockedAt && (
-        <p className="text-xs text-slate-600 mt-2">
-          {new Date(badge.unlockedAt).toLocaleDateString('tr-TR')}
-        </p>
-      )}
-    </div>
-  );
-}
-
-```
-
-## File: app\register\layout.tsx
-```
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-    title: "Kayıt Ol",
-    description: "VolleySimulator'a ücretsiz kayıt olun. Voleybol maç tahminleri yapın, puan kazanın ve diğer taraftarlarla yarışın.",
-    openGraph: {
-        title: "Kayıt Ol | VolleySimulator",
-        description: "VolleySimulator'a ücretsiz kayıt olun ve tahmin oyununa katılın.",
-    },
-    robots: {
-        index: false,
-        follow: true,
-    },
-};
-
-export default function RegisterLayout({
-    children,
-}: {
-    children: React.ReactNode;
-}) {
-    return children;
-}
-
-```
-
-## File: app\register\page.tsx
-```
-"use client";
-
-import { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useAuth } from "../context/AuthContext";
-import { validators, sanitize } from "../utils/validation";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Separator } from "@/components/ui/separator";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
-import { Loader2, ArrowRight, ArrowLeft, AlertCircle, Gamepad2 } from "lucide-react";
-
-export default function RegisterPage() {
-    const router = useRouter();
-    const { signUp, signInWithGoogle, user } = useAuth();
-
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-        favoriteTeam: ""
-    });
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState("");
-    const [step, setStep] = useState(1);
-
-    // Redirect if already logged in
-    if (user) {
-        router.push('/profile');
-        return null;
-    }
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-
-        if (step === 1) {
-            // Use validation utilities
-            const nameError = validators.string.required(formData.name, "Ad gerekli");
-            const emailError = validators.string.required(formData.email, "E-posta gerekli")
-                || validators.string.email(formData.email, "Geçerli bir e-posta girin");
-
-            if (nameError || emailError) {
-                setError(nameError || emailError || "");
-                return;
-            }
-            // Sanitize inputs
-            setFormData(prev => ({
-                ...prev,
-                name: sanitize.normalizeWhitespace(prev.name),
-                email: prev.email.trim().toLowerCase()
-            }));
-            setError("");
-            setStep(2);
-            return;
-        }
-
-        if (formData.password !== formData.confirmPassword) {
-            setError("Şifreler eşleşmiyor");
-            return;
-        }
-
-        if (formData.password.length < 6) {
-            setError("Şifre en az 6 karakter olmalı");
-            return;
-        }
-
-        setIsLoading(true);
-        setError("");
-
-        const { error } = await signUp(formData.email, formData.password, {
-            name: formData.name
-        });
-
-        if (error) {
-            setError(error.message === "User already registered"
-                ? "Bu e-posta zaten kayıtlı"
-                : error.message
-            );
-            setIsLoading(false);
-        } else {
-            // Save favorite team to localStorage for now
-            if (formData.favoriteTeam) {
-                localStorage.setItem('favoriteTeam', formData.favoriteTeam);
-            }
-            router.push('/profile');
-        }
-    };
-
-    return (
-        <main className="min-h-screen bg-background text-foreground flex items-center justify-center p-4">
-            <div className="w-full max-w-md">
-                {/* Header */}
-                <div className="text-center mb-8">
-                    <Link href="/" className="inline-block mb-4">
-                        <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200">
-                            VolleySimulator
-                        </span>
-                    </Link>
-                    <h1 className="text-3xl font-black">Kayıt Ol</h1>
-                    <p className="text-muted-foreground text-sm mt-2">Tahmin oyununa katıl ve XP kazan!</p>
-                </div>
-
-                {/* Progress Steps */}
-                <div className="flex items-center justify-center gap-4 mb-6">
-                    <div className={`flex items-center gap-2 ${step >= 1 ? 'text-primary' : 'text-muted-foreground'}`}>
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${step >= 1 ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
-                            1
-                        </div>
-                        <span className="text-sm font-medium hidden sm:inline">Bilgiler</span>
-                    </div>
-                    <div className={`w-12 h-0.5 ${step >= 2 ? 'bg-primary' : 'bg-muted'}`} />
-                    <div className={`flex items-center gap-2 ${step >= 2 ? 'text-primary' : 'text-muted-foreground'}`}>
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${step >= 2 ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
-                            2
-                        </div>
-                        <span className="text-sm font-medium hidden sm:inline">Şifre</span>
-                    </div>
-                </div>
-
-                {/* Register Form */}
-                <Card>
-                    <CardContent className="pt-6">
-                        <form onSubmit={handleSubmit} className="space-y-4">
-                            {error && (
-                                <Alert variant="destructive">
-                                    <AlertCircle className="h-4 w-4" />
-                                    <AlertDescription>{error}</AlertDescription>
-                                </Alert>
-                            )}
-
-                            {step === 1 ? (
-                                <>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="name">Kullanıcı Adı</Label>
-                                        <Input
-                                            id="name"
-                                            type="text"
-                                            name="name"
-                                            value={formData.name}
-                                            onChange={handleChange}
-                                            placeholder="Takma adın"
-                                            required
-                                        />
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <Label htmlFor="email">E-posta</Label>
-                                        <Input
-                                            id="email"
-                                            type="email"
-                                            name="email"
-                                            value={formData.email}
-                                            onChange={handleChange}
-                                            placeholder="ornek@email.com"
-                                            required
-                                        />
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <Label>Favori Takım (Opsiyonel)</Label>
-                                        <Select
-                                            value={formData.favoriteTeam}
-                                            onValueChange={(value) => setFormData({ ...formData, favoriteTeam: value })}
-                                        >
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Takım seç..." />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="Fenerbahçe Medicana">Fenerbahçe Medicana</SelectItem>
-                                                <SelectItem value="VakıfBank">VakıfBank</SelectItem>
-                                                <SelectItem value="Eczacıbaşı Dynavit">Eczacıbaşı Dynavit</SelectItem>
-                                                <SelectItem value="THY">THY</SelectItem>
-                                                <SelectItem value="Galatasaray">Galatasaray</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                        <p className="text-xs text-amber-500">+20% XP bonus favori takımın maçlarında!</p>
-                                    </div>
-                                </>
-                            ) : (
-                                <>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="password">Şifre</Label>
-                                        <Input
-                                            id="password"
-                                            type="password"
-                                            name="password"
-                                            value={formData.password}
-                                            onChange={handleChange}
-                                            placeholder="En az 6 karakter"
-                                            required
-                                            minLength={6}
-                                        />
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <Label htmlFor="confirmPassword">Şifre Tekrar</Label>
-                                        <Input
-                                            id="confirmPassword"
-                                            type="password"
-                                            name="confirmPassword"
-                                            value={formData.confirmPassword}
-                                            onChange={handleChange}
-                                            placeholder="Şifreyi tekrar gir"
-                                            required
-                                        />
-                                    </div>
-
-                                    <div className="bg-muted rounded-lg p-4">
-                                        <div className="text-xs text-muted-foreground mb-2">Kayıt olduğunda kazanacakların:</div>
-                                        <div className="flex flex-wrap gap-2">
-                                            <Badge variant="secondary" className="bg-amber-500/20 text-amber-400">+50 XP</Badge>
-                                            <Badge variant="secondary" className="bg-emerald-500/20 text-emerald-400">🎯 İlk Adım Rozeti</Badge>
-                                        </div>
-                                    </div>
-                                </>
-                            )}
-
-                            <div className="flex gap-3">
-                                {step === 2 && (
-                                    <Button
-                                        type="button"
-                                        variant="outline"
-                                        onClick={() => setStep(1)}
-                                        className="flex-1"
-                                    >
-                                        <ArrowLeft className="mr-2 h-4 w-4" />
-                                        Geri
-                                    </Button>
-                                )}
-                                <Button
-                                    type="submit"
-                                    disabled={isLoading}
-                                    className="flex-1 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500"
-                                >
-                                    {isLoading ? (
-                                        <>
-                                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                            Kayıt yapılıyor...
-                                        </>
-                                    ) : step === 1 ? (
-                                        <>
-                                            Devam Et
-                                            <ArrowRight className="ml-2 h-4 w-4" />
-                                        </>
-                                    ) : (
-                                        <>
-                                            <Gamepad2 className="mr-2 h-4 w-4" />
-                                            Kayıt Ol
-                                        </>
-                                    )}
-                                </Button>
-                            </div>
-                        </form>
-                    </CardContent>
-                </Card>
-
-                {/* Divider */}
-                <div className="relative my-6">
-                    <Separator />
-                    <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-4 text-muted-foreground text-sm">
-                        veya
-                    </span>
-                </div>
-
-                {/* Google Sign Up */}
-                <Button
-                    type="button"
-                    variant="outline"
-                    onClick={signInWithGoogle}
-                    className="w-full"
-                >
-                    <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
-                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-                    </svg>
-                    Google ile Kayıt Ol
-                </Button>
-
-                {/* Login Link */}
-                <p className="text-center mt-6 text-muted-foreground">
-                    Zaten hesabın var mı?{" "}
-                    <Link href="/login" className="text-primary font-bold hover:underline">
-                        Giriş Yap
-                    </Link>
-                </p>
-            </div>
-        </main>
-    );
-}
-
-```
-
-## File: app\scenario-standings\page.tsx
-```
-"use client";
-
-import { useEffect, useState } from "react";
-import { TeamStats } from "../types";
-import Link from "next/link";
-import { calculateGroupStandings, applyOverridesToTeams } from "../utils/playoffUtils";
-
-
-export default function ScenarioStandingsPage() {
-    const [loading, setLoading] = useState(true);
-    const [allTeams, setAllTeams] = useState<TeamStats[]>([]);
-    const [groups, setGroups] = useState<string[]>([]);
-    const [scenarios, setScenarios] = useState<any>({});
-
-    useEffect(() => {
-        fetchData();
-        // Load overrides correctly
-        const saved = localStorage.getItem('playoffScenarios'); // Actually this might be wrong key.
-        // Let's check how GroupPage saves it.
-        // In GroupPage it saves to `playoffScenarios`? No, let's check group page.
-        // GroupPage saves to: localStorage.setItem(`group_matches_${groupId}`, ...);
-        // Wait, the user wants "Oyundan gelen puan durumu". 
-        // This implies we need to read ALL `group_matches_X` keys.
-    }, []);
-
-    async function fetchData() {
-        try {
-            setLoading(true);
-            const res = await fetch("/api/scrape");
-            if (!res.ok) throw new Error("Veri çekilemedi");
-            const data = await res.json();
-            setAllTeams(data.teams);
-
-            const uniqueGroups = [...new Set(data.teams.map((t: TeamStats) => t.groupName))].sort((a: any, b: any) => {
-                const numA = parseInt(a.match(/\d+/)?.[0] || "0");
-                const numB = parseInt(b.match(/\d+/)?.[0] || "0");
-                return numA - numB;
-            });
-            setGroups(uniqueGroups as string[]);
-
-            // Load all scenarios
-            const savedScenarios = localStorage.getItem('groupScenarios');
-            if (savedScenarios) {
-                try {
-                    setScenarios(JSON.parse(savedScenarios));
-                } catch (e) {
-                    console.error("Failed to parse scenarios", e);
-                }
-            }
-
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    // Calculate simulated standings for all groups
-    const teamsByGroup = groups.reduce((acc, groupName) => {
-        const originalGroupTeams = allTeams.filter(t => t.groupName === groupName);
-        const groupOverrides = scenarios[groupName] || [];
-
-        // Apply Logic
-        // We need a way to verify if applyOverridesToTeams works with just Match objects or the full logic.
-        // Looking at GroupPage, it does:
-        // const newTeams = applyOverridesToTeams(originalTeams, overrides);
-        // So we can perform the simulation here!
-
-        const simulatedTeams = applyOverridesToTeams(originalGroupTeams, groupOverrides);
-
-        acc[groupName] = simulatedTeams.sort((a: TeamStats, b: TeamStats) => b.points - a.points || b.wins - a.wins || (b.setsWon - b.setsLost) - (a.setsWon - a.setsLost));
-        return acc;
-    }, {} as Record<string, TeamStats[]>);
-
-    if (loading) {
-        return (
-            <div className="h-[calc(100vh-64px)] flex items-center justify-center text-slate-400">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500"></div>
-            </div>
-        )
-    }
-
-    return (
-        <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">
-            <div className="max-w-7xl mx-auto flex flex-col gap-4">
-
-                {/* Header */}
-                <div className="flex flex-col gap-1 px-1">
-                    <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">Senaryo Puan Durumu</h1>
-                    <p className="text-[10px] text-slate-400 hidden sm:block">Yaptığınız maç tahminlerine göre oluşan puan durumu</p>
-                </div>
-
-                {/* Global Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                    {groups.map(groupName => {
-                        const groupTeams = teamsByGroup[groupName] || [];
-                        return (
-                            <div key={groupName} className="bg-slate-900 border border-slate-800 rounded-lg overflow-hidden flex flex-col h-full">
-                                {/* Header */}
-                                <div className="bg-slate-800/50 px-3 py-2 border-b border-slate-800 flex justify-between items-center">
-                                    <h3 className="font-bold text-slate-200">{groupName}. Grup</h3>
-                                    <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-                                        Simülasyon
-                                    </span>
-                                </div>
-
-                                {/* Table */}
-                                <div className="p-2 space-y-0.5 flex-1">
-                                    <div className="flex text-[9px] text-slate-500 px-2 pb-1 border-b border-slate-800/50 uppercase tracking-wider font-semibold">
-                                        <span className="w-4">#</span>
-                                        <span className="flex-1">Takım</span>
-                                        <span className="w-6 text-center">O</span>
-                                        <span className="w-6 text-center text-slate-300 font-bold">P</span>
-                                    </div>
-                                    {groupTeams.map((team, idx) => {
-                                        const isRelegation = idx >= groupTeams.length - 2;
-                                        const isPromotion = idx < 2;
-                                        return (
-                                            <div key={team.name} className={`flex items-center text-xs py-1.5 px-2 rounded ${isPromotion ? 'bg-emerald-500/10' : isRelegation ? 'bg-rose-500/10' : ''}`}>
-                                                <span className={`w-4 text-[10px] font-bold ${isPromotion ? 'text-emerald-400' : isRelegation ? 'text-rose-500' : 'text-slate-600'}`}>
-                                                    {idx + 1}
-                                                </span>
-                                                <span className={`flex-1 truncate pr-2 ${isPromotion ? 'text-slate-200 font-medium' : isRelegation ? 'text-rose-200/80' : 'text-slate-400'}`} title={team.name}>
-                                                    {team.name}
-                                                </span>
-                                                <span className="w-6 text-center text-[10px] text-slate-500 font-mono">{team.played}</span>
-                                                <span className={`w-6 text-center font-bold relative ${isPromotion ? 'text-white' : isRelegation ? 'text-rose-200' : 'text-slate-500'}`}>
-                                                    {team.points}
-                                                </span>
-                                            </div>
-                                        )
-                                    })}
-                                </div>
-                            </div>
-                        )
-                    })}
-                </div>
-            </div>
-        </main>
-    );
-}
-
-```
-
-## File: app\simulation\page.tsx
-```
-"use client";
-
-import { useState, useMemo } from "react";
-import { useAuth } from "../context/AuthContext";
-import { useMatchSimulation, getSimulationState } from "../hooks/useMatchSimulation";
-import Link from "next/link";
-
-// Sample teams for simulation
-const SAMPLE_TEAMS = [
-  "FENERBAHÇE MEDICANA",
-  "ECZACIBAŞI DYNAVİT",
-  "VAKIFBANK",
-  "GALATASARAY DAIKIN",
-  "THY",
-  "NİLÜFER BELEDİYESPOR",
-  "BEŞİKTAŞ",
-  "ARAS KARGO",
-];
-
-export default function SimulationPage() {
-  const { user } = useAuth();
-  const { 
-    simulation, 
-    isSimulating, 
-    isPlaying,
-    currentSet,
-    currentPoint,
-    progress,
-    startSimulation,
-    play,
-    pause,
-    reset,
-    skipToEnd,
-    setSpeed,
-  } = useMatchSimulation({ autoPlay: false });
-  
-  const [homeTeam, setHomeTeam] = useState(SAMPLE_TEAMS[0]);
-  const [awayTeam, setAwayTeam] = useState(SAMPLE_TEAMS[1]);
-  const [playbackSpeed, setPlaybackSpeed] = useState(1);
-
-  const handleSpeedChange = (speed: number) => {
-    setPlaybackSpeed(speed);
-    setSpeed(speed);
-  };
-
-  const simulationState = useMemo(() => {
-    if (!simulation) return null;
-    return getSimulationState(simulation, currentSet, currentPoint);
-  }, [simulation, currentSet, currentPoint]);
-
-  return (
-    <main className="min-h-screen bg-slate-950 text-slate-100">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-violet-600 to-purple-600 px-4 py-6">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-2xl font-bold text-white">Maç Simülasyonu</h1>
-          <p className="text-white/70 text-sm mt-1">
-            Takımları seç ve maçın nasıl oynanabileceğini izle
-          </p>
-        </div>
-      </div>
-
-      <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
-        {/* Team Selection */}
-        {!simulation && (
-          <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
-            <h2 className="font-bold text-white mb-4">Takımları Seç</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Home Team */}
-              <div>
-                <label className="block text-sm text-slate-400 mb-2">Ev Sahibi</label>
-                <select
-                  value={homeTeam}
-                  onChange={(e) => setHomeTeam(e.target.value)}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-violet-500"
-                >
-                  {SAMPLE_TEAMS.map(team => (
-                    <option key={team} value={team} disabled={team === awayTeam}>
-                      {team}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Away Team */}
-              <div>
-                <label className="block text-sm text-slate-400 mb-2">Deplasman</label>
-                <select
-                  value={awayTeam}
-                  onChange={(e) => setAwayTeam(e.target.value)}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-violet-500"
-                >
-                  {SAMPLE_TEAMS.map(team => (
-                    <option key={team} value={team} disabled={team === homeTeam}>
-                      {team}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <button
-              onClick={() => startSimulation(homeTeam, awayTeam)}
-              disabled={isSimulating}
-              className="w-full mt-6 px-6 py-4 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 disabled:opacity-50 rounded-xl font-bold text-lg transition-all"
-            >
-              {isSimulating ? 'Simülasyon Hazırlanıyor...' : '🎮 Simülasyonu Başlat'}
-            </button>
-          </div>
-        )}
-
-        {/* Simulation Display */}
-        {simulation && simulationState && (
-          <>
-            {/* Scoreboard */}
-            <div className="bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl p-8">
-              <div className="flex items-center justify-between">
-                {/* Home Team */}
-                <div className="flex-1 text-center">
-                  <div className="w-24 h-24 mx-auto bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-4xl mb-4 shadow-lg">
-                    🏐
-                  </div>
-                  <h3 className="font-bold text-white text-xl">{simulation.homeTeam}</h3>
-                </div>
-
-                {/* Score */}
-                <div className="px-12 text-center">
-                  <div className="text-6xl font-black text-white mb-4">
-                    {simulationState.setScore.home} - {simulationState.setScore.away}
-                  </div>
-                  <div className="text-sm text-slate-400">Set Skoru</div>
-                  
-                  {!simulationState.isComplete && (
-                    <div className="mt-6 bg-violet-500/20 border border-violet-500/30 rounded-xl px-8 py-4">
-                      <div className="text-3xl font-bold text-white">
-                        {simulationState.currentSetScore.home} - {simulationState.currentSetScore.away}
-                      </div>
-                      <div className="text-sm text-violet-400 mt-1">
-                        {currentSet + 1}. Set
-                      </div>
-                    </div>
-                  )}
-
-                  {simulationState.isComplete && (
-                    <div className="mt-6 bg-emerald-500/20 border border-emerald-500/30 rounded-xl px-8 py-4">
-                      <div className="text-lg font-bold text-emerald-400">
-                        🏆 {simulation.winner} Kazandı!
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Away Team */}
-                <div className="flex-1 text-center">
-                  <div className="w-24 h-24 mx-auto bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center text-4xl mb-4 shadow-lg">
-                    🏐
-                  </div>
-                  <h3 className="font-bold text-white text-xl">{simulation.awayTeam}</h3>
-                </div>
-              </div>
-
-              {/* Last Point Animation */}
-              {simulationState.lastPoint && !simulationState.isComplete && (
-                <div className="mt-6 text-center">
-                  <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm ${
-                    simulationState.lastPoint.scorer === 'home'
-                      ? 'bg-blue-500/20 text-blue-400'
-                      : 'bg-orange-500/20 text-orange-400'
-                  }`}>
-                    {getPointTypeIcon(simulationState.lastPoint.type)}
-                    <span>
-                      {simulationState.lastPoint.scorer === 'home' ? simulation.homeTeam : simulation.awayTeam}
-                      {' - '}
-                      {getPointTypeText(simulationState.lastPoint.type)}
-                    </span>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Progress Bar */}
-            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-              <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-gradient-to-r from-violet-500 to-purple-500 transition-all duration-100"
-                  style={{ width: `${progress}%` }}
-                />
-              </div>
-              <div className="flex items-center justify-between mt-2 text-xs text-slate-500">
-                <span>Başlangıç</span>
-                <span>Bitiş</span>
-              </div>
-            </div>
-
-            {/* Controls */}
-            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-              <div className="flex items-center justify-center gap-4">
-                <button
-                  onClick={reset}
-                  className="p-3 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors"
-                  title="Başa Sar"
-                >
-                  ⏮️
-                </button>
-                
-                <button
-                  onClick={isPlaying ? pause : play}
-                  className="p-4 bg-violet-600 hover:bg-violet-700 rounded-xl transition-colors"
-                >
-                  {isPlaying ? '⏸️' : '▶️'}
-                </button>
-                
-                <button
-                  onClick={skipToEnd}
-                  className="p-3 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors"
-                  title="Sonuca Atla"
-                >
-                  ⏭️
-                </button>
-              </div>
-
-              {/* Speed Control */}
-              <div className="flex items-center justify-center gap-2 mt-4">
-                <span className="text-xs text-slate-500">Hız:</span>
-                {[0.5, 1, 2, 4].map(speed => (
-                  <button
-                    key={speed}
-                    onClick={() => handleSpeedChange(speed)}
-                    className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors ${
-                      playbackSpeed === speed
-                        ? 'bg-violet-600 text-white'
-                        : 'bg-slate-800 text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    {speed}x
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Set Details */}
-            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
-              <h3 className="font-bold text-white mb-4">Set Detayları</h3>
-              <div className="grid grid-cols-5 gap-4">
-                {simulation.simulatedSets.map((set, index) => {
-                  const isCurrentSet = index === currentSet && !simulationState.isComplete;
-                  const isPastSet = index < currentSet || simulationState.isComplete;
-                  
-                  return (
-                    <div 
-                      key={index}
-                      className={`text-center p-4 rounded-xl border transition-all ${
-                        isCurrentSet 
-                          ? 'bg-violet-500/20 border-violet-500/50 animate-pulse'
-                          : isPastSet
-                            ? set.winner === 'home'
-                              ? 'bg-blue-500/20 border-blue-500/30'
-                              : 'bg-orange-500/20 border-orange-500/30'
-                            : 'bg-slate-800/50 border-slate-700'
-                      }`}
-                    >
-                      <div className="text-xs text-slate-400 mb-2">{index + 1}. Set</div>
-                      <div className={`text-xl font-bold ${
-                        isPastSet 
-                          ? 'text-white' 
-                          : isCurrentSet 
-                            ? 'text-violet-400'
-                            : 'text-slate-600'
-                      }`}>
-                        {isPastSet 
-                          ? `${set.homePoints}-${set.awayPoints}`
-                          : isCurrentSet
-                            ? `${simulationState.currentSetScore.home}-${simulationState.currentSetScore.away}`
-                            : '-'
-                        }
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Key Moments */}
-            {simulation.keyMoments.length > 0 && (
-              <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
-                <h3 className="font-bold text-white mb-4">Önemli Anlar</h3>
-                <div className="space-y-3">
-                  {simulation.keyMoments.map((moment, index) => (
-                    <div 
-                      key={index}
-                      className={`flex items-center gap-3 p-3 rounded-lg ${
-                        moment.type === 'match_point'
-                          ? 'bg-emerald-500/20 border border-emerald-500/30'
-                          : 'bg-slate-800/50'
-                      }`}
-                    >
-                      <span className="text-xl">
-                        {moment.type === 'match_point' ? '🏆' : 
-                         moment.type === 'set_point' ? '📍' : '⚡'}
-                      </span>
-                      <span className={
-                        moment.type === 'match_point' ? 'text-emerald-400' : 'text-slate-300'
-                      }>
-                        {moment.description}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* New Simulation Button */}
-            <button
-              onClick={() => {
-                reset();
-                startSimulation(homeTeam, awayTeam);
-              }}
-              className="w-full px-6 py-3 bg-slate-800 hover:bg-slate-700 rounded-xl font-medium transition-colors"
-            >
-              🔄 Yeni Simülasyon
-            </button>
-          </>
-        )}
-      </div>
-    </main>
-  );
-}
-
-function getPointTypeIcon(type: string): string {
-  switch (type) {
-    case 'attack': return '💥';
-    case 'block': return '🛡️';
-    case 'ace': return '🎯';
-    case 'error': return '❌';
-    default: return '🏐';
-  }
-}
-
-function getPointTypeText(type: string): string {
-  switch (type) {
-    case 'attack': return 'Hücum Sayısı';
-    case 'block': return 'Blok Sayısı';
-    case 'ace': return 'As Servis';
-    case 'error': return 'Rakip Hata';
-    default: return 'Sayı';
-  }
-}
-
-```
-
-## File: app\stats\page.tsx
-```
-import { Metadata } from "next";
-import { getLeagueData } from "../utils/serverData";
-import StatsClient from "./StatsClient";
-
-export const metadata: Metadata = {
-    title: "Genel İstatistikler",
-    description: "Tüm liglerin birleşik istatistikleri. Sultanlar Ligi, 1. Lig, 2. Lig ve CEV turnuvaları takım performans analizleri.",
-    openGraph: {
-        title: "Genel İstatistikler | VolleySimulator",
-        description: "Tüm liglerin birleşik istatistikleri ve takım performans analizleri.",
-    },
-};
-
-export default async function StatsPage() {
-    const [lig1, lig2, vsl, cev] = await Promise.all([
-        getLeagueData("1lig"),
-        getLeagueData("2lig"),
-        getLeagueData("vsl"),
-        getLeagueData("cev-cl")
-    ]);
-
-    // Combine all teams for global stats
-    const allTeams = [
-        ...lig1.teams,
-        ...lig2.teams,
-        ...vsl.teams,
-        ...cev.teams
-    ];
-
-    return (
-        <StatsClient initialTeams={allTeams} />
-    );
-}
-
-```
-
-## File: app\stats\StatsClient.tsx
-```
-"use client";
-
-import { useMemo } from "react";
-import { TeamStats } from "../types";
-
-import TeamAvatar from "../components/TeamAvatar";
-
-interface StatsClientProps {
-    initialTeams: TeamStats[];
-}
-
-export default function StatsClient({ initialTeams }: StatsClientProps) {
-    const teamsWithStats = useMemo(() => initialTeams.map(t => ({
-        ...t,
-        losses: t.played - t.wins,
-        winRate: t.played > 0 ? Math.round((t.wins / t.played) * 100) : 0
-    })), [initialTeams]);
-
-    const leastLosses = useMemo(() => [...teamsWithStats].sort((a, b) => a.losses - b.losses || b.wins - a.wins).slice(0, 5), [teamsWithStats]);
-    const mostLosses = useMemo(() => [...teamsWithStats].sort((a, b) => b.losses - a.losses || a.wins - b.wins).slice(0, 5), [teamsWithStats]);
-    const mostSets = useMemo(() => [...teamsWithStats].sort((a, b) => b.setsWon - a.setsWon).slice(0, 5), [teamsWithStats]);
-    const mostPoints = useMemo(() => [...teamsWithStats].sort((a, b) => b.points - a.points).slice(0, 5), [teamsWithStats]);
-    const leastSetsLost = useMemo(() => [...teamsWithStats].sort((a, b) => a.setsLost - b.setsLost || b.wins - a.wins).slice(0, 5), [teamsWithStats]);
-    const bestWinRate = useMemo(() => [...teamsWithStats].filter(t => t.played >= 5).sort((a, b) => b.winRate - a.winRate).slice(0, 5), [teamsWithStats]);
-
-    // Summary stats
-    const totalTeams = initialTeams.length;
-    const totalMatches = Math.floor(initialTeams.reduce((acc, t) => acc + t.played, 0) / 2);
-    const avgPoints = totalTeams > 0 ? Math.round(initialTeams.reduce((acc, t) => acc + t.points, 0) / totalTeams) : 0;
-
-    const StatCard = ({ title, icon, teams, statKey, color, gradient, suffix = "" }: {
-        title: string; icon: string;
-        teams: typeof teamsWithStats;
-        statKey: 'losses' | 'wins' | 'setsWon' | 'setsLost' | 'points' | 'winRate';
-        color: string;
-        gradient: string;
-        suffix?: string;
-    }) => {
-        const maxValue = Math.max(...teams.map(t => Number(t[statKey])), 1);
-
-        return (
-            <div className="bg-slate-950/50 backdrop-blur-md rounded-xl border border-slate-800/60 overflow-hidden hover:border-slate-700/80 transition-all duration-300 group shadow-lg hover:shadow-xl">
-                <div className={`${gradient} px-3 py-2.5 border-b border-white/10 relative overflow-hidden`}>
-                    {/* Gloss effect */}
-                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div className="flex items-center justify-between relative z-10">
-                        <h3 className="font-bold text-white text-xs uppercase tracking-wider flex items-center gap-2">
-                            <span className="text-base">{icon}</span> {title}
-                        </h3>
-                        <span className="text-[10px] font-bold text-white/80 bg-black/20 px-2 py-0.5 rounded-full backdrop-blur-sm border border-white/10">TOP 5</span>
-                    </div>
-                </div>
-
-                <div className="p-2 space-y-1.5">
-                    {teams.map((t, idx) => (
-                        <div
-                            key={t.name}
-                            className={`flex items-center gap-2.5 p-1.5 rounded-lg transition-all ${idx === 0 ? 'bg-gradient-to-r from-white/5 to-transparent border border-white/10' : 'hover:bg-white/5'
-                                }`}
-                        >
-                            <div className={`w-5 h-5 rounded flex items-center justify-center font-bold text-[10px] shadow-sm ${idx === 0 ? 'bg-amber-400 text-amber-950' :
-                                idx === 1 ? 'bg-slate-300 text-slate-800' :
-                                    idx === 2 ? 'bg-amber-700 text-amber-100' :
-                                        'bg-slate-800 text-slate-500'
-                                }`}>
-                                {idx + 1}
-                            </div>
-                            <TeamAvatar name={t.name} size="xs" />
-
-                            <div className="flex-1 min-w-0">
-                                <span className={`text-xs font-bold truncate block ${idx === 0 ? 'text-white' : 'text-slate-300'}`} title={t.name}>
-                                    {t.name}
-                                </span>
-                            </div>
-
-                            <div className="flex items-center gap-2 w-20 justify-end">
-                                <div className="h-1 bg-slate-800/50 rounded-full overflow-hidden flex-1 max-w-[40px]">
-                                    <div className={`h-full ${color} opacity-80`} style={{ width: `${Math.min((Number(t[statKey]) / maxValue) * 100, 100)}%` }}></div>
-                                </div>
-                                <span className={`text-xs font-bold min-w-[30px] text-right ${idx === 0 ? 'text-white' : 'text-slate-400'}`}>
-                                    {t[statKey]}{suffix}
-                                </span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        );
-    };
-
-    return (
-        <main className="min-h-screen bg-slate-950 text-slate-100 p-4 font-sans">
-            <div className="max-w-7xl mx-auto space-y-8 pt-4">
-                <div className="flex flex-col gap-1">
-                    <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">İstatistikler</h1>
-                    <p className="text-[10px] text-slate-400 hidden sm:block">Global İstatistik Merkezi</p>
-                </div>
-
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div className="bg-gradient-to-br from-emerald-600/20 to-emerald-900/20 backdrop-blur-sm border border-emerald-500/20 rounded-2xl p-4 text-center">
-                        <div className="text-3xl font-black text-emerald-400">{totalTeams}</div>
-                        <div className="text-xs text-slate-400 uppercase tracking-wider mt-1">Takım</div>
-                    </div>
-                    <div className="bg-gradient-to-br from-blue-600/20 to-blue-900/20 backdrop-blur-sm border border-blue-500/20 rounded-2xl p-4 text-center">
-                        <div className="text-3xl font-black text-blue-400">{totalMatches}</div>
-                        <div className="text-xs text-slate-400 uppercase tracking-wider mt-1">Maç</div>
-                    </div>
-                    <div className="bg-gradient-to-br from-amber-600/20 to-amber-900/20 backdrop-blur-sm border border-amber-500/20 rounded-2xl p-4 text-center">
-                        <div className="text-3xl font-black text-amber-400">{avgPoints}</div>
-                        <div className="text-xs text-slate-400 uppercase tracking-wider mt-1">Ort. Puan</div>
-                    </div>
-                    <div className="bg-gradient-to-br from-purple-600/20 to-purple-900/20 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-4 text-center">
-                        <div className="text-3xl font-black text-purple-400">11</div>
-                        <div className="text-xs text-slate-400 uppercase tracking-wider mt-1">Grup</div>
-                    </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 pb-8">
-                    <StatCard
-                        title="En Çok Puan"
-                        icon="💎"
-                        teams={mostPoints}
-                        statKey="points"
-                        color="bg-amber-500"
-                        gradient="bg-gradient-to-r from-amber-600 to-orange-600"
-                        suffix="P"
-                    />
-                    <StatCard
-                        title="En Yüksek Galibiyet %"
-                        icon="📈"
-                        teams={bestWinRate}
-                        statKey="winRate"
-                        color="bg-teal-500"
-                        gradient="bg-gradient-to-r from-teal-600 to-emerald-600"
-                        suffix="%"
-                    />
-                    <StatCard
-                        title="En Çok Set Alan"
-                        icon="🏐"
-                        teams={mostSets}
-                        statKey="setsWon"
-                        color="bg-purple-500"
-                        gradient="bg-gradient-to-r from-purple-600 to-pink-600"
-                        suffix="Set"
-                    />
-                    <StatCard
-                        title="En Az Mağlubiyet"
-                        icon="🛡️"
-                        teams={leastLosses}
-                        statKey="losses"
-                        color="bg-emerald-500"
-                        gradient="bg-gradient-to-r from-emerald-600 to-cyan-600"
-                        suffix="M"
-                    />
-                    <StatCard
-                        title="En Az Set Veren"
-                        icon="🧱"
-                        teams={leastSetsLost}
-                        statKey="setsLost"
-                        color="bg-rose-500"
-                        gradient="bg-gradient-to-r from-rose-600 to-red-600"
-                        suffix="Set"
-                    />
-                    <StatCard
-                        title="En Çok Mağlubiyet"
-                        icon="📉"
-                        teams={mostLosses}
-                        statKey="losses"
-                        color="bg-slate-500"
-                        gradient="bg-gradient-to-r from-slate-600 to-slate-700"
-                        suffix="M"
-                    />
-                </div>
-            </div>
-        </main>
     );
 }
 

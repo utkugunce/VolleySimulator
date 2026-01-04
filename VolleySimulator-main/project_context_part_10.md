@@ -1,5 +1,293 @@
 # Project Application Context - Part 10
 
+## File: app\components\Calculator\StandingsTable.tsx
+```
+import { memo } from "react";
+import Link from "next/link";
+import { TeamStats } from "../../types";
+import { TeamDiff } from "../../utils/scenarioUtils";
+import { generateTeamSlug } from "../../utils/teamSlug";
+import TeamAvatar from "../TeamAvatar";
+import { Card, CardHeader, CardTitle } from "../ui/Card";
+import { StandingsTableSkeleton } from "../ui/Skeleton";
+import { Badge } from "../ui/Badge";
+import { cn } from "@/lib/utils";
+
+interface StandingsTableProps {
+    teams: TeamStats[];
+    playoffSpots?: number;
+    secondaryPlayoffSpots?: number; // For 5-8 playoff zone (VSL)
+    relegationSpots?: number;
+    initialRanks?: Map<string, number>; // For showing rank changes
+    compact?: boolean;
+    loading?: boolean;
+    comparisonDiffs?: TeamDiff[];
+}
+
+function StandingsTable({
+    teams,
+    playoffSpots = 2,
+    secondaryPlayoffSpots = 0,
+    relegationSpots = 2,
+    initialRanks,
+    compact = false,
+    loading = false,
+    comparisonDiffs
+}: StandingsTableProps) {
+    if (loading) {
+        return <StandingsTableSkeleton />;
+    }
+
+    const headClass = "px-2 py-3 text-[10px] sm:text-xs uppercase tracking-wider font-bold text-text-secondary border-b border-border-main bg-surface-secondary sticky top-0 z-20";
+    const cellClass = "px-2 py-3 text-xs sm:text-sm border-b border-border-subtle transition-colors";
+
+    return (
+        <Card className={cn("flex flex-col h-full overflow-hidden", compact && "shadow-none border-none bg-transparent")}>
+            {!compact && (
+                <CardHeader className="bg-surface-secondary/50 py-3 border-b border-border-main">
+                    <CardTitle className="text-base flex items-center gap-2">
+                        <span className="text-lg">📊</span> Puan Durumu
+                    </CardTitle>
+                </CardHeader>
+            )}
+
+            {!compact && (
+                <div className="px-4 py-2 bg-surface-secondary/30 border-b border-border-main flex gap-3 text-[10px] flex-wrap">
+                    <div className="flex items-center gap-1.5">
+                        <Badge variant="success" className="w-2 h-2 p-0 rounded-full" />
+                        <span className="text-text-secondary">Play-off (İlk {playoffSpots})</span>
+                    </div>
+                    {secondaryPlayoffSpots > 0 && (
+                        <div className="flex items-center gap-1.5">
+                            <Badge variant="warning" className="w-2 h-2 p-0 rounded-full" />
+                            <span className="text-text-secondary">{playoffSpots + 1}-{playoffSpots + secondaryPlayoffSpots} Bölgesi</span>
+                        </div>
+                    )}
+                    <div className="flex items-center gap-1.5">
+                        <Badge variant="destructive" className="w-2 h-2 p-0 rounded-full" />
+                        <span className="text-text-secondary">Küme Düşme</span>
+                    </div>
+                </div>
+            )}
+
+            <div className="overflow-x-auto flex-1 custom-scrollbar relative">
+                <table className="w-full text-left border-separate border-spacing-0">
+                    <thead>
+                        <tr>
+                            <th scope="col" className={cn(headClass, "sticky left-0 z-30 w-12 text-center pl-4")} aria-label="Sıralama">#</th>
+                            <th scope="col" className={cn(headClass, "sticky left-12 z-30 min-w-[140px]")}>Takım</th>
+                            <th scope="col" className={cn(headClass, "w-10 text-center")} title="Oynanan Maç" aria-label="Oynanan Maç">OM</th>
+                            <th scope="col" className={cn(headClass, "w-10 text-center text-emerald-500")} title="Galibiyet" aria-label="Galibiyet">G</th>
+                            <th scope="col" className={cn(headClass, "w-10 text-center text-rose-500")} title="Mağlubiyet" aria-label="Mağlubiyet">M</th>
+                            <th scope="col" className={cn(headClass, "w-12 text-center text-amber-500 font-bold")} title="Puan" aria-label="Puan">P</th>
+                            <th scope="col" className={cn(headClass, "w-10 text-center hidden md:table-cell")} title="Alınan Set" aria-label="Alınan Set">AS</th>
+                            <th scope="col" className={cn(headClass, "w-10 text-center hidden md:table-cell")} title="Verilen Set" aria-label="Verilen Set">VS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {teams.map((team, idx) => {
+                            const currentRank = idx + 1;
+                            const isChampion = idx === 0;
+                            const isPlayoff = idx < playoffSpots;
+                            const isSecondaryPlayoff = secondaryPlayoffSpots > 0 && idx >= playoffSpots && idx < playoffSpots + secondaryPlayoffSpots;
+                            const isRelegation = idx >= teams.length - relegationSpots;
+                            const losses = team.played - team.wins;
+
+                            let rankChangeIcon = null;
+                            let pointDiffIcon = null;
+
+                            if (comparisonDiffs) {
+                                const diff = comparisonDiffs.find(d => d.name === team.name);
+                                if (diff) {
+                                    if (diff.rankDiff > 0) rankChangeIcon = <span className="text-emerald-500 text-[10px] ml-1">▲{diff.rankDiff}</span>;
+                                    else if (diff.rankDiff < 0) rankChangeIcon = <span className="text-rose-500 text-[10px] ml-1">▼{Math.abs(diff.rankDiff)}</span>;
+
+                                    if (diff.pointDiff > 0) pointDiffIcon = <span className="text-emerald-500 text-[10px] ml-0.5">+{diff.pointDiff}</span>;
+                                    else if (diff.pointDiff < 0) pointDiffIcon = <span className="text-rose-500 text-[10px] ml-0.5">{diff.pointDiff}</span>;
+                                }
+                            } else if (initialRanks && initialRanks.has(team.name)) {
+                                const oldRank = initialRanks.get(team.name)!;
+                                const diff = oldRank - currentRank;
+                                if (diff > 0) rankChangeIcon = <span className="text-emerald-500 text-[10px] ml-1">▲{diff}</span>;
+                                else if (diff < 0) rankChangeIcon = <span className="text-rose-500 text-[10px] ml-1">▼{Math.abs(diff)}</span>;
+                            }
+
+                            const zoneBg = isChampion ? 'bg-amber-500/5 hover:bg-amber-500/10' :
+                                isPlayoff ? 'bg-emerald-500/5 hover:bg-emerald-500/10' :
+                                    isSecondaryPlayoff ? 'bg-amber-500/5 hover:bg-amber-500/10' :
+                                        isRelegation ? 'bg-rose-500/5 hover:bg-rose-500/10' :
+                                            'hover:bg-surface-secondary/50';
+
+                            return (
+                                <tr
+                                    key={team.name}
+                                    className={cn("group group/row transition-colors", zoneBg)}
+                                    aria-label={`${currentRank}. sırada olan ${team.name}, ${team.points} puan`}
+                                >
+                                    <td className={cn(cellClass, "sticky left-0 z-10 text-center font-mono pl-4",
+                                        isChampion ? 'bg-amber-50 dark:bg-amber-900/20' :
+                                            isPlayoff ? 'bg-emerald-50 dark:bg-emerald-900/20' :
+                                                isSecondaryPlayoff ? 'bg-amber-50/50 dark:bg-amber-900/10' :
+                                                    isRelegation ? 'bg-rose-50 dark:bg-rose-900/20' :
+                                                        'bg-surface-primary group-hover/row:bg-surface-secondary/50'
+                                    )}>
+                                        <div className="flex items-center justify-center gap-0.5">
+                                            <span className={cn(
+                                                "w-6 h-6 flex items-center justify-center rounded-full text-[11px] font-bold shadow-sm",
+                                                isChampion ? 'bg-amber-500 text-white' :
+                                                    isPlayoff ? 'bg-emerald-500 text-white' :
+                                                        isSecondaryPlayoff ? 'bg-amber-500 text-white' :
+                                                            isRelegation ? 'bg-rose-500 text-white' :
+                                                                'bg-surface-secondary text-text-secondary'
+                                            )}>
+                                                {isChampion ? '1' : currentRank}
+                                            </span>
+                                            {rankChangeIcon}
+                                        </div>
+                                    </td>
+                                    <td className={cn(cellClass, "sticky left-12 z-10 font-semibold",
+                                        isChampion ? 'bg-amber-50 dark:bg-amber-900/20' :
+                                            isPlayoff ? 'bg-emerald-50 dark:bg-emerald-900/20' :
+                                                isSecondaryPlayoff ? 'bg-amber-50/50 dark:bg-amber-900/10' :
+                                                    isRelegation ? 'bg-rose-50 dark:bg-rose-900/20' :
+                                                        'bg-surface-primary group-hover/row:bg-surface-secondary/50'
+                                    )}>
+                                        <Link href={`/takimlar/${generateTeamSlug(team.name)}`} className="flex items-center gap-2 group/link">
+                                            <TeamAvatar name={team.name} size="sm" />
+                                            <span className={cn(
+                                                "truncate max-w-[120px] sm:max-w-none group-hover/link:underline",
+                                                isPlayoff ? 'text-emerald-700 dark:text-emerald-400' :
+                                                    isSecondaryPlayoff ? 'text-amber-700 dark:text-amber-400' :
+                                                        isRelegation ? 'text-rose-700 dark:text-rose-400' :
+                                                            'text-text-primary'
+                                            )}>
+                                                {team.name}
+                                            </span>
+                                        </Link>
+                                    </td>
+                                    <td className={cn(cellClass, "text-center text-text-secondary")}>{team.played}</td>
+                                    <td className={cn(cellClass, "text-center text-emerald-600 dark:text-emerald-400 font-medium")}>{team.wins}</td>
+                                    <td className={cn(cellClass, "text-center text-rose-600 dark:text-rose-400 font-medium")}>{losses}</td>
+                                    <td className={cn(cellClass, "text-center font-bold text-amber-600 dark:text-amber-400 bg-surface-secondary/20")}>
+                                        {team.points}
+                                        {pointDiffIcon}
+                                    </td>
+                                    <td className={cn(cellClass, "text-center text-text-secondary hidden md:table-cell")}>{team.setsWon}</td>
+                                    <td className={cn(cellClass, "text-center text-text-secondary hidden md:table-cell")}>{team.setsLost}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </Card>
+    );
+}
+
+export default memo(StandingsTable);
+
+```
+
+## File: app\components\Calculator\TeamStatsRadar.tsx
+```
+"use client";
+
+import React from 'react';
+import {
+    Radar,
+    RadarChart,
+    PolarGrid,
+    PolarAngleAxis,
+    ResponsiveContainer,
+    PolarRadiusAxis,
+} from 'recharts';
+import { getTeamTheme } from '../../utils/team-themes';
+
+interface TeamStats {
+    attack: number;
+    block: number;
+    serve: number;
+    dig: number;
+    reception: number;
+    consistency: number;
+}
+
+const MOCK_TEAM_STATS: Record<string, TeamStats> = {
+    "VakıfBank": { attack: 95, block: 92, serve: 88, dig: 85, reception: 82, consistency: 90 },
+    "Eczacıbaşı Dynavit": { attack: 98, block: 88, serve: 92, dig: 82, reception: 85, consistency: 92 },
+    "Fenerbahçe Medicana": { attack: 94, block: 90, serve: 95, dig: 88, reception: 90, consistency: 94 },
+    "Türk Hava Yolları": { attack: 85, block: 82, serve: 80, dig: 78, reception: 75, consistency: 82 },
+    "Galatasaray Daikin": { attack: 88, block: 85, serve: 82, dig: 80, reception: 82, consistency: 85 },
+    "Kuzeyboru": { attack: 82, block: 80, serve: 75, dig: 85, reception: 80, consistency: 78 },
+};
+
+const DEFAULT_STATS: TeamStats = {
+    attack: 70, block: 70, serve: 70, dig: 70, reception: 70, consistency: 70
+};
+
+interface TeamStatsRadarProps {
+    homeTeam: string;
+    awayTeam: string;
+}
+
+export function TeamStatsRadar({ homeTeam, awayTeam }: TeamStatsRadarProps) {
+    const homeStats = MOCK_TEAM_STATS[homeTeam] || DEFAULT_STATS;
+    const awayStats = MOCK_TEAM_STATS[awayTeam] || DEFAULT_STATS;
+    const homeTheme = getTeamTheme(homeTeam);
+    const awayTheme = getTeamTheme(awayTeam);
+
+    const data = [
+        { subject: 'Hücum', A: homeStats.attack, B: awayStats.attack, fullMark: 100 },
+        { subject: 'Blok', A: homeStats.block, B: awayStats.block, fullMark: 100 },
+        { subject: 'Servis', A: homeStats.serve, B: awayStats.serve, fullMark: 100 },
+        { subject: 'Defans', A: homeStats.dig, B: awayStats.dig, fullMark: 100 },
+        { subject: 'Manşet', A: homeStats.reception, B: awayStats.reception, fullMark: 100 },
+        { subject: 'İstikrar', A: homeStats.consistency, B: awayStats.consistency, fullMark: 100 },
+    ];
+
+    return (
+        <div className="w-full h-[300px] flex flex-col items-center justify-center">
+            {/* Legend */}
+            <div className="flex justify-center gap-6 mb-4 text-[10px] font-black uppercase tracking-widest">
+                <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full" style={{ '--team-color': homeTheme.primary, backgroundColor: 'var(--team-color)' } as any} />
+                    <span className="text-text-primary">{homeTeam}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full" style={{ '--team-color': awayTheme.primary, backgroundColor: 'var(--team-color)' } as any} />
+                    <span className="text-text-primary">{awayTeam}</span>
+                </div>
+            </div>
+
+            <ResponsiveContainer width="100%" height="100%">
+                <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
+                    <PolarGrid stroke="#334155" />
+                    <PolarAngleAxis
+                        dataKey="subject"
+                        tick={{ fill: '#94a3b8', fontSize: 10, fontWeight: 900 }}
+                    />
+                    <Radar
+                        name={homeTeam}
+                        dataKey="A"
+                        stroke={homeTheme.primary}
+                        fill={homeTheme.primary}
+                        fillOpacity={0.4}
+                    />
+                    <Radar
+                        name={awayTeam}
+                        dataKey="B"
+                        stroke={awayTheme.primary}
+                        fill={awayTheme.primary}
+                        fillOpacity={0.4}
+                    />
+                </RadarChart>
+            </ResponsiveContainer>
+        </div>
+    );
+}
+
+```
+
 ## File: app\components\LeagueTemplate\CalculatorTemplate.tsx
 ```
 "use client";
@@ -63,12 +351,12 @@ export default function CalculatorTemplate({ config, initialTeams, initialMatche
     // Derived Data based on active group (if hasGroups)
     const currentMatches = useMemo(() => {
         if (!config.hasGroups) return allMatches;
-        return allMatches.filter(m => !activeGroup || (m as any).groupName === activeGroup);
+        return allMatches.filter(m => !activeGroup || m.groupName === activeGroup);
     }, [allMatches, config.hasGroups, activeGroup]);
 
     const currentTeams = useMemo(() => {
         if (!config.hasGroups) return allTeams;
-        return allTeams.filter(t => !activeGroup || (t as any).groupName === activeGroup);
+        return allTeams.filter(t => !activeGroup || t.groupName === activeGroup);
     }, [allTeams, config.hasGroups, activeGroup]);
 
 
@@ -133,7 +421,7 @@ export default function CalculatorTemplate({ config, initialTeams, initialMatche
         let count = 0;
 
         currentMatches.forEach(match => {
-            const matchId = `match-${match.id}`;
+            const matchId = `${match.homeTeam}-${match.awayTeam}`;
             if (!match.isPlayed && !newOverrides[matchId]) {
                 const randomScore = scores[Math.floor(Math.random() * scores.length)];
                 newOverrides[matchId] = randomScore;
@@ -478,28 +766,10 @@ export default function StatsTemplate({ config, initialTeams, initialMatches }: 
     }, [teams, initialMatches]);
 
     // Completion Rate for Action Bar
+    // Completion Rate for Action Bar
     const totalMatches = initialMatches.length;
     const playedMatches = initialMatches.filter(m => m.isPlayed).length;
     const progress = totalMatches > 0 ? Math.round((playedMatches / totalMatches) * 100) : 0;
-
-    // Stat Tile Component (Local helper or could be separate)
-    const StatTile = ({ title, player, team, value, icon, color }: any) => (
-        <div className="bg-slate-900/50 p-4 rounded-xl border border-slate-800/50 flex items-center justify-between group hover:border-slate-700 transition-all">
-            <div className="flex items-center gap-4">
-                <div className={`w-10 h-10 rounded-lg bg-${color}-500/10 flex items-center justify-center text-xl`}>
-                    {icon}
-                </div>
-                <div>
-                    <div className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-0.5">{title}</div>
-                    <div className="font-bold text-slate-200 group-hover:text-white transition-colors">{player}</div>
-                    <div className="text-xs text-slate-500">{team}</div>
-                </div>
-            </div>
-            <div className="text-right">
-                <div className={`text-xl font-black text-${color}-400`}>{value}</div>
-            </div>
-        </div>
-    );
 
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-0 sm:p-2 font-sans pb-20 sm:pb-4">
@@ -589,6 +859,25 @@ export default function StatsTemplate({ config, initialTeams, initialMatches }: 
         </main>
     );
 }
+
+// Stat Tile Component (Local helper or could be separate)
+const StatTile = ({ title, player, team, value, icon, color }: any) => (
+    <div className="bg-slate-900/50 p-4 rounded-xl border border-slate-800/50 flex items-center justify-between group hover:border-slate-700 transition-all">
+        <div className="flex items-center gap-4">
+            <div className={`w-10 h-10 rounded-lg bg-${color}-500/10 flex items-center justify-center text-xl`}>
+                {icon}
+            </div>
+            <div>
+                <div className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-0.5">{title}</div>
+                <div className="font-bold text-slate-200 group-hover:text-white transition-colors">{player}</div>
+                <div className="text-xs text-slate-500">{team}</div>
+            </div>
+        </div>
+        <div className="text-right">
+            <div className={`text-xl font-black text-${color}-400`}>{value}</div>
+        </div>
+    </div>
+);
 
 ```
 
@@ -708,6 +997,7 @@ export const LEAGUE_CONFIGS: Record<string, LeagueConfig> = {
         apiEndpoint: '/api/1lig',
         storageKey: '1ligGroupScenarios',
         hasGroups: true,
+        groups: ["A. Grup", "B. Grup"],
         hasRounds: false,
         playoffSpots: 2,
         relegationSpots: 2
@@ -1055,6 +1345,676 @@ export function SkeletonLeaderboard({ count = 10 }: { count?: number }) {
 }
 
 export default Skeleton;
+
+```
+
+## File: app\components\ui\Badge.tsx
+```
+import * as React from "react"
+import { cva, type VariantProps } from "class-variance-authority"
+import { cn } from "@/lib/utils"
+
+const badgeVariants = cva(
+    "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+    {
+        variants: {
+            variant: {
+                default:
+                    "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
+                secondary:
+                    "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+                destructive:
+                    "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
+                outline: "text-text-primary border-border-main",
+                success: "border-transparent bg-emerald-500 text-white",
+                warning: "border-transparent bg-amber-500 text-white",
+            },
+        },
+        defaultVariants: {
+            variant: "default",
+        },
+    }
+)
+
+export interface BadgeProps
+    extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof badgeVariants> { }
+
+function Badge({ className, variant, ...props }: BadgeProps) {
+    return (
+        <div className={cn(badgeVariants({ variant }), className)} {...props} />
+    )
+}
+
+export { Badge, badgeVariants }
+
+```
+
+## File: app\components\ui\BottomSheet.tsx
+```
+"use client";
+
+import * as React from "react";
+import { motion, AnimatePresence, useDragControls } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { X } from "lucide-react";
+
+interface BottomSheetProps {
+    isOpen: boolean;
+    onClose: () => void;
+    title?: string;
+    children: React.ReactNode;
+    className?: string;
+}
+
+export function BottomSheet({
+    isOpen,
+    onClose,
+    title,
+    children,
+    className,
+}: BottomSheetProps) {
+    // Use useEffect to handle body scroll lock
+    React.useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [isOpen]);
+
+    return (
+        <AnimatePresence>
+            {isOpen && (
+                <>
+                    {/* Backdrop */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={onClose}
+                        className="fixed inset-0 z-[110] bg-black/60 backdrop-blur-sm"
+                    />
+
+                    {/* Sheet */}
+                    <motion.div
+                        initial={{ y: "100%" }}
+                        animate={{ y: 0 }}
+                        exit={{ y: "100%" }}
+                        transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                        className={cn(
+                            "fixed bottom-0 left-0 right-0 z-[120] flex flex-col rounded-t-[32px] bg-surface-primary border-t border-border-main shadow-2xl safe-p-bottom max-h-[90vh]",
+                            className
+                        )}
+                    >
+                        {/* Handle / Drag Bar */}
+                        <div className="flex w-full items-center justify-center p-4">
+                            <div className="h-1.5 w-12 rounded-full bg-surface-secondary" />
+                        </div>
+
+                        {/* Header */}
+                        {title && (
+                            <div className="flex items-center justify-between px-6 pb-4">
+                                {title && (
+                                    <h2 className="text-xl font-black text-text-primary tracking-tight">
+                                        {title}
+                                    </h2>
+                                )}
+                                <button
+                                    onClick={onClose}
+                                    className="rounded-full bg-surface-secondary p-1.5 text-text-muted hover:text-text-primary transition-colors"
+                                    aria-label="Kapat"
+                                >
+                                    <X className="h-5 w-5" />
+                                </button>
+                            </div>
+                        )}
+
+                        {/* Content */}
+                        <div className="flex-1 overflow-y-auto px-6 pb-8 custom-scrollbar">
+                            {children}
+                        </div>
+                    </motion.div>
+                </>
+            )}
+        </AnimatePresence>
+    );
+}
+
+```
+
+## File: app\components\ui\Button.tsx
+```
+import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
+import { cn } from "@/lib/utils"
+import { Loader2 } from "lucide-react"
+
+const buttonVariants = cva(
+    "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]",
+    {
+        variants: {
+            variant: {
+                primary: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-glow-primary",
+                secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-premium-sm",
+                outline: "border border-border-main bg-transparent hover:bg-surface-secondary hover:text-text-primary",
+                ghost: "hover:bg-surface-secondary hover:text-text-primary",
+                destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+                premium: "bg-gradient-to-r from-primary to-accent text-white hover:brightness-110 shadow-glow-primary",
+            },
+            size: {
+                default: "h-10 px-4 py-2",
+                sm: "h-9 rounded-md px-3",
+                lg: "h-11 rounded-md px-8",
+                icon: "h-10 w-10",
+            },
+            fullWidth: {
+                true: "w-full",
+            },
+        },
+        defaultVariants: {
+            variant: "primary",
+            size: "default",
+        },
+    }
+)
+
+export interface ButtonProps
+    extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+    asChild?: boolean
+    isLoading?: boolean
+    leftIcon?: React.ReactNode
+    rightIcon?: React.ReactNode
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+    ({ className, variant, size, fullWidth, asChild = false, isLoading, leftIcon, rightIcon, children, ...props }, ref) => {
+        const Comp = asChild ? Slot : "button"
+        return (
+            <Comp
+                className={cn(buttonVariants({ variant, size, fullWidth, className }))}
+                ref={ref}
+                disabled={isLoading || props.disabled}
+                aria-busy={isLoading}
+                aria-live={isLoading ? "polite" : "off"}
+                {...props}
+            >
+                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {!isLoading && leftIcon && <span className="mr-2">{leftIcon}</span>}
+                {children}
+                {!isLoading && rightIcon && <span className="ml-2">{rightIcon}</span>}
+            </Comp>
+        )
+    }
+)
+Button.displayName = "Button"
+
+export { Button, buttonVariants }
+
+```
+
+## File: app\components\ui\Card.tsx
+```
+import * as React from "react"
+import { cn } from "@/lib/utils"
+
+const Card = React.forwardRef<
+    HTMLDivElement,
+    React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+    <div
+        ref={ref}
+        className={cn(
+            "rounded-xl border border-border-main bg-surface-primary text-text-primary shadow-premium-sm transition-all hover:shadow-premium-md",
+            className
+        )}
+        {...props}
+    />
+))
+Card.displayName = "Card"
+
+const CardHeader = React.forwardRef<
+    HTMLDivElement,
+    React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+    <div
+        ref={ref}
+        className={cn("flex flex-col space-y-1.5 p-6", className)}
+        {...props}
+    />
+))
+CardHeader.displayName = "CardHeader"
+
+const CardTitle = React.forwardRef<
+    HTMLParagraphElement,
+    React.HTMLAttributes<HTMLHeadingElement>
+>(({ className, ...props }, ref) => (
+    <h3
+        ref={ref}
+        className={cn(
+            "text-2xl font-semibold leading-none tracking-tight",
+            className
+        )}
+        {...props}
+    />
+))
+CardTitle.displayName = "CardTitle"
+
+const CardDescription = React.forwardRef<
+    HTMLParagraphElement,
+    React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => (
+    <p
+        ref={ref}
+        className={cn("text-sm text-text-secondary", className)}
+        {...props}
+    />
+))
+CardDescription.displayName = "CardDescription"
+
+const CardContent = React.forwardRef<
+    HTMLDivElement,
+    React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+))
+CardContent.displayName = "CardContent"
+
+const CardFooter = React.forwardRef<
+    HTMLDivElement,
+    React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+    <div
+        ref={ref}
+        className={cn("flex items-center p-6 pt-0", className)}
+        {...props}
+    />
+))
+CardFooter.displayName = "CardFooter"
+
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+
+```
+
+## File: app\components\ui\EmptyState.tsx
+```
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Button } from "./Button"
+import { LucideIcon } from "lucide-react"
+
+interface EmptyStateProps extends React.HTMLAttributes<HTMLDivElement> {
+    title: string
+    description?: string
+    icon?: LucideIcon
+    actionLabel?: string
+    onAction?: () => void
+}
+
+export function EmptyState({
+    title,
+    description,
+    icon: Icon,
+    actionLabel,
+    onAction,
+    className,
+    ...props
+}: EmptyStateProps) {
+    return (
+        <div
+            className={cn(
+                "flex min-h-[400px] flex-col items-center justify-center rounded-xl border border-dashed border-border-main p-8 text-center animate-in fade-in zoom-in duration-300",
+                className
+            )}
+            {...props}
+        >
+            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-surface-secondary/50 shadow-premium-sm">
+                {Icon ? (
+                    <Icon className="h-10 w-10 text-text-muted opacity-50" />
+                ) : (
+                    <div className="h-10 w-10 rounded-full bg-border-subtle" />
+                )}
+            </div>
+            <h3 className="mt-6 text-xl font-black text-text-primary tracking-tight">{title}</h3>
+            {description && (
+                <p className="mx-auto mt-4 max-w-sm text-sm text-text-secondary leading-relaxed">
+                    {description}
+                </p>
+            )}
+            {actionLabel && onAction && (
+                <Button
+                    variant="primary"
+                    onClick={onAction}
+                    className="mt-8 shadow-glow-primary px-8"
+                >
+                    {actionLabel}
+                </Button>
+            )}
+        </div>
+    )
+}
+
+```
+
+## File: app\components\ui\LevelUpModal.tsx
+```
+"use client";
+
+import React, { useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useGameState } from '../../utils/gameState';
+import { Button } from './Button';
+import { Trophy, Star, Zap } from 'lucide-react';
+import confetti from 'canvas-confetti';
+
+export function LevelUpModal() {
+    const { gameState, showLevelUp, clearLevelUp, getLevelTitle } = useGameState();
+
+    useEffect(() => {
+        if (showLevelUp) {
+            // Play sound would go here
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#10b981', '#fbbf24', '#3b82f6']
+            });
+        }
+    }, [showLevelUp]);
+
+    if (!showLevelUp) return null;
+
+    return (
+        <AnimatePresence>
+            <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+                <motion.div
+                    initial={{ scale: 0.5, opacity: 0, y: 100 }}
+                    animate={{ scale: 1, opacity: 1, y: 0 }}
+                    exit={{ scale: 0.5, opacity: 0, y: 100 }}
+                    className="relative w-full max-w-sm bg-surface-primary rounded-[32px] p-8 border border-primary/20 shadow-glow-primary overflow-hidden"
+                >
+                    {/* Background Glows */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/10 blur-[80px] rounded-full -z-10" />
+
+                    <div className="flex flex-col items-center text-center">
+                        <motion.div
+                            initial={{ rotate: -20, scale: 0 }}
+                            animate={{ rotate: 0, scale: 1 }}
+                            transition={{ delay: 0.2, type: "spring" }}
+                            className="w-24 h-24 bg-gradient-to-br from-primary to-accent rounded-3xl flex items-center justify-center mb-6 shadow-glow-primary"
+                        >
+                            <Trophy className="w-12 h-12 text-white" />
+                        </motion.div>
+
+                        <h2 className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-2">
+                            Seviye Atladın!
+                        </h2>
+
+                        <div className="text-4xl font-black text-text-primary mb-1">
+                            SEVİYE {gameState.level}
+                        </div>
+
+                        <div className="px-4 py-1 bg-primary/10 rounded-full text-[11px] font-black text-primary uppercase tracking-wider mb-8">
+                            {getLevelTitle()}
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-3 w-full mb-8">
+                            <div className="bg-surface-secondary p-4 rounded-2xl border border-border-subtle">
+                                <div className="text-text-muted text-[9px] font-black uppercase mb-1">Yeni Ödül</div>
+                                <div className="flex items-center gap-2 text-text-primary text-xs font-bold">
+                                    <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+                                    100 Coin
+                                </div>
+                            </div>
+                            <div className="bg-surface-secondary p-4 rounded-2xl border border-border-subtle">
+                                <div className="text-text-muted text-[9px] font-black uppercase mb-1">Gelişim</div>
+                                <div className="flex items-center gap-2 text-text-primary text-xs font-bold">
+                                    <Zap className="w-3.5 h-3.5 text-primary fill-primary" />
+                                    +5% Analiz
+                                </div>
+                            </div>
+                        </div>
+
+                        <Button
+                            variant="primary"
+                            className="w-full h-14 rounded-2xl text-lg font-black shadow-glow-primary"
+                            onClick={clearLevelUp}
+                        >
+                            DEVAM ET
+                        </Button>
+                    </div>
+                </motion.div>
+            </div>
+        </AnimatePresence>
+    );
+}
+
+```
+
+## File: app\components\ui\OnboardingTour.tsx
+```
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "./Button";
+import { Card } from "./Card";
+import { X, ChevronRight, Zap, Trophy, TrendingUp } from "lucide-react";
+import { cn } from "@/lib/utils";
+import confetti from "canvas-confetti";
+
+interface Step {
+    title: string;
+    description: string;
+    icon: React.ElementType;
+    target?: string;
+}
+
+const steps: Step[] = [
+    {
+        title: "Hoş Geldiniz!",
+        description: "VolleySimulator ile ligleri simüle edin, puan durumunu tahmin edin ve sonuçları görün.",
+        icon: Trophy,
+    },
+    {
+        title: "Hızlı Tahmin",
+        description: "Zap butonuna basarak 'Hızlı Tahmin' moduna geçebilir, skorları anında girebilirsiniz.",
+        icon: Zap,
+        target: "zap-button",
+    },
+    {
+        title: "Puan Durumu",
+        description: "Tahminleriniz anında puan durumuna yansır. Play-off ve Küme düşme hatlarını takip edin.",
+        icon: TrendingUp,
+        target: "standings-table",
+    },
+];
+
+export default function OnboardingTour() {
+    const [isOpen, setIsOpen] = useState(false);
+    const [currentStep, setCurrentStep] = useState(0);
+
+    useEffect(() => {
+        const hasSeenTour = localStorage.getItem("hasSeenOnboarding_v1");
+        if (!hasSeenTour) {
+            setIsOpen(true);
+        }
+    }, []);
+
+    const handleNext = () => {
+        if (currentStep < steps.length - 1) {
+            setCurrentStep(currentStep + 1);
+        } else {
+            completeTour();
+        }
+    };
+
+    const completeTour = () => {
+        setIsOpen(false);
+        localStorage.setItem("hasSeenOnboarding_v1", "true");
+        confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#10b981', '#f59e0b', '#3b82f6']
+        });
+    };
+
+    const skipTour = () => {
+        setIsOpen(false);
+        localStorage.setItem("hasSeenOnboarding_v1", "true");
+    };
+
+    if (!isOpen) return null;
+
+    const current = steps[currentStep];
+    const Icon = current.icon;
+
+    return (
+        <AnimatePresence>
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                    className="w-full max-w-sm"
+                >
+                    <Card className="relative overflow-hidden border-primary/20 bg-surface-primary shadow-2xl">
+                        <div className="absolute top-0 left-0 w-full h-1 bg-surface-secondary">
+                            <motion.div
+                                className="h-full bg-primary shadow-glow-primary"
+                                initial={{ width: 0 }}
+                                animate={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
+                            />
+                        </div>
+
+                        <button
+                            onClick={skipTour}
+                            className="absolute top-4 right-4 p-1 rounded-full hover:bg-surface-secondary transition-colors text-text-muted"
+                            aria-label="Turu Atla"
+                        >
+                            <X className="w-4 h-4" />
+                        </button>
+
+                        <div className="p-8 pb-6 flex flex-col items-center text-center">
+                            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                                <Icon className="w-8 h-8 text-primary" />
+                            </div>
+
+                            <h2 className="text-2xl font-black text-text-primary tracking-tight mb-3">
+                                {current.title}
+                            </h2>
+
+                            <p className="text-sm text-text-secondary leading-relaxed mb-8">
+                                {current.description}
+                            </p>
+
+                            <div className="flex w-full gap-3">
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="flex-1"
+                                    onClick={skipTour}
+                                >
+                                    Atla
+                                </Button>
+                                <Button
+                                    variant="primary"
+                                    size="sm"
+                                    className="flex-1 shadow-glow-primary"
+                                    onClick={handleNext}
+                                    rightIcon={<ChevronRight className="w-4 h-4" />}
+                                >
+                                    {currentStep === steps.length - 1 ? "Başla!" : "İleri"}
+                                </Button>
+                            </div>
+
+                            <div className="flex gap-1.5 mt-8">
+                                {steps.map((_, i) => (
+                                    <div
+                                        key={i}
+                                        className={cn(
+                                            "w-1.5 h-1.5 rounded-full transition-all duration-300",
+                                            i === currentStep ? "w-4 bg-primary" : "bg-border-subtle"
+                                        )}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    </Card>
+                </motion.div>
+            </div>
+        </AnimatePresence>
+    );
+}
+
+```
+
+## File: app\components\ui\Skeleton.tsx
+```
+import { cn } from "@/lib/utils"
+
+function Skeleton({
+    className,
+    ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
+    return (
+        <div
+            className={cn("animate-pulse rounded-md bg-surface-secondary", className)}
+            {...props}
+        />
+    )
+}
+
+export function StandingsTableSkeleton() {
+    return (
+        <div className="space-y-3">
+            {[...Array(10)].map((_, i) => (
+                <div key={i} className="flex items-center gap-4 p-4 bg-surface-primary border border-border-main rounded-xl">
+                    <Skeleton className="w-8 h-8 rounded-full" />
+                    <Skeleton className="w-10 h-10 rounded-full" />
+                    <Skeleton className="h-6 w-32 flex-1" />
+                    <div className="flex gap-3">
+                        <Skeleton className="w-12 h-6" />
+                        <Skeleton className="w-12 h-6" />
+                        <Skeleton className="w-12 h-6" />
+                    </div>
+                </div>
+            ))}
+        </div>
+    )
+}
+
+export function MatchCardSkeleton() {
+    return (
+        <div className="p-4 bg-surface-primary border border-border-main rounded-xl space-y-4">
+            <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                    <Skeleton className="w-8 h-8 rounded-full" />
+                    <Skeleton className="h-4 w-24" />
+                </div>
+                <Skeleton className="h-4 w-8" />
+                <div className="flex items-center gap-2">
+                    <Skeleton className="h-4 w-24" />
+                    <Skeleton className="w-8 h-8 rounded-full" />
+                </div>
+            </div>
+            <div className="grid grid-cols-4 gap-2">
+                <Skeleton className="h-10 rounded-lg" />
+                <Skeleton className="h-10 rounded-lg" />
+                <Skeleton className="h-10 rounded-lg" />
+                <Skeleton className="h-10 rounded-lg" />
+            </div>
+        </div>
+    )
+}
+
+export { Skeleton }
 
 ```
 
@@ -1611,1599 +2571,6 @@ export function useCustomLeagues() {
     throw new Error('useCustomLeagues must be used within a CustomLeaguesProvider');
   }
   return context;
-}
-
-```
-
-## File: app\context\FriendsContext.tsx
-```
-"use client";
-
-import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
-import { Friend, UserProfile, FriendActivity, FriendshipStatus } from "../types";
-import { useAuth } from "./AuthContext";
-
-interface FriendsContextType {
-  friends: Friend[];
-  pendingRequests: Friend[];
-  friendActivities: FriendActivity[];
-  isLoading: boolean;
-  error: string | null;
-  // Actions
-  sendFriendRequest: (userId: string) => Promise<boolean>;
-  acceptFriendRequest: (friendshipId: string) => Promise<boolean>;
-  rejectFriendRequest: (friendshipId: string) => Promise<boolean>;
-  removeFriend: (friendshipId: string) => Promise<boolean>;
-  blockUser: (userId: string) => Promise<boolean>;
-  searchUsers: (query: string) => Promise<UserProfile[]>;
-  getFriendProfile: (userId: string) => Promise<UserProfile | null>;
-  comparePredictions: (friendId: string, league?: string) => Promise<PredictionComparison | null>;
-  refreshFriends: () => Promise<void>;
-}
-
-interface PredictionComparison {
-  userId: string;
-  friendId: string;
-  userStats: {
-    totalPredictions: number;
-    correctPredictions: number;
-    accuracy: number;
-    points: number;
-  };
-  friendStats: {
-    totalPredictions: number;
-    correctPredictions: number;
-    accuracy: number;
-    points: number;
-  };
-  commonMatches: CommonMatchPrediction[];
-}
-
-interface CommonMatchPrediction {
-  matchId: string;
-  homeTeam: string;
-  awayTeam: string;
-  userPrediction: string;
-  friendPrediction: string;
-  actualResult?: string;
-  userCorrect?: boolean;
-  friendCorrect?: boolean;
-}
-
-const FriendsContext = createContext<FriendsContextType | undefined>(undefined);
-
-export function FriendsProvider({ children }: { children: React.ReactNode }) {
-  const { user } = useAuth();
-  const [friends, setFriends] = useState<Friend[]>([]);
-  const [pendingRequests, setPendingRequests] = useState<Friend[]>([]);
-  const [friendActivities, setFriendActivities] = useState<FriendActivity[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  // Fetch friends list
-  const fetchFriends = useCallback(async () => {
-    if (!user) return;
-    
-    setIsLoading(true);
-    setError(null);
-    
-    try {
-      const response = await fetch('/api/friends', {
-        headers: {
-          'Authorization': `Bearer ${user.id}`,
-        },
-      });
-      
-      if (!response.ok) throw new Error('Failed to fetch friends');
-      
-      const data = await response.json();
-      setFriends(data.friends || []);
-      setPendingRequests(data.pendingRequests || []);
-      setFriendActivities(data.activities || []);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-    } finally {
-      setIsLoading(false);
-    }
-  }, [user]);
-
-  // Send friend request
-  const sendFriendRequest = useCallback(async (userId: string): Promise<boolean> => {
-    if (!user) return false;
-    
-    try {
-      const response = await fetch('/api/friends/request', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${user.id}`,
-        },
-        body: JSON.stringify({ friendId: userId }),
-      });
-      
-      if (!response.ok) throw new Error('Failed to send friend request');
-      
-      await fetchFriends();
-      return true;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-      return false;
-    }
-  }, [user, fetchFriends]);
-
-  // Accept friend request
-  const acceptFriendRequest = useCallback(async (friendshipId: string): Promise<boolean> => {
-    if (!user) return false;
-    
-    try {
-      const response = await fetch(`/api/friends/request/${friendshipId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${user.id}`,
-        },
-        body: JSON.stringify({ action: 'accept' }),
-      });
-      
-      if (!response.ok) throw new Error('Failed to accept friend request');
-      
-      await fetchFriends();
-      return true;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-      return false;
-    }
-  }, [user, fetchFriends]);
-
-  // Reject friend request
-  const rejectFriendRequest = useCallback(async (friendshipId: string): Promise<boolean> => {
-    if (!user) return false;
-    
-    try {
-      const response = await fetch(`/api/friends/request/${friendshipId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${user.id}`,
-        },
-        body: JSON.stringify({ action: 'reject' }),
-      });
-      
-      if (!response.ok) throw new Error('Failed to reject friend request');
-      
-      await fetchFriends();
-      return true;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-      return false;
-    }
-  }, [user, fetchFriends]);
-
-  // Remove friend
-  const removeFriend = useCallback(async (friendshipId: string): Promise<boolean> => {
-    if (!user) return false;
-    
-    try {
-      const response = await fetch(`/api/friends/${friendshipId}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${user.id}`,
-        },
-      });
-      
-      if (!response.ok) throw new Error('Failed to remove friend');
-      
-      await fetchFriends();
-      return true;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-      return false;
-    }
-  }, [user, fetchFriends]);
-
-  // Block user
-  const blockUser = useCallback(async (userId: string): Promise<boolean> => {
-    if (!user) return false;
-    
-    try {
-      const response = await fetch('/api/friends/block', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${user.id}`,
-        },
-        body: JSON.stringify({ userId }),
-      });
-      
-      if (!response.ok) throw new Error('Failed to block user');
-      
-      await fetchFriends();
-      return true;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-      return false;
-    }
-  }, [user, fetchFriends]);
-
-  // Search users
-  const searchUsers = useCallback(async (query: string): Promise<UserProfile[]> => {
-    if (!user || query.length < 2) return [];
-    
-    try {
-      const response = await fetch(`/api/users/search?q=${encodeURIComponent(query)}`, {
-        headers: {
-          'Authorization': `Bearer ${user.id}`,
-        },
-      });
-      
-      if (!response.ok) throw new Error('Failed to search users');
-      
-      const data = await response.json();
-      return data.users || [];
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-      return [];
-    }
-  }, [user]);
-
-  // Get friend profile
-  const getFriendProfile = useCallback(async (userId: string): Promise<UserProfile | null> => {
-    if (!user) return null;
-    
-    try {
-      const response = await fetch(`/api/users/${userId}/profile`, {
-        headers: {
-          'Authorization': `Bearer ${user.id}`,
-        },
-      });
-      
-      if (!response.ok) throw new Error('Failed to get user profile');
-      
-      const data = await response.json();
-      return data.profile;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-      return null;
-    }
-  }, [user]);
-
-  // Compare predictions with friend
-  const comparePredictions = useCallback(async (
-    friendId: string,
-    league?: string
-  ): Promise<PredictionComparison | null> => {
-    if (!user) return null;
-    
-    try {
-      const url = league 
-        ? `/api/friends/${friendId}/compare?league=${encodeURIComponent(league)}`
-        : `/api/friends/${friendId}/compare`;
-        
-      const response = await fetch(url, {
-        headers: {
-          'Authorization': `Bearer ${user.id}`,
-        },
-      });
-      
-      if (!response.ok) throw new Error('Failed to compare predictions');
-      
-      const data = await response.json();
-      return data.comparison;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-      return null;
-    }
-  }, [user]);
-
-  // Refresh friends data
-  const refreshFriends = useCallback(async () => {
-    await fetchFriends();
-  }, [fetchFriends]);
-
-  // Initial fetch
-  useEffect(() => {
-    if (user) {
-      fetchFriends();
-    }
-  }, [user, fetchFriends]);
-
-  return (
-    <FriendsContext.Provider
-      value={{
-        friends,
-        pendingRequests,
-        friendActivities,
-        isLoading,
-        error,
-        sendFriendRequest,
-        acceptFriendRequest,
-        rejectFriendRequest,
-        removeFriend,
-        blockUser,
-        searchUsers,
-        getFriendProfile,
-        comparePredictions,
-        refreshFriends,
-      }}
-    >
-      {children}
-    </FriendsContext.Provider>
-  );
-}
-
-export function useFriends() {
-  const context = useContext(FriendsContext);
-  if (context === undefined) {
-    throw new Error('useFriends must be used within a FriendsProvider');
-  }
-  return context;
-}
-
-```
-
-## File: app\context\LiveMatchContext.tsx
-```
-"use client";
-
-import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
-import {
-  LiveMatch,
-  MatchComment,
-  LiveChatMessage,
-  MatchSimulation
-} from "../types";
-import { useAuth } from "./AuthContext";
-
-interface LiveMatchContextType {
-  liveMatches: LiveMatch[];
-  currentMatch: LiveMatch | null;
-  comments: MatchComment[];
-  chatMessages: LiveChatMessage[];
-  isLoading: boolean;
-  isConnected: boolean;
-  // Actions
-  selectMatch: (matchId: string) => void;
-  addComment: (matchId: string, message: string) => Promise<boolean>;
-  likeComment: (commentId: string) => Promise<boolean>;
-  sendChatMessage: (matchId: string, message: string) => Promise<boolean>;
-  subscribeToMatch: (matchId: string) => void;
-  unsubscribeFromMatch: () => void;
-  simulateMatch: (homeTeam: string, awayTeam: string) => Promise<MatchSimulation | null>;
-  refreshLiveMatches: () => Promise<void>;
-}
-
-const LiveMatchContext = createContext<LiveMatchContextType | undefined>(undefined);
-
-export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
-  const { user } = useAuth();
-  const [liveMatches, setLiveMatches] = useState<LiveMatch[]>([]);
-  const [currentMatch, setCurrentMatch] = useState<LiveMatch | null>(null);
-  const [comments, setComments] = useState<MatchComment[]>([]);
-  const [chatMessages, setChatMessages] = useState<LiveChatMessage[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isConnected, setIsConnected] = useState(false);
-  const [websocket, setWebsocket] = useState<WebSocket | null>(null);
-
-  // Fetch live matches
-  const fetchLiveMatches = useCallback(async () => {
-    setIsLoading(true);
-
-    try {
-      // Use consolidated API endpoint
-      const response = await fetch('/api/live');
-
-      if (!response.ok) throw new Error('Failed to fetch live matches');
-
-      const data = await response.json();
-      // API returns liveMatches, context expects matches but state is named liveMatches
-      // The previous code expected data.matches, but route returns data.liveMatches
-      setLiveMatches(data.liveMatches || []);
-    } catch (err) {
-      console.error('Failed to fetch live matches:', err);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-  // Select a match to follow
-  const selectMatch = useCallback((matchId: string) => {
-    const match = liveMatches.find(m => m.id === matchId);
-    setCurrentMatch(match || null);
-
-    if (match) {
-      // Fetch comments for this match
-      fetchComments(matchId);
-    }
-  }, [liveMatches]);
-
-  // Fetch comments for a match
-  const fetchComments = async (matchId: string) => {
-    try {
-      const response = await fetch(`/api/live/matches/${matchId}/comments`);
-
-      if (response.ok) {
-        const data = await response.json();
-        setComments(data.comments || []);
-      }
-    } catch (err) {
-      console.error('Failed to fetch comments:', err);
-    }
-  };
-
-  // Add comment
-  const addComment = useCallback(async (matchId: string, message: string): Promise<boolean> => {
-    if (!user) return false;
-
-    try {
-      const response = await fetch(`/api/live/matches/${matchId}/comments`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${user.id}`,
-        },
-        body: JSON.stringify({ message }),
-      });
-
-      if (!response.ok) throw new Error('Failed to add comment');
-
-      const data = await response.json();
-      setComments(prev => [data.comment, ...prev]);
-
-      return true;
-    } catch (err) {
-      console.error('Failed to add comment:', err);
-      return false;
-    }
-  }, [user]);
-
-  // Like comment
-  const likeComment = useCallback(async (commentId: string): Promise<boolean> => {
-    if (!user) return false;
-
-    try {
-      const response = await fetch(`/api/live/comments/${commentId}/like`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${user.id}`,
-        },
-      });
-
-      if (!response.ok) throw new Error('Failed to like comment');
-
-      setComments(prev =>
-        prev.map(c => c.id === commentId ? { ...c, likes: c.likes + 1 } : c)
-      );
-
-      return true;
-    } catch (err) {
-      console.error('Failed to like comment:', err);
-      return false;
-    }
-  }, [user]);
-
-  // Send chat message (WebSocket)
-  const sendChatMessage = useCallback(async (matchId: string, message: string): Promise<boolean> => {
-    if (!user || !websocket || websocket.readyState !== WebSocket.OPEN) return false;
-
-    try {
-      websocket.send(JSON.stringify({
-        type: 'chat_message',
-        matchId,
-        message,
-        userId: user.id,
-      }));
-
-      return true;
-    } catch (err) {
-      console.error('Failed to send chat message:', err);
-      return false;
-    }
-  }, [user, websocket]);
-
-  // Subscribe to live match updates (WebSocket)
-  const subscribeToMatch = useCallback((matchId: string) => {
-    // Close existing connection
-    if (websocket) {
-      websocket.close();
-    }
-
-    // Create new WebSocket connection
-    const ws = new WebSocket(`${process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:3001'}/live/${matchId}`);
-
-    ws.onopen = () => {
-      setIsConnected(true);
-      console.log('Connected to live match:', matchId);
-    };
-
-    ws.onmessage = (event) => {
-      try {
-        const data = JSON.parse(event.data);
-
-        switch (data.type) {
-          case 'match_update':
-            setCurrentMatch(prev => prev ? { ...prev, ...data.match } : null);
-            break;
-          case 'chat_message':
-            setChatMessages(prev => [...prev, data.message]);
-            break;
-          case 'score_update':
-            setCurrentMatch(prev => {
-              if (!prev) return null;
-              return {
-                ...prev,
-                currentSetHomePoints: data.homePoints,
-                currentSetAwayPoints: data.awayPoints,
-              };
-            });
-            break;
-          case 'set_end':
-            setCurrentMatch(prev => {
-              if (!prev) return null;
-              return {
-                ...prev,
-                homeSetScore: data.homeSetScore,
-                awaySetScore: data.awaySetScore,
-                currentSet: data.currentSet,
-                setScores: data.setScores,
-              };
-            });
-            break;
-          case 'match_end':
-            setCurrentMatch(prev => prev ? { ...prev, status: 'finished' } : null);
-            break;
-        }
-      } catch (err) {
-        console.error('Failed to parse WebSocket message:', err);
-      }
-    };
-
-    ws.onclose = () => {
-      setIsConnected(false);
-      console.log('Disconnected from live match');
-    };
-
-    ws.onerror = (error) => {
-      console.error('WebSocket error:', error);
-      setIsConnected(false);
-    };
-
-    setWebsocket(ws);
-  }, [websocket]);
-
-  // Unsubscribe from match
-  const unsubscribeFromMatch = useCallback(() => {
-    if (websocket) {
-      websocket.close();
-      setWebsocket(null);
-    }
-    setIsConnected(false);
-    setChatMessages([]);
-  }, [websocket]);
-
-  // Simulate a match
-  const simulateMatch = useCallback(async (
-    homeTeam: string,
-    awayTeam: string
-  ): Promise<MatchSimulation | null> => {
-    try {
-      const response = await fetch('/api/simulation/match', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ homeTeam, awayTeam }),
-      });
-
-      if (!response.ok) throw new Error('Failed to simulate match');
-
-      const data = await response.json();
-      return data.simulation;
-    } catch (err) {
-      console.error('Failed to simulate match:', err);
-      return null;
-    }
-  }, []);
-
-  // Refresh live matches
-  const refreshLiveMatches = useCallback(async () => {
-    await fetchLiveMatches();
-  }, [fetchLiveMatches]);
-
-  // Initial fetch and polling
-  useEffect(() => {
-    fetchLiveMatches();
-
-    // Poll for updates every 30 seconds
-    const interval = setInterval(fetchLiveMatches, 30000);
-
-    return () => clearInterval(interval);
-  }, [fetchLiveMatches]);
-
-  // Cleanup WebSocket on unmount
-  useEffect(() => {
-    return () => {
-      if (websocket) {
-        websocket.close();
-      }
-    };
-  }, [websocket]);
-
-  return (
-    <LiveMatchContext.Provider
-      value={{
-        liveMatches,
-        currentMatch,
-        comments,
-        chatMessages,
-        isLoading,
-        isConnected,
-        selectMatch,
-        addComment,
-        likeComment,
-        sendChatMessage,
-        subscribeToMatch,
-        unsubscribeFromMatch,
-        simulateMatch,
-        refreshLiveMatches,
-      }}
-    >
-      {children}
-    </LiveMatchContext.Provider>
-  );
-}
-
-export function useLiveMatch() {
-  const context = useContext(LiveMatchContext);
-  if (context === undefined) {
-    throw new Error('useLiveMatch must be used within a LiveMatchProvider');
-  }
-  return context;
-}
-
-```
-
-## File: app\context\LocaleContext.tsx
-```
-'use client';
-
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-
-type Locale = 'tr' | 'en';
-
-interface LocaleContextType {
-  locale: Locale;
-  setLocale: (locale: Locale) => void;
-}
-
-const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
-
-function getInitialLocale(): Locale {
-  if (typeof document === 'undefined') return 'tr';
-  
-  const savedLocale = document.cookie
-    .split('; ')
-    .find(row => row.startsWith('NEXT_LOCALE='))
-    ?.split('=')[1];
-  
-  if (savedLocale === 'tr' || savedLocale === 'en') {
-    return savedLocale;
-  }
-  return 'tr';
-}
-
-export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(getInitialLocale);
-
-  const setLocale = (newLocale: Locale) => {
-    setLocaleState(newLocale);
-    // Set cookie for 1 year
-    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000`;
-    // Reload to apply new locale
-    window.location.reload();
-  };
-
-  return (
-    <LocaleContext.Provider value={{ locale, setLocale }}>
-      {children}
-    </LocaleContext.Provider>
-  );
-}
-
-export function useLocale() {
-  const context = useContext(LocaleContext);
-  if (!context) {
-    throw new Error('useLocale must be used within a LocaleProvider');
-  }
-  return context;
-}
-
-```
-
-## File: app\context\NotificationsContext.tsx
-```
-"use client";
-
-import React, { createContext, useContext, useState, useCallback, useEffect, useRef } from "react";
-import type { Notification, NotificationPreferences, NotificationType } from "../types";
-import { useAuth } from "./AuthContext";
-
-interface NotificationsContextType {
-  notifications: Notification[];
-  unreadCount: number;
-  preferences: NotificationPreferences;
-  isLoading: boolean;
-  // Actions
-  markAsRead: (notificationId: string) => Promise<void>;
-  markAllAsRead: () => Promise<void>;
-  deleteNotification: (notificationId: string) => Promise<void>;
-  clearAll: () => Promise<void>;
-  updatePreferences: (prefs: Partial<NotificationPreferences>) => Promise<void>;
-  requestPushPermission: () => Promise<boolean>;
-  // Real-time
-  subscribeToNotifications: () => void;
-  unsubscribeFromNotifications: () => void;
-}
-
-const defaultPreferences: NotificationPreferences = {
-  matchReminders: true,
-  matchResults: true,
-  friendRequests: true,
-  friendActivity: true,
-  achievements: true,
-  leaderboardChanges: true,
-  dailyQuests: true,
-  weeklyDigest: true,
-  pushEnabled: false,
-  emailEnabled: true,
-};
-
-const NotificationsContext = createContext<NotificationsContextType | undefined>(undefined);
-
-export function NotificationsProvider({ children }: { children: React.ReactNode }) {
-  const { user } = useAuth();
-  const [notifications, setNotifications] = useState<Notification[]>([]);
-  const [preferences, setPreferences] = useState<NotificationPreferences>(defaultPreferences);
-  const [isLoading, setIsLoading] = useState(false);
-  const eventSourceRef = useRef<EventSource | null>(null);
-
-  const unreadCount = notifications.filter(n => !n.isRead).length;
-
-  // Fetch notifications
-  const fetchNotifications = useCallback(async () => {
-    if (!user) return;
-    
-    setIsLoading(true);
-    
-    try {
-      const response = await fetch('/api/notifications', {
-        headers: {
-          'Authorization': `Bearer ${user.id}`,
-        },
-      });
-      
-      if (!response.ok) throw new Error('Failed to fetch notifications');
-      
-      const data = await response.json();
-      setNotifications(data.notifications || []);
-    } catch (err) {
-      console.error('Failed to fetch notifications:', err);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [user]);
-
-  // Fetch preferences
-  const fetchPreferences = useCallback(async () => {
-    if (!user) return;
-    
-    try {
-      const response = await fetch('/api/notifications/preferences', {
-        headers: {
-          'Authorization': `Bearer ${user.id}`,
-        },
-      });
-      
-      if (!response.ok) throw new Error('Failed to fetch preferences');
-      
-      const data = await response.json();
-      setPreferences(data.preferences || defaultPreferences);
-    } catch (err) {
-      console.error('Failed to fetch preferences:', err);
-    }
-  }, [user]);
-
-  // Mark single notification as read
-  const markAsRead = useCallback(async (notificationId: string) => {
-    if (!user) return;
-    
-    try {
-      await fetch(`/api/notifications/${notificationId}/read`, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${user.id}`,
-        },
-      });
-      
-      setNotifications(prev => 
-        prev.map(n => n.id === notificationId ? { ...n, isRead: true } : n)
-      );
-    } catch (err) {
-      console.error('Failed to mark notification as read:', err);
-    }
-  }, [user]);
-
-  // Mark all as read
-  const markAllAsRead = useCallback(async () => {
-    if (!user) return;
-    
-    try {
-      await fetch('/api/notifications/read-all', {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${user.id}`,
-        },
-      });
-      
-      setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
-    } catch (err) {
-      console.error('Failed to mark all as read:', err);
-    }
-  }, [user]);
-
-  // Delete notification
-  const deleteNotification = useCallback(async (notificationId: string) => {
-    if (!user) return;
-    
-    try {
-      await fetch(`/api/notifications/${notificationId}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${user.id}`,
-        },
-      });
-      
-      setNotifications(prev => prev.filter(n => n.id !== notificationId));
-    } catch (err) {
-      console.error('Failed to delete notification:', err);
-    }
-  }, [user]);
-
-  // Clear all notifications
-  const clearAll = useCallback(async () => {
-    if (!user) return;
-    
-    try {
-      await fetch('/api/notifications', {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${user.id}`,
-        },
-      });
-      
-      setNotifications([]);
-    } catch (err) {
-      console.error('Failed to clear notifications:', err);
-    }
-  }, [user]);
-
-  // Update preferences
-  const updatePreferences = useCallback(async (prefs: Partial<NotificationPreferences>) => {
-    if (!user) return;
-    
-    try {
-      const response = await fetch('/api/notifications/preferences', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${user.id}`,
-        },
-        body: JSON.stringify(prefs),
-      });
-      
-      if (!response.ok) throw new Error('Failed to update preferences');
-      
-      setPreferences(prev => ({ ...prev, ...prefs }));
-    } catch (err) {
-      console.error('Failed to update preferences:', err);
-    }
-  }, [user]);
-
-  // Request push permission
-  const requestPushPermission = useCallback(async (): Promise<boolean> => {
-    if (!('Notification' in window)) {
-      console.log('This browser does not support notifications');
-      return false;
-    }
-    
-    if (Notification.permission === 'granted') {
-      await updatePreferences({ pushEnabled: true });
-      return true;
-    }
-    
-    if (Notification.permission !== 'denied') {
-      const permission = await Notification.requestPermission();
-      if (permission === 'granted') {
-        await updatePreferences({ pushEnabled: true });
-        
-        // Register service worker for push
-        if ('serviceWorker' in navigator) {
-          try {
-            const registration = await navigator.serviceWorker.ready;
-            // Here you would subscribe to push notifications
-            console.log('Push notification registered');
-          } catch (err) {
-            console.error('Failed to register push:', err);
-          }
-        }
-        
-        return true;
-      }
-    }
-    
-    return false;
-  }, [updatePreferences]);
-
-  // Subscribe to real-time notifications (SSE)
-  const subscribeToNotifications = useCallback(() => {
-    if (!user || eventSourceRef.current) return;
-    
-    eventSourceRef.current = new EventSource(`/api/notifications/stream?userId=${user.id}`);
-    
-    eventSourceRef.current.onmessage = (event) => {
-      try {
-        const notification = JSON.parse(event.data) as Notification;
-        setNotifications(prev => [notification, ...prev]);
-        
-        // Show browser notification if enabled
-        if (preferences.pushEnabled && Notification.permission === 'granted') {
-          new Notification(notification.title, {
-            body: notification.message,
-            icon: '/icons/icon-192x192.png',
-          });
-        }
-      } catch (err) {
-        console.error('Failed to parse notification:', err);
-      }
-    };
-    
-    eventSourceRef.current.onerror = () => {
-      eventSourceRef.current?.close();
-      eventSourceRef.current = null;
-      
-      // Retry after 5 seconds
-      setTimeout(subscribeToNotifications, 5000);
-    };
-  }, [user, preferences.pushEnabled]);
-
-  // Unsubscribe from notifications
-  const unsubscribeFromNotifications = useCallback(() => {
-    if (eventSourceRef.current) {
-      eventSourceRef.current.close();
-      eventSourceRef.current = null;
-    }
-  }, []);
-
-  // Initial fetch
-  useEffect(() => {
-    if (user) {
-      fetchNotifications();
-      fetchPreferences();
-    }
-  }, [user, fetchNotifications, fetchPreferences]);
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      unsubscribeFromNotifications();
-    };
-  }, [unsubscribeFromNotifications]);
-
-  return (
-    <NotificationsContext.Provider
-      value={{
-        notifications,
-        unreadCount,
-        preferences,
-        isLoading,
-        markAsRead,
-        markAllAsRead,
-        deleteNotification,
-        clearAll,
-        updatePreferences,
-        requestPushPermission,
-        subscribeToNotifications,
-        unsubscribeFromNotifications,
-      }}
-    >
-      {children}
-    </NotificationsContext.Provider>
-  );
-}
-
-export function useNotifications() {
-  const context = useContext(NotificationsContext);
-  if (context === undefined) {
-    throw new Error('useNotifications must be used within a NotificationsProvider');
-  }
-  return context;
-}
-
-```
-
-## File: app\context\QuestsContext.tsx
-```
-"use client";
-
-import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
-import { DailyQuest, WeeklyChallenge, StreakData, Badge } from "../types";
-import { useAuth } from "./AuthContext";
-import { useGameState } from "../utils/gameState";
-
-interface QuestsContextType {
-  dailyQuests: DailyQuest[];
-  weeklyChallenge: WeeklyChallenge | null;
-  streakData: StreakData;
-  badges: Badge[];
-  unlockedBadges: Badge[];
-  isLoading: boolean;
-  // Actions
-  claimQuestReward: (questId: string) => Promise<{ xp: number; coins: number } | null>;
-  useStreakFreeze: () => Promise<boolean>;
-  refreshQuests: () => Promise<void>;
-  trackQuestProgress: (questType: string, amount?: number) => Promise<void>;
-}
-
-const defaultStreakData: StreakData = {
-  currentStreak: 0,
-  longestStreak: 0,
-  lastPredictionDate: '',
-  streakFreezeAvailable: 0,
-  streakHistory: [],
-};
-
-const QuestsContext = createContext<QuestsContextType | undefined>(undefined);
-
-export function QuestsProvider({ children }: { children: React.ReactNode }) {
-  const { user } = useAuth();
-  const { addXP } = useGameState();
-  const [dailyQuests, setDailyQuests] = useState<DailyQuest[]>([]);
-  const [weeklyChallenge, setWeeklyChallenge] = useState<WeeklyChallenge | null>(null);
-  const [streakData, setStreakData] = useState<StreakData>(defaultStreakData);
-  const [badges, setBadges] = useState<Badge[]>([]);
-  const [unlockedBadges, setUnlockedBadges] = useState<Badge[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  // Fetch daily quests
-  const fetchQuests = useCallback(async () => {
-    if (!user) return;
-
-    setIsLoading(true);
-
-    try {
-      // Use consolidated API endpoint
-      const response = await fetch('/api/quests', {
-        headers: { 'Authorization': `Bearer ${user.id}` },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-
-        if (data.dailyQuests) {
-          setDailyQuests(data.dailyQuests);
-        } else {
-          setDailyQuests(generateDefaultQuests());
-        }
-
-        if (data.weeklyChallenge) {
-          setWeeklyChallenge(data.weeklyChallenge);
-        }
-
-        if (data.streak) {
-          setStreakData(data.streak);
-        } else {
-          setStreakData(defaultStreakData);
-        }
-
-        if (data.badges) {
-          setBadges(data.badges);
-          // Assuming unlockedBadges are part of badges or separate property, 
-          // but API returns 'badges' which likely contains status.
-          // For now, filtering if structure supports it, or setting empty if separate property missing
-          setUnlockedBadges(data.badges.filter((b: Badge) => b.unlockedAt) || []);
-        }
-      } else {
-        throw new Error('Failed to fetch quests');
-      }
-    } catch (err) {
-      console.error('Failed to fetch quests:', err);
-      // Use default quests on error
-      setDailyQuests(generateDefaultQuests());
-    } finally {
-      setIsLoading(false);
-    }
-  }, [user]);
-
-  // Generate default daily quests
-  function generateDefaultQuests(): DailyQuest[] {
-    const today = new Date();
-    today.setHours(23, 59, 59, 999);
-    const expiresAt = today.toISOString();
-
-    return [
-      {
-        id: 'daily_predict_3',
-        type: 'make_predictions',
-        title: '3 Tahmin Yap',
-        description: 'Bugün en az 3 maç tahmini yap',
-        icon: '🎯',
-        target: 3,
-        progress: 0,
-        xpReward: 50,
-        coinReward: 10,
-        expiresAt,
-        completed: false,
-        claimed: false,
-      },
-      {
-        id: 'daily_correct_1',
-        type: 'correct_predictions',
-        title: 'Doğru Tahmin',
-        description: '1 doğru tahmin yap',
-        icon: '✅',
-        target: 1,
-        progress: 0,
-        xpReward: 75,
-        coinReward: 15,
-        expiresAt,
-        completed: false,
-        claimed: false,
-      },
-      {
-        id: 'daily_underdog',
-        type: 'predict_underdog',
-        title: 'Underdog Tahmini',
-        description: 'Bir maçta sürpriz sonuç tahmin et',
-        icon: '🐺',
-        target: 1,
-        progress: 0,
-        xpReward: 100,
-        coinReward: 25,
-        expiresAt,
-        completed: false,
-        claimed: false,
-      },
-      {
-        id: 'daily_view_stats',
-        type: 'view_stats',
-        title: 'İstatistikleri İncele',
-        description: 'Takım istatistiklerini görüntüle',
-        icon: '📊',
-        target: 1,
-        progress: 0,
-        xpReward: 25,
-        coinReward: 5,
-        expiresAt,
-        completed: false,
-        claimed: false,
-      },
-    ];
-  }
-
-  // Claim quest reward
-  const claimQuestReward = useCallback(async (questId: string): Promise<{ xp: number; coins: number } | null> => {
-    if (!user) return null;
-
-    const quest = dailyQuests.find(q => q.id === questId);
-    if (!quest || !quest.completed || quest.claimed) return null;
-
-    try {
-      const response = await fetch(`/api/quests/${questId}/claim`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${user.id}`,
-        },
-      });
-
-      if (!response.ok) throw new Error('Failed to claim reward');
-
-      const data = await response.json();
-
-      // Update local state
-      setDailyQuests(prev =>
-        prev.map(q => q.id === questId ? { ...q, claimed: true } : q)
-      );
-
-      // Add XP
-      addXP(quest.xpReward);
-
-      return { xp: quest.xpReward, coins: quest.coinReward };
-    } catch (err) {
-      console.error('Failed to claim reward:', err);
-      return null;
-    }
-  }, [user, dailyQuests, addXP]);
-
-  // Use streak freeze
-  const useStreakFreeze = useCallback(async (): Promise<boolean> => {
-    if (!user || streakData.streakFreezeAvailable <= 0) return false;
-
-    try {
-      const response = await fetch('/api/streak/freeze', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${user.id}`,
-        },
-      });
-
-      if (!response.ok) throw new Error('Failed to use streak freeze');
-
-      setStreakData(prev => ({
-        ...prev,
-        streakFreezeAvailable: prev.streakFreezeAvailable - 1,
-      }));
-
-      return true;
-    } catch (err) {
-      console.error('Failed to use streak freeze:', err);
-      return false;
-    }
-  }, [user, streakData.streakFreezeAvailable]);
-
-  // Track quest progress
-  const trackQuestProgress = useCallback(async (questType: string, amount: number = 1) => {
-    if (!user) return;
-
-    // Update local state optimistically
-    setDailyQuests(prev =>
-      prev.map(q => {
-        if (q.type === questType && !q.completed) {
-          const newProgress = Math.min(q.progress + amount, q.target);
-          return {
-            ...q,
-            progress: newProgress,
-            completed: newProgress >= q.target,
-          };
-        }
-        return q;
-      })
-    );
-
-    // Send to server
-    try {
-      await fetch('/api/quests/progress', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${user.id}`,
-        },
-        body: JSON.stringify({ questType, amount }),
-      });
-    } catch (err) {
-      console.error('Failed to track quest progress:', err);
-    }
-  }, [user]);
-
-  // Refresh quests
-  const refreshQuests = useCallback(async () => {
-    await fetchQuests();
-  }, [fetchQuests]);
-
-  // Initial fetch
-  useEffect(() => {
-    if (user) {
-      fetchQuests();
-    }
-  }, [user, fetchQuests]);
-
-  // Check for new day and reset quests
-  useEffect(() => {
-    const checkDailyReset = () => {
-      const now = new Date();
-      const questExpiry = dailyQuests[0]?.expiresAt;
-
-      if (questExpiry && new Date(questExpiry) < now) {
-        fetchQuests();
-      }
-    };
-
-    const interval = setInterval(checkDailyReset, 60000); // Check every minute
-    return () => clearInterval(interval);
-  }, [dailyQuests, fetchQuests]);
-
-  return (
-    <QuestsContext.Provider
-      value={{
-        dailyQuests,
-        weeklyChallenge,
-        streakData,
-        badges,
-        unlockedBadges,
-        isLoading,
-        claimQuestReward,
-        useStreakFreeze,
-        refreshQuests,
-        trackQuestProgress,
-      }}
-    >
-      {children}
-    </QuestsContext.Provider>
-  );
-}
-
-export function useQuests() {
-  const context = useContext(QuestsContext);
-  if (context === undefined) {
-    throw new Error('useQuests must be used within a QuestsProvider');
-  }
-  return context;
-}
-
-```
-
-## File: app\context\ThemeContext.tsx
-```
-"use client";
-
-import { createContext, useContext, useState, useEffect, ReactNode, useCallback } from "react";
-import { ThemeMode, AccentColor, UIPreferences, DashboardWidget } from "../types";
-
-type Theme = "dark" | "light";
-
-interface ThemeContextType {
-    theme: Theme;
-    themeMode: ThemeMode;
-    accentColor: AccentColor;
-    preferences: UIPreferences;
-    isDark: boolean;
-    toggleTheme: () => void;
-    setTheme: (theme: Theme) => void;
-    setThemeMode: (mode: ThemeMode) => void;
-    setAccentColor: (color: AccentColor) => void;
-    updatePreferences: (prefs: Partial<UIPreferences>) => void;
-    updateDashboardLayout: (widgets: DashboardWidget[]) => void;
-    playSound: (sound: SoundType) => void;
-}
-
-type SoundType = 'success' | 'error' | 'notification' | 'levelUp' | 'achievement' | 'click';
-
-const defaultPreferences: UIPreferences = {
-    theme: 'dark',
-    accentColor: 'emerald',
-    soundEffects: true,
-    hapticFeedback: true,
-    compactMode: false,
-    showAnimations: true,
-    fontSize: 'medium',
-    dashboardLayout: [
-        { id: 'standings', type: 'standings', position: 1, size: 'large', visible: true },
-        { id: 'upcoming', type: 'upcoming', position: 2, size: 'medium', visible: true },
-        { id: 'quests', type: 'quests', position: 3, size: 'small', visible: true },
-        { id: 'streak', type: 'streak', position: 4, size: 'small', visible: true },
-        { id: 'leaderboard', type: 'leaderboard', position: 5, size: 'medium', visible: true },
-        { id: 'friends', type: 'friends', position: 6, size: 'medium', visible: true },
-    ],
-};
-
-const SOUNDS: Record<SoundType, string> = {
-    success: '/sounds/success.mp3',
-    error: '/sounds/error.mp3',
-    notification: '/sounds/notification.mp3',
-    levelUp: '/sounds/level-up.mp3',
-    achievement: '/sounds/achievement.mp3',
-    click: '/sounds/click.mp3',
-};
-
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
-
-export function ThemeProvider({ children }: { children: ReactNode }) {
-    const [theme, setThemeState] = useState<Theme>("dark");
-    const [themeMode, setThemeModeState] = useState<ThemeMode>("dark");
-    const [accentColor, setAccentColorState] = useState<AccentColor>("emerald");
-    const [preferences, setPreferences] = useState<UIPreferences>(defaultPreferences);
-    const [mounted, setMounted] = useState(false);
-    const [systemTheme, setSystemTheme] = useState<'light' | 'dark'>('dark');
-
-    const isDark = themeMode === 'dark' || (themeMode === 'system' && systemTheme === 'dark');
-
-    // Listen for system theme changes
-    useEffect(() => {
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        
-        const handleChange = (e: MediaQueryListEvent) => {
-            setSystemTheme(e.matches ? 'dark' : 'light');
-        };
-        
-        setSystemTheme(mediaQuery.matches ? 'dark' : 'light');
-        mediaQuery.addEventListener('change', handleChange);
-        
-        return () => mediaQuery.removeEventListener('change', handleChange);
-    }, []);
-
-    useEffect(() => {
-        setMounted(true);
-        const saved = localStorage.getItem("theme") as Theme | null;
-        const savedPrefs = localStorage.getItem("ui-preferences");
-        
-        if (saved) {
-            setThemeState(saved);
-            document.documentElement.setAttribute("data-theme", saved);
-        }
-        
-        if (savedPrefs) {
-            try {
-                const prefs = JSON.parse(savedPrefs);
-                setPreferences(prefs);
-                setThemeModeState(prefs.theme || 'dark');
-                setAccentColorState(prefs.accentColor || 'emerald');
-            } catch (e) {
-                // Ignore parse errors
-            }
-        }
-    }, []);
-
-    // Apply accent color as CSS variable
-    useEffect(() => {
-        if (!mounted) return;
-        
-        const root = document.documentElement;
-        const colors: Record<AccentColor, string> = {
-            emerald: '#10b981',
-            blue: '#3b82f6',
-            purple: '#8b5cf6',
-            rose: '#f43f5e',
-            amber: '#f59e0b',
-            cyan: '#06b6d4',
-        };
-        root.style.setProperty('--accent-color', colors[accentColor]);
-        
-        // Apply font size
-        const fontSizes = { small: '14px', medium: '16px', large: '18px' };
-        root.style.setProperty('--base-font-size', fontSizes[preferences.fontSize]);
-    }, [mounted, accentColor, preferences.fontSize]);
-
-    const setTheme = (newTheme: Theme) => {
-        setThemeState(newTheme);
-        localStorage.setItem("theme", newTheme);
-        document.documentElement.setAttribute("data-theme", newTheme);
-    };
-
-    const toggleTheme = () => {
-        setTheme(theme === "dark" ? "light" : "dark");
-    };
-
-    const setThemeMode = useCallback((mode: ThemeMode) => {
-        setThemeModeState(mode);
-        const newPrefs = { ...preferences, theme: mode };
-        setPreferences(newPrefs);
-        localStorage.setItem("ui-preferences", JSON.stringify(newPrefs));
-        
-        // Also update legacy theme
-        const actualTheme = mode === 'system' ? systemTheme : mode;
-        setTheme(actualTheme as Theme);
-    }, [preferences, systemTheme]);
-
-    const setAccentColor = useCallback((color: AccentColor) => {
-        setAccentColorState(color);
-        const newPrefs = { ...preferences, accentColor: color };
-        setPreferences(newPrefs);
-        localStorage.setItem("ui-preferences", JSON.stringify(newPrefs));
-    }, [preferences]);
-
-    const updatePreferences = useCallback((prefs: Partial<UIPreferences>) => {
-        const newPrefs = { ...preferences, ...prefs };
-        setPreferences(newPrefs);
-        localStorage.setItem("ui-preferences", JSON.stringify(newPrefs));
-    }, [preferences]);
-
-    const updateDashboardLayout = useCallback((widgets: DashboardWidget[]) => {
-        const newPrefs = { ...preferences, dashboardLayout: widgets };
-        setPreferences(newPrefs);
-        localStorage.setItem("ui-preferences", JSON.stringify(newPrefs));
-    }, [preferences]);
-
-    const playSound = useCallback((sound: SoundType) => {
-        if (!preferences.soundEffects) return;
-        
-        try {
-            const audio = new Audio(SOUNDS[sound]);
-            audio.volume = 0.5;
-            audio.play().catch(() => {
-                // Ignore errors (e.g., user hasn't interacted with page yet)
-            });
-        } catch (err) {
-            // Ignore sound errors
-        }
-    }, [preferences.soundEffects]);
-
-    // Prevent flash of wrong theme
-    if (!mounted) {
-        return <>{children}</>;
-    }
-
-    return (
-        <ThemeContext.Provider value={{ 
-            theme, 
-            themeMode,
-            accentColor,
-            preferences,
-            isDark,
-            toggleTheme, 
-            setTheme,
-            setThemeMode,
-            setAccentColor,
-            updatePreferences,
-            updateDashboardLayout,
-            playSound,
-        }}>
-            {children}
-        </ThemeContext.Provider>
-    );
-}
-
-export function useTheme() {
-    const context = useContext(ThemeContext);
-    if (!context) {
-        throw new Error("useTheme must be used within a ThemeProvider");
-    }
-    return context;
-}
-
-// Hook for accent color classes
-export function useAccentClasses() {
-    const { accentColor } = useTheme();
-    
-    const classes: Record<AccentColor, {
-        bg: string;
-        bgHover: string;
-        text: string;
-        border: string;
-        gradient: string;
-    }> = {
-        emerald: {
-            bg: 'bg-emerald-500',
-            bgHover: 'hover:bg-emerald-600',
-            text: 'text-emerald-500',
-            border: 'border-emerald-500',
-            gradient: 'from-emerald-500 to-teal-500',
-        },
-        blue: {
-            bg: 'bg-blue-500',
-            bgHover: 'hover:bg-blue-600',
-            text: 'text-blue-500',
-            border: 'border-blue-500',
-            gradient: 'from-blue-500 to-cyan-500',
-        },
-        purple: {
-            bg: 'bg-purple-500',
-            bgHover: 'hover:bg-purple-600',
-            text: 'text-purple-500',
-            border: 'border-purple-500',
-            gradient: 'from-purple-500 to-pink-500',
-        },
-        rose: {
-            bg: 'bg-rose-500',
-            bgHover: 'hover:bg-rose-600',
-            text: 'text-rose-500',
-            border: 'border-rose-500',
-            gradient: 'from-rose-500 to-red-500',
-        },
-        amber: {
-            bg: 'bg-amber-500',
-            bgHover: 'hover:bg-amber-600',
-            text: 'text-amber-500',
-            border: 'border-amber-500',
-            gradient: 'from-amber-500 to-orange-500',
-        },
-        cyan: {
-            bg: 'bg-cyan-500',
-            bgHover: 'hover:bg-cyan-600',
-            text: 'text-cyan-500',
-            border: 'border-cyan-500',
-            gradient: 'from-cyan-500 to-blue-500',
-        },
-    };
-    
-    return classes[accentColor];
 }
 
 ```

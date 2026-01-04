@@ -849,7 +849,22 @@ export async function GET() {
         const sourceData = JSON.parse(fileContent);
 
         // Transform to CEV Cup format
-        const fixture: any[] = [];
+        // Transform to CEV Cup format
+        interface Match {
+            id: number;
+            round: string;
+            leg: number;
+            date: string;
+            matchTime: string;
+            homeTeam: string;
+            awayTeam: string;
+            homeScore: number | null;
+            awayScore: number | null;
+            setScores: string;
+            isPlayed: boolean;
+            venue: string;
+        }
+        const fixture: Match[] = [];
         const teamsMap = new Map();
 
         // Helper to parse score "3-0" -> { home: 3, away: 0 }
@@ -862,12 +877,12 @@ export async function GET() {
         let matchCounter = 1;
 
         if (sourceData.phases) {
-            sourceData.phases.forEach((phase: any) => {
+            sourceData.phases.forEach((phase: { name: string; matches: any[] }) => {
                 const roundName = phase.name; // e.g., "Qualification Rounds", "Main Round"
                 // Map generic phase names to CEV Cup expected rounds if needed, or update the UI constants.
                 // For now, let's keep original names but might need mapping for bracket logic.
 
-                phase.matches.forEach((m: any) => {
+                phase.matches.forEach((m: { score: string; date: string; homeTeam: string; awayTeam: string; sets: string; isPlayed: boolean }) => {
                     const { home, away } = parseScore(m.score);
 
                     // Add teams
@@ -1053,7 +1068,7 @@ async function fetchAllLeagueResults(): Promise<MatchResult[]> {
 
         // Fallback: If no headers found, try scraping all rows and inferring league (less reliable)
         if (results.length === 0) {
-            console.log('No league headers found, attempting broad row scrape...');
+            // console.log('No league headers found, attempting broad row scrape...');
             $('tr').each((_, row) => {
                 const $row = $(row);
                 const homeTeam = $row.find('span[id*="_gevsahibi"]').text().trim();
@@ -1192,7 +1207,7 @@ export async function GET(request: NextRequest) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
-        console.log('Starting results sync via TVF Takvim...');
+        // console.log('Starting results sync via TVF Takvim...');
         const startTime = Date.now();
 
         const allResults = await fetchAllLeagueResults();
@@ -1227,16 +1242,32 @@ export async function POST(request: NextRequest) {
 ## File: app\api\custom-leagues\route.ts
 ```
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/api-middleware';
+import { z } from 'zod';
+
+const LeagueConfigSchema = z.object({
+  allowedLeagues: z.array(z.string()),
+  scoringMultiplier: z.number().min(0.5).max(5).optional(),
+  showRankings: z.boolean().optional(),
+  allowChat: z.boolean().optional(),
+});
+
+const CreateLeagueSchema = z.object({
+  name: z.string().min(3).max(50),
+  description: z.string().max(200).optional(),
+  type: z.enum(['private', 'public']).default('private'),
+  maxMembers: z.number().min(2).max(1000).optional(),
+  settings: LeagueConfigSchema.optional(),
+});
+
+const UpdateLeagueSchema = z.object({
+  leagueId: z.string().min(1),
+  updates: CreateLeagueSchema.partial()
+});
 
 // GET /api/custom-leagues - Get user's custom leagues
 export async function GET(request: NextRequest) {
-  try {
-    const userId = request.headers.get('x-user-id');
-    
-    if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
+  return withAuth(request, async (req, { user }) => {
     // In production, fetch from Supabase
     const mockLeagues = [
       {
@@ -1244,7 +1275,7 @@ export async function GET(request: NextRequest) {
         name: 'Ofis Ligi',
         description: 'Şirket içi voleybol tahmin yarışması',
         type: 'private',
-        ownerId: userId,
+        ownerId: user.id,
         inviteCode: 'OFIS2024',
         maxMembers: 50,
         memberCount: 12,
@@ -1282,27 +1313,26 @@ export async function GET(request: NextRequest) {
     ];
 
     return NextResponse.json({ leagues: mockLeagues });
-  } catch (error) {
-    console.error('Error fetching custom leagues:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-  }
+  });
 }
 
 // POST /api/custom-leagues - Create a new custom league
 export async function POST(request: NextRequest) {
-  try {
-    const userId = request.headers.get('x-user-id');
-    
-    if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  return withAuth(request, async (req, { user }) => {
+    const body = await req.json();
+
+    // Validate with Zod
+    let validatedData;
+    try {
+      validatedData = CreateLeagueSchema.parse(body);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return NextResponse.json({ error: 'Invalid data', details: error.errors }, { status: 400 });
+      }
+      throw error;
     }
 
-    const body = await request.json();
-    const { name, description, type, maxMembers, settings } = body;
-
-    if (!name) {
-      return NextResponse.json({ error: 'League name is required' }, { status: 400 });
-    }
+    const { name, description, type, maxMembers, settings } = validatedData;
 
     // Generate invite code
     const inviteCode = Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -1312,8 +1342,8 @@ export async function POST(request: NextRequest) {
       id: `league-${Date.now()}`,
       name,
       description: description || '',
-      type: type || 'private',
-      ownerId: userId,
+      type: type,
+      ownerId: user.id,
       inviteCode,
       maxMembers: maxMembers || 50,
       memberCount: 1,
@@ -1325,7 +1355,7 @@ export async function POST(request: NextRequest) {
       },
       createdAt: new Date().toISOString(),
       members: [
-        { id: userId, username: 'you', displayName: 'Sen', role: 'owner', joinedAt: new Date().toISOString(), points: 0 }
+        { id: user.id, username: 'you', displayName: 'Sen', role: 'owner', joinedAt: new Date().toISOString(), points: 0 }
       ],
     };
 
@@ -1334,27 +1364,26 @@ export async function POST(request: NextRequest) {
       message: 'League created',
       league: newLeague,
     });
-  } catch (error) {
-    console.error('Error creating custom league:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-  }
+  });
 }
 
 // PUT /api/custom-leagues - Update a custom league
 export async function PUT(request: NextRequest) {
-  try {
-    const userId = request.headers.get('x-user-id');
-    
-    if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  return withAuth(request, async (req, { user }) => {
+    const body = await req.json();
+
+    // Validate with Zod
+    let validatedData;
+    try {
+      validatedData = UpdateLeagueSchema.parse(body);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return NextResponse.json({ error: 'Invalid data', details: error.errors }, { status: 400 });
+      }
+      throw error;
     }
 
-    const body = await request.json();
-    const { leagueId, updates } = body;
-
-    if (!leagueId) {
-      return NextResponse.json({ error: 'League ID is required' }, { status: 400 });
-    }
+    const { leagueId, updates } = validatedData;
 
     // In production, check ownership and update in Supabase
 
@@ -1362,22 +1391,13 @@ export async function PUT(request: NextRequest) {
       success: true,
       message: 'League updated',
     });
-  } catch (error) {
-    console.error('Error updating custom league:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-  }
+  });
 }
 
 // DELETE /api/custom-leagues - Delete a custom league
 export async function DELETE(request: NextRequest) {
-  try {
-    const userId = request.headers.get('x-user-id');
-    
-    if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    const { searchParams } = new URL(request.url);
+  return withAuth(request, async (req, { user }) => {
+    const { searchParams } = new URL(req.url);
     const leagueId = searchParams.get('id');
 
     if (!leagueId) {
@@ -1390,10 +1410,7 @@ export async function DELETE(request: NextRequest) {
       success: true,
       message: 'League deleted',
     });
-  } catch (error) {
-    console.error('Error deleting custom league:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-  }
+  });
 }
 
 ```
@@ -1445,6 +1462,38 @@ export async function POST(request: NextRequest) {
     console.error('Error joining league:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
+}
+
+```
+
+## File: app\api\errors\route.ts
+```
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function POST(request: NextRequest) {
+    try {
+        const body = await request.json();
+        const { message, stack, context, timestamp, url, userAgent } = body;
+
+        // Structured log for Vercel/CloudWatch
+        console.error(JSON.stringify({
+            level: 'error',
+            message: message || 'Unknown client error',
+            timestamp: timestamp || new Date().toISOString(),
+            stack,
+            context,
+            url,
+            userAgent: userAgent || request.headers.get('user-agent'),
+            source: 'client-error-boundary'
+        }));
+
+        // In a real production app, you would send this to Sentry, LogRocket, or Supabase here.
+
+        return NextResponse.json({ success: true });
+    } catch (error) {
+        console.error('Error logging client error:', error);
+        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    }
 }
 
 ```
@@ -1733,6 +1782,7 @@ export async function GET(request: NextRequest) {
         if (type === 'weekly') orderColumn = 'weekly_points';
         if (type === 'monthly') orderColumn = 'monthly_points';
 
+        // Fetch Top N
         const { data, error } = await supabase
             .from('leaderboard')
             .select('*')
@@ -1756,29 +1806,30 @@ export async function GET(request: NextRequest) {
         let userRank = null;
 
         if (user) {
-            // Find user in the full leaderboard
-            const { data: allData } = await supabase
-                .from('leaderboard')
-                .select('user_id')
-                .order(orderColumn, { ascending: false });
+            // Check if user is already in top N
+            const inTopKeys = rankedData?.findIndex(e => e.user_id === user.id);
 
-            if (allData) {
-                const userIndex = allData.findIndex(e => e.user_id === user.id);
-                if (userIndex !== -1) {
-                    userRank = userIndex + 1;
-                    userEntry = rankedData?.find(e => e.user_id === user.id) || null;
+            if (inTopKeys !== undefined && inTopKeys !== -1) {
+                userRank = inTopKeys + 1;
+                userEntry = rankedData![inTopKeys];
+            } else {
+                // If not in top results, fetch their entry specifically
+                const { data: userData } = await supabase
+                    .from('leaderboard')
+                    .select('*')
+                    .eq('user_id', user.id)
+                    .single();
 
-                    // If user not in top results, fetch their entry
-                    if (!userEntry) {
-                        const { data: userData } = await supabase
-                            .from('leaderboard')
-                            .select('*')
-                            .eq('user_id', user.id)
-                            .single();
+                if (userData) {
+                    // Calculate rank efficiently: Count how many have more points
+                    const { count, error: rankError } = await supabase
+                        .from('leaderboard')
+                        .select('*', { count: 'exact', head: true })
+                        .gt(orderColumn, userData[orderColumn]);
 
-                        if (userData) {
-                            userEntry = { ...userData, rank: userRank };
-                        }
+                    if (!rankError) {
+                        userRank = (count || 0) + 1;
+                        userEntry = { ...userData, rank: userRank };
                     }
                 }
             }
@@ -2359,7 +2410,7 @@ export async function POST(req: NextRequest) {
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createServerSupabaseClient } from '../../utils/supabase-server';
-import { createRateLimiter } from '../../utils/rateLimit';
+import { withAuth } from '@/lib/api-middleware';
 
 // Validation schemas
 const PredictionInputSchema = z.object({
@@ -2384,24 +2435,12 @@ export interface PredictionInput {
     predictedScore: string;
 }
 
-// Rate limiter: 60 requests per minute per user
-const rateLimiter = createRateLimiter({ requests: 60, windowMs: 60000 });
-
 // GET - Fetch user's predictions
 export async function GET(request: NextRequest) {
-    try {
-        // Apply rate limiting
-        const limitResponse = rateLimiter(request);
-        if (limitResponse) return limitResponse;
-
+    return withAuth(request, async (req, { user }) => {
         const supabase = await createServerSupabaseClient();
-        const { data: { user }, error: authError } = await supabase.auth.getUser();
 
-        if (authError || !user) {
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-        }
-
-        const { searchParams } = new URL(request.url);
+        const { searchParams } = new URL(req.url);
         const league = searchParams.get('league');
         const groupName = searchParams.get('group');
 
@@ -2422,27 +2461,14 @@ export async function GET(request: NextRequest) {
         }
 
         return NextResponse.json({ predictions: data });
-    } catch (error) {
-        console.error('Predictions GET error:', error);
-        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-    }
+    }, { rateLimit: { limit: 60, windowMs: 60000 } });
 }
 
 // POST - Create or update predictions (batch)
 export async function POST(request: NextRequest) {
-    try {
-        // Apply rate limiting
-        const limitResponse = rateLimiter(request);
-        if (limitResponse) return limitResponse;
-
+    return withAuth(request, async (req, { user }) => {
         const supabase = await createServerSupabaseClient();
-        const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-        if (authError || !user) {
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-        }
-
-        const body = await request.json();
+        const body = await req.json();
         const predictions: PredictionInput[] = Array.isArray(body) ? body : [body];
 
         if (predictions.length === 0) {
@@ -2494,23 +2520,14 @@ export async function POST(request: NextRequest) {
             saved: data?.length || 0,
             message: `${data?.length || 0} tahmin kaydedildi`
         });
-    } catch (error) {
-        console.error('Predictions POST error:', error);
-        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-    }
+    }, { rateLimit: { limit: 60, windowMs: 60000 } });
 }
 
 // DELETE - Remove a prediction
 export async function DELETE(request: NextRequest) {
-    try {
+    return withAuth(request, async (req, { user }) => {
         const supabase = await createServerSupabaseClient();
-        const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-        if (authError || !user) {
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-        }
-
-        const { searchParams } = new URL(request.url);
+        const { searchParams } = new URL(req.url);
         const matchId = searchParams.get('matchId');
 
         if (!matchId) {
@@ -2529,11 +2546,9 @@ export async function DELETE(request: NextRequest) {
         }
 
         return NextResponse.json({ success: true });
-    } catch (error) {
-        console.error('Predictions DELETE error:', error);
-        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-    }
+    }, { rateLimit: { limit: 60, windowMs: 60000 } });
 }
+
 
 ```
 
@@ -2840,7 +2855,7 @@ export async function POST() {
         // Run the data update script
         const scriptPath = path.join(process.cwd(), 'scripts', 'update-data.js');
 
-        console.log('[REFRESH] Running update script:', scriptPath);
+        // console.log('[REFRESH] Running update script:', scriptPath);
 
         const { stdout, stderr } = await execAsync(`node "${scriptPath}"`, {
             timeout: 60000, // 60 second timeout
@@ -2851,7 +2866,7 @@ export async function POST() {
             console.warn('[REFRESH] Script stderr:', stderr);
         }
 
-        console.log('[REFRESH] Script completed successfully');
+        // console.log('[REFRESH] Script completed successfully');
 
         return NextResponse.json({
             success: true,

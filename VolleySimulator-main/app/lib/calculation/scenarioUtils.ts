@@ -1,4 +1,4 @@
-import { TeamStats } from "../types";
+import { TeamStats } from "../../types";
 
 export interface TeamDiff {
     name: string;

@@ -1,0 +1,1219 @@
+﻿
+> web_app@0.1.0 test
+> jest
+
+node.exe : FAIL __tests__/StandingsTable.test.tsx
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node
+_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~
+    + CategoryInfo          : NotSpecified: (FAIL __tests__/Standin 
+   gsTable.test.tsx:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  ÔùÅ StandingsTable ÔÇ║ renders teams correctly
+
+    TestingLibraryElementError: Found multiple elements with the tex
+t: /Team A/
+
+    Here are the matching elements:
+
+    Ignored nodes: comments, script, style
+    [36m<div[39m
+      [33mdata-testid[39m=[32m"team-avatar"[39m
+    [36m>[39m
+      [0mTeam A[0m
+    [36m</div>[39m
+
+    Ignored nodes: comments, script, style
+    [36m<span[39m
+      [33mclass[39m=[32m"block truncate max-w-[120px] sm:max-w-[2
+00px] group-hover:underline text-emerald-600 dark:text-emerald-400"
+[39m
+    [36m>[39m
+      [0mTeam A[0m
+    [36m</span>[39m
+
+    (If this is intentional, then use the `*AllBy*` variant of the q
+uery (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-surface border border-border-main
+ rounded-lg overflow-hidden shadow-sm flex flex-col h-full "[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"bg-surface-secondary px-4 py-3 bor
+der-b border-border-main"[39m
+          [36m>[39m
+            [36m<h3[39m
+              [33mclass[39m=[32m"font-bold text-foreground flex i
+tems-center gap-2"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0m­şôè[0m
+              [36m</span>[39m
+              [0m Puan Durumu[0m
+            [36m</h3>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"px-4 py-2 bg-surface/50 border-b b
+order-border-main flex gap-4 text-[10px] flex-wrap"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"flex items-center gap-1"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"w-3 h-3 rounded-full bg-emeral
+d-500"[39m
+              [36m/>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"text-text-secondary"[39m
+              [36m>[39m
+                [0mPlay-off (─░lk [0m
+                [0m2[0m
+                [0m)[0m
+              [36m</span>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"flex items-center gap-1"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"w-3 h-3 rounded-full bg-rose-5
+00"[39m
+              [36m/>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"text-text-secondary"[39m
+              [36m>[39m
+                [0mK├╝me D├╝┼şme (Son [0m
+                [0m2[0m
+                [0m)[0m
+              [36m</span>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"overflow-x-auto flex-1 custom-scro
+llbar pb-2"[39m
+          [36m>[39m
+            [36m<table[39m
+              [33mclass[39m=[32m"w-full text-left text-xs sm:text
+-sm"[39m
+            [36m>[39m
+              [36m<thead[39m
+                [33mclass[39m=[32m"bg-surface-secondary text-text
+-secondary tracking-wider font-semibold border-b border-border-main 
+sticky top-0"[39m
+              [36m>[39m
+                [36m<tr>[39m
+                  [36m<th[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs uppercas
+e sm:text-sm w-10 text-left pl-2 whitespace-nowrap"[39m
+                    [33mscope[39m=[32m"col"[39m
+                  [36m>[39m
+                    [0m#[0m
+                  [36m</th>[39m
+                  [36m<th[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs uppercas
+e sm:text-sm whitespace-nowrap"[39m
+                    [33mscope[39m=[32m"col"[39m
+                  [36m>[39m
+                    [0mTak─▒m[0m
+                  [36m</th>[39m
+                  [36m<th[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs uppercas
+e sm:text-sm w-8 text-center whitespace-nowrap"[39m
+                    [33mscope[39m=[32m"col"[39m
+                    [33mtitle[39m=[32m"Oynanan Ma├ğ"[39m
+                  [36m>[39m
+                    [0mOM[0m
+                  [36m</th>[39m
+                  [36m<th[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs uppercas
+e sm:text-sm w-8 text-center text-emerald-500 whitespace-nowrap"[39
+m
+                    [33mscope[39m=[32m"col"[39m
+                    [33mtitle[39m=[32m"Galibiyet"[39m
+                  [36m>[39m
+                    [0mG[0m
+                  [36m</th>[39m
+                  [36m<th[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs uppercas
+e sm:text-sm w-8 text-center text-rose-500 whitespace-nowrap"[39m
+                    [33mscope[39m=[32m"col"[39m
+                    [33mtitle[39m=[32m"Ma─şlubiyet"[39m
+                  [36m>[39m
+                    [0mM[0m
+                  [36m</th>[39m
+                  [36m<th[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs uppercas
+e sm:text-sm w-10 text-center text-amber-500 font-bold whitespace-no
+wrap"[39m
+                    [33mscope[39m=[32m"col"[39m
+                    [33mtitle[39m=[32m"Puan"[39m
+                  [36m>[39m
+                    [0mP[0m
+                  [36m</th>[39m
+                  [36m<th[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs uppercas
+e sm:text-sm w-8 text-center hidden sm:table-cell whitespace-nowrap"
+[39m
+                    [33mscope[39m=[32m"col"[39m
+                    [33mtitle[39m=[32m"Al─▒nan Set"[39m
+                  [36m>[39m
+                    [0mAS[0m
+                  [36m</th>[39m
+                  [36m<th[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs uppercas
+e sm:text-sm w-8 text-center hidden sm:table-cell whitespace-nowrap"
+[39m
+                    [33mscope[39m=[32m"col"[39m
+                    [33mtitle[39m=[32m"Verilen Set"[39m
+                  [36m>[39m
+                    [0mVS[0m
+                  [36m</th>[39m
+                [36m</tr>[39m
+              [36m</thead>[39m
+              [36m<tbody[39m
+                [33mclass[39m=[32m"divide-y divide-border-subtle"
+[39m
+              [36m>[39m
+                [36m<tr[39m
+                  [33mclass[39m=[32m"hover:bg-surface-secondary/5
+0 transition-colors bg-amber-500/10 dark:bg-amber-900/20"[39m
+                [36m>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center font-mono whitespace-nowrap"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"flex items-center justif
+y-start gap-1 pl-1"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"w-6 h-6 text-xs flex-s
+hrink-0 flex items-center justify-center rounded-full font-bold bg-g
+radient-to-b from-amber-400 to-amber-600 text-white shadow-lg"[39m
+                      [36m>[39m
+                        [0m­şææ[0m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm font-medium whitespace-nowrap"[39m
+                  [36m>[39m
+                    [36m<a[39m
+                      [33mclass[39m=[32m"flex items-center gap-2 
+hover:opacity-80 transition-opacity group"[39m
+                      [33mhref[39m=[32m"/takimlar/team-a"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mdata-testid[39m=[32m"team-avatar"[39
+m
+                      [36m>[39m
+                        [0mTeam A[0m
+                      [36m</div>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"block truncate max-w-[
+120px] sm:max-w-[200px] group-hover:underline text-emerald-600 dark:
+text-emerald-400"[39m
+                      [36m>[39m
+                        [0mTeam A[0m
+                      [36m</span>[39m
+                    [36m</a>[39m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center text-text-secondary whitespace-nowrap"[39m
+                  [36m>[39m
+                    [0m10[0m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center text-emerald-500 font-medium whitespace-nowrap"[39m
+                  [36m>[39m
+                    [0m8[0m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center text-rose-500 font-medium whitespace-nowrap"[39m
+                  [36m>[39m
+                    [0m2[0m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center font-bold text-amber-500 bg-surface-secondary/30 whit
+espace-nowrap"[39m
+                  [36m>[39m
+                    [0m24[0m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center text-text-secondary hidden sm:table-cell whitespace-n
+owrap"[39m
+                  [36m>[39m
+                    [0m24[0m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center text-text-secondary hidden sm:table-cell whitespace-n
+owrap"[39m
+                  [36m>[39m
+                    [0m6[0m
+                  [36m</td>[39m
+                [36m</tr>[39m
+                [36m<tr[39m
+                  [33mclass[39m=[32m"hover:bg-surface-secondary/5
+0 transition-colors bg-emerald-500/10 dark:bg-emerald-900/20"[39m
+                [36m>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center font-mono whitespace-nowrap"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"flex items-center justif
+y-start gap-1 pl-1"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"w-6 h-6 text-xs flex-s
+hrink-0 flex items-center justify-center rounded-full font-bold bg-e
+merald-500 text-white shadow-lg"[39m
+                      [36m>[39m
+                        [0m2[0m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm font-medium whitespace-nowrap"[39m
+                  [36m>[39m
+                    [36m<a[39m
+                      [33mclass[39m=[32m"flex items-center gap-2 
+hover:opacity-80 transition-opacity group"[39m
+                      [33mhref[39m=[32m"/takimlar/team-b"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mdata-testid[39m=[32m"team-avatar"[39
+m
+                      [36m>[39m
+                        [0mTeam B[0m
+                      [36m</div>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"block truncate max-w-[
+120px] sm:max-w-[200px] group-hover:underline text-emerald-600 dark:
+text-emerald-400"[39m
+                      [36m>[39m
+                        [0mTeam B[0m
+                      [36m</span>[39m
+                    [36m</a>[39m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center text-text-secondary whitespace-nowrap"[39m
+                  [36m>[39m
+                    [0m10[0m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center text-emerald-500 font-medium whitespace-nowrap"[39m
+                  [36m>[39m
+                    [0m7[0m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center text-rose-500 font-medium whitespace-nowrap"[39m
+                  [36m>[39m
+                    [0m3[0m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center font-bold text-amber-500 bg-surface-secondary/30 whit
+espace-nowrap"[39m
+                  [36m>[39m
+                    [0m21[0m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center text-text-secondary hidden sm:table-cell whitespace-n
+owrap"[39m
+                  [36m>[39m
+                    [0m21[0m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center text-text-secondary hidden sm:table-cell whitespace-n
+owrap"[39m
+                  [36m>[39m
+                    [0m9[0m
+                  [36m</td>[39m
+                [36m</tr>[39m
+                [36m<tr[39m
+                  [33mclass[39m=[32m"hover:bg-surface-secondary/5
+0 transition-colors bg-rose-500/10 dark:bg-rose-900/20"[39m
+                [36m>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center font-mono whitespace-nowrap"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"flex items-center justif
+y-start gap-1 pl-1"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"w-6 h-6 text-xs flex-s
+hrink-0 flex items-center justify-center rounded-full font-bold bg-r
+ose-500 text-white shadow-lg"[39m
+                      [36m>[39m
+                        [0m3[0m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm font-medium whitespace-nowrap"[39m
+                  [36m>[39m
+                    [36m<a[39m
+                      [33mclass[39m=[32m"flex items-center gap-2 
+hover:opacity-80 transition-opacity group"[39m
+                      [33mhref[39m=[32m"/takimlar/team-c"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mdata-testid[39m=[32m"team-avatar"[39
+m
+                      [36m>[39m
+                        [0mTeam C[0m
+                      [36m</div>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"block truncate max-w-[
+120px] sm:max-w-[200px] group-hover:underline text-rose-600 dark:tex
+t-rose-400"[39m
+                      [36m>[39m
+                        [0mTeam C[0m
+                      [36m</span>[39m
+                    [36m</a>[39m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center text-text-secondary whitespace-nowrap"[39m
+                  [36m>[39m
+                    [0m10[0m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center text-emerald-500 font-medium whitespace-nowrap"[39m
+                  [36m>[39m
+                    [0m2[0m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center text-rose-500 font-medium whitespace-nowrap"[39m
+                  [36m>[39m
+                    [0m8[0m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center font-bold text-amber-500 bg-surface-secondary/30 whit
+espace-nowrap"[39m
+                  [36m>[39m
+                    [0m6[0m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center text-text-secondary hidden sm:table-cell whitespace-n
+owrap"[39m
+                  [36m>[39m
+                    [0m6[0m
+                  [36m</td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"px-2 py-2 text-xs sm:text-
+sm text-center text-text-secondary hidden sm:table-cell whitespace-n
+owrap"[39m
+                  [36m>[39m
+                    [0m24[0m
+                  [36m</td>[39m
+                [36m</tr>[39m
+              [36m</tbody>[39m
+            [36m</table>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 21 |[39m         render([33m<[39m[33mStandingsTab
+le[39m teams[33m=[39m{mockTeams} [33m/[39m[33m>[39m)[33m;[3
+9m
+     [90m 22 |[39m
+    [31m[1m>[22m[39m[90m 23 |[39m         expect(screen[33m.
+[39mgetByText([35m/Team A/[39m))[33m.[39mtoBeInTheDocument()[33
+m;[39m
+     [90m    |[39m                       [31m[1m^[22m[39m
+     [90m 24 |[39m         expect(screen[33m.[39mgetByText([35m
+/Team B/[39m))[33m.[39mtoBeInTheDocument()[33m;[39m
+     [90m 25 |[39m         [90m// Points column for Team A (24) s
+hould exist, possibly multiple times[39m
+     [90m 26 |[39m         expect(screen[33m.[39mgetAllByText([
+32m'24'[39m)[33m.[39mlength)[33m.[39mtoBeGreaterThan([35m0[39
+m)[33m;[39m[0m
+
+      at Object.getElementError (node_modules/@testing-library/dom/d
+ist/config.js:37:19)
+      at getElementError (node_modules/@testing-library/dom/dist/que
+ry-helpers.js:20:35)
+      at getMultipleElementsFoundError (node_modules/@testing-librar
+y/dom/dist/query-helpers.js:23:10)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:55:
+13
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:
+19
+      at Object.getByText (__tests__/StandingsTable.test.tsx:23:23)
+
+FAIL __tests__/useLocalStorage.test.ts
+  ÔùÅ Console
+
+    console.error
+      An update to TestComponent inside a test was not wrapped in ac
+t(...).
+      
+      When testing, code that causes React state updates should be w
+rapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would s
+ee in the browser. Learn more at https://react.dev/link/wrap-tests-w
+ith-act
+
+    [0m [90m 30 |[39m         [33mPromise[39m[33m.[39mresolve
+()[33m.[39mthen(() [33m=>[39m {
+     [90m 31 |[39m             setStoredValue(value)[33m;[39m
+    [31m[1m>[22m[39m[90m 32 |[39m             setIsHydrated([
+36mtrue[39m)[33m;[39m
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 33 |[39m         })[33m;[39m
+     [90m 34 |[39m     }[33m,[39m [key[33m,[39m initialValue])
+[33m;[39m
+     [90m 35 |[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:
+18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-cli
+ent.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/c
+js/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom
+-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-
+dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-clie
+nt.development.js:9127:7)
+      at setIsHydrated (app/hooks/useLocalStorage.ts:32:13)
+
+    console.error
+      An update to TestComponent inside a test was not wrapped in ac
+t(...).
+      
+      When testing, code that causes React state updates should be w
+rapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would s
+ee in the browser. Learn more at https://react.dev/link/wrap-tests-w
+ith-act
+
+    [0m [90m 29 |[39m         [90m// and ensure the initial rend
+er matches the server output.[39m
+     [90m 30 |[39m         [33mPromise[39m[33m.[39mresolve()[
+33m.[39mthen(() [33m=>[39m {
+    [31m[1m>[22m[39m[90m 31 |[39m             setStoredValue(v
+alue)[33m;[39m
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 32 |[39m             setIsHydrated([36mtrue[39m)[33m;
+[39m
+     [90m 33 |[39m         })[33m;[39m
+     [90m 34 |[39m     }[33m,[39m [key[33m,[39m initialValue])
+[33m;[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:
+18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-cli
+ent.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/c
+js/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom
+-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-
+dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-clie
+nt.development.js:9127:7)
+      at setStoredValue (app/hooks/useLocalStorage.ts:31:13)
+
+    console.error
+      An update to TestComponent inside a test was not wrapped in ac
+t(...).
+      
+      When testing, code that causes React state updates should be w
+rapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would s
+ee in the browser. Learn more at https://react.dev/link/wrap-tests-w
+ith-act
+
+    [0m [90m 30 |[39m         [33mPromise[39m[33m.[39mresolve
+()[33m.[39mthen(() [33m=>[39m {
+     [90m 31 |[39m             setStoredValue(value)[33m;[39m
+    [31m[1m>[22m[39m[90m 32 |[39m             setIsHydrated([
+36mtrue[39m)[33m;[39m
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 33 |[39m         })[33m;[39m
+     [90m 34 |[39m     }[33m,[39m [key[33m,[39m initialValue])
+[33m;[39m
+     [90m 35 |[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:
+18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-cli
+ent.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/c
+js/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom
+-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-
+dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-clie
+nt.development.js:9127:7)
+      at setIsHydrated (app/hooks/useLocalStorage.ts:32:13)
+
+    console.error
+      An update to TestComponent inside a test was not wrapped in ac
+t(...).
+      
+      When testing, code that causes React state updates should be w
+rapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would s
+ee in the browser. Learn more at https://react.dev/link/wrap-tests-w
+ith-act
+
+    [0m [90m 29 |[39m         [90m// and ensure the initial rend
+er matches the server output.[39m
+     [90m 30 |[39m         [33mPromise[39m[33m.[39mresolve()[
+33m.[39mthen(() [33m=>[39m {
+    [31m[1m>[22m[39m[90m 31 |[39m             setStoredValue(v
+alue)[33m;[39m
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 32 |[39m             setIsHydrated([36mtrue[39m)[33m;
+[39m
+     [90m 33 |[39m         })[33m;[39m
+     [90m 34 |[39m     }[33m,[39m [key[33m,[39m initialValue])
+[33m;[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:
+18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-cli
+ent.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/c
+js/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom
+-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-
+dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-clie
+nt.development.js:9127:7)
+      at setStoredValue (app/hooks/useLocalStorage.ts:31:13)
+
+    console.error
+      An update to TestComponent inside a test was not wrapped in ac
+t(...).
+      
+      When testing, code that causes React state updates should be w
+rapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would s
+ee in the browser. Learn more at https://react.dev/link/wrap-tests-w
+ith-act
+
+    [0m [90m 30 |[39m         [33mPromise[39m[33m.[39mresolve
+()[33m.[39mthen(() [33m=>[39m {
+     [90m 31 |[39m             setStoredValue(value)[33m;[39m
+    [31m[1m>[22m[39m[90m 32 |[39m             setIsHydrated([
+36mtrue[39m)[33m;[39m
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 33 |[39m         })[33m;[39m
+     [90m 34 |[39m     }[33m,[39m [key[33m,[39m initialValue])
+[33m;[39m
+     [90m 35 |[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:
+18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-cli
+ent.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/c
+js/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom
+-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-
+dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-clie
+nt.development.js:9127:7)
+      at setIsHydrated (app/hooks/useLocalStorage.ts:32:13)
+
+    console.error
+      An update to TestComponent inside a test was not wrapped in ac
+t(...).
+      
+      When testing, code that causes React state updates should be w
+rapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would s
+ee in the browser. Learn more at https://react.dev/link/wrap-tests-w
+ith-act
+
+    [0m [90m 29 |[39m         [90m// and ensure the initial rend
+er matches the server output.[39m
+     [90m 30 |[39m         [33mPromise[39m[33m.[39mresolve()[
+33m.[39mthen(() [33m=>[39m {
+    [31m[1m>[22m[39m[90m 31 |[39m             setStoredValue(v
+alue)[33m;[39m
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 32 |[39m             setIsHydrated([36mtrue[39m)[33m;
+[39m
+     [90m 33 |[39m         })[33m;[39m
+     [90m 34 |[39m     }[33m,[39m [key[33m,[39m initialValue])
+[33m;[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:
+18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-cli
+ent.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/c
+js/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom
+-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-
+dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-clie
+nt.development.js:9127:7)
+      at setStoredValue (app/hooks/useLocalStorage.ts:31:13)
+
+    console.error
+      An update to TestComponent inside a test was not wrapped in ac
+t(...).
+      
+      When testing, code that causes React state updates should be w
+rapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would s
+ee in the browser. Learn more at https://react.dev/link/wrap-tests-w
+ith-act
+
+    [0m [90m 30 |[39m         [33mPromise[39m[33m.[39mresolve
+()[33m.[39mthen(() [33m=>[39m {
+     [90m 31 |[39m             setStoredValue(value)[33m;[39m
+    [31m[1m>[22m[39m[90m 32 |[39m             setIsHydrated([
+36mtrue[39m)[33m;[39m
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 33 |[39m         })[33m;[39m
+     [90m 34 |[39m     }[33m,[39m [key[33m,[39m initialValue])
+[33m;[39m
+     [90m 35 |[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:
+18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-cli
+ent.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/c
+js/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom
+-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-
+dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-clie
+nt.development.js:9127:7)
+      at setIsHydrated (app/hooks/useLocalStorage.ts:32:13)
+
+    console.error
+      An update to TestComponent inside a test was not wrapped in ac
+t(...).
+      
+      When testing, code that causes React state updates should be w
+rapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would s
+ee in the browser. Learn more at https://react.dev/link/wrap-tests-w
+ith-act
+
+    [0m [90m 29 |[39m         [90m// and ensure the initial rend
+er matches the server output.[39m
+     [90m 30 |[39m         [33mPromise[39m[33m.[39mresolve()[
+33m.[39mthen(() [33m=>[39m {
+    [31m[1m>[22m[39m[90m 31 |[39m             setStoredValue(v
+alue)[33m;[39m
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 32 |[39m             setIsHydrated([36mtrue[39m)[33m;
+[39m
+     [90m 33 |[39m         })[33m;[39m
+     [90m 34 |[39m     }[33m,[39m [key[33m,[39m initialValue])
+[33m;[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:
+18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-cli
+ent.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/c
+js/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom
+-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-
+dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-clie
+nt.development.js:9127:7)
+      at setStoredValue (app/hooks/useLocalStorage.ts:31:13)
+
+    console.error
+      An update to TestComponent inside a test was not wrapped in ac
+t(...).
+      
+      When testing, code that causes React state updates should be w
+rapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would s
+ee in the browser. Learn more at https://react.dev/link/wrap-tests-w
+ith-act
+
+    [0m [90m 30 |[39m         [33mPromise[39m[33m.[39mresolve
+()[33m.[39mthen(() [33m=>[39m {
+     [90m 31 |[39m             setStoredValue(value)[33m;[39m
+    [31m[1m>[22m[39m[90m 32 |[39m             setIsHydrated([
+36mtrue[39m)[33m;[39m
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 33 |[39m         })[33m;[39m
+     [90m 34 |[39m     }[33m,[39m [key[33m,[39m initialValue])
+[33m;[39m
+     [90m 35 |[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:
+18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-cli
+ent.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/c
+js/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom
+-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-
+dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-clie
+nt.development.js:9127:7)
+      at setIsHydrated (app/hooks/useLocalStorage.ts:32:13)
+
+    console.error
+      An update to TestComponent inside a test was not wrapped in ac
+t(...).
+      
+      When testing, code that causes React state updates should be w
+rapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would s
+ee in the browser. Learn more at https://react.dev/link/wrap-tests-w
+ith-act
+
+    [0m [90m 29 |[39m         [90m// and ensure the initial rend
+er matches the server output.[39m
+     [90m 30 |[39m         [33mPromise[39m[33m.[39mresolve()[
+33m.[39mthen(() [33m=>[39m {
+    [31m[1m>[22m[39m[90m 31 |[39m             setStoredValue(v
+alue)[33m;[39m
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 32 |[39m             setIsHydrated([36mtrue[39m)[33m;
+[39m
+     [90m 33 |[39m         })[33m;[39m
+     [90m 34 |[39m     }[33m,[39m [key[33m,[39m initialValue])
+[33m;[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:
+18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-cli
+ent.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/c
+js/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom
+-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-
+dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-clie
+nt.development.js:9127:7)
+      at setStoredValue (app/hooks/useLocalStorage.ts:31:13)
+
+    console.error
+      An update to TestComponent inside a test was not wrapped in ac
+t(...).
+      
+      When testing, code that causes React state updates should be w
+rapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would s
+ee in the browser. Learn more at https://react.dev/link/wrap-tests-w
+ith-act
+
+    [0m [90m 30 |[39m         [33mPromise[39m[33m.[39mresolve
+()[33m.[39mthen(() [33m=>[39m {
+     [90m 31 |[39m             setStoredValue(value)[33m;[39m
+    [31m[1m>[22m[39m[90m 32 |[39m             setIsHydrated([
+36mtrue[39m)[33m;[39m
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 33 |[39m         })[33m;[39m
+     [90m 34 |[39m     }[33m,[39m [key[33m,[39m initialValue])
+[33m;[39m
+     [90m 35 |[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:
+18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-cli
+ent.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/c
+js/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom
+-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-
+dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-clie
+nt.development.js:9127:7)
+      at setIsHydrated (app/hooks/useLocalStorage.ts:32:13)
+
+    console.error
+      An update to TestComponent inside a test was not wrapped in ac
+t(...).
+      
+      When testing, code that causes React state updates should be w
+rapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would s
+ee in the browser. Learn more at https://react.dev/link/wrap-tests-w
+ith-act
+
+    [0m [90m 29 |[39m         [90m// and ensure the initial rend
+er matches the server output.[39m
+     [90m 30 |[39m         [33mPromise[39m[33m.[39mresolve()[
+33m.[39mthen(() [33m=>[39m {
+    [31m[1m>[22m[39m[90m 31 |[39m             setStoredValue(v
+alue)[33m;[39m
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 32 |[39m             setIsHydrated([36mtrue[39m)[33m;
+[39m
+     [90m 33 |[39m         })[33m;[39m
+     [90m 34 |[39m     }[33m,[39m [key[33m,[39m initialValue])
+[33m;[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:
+18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-cli
+ent.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/c
+js/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom
+-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-
+dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-clie
+nt.development.js:9127:7)
+      at setStoredValue (app/hooks/useLocalStorage.ts:31:13)
+
+    console.error
+      An update to TestComponent inside a test was not wrapped in ac
+t(...).
+      
+      When testing, code that causes React state updates should be w
+rapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would s
+ee in the browser. Learn more at https://react.dev/link/wrap-tests-w
+ith-act
+
+    [0m [90m 30 |[39m         [33mPromise[39m[33m.[39mresolve
+()[33m.[39mthen(() [33m=>[39m {
+     [90m 31 |[39m             setStoredValue(value)[33m;[39m
+    [31m[1m>[22m[39m[90m 32 |[39m             setIsHydrated([
+36mtrue[39m)[33m;[39m
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 33 |[39m         })[33m;[39m
+     [90m 34 |[39m     }[33m,[39m [key[33m,[39m initialValue])
+[33m;[39m
+     [90m 35 |[39m[0m
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:
+18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-cli
+ent.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/c
+js/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom
+-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-
+dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-clie
+nt.development.js:9127:7)
+      at setIsHydrated (app/hooks/useLocalStorage.ts:32:13)
+
+  ÔùÅ useLocalStorage ÔÇ║ should retrieve value from localStorage on
+ mount
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "stored value"
+    Received: "initial"
+
+    [0m [90m 56 |[39m     [36mconst[39m { result } [33m=[39m 
+renderHook(() [33m=>[39m useLocalStorage([32m'test-key'[39m[33m
+,[39m [32m'initial'[39m))[33m;[39m
+     [90m 57 |[39m     
+    [31m[1m>[22m[39m[90m 58 |[39m     expect(result[33m.[39m
+current[[35m0[39m])[33m.[39mtoBe([32m'stored value'[39m)[33m;
+[39m
+     [90m    |[39m                               [31m[1m^[22m[
+39m
+     [90m 59 |[39m   })[33m;[39m
+     [90m 60 |[39m
+     [90m 61 |[39m   it([32m'should handle function updater'[39m
+[33m,[39m () [33m=>[39m {[0m
+
+      at Object.toBe (__tests__/useLocalStorage.test.ts:58:31)
+
+PASS __tests__/useUndoableAction.test.ts
+PASS __tests__/performance.test.ts
+PASS __tests__/calculatorUtils.test.ts
+PASS app/utils/__tests__/calculatorUtils.test.ts
+FAIL __tests__/apiValidation.test.ts
+  ÔùÅ Test suite failed to run
+
+    ReferenceError: Request is not defined
+
+    [0m [90m 39 |[39m         [36mif[39m (error [36minstanceof
+[39m z[33m.[39m[33mZodError[39m) {
+     [90m 40 |[39m             [36mconst[39m message [33m=[39m
+ error[33m.[39merrors[33m.[39mmap(e [33m=>[39m [32m`${e.path.
+join('.')}: ${e.message}`[39m)[33m.[39mjoin([32m', '[39m)[33m;
+[39m
+    [31m[1m>[22m[39m[90m 41 |[39m             [36mreturn[39m
+ { success[33m:[39m [36mfalse[39m[33m,[39m error[33m:[39m me
+ssage }[33m;[39m
+     [90m    |[39m                 [31m[1m^[22m[39m
+     [90m 42 |[39m         }
+     [90m 43 |[39m         [36mreturn[39m { success[33m:[39m 
+[36mfalse[39m[33m,[39m error[33m:[39m [32m'Invalid request bod
+y'[39m }[33m;[39m
+     [90m 44 |[39m     }[0m
+
+      at Object.Request (node_modules/next/src/server/web/spec-exten
+sion/request.ts:14:34)
+      at Object.<anonymous> (node_modules/next/server.js:2:16)
+      at Object.<anonymous> (app/utils/apiValidation.ts:41:17)
+      at Object.<anonymous> (__tests__/apiValidation.test.ts:5:24)
+
+FAIL e2e/predictions.spec.ts
+  ÔùÅ Test suite failed to run
+
+    ReferenceError: TransformStream is not defined
+
+    [0m [90m 3 |[39m test[33m.[39mdescribe([32m'Prediction Gam
+e'[39m[33m,[39m () [33m=>[39m {
+     [90m 4 |[39m   test([32m'should load VSL prediction page'[3
+9m[33m,[39m [36masync[39m ({ page }) [33m=>[39m {
+    [31m[1m>[22m[39m[90m 5 |[39m     [36mawait[39m page[33m
+.[39mgoto([32m'/vsl/tahminoyunu'[39m)[33m;[39m
+     [90m   |[39m               [31m[1m^[22m[39m
+     [90m 6 |[39m     
+     [90m 7 |[39m     [90m// Wait for page to load[39m
+     [90m 8 |[39m     [36mawait[39m expect(page[33m.[39mlocato
+r([32m'body'[39m))[33m.[39mtoBeVisible()[33m;[39m[0m
+
+      at Object.<anonymous> (node_modules/playwright/lib/mcpBundleIm
+pl.js:17:5390)
+      at Object.<anonymous> (node_modules/playwright/lib/mcp/sdk/bun
+dle.js:48:22)
+      at Object.<anonymous> (node_modules/playwright/lib/mcp/sdk/ser
+ver.js:40:25)
+      at Object.<anonymous> (node_modules/playwright/lib/mcp/browser
+/config.js:50:21)
+      at Object.<anonymous> (node_modules/playwright/lib/mcp/test/br
+owserBackend.js:24:21)
+      at Object.<anonymous> (node_modules/playwright/lib/index.js:45
+:29)
+      at Object.<anonymous> (node_modules/playwright/test.js:17:13)
+      at Object.<anonymous> (node_modules/@playwright/test/index.js:
+17:18)
+      at Object.<anonymous> (e2e/predictions.spec.ts:5:15)
+
+FAIL e2e/navigation.spec.ts
+  ÔùÅ Test suite failed to run
+
+    ReferenceError: TransformStream is not defined
+
+    [0m [90m 3 |[39m test[33m.[39mdescribe([32m'Homepage'[39m
+[33m,[39m () [33m=>[39m {
+     [90m 4 |[39m   test([32m'should load homepage successfully'
+[39m[33m,[39m [36masync[39m ({ page }) [33m=>[39m {
+    [31m[1m>[22m[39m[90m 5 |[39m     [36mawait[39m page[33m
+.[39mgoto([32m'/'[39m)[33m;[39m
+     [90m   |[39m               [31m[1m^[22m[39m
+     [90m 6 |[39m     
+     [90m 7 |[39m     [90m// Check page loaded[39m
+     [90m 8 |[39m     [36mawait[39m expect(page)[33m.[39mtoHav
+eTitle([35m/Volley/i[39m)[33m;[39m[0m
+
+      at Object.<anonymous> (node_modules/playwright/lib/mcpBundleIm
+pl.js:17:5390)
+      at Object.<anonymous> (node_modules/playwright/lib/mcp/sdk/bun
+dle.js:48:22)
+      at Object.<anonymous> (node_modules/playwright/lib/mcp/sdk/ser
+ver.js:40:25)
+      at Object.<anonymous> (node_modules/playwright/lib/mcp/browser
+/config.js:50:21)
+      at Object.<anonymous> (node_modules/playwright/lib/mcp/test/br
+owserBackend.js:24:21)
+      at Object.<anonymous> (node_modules/playwright/lib/index.js:45
+:29)
+      at Object.<anonymous> (node_modules/playwright/test.js:17:13)
+      at Object.<anonymous> (node_modules/@playwright/test/index.js:
+17:18)
+      at Object.<anonymous> (e2e/navigation.spec.ts:5:15)
+
+FAIL e2e/auth.spec.ts
+  ÔùÅ Test suite failed to run
+
+    ReferenceError: TransformStream is not defined
+
+    [0m [90m 3 |[39m test[33m.[39mdescribe([32m'Authentication
+ Flow'[39m[33m,[39m () [33m=>[39m {
+     [90m 4 |[39m   test([32m'should show login page'[39m[33m,
+[39m [36masync[39m ({ page }) [33m=>[39m {
+    [31m[1m>[22m[39m[90m 5 |[39m     [36mawait[39m page[33m
+.[39mgoto([32m'/login'[39m)[33m;[39m
+     [90m   |[39m               [31m[1m^[22m[39m
+     [90m 6 |[39m     
+     [90m 7 |[39m     [90m// Check login form exists[39m
+     [90m 8 |[39m     [36mawait[39m expect(page[33m.[39mlocato
+r([32m'form, [data-testid="login-form"]'[39m))[33m.[39mtoBeVisib
+le({ timeout[33m:[39m [35m10000[39m })[33m;[39m[0m
+
+      at Object.<anonymous> (node_modules/playwright/lib/mcpBundleIm
+pl.js:17:5390)
+      at Object.<anonymous> (node_modules/playwright/lib/mcp/sdk/bun
+dle.js:48:22)
+      at Object.<anonymous> (node_modules/playwright/lib/mcp/sdk/ser
+ver.js:40:25)
+      at Object.<anonymous> (node_modules/playwright/lib/mcp/browser
+/config.js:50:21)
+      at Object.<anonymous> (node_modules/playwright/lib/mcp/test/br
+owserBackend.js:24:21)
+      at Object.<anonymous> (node_modules/playwright/lib/index.js:45
+:29)
+      at Object.<anonymous> (node_modules/playwright/test.js:17:13)
+      at Object.<anonymous> (node_modules/@playwright/test/index.js:
+17:18)
+      at Object.<anonymous> (e2e/auth.spec.ts:5:15)
+
+FAIL e2e/accessibility.spec.ts
+  ÔùÅ Test suite failed to run
+
+    ReferenceError: TransformStream is not defined
+
+    [0m [90m 3 |[39m test[33m.[39mdescribe([32m'Responsive Des
+ign'[39m[33m,[39m () [33m=>[39m {
+     [90m 4 |[39m   test([32m'should work on mobile viewport'[39
+m[33m,[39m [36masync[39m ({ page }) [33m=>[39m {
+    [31m[1m>[22m[39m[90m 5 |[39m     [36mawait[39m page[33m
+.[39msetViewportSize({ width[33m:[39m [35m375[39m[33m,[39m he
+ight[33m:[39m [35m667[39m })[33m;[39m
+     [90m   |[39m               [31m[1m^[22m[39m
+     [90m 6 |[39m     [36mawait[39m page[33m.[39mgoto([32m'/'
+[39m)[33m;[39m
+     [90m 7 |[39m     
+     [90m 8 |[39m     [90m// Page should render without horizonta
+l scroll[39m[0m
+
+      at Object.<anonymous> (node_modules/playwright/lib/mcpBundleIm
+pl.js:17:5390)
+      at Object.<anonymous> (node_modules/playwright/lib/mcp/sdk/bun
+dle.js:48:22)
+      at Object.<anonymous> (node_modules/playwright/lib/mcp/sdk/ser
+ver.js:40:25)
+      at Object.<anonymous> (node_modules/playwright/lib/mcp/browser
+/config.js:50:21)
+      at Object.<anonymous> (node_modules/playwright/lib/mcp/test/br
+owserBackend.js:24:21)
+      at Object.<anonymous> (node_modules/playwright/lib/index.js:45
+:29)
+      at Object.<anonymous> (node_modules/playwright/test.js:17:13)
+      at Object.<anonymous> (node_modules/@playwright/test/index.js:
+17:18)
+      at Object.<anonymous> (e2e/accessibility.spec.ts:5:15)
+
+Test Suites: 7 failed, 4 passed, 11 total
+Tests:       2 failed, 43 passed, 45 total
+Snapshots:   0 total
+Time:        2.43 s
+Ran all test suites.

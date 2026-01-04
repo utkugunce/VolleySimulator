@@ -60,14 +60,31 @@ export function useSimulationEngine({
      * Calculate live standings based on current overrides
      */
     const standings = useMemo(() => {
-        return calculateLiveStandings(teams, matches, overrides);
+        const start = performance.now();
+        const result = calculateLiveStandings(teams, matches, overrides);
+        const end = performance.now();
+        
+        if (end - start > 10) {
+            console.warn(`Heavy calculation detected: ${end - start}ms. Consider moving to Web Worker.`);
+            // TODO: Implement Web Worker offloading using app/workers/simulation.worker.ts
+        }
+        
+        return result;
     }, [teams, matches, overrides]);
 
     /**
      * Calculate ELO ratings from played matches
      */
     const eloRatings = useMemo(() => {
-        return calculateElo(teams, matches);
+        const start = performance.now();
+        const result = calculateElo(teams, matches);
+        const end = performance.now();
+
+        if (end - start > 10) {
+            console.warn(`Heavy calculation detected: ${end - start}ms. Consider moving to Web Worker.`);
+        }
+
+        return result;
     }, [teams, matches]);
 
     /**

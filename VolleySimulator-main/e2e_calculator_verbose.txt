@@ -1,0 +1,67 @@
+﻿
+Running 1 test using 1 worker
+
+[1A[2K[1/1] [chromium] ÔÇ║ e2e\calculator.spec.ts:81:10 ÔÇ║ Calculator Flow (1. Lig Groups) ÔÇ║ should verify calculation changes
+node.exe : [1A[2K[2m[WebServer] [22m[getLeagueData] Database ove
+rride fetch failed for 1lig: Error: Supabase environment variables (
+NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node
+_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~
+    + CategoryInfo          : NotSpecified: ([1A[2K[2m[We...Y) a 
+   re missing.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[2m[WebServer] [22m    at createServiceRoleClient (app\utils\supab
+ase-server.ts:42:15)
+[2m[WebServer] [22m    at getLeagueData (app\utils\serverData.ts:7
+3:53)
+[2m[WebServer] [22m    at OneLigTahminOyunuPage (app\1lig\tahminoy
+unu\page.tsx:18:51)
+[2m[WebServer] [22m[0m [90m 40 |[39m
+[2m[WebServer] [22m [90m 41 |[39m     [36mif[39m ([33m![39mu
+rl [33m||[39m [33m![39mkey) {
+[2m[WebServer] [22m[31m[1m>[22m[39m[90m 42 |[39m         [3
+6mthrow[39m [36mnew[39m [33mError[39m([32m'Supabase environmen
+t variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) ar
+e missing.'[39m)[33m;[39m
+[2m[WebServer] [22m [90m    |[39m               [31m[1m^[22m
+[39m
+[2m[WebServer] [22m [90m 43 |[39m     }
+[2m[WebServer] [22m [90m 44 |[39m
+[2m[WebServer] [22m [90m 45 |[39m     [36mreturn[39m createCli
+ent(url[33m,[39m key[33m,[39m {[0m
+
+[1A[2K  1) [chromium] ÔÇ║ e2e\calculator.spec.ts:81:10 ÔÇ║ Calculator Flow (1. Lig Groups) ÔÇ║ should verify calculation changes 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for getByRole('button', { name: 'B. Grup' })[22m
+
+
+      84 |         // 1. Switch to B. Grup
+      85 |         const groupBBtn = page.getByRole('button', { name: 'B. Grup' });
+    > 86 |         await groupBBtn.click();
+         |                         ^
+      87 |         await page.waitForTimeout(500);
+      88 |
+      89 |         // 2. Locate ILBANK row
+        at C:\projects\VolleySimulator\VolleySimulator\VolleySimulator-main\e2e\calculator.spec.ts:86:25
+
+    attachment #1: screenshot (image/png) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\calculator-Calculator-Flow-2f2fe--verify-calculation-changes-chromium\test-failed-1.png
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    attachment #2: video (video/webm) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\calculator-Calculator-Flow-2f2fe--verify-calculation-changes-chromium\video.webm
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    Error Context: test-results\calculator-Calculator-Flow-2f2fe--verify-calculation-changes-chromium\error-context.md
+
+
+[1A[2K  1 failed
+    [chromium] ÔÇ║ e2e\calculator.spec.ts:81:10 ÔÇ║ Calculator Flow (1. Lig Groups) ÔÇ║ should verify calculation changes 

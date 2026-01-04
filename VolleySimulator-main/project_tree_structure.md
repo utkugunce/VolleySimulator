@@ -2,26 +2,60 @@
 
 ```
 VolleySimulator-main/
+    .env.example
     .gitignore
     .hintrc
     1LIG.xlsx
     2024-2025_KFC_Kadınlar_1_Ligi_Yarı_Final_Fikstür-Talimati.pdf
     2024-2025_Sezonu_KFC_Kadinlar_1._Ligi_Final_Talimati.pdf
     2025-2026_1lig_kadın_statu.pdf
+    api_test_error.txt
+    api_test_error_2.txt
     auto-push.ps1
     auto_push.ps1
+    avatar_test_error.txt
+    avatar_test_error_2.txt
     build.log
+    build_log.txt
+    build_log2.txt
+    build_output.txt
     build_verification.log
     build_verification_2.log
+    calculator_debug.txt
+    calculator_debug_2.txt
+    calculator_debug_3.txt
+    calculator_test_error.txt
+    calculator_test_error_2.txt
     components.json
     current_build.log
     Dockerfile
+    e2e_calculator_debug.txt
+    e2e_calculator_verbose.txt
+    e2e_debug_log_2.txt
+    e2e_debug_log_3.txt
+    e2e_debug_log_4.txt
+    e2e_debug_log_5.txt
+    e2e_debug_log_6.txt
+    e2e_debug_log_final.txt
+    e2e_debug_log_single.txt
+    e2e_final_result.txt
+    e2e_predictions_error.txt
+    e2e_simulation_log_clean.txt
+    e2e_simulation_log_css.txt
+    e2e_simulation_log_final.txt
+    e2e_simulation_log_fixed.txt
     eslint.config.mjs
     i18n.ts
     IMPROVEMENTS.md
     jest.config.js
     jest.setup.js
+    lint_errors.log
+    lint_errors.txt
+    lint_full.txt
+    lint_json.txt
     lint_output.txt
+    lint_results.log
+    lint_stylish.txt
     logo_report_raw.txt
     missing_logos_generated.md
     next-env.d.ts
@@ -40,6 +74,7 @@ VolleySimulator-main/
     project_context_part_14.md
     project_context_part_15.md
     project_context_part_16.md
+    project_context_part_17.md
     project_context_part_2.md
     project_context_part_3.md
     project_context_part_4.md
@@ -48,10 +83,12 @@ VolleySimulator-main/
     project_context_part_7.md
     project_context_part_8.md
     project_context_part_9.md
+    project_core_context.md
     project_tree_structure.md
     README.md
     strength_rankings.md
     tailwind.config.ts
+    test_results.txt
     tsconfig.json
     vercel.json
     VSL.xlsx
@@ -61,6 +98,9 @@ VolleySimulator-main/
     .github/
         workflows/
             update-results.yml
+    .swc/
+        plugins/
+            windows_x86_64_23.0.0/
     .vscode/
         settings.json
     app/
@@ -137,6 +177,8 @@ VolleySimulator-main/
                 route.ts
                 join/
                     route.ts
+            errors/
+                route.ts
             friends/
                 route.ts
                 requests/
@@ -243,7 +285,9 @@ VolleySimulator-main/
             AuthGuard.tsx
             BadgeDisplay.tsx
             BracketView.tsx
+            ClientSideComponents.tsx
             Confetti.tsx
+            DynamicTeamTheme.tsx
             ErrorBoundary.tsx
             ErrorFallback.tsx
             index.ts
@@ -279,6 +323,7 @@ VolleySimulator-main/
             Calculator/
                 FixtureList.tsx
                 StandingsTable.tsx
+                TeamStatsRadar.tsx
             LeagueTemplate/
                 CalculatorTemplate.tsx
                 index.ts
@@ -289,6 +334,15 @@ VolleySimulator-main/
                 useLeagueData.ts
             Skeleton/
                 index.tsx
+            ui/
+                Badge.tsx
+                BottomSheet.tsx
+                Button.tsx
+                Card.tsx
+                EmptyState.tsx
+                LevelUpModal.tsx
+                OnboardingTour.tsx
+                Skeleton.tsx
         context/
             AuthContext.tsx
             CustomLeaguesContext.tsx
@@ -357,6 +411,8 @@ VolleySimulator-main/
             StatsClient.tsx
             advanced/
                 page.tsx
+        styles/
+            tokens.ts
         takimlar/
             [teamSlug]/
                 page.tsx
@@ -377,12 +433,12 @@ VolleySimulator-main/
             sounds.ts
             supabase-server.ts
             supabase.ts
+            team-themes.ts
             teamIds.ts
             teamSlug.ts
             useFetch.ts
             validation.ts
             __tests__/
-                calculatorUtils.test.ts
         vsl/
             gunceldurum/
                 page.tsx
@@ -442,15 +498,21 @@ VolleySimulator-main/
     e2e/
         accessibility.spec.ts
         auth.spec.ts
+        calculator.spec.ts
         navigation.spec.ts
         predictions.spec.ts
+        simulation.spec.ts
     i18n/
         request.ts
     lib/
+        api-middleware.ts
+        error-tracking.ts
         utils.ts
     messages/
         en.json
         tr.json
+    playwright-report/
+        index.html
     public/
         favicon.svg
         file.svg
@@ -527,6 +589,8 @@ VolleySimulator-main/
             001_create_predictions_tables.sql
             20260103_performance_indexes.sql
             20260103_push_subscriptions.sql
+    test-results/
+        .last-run.json
     __tests__/
         apiValidation.test.ts
         calculatorUtils.test.ts
@@ -534,4 +598,8 @@ VolleySimulator-main/
         StandingsTable.test.tsx
         useLocalStorage.test.ts
         useUndoableAction.test.ts
+        components/
+            TeamAvatar.test.tsx
+        hooks/
+            useMatchSimulation.test.ts
 ```

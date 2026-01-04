@@ -1,0 +1,45 @@
+﻿
+> web_app@0.1.0 test
+> jest __tests__/apiValidation.test.ts
+
+node.exe : FAIL __tests__/apiValidation.test.ts
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node
+_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~
+    + CategoryInfo          : NotSpecified: (FAIL __tests__/apiVali 
+   dation.test.ts:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  ÔùÅ Test suite failed to run
+
+    ReferenceError: Request is not defined
+
+    [0m [90m 39 |[39m         [36mif[39m (error [36minstanceof
+[39m z[33m.[39m[33mZodError[39m) {
+     [90m 40 |[39m             [36mconst[39m message [33m=[39m
+ error[33m.[39merrors[33m.[39mmap(e [33m=>[39m [32m`${e.path.
+join('.')}: ${e.message}`[39m)[33m.[39mjoin([32m', '[39m)[33m;
+[39m
+    [31m[1m>[22m[39m[90m 41 |[39m             [36mreturn[39m
+ { success[33m:[39m [36mfalse[39m[33m,[39m error[33m:[39m me
+ssage }[33m;[39m
+     [90m    |[39m                 [31m[1m^[22m[39m
+     [90m 42 |[39m         }
+     [90m 43 |[39m         [36mreturn[39m { success[33m:[39m 
+[36mfalse[39m[33m,[39m error[33m:[39m [32m'Invalid request bod
+y'[39m }[33m;[39m
+     [90m 44 |[39m     }[0m
+
+      at Object.Request (node_modules/next/src/server/web/spec-exten
+sion/request.ts:14:34)
+      at Object.<anonymous> (node_modules/next/server.js:2:16)
+      at Object.<anonymous> (app/utils/apiValidation.ts:41:17)
+      at Object.<anonymous> (__tests__/apiValidation.test.ts:5:24)
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        0.858 s
+Ran all test suites matching __tests__/apiValidation.test.ts.

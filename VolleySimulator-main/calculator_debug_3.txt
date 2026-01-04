@@ -1,0 +1,177 @@
+﻿
+> web_app@0.1.0 test
+> jest __tests__/calculatorUtils.test.ts
+
+  console.log
+    Map entry: TEAMA Team A
+
+      at log (app/utils/calculatorUtils.ts:53:17)
+          at Array.forEach (<anonymous>)
+
+  console.log
+    Map entry: TEAMB Team B
+
+      at log (app/utils/calculatorUtils.ts:53:17)
+          at Array.forEach (<anonymous>)
+
+  console.log
+    Looking up: TEAMA TEAMB
+
+      at log (app/utils/calculatorUtils.ts:61:17)
+          at Array.forEach (<anonymous>)
+
+  console.log
+    Map entry: TEAMA Team A
+
+      at log (app/utils/calculatorUtils.ts:53:17)
+          at Array.forEach (<anonymous>)
+
+  console.log
+    Map entry: TEAMB Team B
+
+      at log (app/utils/calculatorUtils.ts:53:17)
+          at Array.forEach (<anonymous>)
+
+  console.log
+    Looking up: TEAMA TEAMB
+
+      at log (app/utils/calculatorUtils.ts:61:17)
+          at Array.forEach (<anonymous>)
+
+  console.log
+    DEBUG: Match applied: TEAMA TEAMB {
+      homeSets: 3,
+      awaySets: 0,
+      homePoints: 3,
+      awayPoints: 0,
+      homeWin: true
+    }
+
+      at log (app/utils/calculatorUtils.ts:75:29)
+          at Array.forEach (<anonymous>)
+
+  console.log
+    Map entry: TEAMA Team A
+
+      at log (app/utils/calculatorUtils.ts:53:17)
+          at Array.forEach (<anonymous>)
+
+  console.log
+    Map entry: TEAMB Team B
+
+      at log (app/utils/calculatorUtils.ts:53:17)
+          at Array.forEach (<anonymous>)
+
+  console.log
+    Looking up: TEAMA TEAMB
+
+      at log (app/utils/calculatorUtils.ts:61:17)
+          at Array.forEach (<anonymous>)
+
+  console.log
+    DEBUG: Match applied: TEAMA TEAMB {
+      homeSets: 3,
+      awaySets: 2,
+      homePoints: 2,
+      awayPoints: 1,
+      homeWin: true
+    }
+
+      at log (app/utils/calculatorUtils.ts:75:29)
+          at Array.forEach (<anonymous>)
+
+  console.log
+    Map entry: TEAMA Team A
+
+      at log (app/utils/calculatorUtils.ts:53:17)
+          at Array.forEach (<anonymous>)
+
+  console.log
+    Map entry: TEAMB Team B
+
+      at log (app/utils/calculatorUtils.ts:53:17)
+          at Array.forEach (<anonymous>)
+
+  console.log
+    Map entry: TEAMWINS Team Wins
+
+      at log (app/utils/calculatorUtils.ts:53:17)
+          at Array.forEach (<anonymous>)
+
+  console.log
+    Map entry: TEAMPOINTS Team Points
+
+      at log (app/utils/calculatorUtils.ts:53:17)
+          at Array.forEach (<anonymous>)
+
+  console.log
+    Map entry: TEAMRATIO Team Ratio
+
+      at log (app/utils/calculatorUtils.ts:53:17)
+          at Array.forEach (<anonymous>)
+
+  console.log
+    Map entry: VAKIFBANK Vak─▒fBank
+
+      at log (app/utils/calculatorUtils.ts:53:17)
+          at Array.forEach (<anonymous>)
+
+  console.log
+    Map entry: FENERBAHE Fenerbah├ğe
+
+      at log (app/utils/calculatorUtils.ts:53:17)
+          at Array.forEach (<anonymous>)
+
+  console.log
+    Looking up: VAKIFBANK FENERBAHCE
+
+      at log (app/utils/calculatorUtils.ts:61:17)
+          at Array.forEach (<anonymous>)
+
+node.exe : FAIL __tests__/calculatorUtils.test.ts
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node
+_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~
+    + CategoryInfo          : NotSpecified: (FAIL __tests__/calcula 
+   torUtils.test.ts:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  calculateLiveStandings
+    ÔêÜ should return initial standings when no matches played (19 m
+s)
+    ÔêÜ should update standings with 3-0 win override (3 ms)
+    ÔêÜ should update standings with 3-2 win override (4 ms)
+    ÔêÜ should calculate set ratio correctly (1 ms)
+    ÔêÜ should sort by Wins first, then Points, then Set Ratio (3 ms
+)
+    ├ù should handle turkish characters in team names correctly (3 m
+s)
+
+  ÔùÅ calculateLiveStandings ÔÇ║ should handle turkish characters in
+ team names correctly
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3
+    Received: 0
+
+    [0m [90m  95 |[39m
+     [90m  96 |[39m         [90m// Should find match and apply sc
+ore despite potential minor string diffs if normalization works[39m
+    [31m[1m>[22m[39m[90m  97 |[39m         expect(winner[33m?
+[39m[33m.[39mpoints)[33m.[39mtoBe([35m3[39m)[33m;[39m
+     [90m     |[39m                                [31m[1m^[22m
+[39m
+     [90m  98 |[39m     })[33m;[39m
+     [90m  99 |[39m })[33m;[39m
+     [90m 100 |[39m[0m
+
+      at Object.toBe (__tests__/calculatorUtils.test.ts:97:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 5 passed, 6 total
+Snapshots:   0 total
+Time:        0.948 s, estimated 1 s
+Ran all test suites matching __tests__/calculatorUtils.test.ts.

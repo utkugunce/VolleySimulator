@@ -1,0 +1,60 @@
+﻿
+> web_app@0.1.0 test
+> jest __tests__/calculatorUtils.test.ts
+
+node.exe : PASS app/utils/__tests__/calculatorUtils.test.ts
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node
+_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~
+    + CategoryInfo          : NotSpecified: (PASS app/utils/...orUt 
+   ils.test.ts:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+FAIL __tests__/calculatorUtils.test.ts
+  ÔùÅ Test suite failed to run
+
+      x Expected '}', got '<eof>'
+        ,-[C:\projects\VolleySimulator\VolleySimulator\VolleySimulat
+or-main\__tests__\calculatorUtils.test.ts:96:1]
+     93 | 
+     94 |             // Should find match and apply score despite p
+otential minor string diffs if normalization works
+     95 |             expect(winner?.points).toBe(3);
+     96 |         });
+        :            ^
+        `----
+      x Expected ',', got '<eof>'
+        ,-[C:\projects\VolleySimulator\VolleySimulator\VolleySimulat
+or-main\__tests__\calculatorUtils.test.ts:96:1]
+     93 | 
+     94 |             // Should find match and apply score despite p
+otential minor string diffs if normalization works
+     95 |             expect(winner?.points).toBe(3);
+     96 |         });
+        :            ^
+        `----
+
+
+    Caused by:
+        Syntax Error
+
+      at Object.transformSync (node_modules/next/src/build/swc/index
+.ts:1460:25)
+      at transformSync (node_modules/next/src/build/swc/index.ts:159
+1:19)
+      at Object.process (node_modules/next/src/build/swc/jest-transf
+ormer.ts:105:25)
+      at ScriptTransformer.transformSource (node_modules/@jest/trans
+form/build/index.js:422:31)
+      at ScriptTransformer._transformAndBuildScript (node_modules/@j
+est/transform/build/index.js:519:40)
+      at ScriptTransformer.transform (node_modules/@jest/transform/b
+uild/index.js:558:19)
+
+Test Suites: 1 failed, 1 passed, 2 total
+Tests:       17 passed, 17 total
+Snapshots:   0 total
+Time:        0.91 s, estimated 1 s
+Ran all test suites matching __tests__/calculatorUtils.test.ts.

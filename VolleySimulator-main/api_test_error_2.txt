@@ -1,0 +1,69 @@
+﻿
+> web_app@0.1.0 test
+> jest __tests__/apiValidation.test.ts
+
+node.exe : FAIL __tests__/apiValidation.test.ts
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node
+_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~
+    + CategoryInfo          : NotSpecified: (FAIL __tests__/apiVali 
+   dation.test.ts:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  API Validation Utilities
+    ScoreSchema
+      ÔêÜ should validate correct score format (3 ms)
+      ├ù should reject invalid score formats (1 ms)
+    LeagueIdSchema
+      ÔêÜ should validate correct league IDs
+      ÔêÜ should reject invalid league IDs (1 ms)
+    PredictionSchema
+      ÔêÜ should validate a complete prediction object (1 ms)
+      ÔêÜ should reject invalid prediction objects
+      ÔêÜ should require all fields (1 ms)
+    isValidScore
+      ÔêÜ should return true for valid volleyball scores
+      ÔêÜ should return false for invalid scores
+    validateScore
+      ÔêÜ should return valid for correct scores
+      ÔêÜ should return invalid with error for bad scores
+    validateMatchId
+      ÔêÜ should return valid for non-empty strings
+      ÔêÜ should return invalid for empty or non-string values (1 ms
+)
+
+  ÔùÅ API Validation Utilities ÔÇ║ ScoreSchema ÔÇ║ should reject inv
+alid score formats
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+    [0m [90m 20 |[39m
+     [90m 21 |[39m     it([32m'should reject invalid score format
+s'[39m[33m,[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 22 |[39m       expect([33mScoreSchem
+a[39m[33m.[39msafeParse([32m'4-0'[39m)[33m.[39msuccess)[33m.
+[39mtoBe([36mfalse[39m)[33m;[39m
+     [90m    |[39m                                                
+    [31m[1m^[22m[39m
+     [90m 23 |[39m       expect([33mScoreSchema[39m[33m.[39msa
+feParse([32m'abc'[39m)[33m.[39msuccess)[33m.[39mtoBe([36mfals
+e[39m)[33m;[39m
+     [90m 24 |[39m       expect([33mScoreSchema[39m[33m.[39msa
+feParse([32m''[39m)[33m.[39msuccess)[33m.[39mtoBe([36mfalse[
+39m)[33m;[39m
+     [90m 25 |[39m       expect([33mScoreSchema[39m[33m.[39msa
+feParse([36mnull[39m)[33m.[39msuccess)[33m.[39mtoBe([36mfalse
+[39m)[33m;[39m[0m
+
+      at Object.toBe (__tests__/apiValidation.test.ts:22:52)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 12 passed, 13 total
+Snapshots:   0 total
+Time:        0.887 s, estimated 1 s
+Ran all test suites matching __tests__/apiValidation.test.ts.
