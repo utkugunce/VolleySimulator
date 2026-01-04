@@ -3,6 +3,7 @@
 import { useState, useMemo, useEffect, useRef } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useMatchSimulation, getSimulationState } from "../hooks/useMatchSimulation";
+import { MatchSummary } from "../components/Simulation/MatchSummary";
 import Link from "next/link";
 
 // Calculate momentum based on recent points (higher = home is ahead, lower = away is ahead)
@@ -405,6 +406,11 @@ export default function SimulationPage() {
                   ))}
                 </div>
               </div>
+            )}
+
+            {/* AI Match Summary - Show when match is complete */}
+            {simulationState.isComplete && (
+              <MatchSummary simulation={simulation} />
             )}
 
             {/* New Simulation Button */}
