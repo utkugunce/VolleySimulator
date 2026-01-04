@@ -1,5 +1,5 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr';
-import { createClient } from '@supabase/supabase-js';
+import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 
 export async function createServerSupabaseClient() {
@@ -42,7 +42,7 @@ export function createServiceRoleClient() {
         throw new Error('Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) are missing.');
     }
 
-    return createClient(url, key, {
+    return createSupabaseClient(url, key, {
         auth: {
             autoRefreshToken: false,
             persistSession: false
@@ -50,3 +50,6 @@ export function createServiceRoleClient() {
     }
     );
 }
+
+// Alias for API routes
+export const createClient = createServerSupabaseClient;
