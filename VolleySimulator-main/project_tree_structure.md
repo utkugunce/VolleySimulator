@@ -1,108 +1,43 @@
 # Project File Structure
 
+> Auto-generated: 2026-01-04
+
 ```
 VolleySimulator-main/
     .env.example
     .gitignore
     .hintrc
     1LIG.xlsx
-    2024-2025_KFC_Kadınlar_1_Ligi_Yarı_Final_Fikstür-Talimati.pdf
-    2024-2025_Sezonu_KFC_Kadinlar_1._Ligi_Final_Talimati.pdf
-    2025-2026_1lig_kadın_statu.pdf
-    api_test_error.txt
-    api_test_error_2.txt
-    auto-push.ps1
-    auto_push.ps1
-    avatar_test_error.txt
-    avatar_test_error_2.txt
-    build.log
-    build_log.txt
-    build_log2.txt
-    build_output.txt
-    build_verification.log
-    build_verification_2.log
-    calculator_debug.txt
-    calculator_debug_2.txt
-    calculator_debug_3.txt
-    calculator_test_error.txt
-    calculator_test_error_2.txt
     components.json
-    current_build.log
     Dockerfile
-    e2e_calculator_debug.txt
-    e2e_calculator_verbose.txt
-    e2e_debug_log_2.txt
-    e2e_debug_log_3.txt
-    e2e_debug_log_4.txt
-    e2e_debug_log_5.txt
-    e2e_debug_log_6.txt
-    e2e_debug_log_final.txt
-    e2e_debug_log_single.txt
-    e2e_final_result.txt
-    e2e_predictions_error.txt
-    e2e_simulation_log_clean.txt
-    e2e_simulation_log_css.txt
-    e2e_simulation_log_final.txt
-    e2e_simulation_log_fixed.txt
     eslint.config.mjs
     i18n.ts
     IMPROVEMENTS.md
     jest.config.js
     jest.setup.js
-    lint_errors.log
-    lint_errors.txt
-    lint_full.txt
-    lint_json.txt
-    lint_output.txt
-    lint_results.log
-    lint_stylish.txt
-    logo_report_raw.txt
-    missing_logos_generated.md
+    middleware.ts
     next-env.d.ts
     next.config.ts
     package-lock.json
     package.json
     playwright.config.ts
     postcss.config.mjs
-    project_context.md
-    project_context_chunks.zip
-    project_context_part_1.md
-    project_context_part_10.md
-    project_context_part_11.md
-    project_context_part_12.md
-    project_context_part_13.md
-    project_context_part_14.md
-    project_context_part_15.md
-    project_context_part_16.md
-    project_context_part_17.md
-    project_context_part_2.md
-    project_context_part_3.md
-    project_context_part_4.md
-    project_context_part_5.md
-    project_context_part_6.md
-    project_context_part_7.md
-    project_context_part_8.md
-    project_context_part_9.md
     project_core_context.md
     project_tree_structure.md
     README.md
     strength_rankings.md
     tailwind.config.ts
-    test_results.txt
     tsconfig.json
     vercel.json
     VSL.xlsx
-    zip_project.ps1
-    zip_project_v2.ps1
-    zip_project_v3.ps1
+    
     .github/
         workflows/
             update-results.yml
-    .swc/
-        plugins/
-            windows_x86_64_23.0.0/
+    
     .vscode/
         settings.json
+    
     app/
         error.tsx
         favicon.ico
@@ -115,6 +50,7 @@ VolleySimulator-main/
         robots.ts
         sitemap.ts
         types.ts
+        
         1lig/
             gunceldurum/
                 OneLigDetailedGroupsClient.tsx
@@ -132,6 +68,7 @@ VolleySimulator-main/
                 loading.tsx
                 OneLigCalculatorClient.tsx
                 page.tsx
+        
         2lig/
             group/
                 [groupId]/
@@ -151,9 +88,11 @@ VolleySimulator-main/
             tahminoyunu/
                 page.tsx
                 TwoLigCalculatorClient.tsx
+        
         anasayfa/
             AnasayfaClient.tsx
             page.tsx
+        
         api/
             1lig/
                 route.ts
@@ -224,13 +163,16 @@ VolleySimulator-main/
                     route.ts
             vsl/
                 route.ts
+        
         auth/
             auth-code-error/
                 page.tsx
             callback/
                 route.ts
+        
         ayarlar/
             page.tsx
+        
         cev-challenge/
             page.tsx
             anasayfa/
@@ -247,6 +189,7 @@ VolleySimulator-main/
             tahminoyunu/
                 CEVChallengeTahminOyunuClient.tsx
                 page.tsx
+        
         cev-cl/
             anasayfa/
                 page.tsx
@@ -262,6 +205,7 @@ VolleySimulator-main/
             tahminoyunu/
                 CEVCLCalculatorClient.tsx
                 page.tsx
+        
         cev-cup/
             page.tsx
             anasayfa/
@@ -278,6 +222,7 @@ VolleySimulator-main/
             tahminoyunu/
                 CEVCupTahminOyunuClient.tsx
                 page.tsx
+        
         components/
             AccessiBeWidget.tsx
             Achievements.tsx
@@ -296,6 +241,7 @@ VolleySimulator-main/
             LoginBackground.tsx
             Logo.tsx
             MiniBarChart.tsx
+            MobileBottomNav.tsx
             Navbar.tsx
             NotificationBell.tsx
             NotificationToggle.tsx
@@ -332,6 +278,8 @@ VolleySimulator-main/
                 StatsTemplate.tsx
                 types.ts
                 useLeagueData.ts
+            Simulation/
+                MatchSummary.tsx
             Skeleton/
                 index.tsx
             ui/
@@ -343,6 +291,7 @@ VolleySimulator-main/
                 LevelUpModal.tsx
                 OnboardingTour.tsx
                 Skeleton.tsx
+        
         context/
             AuthContext.tsx
             CustomLeaguesContext.tsx
@@ -352,16 +301,23 @@ VolleySimulator-main/
             NotificationsContext.tsx
             QuestsContext.tsx
             ThemeContext.tsx
+        
         custom-leagues/
             page.tsx
+        
         dashboard/
             page.tsx
+        
         friends/
             page.tsx
+            duel/
+                page.tsx
+        
         hooks/
             index.ts
             useAdvancedStats.ts
             useAIPredictions.ts
+            useFetch.ts
             useLeagueQuery.ts
             useLocalStorage.ts
             useMatchSimulation.ts
@@ -372,53 +328,116 @@ VolleySimulator-main/
             useSimulationEngine.ts
             useUndoableAction.ts
             useUserStats.ts
+            useWallet.ts
+        
         leaderboard/
             LeaderboardClient.tsx
             loading.tsx
             page.tsx
+        
+        lib/
+            calculation/
+                calculatorUtils.ts
+                eloCalculator.ts
+                playoffUtils.ts
+                scenarioUtils.ts
+            core/
+                apiValidation.ts
+                performance.ts
+                rateLimit.ts
+                sounds.ts
+                teamSlug.ts
+                validation.ts
+            data/
+                serverData.ts
+                teamIds.ts
+                team-themes.ts
+            game/
+                gameState.ts
+            supabase/
+                supabase.ts
+                supabase-server.ts
+        
         ligler/
             loading.tsx
             page.tsx
+        
         live/
             page.tsx
+        
         login/
             layout.tsx
             page.tsx
+        
         notifications/
             page.tsx
+        
         oauth/
             consent/
                 page.tsx
+        
         offline/
             page.tsx
+        
         premium/
             page.tsx
+        
         profile/
             page.tsx
+        
         providers/
             QueryProvider.tsx
+        
         quests/
             page.tsx
+        
         register/
             layout.tsx
             page.tsx
+        
+        scenario/
+            [shareId]/
+                page.tsx
+        
         scenario-standings/
             page.tsx
+        
+        shop/
+            page.tsx
+        
         simulation/
             page.tsx
+        
         stats/
             page.tsx
             StatsClient.tsx
             advanced/
                 page.tsx
+        
         styles/
             tokens.ts
+        
         takimlar/
             [teamSlug]/
                 page.tsx
                 TeamProfileClient.tsx
+        
         tournament-predictions/
             page.tsx
+        
+        types/
+            ai.ts
+            gamification.ts
+            index.ts
+            league.ts
+            premium.ts
+            simulation.ts
+            social.ts
+            stats.ts
+            tournament.ts
+            ui.ts
+            user.ts
+        
         utils/
             apiValidation.ts
             calculatorUtils.ts
@@ -431,14 +450,13 @@ VolleySimulator-main/
             scenarioUtils.ts
             serverData.ts
             sounds.ts
-            supabase-server.ts
             supabase.ts
-            team-themes.ts
+            supabase-server.ts
             teamIds.ts
             teamSlug.ts
-            useFetch.ts
+            team-themes.ts
             validation.ts
-            __tests__/
+        
         vsl/
             gunceldurum/
                 page.tsx
@@ -453,6 +471,10 @@ VolleySimulator-main/
                 loading.tsx
                 page.tsx
                 VSLCalculatorClient.tsx
+        
+        workers/
+            simulation.worker.ts
+    
     components/
         ui/
             accordion.tsx
@@ -483,6 +505,7 @@ VolleySimulator-main/
             table.tsx
             tabs.tsx
             tooltip.tsx
+    
     data/
         1lig-data.json
         2lig-data.json
@@ -492,9 +515,11 @@ VolleySimulator-main/
         team-registry.json
         tvf-data.json
         vsl-data.json
+    
     docs/
         project_summary.md
         ui_ux_analysis.md
+    
     e2e/
         accessibility.spec.ts
         auth.spec.ts
@@ -502,17 +527,19 @@ VolleySimulator-main/
         navigation.spec.ts
         predictions.spec.ts
         simulation.spec.ts
+    
     i18n/
         request.ts
+    
     lib/
         api-middleware.ts
         error-tracking.ts
         utils.ts
+    
     messages/
         en.json
         tr.json
-    playwright-report/
-        index.html
+    
     public/
         favicon.svg
         file.svg
@@ -526,41 +553,8 @@ VolleySimulator-main/
         volley_simulator_logo.png
         window.svg
         logos/
-            1633066811231XL.png
-            AFYON BLD. YÜNTAŞ.png
-            ALFEMO ZEREN SPOR.png
-            ALTINORDU.png
-            ARAS KARGO.png
-            AYDIN BÜYÜKŞEHİR BELEDİYESPOR.png
-            BAHÇELİEVLER BLD..png
-            BEŞİKTAŞ.png
-            BODRUM BLD. BODRUMSPOR.png
-            DENİZLİ B.ŞEHİR BLD..png
-            DİYARBAKIR B.ŞEHİR BLD..png
-            ECZACIBAŞI DYNAVİT.png
-            ECZACIBAŞI.png
-            ENDO KARŞIYAKA.png
-            FDM YAPI KONYA EREĞLİ BLD..png
-            FENERBAHÇE MEDICANA.png
-            GALATASARAY DAIKIN.png
-            GÖZTEPE.png
-            HAVRAN BLD..png
-            karayol.png
-            KUZEYBORU.png
-            MERİNOS VOLEYBOL.png
-            MURATPAŞA BLD. AÇI KOLEJİ.png
-            NİLÜFER BELEDİYESPOR EKER.png
-            SAKARYA VOLEYBOL.png
-            TRENDY HOTELS MANAVGAT BLD..png
-            TÜRK HAVA YOLLARI.png
-            VAKIFBANK.png
-            VESTEL MANİSA B.ŞEHİR BLD..png
-            YEŞİLYURT.png
-            ZEREN SPOR.png
-            ÇANAKKALE BLD..png
-            İBA KİMYA TED ANKARA KOLEJLİLER.png
-            İBB SPOR KULÜBÜ.png
-            İLBANK.png
+            [30+ team logo files]
+    
     scripts/
         add-club-ids.js
         calculate-strength.js
@@ -580,21 +574,22 @@ VolleySimulator-main/
         scrape-tvf-live.js
         scrape-vsl.js
         simulate_vsl.js
-        update-data.js
         update_vsl_stats.js
+        update-data.js
         verify-api.js
+    
     supabase/
         schema.sql
         migrations/
             001_create_predictions_tables.sql
             20260103_performance_indexes.sql
             20260103_push_subscriptions.sql
-    test-results/
-        .last-run.json
+    
     __tests__/
         apiValidation.test.ts
         calculatorUtils.test.ts
         performance.test.ts
+        playoffUtils.test.ts
         StandingsTable.test.tsx
         useLocalStorage.test.ts
         useUndoableAction.test.ts
@@ -603,3 +598,15 @@ VolleySimulator-main/
         hooks/
             useMatchSimulation.test.ts
 ```
+
+## Summary
+
+| Category | Count |
+|----------|-------|
+| Total Files | ~280+ |
+| App Pages | 45+ |
+| API Routes | 30+ |
+| Components | 60+ |
+| Hooks | 15+ |
+| Leagues Supported | 7 |
+| Languages | 2 (TR, EN) |
