@@ -76,7 +76,7 @@ async function fetchAllLeagueResults(): Promise<MatchResult[]> {
 
         // Fallback: If no headers found, try scraping all rows and inferring league (less reliable)
         if (results.length === 0) {
-            console.log('No league headers found, attempting broad row scrape...');
+            // console.log('No league headers found, attempting broad row scrape...');
             $('tr').each((_, row) => {
                 const $row = $(row);
                 const homeTeam = $row.find('span[id*="_gevsahibi"]').text().trim();
@@ -215,7 +215,7 @@ export async function GET(request: NextRequest) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
-        console.log('Starting results sync via TVF Takvim...');
+        // console.log('Starting results sync via TVF Takvim...');
         const startTime = Date.now();
 
         const allResults = await fetchAllLeagueResults();

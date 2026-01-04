@@ -167,7 +167,8 @@ export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
 
     ws.onopen = () => {
       setIsConnected(true);
-      console.log('Connected to live match:', matchId);
+      setIsConnected(true);
+      // Connected
     };
 
     ws.onmessage = (event) => {
@@ -214,7 +215,8 @@ export function LiveMatchProvider({ children }: { children: React.ReactNode }) {
 
     ws.onclose = () => {
       setIsConnected(false);
-      console.log('Disconnected from live match');
+      setIsConnected(false);
+      // Disconnected
     };
 
     ws.onerror = (error) => {

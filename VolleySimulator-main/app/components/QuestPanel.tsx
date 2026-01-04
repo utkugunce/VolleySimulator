@@ -167,7 +167,7 @@ export default function QuestPanel({
                                                     ? 'bg-emerald-500'
                                                     : 'bg-gradient-to-r from-purple-500 to-indigo-500'
                                                     }`}
-                                                style={{ width: `${progressPercent}%` }}
+                                                style={{ '--quest-progress': `${progressPercent}%`, width: 'var(--quest-progress)' } as any}
                                             />
                                         </div>
                                         <span className="text-[10px] text-slate-500 font-mono">

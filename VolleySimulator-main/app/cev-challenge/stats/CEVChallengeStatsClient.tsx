@@ -166,9 +166,8 @@ export default function CEVChallengeStatsClient({ teams, fixture }: CEVChallenge
 const BarChart = ({ value, max, color }: { value: number; max: number; color: string }) => (
     <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden flex-1">
         <div
-            className={`h-full ${color} transition-all duration-500`}
-
-            style={{ width: `${Math.min((value / (max || 1)) * 100, 100)}%` }}
+            className={`h-full ${color} opacity-80`}
+            style={{ '--stat-width': `${Math.min((value / (max || 1)) * 100, 100)}%`, width: 'var(--stat-width)' } as any}
         />
     </div>
 );

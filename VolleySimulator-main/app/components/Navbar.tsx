@@ -144,17 +144,17 @@ export default function Navbar() {
                         <Link href="/live" className="hidden md:block">
                             <LiveMatchCounter count={2} />
                         </Link>
-                        
+
                         {/* Streak Badge */}
                         {user && (
                             <Link href="/quests" className="hidden sm:block">
                                 <StreakBadge />
                             </Link>
                         )}
-                        
+
                         {/* Notification Bell */}
                         {user && <NotificationBell />}
-                        
+
                         <ThemeToggle />
 
                         {!loading && (
@@ -171,8 +171,7 @@ export default function Navbar() {
                                             <div className="w-20 h-1.5 bg-slate-700 rounded-full overflow-hidden">
                                                 <div
                                                     className="h-full bg-gradient-to-r from-amber-400 to-orange-400 transition-all"
-                                                     
-                                                    style={{ width: `${xpProgress}%` }}
+                                                    style={{ '--xp-progress': `${xpProgress}%`, width: 'var(--xp-progress)' } as any}
                                                 />
                                             </div>
                                         </div>
@@ -217,11 +216,12 @@ export default function Navbar() {
             </nav>
 
             {/* Bottom Navigation Bar */}
-            <nav className="fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 h-14 shadow-[0_-4px_20px_rgba(0,0,0,0.3)]">
+            <nav className="fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 h-14 pb-safe shadow-[0_-4px_20px_rgba(0,0,0,0.3)] safe-p-bottom content-box">
                 <div className="max-w-lg mx-auto h-full flex items-center justify-around px-2">
                     {/* Anasayfa */}
                     <Link
                         href={user ? "/anasayfa" : "/"}
+                        onClick={() => navigator.vibrate?.(10)}
                         className={`relative flex flex-col items-center gap-0.5 px-5 py-2 rounded-xl transition-all duration-200 active:scale-95 ${isAnasayfa
                             ? 'text-emerald-400'
                             : 'text-slate-400 hover:text-white'
@@ -239,6 +239,7 @@ export default function Navbar() {
                     {/* Ligler */}
                     <Link
                         href="/ligler"
+                        onClick={() => navigator.vibrate?.(10)}
                         className={`relative flex flex-col items-center gap-0.5 px-5 py-2 rounded-xl transition-all duration-200 active:scale-95 ${isInLeague || pathname === '/ligler'
                             ? 'text-indigo-400'
                             : 'text-slate-400 hover:text-white'
@@ -254,6 +255,7 @@ export default function Navbar() {
                     {/* Ayarlar */}
                     <Link
                         href="/ayarlar"
+                        onClick={() => navigator.vibrate?.(10)}
                         className={`relative flex flex-col items-center gap-0.5 px-5 py-2 rounded-xl transition-all duration-200 active:scale-95 ${isAyarlar
                             ? 'text-cyan-400'
                             : 'text-slate-400 hover:text-white'
@@ -269,6 +271,7 @@ export default function Navbar() {
                     {/* Profil */}
                     <Link
                         href={user ? "/profile" : "/login"}
+                        onClick={() => navigator.vibrate?.(10)}
                         className={`relative flex flex-col items-center gap-0.5 px-5 py-2 rounded-xl transition-all duration-200 active:scale-95 ${isProfile
                             ? 'text-amber-400'
                             : 'text-slate-400 hover:text-white'

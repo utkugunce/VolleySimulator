@@ -20,8 +20,9 @@ describe('StandingsTable', () => {
     it('renders teams correctly', () => {
         render(<StandingsTable teams={mockTeams} />);
 
-        expect(screen.getByText(/Team A/)).toBeInTheDocument();
-        expect(screen.getByText(/Team B/)).toBeInTheDocument();
+        // Team names appear multiple times (avatar and span), so use getAllByText
+        expect(screen.getAllByText(/Team A/).length).toBeGreaterThan(0);
+        expect(screen.getAllByText(/Team B/).length).toBeGreaterThan(0);
         // Points column for Team A (24) should exist, possibly multiple times
         expect(screen.getAllByText('24').length).toBeGreaterThan(0);
     });

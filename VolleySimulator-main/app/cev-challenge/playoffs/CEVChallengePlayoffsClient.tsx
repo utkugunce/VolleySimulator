@@ -196,6 +196,7 @@ export default function CEVChallengePlayoffsClient({ initialData }: { initialDat
                 value={pred || ''}
                 onChange={(e) => handleScoreChange(match.id, e.target.value)}
                 className={`bg-slate-900 border text-xs rounded px-1 py-1 font-mono w-16 text-center appearance-none cursor-pointer hover:bg-slate-800 focus:ring-2 focus:ring-blue-500 outline-none transition-all ${pred ? 'border-blue-500 text-white' : 'border-slate-700 text-slate-500'}`}
+                aria-label="Skor Geç"
             >
                 <option value="">v</option>
                 {SCORES.map(s => <option key={s} value={s}>{s}</option>)}

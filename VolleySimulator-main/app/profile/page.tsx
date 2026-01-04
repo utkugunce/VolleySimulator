@@ -4,6 +4,13 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
 import { useGameState, ACHIEVEMENTS, getLevelTitle, getXPForNextLevel } from "../utils/gameState";
 import { LEVEL_THRESHOLDS } from "../types";
+import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/Card";
+import { Button } from "../components/ui/Button";
+import { Badge } from "../components/ui/Badge";
+import { Skeleton } from "../components/ui/Skeleton";
+import { motion } from "framer-motion";
+import { LogOut, Trophy, Zap, Target, TrendingUp, Settings as SettingsIcon, Heart, Home, Edit2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function ProfilePage() {
     const router = useRouter();
@@ -33,166 +40,235 @@ export default function ProfilePage() {
 
     if (authLoading) {
         return (
-            <main className="min-h-screen bg-slate-950 flex items-center justify-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500"></div>
+            <main className="min-h-screen bg-background flex items-center justify-center">
+                <div className="flex flex-col items-center gap-4">
+                    <Zap className="w-12 h-12 text-primary animate-pulse shadow-glow-primary" />
+                    <span className="text-xs font-black uppercase tracking-widest text-text-muted">Profil Yükleniyor</span>
+                </div>
             </main>
         );
     }
 
     return (
-        <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">
-            <div className="max-w-2xl mx-auto space-y-3 sm:space-y-4">
+        <main className="min-h-screen bg-background text-text-primary p-4 sm:p-6 lg:p-8 animate-in fade-in duration-500">
+            <div className="max-w-2xl mx-auto space-y-6">
 
-                {/* Compact Header Card */}
-                <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl border border-slate-700 p-3 sm:p-4 shadow-xl">
-                    <div className="flex items-center gap-3 sm:gap-4">
-                        {/* Level Badge */}
-                        <div className="relative shrink-0">
-                            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30">
-                                <span className="text-2xl sm:text-3xl font-black text-white">{gameState.level}</span>
-                            </div>
-                        </div>
-
-                        {/* Info */}
-                        <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2 flex-wrap">
-                                <h1 className="font-bold text-white text-lg sm:text-xl truncate">
-                                    {user?.user_metadata?.name || 'Oyuncu'}
-                                </h1>
-                                <span className="text-[10px] sm:text-xs bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full font-bold">
-                                    {getLevelTitle(gameState.level)}
-                                </span>
-                            </div>
-                            <p className="text-[11px] sm:text-xs text-slate-500 truncate">
-                                {user?.email || 'Giriş yapılmamış'}
-                            </p>
-
-                            {/* XP Mini Bar */}
-                            <div className="mt-2">
-                                <div className="h-1.5 bg-slate-700 rounded-full overflow-hidden">
-                                    <div
-                                        className="h-full bg-gradient-to-r from-amber-400 to-orange-400 transition-all"
-                                        style={{ width: `${Math.min(percentage, 100)}%` }}
-                                    />
-                                </div>
-                                <div className="flex justify-between text-[10px] text-slate-500 mt-0.5">
-                                    <span>{gameState.xp.toLocaleString()} XP</span>
-                                    <span>{progress}/{required}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Sign Out */}
-                        {user && (
-                            <button
-                                onClick={handleSignOut}
-                                className="shrink-0 px-2 sm:px-3 py-1.5 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 text-xs font-bold rounded-lg transition-all"
-                            >
-                                Çıkış
-                            </button>
-                        )}
-                    </div>
-                </div>
-
-                {/* Stats Grid - More Compact */}
-                <div className="grid grid-cols-4 gap-2">
-                    <StatMini icon="🎯" value={gameState.stats.totalPredictions} label="Tahmin" color="blue" />
-                    <StatMini icon="✓" value={gameState.stats.correctPredictions} label="Doğru" color="emerald" />
-                    <StatMini icon="📊" value={`${accuracy}%`} label="İsabet" color="amber" />
-                    <StatMini icon="🔥" value={gameState.stats.bestStreak} label="Seri" color="orange" />
-                </div>
-
-                {/* Favorite Team - Compact */}
-                {gameState.favoriteTeam && (
-                    <div className="bg-gradient-to-r from-rose-900/20 to-pink-900/20 rounded-xl border border-rose-600/30 p-2 sm:p-3 flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                            <span className="text-lg">❤️</span>
-                            <div>
-                                <div className="text-[10px] text-rose-400/80 uppercase tracking-wider">Favori</div>
-                                <div className="text-sm font-bold text-white truncate">{gameState.favoriteTeam}</div>
-                            </div>
-                        </div>
-                        <button
-                            onClick={() => setFavoriteTeam(null)}
-                            className="text-rose-400/60 hover:text-rose-400 text-xs"
-                        >
-                            ✕
-                        </button>
-                    </div>
-                )}
-
-                {/* Quick Settings */}
-                <div className="bg-slate-900 rounded-xl border border-slate-800 p-3">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                            <span className="text-slate-500">🔊</span>
-                            <span className="text-sm text-slate-300">Ses</span>
-                        </div>
-                        <button
-                            onClick={toggleSound}
-                            title="Ses Efektlerini Aç/Kapat"
-                            className={`w-10 h-5 rounded-full transition-all relative ${gameState.soundEnabled ? 'bg-emerald-600' : 'bg-slate-700'}`}
-                        >
-                            <div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform ${gameState.soundEnabled ? 'translate-x-5' : 'translate-x-0.5'}`} />
-                        </button>
-                    </div>
-                </div>
-
-                {/* Achievements - Compact Grid */}
-                <div className="bg-slate-900 rounded-xl border border-slate-800 p-3">
-                    <div className="flex items-center justify-between mb-3">
-                        <h3 className="text-sm font-bold text-slate-300 flex items-center gap-2">
-                            🏆 Başarılar
-                        </h3>
-                        <span className="text-xs bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full font-bold">
-                            {unlockedCount}/{allAchievements.length}
-                        </span>
-                    </div>
-
-                    <div className="grid grid-cols-4 gap-1.5 sm:gap-2">
-                        {allAchievements.map(achievement => {
-                            const isUnlocked = gameState.achievements.some(a => a.id === achievement.id);
-                            return (
-                                <div
-                                    key={achievement.id}
-                                    className={`p-2 rounded-lg border text-center transition-all ${isUnlocked
-                                        ? 'bg-gradient-to-br from-amber-900/30 to-orange-900/30 border-amber-600/40'
-                                        : 'bg-slate-800/30 border-slate-700/30 opacity-40'
-                                        }`}
-                                    title={`${achievement.name}: ${achievement.description}`}
-                                >
-                                    <div className={`text-xl ${!isUnlocked && 'grayscale'}`}>
-                                        {achievement.icon}
+                {/* Profile Header Block */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                >
+                    <Card className="relative overflow-hidden border-border-main/50 bg-surface-primary/50 shadow-premium-lg">
+                        <div className="absolute top-0 right-0 w-48 h-48 bg-primary/10 blur-[64px] -z-10" />
+                        <CardContent className="p-6">
+                            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                                {/* Large Avatar/Level Badge */}
+                                <div className="relative group">
+                                    <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-primary via-primary-dark to-black flex flex-col items-center justify-center shadow-glow-primary transition-transform duration-500 group-hover:rotate-3">
+                                        <span className="text-[10px] font-black text-white/50 uppercase tracking-tighter -mb-1">LVL</span>
+                                        <span className="text-4xl font-black text-white italic">{gameState.level}</span>
                                     </div>
-                                    <div className="text-[9px] font-bold text-white truncate mt-1">{achievement.name}</div>
-                                    <div className="text-[8px] text-amber-400/70">+{achievement.xpReward}</div>
+                                    <div className="absolute -bottom-2 -right-2">
+                                        <Badge variant="success" className="h-6 w-6 rounded-full flex items-center justify-center p-0 border-2 border-surface-primary ring-2 ring-emerald-500/20">
+                                            <TrendingUp className="w-3.5 h-3.5" />
+                                        </Badge>
+                                    </div>
                                 </div>
-                            );
-                        })}
-                    </div>
+
+                                {/* User Meta Info */}
+                                <div className="flex-1 text-center sm:text-left space-y-2">
+                                    <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                                        <h1 className="text-2xl font-black tracking-tight text-text-primary uppercase italic">
+                                            {user?.user_metadata?.name || 'Voleybol Tutkunu'}
+                                        </h1>
+                                        <Badge variant="outline" className="text-[10px] font-black tracking-widest text-primary border-primary/20 bg-primary/5 self-center sm:self-auto italic">
+                                            {getLevelTitle(gameState.level)}
+                                        </Badge>
+                                    </div>
+                                    <p className="text-sm text-text-secondary font-medium">
+                                        {user?.email || 'Anonim Hesap'}
+                                    </p>
+
+                                    {/* XP Progress Bar */}
+                                    <div className="pt-2">
+                                        <div className="flex justify-between items-end mb-1.5">
+                                            <span className="text-[10px] font-black text-text-muted uppercase tracking-widest">Tecrübe (XP)</span>
+                                            <span className="text-[10px] font-black text-text-primary">{gameState.xp.toLocaleString()} / {required.toLocaleString()}</span>
+                                        </div>
+                                        <div className="h-2 bg-surface-secondary/50 rounded-full overflow-hidden border border-border-subtle p-0.5">
+                                            <motion.div
+                                                initial={{ width: 0 }}
+                                                animate={{ width: `${Math.min(percentage, 100)}%` }}
+                                                className="h-full bg-gradient-to-r from-primary to-primary-light rounded-full shadow-glow-primary"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Actions */}
+                                <div className="flex flex-col gap-2 w-full sm:w-auto">
+                                    {user && (
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            className="h-9 font-black uppercase text-[10px] tracking-widest border-rose-500/30 text-rose-500 hover:bg-rose-500 hover:text-white"
+                                            onClick={handleSignOut}
+                                            leftIcon={<LogOut className="w-3 h-3" />}
+                                        >
+                                            ÇIKIŞ YAP
+                                        </Button>
+                                    )}
+                                    <Button
+                                        variant="secondary"
+                                        size="sm"
+                                        className="h-9 font-black uppercase text-[10px] tracking-widest"
+                                        onClick={() => router.push('/ayarlar')}
+                                        leftIcon={<SettingsIcon className="w-3 h-3" />}
+                                    >
+                                        AYARLAR
+                                    </Button>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </motion.div>
+
+                {/* Primary Stats Grid */}
+                <motion.div
+                    className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                >
+                    <StatMini icon={<Trophy className="w-4 h-4" />} value={gameState.stats.totalPredictions} label="Toplam Tahmin" />
+                    <StatMini icon={<Target className="w-4 h-4" />} value={gameState.stats.correctPredictions} label="Doğru Skor" />
+                    <StatMini icon={<TrendingUp className="w-4 h-4" />} value={`${accuracy}%`} label="Başarı Oranı" />
+                    <StatMini icon={<Zap className="w-4 h-4" />} value={gameState.stats.bestStreak} label="En İyi Seri" />
+                </motion.div>
+
+                {/* Favorite Team & Shared Space */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {gameState.favoriteTeam && (
+                        <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}>
+                            <Card className="bg-primary/5 border-primary/20 overflow-hidden group">
+                                <CardContent className="p-4 flex items-center justify-between">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+                                            <Heart className="w-5 h-5 text-primary fill-current" />
+                                        </div>
+                                        <div>
+                                            <p className="text-[10px] font-black text-primary uppercase tracking-widest">Favori Takım</p>
+                                            <p className="text-lg font-black text-text-primary italic uppercase tracking-tighter">{gameState.favoriteTeam}</p>
+                                        </div>
+                                    </div>
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="h-8 w-8 text-text-muted hover:text-rose-500"
+                                        onClick={() => setFavoriteTeam(null)}
+                                    >
+                                        <Edit2 className="w-4 h-4" />
+                                    </Button>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+                    )}
+
+                    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}>
+                        <Card className="bg-surface-secondary/20 border-border-main/50">
+                            <CardContent className="p-4 flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-xl bg-surface-secondary/50 flex items-center justify-center">
+                                        <Zap className="w-5 h-5 text-amber-500" />
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] font-black text-text-muted uppercase tracking-widest">Ses Efektleri</p>
+                                        <p className="text-sm font-black text-text-primary uppercase">{gameState.soundEnabled ? 'Aktif' : 'Pasif'}</p>
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={toggleSound}
+                                    className={cn(
+                                        "w-10 h-5 rounded-full transition-all relative border border-border-subtle",
+                                        gameState.soundEnabled ? "bg-primary shadow-glow-primary" : "bg-surface-dark"
+                                    )}
+                                    aria-label="Ses Efektlerini Değiştir"
+                                >
+                                    <motion.div
+                                        layout
+                                        className="w-3.5 h-3.5 bg-white rounded-full absolute top-0.5"
+                                        animate={{ x: gameState.soundEnabled ? 20 : 2 }}
+                                    />
+                                </button>
+                            </CardContent>
+                        </Card>
+                    </motion.div>
                 </div>
 
-                {/* Auth Card - Only if not logged in */}
-                {!user && (
-                    <div className="bg-amber-900/20 border border-amber-600/30 rounded-xl p-3 flex items-center justify-between">
-                        <span className="text-amber-400 text-sm">Giriş yaparak ilerlemenizi kaydedin</span>
-                        <a
-                            href="/login"
-                            className="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold rounded-lg transition-all"
-                        >
-                            Giriş Yap
-                        </a>
-                    </div>
-                )}
+                {/* Achievements Showcase */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                >
+                    <Card className="bg-surface-primary border-border-main/50 overflow-hidden shadow-2xl">
+                        <CardHeader className="bg-surface-secondary/30 p-4 border-b border-border-main flex-row justify-between items-center space-y-0">
+                            <CardTitle className="text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2">
+                                <Trophy className="w-4 h-4 text-primary" />
+                                Başarı Başarımları
+                            </CardTitle>
+                            <Badge variant="secondary" className="px-2 py-0 h-5 text-[10px] font-black">
+                                {unlockedCount}/{allAchievements.length}
+                            </Badge>
+                        </CardHeader>
+                        <CardContent className="p-4">
+                            <div className="grid grid-cols-4 sm:grid-cols-6 gap-3">
+                                {allAchievements.map((achievement, idx) => {
+                                    const isUnlocked = gameState.achievements.some(a => a.id === achievement.id);
+                                    return (
+                                        <motion.div
+                                            key={achievement.id}
+                                            initial={{ opacity: 0, scale: 0.8 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            transition={{ delay: 0.4 + (idx * 0.05) }}
+                                            className={cn(
+                                                "relative flex flex-col items-center justify-center p-3 rounded-2xl border transition-all aspect-square",
+                                                isUnlocked
+                                                    ? "bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20 shadow-premium-sm"
+                                                    : "bg-surface-dark/50 border-border-subtle opacity-30 grayscale"
+                                            )}
+                                            title={`${achievement.name}: ${achievement.description}`}
+                                        >
+                                            <span className="text-2xl mb-1">{achievement.icon}</span>
+                                            <div className="text-[8px] font-black text-center truncate w-full uppercase tracking-tighter text-text-primary px-1">
+                                                {achievement.name}
+                                            </div>
+                                            {isUnlocked && (
+                                                <div className="absolute -top-1 -right-1">
+                                                    <div className="w-4 h-4 bg-primary rounded-full flex items-center justify-center shadow-glow-primary">
+                                                        <Zap className="w-2 h-2 text-white fill-current" />
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </motion.div>
+                                    );
+                                })}
+                            </div>
+                        </CardContent>
+                    </Card>
+                </motion.div>
 
-                {/* Back to Game */}
-                <div className="text-center pb-4">
-                    <a
-                        href="/anasayfa"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-sm font-bold rounded-lg transition-all"
+                {/* Footer Navigation */}
+                <div className="flex items-center justify-center gap-4 py-8">
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => router.push('/anasayfa')}
+                        className="text-text-muted hover:text-text-primary font-black uppercase text-[10px] tracking-widest"
+                        leftIcon={<Home className="w-4 h-4" />}
                     >
-                        ← Ana Sayfa
-                    </a>
+                        Ana Sayfa
+                    </Button>
                 </div>
 
             </div>
@@ -200,20 +276,15 @@ export default function ProfilePage() {
     );
 }
 
-// Compact stat mini component
-function StatMini({ icon, value, label, color }: { icon: string; value: string | number; label: string; color: string }) {
-    const colors: Record<string, string> = {
-        blue: 'from-blue-900/30 to-blue-800/20 border-blue-600/30 text-blue-400',
-        emerald: 'from-emerald-900/30 to-emerald-800/20 border-emerald-600/30 text-emerald-400',
-        amber: 'from-amber-900/30 to-amber-800/20 border-amber-600/30 text-amber-400',
-        orange: 'from-orange-900/30 to-orange-800/20 border-orange-600/30 text-orange-400',
-    };
-
+function StatMini({ icon, value, label }: { icon: React.ReactNode; value: string | number; label: string }) {
     return (
-        <div className={`bg-gradient-to-br ${colors[color]} rounded-xl border p-2 text-center`}>
-            <div className="text-sm">{icon}</div>
-            <div className="text-lg sm:text-xl font-bold text-white">{value}</div>
-            <div className="text-[9px] text-slate-400 uppercase">{label}</div>
-        </div>
+        <Card className="bg-surface-primary border-border-main/50 p-4 flex flex-col items-center justify-center gap-1 group hover:border-primary/30 transition-all duration-300">
+            <div className="w-8 h-8 rounded-xl bg-surface-secondary/50 flex items-center justify-center text-primary transition-transform group-hover:scale-110 group-hover:bg-primary/10">
+                {icon}
+            </div>
+            <div className="text-xl font-black text-text-primary italic tabular-nums mt-1">{value}</div>
+            <div className="text-[9px] font-black text-text-muted uppercase tracking-[0.1em]">{label}</div>
+        </Card>
     );
 }
+

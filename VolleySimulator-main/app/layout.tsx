@@ -20,10 +20,10 @@ import { NotificationsProvider } from "./context/NotificationsContext";
 import { QuestsProvider } from "./context/QuestsContext";
 import { CustomLeaguesProvider } from "./context/CustomLeaguesContext";
 import { LiveMatchProvider } from "./context/LiveMatchContext";
+import { DynamicTeamTheme } from "./components/DynamicTeamTheme";
+import { LevelUpModal } from "./components/ui/LevelUpModal";
 
-// Lazy load non-critical components (will be client-side only)
-const ScrollToTop = dynamic(() => import("./components/ScrollToTop"));
-const AccessiBeWidget = dynamic(() => import("./components/AccessiBeWidget"));
+import { ClientSideComponents } from "./components/ClientSideComponents";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -139,6 +139,8 @@ export default async function RootLayout({
             <QueryProvider>
               <AuthProvider>
                 <ThemeProvider>
+                  <DynamicTeamTheme />
+                  <LevelUpModal />
                   <NotificationsProvider>
                     <FriendsProvider>
                       <QuestsProvider>
@@ -150,7 +152,6 @@ export default async function RootLayout({
                                 <AuthGuard>
                                   {children}
                                 </AuthGuard>
-                                <ScrollToTop />
                               </div>
                             </ToastProvider>
                           </LiveMatchProvider>
@@ -169,9 +170,9 @@ export default async function RootLayout({
               if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function() {
                   navigator.serviceWorker.register('/sw.js').then(function(registration) {
-                    console.log('ServiceWorker registration successful');
+                    // Registration successful
                   }, function(err) {
-                    console.log('ServiceWorker registration failed: ', err);
+                    // Registration failed
                   });
                 });
               }
@@ -196,8 +197,7 @@ export default async function RootLayout({
           `}
         </Script>
 
-        {/* accessiBe Widget */}
-        <AccessiBeWidget />
+        <ClientSideComponents />
       </body>
     </html>
   );

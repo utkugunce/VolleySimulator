@@ -131,6 +131,7 @@ const STORAGE_KEY = 'volleySimGameState';
 export function useGameState() {
     const [gameState, setGameState] = useState<GameState>(getInitialGameState);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [showLevelUp, setShowLevelUp] = useState(false);
 
     // Load from localStorage on mount
     useEffect(() => {
@@ -162,6 +163,9 @@ export function useGameState() {
         setGameState(prev => {
             const newXP = prev.xp + amount;
             const newLevel = calculateLevel(newXP);
+            if (newLevel > prev.level) {
+                setShowLevelUp(true);
+            }
             return {
                 ...prev,
                 xp: newXP,
@@ -240,6 +244,8 @@ export function useGameState() {
     return {
         gameState,
         isLoaded,
+        showLevelUp,
+        clearLevelUp: () => setShowLevelUp(false),
         addXP,
         recordPrediction,
         unlockAchievement,

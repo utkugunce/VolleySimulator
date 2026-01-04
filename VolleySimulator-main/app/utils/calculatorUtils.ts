@@ -33,11 +33,21 @@ export function sortStandings(teams: TeamStats[]): TeamStats[] {
 export const normalizeTeamName = (name: string) => {
     return name
         .replace(/İ/g, 'I')
-        .replace(/ı/g, 'I') // Standardize Turkish I
-        .replace(/i/g, 'I') // Uppercase i becomes I
+        .replace(/ı/g, 'I')
+        .replace(/Ş/g, 'S')
+        .replace(/ş/g, 'S')
+        .replace(/Ğ/g, 'G')
+        .replace(/ğ/g, 'G')
+        .replace(/Ü/g, 'U')
+        .replace(/ü/g, 'U')
+        .replace(/Ö/g, 'O')
+        .replace(/ö/g, 'O')
+        .replace(/Ç/g, 'C')
+        .replace(/ç/g, 'C')
+        .replace(/i/g, 'I')
         .toUpperCase()
-        .replace(/\s+/g, '') // remove spaces
-        .replace(/[^A-Z0-9]/g, '') // Keep only alphanumeric
+        .replace(/\s+/g, '')
+        .replace(/[^A-Z0-9]/g, '')
         .trim();
 };
 

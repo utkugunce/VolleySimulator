@@ -10,7 +10,7 @@ export async function POST() {
         // Run the data update script
         const scriptPath = path.join(process.cwd(), 'scripts', 'update-data.js');
 
-        console.log('[REFRESH] Running update script:', scriptPath);
+        // console.log('[REFRESH] Running update script:', scriptPath);
 
         const { stdout, stderr } = await execAsync(`node "${scriptPath}"`, {
             timeout: 60000, // 60 second timeout
@@ -21,7 +21,7 @@ export async function POST() {
             console.warn('[REFRESH] Script stderr:', stderr);
         }
 
-        console.log('[REFRESH] Script completed successfully');
+        // console.log('[REFRESH] Script completed successfully');
 
         return NextResponse.json({
             success: true,

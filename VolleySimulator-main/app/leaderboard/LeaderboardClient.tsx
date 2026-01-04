@@ -1,8 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
 import { useAuth } from "../context/AuthContext";
+import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/Card";
+import { Button } from "../components/ui/Button";
+import { Badge } from "../components/ui/Badge";
+import { Skeleton } from "../components/ui/Skeleton";
+import { EmptyState } from "../components/ui/EmptyState";
+import { Trophy, TrendingUp, Calendar, Zap, Info, Award } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface LeaderboardEntry {
     rank: number;
@@ -37,7 +43,6 @@ export default function LeaderboardClient({
     const [userRank, setUserRank] = useState<number | null>(initialUserRank);
     const [type, setType] = useState<LeaderboardType>('total');
 
-    // Only fetch if type changes (initial load is served by SSR)
     useEffect(() => {
         if (type !== 'total' || leaderboard !== initialLeaderboard) {
             fetchLeaderboard();
@@ -68,142 +73,233 @@ export default function LeaderboardClient({
     };
 
     return (
-        <main className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4 font-sans">
-            <div className="max-w-4xl mx-auto space-y-4">
-                <div className="flex flex-col gap-1 px-1">
-                    <h1 className="font-bold text-white text-lg tracking-tight leading-none hidden sm:block">Sıralama Tablosu</h1>
-                    <p className="text-[10px] text-slate-400 hidden sm:block">En iyi tahmin uzmanları</p>
+        <main className="min-h-screen bg-background text-text-primary p-4 sm:p-6 lg:p-8 animate-in fade-in duration-500">
+            <div className="max-w-4xl mx-auto space-y-8">
+
+                {/* Header Section */}
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border-subtle pb-6">
+                    <div className="space-y-1">
+                        <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 mb-2">
+                            PREMIUM ANALİTİK
+                        </Badge>
+                        <h1 className="text-4xl font-black tracking-tighter text-text-primary uppercase italic">
+                            Sıralama <span className="text-primary shadow-glow-primary">Tablosu</span>
+                        </h1>
+                        <p className="text-text-secondary font-medium">En iyi voleybol tahmin uzmanları arasında yerini al.</p>
+                    </div>
+
+                    {/* Filter Tabs */}
+                    <div className="inline-flex p-1 bg-surface-secondary/50 backdrop-blur-sm rounded-xl border border-border-main">
+                        {(['total', 'weekly', 'monthly'] as LeaderboardType[]).map((t) => (
+                            <Button
+                                key={t}
+                                variant={type === t ? 'primary' : 'ghost'}
+                                size="sm"
+                                onClick={() => setType(t)}
+                                className={cn(
+                                    "rounded-lg text-xs font-black transition-all px-4 h-9 uppercase",
+                                    type === t && "shadow-glow-primary"
+                                )}
+                            >
+                                {typeLabels[t]}
+                            </Button>
+                        ))}
+                    </div>
                 </div>
 
-                {/* Type Selector */}
-                <div className="flex gap-2 p-1 bg-slate-900 rounded-xl border border-slate-800">
-                    {(['total', 'weekly', 'monthly'] as LeaderboardType[]).map((t) => (
-                        <button
-                            key={t}
-                            onClick={() => setType(t)}
-                            className={`flex-1 px-4 py-2 rounded-lg text-sm font-bold transition-all ${type === t
-                                ? 'bg-emerald-700 text-white shadow-lg'
-                                : 'text-slate-400 hover:text-white hover:bg-slate-800'
-                                }`}
-                        >
-                            {typeLabels[t]}
-                        </button>
-                    ))}
-                </div>
-
-                {/* User's Position (if not in top 50) */}
-                {userEntry && userRank && userRank > 50 && (
-                    <div className="bg-gradient-to-r from-emerald-900/30 to-teal-900/30 rounded-xl border border-emerald-600/30 p-4">
-                        <div className="text-xs text-emerald-400 mb-2">Senin Sıran</div>
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center font-bold text-white">
-                                    #{userRank}
-                                </div>
-                                <div>
-                                    <div className="font-bold text-white">{userEntry.display_name || 'Anonim'}</div>
-                                    <div className="text-xs text-slate-400">
-                                        {userEntry.correct_predictions}/{userEntry.total_predictions} doğru
+                {/* Top 3 Podium (Visual) - Only on Desktop and if data exists */}
+                {leaderboard.length >= 3 && !loading && (
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                        {[leaderboard[1], leaderboard[0], leaderboard[2]].map((entry, i) => {
+                            const isFirst = entry.rank === 1;
+                            return (
+                                <Card
+                                    key={entry.user_id}
+                                    className={cn(
+                                        "relative border-none overflow-hidden",
+                                        isFirst ? "bg-gradient-to-br from-amber-400/20 via-amber-600/10 to-transparent ring-2 ring-amber-500/50 scale-105 z-10 sm:-translate-y-2" : "bg-surface-secondary/30",
+                                        user?.id === entry.user_id && "ring-2 ring-primary/50"
+                                    )}
+                                >
+                                    <div className="p-6 flex flex-col items-center">
+                                        <div className={cn(
+                                            "w-16 h-16 rounded-full flex items-center justify-center text-3xl mb-4 relative",
+                                            entry.rank === 1 ? "bg-amber-500 shadow-glow-accent" : "bg-surface-dark border border-border-main"
+                                        )}>
+                                            {entry.rank === 1 ? '🥇' : entry.rank === 2 ? '🥈' : '🥉'}
+                                            {user?.id === entry.user_id && (
+                                                <div className="absolute -bottom-1 -right-1">
+                                                    <Badge variant="success" className="p-0.5 rounded-full"><TrendingUp className="w-3 h-3" /></Badge>
+                                                </div>
+                                            )}
+                                        </div>
+                                        <h3 className="font-black text-lg truncate w-full px-2">{entry.display_name || 'Anonim'}</h3>
+                                        <div className="text-2xl font-black text-text-primary mt-2">
+                                            {type === 'weekly' ? entry.weekly_points :
+                                                type === 'monthly' ? entry.monthly_points :
+                                                    entry.total_points}
+                                            <span className="text-[10px] text-text-muted ml-0.5 uppercase tracking-tighter">Puan</span>
+                                        </div>
+                                        <Badge variant="secondary" className="mt-4 text-[10px] font-black tracking-widest uppercase">
+                                            {entry.correct_predictions} Doğru
+                                        </Badge>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="text-2xl font-bold text-emerald-400">
-                                {type === 'weekly' ? userEntry.weekly_points :
-                                    type === 'monthly' ? userEntry.monthly_points :
-                                        userEntry.total_points}
-                                <span className="text-xs ml-1">P</span>
-                            </div>
-                        </div>
+                                </Card>
+                            );
+                        })}
                     </div>
                 )}
 
-                {/* Leaderboard Table */}
-                <div className="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden shadow-2xl relative">
-                    {loading && (
-                        <div className="absolute inset-0 bg-slate-950/50 backdrop-blur-sm z-10 flex items-center justify-center">
-                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500"></div>
-                        </div>
-                    )}
-
-                    {leaderboard.length === 0 && !loading ? (
-                        <div className="p-12 text-center text-slate-500">
-                            <div className="text-4xl mb-3">😴</div>
-                            Henüz sıralama verisi yok
-                        </div>
-                    ) : (
-                        <div className="divide-y divide-slate-800">
-                            {leaderboard.map((entry) => {
-                                const isCurrentUser = user?.id === entry.user_id;
-                                const points = type === 'weekly' ? entry.weekly_points :
-                                    type === 'monthly' ? entry.monthly_points :
-                                        entry.total_points;
-
-                                return (
-                                    <div
-                                        key={entry.user_id}
-                                        className={`flex items-center justify-between p-3 sm:p-4 transition-colors ${isCurrentUser ? 'bg-emerald-900/20' : 'hover:bg-slate-800/50'
-                                            }`}
-                                    >
-                                        <div className="flex items-center gap-3 sm:gap-4">
-                                            {/* Rank */}
-                                            <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center font-bold text-sm ${entry.rank === 1 ? 'bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-lg shadow-amber-500/30' :
-                                                entry.rank === 2 ? 'bg-gradient-to-br from-slate-300 to-slate-400 text-slate-800' :
-                                                    entry.rank === 3 ? 'bg-gradient-to-br from-amber-600 to-amber-700 text-white' :
-                                                        'bg-slate-800 text-slate-500'
-                                                }`}>
-                                                {entry.rank === 1 ? '👑' : entry.rank}
-                                            </div>
-
-                                            {/* Avatar Fallback / Decoration */}
-                                            <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-[10px] text-slate-400 font-bold border border-slate-700">
-                                                {(entry.display_name || 'A').slice(0, 1).toUpperCase()}
-                                            </div>
-
-                                            {/* Name & Stats */}
-                                            <div>
-                                                <div className={`font-bold flex items-center gap-2 ${isCurrentUser ? 'text-emerald-400' : 'text-white'}`}>
-                                                    <span className="truncate max-w-[120px] sm:max-w-none">{entry.display_name || 'Anonim'}</span>
-                                                    {isCurrentUser && <span className="text-[9px] px-1.5 py-0.5 bg-emerald-500/20 text-emerald-400 rounded uppercase tracking-wider">Sen</span>}
-                                                </div>
-                                                <div className="text-[10px] sm:text-xs text-slate-500 flex gap-2">
-                                                    <span>✓ {entry.correct_predictions} Doğru</span>
-                                                    <span>🔥 {entry.best_streak} Seri</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Points */}
-                                        <div className={`text-lg sm:text-xl font-bold ${entry.rank <= 3 ? 'text-amber-400' : 'text-slate-300'
-                                            }`}>
-                                            {points}
-                                            <span className="text-xs text-slate-500 ml-1">P</span>
-                                        </div>
+                {/* User's Current Status Banner */}
+                {userEntry && userRank && userRank > 3 && (
+                    <Card className="bg-primary/5 border-primary/20 overflow-hidden relative group">
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent group-hover:from-primary/20 transition-all duration-700" />
+                        <CardContent className="p-4 sm:p-6 relative z-10">
+                            <div className="flex items-center justify-between gap-4">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center font-black text-primary text-xl shadow-glow-primary">
+                                        #{userRank}
                                     </div>
-                                );
-                            })}
-                        </div>
-                    )}
-                </div>
+                                    <div>
+                                        <div className="text-[10px] font-black text-primary uppercase tracking-widest mb-1">Senin Mevcut Sıran</div>
+                                        <div className="font-black text-xl text-text-primary tracking-tight">{userEntry.display_name || 'Kullanıcı'}</div>
+                                    </div>
+                                </div>
+                                <div className="text-right">
+                                    <div className="text-3xl font-black text-primary tabular-nums">
+                                        {type === 'weekly' ? userEntry.weekly_points :
+                                            type === 'monthly' ? userEntry.monthly_points :
+                                                userEntry.total_points}
+                                        <span className="text-xs ml-1 font-medium text-text-muted uppercase">Puan</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                )}
 
-                {/* Stats Info */}
-                <div className="bg-slate-900/50 rounded-xl p-4 border border-slate-800/50">
-                    <h4 className="text-xs font-bold text-slate-500 uppercase mb-3 text-center tracking-widest">Sistem Bilgisi</h4>
-                    <div className="flex flex-wrap gap-x-8 gap-y-3 text-[10px] text-slate-500 justify-center">
-                        <div className="flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                            <span>Doğru Tahmin: +10 Puan</span>
+                {/* Main List */}
+                <Card className="bg-surface-primary/50 backdrop-blur-sm border-border-main/50 overflow-hidden">
+                    <CardHeader className="bg-surface-secondary/30 p-4 border-b border-border-main">
+                        <CardTitle className="text-sm font-black flex items-center gap-2 tracking-widest uppercase">
+                            <TrendingUp className="w-4 h-4 text-primary" />
+                            TOP 50 Tahminci
+                        </CardTitle>
+                    </CardHeader>
+
+                    <CardContent className="p-0 relative">
+                        {loading && (
+                            <div className="absolute inset-0 bg-background/50 backdrop-blur-[2px] z-50 flex flex-col items-center justify-center gap-3">
+                                <Zap className="w-8 h-8 text-primary animate-pulse shadow-glow-primary" />
+                                <span className="text-[10px] font-black uppercase tracking-[0.2em] animate-pulse">Veriler Çekiliyor</span>
+                            </div>
+                        )}
+
+                        {leaderboard.length === 0 && !loading ? (
+                            <EmptyState
+                                title="Henüz Skor Yok"
+                                description="Bu kategori için henüz sıralama verisi oluşturulmamış. İlk tahmini sen yap!"
+                                icon={Award}
+                                className="min-h-[400px] border-none"
+                                actionLabel="Hemen Tahmin Yap"
+                                onAction={() => window.location.href = '/ligler'}
+                            />
+                        ) : (
+                            <div className="divide-y divide-border-subtle">
+                                {leaderboard.map((entry) => {
+                                    const isCurrentUser = user?.id === entry.user_id;
+                                    const points = type === 'weekly' ? entry.weekly_points :
+                                        type === 'monthly' ? entry.monthly_points :
+                                            entry.total_points;
+                                    const isTop3 = entry.rank <= 3;
+
+                                    return (
+                                        <div
+                                            key={entry.user_id}
+                                            className={cn(
+                                                "flex items-center justify-between p-4 transition-all duration-300 group",
+                                                isCurrentUser ? "bg-primary/5" : "hover:bg-surface-secondary/50"
+                                            )}
+                                        >
+                                            <div className="flex items-center gap-4">
+                                                <div className={cn(
+                                                    "w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm transition-transform group-hover:scale-110",
+                                                    entry.rank === 1 ? "bg-amber-500 text-white shadow-glow-accent" :
+                                                        entry.rank === 2 ? "bg-slate-300 text-slate-800" :
+                                                            entry.rank === 3 ? "bg-amber-600 text-white shadow-md shadow-amber-900/20" :
+                                                                "bg-surface-secondary text-text-muted border border-border-subtle"
+                                                )}>
+                                                    #{entry.rank}
+                                                </div>
+
+                                                <div className="flex flex-col">
+                                                    <div className="flex items-center gap-2">
+                                                        <span className={cn(
+                                                            "font-black tracking-tight",
+                                                            isCurrentUser ? "text-primary" : "text-text-primary"
+                                                        )}>
+                                                            {entry.display_name || 'Anonim Tahminci'}
+                                                        </span>
+                                                        {isCurrentUser && (
+                                                            <Badge variant="default" className="h-4 px-1.5 py-0 text-[8px] font-black uppercase tracking-widest">Sen</Badge>
+                                                        )}
+                                                    </div>
+                                                    <div className="flex items-center gap-3 mt-1 underline-offset-4">
+                                                        <span className="text-[10px] font-medium text-text-muted flex items-center gap-1">
+                                                            <Badge variant="secondary" className="px-1 py-0 h-4 text-[8px]">{entry.correct_predictions}</Badge> İsabet
+                                                        </span>
+                                                        {entry.current_streak >= 3 && (
+                                                            <span className="text-[10px] font-black text-primary italic flex items-center gap-1">
+                                                                <Zap className="w-2.5 h-2.5 fill-current" />
+                                                                {entry.current_streak} SERİ!
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="text-right">
+                                                <div className={cn(
+                                                    "text-xl font-black tabular-nums tracking-tighter",
+                                                    isTop3 ? "text-amber-500" : "text-text-primary"
+                                                )}>
+                                                    {points}
+                                                    <span className="text-[9px] text-text-muted ml-0.5 uppercase">pts</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </CardContent>
+                </Card>
+
+                {/* Legend / Info Footer */}
+                <Card className="bg-surface-secondary/20 border-border-main/30 border-dashed">
+                    <CardContent className="p-6">
+                        <div className="flex items-center gap-2 mb-4">
+                            <Info className="w-4 h-4 text-primary" />
+                            <h4 className="text-[10px] font-black text-text-muted uppercase tracking-[0.2em]">Puanlama Sistemi</h4>
                         </div>
-                        <div className="flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-                            <span>Seri Bonusu: Her 3 maçta +5 Puan</span>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <InfoCard title="Tahmin" value="+10" desc="Skoru tam bilenlere" />
+                            <InfoCard title="Seri Bonusu" value="+5" desc="Üst üste 3 doğru maça" />
+                            <InfoCard title="Sıralama" value="15 DK" desc="Güncelleme aralığı" />
                         </div>
-                        <div className="flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                            <span>Sıralama her 15 dakikada bir güncellenir</span>
-                        </div>
-                    </div>
-                </div>
+                    </CardContent>
+                </Card>
             </div>
         </main>
     );
 }
+
+const InfoCard = ({ title, value, desc }: { title: string; value: string; desc: string }) => (
+    <div className="flex flex-col gap-1">
+        <div className="flex items-center justify-between">
+            <span className="text-[10px] font-black text-text-muted uppercase">{title}</span>
+            <span className="text-xs font-black text-primary">{value}</span>
+        </div>
+        <p className="text-[10px] text-text-secondary leading-tight">{desc}</p>
+    </div>
+);

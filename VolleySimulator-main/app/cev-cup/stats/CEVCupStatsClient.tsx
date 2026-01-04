@@ -208,7 +208,7 @@ const StatCard = ({ title, icon, teamStats, statKey, color, gradient, suffix = "
 
                         <div className="flex items-center gap-1.5 w-16 justify-end">
                             <div className="h-1 bg-slate-800/50 rounded-full overflow-hidden flex-1 max-w-[30px]">
-                                <div className={`h-full ${color} opacity-80`} style={{ width: `${Math.min((Number(t[statKey]) / maxValue) * 100, 100)}%` }}></div>
+                                <div className={`h-full ${color} opacity-80`} style={{ '--stat-width': `${Math.min((Number(t[statKey]) / maxValue) * 100, 100)}%`, width: 'var(--stat-width)' } as any}></div>
                             </div>
                             <span className={`text-[11px] font-bold min-w-[24px] text-right ${idx === 0 ? 'text-white' : 'text-slate-400'}`}>
                                 {t[statKey]}{suffix}

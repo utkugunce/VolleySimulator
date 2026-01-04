@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 // Validation schemas for API routes
 export const ScoreSchema = z.string()
-    .regex(/^\d+-\d+$/, 'Geçerli skor formatı: "X-Y" (örn: "3-0")');
+    .regex(/^[0-3]-[0-3]$/, 'Geçerli skor formatı: "X-Y" (örn: "3-0")');
 
 export const PredictionSchema = z.object({
     matchId: z.string().min(1),
@@ -64,7 +64,7 @@ export function successResponse<T>(data: T, status: number = 200) {
 export function isValidScore(score: string): boolean {
     const result = ScoreSchema.safeParse(score);
     if (!result.success) return false;
-    
+
     const [home, away] = score.split('-').map(Number);
     // Valid volleyball scores: one team must have 3, other must have 0-2
     return (home === 3 && away >= 0 && away <= 2) || (away === 3 && home >= 0 && home <= 2);

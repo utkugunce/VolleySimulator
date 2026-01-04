@@ -112,6 +112,7 @@ export const LEAGUE_CONFIGS: Record<string, LeagueConfig> = {
         apiEndpoint: '/api/1lig',
         storageKey: '1ligGroupScenarios',
         hasGroups: true,
+        groups: ["A. Grup", "B. Grup"],
         hasRounds: false,
         playoffSpots: 2,
         relegationSpots: 2

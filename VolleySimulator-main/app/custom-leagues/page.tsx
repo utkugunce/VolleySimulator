@@ -339,16 +339,18 @@ export default function CustomLeaguesPage() {
 
               {/* Max Members */}
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-2">
+                <label htmlFor="max-members" className="block text-sm font-medium text-slate-400 mb-2">
                   Maksimum Üye: {newLeague.maxMembers}
                 </label>
                 <input
+                  id="max-members"
                   type="range"
                   min="5"
                   max="100"
                   value={newLeague.maxMembers}
                   onChange={(e) => setNewLeague({ ...newLeague, maxMembers: parseInt(e.target.value) })}
                   className="w-full"
+                  aria-label="Maksimum Üye Sayısı"
                 />
               </div>
 
@@ -381,25 +383,29 @@ export default function CustomLeaguesPage() {
               {/* Dates */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-400 mb-2">
+                  <label htmlFor="start-date" className="block text-sm font-medium text-slate-400 mb-2">
                     Başlangıç
                   </label>
                   <input
+                    id="start-date"
                     type="date"
                     value={newLeague.startDate}
                     onChange={(e) => setNewLeague({ ...newLeague, startDate: e.target.value })}
                     className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500"
+                    aria-label="Başlangıç Tarihi"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-400 mb-2">
+                  <label htmlFor="end-date" className="block text-sm font-medium text-slate-400 mb-2">
                     Bitiş
                   </label>
                   <input
+                    id="end-date"
                     type="date"
                     value={newLeague.endDate}
                     onChange={(e) => setNewLeague({ ...newLeague, endDate: e.target.value })}
                     className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500"
+                    aria-label="Bitiş Tarihi"
                   />
                 </div>
               </div>

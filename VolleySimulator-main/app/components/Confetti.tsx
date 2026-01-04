@@ -50,15 +50,21 @@ export default function Confetti({ trigger, onComplete }: ConfettiProps) {
                     key={p.id}
                     className="absolute animate-confetti"
                     style={{
-                        left: `${p.x}%`,
-                        top: '-20px',
-                        width: p.size,
-                        height: p.size,
-                        backgroundColor: p.color,
-                        borderRadius: p.borderRadius,
-                        animationDelay: `${p.delay}s`,
-                        animationDuration: p.duration
-                    }}
+                        '--c-left': `${p.x}%`,
+                        '--c-size': p.size,
+                        '--c-bg': p.color,
+                        '--c-radius': p.borderRadius,
+                        '--c-delay': `${p.delay}s`,
+                        '--c-duration': p.duration,
+                        left: 'var(--c-left)',
+                        width: 'var(--c-size)',
+                        height: 'var(--c-size)',
+                        backgroundColor: 'var(--c-bg)',
+                        borderRadius: 'var(--c-radius)',
+                        animationDelay: 'var(--c-delay)',
+                        animationDuration: 'var(--c-duration)',
+                        top: '-20px'
+                    } as any}
                 />
             ))}
         </div>

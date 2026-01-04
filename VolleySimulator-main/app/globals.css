@@ -439,6 +439,14 @@ body {
     min-height: 36px;
     padding: 0.5rem;
   }
+
+  .safe-p-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-m-bottom {
+    margin-bottom: env(safe-area-inset-bottom);
+  }
 }
 
 /* ============================================================================

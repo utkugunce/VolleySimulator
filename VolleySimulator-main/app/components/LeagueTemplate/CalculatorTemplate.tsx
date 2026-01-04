@@ -129,7 +129,7 @@ export default function CalculatorTemplate({ config, initialTeams, initialMatche
         let count = 0;
 
         currentMatches.forEach(match => {
-            const matchId = `match-${match.id}`;
+            const matchId = `${match.homeTeam}-${match.awayTeam}`;
             if (!match.isPlayed && !newOverrides[matchId]) {
                 const randomScore = scores[Math.floor(Math.random() * scores.length)];
                 newOverrides[matchId] = randomScore;

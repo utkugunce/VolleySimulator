@@ -89,7 +89,7 @@ export async function getLeagueData(league: string): Promise<LeagueData> {
                 .eq('is_verified', true);
 
             if (dbResults && dbResults.length > 0) {
-                console.log(`[getLeagueData] Found ${dbResults.length} database overrides for ${league}`);
+                // console.log(`[getLeagueData] Found ${dbResults.length} database overrides for ${league}`);
 
                 // Create a map for easy lookup
                 const overridesMap = new Map();
@@ -158,6 +158,7 @@ export async function getLeagueData(league: string): Promise<LeagueData> {
             // Fallback to JSON only
         }
 
+        // console.log(`[getLeagueData] Returning ${data.teams?.length} teams for ${league} (Fallback/Normal)`);
         return {
             teams: data.teams || [],
             fixture: fixture
