@@ -22,6 +22,7 @@ import { CustomLeaguesProvider } from "./context/CustomLeaguesContext";
 import { LiveMatchProvider } from "./context/LiveMatchContext";
 import { DynamicTeamTheme } from "./components/DynamicTeamTheme";
 import { LevelUpModal } from "./components/ui/LevelUpModal";
+import { MobileBottomNav } from "./components/MobileBottomNav";
 
 import { ClientSideComponents } from "./components/ClientSideComponents";
 
@@ -148,7 +149,8 @@ export default async function RootLayout({
                           <LiveMatchProvider>
                             <ToastProvider>
                               <Navbar />
-                              <div className="pt-12 pb-16 min-h-screen flex flex-col">
+                              <MobileBottomNav />
+                              <div className="pt-12 pb-20 md:pb-16 min-h-screen flex flex-col">
                                 <AuthGuard>
                                   {children}
                                 </AuthGuard>

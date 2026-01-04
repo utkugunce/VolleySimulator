@@ -18,6 +18,7 @@ interface StandingsTableProps {
     compact?: boolean;
     loading?: boolean;
     comparisonDiffs?: TeamDiff[];
+    recentForm?: Map<string, ('W' | 'L')[]>; // Last 5 match results per team
 }
 
 function StandingsTable({
@@ -28,7 +29,8 @@ function StandingsTable({
     initialRanks,
     compact = false,
     loading = false,
-    comparisonDiffs
+    comparisonDiffs,
+    recentForm
 }: StandingsTableProps) {
     if (loading) {
         return <StandingsTableSkeleton />;
@@ -78,6 +80,9 @@ function StandingsTable({
                             <th scope="col" className={cn(headClass, "w-12 text-center text-amber-500 font-bold")} title="Puan" aria-label="Puan">P</th>
                             <th scope="col" className={cn(headClass, "w-10 text-center hidden md:table-cell")} title="Alınan Set" aria-label="Alınan Set">AS</th>
                             <th scope="col" className={cn(headClass, "w-10 text-center hidden md:table-cell")} title="Verilen Set" aria-label="Verilen Set">VS</th>
+                            {recentForm && (
+                                <th scope="col" className={cn(headClass, "w-20 text-center hidden sm:table-cell")} title="Son 5 Maç" aria-label="Son 5 Maç">FORM</th>
+                            )}
                         </tr>
                     </thead>
                     <tbody>
@@ -170,6 +175,24 @@ function StandingsTable({
                                     </td>
                                     <td className={cn(cellClass, "text-center text-text-secondary hidden md:table-cell")}>{team.setsWon}</td>
                                     <td className={cn(cellClass, "text-center text-text-secondary hidden md:table-cell")}>{team.setsLost}</td>
+                                    {recentForm && (
+                                        <td className={cn(cellClass, "text-center hidden sm:table-cell")}>
+                                            <div className="flex items-center justify-center gap-1">
+                                                {(recentForm.get(team.name) || []).slice(-5).map((result, i) => (
+                                                    <span
+                                                        key={i}
+                                                        className={cn(
+                                                            "w-4 h-4 rounded-full flex items-center justify-center text-[8px] font-bold text-white",
+                                                            result === 'W' ? 'bg-emerald-500' : 'bg-rose-500'
+                                                        )}
+                                                        title={result === 'W' ? 'Galibiyet' : 'Mağlubiyet'}
+                                                    >
+                                                        {result}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </td>
+                                    )}
                                 </tr>
                             );
                         })}
