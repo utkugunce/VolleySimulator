@@ -5,6 +5,7 @@ import { useFriends } from "../context/FriendsContext";
 import { useAuth } from "../context/AuthContext";
 import TeamAvatar from "../components/TeamAvatar";
 import Link from "next/link";
+import { Swords } from "lucide-react";
 
 export default function FriendsPage() {
   const { user } = useAuth();
@@ -57,10 +58,21 @@ export default function FriendsPage() {
       {/* Header */}
       <div className="bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-6">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-2xl font-bold text-white">Arkadaşlar</h1>
-          <p className="text-white/70 text-sm mt-1">
-            {friends.length} arkadaş • {pendingRequests.length} bekleyen istek
-          </p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-white">Arkadaşlar</h1>
+              <p className="text-white/70 text-sm mt-1">
+                {friends.length} arkadaş • {pendingRequests.length} bekleyen istek
+              </p>
+            </div>
+            <Link
+              href="/friends/duel"
+              className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-xl text-white font-medium transition-colors"
+            >
+              <Swords className="w-5 h-5" />
+              <span className="hidden sm:inline">Düello</span>
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -128,6 +140,13 @@ export default function FriendsPage() {
                     </div>
                     <div className="flex gap-2">
                       <Link
+                        href="/friends/duel"
+                        className="px-3 py-1.5 bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded-lg text-sm transition-colors flex items-center gap-1"
+                      >
+                        <Swords className="w-3.5 h-3.5" />
+                        Düello
+                      </Link>
+                      <Link
                         href={`/profile/${friend.friendId}`}
                         className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 rounded-lg text-sm transition-colors"
                       >
@@ -135,7 +154,7 @@ export default function FriendsPage() {
                       </Link>
                       <button
                         onClick={() => removeFriend(friend.id)}
-                        className="px-3 py-1.5 bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded-lg text-sm transition-colors"
+                        className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-slate-400 rounded-lg text-sm transition-colors"
                       >
                         Çıkar
                       </button>

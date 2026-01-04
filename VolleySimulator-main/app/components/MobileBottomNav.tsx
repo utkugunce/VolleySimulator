@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Calendar, BarChart3, Target, User } from "lucide-react";
+import { Calendar, BarChart3, Target, User, Coins } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
@@ -17,6 +17,12 @@ const NAV_ITEMS = [
         label: "Sıralama",
         icon: BarChart3,
         activePattern: /^\/leaderboard/,
+    },
+    {
+        href: "/shop",
+        label: "Mağaza",
+        icon: Coins,
+        activePattern: /^\/shop/,
     },
     {
         href: "/quests",

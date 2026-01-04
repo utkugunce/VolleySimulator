@@ -11,12 +11,15 @@ import { LEVEL_THRESHOLDS } from "../types";
 import NotificationBell from "./NotificationBell";
 import { StreakBadge } from "./StreakWidget";
 import { LiveMatchCounter } from "./LiveMatchCard";
+import { Coins } from "lucide-react";
+import { useWallet } from "../hooks/useWallet";
 
 
 export default function Navbar() {
     const pathname = usePathname();
     const { gameState } = useGameState();
     const { user, loading, signOut } = useAuth();
+    const { wallet } = useWallet();
     const [showLeagueModal, setShowLeagueModal] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
@@ -144,6 +147,18 @@ export default function Navbar() {
                         <Link href="/live" className="hidden md:block">
                             <LiveMatchCounter count={2} />
                         </Link>
+
+                        {/* Wallet / Shop Link */}
+                        {user && (
+                            <Link 
+                                href="/shop" 
+                                className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/30 rounded-full transition-colors"
+                                title="Mağaza"
+                            >
+                                <Coins className="w-4 h-4 text-amber-400" />
+                                <span className="text-xs font-bold text-amber-400">{wallet.coins}</span>
+                            </Link>
+                        )}
 
                         {/* Streak Badge */}
                         {user && (

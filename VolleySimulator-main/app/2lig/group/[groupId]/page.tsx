@@ -7,8 +7,9 @@ import Link from "next/link";
 import { TeamAvatar, ProgressRing, Confetti, useToast } from "../../../components";
 import StandingsTable from "../../../components/Calculator/StandingsTable";
 import { calculateLiveStandings } from "../../../utils/calculatorUtils";
-import { compareStandings, TeamDiff } from "../../../utils/scenarioUtils";
+import { compareStandings, TeamDiff, generateScenarioShareUrl } from "../../../utils/scenarioUtils";
 import { useMemo } from "react";
+import { Share2 } from "lucide-react";
 
 const SCORES = ["3-0", "3-1", "3-2", "2-3", "1-3", "0-3"];
 
@@ -114,10 +115,20 @@ export default function GroupPage() {
 
     const handleShareScenario = async () => {
         try {
-            const encoded = btoa(JSON.stringify(overrides));
-            const url = `${window.location.origin}${window.location.pathname}?scenario=${encoded}`;
+            const exportData: ScenarioExport = {
+                version: '1.0',
+                league: '2lig',
+                timestamp: new Date().toISOString(),
+                groupId: groupId,
+                overrides: overrides,
+                metadata: {
+                    completedMatches: fixture.filter(m => m.isPlayed).length,
+                    totalMatches: fixture.length
+                }
+            };
+            const url = generateScenarioShareUrl(exportData);
             await navigator.clipboard.writeText(url);
-            showToast("Paylaşım linki kopyalandı!", "success");
+            showToast("Senaryo paylaşım linki kopyalandı!", "success");
         } catch (e) {
             showToast("Link kopyalanamadı", "error");
         }
