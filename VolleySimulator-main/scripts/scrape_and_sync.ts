@@ -136,7 +136,7 @@ async function processLeague(browser: any, key: string, config: any) {
                     const matchDate = new Date(sm.date.split('.').reverse().join('-') + 'T' + sm.time);
 
                     // Check if match is valid and happened
-                    if (sm.homeScore && sm.awayScore && !isNaN(parseInt(sm.homeScore)) && !matchDate.isNaN) {
+                    if (sm.homeScore && sm.awayScore && !isNaN(parseInt(sm.homeScore)) && !isNaN(matchDate.getTime())) {
                         // Update score if different or not played
                         if (!localMatch.isPlayed || localMatch.homeScore !== parseInt(sm.homeScore) || localMatch.awayScore !== parseInt(sm.awayScore)) {
                             localMatch.isPlayed = true;
