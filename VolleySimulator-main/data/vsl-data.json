@@ -3,40 +3,22 @@
   "season": "2025-2026",
   "teams": [
     {
-      "name": "ARAS KARGO",
-      "groupName": "Vodafone Sultanlar Ligi",
-      "played": 13,
-      "wins": 7,
-      "points": 22,
-      "setsWon": 25,
-      "setsLost": 20
-    },
-    {
-      "name": "AYDIN BÜYÜKŞEHİR BELEDİYESPOR",
-      "groupName": "Vodafone Sultanlar Ligi",
-      "played": 13,
-      "wins": 4,
-      "points": 12,
-      "setsWon": 18,
-      "setsLost": 32
-    },
-    {
-      "name": "BAHÇELİEVLER BLD.",
+      "name": "VAKIFBANK",
       "groupName": "Vodafone Sultanlar Ligi",
       "played": 14,
-      "wins": 0,
-      "points": 0,
-      "setsWon": 4,
-      "setsLost": 41
+      "wins": 14,
+      "points": 41,
+      "setsWon": 42,
+      "setsLost": 5
     },
     {
-      "name": "BEŞİKTAŞ",
+      "name": "FENERBAHÇE MEDICANA",
       "groupName": "Vodafone Sultanlar Ligi",
-      "played": 13,
-      "wins": 4,
-      "points": 14,
-      "setsWon": 18,
-      "setsLost": 31
+      "played": 14,
+      "wins": 13,
+      "points": 39,
+      "setsWon": 41,
+      "setsLost": 9
     },
     {
       "name": "ECZACIBAŞI DYNAVİT",
@@ -48,31 +30,67 @@
       "setsLost": 13
     },
     {
-      "name": "FENERBAHÇE MEDICANA",
-      "groupName": "Vodafone Sultanlar Ligi",
-      "played": 13,
-      "wins": 12,
-      "points": 36,
-      "setsWon": 38,
-      "setsLost": 9
-    },
-    {
       "name": "GALATASARAY DAIKIN",
       "groupName": "Vodafone Sultanlar Ligi",
-      "played": 13,
-      "wins": 9,
-      "points": 29,
-      "setsWon": 31,
+      "played": 14,
+      "wins": 10,
+      "points": 32,
+      "setsWon": 34,
       "setsLost": 15
     },
     {
-      "name": "GÖZTEPE",
+      "name": "ZEREN SPOR",
       "groupName": "Vodafone Sultanlar Ligi",
-      "played": 13,
-      "wins": 3,
-      "points": 9,
-      "setsWon": 15,
-      "setsLost": 32
+      "played": 14,
+      "wins": 10,
+      "points": 28,
+      "setsWon": 32,
+      "setsLost": 17
+    },
+    {
+      "name": "NİLÜFER BELEDİYESPOR EKER",
+      "groupName": "Vodafone Sultanlar Ligi",
+      "played": 14,
+      "wins": 9,
+      "points": 26,
+      "setsWon": 29,
+      "setsLost": 24
+    },
+    {
+      "name": "ARAS KARGO",
+      "groupName": "Vodafone Sultanlar Ligi",
+      "played": 14,
+      "wins": 7,
+      "points": 22,
+      "setsWon": 25,
+      "setsLost": 23
+    },
+    {
+      "name": "TÜRK HAVA YOLLARI",
+      "groupName": "Vodafone Sultanlar Ligi",
+      "played": 14,
+      "wins": 6,
+      "points": 18,
+      "setsWon": 23,
+      "setsLost": 29
+    },
+    {
+      "name": "BEŞİKTAŞ",
+      "groupName": "Vodafone Sultanlar Ligi",
+      "played": 14,
+      "wins": 5,
+      "points": 17,
+      "setsWon": 21,
+      "setsLost": 31
+    },
+    {
+      "name": "AYDIN BÜYÜKŞEHİR BELEDİYESPOR",
+      "groupName": "Vodafone Sultanlar Ligi",
+      "played": 14,
+      "wins": 4,
+      "points": 12,
+      "setsWon": 18,
+      "setsLost": 35
     },
     {
       "name": "KUZEYBORU",
@@ -84,49 +102,31 @@
       "setsLost": 37
     },
     {
-      "name": "NİLÜFER BELEDİYESPOR EKER",
-      "groupName": "Vodafone Sultanlar Ligi",
-      "played": 13,
-      "wins": 8,
-      "points": 23,
-      "setsWon": 26,
-      "setsLost": 23
-    },
-    {
-      "name": "TÜRK HAVA YOLLARI",
+      "name": "GÖZTEPE",
       "groupName": "Vodafone Sultanlar Ligi",
       "played": 14,
-      "wins": 6,
-      "points": 18,
-      "setsWon": 22,
-      "setsLost": 29
-    },
-    {
-      "name": "VAKIFBANK",
-      "groupName": "Vodafone Sultanlar Ligi",
-      "played": 13,
-      "wins": 13,
-      "points": 38,
-      "setsWon": 39,
-      "setsLost": 4
-    },
-    {
-      "name": "ZEREN SPOR",
-      "groupName": "Vodafone Sultanlar Ligi",
-      "played": 13,
-      "wins": 10,
-      "points": 28,
-      "setsWon": 31,
-      "setsLost": 14
+      "wins": 3,
+      "points": 9,
+      "setsWon": 16,
+      "setsLost": 35
     },
     {
       "name": "İLBANK",
       "groupName": "Vodafone Sultanlar Ligi",
-      "played": 13,
+      "played": 14,
       "wins": 3,
       "points": 9,
       "setsWon": 13,
-      "setsLost": 33
+      "setsLost": 36
+    },
+    {
+      "name": "BAHÇELİEVLER BLD.",
+      "groupName": "Vodafone Sultanlar Ligi",
+      "played": 14,
+      "wins": 0,
+      "points": 0,
+      "setsWon": 4,
+      "setsLost": 42
     }
   ],
   "fixture": [
@@ -1519,11 +1519,12 @@
       "groupName": "Vodafone Sultanlar Ligi",
       "homeTeam": "İLBANK",
       "awayTeam": "BEŞİKTAŞ",
-      "homeScore": null,
-      "awayScore": null,
-      "isPlayed": false,
+      "homeScore": 0,
+      "awayScore": 3,
+      "isPlayed": true,
       "venue": "TVF ZİRAAT BANKKART VOLEYBOL SALONU",
-      "city": "ANKARA"
+      "city": "ANKARA",
+      "resultScore": "0-3"
     },
     {
       "id": 94,
@@ -1534,11 +1535,12 @@
       "groupName": "Vodafone Sultanlar Ligi",
       "homeTeam": "AYDIN BÜYÜKŞEHİR BELEDİYESPOR",
       "awayTeam": "GALATASARAY DAIKIN",
-      "homeScore": null,
-      "awayScore": null,
-      "isPlayed": false,
+      "homeScore": 0,
+      "awayScore": 3,
+      "isPlayed": true,
       "venue": "MİMAR SİNAN",
-      "city": "AYDIN"
+      "city": "AYDIN",
+      "resultScore": "0-3"
     },
     {
       "id": 95,
@@ -1549,11 +1551,12 @@
       "groupName": "Vodafone Sultanlar Ligi",
       "homeTeam": "NİLÜFER BELEDİYESPOR EKER",
       "awayTeam": "GÖZTEPE",
-      "homeScore": null,
-      "awayScore": null,
-      "isPlayed": false,
+      "homeScore": 3,
+      "awayScore": 1,
+      "isPlayed": true,
       "venue": "CENGİZ GÖLLÜ VOLEYBOL SALONU",
-      "city": "BURSA"
+      "city": "BURSA",
+      "resultScore": "3-1"
     },
     {
       "id": 96,
@@ -1564,11 +1567,12 @@
       "groupName": "Vodafone Sultanlar Ligi",
       "homeTeam": "FENERBAHÇE MEDICANA",
       "awayTeam": "ARAS KARGO",
-      "homeScore": null,
-      "awayScore": null,
-      "isPlayed": false,
+      "homeScore": 3,
+      "awayScore": 0,
+      "isPlayed": true,
       "venue": "BURHAN FELEK VESTEL VOLEYBOL SALONU",
-      "city": "İSTANBUL"
+      "city": "İSTANBUL",
+      "resultScore": "3-0"
     },
     {
       "id": 97,
@@ -1580,10 +1584,11 @@
       "homeTeam": "BAHÇELİEVLER BLD.",
       "awayTeam": "TÜRK HAVA YOLLARI",
       "homeScore": 1,
-      "awayScore": 2,
+      "awayScore": 3,
       "isPlayed": true,
       "venue": "HASAN DOĞAN",
-      "city": "İSTANBUL"
+      "city": "İSTANBUL",
+      "resultScore": "1-3"
     },
     {
       "id": 98,
@@ -1594,11 +1599,12 @@
       "groupName": "Vodafone Sultanlar Ligi",
       "homeTeam": "VAKIFBANK",
       "awayTeam": "ZEREN SPOR",
-      "homeScore": null,
-      "awayScore": null,
-      "isPlayed": false,
+      "homeScore": 3,
+      "awayScore": 1,
+      "isPlayed": true,
       "venue": "VAKIFBANK SPOR SARAYI",
-      "city": "İSTANBUL"
+      "city": "İSTANBUL",
+      "resultScore": "3-1"
     },
     {
       "id": 99,

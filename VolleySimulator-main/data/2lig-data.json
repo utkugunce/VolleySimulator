@@ -3,580 +3,13 @@
   "season": "2025-2026",
   "teams": [
     {
-      "name": "AVRUPA VOLEYBOL GELİŞİM",
-      "groupName": "1. GRUP",
-      "played": 16,
-      "wins": 6,
-      "points": 18,
-      "setsWon": 25,
-      "setsLost": 35
-    },
-    {
-      "name": "ÇATALCA BLD.",
-      "groupName": "1. GRUP",
-      "played": 15,
-      "wins": 3,
-      "points": 12,
-      "setsWon": 15,
-      "setsLost": 38
-    },
-    {
-      "name": "BEYLİKDÜZÜ BEYKENT",
-      "groupName": "1. GRUP",
-      "played": 16,
-      "wins": 4,
-      "points": 13,
-      "setsWon": 16,
-      "setsLost": 37
-    },
-    {
-      "name": "TÜRK HAVA YOLLARI",
-      "groupName": "1. GRUP",
-      "played": 16,
-      "wins": 13,
-      "points": 36,
-      "setsWon": 41,
-      "setsLost": 15
-    },
-    {
-      "name": "BİZİMKENT VOLEYBOL",
-      "groupName": "1. GRUP",
-      "played": 15,
-      "wins": 0,
-      "points": 1,
-      "setsWon": 5,
-      "setsLost": 45
-    },
-    {
-      "name": "SMAÇ SPOR",
-      "groupName": "1. GRUP",
-      "played": 16,
-      "wins": 8,
-      "points": 22,
-      "setsWon": 31,
-      "setsLost": 30
-    },
-    {
-      "name": "İSTANBUL BİZİMKENT SPOR",
-      "groupName": "1. GRUP",
-      "played": 15,
-      "wins": 10,
-      "points": 32,
-      "setsWon": 35,
-      "setsLost": 18
-    },
-    {
-      "name": "ARNAVUTKÖY BLD.",
-      "groupName": "1. GRUP",
-      "played": 17,
-      "wins": 16,
-      "points": 48,
-      "setsWon": 49,
-      "setsLost": 9
-    },
-    {
-      "name": "KÜÇÜKÇEKMECE VOLEYBOL",
-      "groupName": "1. GRUP",
-      "played": 16,
-      "wins": 2,
-      "points": 4,
-      "setsWon": 6,
-      "setsLost": 46
-    },
-    {
-      "name": "SİLİVRİ ÇAĞRIBEY",
-      "groupName": "1. GRUP",
-      "played": 15,
-      "wins": 10,
-      "points": 31,
-      "setsWon": 37,
-      "setsLost": 20
-    },
-    {
-      "name": "BÜYÜKÇEKMECE VOLEYBOL AKADEMİ",
-      "groupName": "1. GRUP",
-      "played": 15,
-      "wins": 14,
-      "points": 41,
-      "setsWon": 43,
-      "setsLost": 10
-    },
-    {
-      "name": "ÜNSPED",
-      "groupName": "2. GRUP",
-      "played": 16,
-      "wins": 15,
-      "points": 44,
-      "setsWon": 46,
-      "setsLost": 9
-    },
-    {
-      "name": "BAHÇELİEVLER BLD.",
-      "groupName": "2. GRUP",
-      "played": 15,
-      "wins": 10,
-      "points": 30,
-      "setsWon": 33,
-      "setsLost": 21
-    },
-    {
-      "name": "GÜNGÖREN VOLEYBOL",
-      "groupName": "2. GRUP",
-      "played": 15,
-      "wins": 5,
-      "points": 14,
-      "setsWon": 18,
-      "setsLost": 36
-    },
-    {
-      "name": "BAŞAKŞEHİR VOLEYBOL",
-      "groupName": "2. GRUP",
-      "played": 16,
-      "wins": 5,
-      "points": 15,
-      "setsWon": 19,
-      "setsLost": 33
-    },
-    {
-      "name": "BEŞİKTAŞ NAVIOSA",
-      "groupName": "2. GRUP",
-      "played": 15,
-      "wins": 14,
-      "points": 42,
-      "setsWon": 43,
-      "setsLost": 6
-    },
-    {
-      "name": "BÜYÜK REŞİTPAŞA ORTAOKULU",
-      "groupName": "2. GRUP",
-      "played": 16,
-      "wins": 9,
-      "points": 28,
-      "setsWon": 33,
-      "setsLost": 24
-    },
-    {
-      "name": "YENİAY LOJİSTİK SARIYER KONAK SPOR",
-      "groupName": "2. GRUP",
-      "played": 16,
-      "wins": 0,
-      "points": 0,
-      "setsWon": 6,
-      "setsLost": 48
-    },
-    {
-      "name": "ROBERTEAM",
-      "groupName": "2. GRUP",
-      "played": 15,
-      "wins": 5,
-      "points": 16,
-      "setsWon": 19,
-      "setsLost": 31
-    },
-    {
-      "name": "YEŞİLYURT",
-      "groupName": "2. GRUP",
-      "played": 16,
-      "wins": 12,
-      "points": 36,
-      "setsWon": 38,
-      "setsLost": 19
-    },
-    {
-      "name": "VEFA",
-      "groupName": "2. GRUP",
-      "played": 15,
-      "wins": 3,
-      "points": 9,
-      "setsWon": 13,
-      "setsLost": 40
-    },
-    {
-      "name": "EYÜPSULTAN BLD.",
-      "groupName": "2. GRUP",
-      "played": 15,
-      "wins": 7,
-      "points": 21,
-      "setsWon": 25,
-      "setsLost": 26
-    },
-    {
-      "name": "ALTINYURT",
-      "groupName": "3. GRUP",
-      "played": 15,
-      "wins": 5,
-      "points": 14,
-      "setsWon": 22,
-      "setsLost": 37
-    },
-    {
-      "name": "WORLD MEDICINE ATEŞ SPOR",
-      "groupName": "3. GRUP",
-      "played": 14,
-      "wins": 9,
-      "points": 28,
-      "setsWon": 30,
-      "setsLost": 18
-    },
-    {
-      "name": "CAN MİLAN ATLETİK",
-      "groupName": "3. GRUP",
-      "played": 14,
-      "wins": 13,
-      "points": 40,
-      "setsWon": 41,
-      "setsLost": 8
-    },
-    {
-      "name": "LANUEVA KOZMETİK ANADOLU MARMARA",
-      "groupName": "3. GRUP",
-      "played": 14,
-      "wins": 5,
-      "points": 16,
-      "setsWon": 21,
-      "setsLost": 32
-    },
-    {
-      "name": "ÇENGELKÖY VOLEYBOL",
-      "groupName": "3. GRUP",
-      "played": 14,
-      "wins": 13,
-      "points": 39,
-      "setsWon": 40,
-      "setsLost": 4
-    },
-    {
-      "name": "MAÇ SAYISI",
-      "groupName": "3. GRUP",
-      "played": 14,
-      "wins": 2,
-      "points": 5,
-      "setsWon": 12,
-      "setsLost": 40
-    },
-    {
-      "name": "DEV ATAŞEHİR",
-      "groupName": "3. GRUP",
-      "played": 14,
-      "wins": 7,
-      "points": 20,
-      "setsWon": 22,
-      "setsLost": 28
-    },
-    {
-      "name": "DOĞU AKADEMİ",
-      "groupName": "3. GRUP",
-      "played": 14,
-      "wins": 2,
-      "points": 8,
-      "setsWon": 17,
-      "setsLost": 38
-    },
-    {
-      "name": "GALATASARAY",
-      "groupName": "3. GRUP",
-      "played": 15,
-      "wins": 13,
-      "points": 38,
-      "setsWon": 41,
-      "setsLost": 13
-    },
-    {
-      "name": "ATAŞEHİR KARTALLARI",
-      "groupName": "3. GRUP",
-      "played": 14,
-      "wins": 2,
-      "points": 5,
-      "setsWon": 12,
-      "setsLost": 40
-    },
-    {
-      "name": "FENERBAHÇE MEDICANA",
-      "groupName": "4. GRUP",
-      "played": 14,
-      "wins": 13,
-      "points": 39,
-      "setsWon": 41,
-      "setsLost": 9
-    },
-    {
-      "name": "TOYZZ SHOP DİNAMO SPOR",
-      "groupName": "4. GRUP",
-      "played": 14,
-      "wins": 12,
-      "points": 36,
-      "setsWon": 38,
-      "setsLost": 9
-    },
-    {
-      "name": "KAMARİN SPOR",
-      "groupName": "4. GRUP",
-      "played": 14,
-      "wins": 6,
-      "points": 17,
-      "setsWon": 21,
-      "setsLost": 31
-    },
-    {
-      "name": "MEHMET ERDEM MARMARA AKADEMİ",
-      "groupName": "4. GRUP",
-      "played": 14,
-      "wins": 11,
-      "points": 32,
-      "setsWon": 34,
-      "setsLost": 13
-    },
-    {
-      "name": "TUZLA MERCAN",
-      "groupName": "4. GRUP",
-      "played": 14,
-      "wins": 0,
-      "points": 0,
-      "setsWon": 2,
-      "setsLost": 42
-    },
-    {
-      "name": "ÇEKMEKÖY İSTANBUL SPOR",
-      "groupName": "4. GRUP",
-      "played": 14,
-      "wins": 5,
-      "points": 14,
-      "setsWon": 18,
-      "setsLost": 31
-    },
-    {
-      "name": "KARTAL ANADOLU",
-      "groupName": "4. GRUP",
-      "played": 14,
-      "wins": 1,
-      "points": 6,
-      "setsWon": 12,
-      "setsLost": 39
-    },
-    {
-      "name": "KARTAL BLD.",
-      "groupName": "4. GRUP",
-      "played": 14,
-      "wins": 7,
-      "points": 20,
-      "setsWon": 23,
-      "setsLost": 25
-    },
-    {
-      "name": "ALP SPOR",
-      "groupName": "4. GRUP",
-      "played": 14,
-      "wins": 4,
-      "points": 14,
-      "setsWon": 18,
-      "setsLost": 31
-    },
-    {
-      "name": "KUZEY YILDIZLARI",
-      "groupName": "4. GRUP",
-      "played": 14,
-      "wins": 11,
-      "points": 32,
-      "setsWon": 36,
-      "setsLost": 13
-    },
-    {
-      "name": "BALIKESİR B.ŞEHİR BLD.",
-      "groupName": "5. GRUP",
-      "played": 17,
-      "wins": 15,
-      "points": 43,
-      "setsWon": 47,
-      "setsLost": 16
-    },
-    {
-      "name": "BANDIRMA ÇELİK SPOR",
-      "groupName": "5. GRUP",
-      "played": 15,
-      "wins": 4,
-      "points": 10,
-      "setsWon": 14,
-      "setsLost": 38
-    },
-    {
-      "name": "MEDIA FIRST AYVALIK GELİŞİM SPOR",
-      "groupName": "5. GRUP",
-      "played": 15,
-      "wins": 13,
-      "points": 40,
-      "setsWon": 41,
-      "setsLost": 9
-    },
-    {
-      "name": "ÇANAKKALE KEPEZ",
-      "groupName": "5. GRUP",
-      "played": 16,
-      "wins": 12,
-      "points": 36,
-      "setsWon": 40,
-      "setsLost": 17
-    },
-    {
-      "name": "ÇERKEZKÖY VOLEYBOL AKADEMİ",
-      "groupName": "5. GRUP",
-      "played": 16,
-      "wins": 4,
-      "points": 12,
-      "setsWon": 13,
-      "setsLost": 37
-    },
-    {
-      "name": "ÇAN KALE SPOR",
-      "groupName": "5. GRUP",
-      "played": 16,
-      "wins": 6,
-      "points": 20,
-      "setsWon": 25,
-      "setsLost": 32
-    },
-    {
-      "name": "YEŞİL BAYRAMİÇ",
-      "groupName": "5. GRUP",
-      "played": 16,
-      "wins": 11,
-      "points": 33,
-      "setsWon": 36,
-      "setsLost": 16
-    },
-    {
-      "name": "KIRKLARELİ GENÇLİK SPOR",
-      "groupName": "5. GRUP",
-      "played": 16,
-      "wins": 2,
-      "points": 9,
-      "setsWon": 15,
-      "setsLost": 42
-    },
-    {
-      "name": "BALIKESİR DSİ",
-      "groupName": "5. GRUP",
-      "played": 16,
-      "wins": 13,
-      "points": 38,
-      "setsWon": 42,
-      "setsLost": 14
-    },
-    {
-      "name": "TEKİRDAĞ VOLEYBOL İHTİSAS",
-      "groupName": "5. GRUP",
-      "played": 16,
-      "wins": 0,
-      "points": -3,
-      "setsWon": 0,
-      "setsLost": 48
-    },
-    {
-      "name": "ÇORLU BLD.",
-      "groupName": "5. GRUP",
-      "played": 15,
-      "wins": 7,
-      "points": 20,
-      "setsWon": 23,
-      "setsLost": 27
-    },
-    {
-      "name": "ALTAY",
-      "groupName": "6. GRUP",
-      "played": 20,
-      "wins": 7,
-      "points": 18,
-      "setsWon": 27,
-      "setsLost": 49
-    },
-    {
-      "name": "TÜRKOĞLU SPOR KULÜBÜ",
-      "groupName": "6. GRUP",
-      "played": 20,
-      "wins": 6,
-      "points": 16,
-      "setsWon": 27,
-      "setsLost": 48
-    },
-    {
-      "name": "EFOR GENÇLİK",
-      "groupName": "6. GRUP",
-      "played": 20,
-      "wins": 15,
-      "points": 45,
-      "setsWon": 48,
-      "setsLost": 21
-    },
-    {
-      "name": "ATA OKUL SPOR",
-      "groupName": "6. GRUP",
-      "played": 21,
-      "wins": 3,
-      "points": 11,
-      "setsWon": 18,
-      "setsLost": 57
-    },
-    {
-      "name": "AKHİSAR GÜCÜ",
-      "groupName": "6. GRUP",
-      "played": 20,
-      "wins": 10,
-      "points": 28,
-      "setsWon": 34,
-      "setsLost": 38
-    },
-    {
       "name": "AKHİSAR BLD.",
       "groupName": "6. GRUP",
-      "played": 20,
-      "wins": 19,
-      "points": 58,
-      "setsWon": 59,
+      "played": 21,
+      "wins": 20,
+      "points": 61,
+      "setsWon": 62,
       "setsLost": 3
-    },
-    {
-      "name": "ALTINAY SPOR",
-      "groupName": "6. GRUP",
-      "played": 20,
-      "wins": 11,
-      "points": 32,
-      "setsWon": 36,
-      "setsLost": 35
-    },
-    {
-      "name": "YUNUSEMRE BLD.",
-      "groupName": "6. GRUP",
-      "played": 20,
-      "wins": 5,
-      "points": 15,
-      "setsWon": 19,
-      "setsLost": 48
-    },
-    {
-      "name": "GÖZTEPE",
-      "groupName": "6. GRUP",
-      "played": 20,
-      "wins": 14,
-      "points": 42,
-      "setsWon": 45,
-      "setsLost": 24
-    },
-    {
-      "name": "BAYRAKLI BLD.",
-      "groupName": "6. GRUP",
-      "played": 20,
-      "wins": 7,
-      "points": 25,
-      "setsWon": 34,
-      "setsLost": 45
-    },
-    {
-      "name": "KZY SPOR",
-      "groupName": "6. GRUP",
-      "played": 20,
-      "wins": 3,
-      "points": 9,
-      "setsWon": 14,
-      "setsLost": 53
     },
     {
       "name": "BERGAMA BLD.",
@@ -588,22 +21,58 @@
       "setsLost": 6
     },
     {
-      "name": "TURGUTLU BLD. KÜLTÜR SANAT",
-      "groupName": "6. GRUP",
-      "played": 20,
-      "wins": 14,
-      "points": 42,
-      "setsWon": 47,
-      "setsLost": 27
+      "name": "BAHÇEŞEHİR KOLEJİ DALAMAN BLD.",
+      "groupName": "8. GRUP",
+      "played": 18,
+      "wins": 18,
+      "points": 54,
+      "setsWon": 54,
+      "setsLost": 1
     },
     {
-      "name": "FORZA SPOR",
-      "groupName": "6. GRUP",
-      "played": 20,
-      "wins": 7,
-      "points": 20,
-      "setsWon": 31,
-      "setsLost": 45
+      "name": "SINAV KOLEJİ SAMSUNSPOR",
+      "groupName": "14. GRUP",
+      "played": 18,
+      "wins": 18,
+      "points": 53,
+      "setsWon": 54,
+      "setsLost": 6
+    },
+    {
+      "name": "ETİMESGUT BLD. GELİŞİM",
+      "groupName": "11. GRUP",
+      "played": 18,
+      "wins": 18,
+      "points": 52,
+      "setsWon": 54,
+      "setsLost": 11
+    },
+    {
+      "name": "B.ŞEHİR BLD. ANKARA SPOR",
+      "groupName": "12. GRUP",
+      "played": 18,
+      "wins": 17,
+      "points": 52,
+      "setsWon": 53,
+      "setsLost": 6
+    },
+    {
+      "name": "MISIROĞLU BEYTEPE",
+      "groupName": "12. GRUP",
+      "played": 18,
+      "wins": 17,
+      "points": 51,
+      "setsWon": 52,
+      "setsLost": 5
+    },
+    {
+      "name": "BARTIN VOLLEY ACADEMY",
+      "groupName": "10. GRUP",
+      "played": 17,
+      "wins": 17,
+      "points": 50,
+      "setsWon": 51,
+      "setsLost": 5
     },
     {
       "name": "ARKAS SPOR",
@@ -615,733 +84,31 @@
       "setsLost": 16
     },
     {
-      "name": "GELİŞİM KOLEJİ",
-      "groupName": "7. GRUP",
-      "played": 19,
+      "name": "ELAZIĞ BLD.",
+      "groupName": "16. GRUP",
+      "played": 17,
       "wins": 16,
-      "points": 45,
-      "setsWon": 49,
-      "setsLost": 17
-    },
-    {
-      "name": "POLAT GROUP DİDİM BELEDİYESPOR",
-      "groupName": "7. GRUP",
-      "played": 20,
-      "wins": 15,
-      "points": 45,
+      "points": 49,
       "setsWon": 50,
-      "setsLost": 22
-    },
-    {
-      "name": "ÜLKÜ SPOR",
-      "groupName": "7. GRUP",
-      "played": 19,
-      "wins": 0,
-      "points": 0,
-      "setsWon": 1,
-      "setsLost": 57
-    },
-    {
-      "name": "AYDIN BÜYÜKŞEHİR BELEDİYESPOR",
-      "groupName": "7. GRUP",
-      "played": 18,
-      "wins": 8,
-      "points": 23,
-      "setsWon": 27,
-      "setsLost": 35
-    },
-    {
-      "name": "ROTA KOLEJİ",
-      "groupName": "7. GRUP",
-      "played": 20,
-      "wins": 14,
-      "points": 45,
-      "setsWon": 50,
-      "setsLost": 25
-    },
-    {
-      "name": "SÖKE BELEDİYE SALDOS VOLEYBOL",
-      "groupName": "7. GRUP",
-      "played": 18,
-      "wins": 10,
-      "points": 30,
-      "setsWon": 36,
-      "setsLost": 31
-    },
-    {
-      "name": "İZMİR B.ŞEHIR BLD.",
-      "groupName": "7. GRUP",
-      "played": 18,
-      "wins": 1,
-      "points": 4,
-      "setsWon": 9,
-      "setsLost": 51
-    },
-    {
-      "name": "GAZİEMİR BLD.",
-      "groupName": "7. GRUP",
-      "played": 18,
-      "wins": 6,
-      "points": 22,
-      "setsWon": 31,
-      "setsLost": 37
-    },
-    {
-      "name": "İZMİR DSİ",
-      "groupName": "7. GRUP",
-      "played": 18,
-      "wins": 15,
-      "points": 43,
-      "setsWon": 49,
-      "setsLost": 18
-    },
-    {
-      "name": "VENÜS SPOR",
-      "groupName": "7. GRUP",
-      "played": 20,
-      "wins": 5,
-      "points": 13,
-      "setsWon": 18,
-      "setsLost": 51
-    },
-    {
-      "name": "ENDO KARŞIYAKA",
-      "groupName": "7. GRUP",
-      "played": 19,
-      "wins": 10,
-      "points": 31,
-      "setsWon": 39,
-      "setsLost": 31
-    },
-    {
-      "name": "VOLKAN GÜÇ SPOR",
-      "groupName": "7. GRUP",
-      "played": 20,
-      "wins": 6,
-      "points": 19,
-      "setsWon": 29,
-      "setsLost": 50
-    },
-    {
-      "name": "AÇI KOLEJİ",
-      "groupName": "8. GRUP",
-      "played": 17,
-      "wins": 7,
-      "points": 24,
-      "setsWon": 30,
-      "setsLost": 32
-    },
-    {
-      "name": "ELİT AKDENİZ",
-      "groupName": "8. GRUP",
-      "played": 17,
-      "wins": 5,
-      "points": 15,
-      "setsWon": 23,
-      "setsLost": 40
-    },
-    {
-      "name": "07 MEGA SPOR",
-      "groupName": "8. GRUP",
-      "played": 17,
-      "wins": 9,
-      "points": 27,
-      "setsWon": 35,
-      "setsLost": 32
-    },
-    {
-      "name": "AKDENİZ BİLGİ SPOR",
-      "groupName": "8. GRUP",
-      "played": 17,
-      "wins": 10,
-      "points": 26,
-      "setsWon": 34,
-      "setsLost": 33
-    },
-    {
-      "name": "ISPARTA GENÇLİK SPOR",
-      "groupName": "8. GRUP",
-      "played": 17,
-      "wins": 4,
-      "points": 13,
-      "setsWon": 18,
-      "setsLost": 44
-    },
-    {
-      "name": "DENİZLİ B.ŞEHİR BLD.",
-      "groupName": "8. GRUP",
-      "played": 17,
-      "wins": 4,
-      "points": 10,
-      "setsWon": 16,
-      "setsLost": 44
-    },
-    {
-      "name": "FETHİYE VOLEYBOL",
-      "groupName": "8. GRUP",
-      "played": 17,
-      "wins": 9,
-      "points": 29,
-      "setsWon": 38,
-      "setsLost": 32
-    },
-    {
-      "name": "GÜRAL PREMIER ANTALYASPOR",
-      "groupName": "8. GRUP",
-      "played": 17,
-      "wins": 10,
-      "points": 31,
-      "setsWon": 36,
-      "setsLost": 25
-    },
-    {
-      "name": "UYSALLAR OTO FETHİYE ZİRVE",
-      "groupName": "8. GRUP",
-      "played": 17,
-      "wins": 14,
-      "points": 41,
-      "setsWon": 43,
-      "setsLost": 14
-    },
-    {
-      "name": "AFYON GENÇLİK SPOR",
-      "groupName": "8. GRUP",
-      "played": 17,
-      "wins": 0,
-      "points": 1,
-      "setsWon": 4,
-      "setsLost": 51
-    },
-    {
-      "name": "MARMARİS BLD.",
-      "groupName": "8. GRUP",
-      "played": 17,
-      "wins": 13,
-      "points": 38,
-      "setsWon": 41,
-      "setsLost": 22
-    },
-    {
-      "name": "BAHÇEŞEHİR KOLEJİ DALAMAN BLD.",
-      "groupName": "8. GRUP",
-      "played": 17,
-      "wins": 17,
-      "points": 51,
-      "setsWon": 51,
-      "setsLost": 0
-    },
-    {
-      "name": "HEKİMOĞLU GLOBAL CONNECT TRAVEL BVİ",
-      "groupName": "9. GRUP",
-      "played": 17,
-      "wins": 2,
-      "points": 5,
-      "setsWon": 8,
-      "setsLost": 48
-    },
-    {
-      "name": "GEMLİK İSTİKLAL SPOR",
-      "groupName": "9. GRUP",
-      "played": 17,
-      "wins": 9,
-      "points": 26,
-      "setsWon": 29,
-      "setsLost": 30
-    },
-    {
-      "name": "BURSA FETHİYE 1973 SPOR",
-      "groupName": "9. GRUP",
-      "played": 17,
-      "wins": 12,
-      "points": 36,
-      "setsWon": 39,
-      "setsLost": 19
-    },
-    {
-      "name": "ESKİŞEHİR PEYMAN SPOR",
-      "groupName": "9. GRUP",
-      "played": 17,
-      "wins": 4,
-      "points": 13,
-      "setsWon": 18,
-      "setsLost": 40
-    },
-    {
-      "name": "BURSA B.ŞEHİR BLD.",
-      "groupName": "9. GRUP",
-      "played": 17,
-      "wins": 7,
-      "points": 21,
-      "setsWon": 25,
-      "setsLost": 33
-    },
-    {
-      "name": "HOCA AHMET YESEVİ ANADOLU L. ES VOLEYBOL AKADEMİ",
-      "groupName": "9. GRUP",
-      "played": 17,
-      "wins": 2,
-      "points": 6,
-      "setsWon": 11,
-      "setsLost": 48
-    },
-    {
-      "name": "MG SPOR",
-      "groupName": "9. GRUP",
-      "played": 17,
-      "wins": 5,
-      "points": 17,
-      "setsWon": 20,
-      "setsLost": 40
+      "setsLost": 4
     },
     {
       "name": "NİLÜFER BLD.",
       "groupName": "9. GRUP",
-      "played": 17,
-      "wins": 16,
-      "points": 48,
-      "setsWon": 48,
-      "setsLost": 5
-    },
-    {
-      "name": "MEHMET EGE İNŞAAT İNEGÖL ORHANİYE VOLEYBOL",
-      "groupName": "9. GRUP",
-      "played": 17,
-      "wins": 14,
-      "points": 44,
-      "setsWon": 46,
-      "setsLost": 10
-    },
-    {
-      "name": "YALOVA ÇİFTLİKKÖY BLD.",
-      "groupName": "9. GRUP",
-      "played": 17,
-      "wins": 13,
-      "points": 38,
-      "setsWon": 41,
-      "setsLost": 18
-    },
-    {
-      "name": "AL-KA ALTIN KANATLAR",
-      "groupName": "9. GRUP",
-      "played": 17,
-      "wins": 4,
-      "points": 11,
-      "setsWon": 17,
-      "setsLost": 41
-    },
-    {
-      "name": "ESKİŞEHİR ŞEHİR KOLEJİ EĞT. KÜLTÜR",
-      "groupName": "9. GRUP",
-      "played": 17,
-      "wins": 14,
-      "points": 41,
-      "setsWon": 43,
-      "setsLost": 13
-    },
-    {
-      "name": "DÜZCE VOLEYBOL",
-      "groupName": "10. GRUP",
-      "played": 16,
-      "wins": 5,
-      "points": 15,
-      "setsWon": 21,
-      "setsLost": 37
-    },
-    {
-      "name": "KARABÜK GENÇLİK SPOR",
-      "groupName": "10. GRUP",
-      "played": 15,
-      "wins": 4,
-      "points": 13,
-      "setsWon": 17,
-      "setsLost": 35
-    },
-    {
-      "name": "CADENCE BOYA GÖLCÜK İHSANİYE",
-      "groupName": "10. GRUP",
-      "played": 16,
-      "wins": 14,
-      "points": 42,
-      "setsWon": 44,
-      "setsLost": 11
-    },
-    {
-      "name": "GEBZE GENÇLİK VE SPOR",
-      "groupName": "10. GRUP",
-      "played": 15,
-      "wins": 5,
-      "points": 17,
-      "setsWon": 22,
-      "setsLost": 33
-    },
-    {
-      "name": "HARPUT LAHMACUN YAHYA KAPTAN",
-      "groupName": "10. GRUP",
-      "played": 15,
-      "wins": 1,
-      "points": 3,
-      "setsWon": 3,
-      "setsLost": 42
-    },
-    {
-      "name": "BARTIN VOLLEY ACADEMY",
-      "groupName": "10. GRUP",
-      "played": 16,
-      "wins": 16,
-      "points": 47,
-      "setsWon": 48,
-      "setsLost": 5
-    },
-    {
-      "name": "KOCAELİ NİCOMEDİA AKADEMİ",
-      "groupName": "10. GRUP",
-      "played": 15,
-      "wins": 11,
-      "points": 34,
-      "setsWon": 38,
-      "setsLost": 16
-    },
-    {
-      "name": "İZMİT SPOR",
-      "groupName": "10. GRUP",
-      "played": 16,
-      "wins": 2,
-      "points": 6,
-      "setsWon": 11,
-      "setsLost": 44
-    },
-    {
-      "name": "SERDİVAN BLD.",
-      "groupName": "10. GRUP",
-      "played": 16,
-      "wins": 8,
-      "points": 23,
-      "setsWon": 30,
-      "setsLost": 31
-    },
-    {
-      "name": "KOCAELİ VOLEYBOL AKADEMİ",
-      "groupName": "10. GRUP",
-      "played": 15,
-      "wins": 12,
-      "points": 36,
-      "setsWon": 38,
-      "setsLost": 14
-    },
-    {
-      "name": "BOLU ATATÜRK ANADOLU LİSESİ",
-      "groupName": "10. GRUP",
-      "played": 15,
-      "wins": 7,
-      "points": 19,
-      "setsWon": 25,
-      "setsLost": 29
-    },
-    {
-      "name": "BAŞKENT ADA SPOR",
-      "groupName": "11. GRUP",
       "played": 18,
-      "wins": 3,
-      "points": 9,
-      "setsWon": 15,
-      "setsLost": 46
-    },
-    {
-      "name": "TEMİZ ENERJİ BIRLİĞİ",
-      "groupName": "11. GRUP",
-      "played": 17,
-      "wins": 2,
-      "points": 7,
-      "setsWon": 13,
-      "setsLost": 47
-    },
-    {
-      "name": "ANKARA BAROSU",
-      "groupName": "11. GRUP",
-      "played": 18,
-      "wins": 3,
-      "points": 12,
-      "setsWon": 22,
-      "setsLost": 47
-    },
-    {
-      "name": "İLBANK",
-      "groupName": "11. GRUP",
-      "played": 17,
-      "wins": 10,
-      "points": 33,
-      "setsWon": 36,
-      "setsLost": 23
-    },
-    {
-      "name": "GÖLBAŞI İNCEK SPOR",
-      "groupName": "11. GRUP",
-      "played": 17,
-      "wins": 10,
-      "points": 28,
-      "setsWon": 35,
-      "setsLost": 29
-    },
-    {
-      "name": "AHMET HAMDİ TANPINAR ORTAOKULU",
-      "groupName": "11. GRUP",
-      "played": 17,
-      "wins": 6,
-      "points": 17,
-      "setsWon": 22,
-      "setsLost": 39
-    },
-    {
-      "name": "TEK METAL SPORTİF",
-      "groupName": "11. GRUP",
-      "played": 17,
-      "wins": 13,
-      "points": 36,
-      "setsWon": 42,
-      "setsLost": 22
-    },
-    {
-      "name": "TVF SPOR LİSESİ",
-      "groupName": "11. GRUP",
-      "played": 17,
-      "wins": 15,
-      "points": 45,
-      "setsWon": 48,
-      "setsLost": 11
-    },
-    {
-      "name": "HAKAN AKIŞIK SPOR",
-      "groupName": "11. GRUP",
-      "played": 17,
-      "wins": 2,
-      "points": 7,
-      "setsWon": 12,
-      "setsLost": 48
-    },
-    {
-      "name": "ENGLISH TIME SPOR",
-      "groupName": "11. GRUP",
-      "played": 17,
-      "wins": 11,
-      "points": 32,
-      "setsWon": 37,
-      "setsLost": 24
-    },
-    {
-      "name": "ETİMESGUT BLD. GELİŞİM",
-      "groupName": "11. GRUP",
-      "played": 17,
-      "wins": 17,
-      "points": 49,
-      "setsWon": 51,
-      "setsLost": 11
-    },
-    {
-      "name": "PTT",
-      "groupName": "11. GRUP",
-      "played": 17,
-      "wins": 11,
-      "points": 34,
-      "setsWon": 38,
-      "setsLost": 24
-    },
-    {
-      "name": "ERYAMAN GELİŞİM",
-      "groupName": "12. GRUP",
-      "played": 18,
-      "wins": 9,
-      "points": 26,
-      "setsWon": 32,
-      "setsLost": 33
-    },
-    {
-      "name": "ANKARA DSİ",
-      "groupName": "12. GRUP",
-      "played": 17,
-      "wins": 13,
-      "points": 40,
-      "setsWon": 42,
-      "setsLost": 15
-    },
-    {
-      "name": "KAVAK SPOR",
-      "groupName": "12. GRUP",
-      "played": 18,
-      "wins": 15,
-      "points": 43,
-      "setsWon": 47,
-      "setsLost": 14
-    },
-    {
-      "name": "BAŞKENT ZİRVE",
-      "groupName": "12. GRUP",
-      "played": 17,
-      "wins": 4,
-      "points": 12,
-      "setsWon": 17,
-      "setsLost": 41
-    },
-    {
-      "name": "YEDİDAĞ SPOR",
-      "groupName": "12. GRUP",
-      "played": 17,
-      "wins": 2,
-      "points": 7,
-      "setsWon": 15,
-      "setsLost": 48
-    },
-    {
-      "name": "MKE ANKARAGÜCÜ",
-      "groupName": "12. GRUP",
-      "played": 17,
-      "wins": 2,
-      "points": 4,
-      "setsWon": 7,
-      "setsLost": 49
-    },
-    {
-      "name": "ÇABA SPOR",
-      "groupName": "12. GRUP",
-      "played": 17,
-      "wins": 8,
-      "points": 23,
-      "setsWon": 24,
-      "setsLost": 32
-    },
-    {
-      "name": "MISIROĞLU BEYTEPE",
-      "groupName": "12. GRUP",
-      "played": 17,
-      "wins": 16,
-      "points": 48,
-      "setsWon": 49,
-      "setsLost": 5
-    },
-    {
-      "name": "TED ANKARA KOLEJLİLER",
-      "groupName": "12. GRUP",
-      "played": 17,
-      "wins": 6,
-      "points": 19,
-      "setsWon": 22,
-      "setsLost": 36
-    },
-    {
-      "name": "B.ŞEHİR BLD. ANKARA SPOR",
-      "groupName": "12. GRUP",
-      "played": 17,
       "wins": 16,
       "points": 49,
       "setsWon": 50,
-      "setsLost": 6
+      "setsLost": 8
     },
     {
-      "name": "POLATLI DUATEPE",
-      "groupName": "12. GRUP",
-      "played": 17,
-      "wins": 9,
-      "points": 28,
-      "setsWon": 30,
-      "setsLost": 26
-    },
-    {
-      "name": "HEDEF ANKARA",
-      "groupName": "12. GRUP",
-      "played": 17,
-      "wins": 3,
-      "points": 10,
-      "setsWon": 15,
-      "setsLost": 45
-    },
-    {
-      "name": "EREĞLİ SÜMER SPOR",
-      "groupName": "13. GRUP",
-      "played": 15,
-      "wins": 1,
-      "points": 3,
-      "setsWon": 4,
-      "setsLost": 43
-    },
-    {
-      "name": "ADANA T.D.S.",
-      "groupName": "13. GRUP",
-      "played": 16,
-      "wins": 7,
-      "points": 23,
-      "setsWon": 27,
-      "setsLost": 28
-    },
-    {
-      "name": "TARSUS AMERİKAN KOLEJİ",
-      "groupName": "13. GRUP",
-      "played": 15,
-      "wins": 6,
-      "points": 18,
-      "setsWon": 20,
-      "setsLost": 31
-    },
-    {
-      "name": "SEYHAN BLD.",
-      "groupName": "13. GRUP",
-      "played": 15,
-      "wins": 0,
-      "points": 0,
-      "setsWon": 5,
-      "setsLost": 45
-    },
-    {
-      "name": "ADANA SPORCU EĞİTİM SPOR",
-      "groupName": "13. GRUP",
-      "played": 16,
-      "wins": 3,
-      "points": 9,
-      "setsWon": 12,
-      "setsLost": 40
-    },
-    {
-      "name": "OKURA LOJİSTİK MERSİN İHTİSAS",
-      "groupName": "13. GRUP",
-      "played": 15,
-      "wins": 9,
-      "points": 27,
-      "setsWon": 31,
-      "setsLost": 21
-    },
-    {
-      "name": "ADANA B.ŞEHİR BLD.",
-      "groupName": "13. GRUP",
-      "played": 16,
-      "wins": 9,
-      "points": 26,
-      "setsWon": 31,
-      "setsLost": 28
-    },
-    {
-      "name": "TOROSLAR BLD.",
-      "groupName": "13. GRUP",
-      "played": 15,
-      "wins": 10,
-      "points": 29,
-      "setsWon": 32,
-      "setsLost": 21
-    },
-    {
-      "name": "ARSAVEV HATAY VOLEYBOL",
-      "groupName": "13. GRUP",
-      "played": 16,
-      "wins": 14,
-      "points": 42,
-      "setsWon": 43,
-      "setsLost": 7
-    },
-    {
-      "name": "TOROS ÜNIVERSİTESİ VOLGEM",
-      "groupName": "13. GRUP",
-      "played": 15,
-      "wins": 10,
-      "points": 30,
-      "setsWon": 32,
-      "setsLost": 19
+      "name": "SEMT ASANSÖR BORDO MAVİ 61",
+      "groupName": "14. GRUP",
+      "played": 18,
+      "wins": 16,
+      "points": 49,
+      "setsWon": 50,
+      "setsLost": 8
     },
     {
       "name": "SİBANET KOZAN İMAMOĞLU SPOR",
@@ -1353,256 +120,76 @@
       "setsLost": 2
     },
     {
-      "name": "BAYBURT GENÇLİK MERKEZİ",
-      "groupName": "14. GRUP",
-      "played": 16,
-      "wins": 2,
-      "points": 7,
-      "setsWon": 13,
-      "setsLost": 45
-    },
-    {
-      "name": "SINAV KOLEJİ SAMSUNSPOR",
-      "groupName": "14. GRUP",
-      "played": 16,
+      "name": "ARNAVUTKÖY BLD.",
+      "groupName": "1. GRUP",
+      "played": 17,
       "wins": 16,
-      "points": 47,
-      "setsWon": 48,
-      "setsLost": 5
+      "points": 48,
+      "setsWon": 49,
+      "setsLost": 9
     },
     {
-      "name": "HOPA BELEDİYE",
-      "groupName": "14. GRUP",
-      "played": 16,
-      "wins": 4,
-      "points": 11,
-      "setsWon": 14,
-      "setsLost": 41
+      "name": "TVF SPOR LİSESİ",
+      "groupName": "11. GRUP",
+      "played": 18,
+      "wins": 16,
+      "points": 48,
+      "setsWon": 51,
+      "setsLost": 11
     },
     {
-      "name": "SUPERPOOL FINDIKLI 1974",
-      "groupName": "14. GRUP",
-      "played": 16,
-      "wins": 2,
-      "points": 7,
-      "setsWon": 12,
-      "setsLost": 42
-    },
-    {
-      "name": "ÇORUM ARENA SPOR",
-      "groupName": "14. GRUP",
-      "played": 15,
-      "wins": 9,
-      "points": 26,
-      "setsWon": 31,
-      "setsLost": 23
-    },
-    {
-      "name": "SMART HOLDING A.Ş. ÇAYELI",
-      "groupName": "14. GRUP",
-      "played": 0,
-      "wins": 0,
-      "points": 0,
-      "setsWon": 0,
-      "setsLost": 0
-    },
-    {
-      "name": "OSMANCIK BLD.",
-      "groupName": "14. GRUP",
-      "played": 15,
-      "wins": 11,
-      "points": 33,
-      "setsWon": 36,
-      "setsLost": 14
-    },
-    {
-      "name": "SEMT ASANSÖR BORDO MAVİ 61",
-      "groupName": "14. GRUP",
-      "played": 16,
-      "wins": 15,
-      "points": 46,
-      "setsWon": 47,
-      "setsLost": 5
-    },
-    {
-      "name": "52 ÇAMLIK SPOR",
-      "groupName": "14. GRUP",
-      "played": 15,
-      "wins": 9,
-      "points": 27,
-      "setsWon": 29,
-      "setsLost": 21
-    },
-    {
-      "name": "BEŞİKDÜZÜ",
-      "groupName": "14. GRUP",
-      "played": 16,
-      "wins": 10,
-      "points": 30,
-      "setsWon": 34,
+      "name": "EFOR GENÇLİK",
+      "groupName": "6. GRUP",
+      "played": 21,
+      "wins": 16,
+      "points": 48,
+      "setsWon": 51,
       "setsLost": 22
     },
     {
-      "name": "RİZE ENDÜSTRİ MESLEK LİSESİ",
-      "groupName": "14. GRUP",
-      "played": 17,
-      "wins": 4,
-      "points": 9,
-      "setsWon": 15,
-      "setsLost": 44
+      "name": "İZMİR DSİ",
+      "groupName": "7. GRUP",
+      "played": 19,
+      "wins": 16,
+      "points": 46,
+      "setsWon": 52,
+      "setsLost": 18
     },
     {
-      "name": "ÇORUM VOLEYBOL",
-      "groupName": "14. GRUP",
+      "name": "GELİŞİM KOLEJİ",
+      "groupName": "7. GRUP",
+      "played": 19,
+      "wins": 16,
+      "points": 45,
+      "setsWon": 49,
+      "setsLost": 17
+    },
+    {
+      "name": "MEHMET EGE İNŞAAT İNEGÖL ORHANİYE VOLEYBOL",
+      "groupName": "9. GRUP",
+      "played": 18,
+      "wins": 15,
+      "points": 47,
+      "setsWon": 49,
+      "setsLost": 10
+    },
+    {
+      "name": "BEŞİKTAŞ NAVIOSA",
+      "groupName": "2. GRUP",
       "played": 16,
-      "wins": 5,
-      "points": 15,
-      "setsWon": 16,
-      "setsLost": 33
-    },
-    {
-      "name": "ZEUGMA GAZİANTEP SPOR",
-      "groupName": "15. GRUP",
-      "played": 14,
-      "wins": 13,
-      "points": 39,
-      "setsWon": 40,
+      "wins": 15,
+      "points": 45,
+      "setsWon": 46,
       "setsLost": 7
     },
     {
-      "name": "KAYSERİ CİMNASTİK SPOR",
-      "groupName": "15. GRUP",
-      "played": 15,
-      "wins": 10,
-      "points": 28,
-      "setsWon": 34,
-      "setsLost": 15
-    },
-    {
-      "name": "KAYSERİ VOLEYBOL",
-      "groupName": "15. GRUP",
-      "played": 12,
-      "wins": 7,
-      "points": 20,
-      "setsWon": 24,
-      "setsLost": 18
-    },
-    {
-      "name": "MERİNOS VOLEYBOL",
-      "groupName": "15. GRUP",
-      "played": 15,
-      "wins": 9,
-      "points": 26,
-      "setsWon": 29,
-      "setsLost": 23
-    },
-    {
-      "name": "FIRAT ÖZKAN",
-      "groupName": "15. GRUP",
-      "played": 14,
-      "wins": 1,
-      "points": 2,
-      "setsWon": 4,
-      "setsLost": 41
-    },
-    {
-      "name": "VİRANŞEHİR VOLEYBOL",
-      "groupName": "15. GRUP",
-      "played": 14,
-      "wins": 14,
-      "points": 41,
-      "setsWon": 42,
-      "setsLost": 5
-    },
-    {
-      "name": "ANTEPİA",
-      "groupName": "15. GRUP",
-      "played": 12,
-      "wins": 4,
-      "points": 13,
-      "setsWon": 15,
-      "setsLost": 25
-    },
-    {
-      "name": "SİVAS TOPRAK GAYRİMENKUL PARS AKADEMİ",
-      "groupName": "15. GRUP",
-      "played": 14,
-      "wins": 6,
-      "points": 18,
-      "setsWon": 22,
-      "setsLost": 27
-    },
-    {
-      "name": "GAZİANTEP BLD.",
-      "groupName": "15. GRUP",
-      "played": 13,
-      "wins": 0,
-      "points": 1,
-      "setsWon": 4,
-      "setsLost": 39
-    },
-    {
-      "name": "DİYARBAKIR VOLEYBOLCULAR",
-      "groupName": "15. GRUP",
-      "played": 13,
-      "wins": 4,
-      "points": 13,
-      "setsWon": 14,
-      "setsLost": 28
-    },
-    {
-      "name": "91000 DEV SPOR",
-      "groupName": "16. GRUP",
-      "played": 15,
-      "wins": 3,
-      "points": 12,
-      "setsWon": 15,
-      "setsLost": 36
-    },
-    {
-      "name": "MARGENÇ",
-      "groupName": "16. GRUP",
-      "played": 15,
-      "wins": 11,
-      "points": 31,
-      "setsWon": 33,
-      "setsLost": 18
-    },
-    {
-      "name": "MALATYA VOLEYBOL",
-      "groupName": "16. GRUP",
+      "name": "ARSAVEV HATAY VOLEYBOL",
+      "groupName": "13. GRUP",
       "played": 17,
-      "wins": 8,
-      "points": 20,
-      "setsWon": 24,
-      "setsLost": 35
-    },
-    {
-      "name": "MUŞ OLİMPİK SPOR",
-      "groupName": "16. GRUP",
-      "played": 16,
-      "wins": 9,
-      "points": 28,
-      "setsWon": 30,
-      "setsLost": 22
-    },
-    {
-      "name": "73 ŞIRNAK BLD.",
-      "groupName": "16. GRUP",
-      "played": 16,
-      "wins": 1,
-      "points": 0,
-      "setsWon": 5,
-      "setsLost": 46
-    },
-    {
-      "name": "HAKKARİ MAEMTAL",
-      "groupName": "16. GRUP",
-      "played": 14,
-      "wins": 3,
-      "points": 7,
-      "setsWon": 11,
-      "setsLost": 35
+      "wins": 15,
+      "points": 45,
+      "setsWon": 46,
+      "setsLost": 7
     },
     {
       "name": "NİCER HOTEL VOLEYBOL",
@@ -1614,22 +201,166 @@
       "setsLost": 10
     },
     {
-      "name": "HAKKARİ SPORTİF FAALİYETLER",
-      "groupName": "16. GRUP",
-      "played": 16,
-      "wins": 7,
-      "points": 22,
-      "setsWon": 27,
-      "setsLost": 30
+      "name": "CADENCE BOYA GÖLCÜK İHSANİYE",
+      "groupName": "10. GRUP",
+      "played": 17,
+      "wins": 15,
+      "points": 45,
+      "setsWon": 47,
+      "setsLost": 11
     },
     {
-      "name": "ELAZIĞ BLD.",
-      "groupName": "16. GRUP",
-      "played": 17,
-      "wins": 16,
-      "points": 49,
+      "name": "POLAT GROUP DİDİM BELEDİYESPOR",
+      "groupName": "7. GRUP",
+      "played": 20,
+      "wins": 15,
+      "points": 45,
       "setsWon": 50,
+      "setsLost": 22
+    },
+    {
+      "name": "TURGUTLU BLD. KÜLTÜR SANAT",
+      "groupName": "6. GRUP",
+      "played": 21,
+      "wins": 15,
+      "points": 45,
+      "setsWon": 50,
+      "setsLost": 28
+    },
+    {
+      "name": "ÜNSPED",
+      "groupName": "2. GRUP",
+      "played": 16,
+      "wins": 15,
+      "points": 44,
+      "setsWon": 46,
+      "setsLost": 9
+    },
+    {
+      "name": "UYSALLAR OTO FETHİYE ZİRVE",
+      "groupName": "8. GRUP",
+      "played": 18,
+      "wins": 15,
+      "points": 44,
+      "setsWon": 46,
+      "setsLost": 14
+    },
+    {
+      "name": "KAVAK SPOR",
+      "groupName": "12. GRUP",
+      "played": 18,
+      "wins": 15,
+      "points": 43,
+      "setsWon": 47,
+      "setsLost": 14
+    },
+    {
+      "name": "ESKİŞEHİR ŞEHİR KOLEJİ EĞT. KÜLTÜR",
+      "groupName": "9. GRUP",
+      "played": 18,
+      "wins": 15,
+      "points": 43,
+      "setsWon": 46,
+      "setsLost": 15
+    },
+    {
+      "name": "BALIKESİR B.ŞEHİR BLD.",
+      "groupName": "5. GRUP",
+      "played": 17,
+      "wins": 15,
+      "points": 43,
+      "setsWon": 47,
+      "setsLost": 16
+    },
+    {
+      "name": "ROTA KOLEJİ",
+      "groupName": "7. GRUP",
+      "played": 20,
+      "wins": 14,
+      "points": 45,
+      "setsWon": 50,
+      "setsLost": 25
+    },
+    {
+      "name": "CAN MİLAN ATLETİK",
+      "groupName": "3. GRUP",
+      "played": 15,
+      "wins": 14,
+      "points": 43,
+      "setsWon": 44,
+      "setsLost": 8
+    },
+    {
+      "name": "MEDIA FIRST AYVALIK GELİŞİM SPOR",
+      "groupName": "5. GRUP",
+      "played": 16,
+      "wins": 14,
+      "points": 43,
+      "setsWon": 44,
+      "setsLost": 10
+    },
+    {
+      "name": "ÇENGELKÖY VOLEYBOL",
+      "groupName": "3. GRUP",
+      "played": 15,
+      "wins": 14,
+      "points": 42,
+      "setsWon": 43,
       "setsLost": 4
+    },
+    {
+      "name": "BÜYÜKÇEKMECE VOLEYBOL AKADEMİ",
+      "groupName": "1. GRUP",
+      "played": 16,
+      "wins": 14,
+      "points": 42,
+      "setsWon": 45,
+      "setsLost": 13
+    },
+    {
+      "name": "OSMANCIK BLD.",
+      "groupName": "14. GRUP",
+      "played": 18,
+      "wins": 14,
+      "points": 42,
+      "setsWon": 45,
+      "setsLost": 17
+    },
+    {
+      "name": "GÖZTEPE",
+      "groupName": "6. GRUP",
+      "played": 21,
+      "wins": 14,
+      "points": 42,
+      "setsWon": 46,
+      "setsLost": 27
+    },
+    {
+      "name": "VİRANŞEHİR VOLEYBOL",
+      "groupName": "15. GRUP",
+      "played": 14,
+      "wins": 14,
+      "points": 41,
+      "setsWon": 42,
+      "setsLost": 5
+    },
+    {
+      "name": "YALOVA ÇİFTLİKKÖY BLD.",
+      "groupName": "9. GRUP",
+      "played": 18,
+      "wins": 14,
+      "points": 41,
+      "setsWon": 44,
+      "setsLost": 18
+    },
+    {
+      "name": "MARMARİS BLD.",
+      "groupName": "8. GRUP",
+      "played": 18,
+      "wins": 14,
+      "points": 41,
+      "setsWon": 44,
+      "setsLost": 23
     },
     {
       "name": "SİLOPİ GELİŞİM FAALİYETLERİ",
@@ -1641,12 +372,1281 @@
       "setsLost": 10
     },
     {
+      "name": "TEK METAL SPORTİF",
+      "groupName": "11. GRUP",
+      "played": 18,
+      "wins": 14,
+      "points": 39,
+      "setsWon": 45,
+      "setsLost": 23
+    },
+    {
+      "name": "FENERBAHÇE MEDICANA",
+      "groupName": "4. GRUP",
+      "played": 15,
+      "wins": 13,
+      "points": 40,
+      "setsWon": 43,
+      "setsLost": 12
+    },
+    {
+      "name": "ANKARA DSİ",
+      "groupName": "12. GRUP",
+      "played": 18,
+      "wins": 13,
+      "points": 40,
+      "setsWon": 42,
+      "setsLost": 18
+    },
+    {
+      "name": "ZEUGMA GAZİANTEP SPOR",
+      "groupName": "15. GRUP",
+      "played": 14,
+      "wins": 13,
+      "points": 39,
+      "setsWon": 40,
+      "setsLost": 7
+    },
+    {
+      "name": "KOCAELİ VOLEYBOL AKADEMİ",
+      "groupName": "10. GRUP",
+      "played": 16,
+      "wins": 13,
+      "points": 39,
+      "setsWon": 41,
+      "setsLost": 14
+    },
+    {
+      "name": "GALATASARAY",
+      "groupName": "3. GRUP",
+      "played": 15,
+      "wins": 13,
+      "points": 38,
+      "setsWon": 41,
+      "setsLost": 13
+    },
+    {
+      "name": "BALIKESİR DSİ",
+      "groupName": "5. GRUP",
+      "played": 16,
+      "wins": 13,
+      "points": 38,
+      "setsWon": 42,
+      "setsLost": 14
+    },
+    {
+      "name": "BURSA FETHİYE 1973 SPOR",
+      "groupName": "9. GRUP",
+      "played": 18,
+      "wins": 13,
+      "points": 38,
+      "setsWon": 42,
+      "setsLost": 21
+    },
+    {
+      "name": "TÜRK HAVA YOLLARI",
+      "groupName": "1. GRUP",
+      "played": 16,
+      "wins": 13,
+      "points": 36,
+      "setsWon": 41,
+      "setsLost": 15
+    },
+    {
+      "name": "TOYZZ SHOP DİNAMO SPOR",
+      "groupName": "4. GRUP",
+      "played": 15,
+      "wins": 12,
+      "points": 37,
+      "setsWon": 40,
+      "setsLost": 12
+    },
+    {
+      "name": "KOCAELİ NİCOMEDİA AKADEMİ",
+      "groupName": "10. GRUP",
+      "played": 16,
+      "wins": 12,
+      "points": 37,
+      "setsWon": 41,
+      "setsLost": 17
+    },
+    {
+      "name": "ÇANAKKALE KEPEZ",
+      "groupName": "5. GRUP",
+      "played": 17,
+      "wins": 12,
+      "points": 36,
+      "setsWon": 41,
+      "setsLost": 20
+    },
+    {
+      "name": "YEŞİLYURT",
+      "groupName": "2. GRUP",
+      "played": 17,
+      "wins": 12,
+      "points": 36,
+      "setsWon": 39,
+      "setsLost": 22
+    },
+    {
+      "name": "KUZEY YILDIZLARI",
+      "groupName": "4. GRUP",
+      "played": 15,
+      "wins": 12,
+      "points": 35,
+      "setsWon": 39,
+      "setsLost": 13
+    },
+    {
+      "name": "MEHMET ERDEM MARMARA AKADEMİ",
+      "groupName": "4. GRUP",
+      "played": 15,
+      "wins": 12,
+      "points": 34,
+      "setsWon": 37,
+      "setsLost": 15
+    },
+    {
+      "name": "MARGENÇ",
+      "groupName": "16. GRUP",
+      "played": 16,
+      "wins": 12,
+      "points": 34,
+      "setsWon": 36,
+      "setsLost": 19
+    },
+    {
+      "name": "ENGLISH TIME SPOR",
+      "groupName": "11. GRUP",
+      "played": 18,
+      "wins": 12,
+      "points": 34,
+      "setsWon": 40,
+      "setsLost": 26
+    },
+    {
+      "name": "İSTANBUL BİZİMKENT SPOR",
+      "groupName": "1. GRUP",
+      "played": 16,
+      "wins": 11,
+      "points": 35,
+      "setsWon": 38,
+      "setsLost": 18
+    },
+    {
+      "name": "PTT",
+      "groupName": "11. GRUP",
+      "played": 18,
+      "wins": 11,
+      "points": 34,
+      "setsWon": 38,
+      "setsLost": 27
+    },
+    {
+      "name": "YEŞİL BAYRAMİÇ",
+      "groupName": "5. GRUP",
+      "played": 16,
+      "wins": 11,
+      "points": 33,
+      "setsWon": 36,
+      "setsLost": 16
+    },
+    {
+      "name": "SİLİVRİ ÇAĞRIBEY",
+      "groupName": "1. GRUP",
+      "played": 16,
+      "wins": 11,
+      "points": 33,
+      "setsWon": 40,
+      "setsLost": 22
+    },
+    {
+      "name": "TOROS ÜNIVERSİTESİ VOLGEM",
+      "groupName": "13. GRUP",
+      "played": 16,
+      "wins": 11,
+      "points": 33,
+      "setsWon": 35,
+      "setsLost": 20
+    },
+    {
+      "name": "BAHÇELİEVLER BLD.",
+      "groupName": "2. GRUP",
+      "played": 16,
+      "wins": 11,
+      "points": 33,
+      "setsWon": 36,
+      "setsLost": 21
+    },
+    {
+      "name": "BEŞİKDÜZÜ",
+      "groupName": "14. GRUP",
+      "played": 18,
+      "wins": 11,
+      "points": 33,
+      "setsWon": 37,
+      "setsLost": 26
+    },
+    {
+      "name": "ÇORUM ARENA SPOR",
+      "groupName": "14. GRUP",
+      "played": 18,
+      "wins": 11,
+      "points": 32,
+      "setsWon": 38,
+      "setsLost": 27
+    },
+    {
+      "name": "SÖKE BELEDİYE SALDOS VOLEYBOL",
+      "groupName": "7. GRUP",
+      "played": 19,
+      "wins": 11,
+      "points": 32,
+      "setsWon": 39,
+      "setsLost": 33
+    },
+    {
+      "name": "ALTINAY SPOR",
+      "groupName": "6. GRUP",
+      "played": 21,
+      "wins": 11,
+      "points": 32,
+      "setsWon": 37,
+      "setsLost": 38
+    },
+    {
+      "name": "AKDENİZ BİLGİ SPOR",
+      "groupName": "8. GRUP",
+      "played": 18,
+      "wins": 11,
+      "points": 29,
+      "setsWon": 37,
+      "setsLost": 33
+    },
+    {
+      "name": "İLBANK",
+      "groupName": "11. GRUP",
+      "played": 18,
+      "wins": 10,
+      "points": 34,
+      "setsWon": 38,
+      "setsLost": 26
+    },
+    {
+      "name": "KAYSERİ CİMNASTİK SPOR",
+      "groupName": "15. GRUP",
+      "played": 16,
+      "wins": 10,
+      "points": 32,
+      "setsWon": 36,
+      "setsLost": 18
+    },
+    {
+      "name": "GÜRAL PREMIER ANTALYASPOR",
+      "groupName": "8. GRUP",
+      "played": 18,
+      "wins": 10,
+      "points": 31,
+      "setsWon": 37,
+      "setsLost": 28
+    },
+    {
+      "name": "POLATLI DUATEPE",
+      "groupName": "12. GRUP",
+      "played": 18,
+      "wins": 10,
+      "points": 31,
+      "setsWon": 33,
+      "setsLost": 26
+    },
+    {
+      "name": "ENDO KARŞIYAKA",
+      "groupName": "7. GRUP",
+      "played": 19,
+      "wins": 10,
+      "points": 31,
+      "setsWon": 39,
+      "setsLost": 31
+    },
+    {
+      "name": "FETHİYE VOLEYBOL",
+      "groupName": "8. GRUP",
+      "played": 18,
+      "wins": 10,
+      "points": 31,
+      "setsWon": 41,
+      "setsLost": 34
+    },
+    {
+      "name": "OKURA LOJİSTİK MERSİN İHTİSAS",
+      "groupName": "13. GRUP",
+      "played": 16,
+      "wins": 10,
+      "points": 30,
+      "setsWon": 34,
+      "setsLost": 21
+    },
+    {
+      "name": "52 ÇAMLIK SPOR",
+      "groupName": "14. GRUP",
+      "played": 18,
+      "wins": 10,
+      "points": 30,
+      "setsWon": 33,
+      "setsLost": 27
+    },
+    {
+      "name": "TOROSLAR BLD.",
+      "groupName": "13. GRUP",
+      "played": 16,
+      "wins": 10,
+      "points": 29,
+      "setsWon": 33,
+      "setsLost": 24
+    },
+    {
+      "name": "ADANA B.ŞEHİR BLD.",
+      "groupName": "13. GRUP",
+      "played": 17,
+      "wins": 10,
+      "points": 29,
+      "setsWon": 34,
+      "setsLost": 28
+    },
+    {
+      "name": "GEMLİK İSTİKLAL SPOR",
+      "groupName": "9. GRUP",
+      "played": 18,
+      "wins": 10,
+      "points": 29,
+      "setsWon": 32,
+      "setsLost": 31
+    },
+    {
+      "name": "MERİNOS VOLEYBOL",
+      "groupName": "15. GRUP",
+      "played": 16,
+      "wins": 10,
+      "points": 28,
+      "setsWon": 32,
+      "setsLost": 25
+    },
+    {
+      "name": "GÖLBAŞI İNCEK SPOR",
+      "groupName": "11. GRUP",
+      "played": 18,
+      "wins": 10,
+      "points": 28,
+      "setsWon": 36,
+      "setsLost": 32
+    },
+    {
+      "name": "AKHİSAR GÜCÜ",
+      "groupName": "6. GRUP",
+      "played": 21,
+      "wins": 10,
+      "points": 28,
+      "setsWon": 35,
+      "setsLost": 41
+    },
+    {
+      "name": "WORLD MEDICINE ATEŞ SPOR",
+      "groupName": "3. GRUP",
+      "played": 15,
+      "wins": 9,
+      "points": 28,
+      "setsWon": 30,
+      "setsLost": 21
+    },
+    {
+      "name": "MUŞ OLİMPİK SPOR",
+      "groupName": "16. GRUP",
+      "played": 17,
+      "wins": 9,
+      "points": 28,
+      "setsWon": 31,
+      "setsLost": 25
+    },
+    {
+      "name": "BÜYÜK REŞİTPAŞA ORTAOKULU",
+      "groupName": "2. GRUP",
+      "played": 17,
+      "wins": 9,
+      "points": 28,
+      "setsWon": 33,
+      "setsLost": 27
+    },
+    {
+      "name": "07 MEGA SPOR",
+      "groupName": "8. GRUP",
+      "played": 18,
+      "wins": 9,
+      "points": 27,
+      "setsWon": 36,
+      "setsLost": 35
+    },
+    {
+      "name": "SMART HOLDING A.Ş. ÇAYELI",
+      "groupName": "14. GRUP",
+      "played": 18,
+      "wins": 9,
+      "points": 26,
+      "setsWon": 34,
+      "setsLost": 33
+    },
+    {
+      "name": "ERYAMAN GELİŞİM",
+      "groupName": "12. GRUP",
+      "played": 18,
+      "wins": 9,
+      "points": 26,
+      "setsWon": 32,
+      "setsLost": 33
+    },
+    {
+      "name": "ÇABA SPOR",
+      "groupName": "12. GRUP",
+      "played": 18,
+      "wins": 9,
+      "points": 26,
+      "setsWon": 27,
+      "setsLost": 32
+    },
+    {
+      "name": "SMAÇ SPOR",
+      "groupName": "1. GRUP",
+      "played": 17,
+      "wins": 9,
+      "points": 25,
+      "setsWon": 34,
+      "setsLost": 30
+    },
+    {
+      "name": "BAYRAKLI BLD.",
+      "groupName": "6. GRUP",
+      "played": 21,
+      "wins": 8,
+      "points": 28,
+      "setsWon": 37,
+      "setsLost": 46
+    },
+    {
+      "name": "ÇORLU BLD.",
+      "groupName": "5. GRUP",
+      "played": 16,
+      "wins": 8,
+      "points": 23,
+      "setsWon": 26,
+      "setsLost": 27
+    },
+    {
+      "name": "SERDİVAN BLD.",
+      "groupName": "10. GRUP",
+      "played": 17,
+      "wins": 8,
+      "points": 23,
+      "setsWon": 31,
+      "setsLost": 34
+    },
+    {
+      "name": "AYDIN BÜYÜKŞEHİR BELEDİYESPOR",
+      "groupName": "7. GRUP",
+      "played": 19,
+      "wins": 8,
+      "points": 23,
+      "setsWon": 27,
+      "setsLost": 38
+    },
+    {
+      "name": "KARTAL BLD.",
+      "groupName": "4. GRUP",
+      "played": 15,
+      "wins": 8,
+      "points": 22,
+      "setsWon": 26,
+      "setsLost": 27
+    },
+    {
+      "name": "ALTAY",
+      "groupName": "6. GRUP",
+      "played": 21,
+      "wins": 8,
+      "points": 21,
+      "setsWon": 30,
+      "setsLost": 50
+    },
+    {
+      "name": "MALATYA VOLEYBOL",
+      "groupName": "16. GRUP",
+      "played": 17,
+      "wins": 8,
+      "points": 20,
+      "setsWon": 24,
+      "setsLost": 35
+    },
+    {
+      "name": "AÇI KOLEJİ",
+      "groupName": "8. GRUP",
+      "played": 18,
+      "wins": 7,
+      "points": 24,
+      "setsWon": 30,
+      "setsLost": 35
+    },
+    {
+      "name": "ÇAN KALE SPOR",
+      "groupName": "5. GRUP",
+      "played": 17,
+      "wins": 7,
+      "points": 23,
+      "setsWon": 28,
+      "setsLost": 32
+    },
+    {
+      "name": "ADANA T.D.S.",
+      "groupName": "13. GRUP",
+      "played": 17,
+      "wins": 7,
+      "points": 23,
+      "setsWon": 27,
+      "setsLost": 31
+    },
+    {
+      "name": "HAKKARİ SPORTİF FAALİYETLER",
+      "groupName": "16. GRUP",
+      "played": 16,
+      "wins": 7,
+      "points": 22,
+      "setsWon": 27,
+      "setsLost": 30
+    },
+    {
+      "name": "TÜRKOĞLU SPOR KULÜBÜ",
+      "groupName": "6. GRUP",
+      "played": 21,
+      "wins": 7,
+      "points": 22,
+      "setsWon": 30,
+      "setsLost": 49
+    },
+    {
+      "name": "EYÜPSULTAN BLD.",
+      "groupName": "2. GRUP",
+      "played": 16,
+      "wins": 7,
+      "points": 21,
+      "setsWon": 26,
+      "setsLost": 29
+    },
+    {
+      "name": "TARSUS AMERİKAN KOLEJİ",
+      "groupName": "13. GRUP",
+      "played": 16,
+      "wins": 7,
+      "points": 21,
+      "setsWon": 23,
+      "setsLost": 31
+    },
+    {
+      "name": "BURSA B.ŞEHİR BLD.",
+      "groupName": "9. GRUP",
+      "played": 18,
+      "wins": 7,
+      "points": 21,
+      "setsWon": 25,
+      "setsLost": 36
+    },
+    {
+      "name": "KAYSERİ VOLEYBOL",
+      "groupName": "15. GRUP",
+      "played": 12,
+      "wins": 7,
+      "points": 20,
+      "setsWon": 24,
+      "setsLost": 18
+    },
+    {
+      "name": "KAMARİN SPOR",
+      "groupName": "4. GRUP",
+      "played": 15,
+      "wins": 7,
+      "points": 20,
+      "setsWon": 24,
+      "setsLost": 31
+    },
+    {
+      "name": "DEV ATAŞEHİR",
+      "groupName": "3. GRUP",
+      "played": 15,
+      "wins": 7,
+      "points": 20,
+      "setsWon": 22,
+      "setsLost": 31
+    },
+    {
+      "name": "FORZA SPOR",
+      "groupName": "6. GRUP",
+      "played": 21,
+      "wins": 7,
+      "points": 20,
+      "setsWon": 32,
+      "setsLost": 48
+    },
+    {
+      "name": "BOLU ATATÜRK ANADOLU LİSESİ",
+      "groupName": "10. GRUP",
+      "played": 16,
+      "wins": 7,
+      "points": 19,
+      "setsWon": 25,
+      "setsLost": 32
+    },
+    {
+      "name": "GAZİEMİR BLD.",
+      "groupName": "7. GRUP",
+      "played": 19,
+      "wins": 6,
+      "points": 23,
+      "setsWon": 33,
+      "setsLost": 40
+    },
+    {
+      "name": "MG SPOR",
+      "groupName": "9. GRUP",
+      "played": 18,
+      "wins": 6,
+      "points": 20,
+      "setsWon": 23,
+      "setsLost": 40
+    },
+    {
+      "name": "LANUEVA KOZMETİK ANADOLU MARMARA",
+      "groupName": "3. GRUP",
+      "played": 15,
+      "wins": 6,
+      "points": 19,
+      "setsWon": 24,
+      "setsLost": 32
+    },
+    {
+      "name": "GEBZE GENÇLİK VE SPOR",
+      "groupName": "10. GRUP",
+      "played": 16,
+      "wins": 6,
+      "points": 19,
+      "setsWon": 25,
+      "setsLost": 35
+    },
+    {
+      "name": "ROBERTEAM",
+      "groupName": "2. GRUP",
+      "played": 16,
+      "wins": 6,
+      "points": 19,
+      "setsWon": 22,
+      "setsLost": 32
+    },
+    {
+      "name": "ÇORUM VOLEYBOL",
+      "groupName": "14. GRUP",
+      "played": 18,
+      "wins": 6,
+      "points": 19,
+      "setsWon": 21,
+      "setsLost": 36
+    },
+    {
+      "name": "VOLKAN GÜÇ SPOR",
+      "groupName": "7. GRUP",
+      "played": 20,
+      "wins": 6,
+      "points": 19,
+      "setsWon": 29,
+      "setsLost": 50
+    },
+    {
+      "name": "TED ANKARA KOLEJLİLER",
+      "groupName": "12. GRUP",
+      "played": 18,
+      "wins": 6,
+      "points": 19,
+      "setsWon": 22,
+      "setsLost": 39
+    },
+    {
+      "name": "SİVAS TOPRAK GAYRİMENKUL PARS AKADEMİ",
+      "groupName": "15. GRUP",
+      "played": 14,
+      "wins": 6,
+      "points": 18,
+      "setsWon": 22,
+      "setsLost": 27
+    },
+    {
+      "name": "AVRUPA VOLEYBOL GELİŞİM",
+      "groupName": "1. GRUP",
+      "played": 16,
+      "wins": 6,
+      "points": 18,
+      "setsWon": 25,
+      "setsLost": 35
+    },
+    {
+      "name": "BAŞAKŞEHİR VOLEYBOL",
+      "groupName": "2. GRUP",
+      "played": 17,
+      "wins": 6,
+      "points": 18,
+      "setsWon": 22,
+      "setsLost": 34
+    },
+    {
+      "name": "AHMET HAMDİ TANPINAR ORTAOKULU",
+      "groupName": "11. GRUP",
+      "played": 18,
+      "wins": 6,
+      "points": 18,
+      "setsWon": 24,
+      "setsLost": 42
+    },
+    {
+      "name": "GÜNGÖREN VOLEYBOL",
+      "groupName": "2. GRUP",
+      "played": 16,
+      "wins": 6,
+      "points": 16,
+      "setsWon": 21,
+      "setsLost": 38
+    },
+    {
+      "name": "ANTEPİA",
+      "groupName": "15. GRUP",
+      "played": 13,
+      "wins": 5,
+      "points": 16,
+      "setsWon": 18,
+      "setsLost": 26
+    },
+    {
+      "name": "BEYLİKDÜZÜ BEYKENT",
+      "groupName": "1. GRUP",
+      "played": 17,
+      "wins": 5,
+      "points": 16,
+      "setsWon": 19,
+      "setsLost": 37
+    },
+    {
+      "name": "DÜZCE VOLEYBOL",
+      "groupName": "10. GRUP",
+      "played": 16,
+      "wins": 5,
+      "points": 15,
+      "setsWon": 21,
+      "setsLost": 37
+    },
+    {
+      "name": "ELİT AKDENİZ",
+      "groupName": "8. GRUP",
+      "played": 18,
+      "wins": 5,
+      "points": 15,
+      "setsWon": 24,
+      "setsLost": 43
+    },
+    {
+      "name": "YUNUSEMRE BLD.",
+      "groupName": "6. GRUP",
+      "played": 21,
+      "wins": 5,
+      "points": 15,
+      "setsWon": 19,
+      "setsLost": 51
+    },
+    {
+      "name": "ALTINYURT",
+      "groupName": "3. GRUP",
+      "played": 15,
+      "wins": 5,
+      "points": 14,
+      "setsWon": 22,
+      "setsLost": 37
+    },
+    {
+      "name": "ÇEKMEKÖY İSTANBUL SPOR",
+      "groupName": "4. GRUP",
+      "played": 15,
+      "wins": 5,
+      "points": 14,
+      "setsWon": 18,
+      "setsLost": 34
+    },
+    {
+      "name": "RİZE ENDÜSTRİ MESLEK LİSESİ",
+      "groupName": "14. GRUP",
+      "played": 19,
+      "wins": 5,
+      "points": 14,
+      "setsWon": 19,
+      "setsLost": 49
+    },
+    {
+      "name": "DENİZLİ B.ŞEHİR BLD.",
+      "groupName": "8. GRUP",
+      "played": 18,
+      "wins": 5,
+      "points": 13,
+      "setsWon": 19,
+      "setsLost": 45
+    },
+    {
+      "name": "VENÜS SPOR",
+      "groupName": "7. GRUP",
+      "played": 20,
+      "wins": 5,
+      "points": 13,
+      "setsWon": 18,
+      "setsLost": 51
+    },
+    {
+      "name": "ALP SPOR",
+      "groupName": "4. GRUP",
+      "played": 15,
+      "wins": 4,
+      "points": 15,
+      "setsWon": 20,
+      "setsLost": 34
+    },
+    {
+      "name": "ISPARTA GENÇLİK SPOR",
+      "groupName": "8. GRUP",
+      "played": 18,
+      "wins": 4,
+      "points": 14,
+      "setsWon": 20,
+      "setsLost": 47
+    },
+    {
+      "name": "DİYARBAKIR VOLEYBOLCULAR",
+      "groupName": "15. GRUP",
+      "played": 13,
+      "wins": 4,
+      "points": 13,
+      "setsWon": 14,
+      "setsLost": 28
+    },
+    {
+      "name": "KARABÜK GENÇLİK SPOR",
+      "groupName": "10. GRUP",
+      "played": 16,
+      "wins": 4,
+      "points": 13,
+      "setsWon": 17,
+      "setsLost": 38
+    },
+    {
+      "name": "ESKİŞEHİR PEYMAN SPOR",
+      "groupName": "9. GRUP",
+      "played": 18,
+      "wins": 4,
+      "points": 13,
+      "setsWon": 18,
+      "setsLost": 43
+    },
+    {
+      "name": "AL-KA ALTIN KANATLAR",
+      "groupName": "9. GRUP",
+      "played": 18,
+      "wins": 4,
+      "points": 12,
+      "setsWon": 19,
+      "setsLost": 44
+    },
+    {
+      "name": "BAŞKENT ZİRVE",
+      "groupName": "12. GRUP",
+      "played": 18,
+      "wins": 4,
+      "points": 12,
+      "setsWon": 17,
+      "setsLost": 44
+    },
+    {
+      "name": "HEDEF ANKARA",
+      "groupName": "12. GRUP",
+      "played": 18,
+      "wins": 4,
+      "points": 12,
+      "setsWon": 18,
+      "setsLost": 47
+    },
+    {
+      "name": "ÇERKEZKÖY VOLEYBOL AKADEMİ",
+      "groupName": "5. GRUP",
+      "played": 16,
+      "wins": 4,
+      "points": 12,
+      "setsWon": 13,
+      "setsLost": 37
+    },
+    {
+      "name": "HOPA BELEDİYE",
+      "groupName": "14. GRUP",
+      "played": 19,
+      "wins": 4,
+      "points": 11,
+      "setsWon": 14,
+      "setsLost": 50
+    },
+    {
+      "name": "BANDIRMA ÇELİK SPOR",
+      "groupName": "5. GRUP",
+      "played": 16,
+      "wins": 4,
+      "points": 10,
+      "setsWon": 14,
+      "setsLost": 41
+    },
+    {
+      "name": "ANKARA BAROSU",
+      "groupName": "11. GRUP",
+      "played": 18,
+      "wins": 3,
+      "points": 12,
+      "setsWon": 22,
+      "setsLost": 47
+    },
+    {
+      "name": "91000 DEV SPOR",
+      "groupName": "16. GRUP",
+      "played": 15,
+      "wins": 3,
+      "points": 12,
+      "setsWon": 15,
+      "setsLost": 36
+    },
+    {
+      "name": "ÇATALCA BLD.",
+      "groupName": "1. GRUP",
+      "played": 16,
+      "wins": 3,
+      "points": 12,
+      "setsWon": 15,
+      "setsLost": 41
+    },
+    {
+      "name": "DOĞU AKADEMİ",
+      "groupName": "3. GRUP",
+      "played": 15,
+      "wins": 3,
+      "points": 11,
+      "setsWon": 20,
+      "setsLost": 39
+    },
+    {
+      "name": "BAYBURT GENÇLİK MERKEZİ",
+      "groupName": "14. GRUP",
+      "played": 18,
+      "wins": 3,
+      "points": 11,
+      "setsWon": 18,
+      "setsLost": 48
+    },
+    {
+      "name": "ATA OKUL SPOR",
+      "groupName": "6. GRUP",
+      "played": 21,
+      "wins": 3,
+      "points": 11,
+      "setsWon": 18,
+      "setsLost": 57
+    },
+    {
+      "name": "HAKKARİ MAEMTAL",
+      "groupName": "16. GRUP",
+      "played": 14,
+      "wins": 3,
+      "points": 10,
+      "setsWon": 11,
+      "setsLost": 35
+    },
+    {
+      "name": "TEMİZ ENERJİ BIRLİĞİ",
+      "groupName": "11. GRUP",
+      "played": 18,
+      "wins": 3,
+      "points": 9,
+      "setsWon": 16,
+      "setsLost": 49
+    },
+    {
+      "name": "BAŞKENT ADA SPOR",
+      "groupName": "11. GRUP",
+      "played": 18,
+      "wins": 3,
+      "points": 9,
+      "setsWon": 15,
+      "setsLost": 46
+    },
+    {
+      "name": "VEFA",
+      "groupName": "2. GRUP",
+      "played": 16,
+      "wins": 3,
+      "points": 9,
+      "setsWon": 14,
+      "setsLost": 43
+    },
+    {
+      "name": "ADANA SPORCU EĞİTİM SPOR",
+      "groupName": "13. GRUP",
+      "played": 17,
+      "wins": 3,
+      "points": 9,
+      "setsWon": 12,
+      "setsLost": 43
+    },
+    {
+      "name": "KZY SPOR",
+      "groupName": "6. GRUP",
+      "played": 21,
+      "wins": 3,
+      "points": 9,
+      "setsWon": 15,
+      "setsLost": 56
+    },
+    {
+      "name": "KIRKLARELİ GENÇLİK SPOR",
+      "groupName": "5. GRUP",
+      "played": 16,
+      "wins": 2,
+      "points": 9,
+      "setsWon": 15,
+      "setsLost": 42
+    },
+    {
+      "name": "KARTAL ANADOLU",
+      "groupName": "4. GRUP",
+      "played": 15,
+      "wins": 2,
+      "points": 8,
+      "setsWon": 15,
+      "setsLost": 41
+    },
+    {
+      "name": "YEDİDAĞ SPOR",
+      "groupName": "12. GRUP",
+      "played": 18,
+      "wins": 2,
+      "points": 7,
+      "setsWon": 15,
+      "setsLost": 51
+    },
+    {
+      "name": "İZMİT SPOR",
+      "groupName": "10. GRUP",
+      "played": 17,
+      "wins": 2,
+      "points": 7,
+      "setsWon": 13,
+      "setsLost": 47
+    },
+    {
       "name": "SİLOPİ BLD. SPORTİF FAALİYETLER",
       "groupName": "16. GRUP",
       "played": 18,
       "wins": 2,
       "points": 7,
       "setsWon": 13,
+      "setsLost": 51
+    },
+    {
+      "name": "SUPERPOOL FINDIKLI 1974",
+      "groupName": "14. GRUP",
+      "played": 18,
+      "wins": 2,
+      "points": 7,
+      "setsWon": 12,
+      "setsLost": 48
+    },
+    {
+      "name": "İZMİR B.ŞEHIR BLD.",
+      "groupName": "7. GRUP",
+      "played": 19,
+      "wins": 2,
+      "points": 7,
+      "setsWon": 12,
+      "setsLost": 51
+    },
+    {
+      "name": "HAKAN AKIŞIK SPOR",
+      "groupName": "11. GRUP",
+      "played": 18,
+      "wins": 2,
+      "points": 7,
+      "setsWon": 12,
+      "setsLost": 51
+    },
+    {
+      "name": "HOCA AHMET YESEVİ ANADOLU L. ES VOLEYBOL AKADEMİ",
+      "groupName": "9. GRUP",
+      "played": 18,
+      "wins": 2,
+      "points": 6,
+      "setsWon": 12,
+      "setsLost": 51
+    },
+    {
+      "name": "ATAŞEHİR KARTALLARI",
+      "groupName": "3. GRUP",
+      "played": 15,
+      "wins": 2,
+      "points": 5,
+      "setsWon": 13,
+      "setsLost": 43
+    },
+    {
+      "name": "MAÇ SAYISI",
+      "groupName": "3. GRUP",
+      "played": 15,
+      "wins": 2,
+      "points": 5,
+      "setsWon": 12,
+      "setsLost": 43
+    },
+    {
+      "name": "MKE ANKARAGÜCÜ",
+      "groupName": "12. GRUP",
+      "played": 18,
+      "wins": 2,
+      "points": 5,
+      "setsWon": 9,
+      "setsLost": 52
+    },
+    {
+      "name": "HEKİMOĞLU GLOBAL CONNECT TRAVEL BVİ",
+      "groupName": "9. GRUP",
+      "played": 18,
+      "wins": 2,
+      "points": 5,
+      "setsWon": 8,
+      "setsLost": 51
+    },
+    {
+      "name": "KÜÇÜKÇEKMECE VOLEYBOL",
+      "groupName": "1. GRUP",
+      "played": 17,
+      "wins": 2,
+      "points": 4,
+      "setsWon": 6,
+      "setsLost": 49
+    },
+    {
+      "name": "73 ŞIRNAK BLD.",
+      "groupName": "16. GRUP",
+      "played": 16,
+      "wins": 1,
+      "points": 3,
+      "setsWon": 5,
+      "setsLost": 46
+    },
+    {
+      "name": "EREĞLİ SÜMER SPOR",
+      "groupName": "13. GRUP",
+      "played": 16,
+      "wins": 1,
+      "points": 3,
+      "setsWon": 4,
+      "setsLost": 46
+    },
+    {
+      "name": "HARPUT LAHMACUN YAHYA KAPTAN",
+      "groupName": "10. GRUP",
+      "played": 16,
+      "wins": 1,
+      "points": 3,
+      "setsWon": 3,
+      "setsLost": 45
+    },
+    {
+      "name": "FIRAT ÖZKAN",
+      "groupName": "15. GRUP",
+      "played": 14,
+      "wins": 1,
+      "points": 2,
+      "setsWon": 4,
+      "setsLost": 41
+    },
+    {
+      "name": "YENİAY LOJİSTİK SARIYER KONAK SPOR",
+      "groupName": "2. GRUP",
+      "played": 17,
+      "wins": 0,
+      "points": 1,
+      "setsWon": 8,
+      "setsLost": 51
+    },
+    {
+      "name": "GAZİANTEP BLD.",
+      "groupName": "15. GRUP",
+      "played": 14,
+      "wins": 0,
+      "points": 1,
+      "setsWon": 5,
+      "setsLost": 42
+    },
+    {
+      "name": "BİZİMKENT VOLEYBOL",
+      "groupName": "1. GRUP",
+      "played": 16,
+      "wins": 0,
+      "points": 1,
+      "setsWon": 5,
+      "setsLost": 48
+    },
+    {
+      "name": "AFYON GENÇLİK SPOR",
+      "groupName": "8. GRUP",
+      "played": 18,
+      "wins": 0,
+      "points": 1,
+      "setsWon": 4,
+      "setsLost": 54
+    },
+    {
+      "name": "SEYHAN BLD.",
+      "groupName": "13. GRUP",
+      "played": 16,
+      "wins": 0,
+      "points": 0,
+      "setsWon": 5,
+      "setsLost": 48
+    },
+    {
+      "name": "TUZLA MERCAN",
+      "groupName": "4. GRUP",
+      "played": 15,
+      "wins": 0,
+      "points": 0,
+      "setsWon": 2,
+      "setsLost": 45
+    },
+    {
+      "name": "ÜLKÜ SPOR",
+      "groupName": "7. GRUP",
+      "played": 20,
+      "wins": 0,
+      "points": 0,
+      "setsWon": 1,
+      "setsLost": 60
+    },
+    {
+      "name": "TEKİRDAĞ VOLEYBOL İHTİSAS",
+      "groupName": "5. GRUP",
+      "played": 17,
+      "wins": 0,
+      "points": 0,
+      "setsWon": 0,
       "setsLost": 51
     }
   ],
@@ -3036,9 +3036,12 @@
       "groupName": "1. GRUP",
       "homeTeam": "BİZİMKENT VOLEYBOL",
       "awayTeam": "BEYLİKDÜZÜ BEYKENT",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İstanbul-Beylikdüzü Spor Kompleksi"
+      "venue": "İstanbul-Beylikdüzü Spor Kompleksi",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 174519,
@@ -3049,9 +3052,12 @@
       "groupName": "1. GRUP",
       "homeTeam": "SMAÇ SPOR",
       "awayTeam": "ÇATALCA BLD.",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İstanbul-Beylikdüzü Spor Kompleksi"
+      "venue": "İstanbul-Beylikdüzü Spor Kompleksi",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 753136,
@@ -3062,9 +3068,12 @@
       "groupName": "1. GRUP",
       "homeTeam": "İSTANBUL BİZİMKENT SPOR",
       "awayTeam": "KÜÇÜKÇEKMECE VOLEYBOL",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İstanbul-Beylikdüzü Spor Kompleksi"
+      "venue": "İstanbul-Beylikdüzü Spor Kompleksi",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 376290,
@@ -3075,9 +3084,12 @@
       "groupName": "1. GRUP",
       "homeTeam": "BÜYÜKÇEKMECE VOLEYBOL AKADEMİ",
       "awayTeam": "SİLİVRİ ÇAĞRIBEY",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İstanbul-Mimar Sinan"
+      "venue": "İstanbul-Mimar Sinan",
+      "resultScore": "2-3",
+      "homeScore": 2,
+      "awayScore": 3
     },
     {
       "id": 470555,
@@ -4708,9 +4720,12 @@
       "groupName": "2. GRUP",
       "homeTeam": "EYÜPSULTAN BLD.",
       "awayTeam": "ROBERTEAM",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İstanbul-Eyüpsultan Bld. 100. Spor Salonu"
+      "venue": "İstanbul-Eyüpsultan Bld. 100. Spor Salonu",
+      "resultScore": "1-3",
+      "homeScore": 1,
+      "awayScore": 3
     },
     {
       "id": 697600,
@@ -4721,9 +4736,12 @@
       "groupName": "2. GRUP",
       "homeTeam": "BAŞAKŞEHİR VOLEYBOL",
       "awayTeam": "VEFA",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İstanbul-Başakşehir Spor Kompleksi"
+      "venue": "İstanbul-Başakşehir Spor Kompleksi",
+      "resultScore": "3-1",
+      "homeScore": 3,
+      "awayScore": 1
     },
     {
       "id": 626269,
@@ -4734,9 +4752,12 @@
       "groupName": "2. GRUP",
       "homeTeam": "BÜYÜK REŞİTPAŞA ORTAOKULU",
       "awayTeam": "BAHÇELİEVLER BLD.",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İstanbul-Fatih Bld. Atatürk Çağdaş Yaşam Lisesi"
+      "venue": "İstanbul-Fatih Bld. Atatürk Çağdaş Yaşam Lisesi",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 774855,
@@ -4747,9 +4768,12 @@
       "groupName": "2. GRUP",
       "homeTeam": "BEŞİKTAŞ NAVIOSA",
       "awayTeam": "YEŞİLYURT",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İstanbul-Süleyman Seba"
+      "venue": "İstanbul-Süleyman Seba",
+      "resultScore": "3-1",
+      "homeScore": 3,
+      "awayScore": 1
     },
     {
       "id": 195258,
@@ -4760,9 +4784,12 @@
       "groupName": "2. GRUP",
       "homeTeam": "GÜNGÖREN VOLEYBOL",
       "awayTeam": "YENİAY LOJİSTİK SARIYER KONAK SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İstanbul-Tozkoparan Spor Salonu"
+      "venue": "İstanbul-Tozkoparan Spor Salonu",
+      "resultScore": "3-2",
+      "homeScore": 3,
+      "awayScore": 2
     },
     {
       "id": 176275,
@@ -6169,9 +6196,12 @@
       "groupName": "3. GRUP",
       "homeTeam": "ÇENGELKÖY VOLEYBOL",
       "awayTeam": "WORLD MEDICINE ATEŞ SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İstanbul-50.Yıl Deniz Esinduy"
+      "venue": "İstanbul-50.Yıl Deniz Esinduy",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 451966,
@@ -6182,9 +6212,12 @@
       "groupName": "3. GRUP",
       "homeTeam": "LANUEVA KOZMETİK ANADOLU MARMARA",
       "awayTeam": "MAÇ SAYISI",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İstanbul-50.Yıl Deniz Esinduy"
+      "venue": "İstanbul-50.Yıl Deniz Esinduy",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 263979,
@@ -6195,9 +6228,12 @@
       "groupName": "3. GRUP",
       "homeTeam": "ATAŞEHİR KARTALLARI",
       "awayTeam": "DOĞU AKADEMİ",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İstanbul-50.Yıl Deniz Esinduy"
+      "venue": "İstanbul-50.Yıl Deniz Esinduy",
+      "resultScore": "1-3",
+      "homeScore": 1,
+      "awayScore": 3
     },
     {
       "id": 978873,
@@ -6208,9 +6244,12 @@
       "groupName": "3. GRUP",
       "homeTeam": "CAN MİLAN ATLETİK",
       "awayTeam": "DEV ATAŞEHİR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İstanbul-50.Yıl Deniz Esinduy"
+      "venue": "İstanbul-50.Yıl Deniz Esinduy",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 426811,
@@ -7536,9 +7575,12 @@
       "groupName": "4. GRUP",
       "homeTeam": "TOYZZ SHOP DİNAMO SPOR",
       "awayTeam": "MEHMET ERDEM MARMARA AKADEMİ",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İstanbul-50.Yıl Deniz Esinduy"
+      "venue": "İstanbul-50.Yıl Deniz Esinduy",
+      "resultScore": "2-3",
+      "homeScore": 2,
+      "awayScore": 3
     },
     {
       "id": 318998,
@@ -7549,9 +7591,12 @@
       "groupName": "4. GRUP",
       "homeTeam": "ÇEKMEKÖY İSTANBUL SPOR",
       "awayTeam": "KUZEY YILDIZLARI",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İstanbul-50.Yıl Deniz Esinduy"
+      "venue": "İstanbul-50.Yıl Deniz Esinduy",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 4847,
@@ -7562,9 +7607,12 @@
       "groupName": "4. GRUP",
       "homeTeam": "TUZLA MERCAN",
       "awayTeam": "KAMARİN SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İstanbul-Yakacık İto"
+      "venue": "İstanbul-Yakacık İto",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 509481,
@@ -7575,9 +7623,12 @@
       "groupName": "4. GRUP",
       "homeTeam": "ALP SPOR",
       "awayTeam": "KARTAL BLD.",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İstanbul-Yakacık İto"
+      "venue": "İstanbul-Yakacık İto",
+      "resultScore": "2-3",
+      "homeScore": 2,
+      "awayScore": 3
     },
     {
       "id": 418934,
@@ -7588,9 +7639,12 @@
       "groupName": "4. GRUP",
       "homeTeam": "FENERBAHÇE MEDICANA",
       "awayTeam": "KARTAL ANADOLU",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İstanbul-50.Yıl Deniz Esinduy"
+      "venue": "İstanbul-50.Yıl Deniz Esinduy",
+      "resultScore": "2-3",
+      "homeScore": 2,
+      "awayScore": 3
     },
     {
       "id": 683486,
@@ -9188,9 +9242,12 @@
       "groupName": "5. GRUP",
       "homeTeam": "ÇANAKKALE KEPEZ",
       "awayTeam": "MEDIA FIRST AYVALIK GELİŞİM SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Çanakkale-Anafartalar"
+      "venue": "Çanakkale-Anafartalar",
+      "resultScore": "1-3",
+      "homeScore": 1,
+      "awayScore": 3
     },
     {
       "id": 652964,
@@ -9201,9 +9258,12 @@
       "groupName": "5. GRUP",
       "homeTeam": "ÇORLU BLD.",
       "awayTeam": "BANDIRMA ÇELİK SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Tekirdağ-Çorlu"
+      "venue": "Tekirdağ-Çorlu",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 815346,
@@ -9214,9 +9274,12 @@
       "groupName": "5. GRUP",
       "homeTeam": "TEKİRDAĞ VOLEYBOL İHTİSAS",
       "awayTeam": "ÇAN KALE SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Tekirdağ-İsmet İnönü"
+      "venue": "Tekirdağ-İsmet İnönü",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 856505,
@@ -11727,9 +11790,12 @@
       "groupName": "6. GRUP",
       "homeTeam": "ALTAY",
       "awayTeam": "GÖZTEPE",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İzmir-Gaziemir"
+      "venue": "İzmir-Gaziemir",
+      "resultScore": "3-1",
+      "homeScore": 3,
+      "awayScore": 1
     },
     {
       "id": 856277,
@@ -11740,9 +11806,12 @@
       "groupName": "6. GRUP",
       "homeTeam": "TÜRKOĞLU SPOR KULÜBÜ",
       "awayTeam": "FORZA SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İzmir-Urla-12 Eylül"
+      "venue": "İzmir-Urla-12 Eylül",
+      "resultScore": "3-1",
+      "homeScore": 3,
+      "awayScore": 1
     },
     {
       "id": 814447,
@@ -11753,9 +11822,12 @@
       "groupName": "6. GRUP",
       "homeTeam": "ALTINAY SPOR",
       "awayTeam": "BAYRAKLI BLD.",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İzmir-Balçova"
+      "venue": "İzmir-Balçova",
+      "resultScore": "1-3",
+      "homeScore": 1,
+      "awayScore": 3
     },
     {
       "id": 587415,
@@ -11782,9 +11854,12 @@
       "groupName": "6. GRUP",
       "homeTeam": "KZY SPOR",
       "awayTeam": "TURGUTLU BLD. KÜLTÜR SANAT",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İzmir-Menemen"
+      "venue": "İzmir-Menemen",
+      "resultScore": "1-3",
+      "homeScore": 1,
+      "awayScore": 3
     },
     {
       "id": 78102,
@@ -11795,9 +11870,12 @@
       "groupName": "6. GRUP",
       "homeTeam": "AKHİSAR BLD.",
       "awayTeam": "YUNUSEMRE BLD.",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Manisa-Akhisar"
+      "venue": "Manisa-Akhisar",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 98753,
@@ -11808,9 +11886,12 @@
       "groupName": "6. GRUP",
       "homeTeam": "AKHİSAR GÜCÜ",
       "awayTeam": "EFOR GENÇLİK",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Manisa-Akhisar"
+      "venue": "Manisa-Akhisar",
+      "resultScore": "1-3",
+      "homeScore": 1,
+      "awayScore": 3
     },
     {
       "id": 288821,
@@ -14244,9 +14325,12 @@
       "groupName": "7. GRUP",
       "homeTeam": "AYDIN BÜYÜKŞEHİR BELEDİYESPOR",
       "awayTeam": "İZMİR DSİ",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Aydın-Mimar Sinan"
+      "venue": "Aydın-Mimar Sinan",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 350599,
@@ -14257,9 +14341,12 @@
       "groupName": "7. GRUP",
       "homeTeam": "SÖKE BELEDİYE SALDOS VOLEYBOL",
       "awayTeam": "GAZİEMİR BLD.",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Aydın-Söke Tayem"
+      "venue": "Aydın-Söke Tayem",
+      "resultScore": "3-2",
+      "homeScore": 3,
+      "awayScore": 2
     },
     {
       "id": 821452,
@@ -14270,9 +14357,12 @@
       "groupName": "7. GRUP",
       "homeTeam": "İZMİR B.ŞEHIR BLD.",
       "awayTeam": "ÜLKÜ SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "İzmir-Celal Atik"
+      "venue": "İzmir-Celal Atik",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 889081,
@@ -16305,9 +16395,12 @@
       "groupName": "8. GRUP",
       "homeTeam": "ELİT AKDENİZ",
       "awayTeam": "DENİZLİ B.ŞEHİR BLD.",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Antalya-Süleyman Evcilmen"
+      "venue": "Antalya-Süleyman Evcilmen",
+      "resultScore": "1-3",
+      "homeScore": 1,
+      "awayScore": 3
     },
     {
       "id": 78528,
@@ -16318,9 +16411,12 @@
       "groupName": "8. GRUP",
       "homeTeam": "GÜRAL PREMIER ANTALYASPOR",
       "awayTeam": "BAHÇEŞEHİR KOLEJİ DALAMAN BLD.",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Antalya-Kepez Çok Amaçlı Spor Salonu"
+      "venue": "Antalya-Kepez Çok Amaçlı Spor Salonu",
+      "resultScore": "1-3",
+      "homeScore": 1,
+      "awayScore": 3
     },
     {
       "id": 320556,
@@ -16331,9 +16427,12 @@
       "groupName": "8. GRUP",
       "homeTeam": "AÇI KOLEJİ",
       "awayTeam": "UYSALLAR OTO FETHİYE ZİRVE",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Antalya-Süleyman Evcilmen"
+      "venue": "Antalya-Süleyman Evcilmen",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 534799,
@@ -16344,9 +16443,12 @@
       "groupName": "8. GRUP",
       "homeTeam": "AKDENİZ BİLGİ SPOR",
       "awayTeam": "AFYON GENÇLİK SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Antalya-Süleyman Evcilmen"
+      "venue": "Antalya-Süleyman Evcilmen",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 925555,
@@ -16357,9 +16459,12 @@
       "groupName": "8. GRUP",
       "homeTeam": "FETHİYE VOLEYBOL",
       "awayTeam": "ISPARTA GENÇLİK SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Muğla-Beşkaza"
+      "venue": "Muğla-Beşkaza",
+      "resultScore": "3-2",
+      "homeScore": 3,
+      "awayScore": 2
     },
     {
       "id": 261810,
@@ -16370,9 +16475,12 @@
       "groupName": "8. GRUP",
       "homeTeam": "MARMARİS BLD.",
       "awayTeam": "07 MEGA SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Muğla-Marmaris Amiral Orhan Aydın"
+      "venue": "Muğla-Marmaris Amiral Orhan Aydın",
+      "resultScore": "3-1",
+      "homeScore": 3,
+      "awayScore": 1
     },
     {
       "id": 372474,
@@ -18327,9 +18435,12 @@
       "groupName": "9. GRUP",
       "homeTeam": "HEKİMOĞLU GLOBAL CONNECT TRAVEL BVİ",
       "awayTeam": "MG SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Bursa-Cengiz Göllü Voleybol Salonu"
+      "venue": "Bursa-Cengiz Göllü Voleybol Salonu",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 390104,
@@ -18340,9 +18451,12 @@
       "groupName": "9. GRUP",
       "homeTeam": "BURSA FETHİYE 1973 SPOR",
       "awayTeam": "AL-KA ALTIN KANATLAR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Bursa-Çekirge"
+      "venue": "Bursa-Çekirge",
+      "resultScore": "3-2",
+      "homeScore": 3,
+      "awayScore": 2
     },
     {
       "id": 633209,
@@ -18353,9 +18467,12 @@
       "groupName": "9. GRUP",
       "homeTeam": "GEMLİK İSTİKLAL SPOR",
       "awayTeam": "HOCA AHMET YESEVİ ANADOLU L. ES VOLEYBOL AKADEMİ",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Bursa-Gemlik"
+      "venue": "Bursa-Gemlik",
+      "resultScore": "3-1",
+      "homeScore": 3,
+      "awayScore": 1
     },
     {
       "id": 332302,
@@ -18366,9 +18483,12 @@
       "groupName": "9. GRUP",
       "homeTeam": "MEHMET EGE İNŞAAT İNEGÖL ORHANİYE VOLEYBOL",
       "awayTeam": "BURSA B.ŞEHİR BLD.",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Bursa-İnegöl Spor Salonu"
+      "venue": "Bursa-İnegöl Spor Salonu",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 466646,
@@ -18379,9 +18499,12 @@
       "groupName": "9. GRUP",
       "homeTeam": "ESKİŞEHİR ŞEHİR KOLEJİ EĞT. KÜLTÜR",
       "awayTeam": "NİLÜFER BLD.",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Eskişehir-Yenikent Şehit Anıl Gül"
+      "venue": "Eskişehir-Yenikent Şehit Anıl Gül",
+      "resultScore": "3-2",
+      "homeScore": 3,
+      "awayScore": 2
     },
     {
       "id": 192484,
@@ -18392,9 +18515,12 @@
       "groupName": "9. GRUP",
       "homeTeam": "YALOVA ÇİFTLİKKÖY BLD.",
       "awayTeam": "ESKİŞEHİR PEYMAN SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Yalova-90.Yıl"
+      "venue": "Yalova-90.Yıl",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 551238,
@@ -20077,9 +20203,12 @@
       "groupName": "10. GRUP",
       "homeTeam": "BARTIN VOLLEY ACADEMY",
       "awayTeam": "KARABÜK GENÇLİK SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Bartın-Ömer Tepesi"
+      "venue": "Bartın-Ömer Tepesi",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 688311,
@@ -20090,9 +20219,12 @@
       "groupName": "10. GRUP",
       "homeTeam": "BOLU ATATÜRK ANADOLU LİSESİ",
       "awayTeam": "KOCAELİ VOLEYBOL AKADEMİ",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Bolu-Karaçayır"
+      "venue": "Bolu-Karaçayır",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 368990,
@@ -20103,9 +20235,12 @@
       "groupName": "10. GRUP",
       "homeTeam": "HARPUT LAHMACUN YAHYA KAPTAN",
       "awayTeam": "CADENCE BOYA GÖLCÜK İHSANİYE",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Kocaeli-Şampiyon Hasan Gemici"
+      "venue": "Kocaeli-Şampiyon Hasan Gemici",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 316076,
@@ -20116,9 +20251,12 @@
       "groupName": "10. GRUP",
       "homeTeam": "İZMİT SPOR",
       "awayTeam": "GEBZE GENÇLİK VE SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Kocaeli-Şampiyon Hasan Gemici"
+      "venue": "Kocaeli-Şampiyon Hasan Gemici",
+      "resultScore": "2-3",
+      "homeScore": 2,
+      "awayScore": 3
     },
     {
       "id": 580614,
@@ -20129,9 +20267,12 @@
       "groupName": "10. GRUP",
       "homeTeam": "KOCAELİ NİCOMEDİA AKADEMİ",
       "awayTeam": "SERDİVAN BLD.",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Kocaeli-Şampiyon Hasan Gemici"
+      "venue": "Kocaeli-Şampiyon Hasan Gemici",
+      "resultScore": "3-1",
+      "homeScore": 3,
+      "awayScore": 1
     },
     {
       "id": 882611,
@@ -22050,9 +22191,12 @@
       "groupName": "11. GRUP",
       "homeTeam": "AHMET HAMDİ TANPINAR ORTAOKULU",
       "awayTeam": "TEMİZ ENERJİ BIRLİĞİ",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Ankara-Beştepe Voleybol Salonu"
+      "venue": "Ankara-Beştepe Voleybol Salonu",
+      "resultScore": "2-3",
+      "homeScore": 2,
+      "awayScore": 3
     },
     {
       "id": 985344,
@@ -22063,9 +22207,12 @@
       "groupName": "11. GRUP",
       "homeTeam": "TEK METAL SPORTİF",
       "awayTeam": "GÖLBAŞI İNCEK SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
+      "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu",
+      "resultScore": "3-1",
+      "homeScore": 3,
+      "awayScore": 1
     },
     {
       "id": 143605,
@@ -22076,9 +22223,12 @@
       "groupName": "11. GRUP",
       "homeTeam": "ETİMESGUT BLD. GELİŞİM",
       "awayTeam": "HAKAN AKIŞIK SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Ankara-Etimesgut Bld. Devlet Bahçeli"
+      "venue": "Ankara-Etimesgut Bld. Devlet Bahçeli",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 273686,
@@ -22089,9 +22239,12 @@
       "groupName": "11. GRUP",
       "homeTeam": "İLBANK",
       "awayTeam": "ENGLISH TIME SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
+      "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu",
+      "resultScore": "2-3",
+      "homeScore": 2,
+      "awayScore": 3
     },
     {
       "id": 371559,
@@ -22102,9 +22255,12 @@
       "groupName": "11. GRUP",
       "homeTeam": "PTT",
       "awayTeam": "TVF SPOR LİSESİ",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
+      "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 148319,
@@ -24059,9 +24215,12 @@
       "groupName": "12. GRUP",
       "homeTeam": "ANKARA DSİ",
       "awayTeam": "B.ŞEHİR BLD. ANKARA SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Ankara-Beştepe Voleybol Salonu"
+      "venue": "Ankara-Beştepe Voleybol Salonu",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 639608,
@@ -24088,9 +24247,12 @@
       "groupName": "12. GRUP",
       "homeTeam": "HEDEF ANKARA",
       "awayTeam": "MKE ANKARAGÜCÜ",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
+      "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu",
+      "resultScore": "3-2",
+      "homeScore": 3,
+      "awayScore": 2
     },
     {
       "id": 686218,
@@ -24101,9 +24263,12 @@
       "groupName": "12. GRUP",
       "homeTeam": "ÇABA SPOR",
       "awayTeam": "YEDİDAĞ SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Ankara-Beştepe Voleybol Salonu"
+      "venue": "Ankara-Beştepe Voleybol Salonu",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 807806,
@@ -24114,9 +24279,12 @@
       "groupName": "12. GRUP",
       "homeTeam": "TED ANKARA KOLEJLİLER",
       "awayTeam": "POLATLI DUATEPE",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
+      "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 379998,
@@ -24127,9 +24295,12 @@
       "groupName": "12. GRUP",
       "homeTeam": "MISIROĞLU BEYTEPE",
       "awayTeam": "BAŞKENT ZİRVE",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu"
+      "venue": "Ankara-Selim Sırrı Tarcan Zeren Voleybol Salonu",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 675877,
@@ -25812,9 +25983,12 @@
       "groupName": "13. GRUP",
       "homeTeam": "ADANA B.ŞEHİR BLD.",
       "awayTeam": "ADANA T.D.S.",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Adana-Aski Atatürk"
+      "venue": "Adana-Aski Atatürk",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 776909,
@@ -25825,9 +25999,12 @@
       "groupName": "13. GRUP",
       "homeTeam": "ARSAVEV HATAY VOLEYBOL",
       "awayTeam": "ADANA SPORCU EĞİTİM SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Hatay-Merkez Spor Salonu"
+      "venue": "Hatay-Merkez Spor Salonu",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 10234,
@@ -25838,9 +26015,12 @@
       "groupName": "13. GRUP",
       "homeTeam": "EREĞLİ SÜMER SPOR",
       "awayTeam": "TARSUS AMERİKAN KOLEJİ",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Konya-Ereğli-Atatürk"
+      "venue": "Konya-Ereğli-Atatürk",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 808059,
@@ -25851,9 +26031,12 @@
       "groupName": "13. GRUP",
       "homeTeam": "OKURA LOJİSTİK MERSİN İHTİSAS",
       "awayTeam": "SEYHAN BLD.",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Mersin-Mersinli Ahmet-1000 Kişilik"
+      "venue": "Mersin-Mersinli Ahmet-1000 Kişilik",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 472177,
@@ -25864,9 +26047,12 @@
       "groupName": "13. GRUP",
       "homeTeam": "TOROSLAR BLD.",
       "awayTeam": "TOROS ÜNIVERSİTESİ VOLGEM",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Mersin-Mersinli Ahmet-1000 Kişilik"
+      "venue": "Mersin-Mersinli Ahmet-1000 Kişilik",
+      "resultScore": "1-3",
+      "homeScore": 1,
+      "awayScore": 3
     },
     {
       "id": 927133,
@@ -26169,9 +26355,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "ÇORUM ARENA SPOR",
       "awayTeam": "SMART HOLDING A.Ş. ÇAYELI",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Çorum-Merkez Atatürk"
+      "venue": "Çorum-Merkez Atatürk",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 922504,
@@ -26246,9 +26435,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "SMART HOLDING A.Ş. ÇAYELI",
       "awayTeam": "BAYBURT GENÇLİK MERKEZİ",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Rize-Çayeli Yaşar Yılmaz"
+      "venue": "Rize-Çayeli Yaşar Yılmaz",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 370695,
@@ -26323,9 +26515,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "HOPA BELEDİYE",
       "awayTeam": "SMART HOLDING A.Ş. ÇAYELI",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Artvin-Hopa"
+      "venue": "Artvin-Hopa",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 345096,
@@ -26432,9 +26627,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "SMART HOLDING A.Ş. ÇAYELI",
       "awayTeam": "OSMANCIK BLD.",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Rize-Çayeli Yaşar Yılmaz"
+      "venue": "Rize-Çayeli Yaşar Yılmaz",
+      "resultScore": "1-3",
+      "homeScore": 1,
+      "awayScore": 3
     },
     {
       "id": 143156,
@@ -26557,9 +26755,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "52 ÇAMLIK SPOR",
       "awayTeam": "SMART HOLDING A.Ş. ÇAYELI",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Ordu-Atatürk"
+      "venue": "Ordu-Atatürk",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 483558,
@@ -26634,9 +26835,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "SMART HOLDING A.Ş. ÇAYELI",
       "awayTeam": "RİZE ENDÜSTRİ MESLEK LİSESİ",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Rize-Çayeli Yaşar Yılmaz"
+      "venue": "Rize-Çayeli Yaşar Yılmaz",
+      "resultScore": "3-1",
+      "homeScore": 3,
+      "awayScore": 1
     },
     {
       "id": 330129,
@@ -26695,9 +26899,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "ÇORUM VOLEYBOL",
       "awayTeam": "SMART HOLDING A.Ş. ÇAYELI",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Çorum-Merkez Atatürk"
+      "venue": "Çorum-Merkez Atatürk",
+      "resultScore": "2-3",
+      "homeScore": 2,
+      "awayScore": 3
     },
     {
       "id": 862098,
@@ -26836,9 +27043,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "SMART HOLDING A.Ş. ÇAYELI",
       "awayTeam": "BEŞİKDÜZÜ",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Rize-Çayeli Yaşar Yılmaz"
+      "venue": "Rize-Çayeli Yaşar Yılmaz",
+      "resultScore": "1-3",
+      "homeScore": 1,
+      "awayScore": 3
     },
     {
       "id": 459878,
@@ -26961,9 +27171,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "SEMT ASANSÖR BORDO MAVİ 61",
       "awayTeam": "SMART HOLDING A.Ş. ÇAYELI",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Trabzon-Yomra Spor Salonu"
+      "venue": "Trabzon-Yomra Spor Salonu",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 813449,
@@ -27038,9 +27251,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "SMART HOLDING A.Ş. ÇAYELI",
       "awayTeam": "SUPERPOOL FINDIKLI 1974",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Rize-Çayeli Yaşar Yılmaz"
+      "venue": "Rize-Çayeli Yaşar Yılmaz",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 475928,
@@ -27115,9 +27331,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "SINAV KOLEJİ SAMSUNSPOR",
       "awayTeam": "SMART HOLDING A.Ş. ÇAYELI",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Samsun-Mustafa Dağıstanlı"
+      "venue": "Samsun-Mustafa Dağıstanlı",
+      "resultScore": "3-1",
+      "homeScore": 3,
+      "awayScore": 1
     },
     {
       "id": 945230,
@@ -27176,9 +27395,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "SMART HOLDING A.Ş. ÇAYELI",
       "awayTeam": "ÇORUM ARENA SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Rize-Çayeli Yaşar Yılmaz"
+      "venue": "Rize-Çayeli Yaşar Yılmaz",
+      "resultScore": "1-3",
+      "homeScore": 1,
+      "awayScore": 3
     },
     {
       "id": 101098,
@@ -27253,9 +27475,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "BAYBURT GENÇLİK MERKEZİ",
       "awayTeam": "SMART HOLDING A.Ş. ÇAYELI",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Bayburt-Yeni Spor Salonu"
+      "venue": "Bayburt-Yeni Spor Salonu",
+      "resultScore": "2-3",
+      "homeScore": 2,
+      "awayScore": 3
     },
     {
       "id": 251335,
@@ -27346,9 +27571,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "SMART HOLDING A.Ş. ÇAYELI",
       "awayTeam": "HOPA BELEDİYE",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Rize-Çayeli Yaşar Yılmaz"
+      "venue": "Rize-Çayeli Yaşar Yılmaz",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 509350,
@@ -27503,9 +27731,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "OSMANCIK BLD.",
       "awayTeam": "SMART HOLDING A.Ş. ÇAYELI",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Çorum-Osmancık"
+      "venue": "Çorum-Osmancık",
+      "resultScore": "3-1",
+      "homeScore": 3,
+      "awayScore": 1
     },
     {
       "id": 322801,
@@ -27564,9 +27795,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "SMART HOLDING A.Ş. ÇAYELI",
       "awayTeam": "52 ÇAMLIK SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Rize-Çayeli Yaşar Yılmaz"
+      "venue": "Rize-Çayeli Yaşar Yılmaz",
+      "resultScore": "3-1",
+      "homeScore": 3,
+      "awayScore": 1
     },
     {
       "id": 44185,
@@ -27641,9 +27875,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "RİZE ENDÜSTRİ MESLEK LİSESİ",
       "awayTeam": "SMART HOLDING A.Ş. ÇAYELI",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Rize-Yenişehir"
+      "venue": "Rize-Yenişehir",
+      "resultScore": "3-2",
+      "homeScore": 3,
+      "awayScore": 2
     },
     {
       "id": 97208,
@@ -27734,9 +27971,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "HOPA BELEDİYE",
       "awayTeam": "52 ÇAMLIK SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Artvin-Hopa"
+      "venue": "Artvin-Hopa",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 817649,
@@ -27747,9 +27987,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "OSMANCIK BLD.",
       "awayTeam": "ÇORUM ARENA SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Çorum-Osmancık"
+      "venue": "Çorum-Osmancık",
+      "resultScore": "3-1",
+      "homeScore": 3,
+      "awayScore": 1
     },
     {
       "id": 102050,
@@ -27760,9 +28003,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "SMART HOLDING A.Ş. ÇAYELI",
       "awayTeam": "ÇORUM VOLEYBOL",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Rize-Çayeli Yaşar Yılmaz"
+      "venue": "Rize-Çayeli Yaşar Yılmaz",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 94396,
@@ -27773,9 +28019,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "SUPERPOOL FINDIKLI 1974",
       "awayTeam": "SEMT ASANSÖR BORDO MAVİ 61",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Rize-Fındıklı"
+      "venue": "Rize-Fındıklı",
+      "resultScore": "0-3",
+      "homeScore": 0,
+      "awayScore": 3
     },
     {
       "id": 44033,
@@ -27786,9 +28035,12 @@
       "groupName": "14. GRUP",
       "homeTeam": "SINAV KOLEJİ SAMSUNSPOR",
       "awayTeam": "BEŞİKDÜZÜ",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Samsun-Mustafa Dağıstanlı"
+      "venue": "Samsun-Mustafa Dağıstanlı",
+      "resultScore": "3-0",
+      "homeScore": 3,
+      "awayScore": 0
     },
     {
       "id": 674900,
@@ -29212,9 +29464,12 @@
       "groupName": "15. GRUP",
       "homeTeam": "MERİNOS VOLEYBOL",
       "awayTeam": "KAYSERİ CİMNASTİK SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Gaziantep-Talat Özkarslı"
+      "venue": "Gaziantep-Talat Özkarslı",
+      "resultScore": "3-2",
+      "homeScore": 3,
+      "awayScore": 2
     },
     {
       "id": 940524,
@@ -29264,9 +29519,12 @@
       "groupName": "15. GRUP",
       "homeTeam": "GAZİANTEP BLD.",
       "awayTeam": "ANTEPİA",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Gaziantep-Talat Özkarslı"
+      "venue": "Gaziantep-Talat Özkarslı",
+      "resultScore": "1-3",
+      "homeScore": 1,
+      "awayScore": 3
     },
     {
       "id": 639937,
@@ -30890,9 +31148,12 @@
       "groupName": "16. GRUP",
       "homeTeam": "MARGENÇ",
       "awayTeam": "MUŞ OLİMPİK SPOR",
-      "isPlayed": false,
+      "isPlayed": true,
       "setResults": "",
-      "venue": "Mardin-Artuklu"
+      "venue": "Mardin-Artuklu",
+      "resultScore": "3-1",
+      "homeScore": 3,
+      "awayScore": 1
     },
     {
       "id": 884404,
