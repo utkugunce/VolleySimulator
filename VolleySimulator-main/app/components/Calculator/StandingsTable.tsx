@@ -25,9 +25,9 @@ export default function StandingsTable({
     loading = false,
     comparisonDiffs
 }: StandingsTableProps) {
-    const rowClass = compact ? "px-2 py-1 text-xs" : "px-2 py-2 text-xs sm:text-sm";
-    const headClass = compact ? "px-2 py-1 text-xs uppercase" : "px-2 py-2 text-xs uppercase sm:text-sm";
-    const rankSize = compact ? "w-5 h-5 text-xs" : "w-6 h-6 text-xs";
+    const rowClass = compact ? "px-1 py-0.5 text-[10px]" : "px-2 py-2 text-xs sm:text-sm";
+    const headClass = compact ? "px-1 py-0.5 text-[10px] uppercase" : "px-2 py-2 text-xs uppercase sm:text-sm";
+    const rankSize = compact ? "w-4 h-4 text-[10px]" : "w-6 h-6 text-xs";
 
     if (loading) {
         return (
@@ -78,12 +78,12 @@ export default function StandingsTable({
                         <tr>
                             <th scope="col" className={`${headClass} w-10 text-left pl-2 whitespace-nowrap`}>#</th>
                             <th scope="col" className={`${headClass} whitespace-nowrap`}>Takım</th>
-                            <th scope="col" className={`${headClass} w-8 text-center whitespace-nowrap`} title="Oynanan Maç">OM</th>
-                            <th scope="col" className={`${headClass} w-8 text-center text-emerald-500 whitespace-nowrap`} title="Galibiyet">G</th>
-                            <th scope="col" className={`${headClass} w-8 text-center text-rose-500 whitespace-nowrap`} title="Mağlubiyet">M</th>
-                            <th scope="col" className={`${headClass} w-10 text-center text-amber-500 font-bold whitespace-nowrap`} title="Puan">P</th>
-                            <th scope="col" className={`${headClass} w-8 text-center hidden sm:table-cell whitespace-nowrap`} title="Alınan Set">AS</th>
-                            <th scope="col" className={`${headClass} w-8 text-center hidden sm:table-cell whitespace-nowrap`} title="Verilen Set">VS</th>
+                            <th scope="col" className={`${headClass} w-6 text-center whitespace-nowrap`} title="Oynanan Maç">OM</th>
+                            <th scope="col" className={`${headClass} w-6 text-center text-emerald-500 whitespace-nowrap`} title="Galibiyet">G</th>
+                            <th scope="col" className={`${headClass} w-6 text-center text-rose-500 whitespace-nowrap`} title="Mağlubiyet">M</th>
+                            <th scope="col" className={`${headClass} w-8 text-center text-amber-500 font-bold whitespace-nowrap`} title="Puan">P</th>
+                            <th scope="col" className={`${headClass} w-6 text-center hidden sm:table-cell whitespace-nowrap`} title="Alınan Set">AS</th>
+                            <th scope="col" className={`${headClass} w-6 text-center hidden sm:table-cell whitespace-nowrap`} title="Verilen Set">VS</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-border-subtle">

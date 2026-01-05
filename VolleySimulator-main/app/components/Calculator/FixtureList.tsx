@@ -120,9 +120,20 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
         if (!dateA && !dateB) return 0;
         if (!dateA) return 1;
         if (!dateB) return -1;
-        return activeTab === 'upcoming'
-            ? dateA.getTime() - dateB.getTime()  // Nearest first
-            : dateB.getTime() - dateA.getTime(); // Most recent first
+        // Date sort
+        const dateDiff = activeTab === 'upcoming'
+            ? dateA.getTime() - dateB.getTime()
+            : dateB.getTime() - dateA.getTime();
+
+        return dateDiff;
+    }).map(([dateStr, matches]) => {
+        // Sort matches by TIME within date
+        const sortedMatches = [...matches].sort((m1, m2) => {
+            const t1 = m1.matchTime || (m1 as any).time || "00:00";
+            const t2 = m2.matchTime || (m2 as any).time || "00:00";
+            return t1.localeCompare(t2);
+        });
+        return [dateStr, sortedMatches] as [string, Match[]];
     });
 
     // Format date for display with day name
@@ -146,7 +157,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
     return (
         <div className="bg-slate-900 border border-slate-800 rounded-lg overflow-hidden shadow-xl flex flex-col h-full">
             {/* Tabs */}
-            <div className="bg-slate-800/50 px-2 py-2 border-b border-slate-800 sticky top-0 z-10">
+            <div className="bg-slate-800/50 px-2 py-2 border-b border-slate-800 sticky top-0 z-10 font-sans">
                 <div className="flex gap-1">
                     <button
                         onClick={() => setActiveTab('upcoming')}
@@ -182,111 +193,120 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                     sortedDateGroups.map(([dateStr, dateMatches]) => {
                         const isCollapsed = collapsedDates.has(dateStr);
                         return (
-                            <div key={dateStr} className="space-y-2">
+                            <div key={dateStr} className="space-y-1">
                                 <button
                                     onClick={() => toggleDateCollapse(dateStr)}
-                                    className="sticky top-0 z-5 w-full bg-slate-950/90 backdrop-blur-sm py-1.5 px-3 rounded-lg border border-slate-800 flex items-center justify-between hover:bg-slate-900/90 transition-colors cursor-pointer"
+                                    className="sticky top-0 z-5 w-full bg-slate-950/95 backdrop-blur-sm py-1 px-2 rounded-md border border-slate-800 flex items-center justify-between hover:bg-slate-900/90 transition-colors cursor-pointer shadow-sm"
                                 >
                                     <span className="text-[10px] font-bold text-indigo-400 flex items-center gap-2">
-                                        <span className={`transition-transform duration-200 ${isCollapsed ? '' : 'rotate-90'}`}>▶</span>
-                                        📆 {formatDateDisplay(dateStr)}
+                                        <span className={`transition-transform duration-200 text-[8px] ${isCollapsed ? '' : 'rotate-90'}`}>▶</span>
+                                        {formatDateDisplay(dateStr)}
                                     </span>
-                                    <span className="text-[9px] text-slate-400 bg-slate-800/50 px-2 py-0.5 rounded">{dateMatches.length} maç</span>
+                                    <span className="text-[9px] text-slate-400 bg-slate-800/50 px-1.5 py-px rounded">{dateMatches.length} maç</span>
                                 </button>
 
                                 {!isCollapsed && dateMatches.map((match) => {
                                     const matchId = `${match.homeTeam}-${match.awayTeam}`;
                                     const currentScore = overrides[matchId];
-                                    // ROBUST: Treat as played if isPlayed is true OR scores are present
                                     const isPlayed = isMatchPlayed(match);
 
                                     const homeRank = getTeamRank(match.homeTeam);
                                     const awayRank = getTeamRank(match.awayTeam);
-                                    const matchImportance = getMatchImportance(homeRank, awayRank);
                                     const matchTime = match.matchTime || (match as any).time;
+
+                                    // Alerts
+                                    const isHomeRelegation = homeRank ? homeRank >= (totalTeams - relegationSpots + 1) : false;
+                                    const isAwayRelegation = awayRank ? awayRank >= (totalTeams - relegationSpots + 1) : false;
 
                                     return (
                                         <div
                                             key={matchId}
                                             id={`match-${match.homeTeam}-${match.awayTeam}`}
-                                            className={`p-2 rounded-lg border transition-all ${isPlayed
+                                            className={`p-1.5 rounded-lg border transition-all flex items-center gap-2 ${isPlayed
                                                 ? 'bg-slate-950/50 border-slate-800/50'
                                                 : currentScore
                                                     ? 'bg-slate-800 border-indigo-500/50 shadow-md ring-1 ring-indigo-500/20'
                                                     : 'bg-slate-800 border-slate-700 hover:border-slate-600'
                                                 }`}
                                         >
-                                            {/* Match Time Badge - Always show */}
-                                            <div className="flex justify-center -mt-1 mb-1.5">
-                                                <span className="text-[9px] font-mono bg-slate-950/80 px-1.5 py-0.5 rounded text-slate-400 border border-slate-800/50">
+                                            {/* Match Time - Left Aligned */}
+                                            <div className="flex flex-col items-center justify-center min-w-[32px] shrink-0 border-r border-slate-700/50 pr-2 mr-1">
+                                                <span className="text-[10px] font-mono font-bold text-slate-300">
                                                     {matchTime || '--:--'}
                                                 </span>
                                             </div>
 
-                                            {/* Match Importance Badge */}
-                                            {matchImportance && !isPlayed && (
-                                                <div className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-t-md -mx-3 -mt-3 mb-2 text-center bg-gradient-to-r ${matchImportance.color}`}>
-                                                    {matchImportance.label}
-                                                </div>
-                                            )}
+                                            {/* Match Content */}
+                                            <div className="flex-1 min-w-0">
+                                                <div className="flex items-center justify-between text-[10px] mb-1.5">
+                                                    {/* Home Team */}
+                                                    <div className={`flex-1 text-right font-semibold truncate pr-2 flex items-center justify-end gap-1 ${currentScore && getScoreWinner(currentScore) === 'home' ? 'text-emerald-400' : 'text-slate-300'}`}>
+                                                        {isHomeRelegation && <span title="Küme Düşme Tehlikesi" className="text-[8px] cursor-help">⚠️</span>}
 
-                                            <div className="flex items-center justify-between text-[10px] mb-1.5">
-                                                <div className={`flex-1 text-right font-semibold truncate pr-2 flex items-center justify-end gap-1 ${currentScore && getScoreWinner(currentScore) === 'home' ? 'text-emerald-400' : 'text-slate-300'}`}>
-                                                    {homeRank && (
-                                                        <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${homeRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : homeRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-300'}`}>
-                                                            {homeRank}.
-                                                        </span>
-                                                    )}
-                                                    <Link href={`/takimlar/${generateTeamSlug(match.homeTeam)}`} className="truncate hover:underline">{match.homeTeam}</Link>
-                                                    <TeamAvatar name={match.homeTeam} size="sm" />
+                                                        {homeRank && (
+                                                            <span className={`text-[9px] px-1 rounded font-bold ${homeRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : homeRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-400'}`}>
+                                                                {homeRank}.
+                                                            </span>
+                                                        )}
+                                                        <Link href={`/takimlar/${generateTeamSlug(match.homeTeam)}`} className="truncate hover:underline" title={match.homeTeam}>{match.homeTeam}</Link>
+                                                        <TeamAvatar name={match.homeTeam} size="xs" />
+                                                    </div>
+
+                                                    <div className="text-[9px] text-slate-600 font-mono shrink-0 px-0.5">v</div>
+
+                                                    {/* Away Team */}
+                                                    <div className={`flex-1 text-left font-semibold truncate pl-2 flex items-center gap-1 ${currentScore && getScoreWinner(currentScore) === 'away' ? 'text-emerald-400' : 'text-slate-300'}`}>
+                                                        <TeamAvatar name={match.awayTeam} size="xs" />
+                                                        <Link href={`/takimlar/${generateTeamSlug(match.awayTeam)}`} className="truncate hover:underline" title={match.awayTeam}>{match.awayTeam}</Link>
+                                                        {awayRank && (
+                                                            <span className={`text-[9px] px-1 rounded font-bold ${awayRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : awayRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-400'}`}>
+                                                                {awayRank}.
+                                                            </span>
+                                                        )}
+
+                                                        {isAwayRelegation && <span title="Küme Düşme Tehlikesi" className="text-[8px] cursor-help">⚠️</span>}
+                                                    </div>
                                                 </div>
-                                                <div className="text-[10px] text-slate-600 font-mono shrink-0 px-1">v</div>
-                                                <div className={`flex-1 text-left font-semibold truncate pl-2 flex items-center gap-1 ${currentScore && getScoreWinner(currentScore) === 'away' ? 'text-emerald-400' : 'text-slate-300'}`}>
-                                                    <TeamAvatar name={match.awayTeam} size="sm" />
-                                                    <Link href={`/takimlar/${generateTeamSlug(match.awayTeam)}`} className="truncate hover:underline">{match.awayTeam}</Link>
-                                                    {awayRank && (
-                                                        <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${awayRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : awayRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-300'}`}>
-                                                            {awayRank}.
+
+                                                {/* Score / Buttons */}
+                                                {isPlayed ? (
+                                                    <div className="flex justify-center">
+                                                        <span className="px-2 py-0.5 bg-slate-900 font-mono font-bold text-slate-400 rounded border border-slate-800 text-xs">
+                                                            {match.homeScore !== undefined && match.homeScore !== null && match.awayScore !== undefined && match.awayScore !== null
+                                                                ? `${match.homeScore} - ${match.awayScore}`
+                                                                : match.resultScore || "Oynandı"}
                                                         </span>
-                                                    )}
-                                                </div>
+                                                    </div>
+                                                ) : (
+                                                    <div className="flex justify-center gap-1 flex-wrap">
+                                                        {SCORES.map(score => {
+                                                            const isSelected = currentScore === score;
+                                                            const [h, a] = score.split('-').map(Number);
+                                                            const homeWin = h > a;
+                                                            return (
+                                                                <button
+                                                                    key={score}
+                                                                    onClick={() => onScoreChange(matchId, isSelected ? '' : score)}
+                                                                    className={`w-6 h-5 flex items-center justify-center rounded text-[9px] font-bold transition-all border ${isSelected
+                                                                        ? homeWin
+                                                                            ? 'bg-emerald-700 border-emerald-600 text-white shadow-emerald-600/30'
+                                                                            : 'bg-rose-700 border-rose-600 text-white shadow-rose-600/30'
+                                                                        : 'bg-slate-950 border-slate-700 text-slate-400 hover:bg-slate-800 hover:text-slate-300'
+                                                                        }`}
+                                                                >
+                                                                    {score}
+                                                                </button>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                )}
+
+                                                {!isPlayed && currentScore && (
+                                                    <div className="flex justify-center mt-1">
+                                                        <div className="h-0.5 w-8 bg-indigo-500/50 rounded-full"></div>
+                                                    </div>
+                                                )}
                                             </div>
-
-                                            {isPlayed ? (
-                                                <div className="flex justify-center">
-                                                    <span className="px-3 py-1 bg-slate-900 font-mono font-bold text-slate-400 rounded border border-slate-800 text-sm">
-                                                        {match.homeScore !== undefined && match.homeScore !== null && match.awayScore !== undefined && match.awayScore !== null
-                                                            ? `${match.homeScore} - ${match.awayScore}`
-                                                            : match.resultScore || "Oynandı"}
-                                                    </span>
-                                                </div>
-                                            ) : (
-                                                <div className="flex justify-center gap-1 flex-wrap">
-                                                    {SCORES.map(score => {
-                                                        const isSelected = currentScore === score;
-                                                        const [h, a] = score.split('-').map(Number);
-                                                        const homeWin = h > a;
-                                                        return (
-                                                            <button
-                                                                key={score}
-                                                                onClick={() => onScoreChange(matchId, isSelected ? '' : score)}
-                                                                className={`w-8 h-6 flex items-center justify-center rounded text-[10px] font-bold transition-all border ${isSelected
-                                                                    ? homeWin
-                                                                        ? 'bg-emerald-700 border-emerald-600 text-white shadow-emerald-600/30 shadow-md'
-                                                                        : 'bg-rose-700 border-rose-600 text-white shadow-rose-600/30 shadow-md'
-                                                                    : 'bg-slate-950 border-slate-700 text-slate-400 hover:bg-slate-800 hover:text-slate-300'
-                                                                    }`}
-                                                            >
-                                                                {score}
-                                                            </button>
-                                                        );
-                                                    })}
-                                                </div>
-                                            )}
-
-                                            {!isPlayed && currentScore && (
-                                                <div className="flex justify-center text-[10px] text-indigo-400 font-medium mt-2">✓ Tahmin Girildi</div>
-                                            )}
                                         </div>
                                     );
                                 })}
