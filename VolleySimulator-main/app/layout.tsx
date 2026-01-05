@@ -10,7 +10,7 @@ import Navbar from "./components/Navbar";
 import { AuthProvider } from "./context/AuthContext";
 import AuthGuard from "./components/AuthGuard";
 import { QueryProvider } from "./providers/QueryProvider";
-import AccessiBeWidget from "./components/AccessiBeWidget";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -98,8 +98,7 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* accessiBe Widget */}
-        <AccessiBeWidget />
+
       </body>
     </html>
   );
