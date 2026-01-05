@@ -298,6 +298,7 @@ export default function OneLigCalculatorClient({ initialTeams, initialMatches }:
                         <select
                             value={activeGroup}
                             onChange={(e) => setSelectedGroup(e.target.value)}
+                            aria-label="Grup Seçin"
                             className="appearance-none bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-lg px-4 py-2 border border-slate-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all outline-none cursor-pointer min-w-[120px]"
                         >
                             {groups.map(groupName => (

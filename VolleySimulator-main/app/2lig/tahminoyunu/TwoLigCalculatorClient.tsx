@@ -295,6 +295,7 @@ export default function TwoLigCalculatorClient({ initialTeams, initialMatches }:
                         <select
                             value={activeGroup}
                             onChange={(e) => setSelectedGroup(e.target.value)}
+                            aria-label="Grup Seçin"
                             className="flex-1 sm:flex-none px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-lg border border-slate-700 hover:border-slate-600 outline-none cursor-pointer transition-all focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500"
                         >
                             {groups.map(groupName => (

@@ -274,6 +274,7 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches }: 
                         <select
                             value={selectedPool}
                             onChange={(e) => setSelectedPool(e.target.value)}
+                            aria-label="Grup Seçin"
                             className="appearance-none bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-lg px-4 py-2 border border-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all outline-none cursor-pointer min-w-[120px]"
                         >
                             {pools.map(pool => (

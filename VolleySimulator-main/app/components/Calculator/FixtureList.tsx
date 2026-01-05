@@ -241,7 +241,8 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                                 <div className="flex items-center justify-between text-[10px] mb-1.5">
                                                     {/* Home Team */}
                                                     <div className={`flex-1 text-right font-semibold truncate pr-2 flex items-center justify-end gap-1 ${currentScore && getScoreWinner(currentScore) === 'home' ? 'text-emerald-400' : 'text-slate-300'}`}>
-                                                        {isHomeRelegation && <span title="Küme Düşme Tehlikesi" className="text-[8px] cursor-help">⚠️</span>}
+                                                        {isHomeRelegation && <span className="bg-rose-500/20 text-rose-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">DÜŞME</span>}
+                                                        {homeRank && homeRank <= 4 && !isHomeRelegation && <span className="bg-blue-500/20 text-blue-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">PO</span>}
 
                                                         {homeRank && (
                                                             <span className={`text-[9px] px-1 rounded font-bold ${homeRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : homeRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-400'}`}>
@@ -264,7 +265,8 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                                             </span>
                                                         )}
 
-                                                        {isAwayRelegation && <span title="Küme Düşme Tehlikesi" className="text-[8px] cursor-help">⚠️</span>}
+                                                        {isAwayRelegation && <span className="bg-rose-500/20 text-rose-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">DÜŞME</span>}
+                                                        {awayRank && awayRank <= 4 && !isAwayRelegation && <span className="bg-blue-500/20 text-blue-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">PO</span>}
                                                     </div>
                                                 </div>
 
