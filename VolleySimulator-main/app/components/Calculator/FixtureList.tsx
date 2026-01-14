@@ -1,8 +1,6 @@
 import { useState } from "react";
-import Link from "next/link";
-import { Match } from "../../types";
+import { Match } from "@/app/types";
 import { SCORES, normalizeTeamName } from "../../utils/calculatorUtils";
-import { generateTeamSlug } from "../../utils/teamSlug";
 import TeamAvatar from "../TeamAvatar";
 
 interface FixtureListProps {
@@ -10,8 +8,8 @@ interface FixtureListProps {
     overrides: Record<string, string>;
     onScoreChange: (matchId: string, score: string) => void;
     teamRanks?: Map<string, number>;
-    totalTeams?: number; // Total teams in group for relegation calculation
-    relegationSpots?: number; // Number of teams to be relegated
+    totalTeams?: number;
+    relegationSpots?: number;
 }
 
 export default function FixtureList({ matches, overrides, onScoreChange, teamRanks, totalTeams = 16, relegationSpots = 2 }: FixtureListProps) {
@@ -30,7 +28,6 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
         });
     };
 
-    // Helper to get team rank
     const getTeamRank = (teamName: string): number | null => {
         if (!teamRanks) return null;
         if (teamRanks.has(teamName)) return teamRanks.get(teamName)!;
@@ -41,42 +38,9 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
         return null;
     };
 
-    // Determine match importance based on team positions
-    const getMatchImportance = (homeRank: number | null, awayRank: number | null): { label: string; color: string } | null => {
-        if (!homeRank || !awayRank) return null;
-        if (relegationSpots === 0) return null; // No relegation warning if spots is 0
-
-        const playoffBoundary = 4; // Top 4 go to playoff usually (adjusted based on needs)
-        const relegationBoundary = totalTeams - relegationSpots + 1; // e.g. 10 teams, 2 spots -> 9 and 10 are relegated. Boundary is 9.
-
-        // Both in playoff zone
-        if (homeRank <= playoffBoundary && awayRank <= playoffBoundary) {
-            return { label: 'Playoff Karşılaşması', color: 'from-emerald-600/80 to-emerald-500/60 text-emerald-200' };
-        }
-        // One in playoff, one fighting for it
-        if ((homeRank <= playoffBoundary && awayRank <= playoffBoundary + 1) || (awayRank <= playoffBoundary && homeRank <= playoffBoundary + 1)) {
-            return { label: 'Playoff Mücadelesi', color: 'from-blue-600/80 to-blue-500/60 text-blue-200' };
-        }
-        // Both in relegation zone
-        if (homeRank >= relegationBoundary && awayRank >= relegationBoundary) {
-            return { label: '⚠️ KÜME DÜŞME HATTINDA KRİTİK MAÇ', color: 'from-rose-600/80 to-rose-500/60 text-rose-200' };
-        }
-        // One in relegation zone
-        if (homeRank >= relegationBoundary || awayRank >= relegationBoundary) {
-            return { label: '⚠️ KÜME DÜŞME TEHLİKESİ', color: 'from-orange-600/80 to-orange-500/60 text-orange-200' };
-        }
-        // Mid-table clash
-        if (homeRank > playoffBoundary && homeRank < relegationBoundary && awayRank > playoffBoundary && awayRank < relegationBoundary) {
-            return { label: 'Orta Sıra', color: 'from-slate-600/60 to-slate-500/40 text-slate-300' };
-        }
-        return null;
-    };
-
-    // Parse date from DD.MM.YYYY or YYYY-MM-DD format
     const parseDate = (dateStr: string | undefined): Date | null => {
         if (!dateStr) return null;
 
-        // Try DD.MM.YYYY
         if (dateStr.includes('.')) {
             const parts = dateStr.split('.');
             if (parts.length === 3) {
@@ -84,7 +48,6 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
             }
         }
 
-        // Try YYYY-MM-DD
         if (dateStr.includes('-')) {
             const parts = dateStr.split('-');
             if (parts.length === 3) {
@@ -95,17 +58,14 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
         return null;
     };
 
-    // Helper function for robust isPlayed check
     const isMatchPlayed = (m: Match) => {
         return m.isPlayed || (m.homeScore !== undefined && m.homeScore !== null && m.awayScore !== undefined && m.awayScore !== null);
     };
 
-    // Split matches into upcoming and past
     const upcomingMatches = matches.filter(m => !isMatchPlayed(m));
     const pastMatches = matches.filter(m => isMatchPlayed(m));
     const currentMatches = activeTab === 'upcoming' ? upcomingMatches : pastMatches;
 
-    // Group matches by date
     const groupedMatches = currentMatches.reduce((acc, match) => {
         const matchDate = match.matchDate || (match as any).date || 'Tarih Belirtilmemiş';
         if (!acc[matchDate]) acc[matchDate] = [];
@@ -113,21 +73,17 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
         return acc;
     }, {} as Record<string, Match[]>);
 
-    // Sort date groups
     const sortedDateGroups = Object.entries(groupedMatches).sort((a, b) => {
         const dateA = parseDate(a[0]);
         const dateB = parseDate(b[0]);
         if (!dateA && !dateB) return 0;
         if (!dateA) return 1;
         if (!dateB) return -1;
-        // Date sort
         const dateDiff = activeTab === 'upcoming'
             ? dateA.getTime() - dateB.getTime()
             : dateB.getTime() - dateA.getTime();
-
         return dateDiff;
     }).map(([dateStr, matches]) => {
-        // Sort matches by TIME within date
         const sortedMatches = [...matches].sort((m1, m2) => {
             const t1 = m1.matchTime || (m1 as any).time || "00:00";
             const t2 = m2.matchTime || (m2 as any).time || "00:00";
@@ -136,27 +92,20 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
         return [dateStr, sortedMatches] as [string, Match[]];
     });
 
-    // Format date for display with day name
     const formatDateDisplay = (dateStr: string): string => {
         if (dateStr === 'Tarih Belirtilmemiş') return dateStr;
-
         const date = parseDate(dateStr);
         if (!date) return dateStr;
-
         const days = ['PAZAR', 'PAZARTESİ', 'SALI', 'ÇARŞAMBA', 'PERŞEMBE', 'CUMA', 'CUMARTESİ'];
         const dayName = days[date.getDay()];
-
-        // Format as DD/MM/YYYY
         const day = date.getDate().toString().padStart(2, '0');
         const month = (date.getMonth() + 1).toString().padStart(2, '0');
         const year = date.getFullYear();
-
         return `${day}/${month}/${year} ${dayName}`;
     };
 
     return (
         <div className="bg-slate-900 border border-slate-800 rounded-lg overflow-hidden shadow-xl flex flex-col h-full">
-            {/* Tabs */}
             <div className="bg-slate-800/50 px-2 py-2 border-b border-slate-800 sticky top-0 z-10 font-sans">
                 <div className="flex gap-1">
                     <button
@@ -214,7 +163,6 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                     const awayRank = getTeamRank(match.awayTeam);
                                     const matchTime = match.matchTime || (match as any).time;
 
-                                    // Alerts
                                     const isHomeRelegation = homeRank ? homeRank >= (totalTeams - relegationSpots + 1) : false;
                                     const isAwayRelegation = awayRank ? awayRank >= (totalTeams - relegationSpots + 1) : false;
 
@@ -229,48 +177,41 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                                     : 'bg-slate-800 border-slate-700 hover:border-slate-600'
                                                 }`}
                                         >
-                                            {/* Match Time - Left Aligned */}
                                             <div className="flex flex-col items-center justify-center min-w-[32px] shrink-0 border-r border-slate-700/50 pr-2 mr-1">
                                                 <span className="text-[10px] font-mono font-bold text-slate-300">
                                                     {matchTime || '--:--'}
                                                 </span>
                                             </div>
 
-                                            {/* Match Content */}
                                             <div className="flex-1 min-w-0">
                                                 <div className="flex items-center justify-between text-[10px] mb-1.5">
-                                                    {/* Home Team */}
                                                     <div className={`flex-1 text-right font-semibold truncate pr-2 flex items-center justify-end gap-1 ${currentScore && getScoreWinner(currentScore) === 'home' ? 'text-emerald-400' : 'text-slate-300'}`}>
-                                                        {isHomeRelegation && <span className="bg-rose-500/20 text-rose-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">DÜŞME</span>}
+                                                        {isHomeRelegation && relegationSpots > 0 && <span className="bg-rose-500/20 text-rose-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">DÜŞME</span>}
                                                         {homeRank && homeRank <= 4 && !isHomeRelegation && <span className="bg-blue-500/20 text-blue-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">PO</span>}
-
                                                         {homeRank && (
                                                             <span className={`text-[9px] px-1 rounded font-bold ${homeRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : homeRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-400'}`}>
                                                                 {homeRank}.
                                                             </span>
                                                         )}
-                                                        <Link href={`/takimlar/${generateTeamSlug(match.homeTeam)}`} className="truncate hover:underline" title={match.homeTeam}>{match.homeTeam}</Link>
+                                                        <span className="truncate" title={match.homeTeam}>{match.homeTeam}</span>
                                                         <TeamAvatar name={match.homeTeam} size="xs" />
                                                     </div>
 
                                                     <div className="text-[9px] text-slate-600 font-mono shrink-0 px-0.5">v</div>
 
-                                                    {/* Away Team */}
                                                     <div className={`flex-1 text-left font-semibold truncate pl-2 flex items-center gap-1 ${currentScore && getScoreWinner(currentScore) === 'away' ? 'text-emerald-400' : 'text-slate-300'}`}>
                                                         <TeamAvatar name={match.awayTeam} size="xs" />
-                                                        <Link href={`/takimlar/${generateTeamSlug(match.awayTeam)}`} className="truncate hover:underline" title={match.awayTeam}>{match.awayTeam}</Link>
+                                                        <span className="truncate" title={match.awayTeam}>{match.awayTeam}</span>
                                                         {awayRank && (
                                                             <span className={`text-[9px] px-1 rounded font-bold ${awayRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : awayRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-400'}`}>
                                                                 {awayRank}.
                                                             </span>
                                                         )}
-
-                                                        {isAwayRelegation && <span className="bg-rose-500/20 text-rose-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">DÜŞME</span>}
+                                                        {isAwayRelegation && relegationSpots > 0 && <span className="bg-rose-500/20 text-rose-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">DÜŞME</span>}
                                                         {awayRank && awayRank <= 4 && !isAwayRelegation && <span className="bg-blue-500/20 text-blue-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">PO</span>}
                                                     </div>
                                                 </div>
 
-                                                {/* Score / Buttons */}
                                                 {isPlayed ? (
                                                     <div className="flex justify-center">
                                                         <span className="px-2 py-0.5 bg-slate-900 font-mono font-bold text-slate-400 rounded border border-slate-800 text-xs">

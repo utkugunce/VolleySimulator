@@ -1,8 +1,8 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { createClient } from "../utils/supabase";
-import { useAuth } from "../context/AuthContext";
+// import { createClient } from "../utils/supabase";
+const createClient = () => null as any;
 
 // Types
 export interface Prediction {
@@ -229,10 +229,9 @@ function getStorageKey(league: string): string {
  * Hook to fetch and manage predictions for a specific league
  */
 export function usePredictions(league: string, groupName?: string) {
-    const { user } = useAuth();
     const queryClient = useQueryClient();
 
-    const userId = user?.id || "anonymous";
+    const userId = "anonymous";
 
     const query = useQuery({
         queryKey: ["predictions", league, groupName, userId],

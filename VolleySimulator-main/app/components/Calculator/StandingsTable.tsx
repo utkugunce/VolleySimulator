@@ -1,15 +1,18 @@
-import Link from "next/link";
-import { TeamStats } from "../../types";
-import { TeamDiff } from "../../utils/scenarioUtils";
-import { generateTeamSlug } from "../../utils/teamSlug";
+import { TeamStats } from "@/app/types";
 import TeamAvatar from "../TeamAvatar";
+
+interface TeamDiff {
+    name: string;
+    rankDiff: number;
+    pointDiff: number;
+}
 
 interface StandingsTableProps {
     teams: TeamStats[];
     playoffSpots?: number;
-    secondaryPlayoffSpots?: number; // For 5-8 playoff zone (VSL)
+    secondaryPlayoffSpots?: number;
     relegationSpots?: number;
-    initialRanks?: Map<string, number>; // For showing rank changes
+    initialRanks?: Map<string, number>;
     compact?: boolean;
     loading?: boolean;
     comparisonDiffs?: TeamDiff[];
@@ -52,7 +55,6 @@ export default function StandingsTable({
                 </div>
             )}
 
-            {/* Legend - Only show if not compact, or show simplified */}
             {!compact && (
                 <div className="px-4 py-2 bg-surface/50 border-b border-border-main flex gap-4 text-[10px] flex-wrap">
                     <div className="flex items-center gap-1">
@@ -65,10 +67,12 @@ export default function StandingsTable({
                             <span className="text-text-secondary">5-8 Play-off ({playoffSpots + 1}-{playoffSpots + secondaryPlayoffSpots})</span>
                         </div>
                     )}
-                    <div className="flex items-center gap-1">
-                        <span className="w-3 h-3 rounded-full bg-rose-500"></span>
-                        <span className="text-text-secondary">Küme Düşme (Son {relegationSpots})</span>
-                    </div>
+                    {relegationSpots > 0 && (
+                        <div className="flex items-center gap-1">
+                            <span className="w-3 h-3 rounded-full bg-rose-500"></span>
+                            <span className="text-text-secondary">Küme Düşme (Son {relegationSpots})</span>
+                        </div>
+                    )}
                 </div>
             )}
 
@@ -92,27 +96,20 @@ export default function StandingsTable({
                             const isChampion = idx === 0;
                             const isPlayoff = idx < playoffSpots;
                             const isSecondaryPlayoff = secondaryPlayoffSpots > 0 && idx >= playoffSpots && idx < playoffSpots + secondaryPlayoffSpots;
-                            const isRelegation = idx >= teams.length - relegationSpots;
+                            const isRelegation = relegationSpots > 0 && idx >= teams.length - relegationSpots;
                             const losses = team.played - team.wins;
 
-                            // Calculate rank change
-                            let rankChange = 0;
-                            let pointDiff = 0;
                             let rankChangeIcon = null;
                             let pointDiffIcon = null;
 
                             if (comparisonDiffs) {
                                 const diff = comparisonDiffs.find(d => d.name === team.name);
                                 if (diff) {
-                                    // Rank Diff
-                                    rankChange = diff.rankDiff;
-                                    if (rankChange > 0) rankChangeIcon = <span className="text-emerald-500 text-[10px] font-bold flex items-center gap-0.5">▲{rankChange}</span>;
-                                    else if (rankChange < 0) rankChangeIcon = <span className="text-rose-500 text-[10px] font-bold flex items-center gap-0.5">▼{Math.abs(rankChange)}</span>;
+                                    if (diff.rankDiff > 0) rankChangeIcon = <span className="text-emerald-500 text-[10px] font-bold flex items-center gap-0.5">▲{diff.rankDiff}</span>;
+                                    else if (diff.rankDiff < 0) rankChangeIcon = <span className="text-rose-500 text-[10px] font-bold flex items-center gap-0.5">▼{Math.abs(diff.rankDiff)}</span>;
 
-                                    // Point Diff
-                                    pointDiff = diff.pointDiff;
-                                    if (pointDiff > 0) pointDiffIcon = <span className="text-emerald-500 text-[10px] ml-1">+{pointDiff}</span>;
-                                    else if (pointDiff < 0) pointDiffIcon = <span className="text-rose-500 text-[10px] ml-1">{pointDiff}</span>;
+                                    if (diff.pointDiff > 0) pointDiffIcon = <span className="text-emerald-500 text-[10px] ml-1">+{diff.pointDiff}</span>;
+                                    else if (diff.pointDiff < 0) pointDiffIcon = <span className="text-rose-500 text-[10px] ml-1">{diff.pointDiff}</span>;
                                 }
                             } else if (initialRanks && initialRanks.has(team.name)) {
                                 const oldRank = initialRanks.get(team.name)!;
@@ -140,10 +137,10 @@ export default function StandingsTable({
                                         </div>
                                     </td>
                                     <td className={`${rowClass} font-medium whitespace-nowrap`}>
-                                        <Link href={`/takimlar/${generateTeamSlug(team.name)}`} className="flex items-center gap-2 hover:opacity-80 transition-opacity group">
+                                        <div className="flex items-center gap-2">
                                             <TeamAvatar name={team.name} size={compact ? 'sm' : 'md'} priority={idx < 5} />
-                                            <span className={`block truncate max-w-[120px] sm:max-w-[200px] group-hover:underline ${isPlayoff ? 'text-emerald-600 dark:text-emerald-400' : isSecondaryPlayoff ? 'text-amber-600 dark:text-amber-400' : isRelegation ? 'text-rose-600 dark:text-rose-400' : 'text-text-primary'}`}>{team.name}</span>
-                                        </Link>
+                                            <span className={`block truncate max-w-[120px] sm:max-w-[200px] ${isPlayoff ? 'text-emerald-600 dark:text-emerald-400' : isSecondaryPlayoff ? 'text-amber-600 dark:text-amber-400' : isRelegation ? 'text-rose-600 dark:text-rose-400' : 'text-text-primary'}`}>{team.name}</span>
+                                        </div>
                                     </td>
                                     <td className={`${rowClass} text-center text-text-secondary whitespace-nowrap`}>{team.played}</td>
                                     <td className={`${rowClass} text-center text-emerald-500 font-medium whitespace-nowrap`}>{team.wins}</td>

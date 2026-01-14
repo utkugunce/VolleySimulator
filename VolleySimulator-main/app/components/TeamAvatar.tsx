@@ -61,9 +61,9 @@ export default function TeamAvatar({ name, size = 'md', showName = false, positi
                 role="img"
                 aria-label={name}
             >
-                {!hasError ? (
+                {!hasError && name && name !== '?' && name !== 'TBD' ? (
                     <Image
-                        src={`/logos/${name}.png`}
+                        src={`/logos/${encodeURIComponent(name)}.png`}
                         alt={name}
                         width={pixelSizes[size]}
                         height={pixelSizes[size]}

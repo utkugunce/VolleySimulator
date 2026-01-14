@@ -1,9 +1,9 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { createClient } from "../utils/supabase";
-import { useAuth } from "../context/AuthContext";
-import { GameState, AchievementId, LEVEL_THRESHOLDS } from "../types";
+// import { createClient } from "../utils/supabase";
+const createClient = () => null as any;
+import { GameState, AchievementId, LEVEL_THRESHOLDS } from "@/app/types";
 import { ACHIEVEMENTS, calculateLevel, getXPForNextLevel, getLevelTitle } from "../utils/gameState";
 
 // Types
@@ -124,9 +124,8 @@ async function saveUserStats(userId: string, state: Partial<GameState>): Promise
 // REACT QUERY HOOK
 // ============================================
 export function useUserStats() {
-    const { user } = useAuth();
     const queryClient = useQueryClient();
-    const userId = user?.id || "anonymous";
+    const userId = "anonymous";
 
     const query = useQuery({
         queryKey: ["userStats", userId],

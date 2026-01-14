@@ -6,9 +6,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { ToastProvider } from "./components/Toast";
 import ScrollToTop from "./components/ScrollToTop";
-import Navbar from "./components/Navbar";
-import { AuthProvider } from "./context/AuthContext";
-import AuthGuard from "./components/AuthGuard";
 import { QueryProvider } from "./providers/QueryProvider";
 
 
@@ -27,8 +24,8 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "VolleySimulator",
-  description: "Voleybol simülasyon ve tahmin platformu",
+  title: "CEV CL Simulator",
+  description: "CEV Şampiyonlar Ligi tahmin ve simülasyon platformu",
   manifest: "/manifest.json",
   icons: {
     icon: "/favicon.svg",
@@ -37,7 +34,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "VolleySim",
+    title: "CEV CL Sim",
   },
 };
 
@@ -53,17 +50,12 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <QueryProvider>
-          <AuthProvider>
-            <ToastProvider>
-              <Navbar />
-              <div className="pt-12 pb-16 min-h-screen flex flex-col">
-                <AuthGuard>
-                  {children}
-                </AuthGuard>
-                <ScrollToTop />
-              </div>
-            </ToastProvider>
-          </AuthProvider>
+          <ToastProvider>
+            <div className="min-h-screen flex flex-col">
+              {children}
+              <ScrollToTop />
+            </div>
+          </ToastProvider>
         </QueryProvider>
         {/* Service Worker Registration */}
         <Script id="sw-register" strategy="lazyOnload">

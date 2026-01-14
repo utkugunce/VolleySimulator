@@ -1,14 +1,12 @@
 "use client";
 
 import { useEffect, useState, useRef, useMemo } from "react";
-import { TeamStats, Match, Achievement } from "../../types";
-import PageHeader from "../../components/PageHeader";
+import { TeamStats, Match, Achievement } from "@/app/types";
 import { useToast, AchievementToast, AchievementsPanel } from "../../components";
 import StandingsTable from "../../components/Calculator/StandingsTable";
 import FixtureList from "../../components/Calculator/FixtureList";
 import ShareButton from "../../components/ShareButton";
 import { calculateLiveStandings } from "../../utils/calculatorUtils";
-import { calculateElo } from "../../utils/eloCalculator";
 import { useGameState, ACHIEVEMENTS } from "../../utils/gameState";
 import { sounds } from "../../utils/sounds";
 
@@ -44,7 +42,6 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches }: 
     // UI State
     const [overrides, setOverrides] = useState<Record<string, string>>({});
     const [showAchievements, setShowAchievements] = useState(false);
-    const [showAutoMenu, setShowAutoMenu] = useState(false);
     const [showResetMenu, setShowResetMenu] = useState(false);
     const [newAchievement, setNewAchievement] = useState<Achievement | null>(null);
 
@@ -161,23 +158,6 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches }: 
         return ranks;
     }, [liveStandings]);
 
-    // Export / Import Handlers
-    const handleSaveAllScenarios = () => {
-        try {
-            const exportData = {
-                league: 'CEV Şampiyonlar Ligi',
-                groupScenarios: overrides,
-                date: new Date().toISOString()
-            };
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportData, null, 2));
-            const a = document.createElement('a');
-            a.href = dataStr;
-            a.download = `cevcl-tahmin-${new Date().toLocaleDateString('tr-TR')}.json`;
-            a.click();
-            showToast("Şampiyonlar Ligi senaryosu indirildi", "success");
-        } catch (e) { console.error(e); }
-    };
-
     const handleScrollToNextMatch = () => {
         const nextMatch = poolMatches.find(m => !m.isPlayed && !overrides[`${m.homeTeam}-${m.awayTeam}`]);
         if (nextMatch) {
@@ -191,81 +171,42 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches }: 
         }
     };
 
-    const handleImportAllScenarios = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = (evt) => {
-            try {
-                const json = JSON.parse(evt.target?.result as string);
-                if (json.groupScenarios) {
-                    localStorage.setItem('cevclGroupScenarios', JSON.stringify(json.groupScenarios));
-                    setOverrides(json.groupScenarios);
-                }
-                showToast("Şampiyonlar Ligi senaryosu yüklendi", "success");
-            } catch (err) { console.error(err); }
-        }
-        reader.readAsText(file);
-        e.target.value = '';
-    }
-
-    // Auto Simulation Logic
-    const handleSimulateSmart = () => {
-        if (!confirm("Oynanmamış tüm maçlar güncel güç dengelerine göre otomatik doldurulacak. Onaylıyor musunuz?")) return;
-        const newOverrides = { ...overrides };
-        let count = 0;
-        const eloRatings = calculateElo(poolTeams, poolMatches.filter(m => m.isPlayed));
-        poolMatches.forEach(match => {
-            if (match.isPlayed || newOverrides[`${match.homeTeam}-${match.awayTeam}`]) return;
-            const homeElo = eloRatings.get(match.homeTeam) || 1200;
-            const awayElo = eloRatings.get(match.awayTeam) || 1200;
-            const winProb = 1 / (1 + Math.pow(10, (awayElo - homeElo) / 400));
-            const randomFactor = (Math.random() * 0.15) - 0.075;
-            const finalProb = winProb + randomFactor;
-            let score = "0-0";
-            if (finalProb > 0.60) score = "3-0";
-            else if (finalProb > 0.55) score = "3-1";
-            else if (finalProb > 0.50) score = "3-2";
-            else if (finalProb > 0.45) score = "2-3";
-            else if (finalProb > 0.40) score = "1-3";
-            else score = "0-3";
-            newOverrides[`${match.homeTeam}-${match.awayTeam}`] = score;
-            count++;
-        });
-        setOverrides(newOverrides);
-        if (count > 0) {
-            sounds.levelUp();
-            showToast(`${count} maç güç dengelerine göre tahmin edildi!`, "success");
-            addXP(count * 2);
-        }
-    };
-
-    const handleSimulateRandom = () => {
-        if (!confirm("Oynanmamış tüm maçlar RASTGELE skorlarla doldurulacak. Onaylıyor musunuz?")) return;
-        const newOverrides = { ...overrides };
-        let count = 0;
-        const scores = ["3-0", "3-1", "3-2", "2-3", "1-3", "0-3"];
-        poolMatches.forEach(match => {
-            if (match.isPlayed || newOverrides[`${match.homeTeam}-${match.awayTeam}`]) return;
-            const randomScore = scores[Math.floor(Math.random() * scores.length)];
-            newOverrides[`${match.homeTeam}-${match.awayTeam}`] = randomScore;
-            count++;
-        });
-        setOverrides(newOverrides);
-        if (count > 0) {
-            sounds.levelUp();
-            showToast(`${count} maç rastgele tahmin edildi!`, "success");
-            addXP(count * 2);
-        }
-    };
-
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-1 sm:p-2 font-sans">
             <div className="w-full max-w-7xl mx-auto flex flex-col h-full gap-2">
-                <PageHeader
-                    title="CEV Şampiyonlar Ligi"
-                    subtitle="Tahmin Oyunu"
-                />
+                {/* Header */}
+                <div className="bg-gradient-to-r from-blue-900/50 to-indigo-900/50 border border-slate-800 rounded-xl p-3">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <div className="flex items-center gap-3">
+                            <div>
+                                <h1 className="font-bold text-white text-lg tracking-tight">CEV Şampiyonlar Ligi</h1>
+                                <p className="text-[10px] text-slate-400">Tahmin Oyunu • 2025-2026</p>
+                            </div>
+                        </div>
+
+                        {/* Navigation in Header */}
+                        <div className="flex items-center gap-2">
+                            <a
+                                href="/cev-cl/tahminoyunu"
+                                className="px-3 py-1.5 bg-blue-600 text-white text-xs font-bold rounded-lg"
+                            >
+                                Tahmin
+                            </a>
+                            <a
+                                href="/cev-cl/playoffs"
+                                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700"
+                            >
+                                Playoffs
+                            </a>
+                            <a
+                                href="/ayarlar"
+                                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700"
+                            >
+                                Ayarlar
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
                 {/* Action Bar */}
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-2 bg-slate-900/40 rounded-xl border border-slate-800">
@@ -285,65 +226,6 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches }: 
                         </select>
                     </div>
                     <div className="flex items-center gap-2 w-full sm:w-auto pb-1 sm:pb-0 justify-end flex-wrap sm:flex-nowrap">
-                        <div className="flex items-center gap-2 shrink-0">
-                            <div className="relative">
-                                <button
-                                    onClick={() => setShowAutoMenu(!showAutoMenu)}
-                                    className={`px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-1 shadow-lg shadow-amber-500/20 ${showAutoMenu ? 'ring-2 ring-amber-400' : ''}`}
-                                >
-                                    <span className="hidden sm:inline">Otomatik</span>
-                                    <span className="text-[8px] ml-0.5">▼</span>
-                                </button>
-                                {showAutoMenu && (
-                                    <>
-                                        <div className="fixed inset-0 z-40" onClick={() => setShowAutoMenu(false)}></div>
-                                        <div className="absolute top-full right-0 mt-2 w-48 bg-slate-900 border border-slate-700 rounded-xl shadow-xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                                            <button
-                                                onClick={() => { handleSimulateSmart(); setShowAutoMenu(false); }}
-                                                className="w-full text-left px-4 py-3 hover:bg-slate-800 transition-colors flex items-center gap-3 border-b border-slate-800"
-                                            >
-                                                <div>
-                                                    <div className="text-xs font-bold text-white">Güç Dengelerine Göre</div>
-                                                    <div className="text-[9px] text-slate-400">Takım güçlerine göre gerçekçi tahmin</div>
-                                                </div>
-                                            </button>
-                                            <button
-                                                onClick={() => { handleSimulateRandom(); setShowAutoMenu(false); }}
-                                                className="w-full text-left px-4 py-3 hover:bg-slate-800 transition-colors flex items-center gap-3"
-                                            >
-                                                <div>
-                                                    <div className="text-xs font-bold text-white">Rastgele Dağıt</div>
-                                                    <div className="text-[9px] text-slate-400">Tamamen şansa dayalı sonuçlar</div>
-                                                </div>
-                                            </button>
-                                        </div>
-                                    </>
-                                )}
-                            </div>
-
-                            <input
-                                type="file"
-                                accept=".json"
-                                onChange={handleImportAllScenarios}
-                                className="hidden"
-                                id="import-upload-cevcl"
-                            />
-                            <label
-                                htmlFor="import-upload-cevcl"
-                                className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-all cursor-pointer flex items-center gap-1"
-                                title="Senaryo Yükle"
-                            >
-                                <span className="hidden sm:inline">Yükle</span>
-                            </label>
-                            <button
-                                onClick={handleSaveAllScenarios}
-                                className="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-1"
-                                title="Senaryoyu Kaydet"
-                            >
-                                <span className="hidden sm:inline">Kaydet</span>
-                            </button>
-                        </div>
-                        <div className="w-px h-4 bg-slate-700 hidden sm:block shrink-0"></div>
                         <div className="flex items-center gap-2 shrink-0">
                             <button
                                 onClick={handleScrollToNextMatch}

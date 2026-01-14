@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
-import { TeamStats, Match } from "../../types";
+import { TeamStats, Match } from "@/app/types";
 import Link from "next/link";
-import PageHeader from "../../components/PageHeader";
 import TeamAvatar from "../../components/TeamAvatar";
 import { calculateLiveStandings } from "../../utils/calculatorUtils";
 
@@ -372,10 +371,39 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-8 font-sans">
             <div className="max-w-7xl mx-auto space-y-6">
-                <PageHeader
-                    title="CEV Şampiyonlar Ligi"
-                    subtitle="Playoff ve Final Four 2025-2026"
-                />
+                {/* Header with Navigation */}
+                <div className="bg-gradient-to-r from-purple-900/50 to-indigo-900/50 border border-slate-800 rounded-xl p-3">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <div className="flex items-center gap-3">
+                            <div>
+                                <h1 className="font-bold text-white text-lg tracking-tight">CEV Şampiyonlar Ligi</h1>
+                                <p className="text-[10px] text-slate-400">Playoff ve Final Four • 2025-2026</p>
+                            </div>
+                        </div>
+
+                        {/* Navigation in Header */}
+                        <div className="flex items-center gap-2">
+                            <a
+                                href="/cev-cl/tahminoyunu"
+                                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700"
+                            >
+                                Tahmin
+                            </a>
+                            <a
+                                href="/cev-cl/playoffs"
+                                className="px-3 py-1.5 bg-purple-600 text-white text-xs font-bold rounded-lg"
+                            >
+                                Playoffs
+                            </a>
+                            <a
+                                href="/ayarlar"
+                                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700"
+                            >
+                                Ayarlar
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
                 {!isGroupsComplete && (
                     <div className="bg-blue-500/10 border border-blue-500/20 text-blue-200 p-4 rounded-lg flex items-center gap-3">
