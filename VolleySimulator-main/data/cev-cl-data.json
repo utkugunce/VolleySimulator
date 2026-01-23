@@ -7,7 +7,9 @@
             "wins": 4,
             "points": 12,
             "setsWon": 12,
-            "setsLost": 2
+            "setsLost": 2,
+            "setPointsWon": 339,
+            "setPointsLost": 281
         },
         {
             "name": "Savino Del Bene Scandicci",
@@ -16,7 +18,9 @@
             "wins": 3,
             "points": 9,
             "setsWon": 10,
-            "setsLost": 4
+            "setsLost": 4,
+            "setPointsWon": 337,
+            "setPointsLost": 271
         },
         {
             "name": "Volero Le Cannet",
@@ -25,7 +29,9 @@
             "wins": 1,
             "points": 3,
             "setsWon": 5,
-            "setsLost": 10
+            "setsLost": 10,
+            "setPointsWon": 280,
+            "setPointsLost": 337
         },
         {
             "name": "CS Volei Alba Blaj",
@@ -34,7 +40,9 @@
             "wins": 0,
             "points": 0,
             "setsWon": 1,
-            "setsLost": 12
+            "setsLost": 12,
+            "setPointsWon": 275,
+            "setPointsLost": 342
         },
         {
             "name": "Fenerbahçe Medicana Istanbul",
@@ -43,7 +51,9 @@
             "wins": 4,
             "points": 11,
             "setsWon": 12,
-            "setsLost": 2
+            "setsLost": 2,
+            "setPointsWon": 330,
+            "setPointsLost": 253
         },
         {
             "name": "Igor Gorgonzola Novara",
@@ -52,7 +62,9 @@
             "wins": 2,
             "points": 7,
             "setsWon": 8,
-            "setsLost": 7
+            "setsLost": 7,
+            "setPointsWon": 333,
+            "setPointsLost": 328
         },
         {
             "name": "PGE Budowlani Łódź",
@@ -61,7 +73,9 @@
             "wins": 1,
             "points": 4,
             "setsWon": 6,
-            "setsLost": 9
+            "setsLost": 9,
+            "setPointsWon": 310,
+            "setPointsLost": 329
         },
         {
             "name": "Sport Lisboa e Benfica",
@@ -70,7 +84,9 @@
             "wins": 1,
             "points": 2,
             "setsWon": 3,
-            "setsLost": 11
+            "setsLost": 11,
+            "setPointsWon": 272,
+            "setPointsLost": 335
         },
         {
             "name": "Numia Vero Volley Milano",
@@ -79,7 +95,9 @@
             "wins": 3,
             "points": 10,
             "setsWon": 11,
-            "setsLost": 3
+            "setsLost": 3,
+            "setPointsWon": 337,
+            "setPointsLost": 282
         },
         {
             "name": "Eczacıbaşı Dynavit Istanbul",
@@ -88,7 +106,9 @@
             "wins": 3,
             "points": 9,
             "setsWon": 11,
-            "setsLost": 5
+            "setsLost": 5,
+            "setPointsWon": 363,
+            "setPointsLost": 312
         },
         {
             "name": "Olympiacos SFP Piraeus",
@@ -97,7 +117,9 @@
             "wins": 2,
             "points": 5,
             "setsWon": 6,
-            "setsLost": 9
+            "setsLost": 9,
+            "setPointsWon": 315,
+            "setPointsLost": 341
         },
         {
             "name": "OK Železničar Lajkovac",
@@ -106,7 +128,9 @@
             "wins": 0,
             "points": 0,
             "setsWon": 1,
-            "setsLost": 12
+            "setsLost": 12,
+            "setPointsWon": 244,
+            "setPointsLost": 324
         },
         {
             "name": "A. Carraro P. Doc Conegliano",
@@ -115,7 +139,9 @@
             "wins": 4,
             "points": 11,
             "setsWon": 12,
-            "setsLost": 2
+            "setsLost": 2,
+            "setPointsWon": 342,
+            "setPointsLost": 271
         },
         {
             "name": "Zeren Spor Kulübü Ankara",
@@ -124,7 +150,9 @@
             "wins": 3,
             "points": 10,
             "setsWon": 11,
-            "setsLost": 3
+            "setsLost": 3,
+            "setPointsWon": 342,
+            "setPointsLost": 295
         },
         {
             "name": "Dresdner SC",
@@ -133,7 +161,9 @@
             "wins": 1,
             "points": 3,
             "setsWon": 3,
-            "setsLost": 10
+            "setsLost": 10,
+            "setPointsWon": 258,
+            "setPointsLost": 318
         },
         {
             "name": "ŁKS Commercecon Łódź",
@@ -142,7 +172,9 @@
             "wins": 0,
             "points": 0,
             "setsWon": 1,
-            "setsLost": 12
+            "setsLost": 12,
+            "setPointsWon": 262,
+            "setPointsLost": 320
         },
         {
             "name": "SSC Palmberg Schwerin",
@@ -151,7 +183,9 @@
             "wins": 3,
             "points": 9,
             "setsWon": 11,
-            "setsLost": 6
+            "setsLost": 6,
+            "setPointsWon": 377,
+            "setPointsLost": 352
         },
         {
             "name": "KS Developres Rzeszów",
@@ -160,7 +194,9 @@
             "wins": 3,
             "points": 9,
             "setsWon": 11,
-            "setsLost": 7
+            "setsLost": 7,
+            "setPointsWon": 418,
+            "setPointsLost": 367
         },
         {
             "name": "Maritza Plovdiv",
@@ -169,7 +205,9 @@
             "wins": 1,
             "points": 4,
             "setsWon": 6,
-            "setsLost": 10
+            "setsLost": 10,
+            "setPointsWon": 334,
+            "setPointsLost": 368
         },
         {
             "name": "Levallois Paris Saint Cloud",
@@ -178,7 +216,9 @@
             "wins": 1,
             "points": 2,
             "setsWon": 6,
-            "setsLost": 11
+            "setsLost": 11,
+            "setPointsWon": 352,
+            "setPointsLost": 394
         }
     ],
     "fixture": [

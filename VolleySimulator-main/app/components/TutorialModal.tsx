@@ -96,7 +96,7 @@ const TUTORIAL_STEPS: TutorialStep[] = [
         description: "Artık VolleySimulator'ı kullanmaya hazırsınız. İyi tahminler ve bol şans!",
         icon: "🎉",
         tips: [
-            "Sorularınız için Ayarlar > Yardım",
+            "Yardım için iletişime geçin",
             "Geri bildirim için iletişime geçin",
             "Keyifli oyunlar!"
         ]

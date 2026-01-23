@@ -48,8 +48,8 @@ export default function RankingTables({ rankings }: RankingTablesProps) {
                         key={tab.id}
                         onClick={() => setActiveTab(tab.id)}
                         className={`flex-1 py-3 px-4 text-sm font-medium transition-all duration-200 ${activeTab === tab.id
-                                ? "bg-blue-600/20 text-blue-400 border-b-2 border-blue-500"
-                                : "text-slate-400 hover:text-white hover:bg-slate-700/30"
+                            ? "bg-blue-600/20 text-blue-400 border-b-2 border-blue-500"
+                            : "text-slate-400 hover:text-white hover:bg-slate-700/30"
                             }`}
                     >
                         <span className="mr-2">{tab.emoji}</span>
@@ -65,7 +65,7 @@ export default function RankingTables({ rankings }: RankingTablesProps) {
                         <tr className="bg-slate-800/50 text-slate-400 text-xs uppercase">
                             <th className="py-2 px-2 text-center w-8">#</th>
                             <th className="py-2 px-3 text-left">Takım</th>
-                            <th className="py-2 px-2 text-center" title="Havuz">Havuz</th>
+                            <th className="py-2 px-2 text-center" title="Grup">Grup</th>
                             <th className="py-2 px-2 text-center" title="Oynanan Maç">OM</th>
                             <th className="py-2 px-2 text-center" title="Galibiyet">G</th>
                             <th className="py-2 px-2 text-center" title="Mağlubiyet">M</th>
@@ -83,8 +83,8 @@ export default function RankingTables({ rankings }: RankingTablesProps) {
                             >
                                 <td className="py-2 px-2 text-center">
                                     <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${index === 0 ? "bg-green-600 text-white" :
-                                            index === 1 ? "bg-blue-600 text-white" :
-                                                "bg-slate-700 text-slate-300"
+                                        index === 1 ? "bg-blue-600 text-white" :
+                                            "bg-slate-700 text-slate-300"
                                         }`}>
                                         {entry.pos}
                                     </span>

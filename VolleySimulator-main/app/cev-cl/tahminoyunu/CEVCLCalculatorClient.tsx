@@ -5,7 +5,6 @@ import { TeamStats, Match, Achievement } from "@/app/types";
 import { useToast, AchievementToast, AchievementsPanel } from "../../components";
 import StandingsTable from "../../components/Calculator/StandingsTable";
 import FixtureList from "../../components/Calculator/FixtureList";
-import ShareButton from "../../components/ShareButton";
 import RankingTables from "../../components/RankingTables";
 import { calculateLiveStandings } from "../../utils/calculatorUtils";
 import { useGameState, ACHIEVEMENTS } from "../../utils/gameState";
@@ -248,12 +247,14 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                             >
                                 Playoffs
                             </a>
-                            <a
-                                href="/ayarlar"
+                            {/* Theme Toggle */}
+                            <button
+                                onClick={() => document.documentElement.classList.toggle('light')}
                                 className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700"
+                                title="Tema Değiştir"
                             >
-                                Ayarlar
-                            </a>
+                                🌙
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -310,113 +311,70 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                                     </button>
                                 </div>
                             </div>
-                            <button
-                                onClick={handleScrollToNextMatch}
-                                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700 flex items-center gap-1"
-                                title="Son kaldığım maça git"
-                            >
-                                <span className="hidden sm:inline">Kaldığım Yer</span>
-                            </button>
-                            <div className="relative">
-                                <button
-                                    onClick={() => setShowResetMenu(!showResetMenu)}
-                                    className={`px-3 py-1.5 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-400 text-xs font-bold rounded-lg transition-all border border-slate-700 flex items-center gap-1 ${showResetMenu ? 'ring-2 ring-rose-500/50' : ''}`}
-                                >
-                                    <span className="hidden sm:inline">Sıfırla</span>
-                                    <span className="text-[8px] ml-0.5">▼</span>
-                                </button>
-                                {showResetMenu && (
-                                    <>
-                                        <div className="fixed inset-0 z-40" onClick={() => setShowResetMenu(false)}></div>
-                                        <div className="absolute top-full right-0 mt-2 w-48 bg-slate-900 border border-slate-700 rounded-xl shadow-xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                                            <button
-                                                onClick={() => { handleResetGroup(); setShowResetMenu(false); }}
-                                                className="w-full text-left px-4 py-3 hover:bg-slate-800 transition-colors flex items-center gap-3 border-b border-slate-800"
-                                            >
-                                                <div>
-                                                    <div className="text-xs font-bold text-white">Bu Grubu Sıfırla</div>
-                                                    <div className="text-[9px] text-slate-400">Sadece {selectedPool} silinir</div>
-                                                </div>
-                                            </button>
-                                            <button
-                                                onClick={() => { handleResetAll(); setShowResetMenu(false); }}
-                                                className="w-full text-left px-4 py-3 hover:bg-rose-900/20 transition-colors flex items-center gap-3 group"
-                                            >
-                                                <div>
-                                                    <div className="text-xs font-bold text-rose-400 group-hover:text-rose-300">Tümünü Sıfırla</div>
-                                                    <div className="text-[9px] text-rose-500/70 group-hover:text-rose-400/70">Bütün tahminler silinir</div>
-                                                </div>
-                                            </button>
-                                        </div>
-                                    </>
-                                )}
-                            </div>
-                            <ShareButton
-                                targetRef={standingsRef}
-                                championName={liveStandings[0]?.name}
-                            />
                         </div>
-                    </div>
-                </div>
-
-                {/* Ranking Tables Toggle */}
-                {rankings && (
-                    <div className="flex flex-col gap-2">
-                        <button
-                            onClick={() => setShowRankings(!showRankings)}
-                            className={`w-full py-3 px-4 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${showRankings
-                                ? "bg-blue-600 text-white"
-                                : "bg-gradient-to-r from-blue-900/30 to-indigo-900/30 text-blue-400 border border-blue-800/50 hover:border-blue-600"
-                                }`}
-                        >
-                            <span>{showRankings ? "🏆 Sıralamaları Gizle" : "🏆 Havuz Sıralamalarını Göster"}</span>
-                            <span className="text-xs opacity-70">(1., 2., 3. sıralar)</span>
-                        </button>
-
-                        {showRankings && (
-                            <div className="animate-in slide-in-from-top-2 duration-300">
-                                <RankingTables rankings={rankings} />
-                            </div>
-                        )}
-                    </div>
-                )}
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    <div className="flex flex-col gap-4 relative">
-                        <div ref={standingsRef} className="sticky top-14 z-10 max-h-[calc(100vh-120px)] overflow-auto custom-scrollbar">
-                            <StandingsTable
-                                teams={liveStandings}
-                                playoffSpots={2}
-                                secondaryPlayoffSpots={0}
-                                relegationSpots={0}
-                                initialRanks={initialRanks}
-                                compact={true}
-                            />
-                        </div>
-                    </div>
-                    <div className="flex flex-col">
-                        <FixtureList
-                            matches={poolMatches}
-                            overrides={overrides}
-                            onScoreChange={handleScoreChange}
-                            teamRanks={currentRanks}
-                            totalTeams={poolTeams.length}
-                            relegationSpots={0}
-                        />
                     </div>
                 </div>
             </div>
 
-            {newAchievement && (
-                <AchievementToast
-                    achievement={newAchievement}
-                    onClose={() => setNewAchievement(null)}
-                />
+            {/* Ranking Tables Toggle */}
+            {rankings && (
+                <div className="flex flex-col gap-2">
+                    <button
+                        onClick={() => setShowRankings(!showRankings)}
+                        className={`w-full py-3 px-4 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${showRankings
+                            ? "bg-blue-600 text-white"
+                            : "bg-gradient-to-r from-blue-900/30 to-indigo-900/30 text-blue-400 border border-blue-800/50 hover:border-blue-600"
+                            }`}
+                    >
+                        <span>{showRankings ? "🏆 Sıralamaları Gizle" : "🏆 Havuz Sıralamalarını Göster"}</span>
+                        <span className="text-xs opacity-70">(1., 2., 3. sıralar)</span>
+                    </button>
+
+                    {showRankings && (
+                        <div className="animate-in slide-in-from-top-2 duration-300">
+                            <RankingTables rankings={rankings} />
+                        </div>
+                    )}
+                </div>
             )}
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-4 relative">
+                    <div ref={standingsRef} className="sticky top-14 z-10 max-h-[calc(100vh-120px)] overflow-auto custom-scrollbar">
+                        <StandingsTable
+                            teams={liveStandings}
+                            playoffSpots={2}
+                            secondaryPlayoffSpots={0}
+                            relegationSpots={0}
+                            initialRanks={initialRanks}
+                            compact={true}
+                        />
+                    </div>
+                </div>
+                <div className="flex flex-col">
+                    <FixtureList
+                        matches={poolMatches}
+                        overrides={overrides}
+                        onScoreChange={handleScoreChange}
+                        teamRanks={currentRanks}
+                        totalTeams={poolTeams.length}
+                        relegationSpots={0}
+                    />
+                </div>
+            </div>
+
+            {
+                newAchievement && (
+                    <AchievementToast
+                        achievement={newAchievement}
+                        onClose={() => setNewAchievement(null)}
+                    />
+                )
+            }
             <AchievementsPanel
                 isOpen={showAchievements}
                 onClose={() => setShowAchievements(false)}
             />
-        </main>
+        </main >
     );
 }

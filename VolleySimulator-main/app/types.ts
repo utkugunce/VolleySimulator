@@ -7,6 +7,8 @@ export interface TeamStats {
   setsWon: number;
   setsLost: number;
   setRatio?: number;
+  setPointsWon: number;
+  setPointsLost: number;
 }
 
 export interface Match {

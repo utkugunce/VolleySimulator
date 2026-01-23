@@ -88,6 +88,8 @@ export default function StandingsTable({
                             <th scope="col" className={`${headClass} w-8 text-center text-amber-500 font-bold whitespace-nowrap`} title="Puan">P</th>
                             <th scope="col" className={`${headClass} w-6 text-center hidden sm:table-cell whitespace-nowrap`} title="Alınan Set">AS</th>
                             <th scope="col" className={`${headClass} w-6 text-center hidden sm:table-cell whitespace-nowrap`} title="Verilen Set">VS</th>
+                            <th scope="col" className={`${headClass} w-8 text-center hidden md:table-cell whitespace-nowrap`} title="Alınan Sayı">SPW</th>
+                            <th scope="col" className={`${headClass} w-8 text-center hidden md:table-cell whitespace-nowrap`} title="Verilen Sayı">SPL</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-border-subtle">
@@ -151,6 +153,8 @@ export default function StandingsTable({
                                     </td>
                                     <td className={`${rowClass} text-center text-text-secondary hidden sm:table-cell whitespace-nowrap`}>{team.setsWon}</td>
                                     <td className={`${rowClass} text-center text-text-secondary hidden sm:table-cell whitespace-nowrap`}>{team.setsLost}</td>
+                                    <td className={`${rowClass} text-center text-text-secondary hidden md:table-cell whitespace-nowrap font-mono text-[10px]`}>{team.setPointsWon}</td>
+                                    <td className={`${rowClass} text-center text-text-secondary hidden md:table-cell whitespace-nowrap font-mono text-[10px]`}>{team.setPointsLost}</td>
                                 </tr>
                             );
                         })}
