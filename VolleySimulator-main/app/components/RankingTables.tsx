@@ -30,7 +30,7 @@ interface RankingTablesProps {
 }
 
 export default function RankingTables({ rankings }: RankingTablesProps) {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     const [activeTab, setActiveTab] = useState<"first" | "second" | "third">("first");
 
     const tabs = [
@@ -41,20 +41,24 @@ export default function RankingTables({ rankings }: RankingTablesProps) {
 
     const activeData = tabs.find(t => t.id === activeTab)?.data || [];
 
+    // Larger padding for better visibility
+    const thClass = "py-3 px-2 text-center whitespace-nowrap";
+    const tdClass = "py-3 px-2 text-center whitespace-nowrap";
+
     return (
-        <div className="bg-gradient-to-br from-slate-800/90 to-slate-900/90 rounded-xl border border-slate-700/50 overflow-hidden">
+        <div className="bg-gradient-to-br from-slate-800/95 to-slate-900/95 rounded-xl border border-slate-700/50 overflow-hidden shadow-xl">
             {/* Tab Headers */}
-            <div className="flex border-b border-slate-700/50">
+            <div className="flex border-b border-slate-700/50 overflow-x-auto">
                 {tabs.map((tab) => (
                     <button
                         key={tab.id}
                         onClick={() => setActiveTab(tab.id)}
-                        className={`flex-1 py-3 px-4 text-sm font-medium transition-all duration-200 ${activeTab === tab.id
+                        className={`flex-1 py-4 px-4 text-sm font-bold transition-all duration-200 whitespace-nowrap ${activeTab === tab.id
                             ? "bg-blue-600/20 text-blue-400 border-b-2 border-blue-500"
                             : "text-slate-400 hover:text-white hover:bg-slate-700/30"
                             }`}
                     >
-                        <span className="mr-2">{tab.emoji}</span>
+                        <span className="mr-2 text-lg">{tab.emoji}</span>
                         {tab.label}
                     </button>
                 ))}
@@ -64,49 +68,55 @@ export default function RankingTables({ rankings }: RankingTablesProps) {
             <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                     <thead>
-                        <tr className="bg-slate-800/50 text-slate-400 text-xs uppercase">
-                            <th className="py-2 px-2 text-center w-8">#</th>
-                            <th className="py-2 px-3 text-left">{t('table.team')}</th>
-                            <th className="py-2 px-2 text-center" title="Grup">{t('group')}</th>
-                            <th className="py-2 px-2 text-center" title={t('table.played')}>{t('table.played')}</th>
-                            <th className="py-2 px-2 text-center" title={t('table.won')}>{t('table.won')}</th>
-                            <th className="py-2 px-2 text-center" title={t('table.lost')}>{t('table.lost')}</th>
-                            <th className="py-2 px-2 text-center font-bold" title={t('table.points')}>{t('table.points')}</th>
-                            <th className="py-2 px-2 text-center" title="Set Oranı">{t('ranking.setRatio')}</th>
-                            <th className="py-2 px-2 text-center hidden md:table-cell" title="Sayı Oranı">{t('ranking.pointRatio')}</th>
+                        <tr className="bg-slate-800/80 text-slate-400 text-xs uppercase font-bold tracking-wider">
+                            <th className={`${thClass} w-10 text-slate-500`}>#</th>
+                            <th className={`py-3 px-3 text-left w-full pl-4`}>{t('table.team')}</th>
+                            <th className={thClass} title={t('group')}>{t('group')}</th>
+                            <th className={thClass} title={t('table.played')}>{t('table.played')}</th>
+                            <th className={`${thClass} text-emerald-500`} title={t('table.won')}>{t('table.won')}</th>
+                            <th className={thClass} title={t('table.points')}>{t('table.points')}</th>
+                            <th className={thClass} title="Set Ratio">{t('ranking.setRatio')}</th>
+                            <th className={thClass} title={t('table.pointsWon')}>{t('table.pointsWon')}</th>
+                            <th className={thClass} title={t('table.pointsLost')}>{t('table.pointsLost')}</th>
+                            <th className={`${thClass} hidden md:table-cell`} title="Set Point Ratio">{t('ranking.pointRatio')}</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="divide-y divide-slate-700/30">
                         {activeData.map((entry, index) => (
                             <tr
                                 key={entry.team}
-                                className={`border-b border-slate-700/30 hover:bg-slate-700/20 transition-colors ${index === 0 ? "bg-green-900/10" : ""
-                                    }`}
+                                className={`group hover:bg-slate-700/40 transition-colors ${index < 3 ? "bg-slate-800/20" : ""}`}
                             >
-                                <td className="py-2 px-2 text-center">
-                                    <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${index === 0 ? "bg-green-600 text-white" :
-                                        index === 1 ? "bg-blue-600 text-white" :
-                                            "bg-slate-700 text-slate-300"
+                                <td className={tdClass}>
+                                    <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${index === 0 ? "bg-amber-500 text-white shadow-lg shadow-amber-500/20" :
+                                        index === 1 ? "bg-slate-400 text-white" :
+                                            index === 2 ? "bg-orange-700 text-white" :
+                                                "bg-slate-800 text-slate-400"
                                         }`}>
                                         {entry.pos}
                                     </span>
                                 </td>
-                                <td className="py-2 px-3 font-medium text-white truncate max-w-[150px] md:max-w-none">
+                                <td className="py-3 px-3 pl-4 font-bold text-slate-200 truncate max-w-[140px] sm:max-w-xs text-left">
                                     {entry.team}
                                 </td>
-                                <td className="py-2 px-2 text-center">
-                                    <span className="inline-flex items-center justify-center w-6 h-6 rounded bg-slate-700 text-xs font-medium">
-                                        {entry.pool.replace("Pool ", "").replace(" GRUBU", "")}
+                                <td className={tdClass}>
+                                    <span className="inline-flex items-center justify-center w-6 h-6 rounded bg-slate-800 text-slate-400 text-xs font-mono font-bold border border-slate-700">
+                                        {entry.pool.replace("Pool ", "").replace(" GRUBU", "").replace(" POOL", "")}
                                     </span>
                                 </td>
-                                <td className="py-2 px-2 text-center text-slate-400">{entry.pld}</td>
-                                <td className="py-2 px-2 text-center text-green-400">{entry.w}</td>
-                                <td className="py-2 px-2 text-center text-red-400">{entry.l}</td>
-                                <td className="py-2 px-2 text-center font-bold text-yellow-400">{entry.pts}</td>
-                                <td className="py-2 px-2 text-center text-slate-300">
+                                <td className={`${tdClass} text-slate-400`}>{entry.pld}</td>
+                                <td className={`${tdClass} text-emerald-400 font-bold`}>{entry.w}</td>
+                                <td className={`${tdClass} text-amber-400 font-bold text-base`}>{entry.pts}</td>
+                                <td className={`${tdClass} text-slate-400 font-mono text-xs`}>
                                     {entry.sr.toFixed(2)}
                                 </td>
-                                <td className="py-2 px-2 text-center text-slate-400 hidden md:table-cell">
+                                <td className={`${tdClass} text-sky-400 font-mono text-xs`}>
+                                    {entry.spw}
+                                </td>
+                                <td className={`${tdClass} text-rose-400 font-mono text-xs`}>
+                                    {entry.spl}
+                                </td>
+                                <td className={`${tdClass} text-slate-500 font-mono text-xs hidden md:table-cell`}>
                                     {entry.spr.toFixed(3)}
                                 </td>
                             </tr>
@@ -116,13 +126,25 @@ export default function RankingTables({ rankings }: RankingTablesProps) {
             </div>
 
             {/* Legend */}
-            <div className="px-4 py-2 bg-slate-800/30 text-xs text-slate-500 flex flex-wrap gap-3">
-                <span title="Oynanan Maç">{t('table.played')}: {t('table.playedDesc') || 'Maç'}</span>
-                <span title="Galibiyet">{t('table.won')}: {t('table.wonDesc') || 'Galibiyet'}</span>
-                <span title="Mağlubiyet">{t('table.lost')}: {t('table.lostDesc') || 'Mağlubiyet'}</span>
-                <span title="Puan">{t('table.points')}: {t('table.pointsDesc') || 'Puan'}</span>
-                <span title="Set Oranı">{t('ranking.setRatio')}: Set Rate</span>
-                <span className="hidden md:inline" title="Sayı Oranı">{t('ranking.pointRatio')}: Set Point Rate</span>
+            <div className="px-4 py-3 bg-slate-900/50 border-t border-slate-800 flex flex-wrap gap-4 justify-center sm:justify-start">
+                <div className="flex items-center gap-1.5 text-[10px] text-emerald-400 font-medium bg-emerald-500/10 px-2 py-1 rounded border border-emerald-500/20">
+                    <span className="font-bold">{t('table.won')}:</span> {language === 'tr' ? 'Galibiyet' : 'Won'}
+                </div>
+                <div className="flex items-center gap-1.5 text-[10px] text-amber-400 font-medium bg-amber-500/10 px-2 py-1 rounded border border-amber-500/20">
+                    <span className="font-bold">{t('table.points')}:</span> {language === 'tr' ? 'Puan' : 'Points'}
+                </div>
+                <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-medium bg-slate-800 px-2 py-1 rounded border border-slate-700">
+                    <span className="font-bold text-slate-300">{t('ranking.setRatio')}:</span> {language === 'tr' ? 'Set Oranı' : 'Set Ratio'}
+                </div>
+                <div className="flex items-center gap-1.5 text-[10px] text-sky-400 font-medium bg-sky-500/10 px-2 py-1 rounded border border-sky-500/20">
+                    <span className="font-bold">{t('table.pointsWon')}:</span> {language === 'tr' ? 'Alınan Sayı' : 'Points Won'}
+                </div>
+                <div className="flex items-center gap-1.5 text-[10px] text-rose-400 font-medium bg-rose-500/10 px-2 py-1 rounded border border-rose-500/20">
+                    <span className="font-bold">{t('table.pointsLost')}:</span> {language === 'tr' ? 'Verilen Sayı' : 'Points Lost'}
+                </div>
+                <div className="hidden md:flex items-center gap-1.5 text-[10px] text-slate-500 font-medium bg-slate-800 px-2 py-1 rounded border border-slate-700">
+                    <span className="font-bold text-slate-400">{t('ranking.pointRatio')}:</span> {language === 'tr' ? 'Sayı Oranı' : 'Point Ratio'}
+                </div>
             </div>
         </div>
     );

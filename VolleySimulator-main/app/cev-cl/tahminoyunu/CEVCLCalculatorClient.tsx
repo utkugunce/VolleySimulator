@@ -202,6 +202,63 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
         return ranks;
     }, [liveStandings]);
 
+    // Dynamic Global Rankings Calculation
+    const calculatedRankings = useMemo(() => {
+        const firstPlace: TeamStats[] = [];
+        const secondPlace: TeamStats[] = [];
+        const thirdPlace: TeamStats[] = [];
+
+        // For each pool, calculate standings
+        pools.forEach(poolName => {
+            const pTeams = allTeams.filter(t => t.groupName === poolName);
+            const pMatches = allMatches.filter(m => m.groupName === poolName);
+            const standings = calculateLiveStandings(pTeams, pMatches, overrides);
+
+            if (standings.length > 0) firstPlace.push({ ...standings[0], groupName: poolName });
+            if (standings.length > 1) secondPlace.push({ ...standings[1], groupName: poolName });
+            if (standings.length > 2) thirdPlace.push({ ...standings[2], groupName: poolName });
+        });
+
+        // Helper to format for RankingEntry
+        const toEntry = (t: TeamStats, idx: number) => ({
+            pos: idx + 1,
+            team: t.name,
+            pool: t.groupName || "",
+            pld: t.played,
+            w: t.wins,
+            l: t.played - t.wins,
+            pts: t.points,
+            sw: t.setsWon,
+            sl: t.setsLost,
+            sr: t.setsLost === 0 ? (t.setsWon > 0 ? 1000 : 0) : t.setsWon / t.setsLost,
+            spw: t.setPointsWon,
+            spl: t.setPointsLost,
+            spr: t.setPointsLost === 0 ? (t.setPointsWon > 0 ? 1000 : 0) : t.setPointsWon / t.setPointsLost
+        });
+
+        // Reuse sortStandings logic by importing or re-implementing sort manually to ensure consistency
+        // Since sortStandings is available, we use that for sorting the arrays
+        const sortedFirst = calculateLiveStandings(firstPlace, [], {}); // abusive use of calc to sort? No, calc expects matches. 
+        // Better to use a simpler sort helper locally or export sortStandings properly.
+        // I'll reimplement the sort comparator here to be safe and explicit, derived from CEV rules.
+        const comparator = (a: TeamStats, b: TeamStats) => {
+            if (b.wins !== a.wins) return b.wins - a.wins;
+            if (b.points !== a.points) return b.points - a.points;
+            const setAvgB = (b.setsLost === 0) ? (b.setsWon > 0 ? Number.MAX_VALUE : 0) : (b.setsWon / b.setsLost);
+            const setAvgA = (a.setsLost === 0) ? (a.setsWon > 0 ? Number.MAX_VALUE : 0) : (a.setsWon / a.setsLost);
+            if (Math.abs(setAvgB - setAvgA) > 0.0001) return setAvgB - setAvgA;
+            const pointAvgB = (b.setPointsLost === 0) ? (b.setPointsWon > 0 ? Number.MAX_VALUE : 0) : (b.setPointsWon / b.setPointsLost);
+            const pointAvgA = (a.setPointsLost === 0) ? (a.setPointsWon > 0 ? Number.MAX_VALUE : 0) : (a.setPointsWon / a.setPointsLost);
+            return pointAvgB - pointAvgA;
+        };
+
+        return {
+            firstPlace: [...firstPlace].sort(comparator).map(toEntry),
+            secondPlace: [...secondPlace].sort(comparator).map(toEntry),
+            thirdPlace: [...thirdPlace].sort(comparator).map(toEntry)
+        };
+    }, [allTeams, allMatches, overrides, pools]);
+
     return (
         <main className="min-h-screen bg-slate-950 text-slate-100 p-1 sm:p-2 font-sans">
             <div className="w-full max-w-7xl mx-auto flex flex-col h-full gap-2">
@@ -320,7 +377,7 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                 </div>
 
                 {/* Ranking Tables Toggle */}
-                {rankings && (
+                {calculatedRankings.firstPlace.length > 0 && (
                     <div className="flex flex-col gap-2">
                         <button
                             onClick={() => setShowRankings(!showRankings)}
@@ -334,7 +391,7 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
 
                         {showRankings && (
                             <div className="animate-in slide-in-from-top-2 duration-300">
-                                <RankingTables rankings={rankings} />
+                                <RankingTables rankings={calculatedRankings} />
                             </div>
                         )}
                     </div>

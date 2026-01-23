@@ -17,17 +17,20 @@ export function getOutcomeFromScore(score: string): MatchOutcome | null {
     return null;
 }
 
-export function sortStandings(teams: TeamStats[]): TeamStats[] {
-    return [...teams].sort((a, b) => {
-        // 1. Wins (most wins first)
-        if (b.wins !== a.wins) return b.wins - a.wins;
-        // 2. Points
-        if (b.points !== a.points) return b.points - a.points;
-        // 3. Set Average (ratio)
-        const setAvgB = (b.setsWon === 0 && b.setsLost === 0) ? 0 : (b.setsWon / (b.setsLost || 1));
-        const setAvgA = (a.setsWon === 0 && a.setsLost === 0) ? 0 : (a.setsWon / (a.setsLost || 1));
-        return setAvgB - setAvgA;
-    });
+return [...teams].sort((a, b) => {
+    // 1. Wins (most wins first)
+    if (b.wins !== a.wins) return b.wins - a.wins;
+    // 2. Points
+    if (b.points !== a.points) return b.points - a.points;
+    // 3. Set Ratio
+    const setAvgB = (b.setsLost === 0) ? (b.setsWon > 0 ? Number.MAX_VALUE : 0) : (b.setsWon / b.setsLost);
+    const setAvgA = (a.setsLost === 0) ? (a.setsWon > 0 ? Number.MAX_VALUE : 0) : (a.setsWon / a.setsLost);
+    if (Math.abs(setAvgB - setAvgA) > 0.0001) return setAvgB - setAvgA;
+    // 4. Point Ratio
+    const pointAvgB = (b.setPointsLost === 0) ? (b.setPointsWon > 0 ? Number.MAX_VALUE : 0) : (b.setPointsWon / b.setPointsLost);
+    const pointAvgA = (a.setPointsLost === 0) ? (a.setPointsWon > 0 ? Number.MAX_VALUE : 0) : (a.setPointsWon / a.setPointsLost);
+    return pointAvgB - pointAvgA;
+});
 }
 
 export const normalizeTeamName = (name: string) => {

@@ -74,8 +74,8 @@ export const translations = {
         "table.points": "P",
         "table.setsWon": "AS",
         "table.setsLost": "VS",
-        "table.pointsWon": "SPW",
-        "table.pointsLost": "SPL",
+        "table.pointsWon": "ASP",
+        "table.pointsLost": "VSP",
 
         // Fixture
         "fixture.upcoming": "Gelecek",
@@ -95,9 +95,9 @@ export const translations = {
         "fixture.days.6": "CUMARTESİ",
 
         // Ranking Table
-        "ranking.1st": "1. Sıra",
-        "ranking.2nd": "2. Sıra",
-        "ranking.3rd": "3. Sıra",
+        "ranking.1st": "1. Sıradaki Takımlar",
+        "ranking.2nd": "2. Sıradaki Takımlar",
+        "ranking.3rd": "3. Sıradaki Takımlar",
         "ranking.setRatio": "SO",
         "ranking.pointRatio": "SPO",
 
@@ -188,9 +188,9 @@ export const translations = {
         "fixture.days.6": "SATURDAY",
 
         // Ranking Table
-        "ranking.1st": "1st Place",
-        "ranking.2nd": "2nd Place",
-        "ranking.3rd": "3rd Place",
+        "ranking.1st": "1st Place Teams",
+        "ranking.2nd": "2nd Place Teams",
+        "ranking.3rd": "3rd Place Teams",
         "ranking.setRatio": "SR",
         "ranking.pointRatio": "SPR",
 
