@@ -15,9 +15,11 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const translations = {
     tr: {
         // Header
-        "nav.predict": "Tahmin",
-        "nav.playoffs": "Playoffs",
-        "header.subtitle": "Tahmin Oyunu • 2025-2026",
+        // Header
+        "nav.groups": "Gruplar",
+        "nav.playoffs": "Playofflar",
+        "nav.ranking": "Sıralama",
+        "header.title": "CEV Şampiyonlar Ligi Tahmin Simülatörü",
 
         // Status Bar
         "status.groupIncomplete": "Grup Etabı Henüz Tamamlanmadı",
@@ -55,6 +57,9 @@ export const translations = {
         "playoff.doubleLeg": "2 Ayaklı",
         "playoff.resetSim": "Simülasyonu Sıfırla",
         "playoff.resetConfirm": "Tüm Playoff tahminleri silinecek. Emin misiniz?",
+        "playoff.leg1": "1. Maç",
+        "playoff.leg2": "2. Maç",
+        "playoff.score": "Skor",
 
         // Playoff Rules
         "rules.po6": "5 grup ikincisi ve en iyi grup üçüncüsü karşılaşır (2 Ayaklı).",
@@ -108,9 +113,11 @@ export const translations = {
     },
     en: {
         // Header
-        "nav.predict": "Predict",
+        // Header
+        "nav.groups": "Groups",
         "nav.playoffs": "Playoffs",
-        "header.subtitle": "Prediction Game • 2025-2026",
+        "nav.ranking": "Rankings",
+        "header.title": "CEV Champions League Prediction Simulator",
 
         // Status Bar
         "status.groupIncomplete": "Group Stage Incomplete",
@@ -148,6 +155,9 @@ export const translations = {
         "playoff.doubleLeg": "2 Legs",
         "playoff.resetSim": "Reset Simulation",
         "playoff.resetConfirm": "All Playoff predictions will be deleted. Are you sure?",
+        "playoff.leg1": "1st Leg",
+        "playoff.leg2": "2nd Leg",
+        "playoff.score": "Score",
 
         // Playoff Rules
         "rules.po6": "5 runners-up and best 3rd placed team meet (2 Legs).",

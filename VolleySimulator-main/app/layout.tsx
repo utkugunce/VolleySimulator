@@ -25,12 +25,18 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "CEV CL Simulator",
-  description: "CEV Şampiyonlar Ligi tahmin ve simülasyon platformu",
+  title: "CEV Şampiyonlar Ligi Tahmin Simülatörü",
+  description: "2025-2026 CEV Şampiyonlar Ligi için interaktif tahmin ve simülasyon aracı. Playoff eşleşmelerini hesaplayın.",
   manifest: "/manifest.json",
   icons: {
     icon: "/favicon.svg",
     apple: "/favicon.svg",
+  },
+  openGraph: {
+    title: "CEV CL Simülatör",
+    description: "Kendi CEV Şampiyonlar Ligi senaryonu oluştur!",
+    type: "website",
+    locale: "tr_TR",
   },
   appleWebApp: {
     capable: true,

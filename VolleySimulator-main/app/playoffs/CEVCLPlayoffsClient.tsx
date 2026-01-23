@@ -287,24 +287,43 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                 <div className="px-2 pb-2 pt-0 grid gap-1">
                     {/* Scores */}
                     <div className="flex items-center gap-1 justify-end">
-                        {/* <span className="text-[8px] text-slate-600 uppercase mr-auto font-bold">{isDoubleLeg ? '1. Maç' : 'Skor'}</span> */}
-                        <select
-                            className="bg-slate-950 text-[10px] border border-slate-800 rounded px-1 py-0.5 text-slate-300 focus:outline-none focus:border-blue-500 h-6 w-12"
-                            value={playoffOverrides[`${matchId}-m1`] || ""}
-                            onChange={(e) => handleScoreChange(`${matchId}-m1`, e.target.value)}
-                        >
-                            <option value="">-</option>
-                            {SCORES.map(s => <option key={s} value={s}>{s}</option>)}
-                        </select>
-                        {isDoubleLeg && (
-                            <select
-                                className="bg-slate-950 text-[10px] border border-slate-800 rounded px-1 py-0.5 text-slate-300 focus:outline-none focus:border-blue-500 h-6 w-12"
-                                value={playoffOverrides[`${matchId}-m2`] || ""}
-                                onChange={(e) => handleScoreChange(`${matchId}-m2`, e.target.value)}
-                            >
-                                <option value="">-</option>
-                                {SCORES.map(s => <option key={s} value={s}>{s}</option>)}
-                            </select>
+                        {isDoubleLeg ? (
+                            <div className="flex w-full justify-between items-center gap-2">
+                                <div className="flex flex-col items-center">
+                                    <span className="text-[7px] text-slate-500 uppercase font-bold mb-0.5">{t('playoff.leg1')}</span>
+                                    <select
+                                        className="bg-slate-950 text-[10px] border border-slate-800 rounded px-1 py-0.5 text-slate-300 focus:outline-none focus:border-blue-500 h-6 w-14 text-center"
+                                        value={playoffOverrides[`${matchId}-m1`] || ""}
+                                        onChange={(e) => handleScoreChange(`${matchId}-m1`, e.target.value)}
+                                    >
+                                        <option value="">-</option>
+                                        {SCORES.map(s => <option key={s} value={s}>{s}</option>)}
+                                    </select>
+                                </div>
+                                <div className="flex flex-col items-center">
+                                    <span className="text-[7px] text-slate-500 uppercase font-bold mb-0.5">{t('playoff.leg2')}</span>
+                                    <select
+                                        className="bg-slate-950 text-[10px] border border-slate-800 rounded px-1 py-0.5 text-slate-300 focus:outline-none focus:border-blue-500 h-6 w-14 text-center"
+                                        value={playoffOverrides[`${matchId}-m2`] || ""}
+                                        onChange={(e) => handleScoreChange(`${matchId}-m2`, e.target.value)}
+                                    >
+                                        <option value="">-</option>
+                                        {SCORES.map(s => <option key={s} value={s}>{s}</option>)}
+                                    </select>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="flex flex-col items-end w-full">
+                                <span className="text-[7px] text-slate-500 uppercase font-bold mb-0.5 mr-1">{t('playoff.score')}</span>
+                                <select
+                                    className="bg-slate-950 text-[10px] border border-slate-800 rounded px-1 py-0.5 text-slate-300 focus:outline-none focus:border-blue-500 h-6 w-14 text-center"
+                                    value={playoffOverrides[`${matchId}-m1`] || ""}
+                                    onChange={(e) => handleScoreChange(`${matchId}-m1`, e.target.value)}
+                                >
+                                    <option value="">-</option>
+                                    {SCORES.map(s => <option key={s} value={s}>{s}</option>)}
+                                </select>
+                            </div>
                         )}
                     </div>
 
@@ -348,7 +367,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                     </div>
 
                     <div className="flex items-center gap-2">
-                        <Link href="/tahminoyunu" className="px-3 py-1.5 text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-900 rounded-lg transition-colors">
+                        <Link href="/" className="px-3 py-1.5 text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-900 rounded-lg transition-colors">
                             {t('nav.predict')}
                         </Link>
                         <div className="h-4 w-px bg-slate-800 mx-1"></div>
@@ -378,7 +397,14 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                             >EN</button>
                         </div>
 
-                        <button onClick={() => document.documentElement.classList.toggle('light')} className="p-2 text-slate-400 hover:text-amber-400 transition-colors">
+                        <button
+                            onClick={() => {
+                                const root = document.documentElement;
+                                const isLight = root.getAttribute('data-theme') === 'light';
+                                root.setAttribute('data-theme', isLight ? 'dark' : 'light');
+                            }}
+                            className="p-2 text-slate-400 hover:text-amber-400 transition-colors"
+                        >
                             🌙
                         </button>
                     </div>
@@ -414,7 +440,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                                 <span className="w-1.5 h-6 bg-amber-500 rounded-full"></span>
                                 <div>
                                     <div className="text-xs font-bold text-white uppercase tracking-wider">{t('playoff.po6')}</div>
-                                    <div className="text-[9px] text-slate-500">{t('playoff.po6Desc')}</div>
+                                    <div className="text-[9px] text-slate-500">{t('playoff.po6Desc')} • 28 Jan - 13 Feb</div>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-4 justify-center h-full">
@@ -433,7 +459,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                                 <span className="w-1.5 h-6 bg-blue-500 rounded-full"></span>
                                 <div>
                                     <div className="text-xs font-bold text-white uppercase tracking-wider">{t('playoff.qf')}</div>
-                                    <div className="text-[9px] text-slate-500">{t('playoff.qfDesc')}</div>
+                                    <div className="text-[9px] text-slate-500">{t('playoff.qfDesc')} • 25 Feb - 13 Mar</div>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-10 justify-center h-full">
@@ -452,7 +478,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                                 <span className="w-1.5 h-6 bg-purple-500 rounded-full shadow-[0_0_10px_purple]"></span>
                                 <div>
                                     <div className="text-xs font-bold text-white uppercase tracking-wider">{t('playoff.f4')}</div>
-                                    <div className="text-[9px] text-slate-500">{t('playoff.f4Desc')}</div>
+                                    <div className="text-[9px] text-slate-500">{t('playoff.f4Desc')} • 17-18 May</div>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-20 justify-center h-full">

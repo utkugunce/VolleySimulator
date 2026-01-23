@@ -2,15 +2,15 @@
 
 import { useEffect, useState, useRef, useMemo } from "react";
 import { TeamStats, Match, Achievement } from "@/app/types";
-import { useToast, AchievementToast, AchievementsPanel } from "../components";
-import StandingsTable from "../components/Calculator/StandingsTable";
-import FixtureList from "../components/Calculator/FixtureList";
-import RankingTables from "../components/RankingTables";
-import { calculateLiveStandings } from "../utils/calculatorUtils";
-import { useGameState, ACHIEVEMENTS } from "../utils/gameState";
-import { sounds } from "../utils/sounds";
-import { RankingsData } from "../utils/serverData";
-import { useLanguage } from "../context/LanguageContext";
+import { useToast, AchievementToast, AchievementsPanel } from "./components";
+import StandingsTable from "./components/Calculator/StandingsTable";
+import FixtureList from "./components/Calculator/FixtureList";
+import RankingTables from "./components/RankingTables";
+import { calculateLiveStandings } from "./utils/calculatorUtils";
+import { useGameState, ACHIEVEMENTS } from "./utils/gameState";
+import { sounds } from "./utils/sounds";
+import { RankingsData } from "./utils/serverData";
+import { useLanguage } from "./context/LanguageContext";
 
 interface CEVCLCalculatorClientProps {
     initialTeams: TeamStats[];
@@ -267,18 +267,17 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
                         <div className="flex items-center gap-3">
                             <div>
-                                <h1 className="font-bold text-white text-lg tracking-tight">CEV Champions League</h1>
-                                <p className="text-[10px] text-slate-400">{t('header.subtitle')}</p>
+                                <h1 className="font-bold text-white text-lg tracking-tight">{t('header.title')}</h1>
                             </div>
                         </div>
 
                         {/* Navigation in Header */}
                         <div className="flex items-center gap-2">
                             <a
-                                href="/tahminoyunu"
+                                href="/"
                                 className="px-3 py-1.5 bg-blue-600 text-white text-xs font-bold rounded-lg"
                             >
-                                {t('nav.predict')}
+                                {t('nav.groups')}
                             </a>
                             <a
                                 href="/playoffs"
@@ -300,7 +299,11 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
 
                             {/* Theme Toggle */}
                             <button
-                                onClick={() => document.documentElement.classList.toggle('light')}
+                                onClick={() => {
+                                    const root = document.documentElement;
+                                    const isLight = root.getAttribute('data-theme') === 'light';
+                                    root.setAttribute('data-theme', isLight ? 'dark' : 'light');
+                                }}
                                 className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700"
                                 title="Tema Değiştir"
                             >
@@ -376,30 +379,9 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                     </div>
                 </div>
 
-                {/* Ranking Tables Toggle */}
-                {calculatedRankings.firstPlace.length > 0 && (
-                    <div className="flex flex-col gap-2">
-                        <button
-                            onClick={() => setShowRankings(!showRankings)}
-                            className={`w-full py-3 px-4 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${showRankings
-                                ? "bg-blue-600 text-white"
-                                : "bg-gradient-to-r from-blue-900/30 to-indigo-900/30 text-blue-400 border border-blue-800/50 hover:border-blue-600"
-                                }`}
-                        >
-                            <span>{showRankings ? t('group.hideRankings') : t('group.showRankings')}</span>
-                        </button>
-
-                        {showRankings && (
-                            <div className="animate-in slide-in-from-top-2 duration-300">
-                                <RankingTables rankings={calculatedRankings} />
-                            </div>
-                        )}
-                    </div>
-                )}
-
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    <div className="flex flex-col gap-4 relative">
-                        <div ref={standingsRef} className="sticky top-14 z-10 max-h-[calc(100vh-120px)] overflow-auto custom-scrollbar">
+                    <div className="flex flex-col gap-4 h-[550px]">
+                        <div ref={standingsRef} className="h-full overflow-hidden">
                             <StandingsTable
                                 teams={liveStandings}
                                 playoffSpots={2}
@@ -410,7 +392,7 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                             />
                         </div>
                     </div>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col h-[550px]">
                         <FixtureList
                             matches={poolMatches}
                             overrides={overrides}
