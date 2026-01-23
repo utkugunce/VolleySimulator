@@ -370,6 +370,9 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                         <Link href="/" className="px-3 py-1.5 text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-900 rounded-lg transition-colors">
                             {t('nav.groups')}
                         </Link>
+                        <Link href="/siralama" className="px-3 py-1.5 text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-900 rounded-lg transition-colors">
+                            {t('nav.ranking')}
+                        </Link>
                         <div className="h-4 w-px bg-slate-800 mx-1"></div>
 
                         <button
