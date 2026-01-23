@@ -380,7 +380,7 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    <div className="flex flex-col gap-4 h-[550px]">
+                    <div className="flex flex-col gap-4 h-auto lg:h-[320px]">
                         <div ref={standingsRef} className="h-full overflow-hidden">
                             <StandingsTable
                                 teams={liveStandings}
@@ -392,7 +392,7 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                             />
                         </div>
                     </div>
-                    <div className="flex flex-col h-[550px]">
+                    <div className="flex flex-col h-auto lg:h-[320px]">
                         <FixtureList
                             matches={poolMatches}
                             overrides={overrides}
