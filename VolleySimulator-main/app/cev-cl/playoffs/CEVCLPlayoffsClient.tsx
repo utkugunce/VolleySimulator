@@ -332,6 +332,19 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                         </Link>
                         <div className="h-4 w-px bg-slate-800 mx-1"></div>
 
+                        <button
+                            onClick={() => {
+                                if (confirm(t('playoff.resetConfirm'))) {
+                                    setPlayoffOverrides({});
+                                    localStorage.removeItem('cevclPlayoffScenarios');
+                                }
+                            }}
+                            className="px-3 py-1.5 bg-rose-600/20 hover:bg-rose-600 text-rose-400 hover:text-white text-xs font-bold rounded-lg transition-all border border-rose-600/20"
+                            title={t('playoff.resetSim')}
+                        >
+                            🔄 <span className="hidden sm:inline">{t('playoff.resetSim')}</span>
+                        </button>
+
                         {/* Language Toggle */}
                         <div className="flex bg-slate-800 rounded-lg p-0.5 border border-slate-700">
                             <button
