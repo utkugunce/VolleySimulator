@@ -274,7 +274,7 @@
             "homeTeam": "CS Volei Alba Blaj",
             "awayTeam": "Savino Del Bene Scandicci",
             "groupName": "Pool A",
-            "matchDate": "21.01.2026",
+            "matchDate": "28.01.2026",
             "matchTime": "18:00",
             "isPlayed": false
         },
@@ -282,8 +282,24 @@
             "homeTeam": "Volero Le Cannet",
             "awayTeam": "VakıfBank Istanbul",
             "groupName": "Pool A",
-            "matchDate": "22.01.2026",
+            "matchDate": "28.01.2026",
             "matchTime": "20:30",
+            "isPlayed": false
+        },
+        {
+            "homeTeam": "CS Volei Alba Blaj",
+            "awayTeam": "Volero Le Cannet",
+            "groupName": "Pool A",
+            "matchDate": "04.02.2026",
+            "matchTime": "18:00",
+            "isPlayed": false
+        },
+        {
+            "homeTeam": "VakıfBank Istanbul",
+            "awayTeam": "Savino Del Bene Scandicci",
+            "groupName": "Pool A",
+            "matchDate": "04.02.2026",
+            "matchTime": "19:30",
             "isPlayed": false
         },
         {
@@ -378,32 +394,32 @@
             "homeTeam": "Igor Gorgonzola Novara",
             "awayTeam": "PGE Budowlani Łódź",
             "groupName": "Pool B",
-            "matchDate": "21.01.2026",
-            "matchTime": "20:30",
+            "matchDate": "29.01.2026",
+            "matchTime": "18:00",
             "isPlayed": false
         },
         {
             "homeTeam": "Sport Lisboa e Benfica",
             "awayTeam": "Fenerbahçe Medicana Istanbul",
             "groupName": "Pool B",
-            "matchDate": "22.01.2026",
-            "matchTime": "20:00",
-            "isPlayed": false
-        },
-        {
-            "homeTeam": "Fenerbahçe Medicana Istanbul",
-            "awayTeam": "PGE Budowlani Łódź",
-            "groupName": "Pool B",
             "matchDate": "29.01.2026",
-            "matchTime": "18:00",
+            "matchTime": "20:00",
             "isPlayed": false
         },
         {
             "homeTeam": "Igor Gorgonzola Novara",
             "awayTeam": "Sport Lisboa e Benfica",
             "groupName": "Pool B",
-            "matchDate": "29.01.2026",
-            "matchTime": "20:30",
+            "matchDate": "04.02.2026",
+            "matchTime": "18:00",
+            "isPlayed": false
+        },
+        {
+            "homeTeam": "Fenerbahçe Medicana Istanbul",
+            "awayTeam": "PGE Budowlani Łódź",
+            "groupName": "Pool B",
+            "matchDate": "04.02.2026",
+            "matchTime": "19:00",
             "isPlayed": false
         },
         {
@@ -495,43 +511,35 @@
             "awayScore": 0
         },
         {
-            "homeTeam": "OK Železničar Lajkovac",
-            "awayTeam": "Eczacıbaşı Dynavit Istanbul",
-            "groupName": "Pool C",
-            "matchDate": "21.01.2026",
-            "matchTime": "17:00",
-            "isPlayed": false
-        },
-        {
             "homeTeam": "Olympiacos SFP Piraeus",
             "awayTeam": "Numia Vero Volley Milano",
             "groupName": "Pool C",
-            "matchDate": "22.01.2026",
-            "matchTime": "18:00",
+            "matchDate": "27.01.2026",
+            "matchTime": "19:00",
+            "isPlayed": false
+        },
+        {
+            "homeTeam": "OK Železničar Lajkovac",
+            "awayTeam": "Eczacıbaşı Dynavit Istanbul",
+            "groupName": "Pool C",
+            "matchDate": "28.01.2026",
+            "matchTime": "19:00",
+            "isPlayed": false
+        },
+        {
+            "homeTeam": "OK Železničar Lajkovac",
+            "awayTeam": "Olympiacos SFP Piraeus",
+            "groupName": "Pool C",
+            "matchDate": "04.02.2026",
+            "matchTime": "19:00",
             "isPlayed": false
         },
         {
             "homeTeam": "Numia Vero Volley Milano",
             "awayTeam": "Eczacıbaşı Dynavit Istanbul",
             "groupName": "Pool C",
-            "matchDate": "28.01.2026",
-            "matchTime": "20:30",
-            "isPlayed": false
-        },
-        {
-            "homeTeam": "OK Železničar Lajkovac",
-            "awayTeam": "Olympiacos SFP Piraeus",
-            "groupName": "Pool C",
-            "matchDate": "29.01.2026",
-            "matchTime": "17:00",
-            "isPlayed": false
-        },
-        {
-            "homeTeam": "Eczacıbaşı Dynavit Istanbul",
-            "awayTeam": "Olympiacos SFP Piraeus",
-            "groupName": "Pool C",
             "matchDate": "04.02.2026",
-            "matchTime": "18:00",
+            "matchTime": "20:00",
             "isPlayed": false
         },
         {
@@ -626,7 +634,7 @@
             "homeTeam": "Zeren Spor Kulübü Ankara",
             "awayTeam": "A. Carraro P. Doc Conegliano",
             "groupName": "Pool D",
-            "matchDate": "21.01.2026",
+            "matchDate": "27.01.2026",
             "matchTime": "18:00",
             "isPlayed": false
         },
@@ -634,24 +642,8 @@
             "homeTeam": "Dresdner SC",
             "awayTeam": "ŁKS Commercecon Łódź",
             "groupName": "Pool D",
-            "matchDate": "21.01.2026",
-            "matchTime": "18:00",
-            "isPlayed": false
-        },
-        {
-            "homeTeam": "A. Carraro P. Doc Conegliano",
-            "awayTeam": "Dresdner SC",
-            "groupName": "Pool D",
             "matchDate": "28.01.2026",
-            "matchTime": "20:30",
-            "isPlayed": false
-        },
-        {
-            "homeTeam": "ŁKS Commercecon Łódź",
-            "awayTeam": "Zeren Spor Kulübü Ankara",
-            "groupName": "Pool D",
-            "matchDate": "29.01.2026",
-            "matchTime": "18:00",
+            "matchTime": "19:00",
             "isPlayed": false
         },
         {
@@ -659,14 +651,14 @@
             "awayTeam": "Zeren Spor Kulübü Ankara",
             "groupName": "Pool D",
             "matchDate": "04.02.2026",
-            "matchTime": "18:00",
+            "matchTime": "19:00",
             "isPlayed": false
         },
         {
             "homeTeam": "A. Carraro P. Doc Conegliano",
             "awayTeam": "ŁKS Commercecon Łódź",
             "groupName": "Pool D",
-            "matchDate": "05.02.2026",
+            "matchDate": "04.02.2026",
             "matchTime": "20:30",
             "isPlayed": false
         },
@@ -762,32 +754,24 @@
             "homeTeam": "Maritza Plovdiv",
             "awayTeam": "KS Developres Rzeszów",
             "groupName": "Pool E",
-            "matchDate": "21.01.2026",
-            "matchTime": "18:00",
+            "matchDate": "27.01.2026",
+            "matchTime": "18:30",
             "isPlayed": false
         },
         {
             "homeTeam": "Levallois Paris Saint Cloud",
             "awayTeam": "SSC Palmberg Schwerin",
             "groupName": "Pool E",
-            "matchDate": "22.01.2026",
-            "matchTime": "20:30",
+            "matchDate": "28.01.2026",
+            "matchTime": "20:00",
             "isPlayed": false
         },
         {
             "homeTeam": "KS Developres Rzeszów",
-            "awayTeam": "Levallois Paris Saint Cloud",
+            "awayTeam": "SSC Palmberg Schwerin",
             "groupName": "Pool E",
-            "matchDate": "28.01.2026",
+            "matchDate": "04.02.2026",
             "matchTime": "18:00",
-            "isPlayed": false
-        },
-        {
-            "homeTeam": "SSC Palmberg Schwerin",
-            "awayTeam": "Maritza Plovdiv",
-            "groupName": "Pool E",
-            "matchDate": "28.01.2026",
-            "matchTime": "19:00",
             "isPlayed": false
         },
         {
@@ -795,17 +779,9 @@
             "awayTeam": "Maritza Plovdiv",
             "groupName": "Pool E",
             "matchDate": "04.02.2026",
-            "matchTime": "20:30",
-            "isPlayed": false
-        },
-        {
-            "homeTeam": "KS Developres Rzeszów",
-            "awayTeam": "SSC Palmberg Schwerin",
-            "groupName": "Pool E",
-            "matchDate": "05.02.2026",
-            "matchTime": "20:30",
+            "matchTime": "20:00",
             "isPlayed": false
         }
     ],
-    "lastUpdated": "2026-01-23T13:10:00Z"
+    "lastUpdated": "2026-01-23T13:35:00Z"
 }
