@@ -7,6 +7,7 @@ import "./globals.css";
 import { ToastProvider } from "./components/Toast";
 import ScrollToTop from "./components/ScrollToTop";
 import { QueryProvider } from "./providers/QueryProvider";
+import { LanguageProvider } from "./context/LanguageContext";
 
 
 const geistSans = Geist({
@@ -50,12 +51,14 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <QueryProvider>
-          <ToastProvider>
-            <div className="min-h-screen flex flex-col">
-              {children}
-              <ScrollToTop />
-            </div>
-          </ToastProvider>
+          <LanguageProvider>
+            <ToastProvider>
+              <div className="min-h-screen flex flex-col">
+                {children}
+                <ScrollToTop />
+              </div>
+            </ToastProvider>
+          </LanguageProvider>
         </QueryProvider>
         {/* Service Worker Registration */}
         <Script id="sw-register" strategy="lazyOnload">

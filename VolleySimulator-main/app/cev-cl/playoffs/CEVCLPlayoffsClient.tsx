@@ -5,6 +5,7 @@ import { TeamStats, Match } from "@/app/types";
 import Link from "next/link";
 import TeamAvatar from "../../components/TeamAvatar";
 import { calculateLiveStandings } from "../../utils/calculatorUtils";
+import { useLanguage } from "../../context/LanguageContext";
 
 /* -------------------------------------------------------------------------- */
 /*                                    TYPES                                   */
@@ -58,6 +59,7 @@ const sortTeamsByPerformance = (teams: TeamStats[]) => {
 /* -------------------------------------------------------------------------- */
 
 export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CEVCLPlayoffsClientProps) {
+    const { t, language, setLanguage } = useLanguage();
     const [baseTeams] = useState<TeamStats[]>(initialTeams);
     const [allMatches] = useState<Match[]>(initialMatches);
 
@@ -89,7 +91,10 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
     useEffect(() => {
         let remaining = allMatches.filter((m: Match) => !m.isPlayed).length;
         if (groupOverrides) {
-            remaining = Math.max(0, remaining - Object.keys(groupOverrides).length);
+            // Naive check: does not account for overrides on already played matches (shouldn't happen in this app's logic usually)
+            // Better: matches that are NOT played AND NOT in overrides
+            const pending = allMatches.filter(m => !m.isPlayed && !groupOverrides[`${m.homeTeam}-${m.awayTeam}`]).length;
+            remaining = pending;
         }
         setRemainingMatches(remaining);
     }, [allMatches, groupOverrides]);
@@ -114,11 +119,14 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
     const pools = useMemo(() => {
         if (!baseTeams.length) return [];
         const poolNames = ["Pool A", "Pool B", "Pool C", "Pool D", "Pool E"];
+        // Important: use 'Grup' since we normalized in Calculator, but here raw data might be 'Pool X' or 'X Grubu' depending on source.
+
         const calculatedTeams = calculateLiveStandings(baseTeams, allMatches, groupOverrides);
 
         return poolNames.map(poolName => {
+            // Matching logic
             const poolTeams = calculatedTeams
-                .filter((t: TeamStats) => t.groupName === poolName)
+                .filter((t: TeamStats) => t.groupName.includes(poolName.replace("Pool ", "")) || t.groupName === poolName) // Loose matching
                 .sort((a, b) => {
                     if (b.wins !== a.wins) return b.wins - a.wins;
                     if (b.points !== a.points) return b.points - a.points;
@@ -139,9 +147,6 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
     const thirdPlaces = sortTeamsByPerformance(pools.map(p => p.teams[2]));
     const bestThird = thirdPlaces[0];
 
-    // Standard Ranking for PO6 Seeding: All Runners Up + Best 3rd sorted together?
-    // Wikipedia: "The 5 runners-up and the best 3rd placed team... are ranked..."
-    // So we combine them all into one pot of 6 teams and rank 1-6.
     const po6Qualifiers = sortTeamsByPerformance([...runnersUp, bestThird]);
 
     // --- Match Logic Helper ---
@@ -182,34 +187,13 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
     };
 
     // --- PAIRINGS ---
-
-    // 1. Playoff 6 (2 Legs)
-    // Seeding: 3 vs 4, 2 vs 5, 1 vs 6 (Best 3rd is effectively Rank 6 usually, but we sorted them by performance so it could theoretically be higher if a runner up is very weak, but usually Best 3rd is weakest).
     const po6_matches = [
         { id: 'po6-1', home: po6Qualifiers[5]?.name, away: po6Qualifiers[0]?.name, label: 'PO1 (6 v 1)' }, // Rank 6 vs Rank 1
         { id: 'po6-2', home: po6Qualifiers[4]?.name, away: po6Qualifiers[1]?.name, label: 'PO2 (5 v 2)' }, // Rank 5 vs Rank 2
         { id: 'po6-3', home: po6Qualifiers[3]?.name, away: po6Qualifiers[2]?.name, label: 'PO3 (4 v 3)' }  // Rank 4 vs Rank 3
     ];
-    // Note: Home/Away convention -> Lower rank hosts first usually? "The teams ranked 3rd, 4th and 5th... will play the first leg at home".
-    // So Team 4, 5, 6 (Indices 3,4,5) play Home first.
-    // My code has 'home' and 'away' props. I should map them correctly.
-    // P06-1: Qualifier[5] (Rank 6/Best 3rd?) vs Qualifier[0] (Rank 1). -> Worst hosts first. Corect. 
-
     const po6_results = po6_matches.map(m => ({ ...m, res: calculateResult(m.id, m.home, m.away, true) }));
 
-    // 2. Quarter Finals (2 Legs)
-    // Participants: 5 Pool Winners + 3 PO6 Winners.
-    // Seeding Logic (Simulated):
-    // Pool Winners are Ranks 1-5.
-    // PO6 Winners are Ranks 6-8 (Simulated).
-    // QF1: PoolWinner[0] vs Lowest PO6 Winner? 
-    // CEV often draws this. We will assume a fixed bracket for simulation:
-    // QF1: PoolWinner[2] vs PO6Winner from Match 1 (likely strongest runner up).
-    // QF2: PoolWinner[1] vs PO6Winner from Match 2.
-    // QF3: PoolWinner[0] vs PO6Winner from Match 3.
-    // QF4: PoolWinner[3] vs PoolWinner[4]. (The two 'worst' pool winners play).
-
-    // Determining PO6 Winners for mapping:
     const po6Winner1 = po6_results[0].res.winner;
     const po6Winner2 = po6_results[1].res.winner;
     const po6Winner3 = po6_results[2].res.winner;
@@ -219,27 +203,20 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
         { id: 'qf-2', home: po6Winner2, away: poolWinners[1]?.name, label: 'QF 2' },
         { id: 'qf-3', home: po6Winner3, away: poolWinners[0]?.name, label: 'QF 3' },
         { id: 'qf-4', home: poolWinners[4]?.name, away: poolWinners[3]?.name, label: 'QF 4' } // Rank 5 vs Rank 4
-    ]; // Lower rank hosts first assumption
-
+    ];
     const qf_results = qf_matches.map(m => ({ ...m, res: calculateResult(m.id, m.home!, m.away!, true) }));
 
-    // 3. Final Four (Semi Finals - Single Match)
-    // SF1: Winner QF1 vs Winner QF4 (just a guess, standard bracket flow)
-    // SF2: Winner QF2 vs Winner QF3
     const sf_matches = [
         { id: 'sf-1', home: qf_results[0].res.winner, away: qf_results[3].res.winner, label: 'Semi Final 1' },
         { id: 'sf-2', home: qf_results[1].res.winner, away: qf_results[2].res.winner, label: 'Semi Final 2' }
     ];
-
     const sf_results = sf_matches.map(m => ({ ...m, res: calculateResult(m.id, m.home!, m.away!, false) }));
 
-    // 4. Finals (Single Match)
-    const final_match = { id: 'final', home: sf_results[0].res.winner, away: sf_results[1].res.winner, label: 'GRAND FINAL' };
+    const final_match = { id: 'final', home: sf_results[0].res.winner, away: sf_results[1].res.winner, label: 'SUPER FINAL' };
     const final_result = calculateResult(final_match.id, final_match.home!, final_match.away!, false);
 
-    const match3rd = { id: '3rd', home: sf_results[0].res.loser, away: sf_results[1].res.loser, label: 'Bronze Match' };
+    const match3rd = { id: '3rd', home: sf_results[0].res.loser, away: sf_results[1].res.loser, label: '3.lük Maçı' };
     const result3rd = calculateResult(match3rd.id, match3rd.home!, match3rd.away!, false);
-
 
     /* -------------------------------------------------------------------------- */
     /*                                 SUB-COMPONENTS                             */
@@ -247,11 +224,12 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
 
     const MatchCard = ({ matchId, home, away, label, isDoubleLeg, result }: { matchId: string, home?: string | null, away?: string | null, label: string, isDoubleLeg: boolean, result: MatchResult }) => {
         const isReady = home && away;
+        // Compact Placeholder
         if (!isReady) {
             return (
-                <div className="w-64 h-32 bg-slate-900/40 rounded-xl border border-dashed border-slate-700/50 flex flex-col items-center justify-center text-slate-500 gap-2">
-                    <span className="text-xs font-mono uppercase tracking-widest opacity-50">{label}</span>
-                    <span className="text-sm">Bekleniyor...</span>
+                <div className="w-56 h-20 bg-slate-900/40 rounded-lg border border-dashed border-slate-700/50 flex flex-col items-center justify-center text-slate-500 gap-1">
+                    <span className="text-[10px] font-mono uppercase tracking-widest opacity-50">{label}</span>
+                    <span className="text-xs">{t('playoff.waiting')}</span>
                 </div>
             )
         }
@@ -261,73 +239,67 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
         const gsNeeded = result.goldenSetNeeded;
 
         return (
-            <div className={`w-72 bg-slate-900/90 border ${hWin || aWin ? 'border-emerald-500/30 shadow-[0_0_15px_-5px_rgba(16,185,129,0.2)]' : 'border-slate-700/60'} rounded-xl overflow-hidden backdrop-blur-md transition-all hover:border-slate-600 group relative`}>
-                <div className="px-3 py-2 bg-black/20 border-b border-white/5 flex justify-between items-center">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{label}</span>
-                    {isDoubleLeg ? <span className="text-[9px] px-1.5 py-0.5 bg-slate-800 rounded text-slate-500">2 Ayaklı</span> : <span className="text-[9px] px-1.5 py-0.5 bg-purple-900/30 text-purple-400 rounded">Tek Maç</span>}
+            <div className={`w-56 bg-slate-900/90 border ${hWin || aWin ? 'border-emerald-500/30 shadow-[0_0_10px_-5px_rgba(16,185,129,0.2)]' : 'border-slate-700/60'} rounded-lg overflow-hidden backdrop-blur-md transition-all hover:border-slate-600 group relative`}>
+                <div className="px-2 py-1.5 bg-black/20 border-b border-white/5 flex justify-between items-center">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider scale-90 origin-left">{label}</span>
+                    {isDoubleLeg ? <span className="text-[8px] px-1 py-0.5 bg-slate-800 rounded text-slate-500">{t('playoff.doubleLeg')}</span> : <span className="text-[8px] px-1 py-0.5 bg-purple-900/30 text-purple-400 rounded">{t('playoff.singleMatch')}</span>}
                 </div>
 
-                <div className="p-3 space-y-2">
+                <div className="p-2 space-y-1">
                     {/* Home Team */}
-                    <div className={`flex items-center justify-between p-2 rounded-lg ${hWin ? 'bg-gradient-to-r from-emerald-900/40 to-transparent' : ''}`}>
-                        <div className="flex items-center gap-2 min-w-0 flex-1">
-                            <TeamAvatar name={home!} size="sm" />
-                            <span className={`text-sm truncate font-medium ${hWin ? 'text-white' : 'text-slate-400'}`}>{home}</span>
+                    <div className={`flex items-center justify-between p-1.5 rounded ${hWin ? 'bg-emerald-900/20' : ''}`}>
+                        <div className="flex items-center gap-1.5 min-w-0 flex-1">
+                            <TeamAvatar name={home!} size="xs" />
+                            <span className={`text-xs truncate font-medium ${hWin ? 'text-white' : 'text-slate-400'}`}>{home}</span>
                         </div>
-                        {hWin && <span className="text-xs font-bold text-emerald-500">WIN</span>}
                     </div>
 
                     {/* Away Team */}
-                    <div className={`flex items-center justify-between p-2 rounded-lg ${aWin ? 'bg-gradient-to-r from-emerald-900/40 to-transparent' : ''}`}>
-                        <div className="flex items-center gap-2 min-w-0 flex-1">
-                            <TeamAvatar name={away!} size="sm" />
-                            <span className={`text-sm truncate font-medium ${aWin ? 'text-white' : 'text-slate-400'}`}>{away}</span>
+                    <div className={`flex items-center justify-between p-1.5 rounded ${aWin ? 'bg-emerald-900/20' : ''}`}>
+                        <div className="flex items-center gap-1.5 min-w-0 flex-1">
+                            <TeamAvatar name={away!} size="xs" />
+                            <span className={`text-xs truncate font-medium ${aWin ? 'text-white' : 'text-slate-400'}`}>{away}</span>
                         </div>
-                        {aWin && <span className="text-xs font-bold text-emerald-500">WIN</span>}
                     </div>
                 </div>
 
-                <div className="px-3 pb-3 pt-0 grid gap-2">
+                <div className="px-2 pb-2 pt-0 grid gap-1">
                     {/* Scores */}
                     <div className="flex items-center gap-1 justify-end">
-                        <span className="text-[9px] text-slate-600 uppercase mr-auto font-bold">{isDoubleLeg ? '1. Maç' : 'Skor'}</span>
+                        {/* <span className="text-[8px] text-slate-600 uppercase mr-auto font-bold">{isDoubleLeg ? '1. Maç' : 'Skor'}</span> */}
                         <select
-                            className="bg-slate-950 text-xs border border-slate-800 rounded px-1 py-0.5 text-slate-300 focus:outline-none focus:border-blue-500"
+                            className="bg-slate-950 text-[10px] border border-slate-800 rounded px-1 py-0.5 text-slate-300 focus:outline-none focus:border-blue-500 h-6 w-12"
                             value={playoffOverrides[`${matchId}-m1`] || ""}
                             onChange={(e) => handleScoreChange(`${matchId}-m1`, e.target.value)}
                         >
                             <option value="">-</option>
                             {SCORES.map(s => <option key={s} value={s}>{s}</option>)}
                         </select>
-                    </div>
-                    {isDoubleLeg && (
-                        <div className="flex items-center gap-1 justify-end">
-                            <span className="text-[9px] text-slate-600 uppercase mr-auto font-bold">2. Maç</span>
+                        {isDoubleLeg && (
                             <select
-                                className="bg-slate-950 text-xs border border-slate-800 rounded px-1 py-0.5 text-slate-300 focus:outline-none focus:border-blue-500"
+                                className="bg-slate-950 text-[10px] border border-slate-800 rounded px-1 py-0.5 text-slate-300 focus:outline-none focus:border-blue-500 h-6 w-12"
                                 value={playoffOverrides[`${matchId}-m2`] || ""}
                                 onChange={(e) => handleScoreChange(`${matchId}-m2`, e.target.value)}
                             >
                                 <option value="">-</option>
                                 {SCORES.map(s => <option key={s} value={s}>{s}</option>)}
                             </select>
-                        </div>
-                    )}
+                        )}
+                    </div>
+
                     {/* Golden Set */}
                     {gsNeeded && (
-                        <div className="mt-1 pt-2 border-t border-slate-800 animate-in fade-in">
-                            <div className="flex items-center justify-between">
-                                <span className="text-[10px] text-amber-500 font-bold flex items-center gap-1">🏆 Altın Set</span>
-                                <div className="flex gap-1">
-                                    <button
-                                        onClick={() => handleScoreChange(`${matchId}-golden`, 'home')}
-                                        className={`w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold border ${playoffOverrides[`${matchId}-golden`] === 'home' ? 'bg-amber-500 text-black border-amber-400' : 'bg-slate-800 text-slate-500 border-slate-700'}`}
-                                    >H</button>
-                                    <button
-                                        onClick={() => handleScoreChange(`${matchId}-golden`, 'away')}
-                                        className={`w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold border ${playoffOverrides[`${matchId}-golden`] === 'away' ? 'bg-amber-500 text-black border-amber-400' : 'bg-slate-800 text-slate-500 border-slate-700'}`}
-                                    >A</button>
-                                </div>
+                        <div className="pt-1 border-t border-slate-800 flex items-center justify-between gap-1">
+                            <span className="text-[8px] text-amber-500 font-bold">{t('playoff.goldenSet')}</span>
+                            <div className="flex gap-1">
+                                <button
+                                    onClick={() => handleScoreChange(`${matchId}-golden`, 'home')}
+                                    className={`w-5 h-5 rounded flex items-center justify-center text-[8px] font-bold border ${playoffOverrides[`${matchId}-golden`] === 'home' ? 'bg-amber-500 text-black border-amber-400' : 'bg-slate-800 text-slate-500 border-slate-700'}`}
+                                >H</button>
+                                <button
+                                    onClick={() => handleScoreChange(`${matchId}-golden`, 'away')}
+                                    className={`w-5 h-5 rounded flex items-center justify-center text-[8px] font-bold border ${playoffOverrides[`${matchId}-golden`] === 'away' ? 'bg-amber-500 text-black border-amber-400' : 'bg-slate-800 text-slate-500 border-slate-700'}`}
+                                >A</button>
                             </div>
                         </div>
                     )}
@@ -346,20 +318,32 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
         <main className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-purple-500/30">
             {/* --- HEADER --- */}
             <header className="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
-                <div className="max-w-[1600px] mx-auto px-4 h-16 flex items-center justify-between">
+                <div className="max-w-[1600px] mx-auto px-4 h-14 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center text-xl shadow-lg shadow-purple-900/20">🏆</div>
+                        <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center text-lg shadow-lg shadow-purple-900/20">🏆</div>
                         <div>
-                            <h1 className="font-bold text-white leading-tight">Şampiyonlar Ligi</h1>
-                            <p className="text-[10px] text-slate-400 font-medium tracking-wider uppercase">2026 Season Simulator</p>
+                            <h1 className="font-bold text-white text-sm leading-tight">CEV Champions League</h1>
                         </div>
                     </div>
 
                     <div className="flex items-center gap-2">
-                        <Link href="/cev-cl/tahminoyunu" className="px-4 py-2 text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-900 rounded-lg transition-colors">
-                            Grup Etabı
+                        <Link href="/cev-cl/tahminoyunu" className="px-3 py-1.5 text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-900 rounded-lg transition-colors">
+                            {t('nav.predict')}
                         </Link>
                         <div className="h-4 w-px bg-slate-800 mx-1"></div>
+
+                        {/* Language Toggle */}
+                        <div className="flex bg-slate-800 rounded-lg p-0.5 border border-slate-700">
+                            <button
+                                onClick={() => setLanguage('tr')}
+                                className={`px-2 py-1 text-[10px] font-bold rounded-md transition-all ${language === 'tr' ? 'bg-slate-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
+                            >TR</button>
+                            <button
+                                onClick={() => setLanguage('en')}
+                                className={`px-2 py-1 text-[10px] font-bold rounded-md transition-all ${language === 'en' ? 'bg-slate-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
+                            >EN</button>
+                        </div>
+
                         <button onClick={() => document.documentElement.classList.toggle('light')} className="p-2 text-slate-400 hover:text-amber-400 transition-colors">
                             🌙
                         </button>
@@ -368,37 +352,38 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
             </header>
 
             {/* --- CONTENT --- */}
-            <div className="max-w-[1600px] mx-auto p-4 md:p-8 space-y-8">
+            <div className="max-w-[1600px] mx-auto p-4 space-y-6">
 
                 {/* STATUS BAR */}
                 {!isGroupsComplete && (
-                    <div className="bg-gradient-to-r from-blue-900/20 to-indigo-900/20 border border-blue-500/20 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6 text-center md:text-left relative overflow-hidden group">
-                        <div className="absolute inset-0 bg-blue-500/5 group-hover:bg-blue-500/10 transition-colors"></div>
-                        <div className="p-4 bg-blue-500/20 rounded-full text-2xl relative z-10">🔒</div>
-                        <div className="relative z-10 max-w-2xl">
-                            <h3 className="text-xl font-bold text-white mb-1">Grup Etabı Henüz Tamamlanmadı</h3>
-                            <p className="text-slate-400 text-sm">Playoff ağacı şu anki *geçici* sıralamalara göre oluşturulmuştur. Kesin eşleşmeler için kalan {remainingMatches} maçı tahmin etmelisiniz.</p>
+                    <div className="bg-gradient-to-r from-blue-900/20 to-indigo-900/20 border border-blue-500/20 rounded-xl p-4 flex flex-col md:flex-row items-center gap-4 text-center md:text-left relative overflow-hidden">
+                        <div className="flex items-center gap-3 relative z-10">
+                            <div className="w-8 h-8 flex items-center justify-center bg-blue-500/20 rounded-full text-blue-400">⚡</div>
+                            <div>
+                                <h3 className="text-sm font-bold text-white">{t('status.groupIncomplete')} ({remainingMatches} {t('status.matchesRemaining')})</h3>
+                                <p className="text-slate-400 text-xs">{t('status.groupIncompleteDesc')}</p>
+                            </div>
                         </div>
-                        <Link href="/cev-cl/tahminoyunu" className="relative z-10 md:ml-auto px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl shadow-lg shadow-blue-900/20 transition-all hover:scale-105 active:scale-95">
-                            Tahminleri Tamamla
+                        <Link href="/cev-cl/tahminoyunu" className="relative z-10 md:ml-auto px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-all">
+                            {t('status.completePredictions')}
                         </Link>
                     </div>
                 )}
 
                 {/* BRACKET CONTAINER */}
                 <div ref={bracketContainerRef} className="overflow-x-auto pb-12 custom-scrollbar">
-                    <div className="min-w-max flex gap-12 px-4">
+                    <div className="min-w-max flex gap-8 px-4 items-center">
 
                         {/* ROUND 1: PLAYOFF 6 */}
-                        <div className="flex flex-col gap-6">
-                            <div className="flex items-center gap-2 mb-4">
-                                <span className="w-2 h-8 bg-amber-500 rounded-full"></span>
+                        <div className="flex flex-col gap-4">
+                            <div className="flex items-center gap-2 mb-2">
+                                <span className="w-1.5 h-6 bg-amber-500 rounded-full"></span>
                                 <div>
-                                    <div className="text-sm font-bold text-white uppercase tracking-wider">Playoff 6</div>
-                                    <div className="text-[10px] text-slate-500 font-mono">3 Matches • 2 Legs</div>
+                                    <div className="text-xs font-bold text-white uppercase tracking-wider">{t('playoff.po6')}</div>
+                                    <div className="text-[9px] text-slate-500">{t('playoff.po6Desc')}</div>
                                 </div>
                             </div>
-                            <div className="flex flex-col gap-8 justify-center h-full">
+                            <div className="flex flex-col gap-4 justify-center h-full">
                                 {po6_results.map(m => (
                                     <MatchCard key={m.id} matchId={m.id} home={m.home} away={m.away} label={m.label} isDoubleLeg={true} result={m.res} />
                                 ))}
@@ -406,18 +391,18 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                         </div>
 
                         {/* CONNECTOR 1 */}
-                        <div className="w-12 border-slate-800"></div>
+                        <div className="w-8 border-slate-800"></div>
 
                         {/* ROUND 2: QUARTER FINALS */}
-                        <div className="flex flex-col gap-6">
-                            <div className="flex items-center gap-2 mb-4">
-                                <span className="w-2 h-8 bg-blue-500 rounded-full"></span>
+                        <div className="flex flex-col gap-4">
+                            <div className="flex items-center gap-2 mb-2">
+                                <span className="w-1.5 h-6 bg-blue-500 rounded-full"></span>
                                 <div>
-                                    <div className="text-sm font-bold text-white uppercase tracking-wider">Çeyrek Final</div>
-                                    <div className="text-[10px] text-slate-500 font-mono">4 Matches • 2 Legs</div>
+                                    <div className="text-xs font-bold text-white uppercase tracking-wider">{t('playoff.qf')}</div>
+                                    <div className="text-[9px] text-slate-500">{t('playoff.qfDesc')}</div>
                                 </div>
                             </div>
-                            <div className="flex flex-col gap-16 justify-center h-full">
+                            <div className="flex flex-col gap-10 justify-center h-full">
                                 {qf_results.map(m => (
                                     <MatchCard key={m.id} matchId={m.id} home={m.home} away={m.away} label={m.label} isDoubleLeg={true} result={m.res} />
                                 ))}
@@ -425,19 +410,18 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                         </div>
 
                         {/* CONNECTOR 2 */}
-                        <div className="w-12 border-slate-800"></div>
+                        <div className="w-8 border-slate-800"></div>
 
                         {/* ROUND 3: FINAL FOUR */}
-                        <div className="flex flex-col gap-6 bg-slate-900/40 p-6 rounded-2xl border border-purple-500/20 relative overflow-hidden">
-                            <div className="absolute top-0 right-0 p-3 opacity-10 font-black text-6xl rotate-12 text-purple-500">F4</div>
-                            <div className="flex items-center gap-2 mb-4 relative z-10">
-                                <span className="w-2 h-8 bg-purple-500 rounded-full shadow-[0_0_10px_purple]"></span>
+                        <div className="flex flex-col gap-4 bg-slate-900/30 p-4 rounded-xl border border-purple-500/10">
+                            <div className="flex items-center gap-2 mb-2">
+                                <span className="w-1.5 h-6 bg-purple-500 rounded-full shadow-[0_0_10px_purple]"></span>
                                 <div>
-                                    <div className="text-sm font-bold text-white uppercase tracking-wider">Final Four</div>
-                                    <div className="text-[10px] text-purple-400 font-mono">Istanbul • Single Matches</div>
+                                    <div className="text-xs font-bold text-white uppercase tracking-wider">{t('playoff.f4')}</div>
+                                    <div className="text-[9px] text-slate-500">{t('playoff.f4Desc')}</div>
                                 </div>
                             </div>
-                            <div className="flex flex-col gap-32 justify-center h-full relative z-10">
+                            <div className="flex flex-col gap-20 justify-center h-full">
                                 {sf_results.map(m => (
                                     <MatchCard key={m.id} matchId={m.id} home={m.home} away={m.away} label={m.label} isDoubleLeg={false} result={m.res} />
                                 ))}
@@ -445,79 +429,53 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                         </div>
 
                         {/* CONNECTOR 3 */}
-                        <div className="w-12 border-slate-800"></div>
+                        <div className="w-8 border-slate-800"></div>
 
                         {/* ROUND 4: SUPER FINAL */}
-                        <div className="flex flex-col gap-6">
-                            <div className="flex items-center gap-2 mb-4">
-                                <span className="w-2 h-8 bg-gradient-to-b from-yellow-400 to-amber-600 rounded-full"></span>
+                        <div className="flex flex-col gap-4">
+                            <div className="flex items-center gap-2 mb-2">
+                                <span className="w-1.5 h-6 bg-gradient-to-b from-yellow-400 to-amber-600 rounded-full"></span>
                                 <div>
-                                    <div className="text-sm font-bold text-white uppercase tracking-wider">Super Final</div>
-                                    <div className="text-[10px] text-slate-500 font-mono">The Championship</div>
+                                    <div className="text-xs font-bold text-white uppercase tracking-wider">{t('playoff.superFinal')}</div>
                                 </div>
                             </div>
-                            <div className="flex flex-col gap-12 justify-center h-full">
-                                <div className="scale-110 origin-left">
-                                    <MatchCard matchId={final_match.id} home={final_match.home} away={final_match.away} label="🏆 SUPER FINAL" isDoubleLeg={false} result={final_result} />
+                            <div className="flex flex-col gap-8 justify-center h-full">
+                                <div className="scale-105 origin-left">
+                                    <MatchCard matchId={final_match.id} home={final_match.home} away={final_match.away} label={t('playoff.superFinal')} isDoubleLeg={false} result={final_result} />
                                 </div>
 
                                 {/* Champion Card */}
                                 {final_result.winner && (
-                                    <div className="w-72 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-2xl p-6 text-center shadow-2xl shadow-amber-900/50 animate-in zoom-in fade-in duration-700">
-                                        <div className="text-5xl mb-4">👑</div>
-                                        <div className="text-xs font-bold text-amber-900 uppercase tracking-widest mb-2">2026 Champion</div>
-                                        <h2 className="text-2xl font-black text-white drop-shadow-md">{final_result.winner}</h2>
+                                    <div className="w-56 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-xl p-4 text-center shadow-lg shadow-amber-900/40 animate-in zoom-in fade-in duration-700">
+                                        <div className="text-3xl mb-2">👑</div>
+                                        <div className="text-[10px] font-bold text-amber-900 uppercase tracking-widest mb-1">{t('playoff.champion')}</div>
+                                        <h2 className="text-lg font-black text-white drop-shadow-sm leading-tight">{final_result.winner}</h2>
                                     </div>
                                 )}
 
-                                <div className="mt-8 opacity-75">
-                                    <MatchCard matchId={match3rd.id} home={match3rd.home} away={match3rd.away} label="🥉 3. Lük Maçı" isDoubleLeg={false} result={result3rd} />
+                                <div className="mt-4 opacity-75">
+                                    <MatchCard matchId={match3rd.id} home={match3rd.home} away={match3rd.away} label={t('playoff.match3rd')} isDoubleLeg={false} result={result3rd} />
                                 </div>
                             </div>
                         </div>
 
                     </div>
                 </div>
-
-                {/* Footer Info */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 pt-8 border-t border-slate-900/50">
-                    <div className="p-4 bg-slate-900/30 rounded-lg">
-                        <div className="text-emerald-500 font-bold mb-1">Playoff 6</div>
-                        <p className="text-xs text-slate-500">5 grup ikincisi ve en iyi grup üçüncüsü karşılaşır (2 Ayaklı).</p>
-                    </div>
-                    <div className="p-4 bg-slate-900/30 rounded-lg">
-                        <div className="text-blue-500 font-bold mb-1">Çeyrek Final</div>
-                        <p className="text-xs text-slate-500">5 grup birincisi direkt katılır + 3 Playoff 6 kazananı (2 Ayaklı).</p>
-                    </div>
-                    <div className="p-4 bg-slate-900/30 rounded-lg">
-                        <div className="text-purple-500 font-bold mb-1">Final Four</div>
-                        <p className="text-xs text-slate-500">Yarı Finaller ve Final, İstanbul'da tek maç üzerinden oynanır.</p>
-                    </div>
-                    <div className="p-4 bg-slate-900/30 rounded-lg">
-                        <button onClick={() => {
-                            if (confirm('Tüm Playoff tahminleri silinecek. Emin misiniz?')) {
-                                setPlayoffOverrides({});
-                            }
-                        }} className="text-xs text-rose-500 hover:text-rose-400 underline decoration-rose-500/30">
-                            Simülasyonu Sıfırla
-                        </button>
-                    </div>
-                </div>
             </div>
 
             <style jsx global>{`
                 .custom-scrollbar::-webkit-scrollbar {
-                    height: 8px;
+                    height: 6px;
                 }
                 .custom-scrollbar::-webkit-scrollbar-track {
-                    background: rgba(15, 23, 42, 0.5);
+                    background: rgba(15, 23, 42, 0.3);
                 }
                 .custom-scrollbar::-webkit-scrollbar-thumb {
-                    background: rgba(71, 85, 105, 0.5);
-                    border-radius: 4px;
+                    background: rgba(71, 85, 105, 0.4);
+                    border-radius: 3px;
                 }
                 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                    background: rgba(99, 102, 241, 0.5);
+                    background: rgba(99, 102, 241, 0.4);
                 }
             `}</style>
         </main>

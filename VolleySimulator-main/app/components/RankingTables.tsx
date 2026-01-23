@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 interface RankingEntry {
     pos: number;
@@ -29,12 +30,13 @@ interface RankingTablesProps {
 }
 
 export default function RankingTables({ rankings }: RankingTablesProps) {
+    const { t } = useLanguage();
     const [activeTab, setActiveTab] = useState<"first" | "second" | "third">("first");
 
     const tabs = [
-        { id: "first" as const, label: "1. Sıra", emoji: "🥇", data: rankings.firstPlace },
-        { id: "second" as const, label: "2. Sıra", emoji: "🥈", data: rankings.secondPlace },
-        { id: "third" as const, label: "3. Sıra", emoji: "🥉", data: rankings.thirdPlace },
+        { id: "first" as const, label: t('ranking.1st'), emoji: "🥇", data: rankings.firstPlace },
+        { id: "second" as const, label: t('ranking.2nd'), emoji: "🥈", data: rankings.secondPlace },
+        { id: "third" as const, label: t('ranking.3rd'), emoji: "🥉", data: rankings.thirdPlace },
     ];
 
     const activeData = tabs.find(t => t.id === activeTab)?.data || [];
@@ -64,14 +66,14 @@ export default function RankingTables({ rankings }: RankingTablesProps) {
                     <thead>
                         <tr className="bg-slate-800/50 text-slate-400 text-xs uppercase">
                             <th className="py-2 px-2 text-center w-8">#</th>
-                            <th className="py-2 px-3 text-left">Takım</th>
-                            <th className="py-2 px-2 text-center" title="Grup">Grup</th>
-                            <th className="py-2 px-2 text-center" title="Oynanan Maç">OM</th>
-                            <th className="py-2 px-2 text-center" title="Galibiyet">G</th>
-                            <th className="py-2 px-2 text-center" title="Mağlubiyet">M</th>
-                            <th className="py-2 px-2 text-center font-bold" title="Puan">P</th>
-                            <th className="py-2 px-2 text-center" title="Set Oranı">SO</th>
-                            <th className="py-2 px-2 text-center hidden md:table-cell" title="Sayı Oranı">SPO</th>
+                            <th className="py-2 px-3 text-left">{t('table.team')}</th>
+                            <th className="py-2 px-2 text-center" title="Grup">{t('group')}</th>
+                            <th className="py-2 px-2 text-center" title={t('table.played')}>{t('table.played')}</th>
+                            <th className="py-2 px-2 text-center" title={t('table.won')}>{t('table.won')}</th>
+                            <th className="py-2 px-2 text-center" title={t('table.lost')}>{t('table.lost')}</th>
+                            <th className="py-2 px-2 text-center font-bold" title={t('table.points')}>{t('table.points')}</th>
+                            <th className="py-2 px-2 text-center" title="Set Oranı">{t('ranking.setRatio')}</th>
+                            <th className="py-2 px-2 text-center hidden md:table-cell" title="Sayı Oranı">{t('ranking.pointRatio')}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -94,7 +96,7 @@ export default function RankingTables({ rankings }: RankingTablesProps) {
                                 </td>
                                 <td className="py-2 px-2 text-center">
                                     <span className="inline-flex items-center justify-center w-6 h-6 rounded bg-slate-700 text-xs font-medium">
-                                        {entry.pool}
+                                        {entry.pool.replace("Pool ", "").replace(" GRUBU", "")}
                                     </span>
                                 </td>
                                 <td className="py-2 px-2 text-center text-slate-400">{entry.pld}</td>
@@ -115,12 +117,12 @@ export default function RankingTables({ rankings }: RankingTablesProps) {
 
             {/* Legend */}
             <div className="px-4 py-2 bg-slate-800/30 text-xs text-slate-500 flex flex-wrap gap-3">
-                <span title="Oynanan Maç">OM: Maç</span>
-                <span title="Galibiyet">G: Galibiyet</span>
-                <span title="Mağlubiyet">M: Mağlubiyet</span>
-                <span title="Puan">P: Puan</span>
-                <span title="Set Oranı">SO: Set Oranı</span>
-                <span className="hidden md:inline" title="Sayı Oranı">SPO: Sayı Oranı</span>
+                <span title="Oynanan Maç">{t('table.played')}: {t('table.playedDesc') || 'Maç'}</span>
+                <span title="Galibiyet">{t('table.won')}: {t('table.wonDesc') || 'Galibiyet'}</span>
+                <span title="Mağlubiyet">{t('table.lost')}: {t('table.lostDesc') || 'Mağlubiyet'}</span>
+                <span title="Puan">{t('table.points')}: {t('table.pointsDesc') || 'Puan'}</span>
+                <span title="Set Oranı">{t('ranking.setRatio')}: Set Rate</span>
+                <span className="hidden md:inline" title="Sayı Oranı">{t('ranking.pointRatio')}: Set Point Rate</span>
             </div>
         </div>
     );

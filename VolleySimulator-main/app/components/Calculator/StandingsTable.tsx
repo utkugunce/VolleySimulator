@@ -1,5 +1,6 @@
 import { TeamStats } from "@/app/types";
 import TeamAvatar from "../TeamAvatar";
+import { useLanguage } from "../../context/LanguageContext";
 
 interface TeamDiff {
     name: string;
@@ -28,6 +29,8 @@ export default function StandingsTable({
     loading = false,
     comparisonDiffs
 }: StandingsTableProps) {
+    const { t } = useLanguage();
+
     const rowClass = compact ? "px-1 py-0.5 text-[10px]" : "px-2 py-2 text-xs sm:text-sm";
     const headClass = compact ? "px-1 py-0.5 text-[10px] uppercase" : "px-2 py-2 text-xs uppercase sm:text-sm";
     const rankSize = compact ? "w-4 h-4 text-[10px]" : "w-6 h-6 text-xs";
@@ -50,7 +53,7 @@ export default function StandingsTable({
             {!compact && (
                 <div className="bg-surface-secondary px-4 py-3 border-b border-border-main">
                     <h3 className="font-bold text-foreground flex items-center gap-2">
-                        <span>📊</span> Puan Durumu
+                        <span>📊</span> {t('table.title')}
                     </h3>
                 </div>
             )}
@@ -59,18 +62,18 @@ export default function StandingsTable({
                 <div className="px-4 py-2 bg-surface/50 border-b border-border-main flex gap-4 text-[10px] flex-wrap">
                     <div className="flex items-center gap-1">
                         <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
-                        <span className="text-text-secondary">Play-off (İlk {playoffSpots})</span>
+                        <span className="text-text-secondary">{t('table.playoff')} ({t('table.playoffDesc')} {playoffSpots})</span>
                     </div>
                     {secondaryPlayoffSpots > 0 && (
                         <div className="flex items-center gap-1">
                             <span className="w-3 h-3 rounded-full bg-amber-500"></span>
-                            <span className="text-text-secondary">5-8 Play-off ({playoffSpots + 1}-{playoffSpots + secondaryPlayoffSpots})</span>
+                            <span className="text-text-secondary">5-8 {t('table.playoff')} ({playoffSpots + 1}-{playoffSpots + secondaryPlayoffSpots})</span>
                         </div>
                     )}
                     {relegationSpots > 0 && (
                         <div className="flex items-center gap-1">
                             <span className="w-3 h-3 rounded-full bg-rose-500"></span>
-                            <span className="text-text-secondary">Küme Düşme (Son {relegationSpots})</span>
+                            <span className="text-text-secondary">{t('table.relegation')} ({t('table.relegationDesc')} {relegationSpots})</span>
                         </div>
                     )}
                 </div>
@@ -81,15 +84,15 @@ export default function StandingsTable({
                     <thead className="bg-surface-secondary text-text-secondary tracking-wider font-semibold border-b border-border-main sticky top-0">
                         <tr>
                             <th scope="col" className={`${headClass} w-10 text-left pl-2 whitespace-nowrap`}>#</th>
-                            <th scope="col" className={`${headClass} whitespace-nowrap`}>Takım</th>
-                            <th scope="col" className={`${headClass} w-6 text-center whitespace-nowrap`} title="Oynanan Maç">OM</th>
-                            <th scope="col" className={`${headClass} w-6 text-center text-emerald-500 whitespace-nowrap`} title="Galibiyet">G</th>
-                            <th scope="col" className={`${headClass} w-6 text-center text-rose-500 whitespace-nowrap`} title="Mağlubiyet">M</th>
-                            <th scope="col" className={`${headClass} w-8 text-center text-amber-500 font-bold whitespace-nowrap`} title="Puan">P</th>
-                            <th scope="col" className={`${headClass} w-6 text-center hidden sm:table-cell whitespace-nowrap`} title="Alınan Set">AS</th>
-                            <th scope="col" className={`${headClass} w-6 text-center hidden sm:table-cell whitespace-nowrap`} title="Verilen Set">VS</th>
-                            <th scope="col" className={`${headClass} w-8 text-center hidden md:table-cell whitespace-nowrap`} title="Alınan Sayı">SPW</th>
-                            <th scope="col" className={`${headClass} w-8 text-center hidden md:table-cell whitespace-nowrap`} title="Verilen Sayı">SPL</th>
+                            <th scope="col" className={`${headClass} whitespace-nowrap`}>{t('table.team')}</th>
+                            <th scope="col" className={`${headClass} w-6 text-center whitespace-nowrap`} title="Oynanan Maç">{t('table.played')}</th>
+                            <th scope="col" className={`${headClass} w-6 text-center text-emerald-500 whitespace-nowrap`} title="Galibiyet">{t('table.won')}</th>
+                            <th scope="col" className={`${headClass} w-6 text-center text-rose-500 whitespace-nowrap`} title="Mağlubiyet">{t('table.lost')}</th>
+                            <th scope="col" className={`${headClass} w-8 text-center text-amber-500 font-bold whitespace-nowrap`} title="Puan">{t('table.points')}</th>
+                            <th scope="col" className={`${headClass} w-6 text-center hidden sm:table-cell whitespace-nowrap`} title="Alınan Set">{t('table.setsWon')}</th>
+                            <th scope="col" className={`${headClass} w-6 text-center hidden sm:table-cell whitespace-nowrap`} title="Verilen Set">{t('table.setsLost')}</th>
+                            <th scope="col" className={`${headClass} w-8 text-center hidden md:table-cell whitespace-nowrap`} title="Alınan Sayı">{t('table.pointsWon')}</th>
+                            <th scope="col" className={`${headClass} w-8 text-center hidden md:table-cell whitespace-nowrap`} title="Verilen Sayı">{t('table.pointsLost')}</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-border-subtle">

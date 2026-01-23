@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Match } from "@/app/types";
 import { SCORES, normalizeTeamName } from "../../utils/calculatorUtils";
 import TeamAvatar from "../TeamAvatar";
+import { useLanguage } from "../../context/LanguageContext";
 
 interface FixtureListProps {
     matches: Match[];
@@ -13,6 +14,7 @@ interface FixtureListProps {
 }
 
 export default function FixtureList({ matches, overrides, onScoreChange, teamRanks, totalTeams = 16, relegationSpots = 2 }: FixtureListProps) {
+    const { t } = useLanguage();
     const [activeTab, setActiveTab] = useState<'upcoming' | 'past'>('upcoming');
     const [collapsedDates, setCollapsedDates] = useState<Set<string>>(new Set());
 
@@ -67,7 +69,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
     const currentMatches = activeTab === 'upcoming' ? upcomingMatches : pastMatches;
 
     const groupedMatches = currentMatches.reduce((acc, match) => {
-        const matchDate = match.matchDate || (match as any).date || 'Tarih Belirtilmemiş';
+        const matchDate = match.matchDate || (match as any).date || t('fixture.unknownDate');
         if (!acc[matchDate]) acc[matchDate] = [];
         acc[matchDate].push(match);
         return acc;
@@ -93,11 +95,12 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
     });
 
     const formatDateDisplay = (dateStr: string): string => {
-        if (dateStr === 'Tarih Belirtilmemiş') return dateStr;
+        if (dateStr === 'Tarih Belirtilmemiş' || dateStr === 'Unknown Date') return t('fixture.unknownDate');
         const date = parseDate(dateStr);
         if (!date) return dateStr;
-        const days = ['PAZAR', 'PAZARTESİ', 'SALI', 'ÇARŞAMBA', 'PERŞEMBE', 'CUMA', 'CUMARTESİ'];
-        const dayName = days[date.getDay()];
+        // const days = ['PAZAR', 'PAZARTESİ', 'SALI', 'ÇARŞAMBA', 'PERŞEMBE', 'CUMA', 'CUMARTESİ'];
+        const dayIndex = date.getDay();
+        const dayName = t(`fixture.days.${dayIndex}`);
         const day = date.getDate().toString().padStart(2, '0');
         const month = (date.getMonth() + 1).toString().padStart(2, '0');
         const year = date.getFullYear();
@@ -116,7 +119,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                             }`}
                     >
                         <span>📅</span>
-                        <span>Gelecek</span>
+                        <span>{t('fixture.upcoming')}</span>
                         <span className="bg-white/20 px-1.5 py-0.5 rounded text-[9px]">{upcomingMatches.length}</span>
                     </button>
                     <button
@@ -127,7 +130,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                             }`}
                     >
                         <span>✅</span>
-                        <span>Geçmiş</span>
+                        <span>{t('fixture.past')}</span>
                         <span className="bg-white/20 px-1.5 py-0.5 rounded text-[10px]">{pastMatches.length}</span>
                     </button>
                 </div>
@@ -136,7 +139,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
             <div className="flex-1 overflow-y-auto p-2 space-y-3 custom-scrollbar">
                 {sortedDateGroups.length === 0 ? (
                     <div className="flex items-center justify-center h-32 text-slate-500 text-sm">
-                        {activeTab === 'upcoming' ? 'Gelecek maç bulunamadı' : 'Geçmiş maç bulunamadı'}
+                        {activeTab === 'upcoming' ? `${t('fixture.upcoming')} ${t('fixture.matchNotFound')}` : `${t('fixture.past')} ${t('fixture.matchNotFound')}`}
                     </div>
                 ) : (
                     sortedDateGroups.map(([dateStr, dateMatches]) => {
@@ -151,7 +154,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                         <span className={`transition-transform duration-200 text-[8px] ${isCollapsed ? '' : 'rotate-90'}`}>▶</span>
                                         {formatDateDisplay(dateStr)}
                                     </span>
-                                    <span className="text-[9px] text-slate-400 bg-slate-800/50 px-1.5 py-px rounded">{dateMatches.length} maç</span>
+                                    <span className="text-[9px] text-slate-400 bg-slate-800/50 px-1.5 py-px rounded">{dateMatches.length} {t('fixture.matchSuffix')}</span>
                                 </button>
 
                                 {!isCollapsed && dateMatches.map((match) => {
@@ -186,8 +189,8 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                             <div className="flex-1 min-w-0">
                                                 <div className="flex items-center justify-between text-[10px] mb-1.5">
                                                     <div className={`flex-1 text-right font-semibold truncate pr-2 flex items-center justify-end gap-1 ${currentScore && getScoreWinner(currentScore) === 'home' ? 'text-emerald-400' : 'text-slate-300'}`}>
-                                                        {isHomeRelegation && relegationSpots > 0 && <span className="bg-rose-500/20 text-rose-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">DÜŞME</span>}
-                                                        {homeRank && homeRank <= 4 && !isHomeRelegation && <span className="bg-blue-500/20 text-blue-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">PO</span>}
+                                                        {isHomeRelegation && relegationSpots > 0 && <span className="bg-rose-500/20 text-rose-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.relegation')}</span>}
+                                                        {homeRank && homeRank <= 4 && !isHomeRelegation && <span className="bg-blue-500/20 text-blue-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.po')}</span>}
                                                         {homeRank && (
                                                             <span className={`text-[9px] px-1 rounded font-bold ${homeRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : homeRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-400'}`}>
                                                                 {homeRank}.
@@ -207,8 +210,8 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                                                 {awayRank}.
                                                             </span>
                                                         )}
-                                                        {isAwayRelegation && relegationSpots > 0 && <span className="bg-rose-500/20 text-rose-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">DÜŞME</span>}
-                                                        {awayRank && awayRank <= 4 && !isAwayRelegation && <span className="bg-blue-500/20 text-blue-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">PO</span>}
+                                                        {isAwayRelegation && relegationSpots > 0 && <span className="bg-rose-500/20 text-rose-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.relegation')}</span>}
+                                                        {awayRank && awayRank <= 4 && !isAwayRelegation && <span className="bg-blue-500/20 text-blue-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.po')}</span>}
                                                     </div>
                                                 </div>
 
@@ -217,7 +220,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                                         <span className="px-2 py-0.5 bg-slate-900 font-mono font-bold text-slate-400 rounded border border-slate-800 text-xs">
                                                             {match.homeScore !== undefined && match.homeScore !== null && match.awayScore !== undefined && match.awayScore !== null
                                                                 ? `${match.homeScore} - ${match.awayScore}`
-                                                                : match.resultScore || "Oynandı"}
+                                                                : match.resultScore || t('fixture.played')}
                                                         </span>
                                                     </div>
                                                 ) : (
