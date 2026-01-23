@@ -6,16 +6,19 @@ import { useToast, AchievementToast, AchievementsPanel } from "../../components"
 import StandingsTable from "../../components/Calculator/StandingsTable";
 import FixtureList from "../../components/Calculator/FixtureList";
 import ShareButton from "../../components/ShareButton";
+import RankingTables from "../../components/RankingTables";
 import { calculateLiveStandings } from "../../utils/calculatorUtils";
 import { useGameState, ACHIEVEMENTS } from "../../utils/gameState";
 import { sounds } from "../../utils/sounds";
+import { RankingsData } from "../../utils/serverData";
 
 interface CEVCLCalculatorClientProps {
     initialTeams: TeamStats[];
     initialMatches: Match[];
+    rankings?: RankingsData;
 }
 
-export default function CEVCLCalculatorClient({ initialTeams, initialMatches }: CEVCLCalculatorClientProps) {
+export default function CEVCLCalculatorClient({ initialTeams, initialMatches, rankings }: CEVCLCalculatorClientProps) {
     const { showToast, showUndoToast } = useToast();
     const standingsRef = useRef<HTMLDivElement>(null);
 
@@ -38,6 +41,7 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches }: 
     const [allTeams] = useState<TeamStats[]>(normalizedTeams);
     const [allMatches] = useState<Match[]>(normalizedMatches);
     const [selectedPool, setSelectedPool] = useState<string>("A GRUBU");
+    const [showRankings, setShowRankings] = useState(false);
 
     // UI State
     const [overrides, setOverrides] = useState<Record<string, string>>({});
@@ -275,6 +279,28 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches }: 
                         </div>
                     </div>
                 </div>
+
+                {/* Ranking Tables Toggle */}
+                {rankings && (
+                    <div className="flex flex-col gap-2">
+                        <button
+                            onClick={() => setShowRankings(!showRankings)}
+                            className={`w-full py-3 px-4 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${showRankings
+                                    ? "bg-blue-600 text-white"
+                                    : "bg-gradient-to-r from-blue-900/30 to-indigo-900/30 text-blue-400 border border-blue-800/50 hover:border-blue-600"
+                                }`}
+                        >
+                            <span>{showRankings ? "🏆 Sıralamaları Gizle" : "🏆 Havuz Sıralamalarını Göster"}</span>
+                            <span className="text-xs opacity-70">(1., 2., 3. sıralar)</span>
+                        </button>
+
+                        {showRankings && (
+                            <div className="animate-in slide-in-from-top-2 duration-300">
+                                <RankingTables rankings={rankings} />
+                            </div>
+                        )}
+                    </div>
+                )}
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-4 relative">

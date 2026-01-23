@@ -2,9 +2,32 @@ import fs from 'fs';
 import path from 'path';
 import { TeamStats, Match } from '@/app/types';
 
+export interface RankingEntry {
+    pos: number;
+    team: string;
+    pool: string;
+    pld: number;
+    w: number;
+    l: number;
+    pts: number;
+    sw: number;
+    sl: number;
+    sr: number;
+    spw: number;
+    spl: number;
+    spr: number;
+}
+
+export interface RankingsData {
+    firstPlace: RankingEntry[];
+    secondPlace: RankingEntry[];
+    thirdPlace: RankingEntry[];
+}
+
 export interface LeagueData {
     teams: TeamStats[];
     fixture: Match[];
+    rankings?: RankingsData;
 }
 
 export async function getLeagueData(league: string): Promise<LeagueData> {
@@ -18,34 +41,6 @@ export async function getLeagueData(league: string): Promise<LeagueData> {
         const content = fs.readFileSync(filePath, 'utf8');
         const data = JSON.parse(content);
 
-        // Rename CEV CL teams
-        if (league === 'cev-cl') {
-            const teamNameMapping: Record<string, string> = {
-                'VakifBank ISTANBUL': 'VAKIFBANK',
-                'Fenerbahçe Medicana ISTANBUL': 'FENERBAHÇE MEDICANA',
-                'Eczacibasi ISTANBUL': 'ECZACIBAŞI DYNAVİT',
-                'ANKARA Zeren Spor Kulübü': 'ZEREN SPOR'
-            };
-
-            const renameTeam = (name: string) => teamNameMapping[name] || name;
-
-            if (data.teams) {
-                data.teams = data.teams.map((t: any) => ({
-                    ...t,
-                    name: renameTeam(t.name)
-                }));
-            }
-
-            const renameMatches = (matches: any[]) => matches.map((m: any) => ({
-                ...m,
-                homeTeam: renameTeam(m.homeTeam),
-                awayTeam: renameTeam(m.awayTeam)
-            }));
-
-            if (data.fixture) data.fixture = renameMatches(data.fixture);
-            if (data.matches) data.matches = renameMatches(data.matches);
-        }
-
         // Normalize fixture data
         const fixture = (data.fixture || data.matches || []).map((m: any) => ({
             ...m,
@@ -54,10 +49,12 @@ export async function getLeagueData(league: string): Promise<LeagueData> {
 
         return {
             teams: data.teams || [],
-            fixture: fixture
+            fixture: fixture,
+            rankings: data.rankings || undefined
         };
     } catch (error) {
         console.error(`Error reading ${league} data:`, error);
         return { teams: [], fixture: [] };
     }
 }
+
