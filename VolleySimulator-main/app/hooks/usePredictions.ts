@@ -60,7 +60,7 @@ async function fetchPredictions(
 
     // Convert array to Record<matchId, score>
     const overrides: PredictionOverrides = {};
-    data?.forEach((p) => {
+    data?.forEach((p: { match_id: string; score: string }) => {
         overrides[p.match_id] = p.score;
     });
 
