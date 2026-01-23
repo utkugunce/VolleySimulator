@@ -60,8 +60,29 @@ const sortTeamsByPerformance = (teams: TeamStats[]) => {
 
 export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CEVCLPlayoffsClientProps) {
     const { t, language, setLanguage } = useLanguage();
-    const [baseTeams] = useState<TeamStats[]>(initialTeams);
-    const [allMatches] = useState<Match[]>(initialMatches);
+
+    // Normalize data to match Calculator logic (ensure keys match LocalStorage overrides)
+    const normalizedTeams = useMemo(() => initialTeams.map((t: any) => ({
+        ...t,
+        name: t.name.toLocaleUpperCase(language === 'tr' ? 'tr-TR' : 'en-US'),
+        groupName: t.groupName.replace('Pool ', '') + (language === 'tr' ? ' GRUBU' : ' POOL')
+    })), [initialTeams, language]);
+
+    const normalizedMatches = useMemo(() => initialMatches.map((m: any) => ({
+        ...m,
+        matchDate: m.date || m.matchDate,
+        homeTeam: m.homeTeam.toLocaleUpperCase(language === 'tr' ? 'tr-TR' : 'en-US'),
+        awayTeam: m.awayTeam.toLocaleUpperCase(language === 'tr' ? 'tr-TR' : 'en-US'),
+        groupName: m.groupName.replace('Pool ', '') + (language === 'tr' ? ' GRUBU' : ' POOL')
+    })), [initialMatches, language]);
+
+    const [baseTeams, setBaseTeams] = useState<TeamStats[]>(normalizedTeams);
+    const [allMatches, setAllMatches] = useState<Match[]>(normalizedMatches);
+
+    useEffect(() => {
+        setBaseTeams(normalizedTeams);
+        setAllMatches(normalizedMatches);
+    }, [normalizedTeams, normalizedMatches]);
 
     // Persisted User Predictions
     const [playoffOverrides, setPlayoffOverrides] = useState<Record<string, string>>({});
