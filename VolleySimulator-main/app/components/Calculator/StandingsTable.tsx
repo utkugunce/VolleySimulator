@@ -31,9 +31,9 @@ export default function StandingsTable({
 }: StandingsTableProps) {
     const { t } = useLanguage();
 
-    const rowClass = compact ? "px-1 py-0.5 text-[10px]" : "px-2 py-2 text-xs sm:text-sm";
-    const headClass = compact ? "px-1 py-0.5 text-[10px] uppercase" : "px-2 py-2 text-xs uppercase sm:text-sm";
-    const rankSize = compact ? "w-4 h-4 text-[10px]" : "w-6 h-6 text-xs";
+    const rowClass = compact ? "px-2 py-4 text-xs sm:text-sm" : "px-4 py-3 text-sm sm:text-base";
+    const headClass = compact ? "px-2 py-2 text-[11px] uppercase" : "px-4 py-3 text-xs uppercase sm:text-sm";
+    const rankSize = compact ? "w-6 h-6 text-[11px]" : "w-8 h-8 text-sm";
 
     if (loading) {
         return (
@@ -143,7 +143,7 @@ export default function StandingsTable({
                                     </td>
                                     <td className={`${rowClass} font-medium whitespace-nowrap`}>
                                         <div className="flex items-center gap-2">
-                                            <TeamAvatar name={team.name} size={compact ? 'sm' : 'md'} priority={idx < 5} />
+                                            <TeamAvatar name={team.name} size={compact ? 'md' : 'lg'} priority={idx < 5} />
                                             <span className={`block truncate max-w-[120px] sm:max-w-[200px] ${isPlayoff ? 'text-emerald-600 dark:text-emerald-400' : isSecondaryPlayoff ? 'text-amber-600 dark:text-amber-400' : isRelegation ? 'text-rose-600 dark:text-rose-400' : 'text-text-primary'}`}>{team.name}</span>
                                         </div>
                                     </td>
