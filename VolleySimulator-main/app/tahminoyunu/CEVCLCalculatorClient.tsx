@@ -2,15 +2,15 @@
 
 import { useEffect, useState, useRef, useMemo } from "react";
 import { TeamStats, Match, Achievement } from "@/app/types";
-import { useToast, AchievementToast, AchievementsPanel } from "../../components";
-import StandingsTable from "../../components/Calculator/StandingsTable";
-import FixtureList from "../../components/Calculator/FixtureList";
-import RankingTables from "../../components/RankingTables";
-import { calculateLiveStandings } from "../../utils/calculatorUtils";
-import { useGameState, ACHIEVEMENTS } from "../../utils/gameState";
-import { sounds } from "../../utils/sounds";
-import { RankingsData } from "../../utils/serverData";
-import { useLanguage } from "../../context/LanguageContext";
+import { useToast, AchievementToast, AchievementsPanel } from "../components";
+import StandingsTable from "../components/Calculator/StandingsTable";
+import FixtureList from "../components/Calculator/FixtureList";
+import RankingTables from "../components/RankingTables";
+import { calculateLiveStandings } from "../utils/calculatorUtils";
+import { useGameState, ACHIEVEMENTS } from "../utils/gameState";
+import { sounds } from "../utils/sounds";
+import { RankingsData } from "../utils/serverData";
+import { useLanguage } from "../context/LanguageContext";
 
 interface CEVCLCalculatorClientProps {
     initialTeams: TeamStats[];
@@ -275,13 +275,13 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                         {/* Navigation in Header */}
                         <div className="flex items-center gap-2">
                             <a
-                                href="/cev-cl/tahminoyunu"
+                                href="/tahminoyunu"
                                 className="px-3 py-1.5 bg-blue-600 text-white text-xs font-bold rounded-lg"
                             >
                                 {t('nav.predict')}
                             </a>
                             <a
-                                href="/cev-cl/playoffs"
+                                href="/playoffs"
                                 className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700"
                             >
                                 {t('nav.playoffs')}

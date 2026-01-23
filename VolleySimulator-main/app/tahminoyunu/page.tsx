@@ -1,4 +1,4 @@
-import { getLeagueData } from "../../utils/serverData";
+import { getLeagueData } from "../utils/serverData";
 import CEVCLCalculatorClient from "./CEVCLCalculatorClient";
 
 export default async function CEVCLTahminOyunuPage() {

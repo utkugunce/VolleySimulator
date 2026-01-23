@@ -1,4 +1,4 @@
-import { getLeagueData } from "../../utils/serverData";
+import { getLeagueData } from "../utils/serverData";
 import CEVCLPlayoffsClient from "./CEVCLPlayoffsClient";
 
 export const dynamic = 'force-dynamic';

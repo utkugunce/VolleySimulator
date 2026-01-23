@@ -3,9 +3,9 @@
 import { useEffect, useState, useMemo, useRef } from "react";
 import { TeamStats, Match } from "@/app/types";
 import Link from "next/link";
-import TeamAvatar from "../../components/TeamAvatar";
-import { calculateLiveStandings } from "../../utils/calculatorUtils";
-import { useLanguage } from "../../context/LanguageContext";
+import TeamAvatar from "../components/TeamAvatar";
+import { calculateLiveStandings } from "../utils/calculatorUtils";
+import { useLanguage } from "../context/LanguageContext";
 
 /* -------------------------------------------------------------------------- */
 /*                                    TYPES                                   */
@@ -327,7 +327,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                     </div>
 
                     <div className="flex items-center gap-2">
-                        <Link href="/cev-cl/tahminoyunu" className="px-3 py-1.5 text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-900 rounded-lg transition-colors">
+                        <Link href="/tahminoyunu" className="px-3 py-1.5 text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-900 rounded-lg transition-colors">
                             {t('nav.predict')}
                         </Link>
                         <div className="h-4 w-px bg-slate-800 mx-1"></div>
@@ -377,7 +377,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                                 <p className="text-slate-400 text-xs">{t('status.groupIncompleteDesc')}</p>
                             </div>
                         </div>
-                        <Link href="/cev-cl/tahminoyunu" className="relative z-10 md:ml-auto px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-all">
+                        <Link href="/tahminoyunu" className="relative z-10 md:ml-auto px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-all">
                             {t('status.completePredictions')}
                         </Link>
                     </div>
