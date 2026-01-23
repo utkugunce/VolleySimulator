@@ -137,38 +137,49 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
     };
 
     // --- Calculation Logic ---
-    const pools = useMemo(() => {
-        if (!baseTeams.length) return [];
-        const poolNames = ["Pool A", "Pool B", "Pool C", "Pool D", "Pool E"];
-        // Important: use 'Grup' since we normalized in Calculator, but here raw data might be 'Pool X' or 'X Grubu' depending on source.
+    const processedData = useMemo(() => {
+        // 1. Calculate Standings for ALL pools accurately
+        const poolLetters = ["A", "B", "C", "D", "E"];
 
-        const calculatedTeams = calculateLiveStandings(baseTeams, allMatches, groupOverrides);
+        const poolResults = poolLetters.map(letter => {
+            // Find teams belonging to this specific pool
+            // We search for the letter in the groupName (handled case-insensitively and localized)
+            const poolTeams = baseTeams.filter(t => {
+                const gn = t.groupName.toUpperCase();
+                return gn.startsWith(letter) || gn.includes(`POOL ${letter}`) || gn.includes(`${letter} GRUBU`);
+            });
 
-        return poolNames.map(poolName => {
-            // Matching logic
-            const poolTeams = calculatedTeams
-                .filter((t: TeamStats) => t.groupName.includes(poolName.replace("Pool ", "")) || t.groupName === poolName) // Loose matching
-                .sort((a, b) => {
-                    if (b.wins !== a.wins) return b.wins - a.wins;
-                    if (b.points !== a.points) return b.points - a.points;
-                    const aRatio = a.setsLost > 0 ? a.setsWon / a.setsLost : a.setsWon * 100;
-                    const bRatio = b.setsLost > 0 ? b.setsWon / b.setsLost : b.setsWon * 100;
-                    if (Math.abs(bRatio - aRatio) > 0.001) return bRatio - aRatio;
-                    return (b.setPointsWon / (b.setPointsLost || 1)) - (a.setPointsWon / (a.setPointsLost || 1));
-                });
-            return { poolName, teams: poolTeams };
+            const poolMatches = allMatches.filter(m => {
+                const gn = m.groupName.toUpperCase();
+                return gn.startsWith(letter) || gn.includes(`POOL ${letter}`) || gn.includes(`${letter} GRUBU`);
+            });
+
+            const standings = calculateLiveStandings(poolTeams, poolMatches, groupOverrides);
+            return { letter, teams: standings };
         });
-    }, [baseTeams, allMatches, groupOverrides]);
 
-    // 1. Identify Pool Winners (Direct QF)
-    const poolWinners = sortTeamsByPerformance(pools.map(p => p.teams[0]));
+        // 2. Identify and Rank Pool Winners (Seeds 1-5)
+        const winners = sortTeamsByPerformance(poolResults.map(pr => pr.teams[0]).filter(Boolean));
+        const winnersNames = new Set(winners.map(w => w.name));
 
-    // 2. Identify PO6 Participants (Runners-Up + Best 3rd)
-    const runnersUp = pools.map(p => p.teams[1]);
-    const thirdPlaces = sortTeamsByPerformance(pools.map(p => p.teams[2]));
-    const bestThird = thirdPlaces[0];
+        // 3. Identify and Rank Non-Winners (Seeds 6-11)
+        // Must exclude teams that are already in 'winners' to prevent duplicates if data is messy
+        const allOtherTeams: TeamStats[] = [];
+        poolResults.forEach(pr => {
+            pr.teams.slice(1).forEach(t => {
+                if (!winnersNames.has(t.name)) {
+                    allOtherTeams.push(t);
+                }
+            });
+        });
 
-    const po6Qualifiers = sortTeamsByPerformance([...runnersUp, bestThird]);
+        const po6Qualifiers = sortTeamsByPerformance(allOtherTeams).slice(0, 6);
+
+        return { winners, po6Qualifiers };
+    }, [baseTeams, allMatches, groupOverrides, language]);
+
+    const poolWinners = processedData.winners;
+    const po6Qualifiers = processedData.po6Qualifiers;
 
     // --- Match Logic Helper ---
     const calculateResult = (matchId: string, home: string | undefined, away: string | undefined, isDoubleLeg: boolean): MatchResult => {
@@ -207,11 +218,15 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
         return { winner: null, loser: null, goldenSetNeeded: true, homePoints: totalHome, awayPoints: totalAway };
     };
 
-    // --- PAIRINGS ---
+    // --- PAIRINGS (Refined per 2026 Wiki rules) ---
+    // PO6 pairings: P1: 6th 11th (Best 2nd-6 vs 1st 3rd-11?) 
+    // Wait, Wiki says: P1: 1st 3rd vs 1st 2nd. 
+    // po6Qualifiers is sorted 1 to 6 (Best to Worst). 
+    // Seed 6 = po6Qualifiers[0]. Seed 11 = po6Qualifiers[5].
     const po6_matches = [
-        { id: 'po6-1', home: po6Qualifiers[5]?.name, away: po6Qualifiers[0]?.name, label: 'PO1 (6 v 1)' }, // Rank 6 vs Rank 1
-        { id: 'po6-2', home: po6Qualifiers[4]?.name, away: po6Qualifiers[1]?.name, label: 'PO2 (5 v 2)' }, // Rank 5 vs Rank 2
-        { id: 'po6-3', home: po6Qualifiers[3]?.name, away: po6Qualifiers[2]?.name, label: 'PO3 (4 v 3)' }  // Rank 4 vs Rank 3
+        { id: 'po6-1', home: po6Qualifiers[5]?.name, away: po6Qualifiers[0]?.name, label: 'PO1 (11 v 6)' }, // 1st 3rd vs 1st 2nd
+        { id: 'po6-2', home: po6Qualifiers[4]?.name, away: po6Qualifiers[1]?.name, label: 'PO2 (10 v 7)' }, // 5th 2nd vs 2nd 2nd
+        { id: 'po6-3', home: po6Qualifiers[3]?.name, away: po6Qualifiers[2]?.name, label: 'PO3 (9 v 8)' }   // 4th 2nd vs 3rd 2nd
     ];
     const po6_results = po6_matches.map(m => ({ ...m, res: calculateResult(m.id, m.home, m.away, true) }));
 
@@ -220,16 +235,16 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
     const po6Winner3 = po6_results[2].res.winner;
 
     const qf_matches = [
-        { id: 'qf-1', home: po6Winner1, away: poolWinners[2]?.name, label: 'QF 1' },
-        { id: 'qf-2', home: po6Winner2, away: poolWinners[1]?.name, label: 'QF 2' },
-        { id: 'qf-3', home: po6Winner3, away: poolWinners[0]?.name, label: 'QF 3' },
-        { id: 'qf-4', home: poolWinners[4]?.name, away: poolWinners[3]?.name, label: 'QF 4' } // Rank 5 vs Rank 4
+        { id: 'qf-1', home: po6Winner1, away: poolWinners[2]?.name, label: 'QF 1' }, // Winner P1 vs 3rd Winner
+        { id: 'qf-2', home: po6Winner2, away: poolWinners[1]?.name, label: 'QF 2' }, // Winner P2 vs 2nd Winner
+        { id: 'qf-3', home: poolWinners[4]?.name, away: poolWinners[3]?.name, label: 'QF 3' }, // 5th Winner vs 4th Winner
+        { id: 'qf-4', home: po6Winner3, away: poolWinners[0]?.name, label: 'QF 4' }  // Winner P3 vs 1st Winner
     ];
     const qf_results = qf_matches.map(m => ({ ...m, res: calculateResult(m.id, m.home!, m.away!, true) }));
 
     const sf_matches = [
-        { id: 'sf-1', home: qf_results[2].res.winner, away: qf_results[3].res.winner, label: 'Semi Final 1' }, // Rank 1 vs Rank 4/5
-        { id: 'sf-2', home: qf_results[1].res.winner, away: qf_results[0].res.winner, label: 'Semi Final 2' }  // Rank 2 vs Rank 3
+        { id: 'sf-1', home: qf_results[0].res.winner, away: qf_results[1].res.winner, label: 'Semi Final 1' }, // QF1 vs QF2
+        { id: 'sf-2', home: qf_results[2].res.winner, away: qf_results[3].res.winner, label: 'Semi Final 2' }  // QF3 vs QF4
     ];
     const sf_results = sf_matches.map(m => ({ ...m, res: calculateResult(m.id, m.home!, m.away!, false) }));
 
