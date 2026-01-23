@@ -109,7 +109,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
 
     return (
         <div className="bg-slate-900 border border-slate-800 rounded-lg overflow-hidden shadow-xl flex flex-col h-full">
-            <div className="bg-slate-800/50 px-2 py-2 border-b border-slate-800 sticky top-0 z-10 font-sans">
+            <div className="bg-slate-800/50 px-2 py-2 border-b border-slate-800 z-10 font-sans">
                 <div className="flex gap-1">
                     <button
                         onClick={() => setActiveTab('upcoming')}
@@ -148,7 +148,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                             <div key={dateStr} className="space-y-1">
                                 <button
                                     onClick={() => toggleDateCollapse(dateStr)}
-                                    className="sticky top-0 z-5 w-full bg-slate-950/95 backdrop-blur-sm py-1 px-2 rounded-md border border-slate-800 flex items-center justify-between hover:bg-slate-900/90 transition-colors cursor-pointer shadow-sm"
+                                    className="sticky top-0 z-10 w-full bg-slate-900 py-1.5 px-2 rounded-md border border-slate-800 flex items-center justify-between hover:bg-slate-800 transition-colors cursor-pointer shadow-md"
                                 >
                                     <span className="text-[10px] font-bold text-indigo-400 flex items-center gap-2">
                                         <span className={`transition-transform duration-200 text-[8px] ${isCollapsed ? '' : 'rotate-90'}`}>▶</span>
