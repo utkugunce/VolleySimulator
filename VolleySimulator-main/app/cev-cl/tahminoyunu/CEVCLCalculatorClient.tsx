@@ -139,6 +139,52 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
         });
     };
 
+    // Auto-fill remaining matches based on team strength (rankings)
+    const handleAutoFill = (mode: 'favorites' | 'random') => {
+        const newOverrides = { ...overrides };
+        const unplayedMatches = allMatches.filter(m => !m.isPlayed && !overrides[`${m.homeTeam}-${m.awayTeam}`]);
+
+        if (unplayedMatches.length === 0) {
+            showToast("Tüm maçlar zaten tahmin edilmiş!", "info");
+            return;
+        }
+
+        unplayedMatches.forEach(match => {
+            const matchId = `${match.homeTeam}-${match.awayTeam}`;
+
+            if (mode === 'favorites') {
+                // Use team rankings to predict: higher ranked team wins 3-1
+                const homeRank = liveStandings.findIndex(t => t.name === match.homeTeam);
+                const awayRank = liveStandings.findIndex(t => t.name === match.awayTeam);
+
+                // Home advantage + ranking comparison
+                if (homeRank !== -1 && awayRank !== -1) {
+                    if (homeRank < awayRank) {
+                        newOverrides[matchId] = "3-1"; // Home wins
+                    } else if (homeRank > awayRank) {
+                        newOverrides[matchId] = "1-3"; // Away wins
+                    } else {
+                        newOverrides[matchId] = "3-2"; // Home wins close match
+                    }
+                } else {
+                    newOverrides[matchId] = "3-1"; // Default home win
+                }
+            } else {
+                // Random mode
+                const scores = ["3-0", "3-1", "3-2", "2-3", "1-3", "0-3"];
+                newOverrides[matchId] = scores[Math.floor(Math.random() * scores.length)];
+            }
+
+            // Add XP for each prediction
+            addXP(5);
+            recordPrediction(true);
+        });
+
+        setOverrides(newOverrides);
+        sounds.achievement();
+        showToast(`${unplayedMatches.length} maç otomatik dolduruldu!`, "success");
+    };
+
     // Memoize standings calculations for current pool
     const initialStandings = useMemo(() =>
         calculateLiveStandings(poolTeams, poolMatches, {}),
@@ -231,6 +277,39 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                     </div>
                     <div className="flex items-center gap-2 w-full sm:w-auto pb-1 sm:pb-0 justify-end flex-wrap sm:flex-nowrap">
                         <div className="flex items-center gap-2 shrink-0">
+                            {/* Auto-fill Dropdown */}
+                            <div className="relative group">
+                                <button
+                                    className="px-3 py-1.5 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-1 shadow-lg shadow-green-900/20"
+                                    title="Kalan maçları otomatik doldur"
+                                >
+                                    <span>⚡</span>
+                                    <span className="hidden sm:inline">Otomatik Doldur</span>
+                                    <span className="text-[8px] ml-0.5">▼</span>
+                                </button>
+                                <div className="absolute top-full right-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-xl overflow-hidden z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                    <button
+                                        onClick={() => handleAutoFill('favorites')}
+                                        className="w-full text-left px-4 py-3 hover:bg-green-900/20 transition-colors flex items-center gap-3 border-b border-slate-800"
+                                    >
+                                        <span className="text-lg">🏆</span>
+                                        <div>
+                                            <div className="text-xs font-bold text-white">Favorilere Göre</div>
+                                            <div className="text-[9px] text-slate-400">Sıralamaya göre tahmin et</div>
+                                        </div>
+                                    </button>
+                                    <button
+                                        onClick={() => handleAutoFill('random')}
+                                        className="w-full text-left px-4 py-3 hover:bg-purple-900/20 transition-colors flex items-center gap-3"
+                                    >
+                                        <span className="text-lg">🎲</span>
+                                        <div>
+                                            <div className="text-xs font-bold text-white">Rastgele</div>
+                                            <div className="text-[9px] text-slate-400">Şansına bırak!</div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
                             <button
                                 onClick={handleScrollToNextMatch}
                                 className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700 flex items-center gap-1"
@@ -286,8 +365,8 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                         <button
                             onClick={() => setShowRankings(!showRankings)}
                             className={`w-full py-3 px-4 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${showRankings
-                                    ? "bg-blue-600 text-white"
-                                    : "bg-gradient-to-r from-blue-900/30 to-indigo-900/30 text-blue-400 border border-blue-800/50 hover:border-blue-600"
+                                ? "bg-blue-600 text-white"
+                                : "bg-gradient-to-r from-blue-900/30 to-indigo-900/30 text-blue-400 border border-blue-800/50 hover:border-blue-600"
                                 }`}
                         >
                             <span>{showRankings ? "🏆 Sıralamaları Gizle" : "🏆 Havuz Sıralamalarını Göster"}</span>
