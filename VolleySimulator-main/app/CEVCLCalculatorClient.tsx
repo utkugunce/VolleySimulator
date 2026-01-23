@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef, useMemo } from "react";
+import Link from "next/link";
 import { TeamStats, Match, Achievement } from "@/app/types";
 import { useToast, AchievementToast, AchievementsPanel } from "./components";
 import StandingsTable from "./components/Calculator/StandingsTable";
@@ -280,6 +281,12 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                                 {t('nav.groups')}
                             </a>
                             <a
+                                href="/siralama"
+                                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700"
+                            >
+                                {t('nav.ranking')}
+                            </a>
+                            <a
                                 href="/playoffs"
                                 className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700"
                             >
@@ -333,7 +340,12 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
 
                     <div className="flex items-center justify-between gap-2 p-2 bg-slate-900/30 rounded-lg border border-slate-800/50">
                         {/* Selected Group Label */}
-                        <span className="text-sm font-bold text-white px-2 animate-in fade-in">{selectedPool}</span>
+                        <div className="flex flex-col">
+                            <span className="text-sm font-bold text-white px-2 animate-in fade-in">{selectedPool}</span>
+                            <Link href="/siralama" className="text-[10px] text-blue-400 hover:text-blue-300 px-2 underline decoration-blue-500/30 underline-offset-2 transition-colors">
+                                {t('guidance.rankings')}
+                            </Link>
+                        </div>
 
                         <div className="flex items-center gap-2 relative">
                             {/* Mobile Autofill Fix: Explicit toggle state instead of CSS hover */}
@@ -346,13 +358,6 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                                     <span className="hidden sm:inline">{t('status.autoFill')}</span>
                                     <span className="text-[8px] ml-0.5">▼</span>
                                 </button>
-
-                                <div className="absolute top-0 right-full mr-2 hidden sm:flex items-center">
-                                    <span className="text-[10px] text-slate-400 mr-2 max-w-[150px] text-right leading-tight">
-                                        {t('guidance.rankings')}
-                                    </span>
-                                    <div className="w-8 h-px bg-slate-700"></div>
-                                </div>
 
                                 {isMobileAutofillOpen && (
                                     <>
