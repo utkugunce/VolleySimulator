@@ -347,6 +347,13 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                                     <span className="text-[8px] ml-0.5">▼</span>
                                 </button>
 
+                                <div className="absolute top-0 right-full mr-2 hidden sm:flex items-center">
+                                    <span className="text-[10px] text-slate-400 mr-2 max-w-[150px] text-right leading-tight">
+                                        {t('guidance.rankings')}
+                                    </span>
+                                    <div className="w-8 h-px bg-slate-700"></div>
+                                </div>
+
                                 {isMobileAutofillOpen && (
                                     <>
                                         <div className="fixed inset-0 z-40 bg-black/20" onClick={() => setIsMobileAutofillOpen(false)}></div>

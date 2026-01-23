@@ -31,6 +31,7 @@ export const translations = {
         "status.autoFillFavoritesDesc": "Sıralamaya göre",
         "status.autoFillRandom": "Rastgele",
         "status.autoFillRandomDesc": "Şansına bırak!",
+        "guidance.rankings": "En iyi 3.ler ve detaylı genel sıralama için 'Sıralama' sekmesini kullanın.",
 
         // Groups
         "group": "GRUP",
@@ -129,6 +130,7 @@ export const translations = {
         "status.autoFillFavoritesDesc": "Based on ranking",
         "status.autoFillRandom": "Random",
         "status.autoFillRandomDesc": "Feeling lucky!",
+        "guidance.rankings": "Check 'Rankings' tab for best 3rd placed teams and global standings.",
 
         // Groups
         "group": "POOL",

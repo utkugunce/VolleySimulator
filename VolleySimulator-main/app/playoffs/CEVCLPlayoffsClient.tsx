@@ -228,8 +228,8 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
     const qf_results = qf_matches.map(m => ({ ...m, res: calculateResult(m.id, m.home!, m.away!, true) }));
 
     const sf_matches = [
-        { id: 'sf-1', home: qf_results[0].res.winner, away: qf_results[3].res.winner, label: 'Semi Final 1' },
-        { id: 'sf-2', home: qf_results[1].res.winner, away: qf_results[2].res.winner, label: 'Semi Final 2' }
+        { id: 'sf-1', home: qf_results[2].res.winner, away: qf_results[3].res.winner, label: 'Semi Final 1' }, // Rank 1 vs Rank 4/5
+        { id: 'sf-2', home: qf_results[1].res.winner, away: qf_results[0].res.winner, label: 'Semi Final 2' }  // Rank 2 vs Rank 3
     ];
     const sf_results = sf_matches.map(m => ({ ...m, res: calculateResult(m.id, m.home!, m.away!, false) }));
 
@@ -368,7 +368,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
 
                     <div className="flex items-center gap-2">
                         <Link href="/" className="px-3 py-1.5 text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-900 rounded-lg transition-colors">
-                            {t('nav.predict')}
+                            {t('nav.groups')}
                         </Link>
                         <div className="h-4 w-px bg-slate-800 mx-1"></div>
 
