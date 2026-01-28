@@ -91,13 +91,13 @@
         {
             "name": "Numia Vero Volley Milano",
             "groupName": "Pool C",
-            "played": 4,
-            "wins": 3,
-            "points": 10,
-            "setsWon": 11,
-            "setsLost": 3,
-            "setPointsWon": 337,
-            "setPointsLost": 282
+            "played": 5,
+            "wins": 4,
+            "points": 13,
+            "setsWon": 14,
+            "setsLost": 4,
+            "setPointsWon": 432,
+            "setPointsLost": 367
         },
         {
             "name": "Eczacıbaşı Dynavit Istanbul",
@@ -113,13 +113,13 @@
         {
             "name": "Olympiacos SFP Piraeus",
             "groupName": "Pool C",
-            "played": 4,
+            "played": 5,
             "wins": 2,
             "points": 5,
-            "setsWon": 6,
-            "setsLost": 9,
-            "setPointsWon": 315,
-            "setPointsLost": 341
+            "setsWon": 7,
+            "setsLost": 12,
+            "setPointsWon": 400,
+            "setPointsLost": 436
         },
         {
             "name": "OK Železničar Lajkovac",
@@ -135,24 +135,24 @@
         {
             "name": "A. Carraro P. Doc Conegliano",
             "groupName": "Pool D",
-            "played": 4,
-            "wins": 4,
-            "points": 11,
-            "setsWon": 12,
+            "played": 5,
+            "wins": 5,
+            "points": 14,
+            "setsWon": 15,
             "setsLost": 2,
-            "setPointsWon": 342,
-            "setPointsLost": 271
+            "setPointsWon": 417,
+            "setPointsLost": 331
         },
         {
             "name": "Zeren Spor Kulübü Ankara",
             "groupName": "Pool D",
-            "played": 4,
+            "played": 5,
             "wins": 3,
             "points": 10,
             "setsWon": 11,
-            "setsLost": 3,
-            "setPointsWon": 342,
-            "setPointsLost": 295
+            "setsLost": 6,
+            "setPointsWon": 402,
+            "setPointsLost": 370
         },
         {
             "name": "Dresdner SC",
@@ -190,24 +190,24 @@
         {
             "name": "KS Developres Rzeszów",
             "groupName": "Pool E",
-            "played": 4,
-            "wins": 3,
-            "points": 9,
-            "setsWon": 11,
+            "played": 5,
+            "wins": 4,
+            "points": 12,
+            "setsWon": 14,
             "setsLost": 7,
-            "setPointsWon": 418,
-            "setPointsLost": 367
+            "setPointsWon": 493,
+            "setPointsLost": 419
         },
         {
             "name": "Maritza Plovdiv",
             "groupName": "Pool E",
-            "played": 4,
+            "played": 5,
             "wins": 1,
             "points": 4,
             "setsWon": 6,
-            "setsLost": 10,
-            "setPointsWon": 334,
-            "setPointsLost": 368
+            "setsLost": 13,
+            "setPointsWon": 386,
+            "setPointsLost": 443
         },
         {
             "name": "Levallois Paris Saint Cloud",
@@ -556,7 +556,10 @@
             "groupName": "Pool C",
             "matchDate": "27.01.2026",
             "matchTime": "19:00",
-            "isPlayed": false
+            "isPlayed": true,
+            "resultScore": "1-3",
+            "homeScore": 1,
+            "awayScore": 3
         },
         {
             "homeTeam": "OK Železničar Lajkovac",
@@ -676,7 +679,10 @@
             "groupName": "Pool D",
             "matchDate": "27.01.2026",
             "matchTime": "18:00",
-            "isPlayed": false
+            "isPlayed": true,
+            "resultScore": "0-3",
+            "homeScore": 0,
+            "awayScore": 3
         },
         {
             "homeTeam": "Dresdner SC",
@@ -796,7 +802,10 @@
             "groupName": "Pool E",
             "matchDate": "27.01.2026",
             "matchTime": "18:30",
-            "isPlayed": false
+            "isPlayed": true,
+            "resultScore": "0-3",
+            "homeScore": 0,
+            "awayScore": 3
         },
         {
             "homeTeam": "Levallois Paris Saint Cloud",

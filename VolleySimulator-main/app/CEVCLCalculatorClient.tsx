@@ -292,6 +292,19 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                             >
                                 {t('nav.playoffs')}
                             </a>
+                            <button
+                                onClick={() => {
+                                    if (confirm(t('group.resetConfirm'))) {
+                                        setOverrides({});
+                                        localStorage.removeItem('cevclGroupScenarios');
+                                    }
+                                }}
+                                className="px-3 py-1.5 bg-rose-600/20 hover:bg-rose-600 text-rose-400 hover:text-white text-xs font-bold rounded-lg transition-all border border-rose-600/20"
+                                title={t('group.resetSim')}
+                            >
+                                🔄 <span className="hidden sm:inline">{t('group.resetSim')}</span>
+                            </button>
+
                             {/* Language Toggle */}
                             <div className="flex bg-slate-800 rounded-lg p-0.5 border border-slate-700">
                                 <button

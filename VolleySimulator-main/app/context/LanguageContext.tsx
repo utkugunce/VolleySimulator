@@ -33,11 +33,8 @@ export const translations = {
         "status.autoFillRandomDesc": "Şansına bırak!",
         "guidance.rankings": "En iyi 3.ler ve detaylı genel sıralama için 'Sıralama' sekmesini kullanın.",
 
-        // Groups
-        "group": "GRUP",
-        "group.showRankings": "🏆 Grup Sıralamalarını Göster",
-        "group.hideRankings": "🏆 Grup Sıralamalarını Gizle",
-        "group.reset": "tahminleriniz silinecek. Emin misiniz?",
+        "group.resetSim": "Simülasyonu Sıfırla",
+        "group.resetConfirm": "Tüm grup tahminleriniz silinecektir. Emin misiniz?",
         "group.resetSuccess": "tahminleri sıfırlandı",
         "group.allReset": "Tüm tahminler sıfırlandı",
 
@@ -132,11 +129,8 @@ export const translations = {
         "status.autoFillRandomDesc": "Feeling lucky!",
         "guidance.rankings": "Check 'Rankings' tab for best 3rd placed teams and global standings.",
 
-        // Groups
-        "group": "POOL",
-        "group.showRankings": "🏆 Show Group Standings",
-        "group.hideRankings": "🏆 Hide Group Standings",
-        "group.reset": "predictions will be deleted. Are you sure?",
+        "group.resetSim": "Reset Simulation",
+        "group.resetConfirm": "All your group predictions will be deleted. Are you sure?",
         "group.resetSuccess": "predictions reset",
         "group.allReset": "All predictions reset",
 
