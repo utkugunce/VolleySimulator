@@ -108,14 +108,14 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
     };
 
     return (
-        <div className="bg-slate-900 border border-slate-800 rounded-lg overflow-hidden shadow-xl flex flex-col h-full">
-            <div className="bg-slate-800/50 px-2 py-2 border-b border-slate-800 z-10 font-sans">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden shadow-xl flex flex-col h-full transition-colors duration-300">
+            <div className="bg-slate-50/50 dark:bg-slate-800/50 px-2 py-2 border-b border-slate-200 dark:border-slate-800 z-10 font-sans">
                 <div className="flex gap-1">
                     <button
                         onClick={() => setActiveTab('upcoming')}
                         className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'upcoming'
                             ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20'
-                            : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
+                            : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
                             }`}
                     >
                         <span>📅</span>
@@ -126,7 +126,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                         onClick={() => setActiveTab('past')}
                         className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'past'
                             ? 'bg-slate-600 text-white shadow-lg'
-                            : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
+                            : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
                             }`}
                     >
                         <span>✅</span>
@@ -148,7 +148,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                             <div key={dateStr} className="space-y-1">
                                 <button
                                     onClick={() => toggleDateCollapse(dateStr)}
-                                    className="sticky top-0 z-10 w-full bg-slate-900 py-1.5 px-2 rounded-md border border-slate-800 flex items-center justify-between hover:bg-slate-800 transition-colors cursor-pointer shadow-md"
+                                    className="sticky top-0 z-10 w-full bg-slate-100 dark:bg-slate-900 py-1.5 px-2 rounded-md border border-slate-200 dark:border-slate-800 flex items-center justify-between hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer shadow-sm"
                                 >
                                     <span className="text-[10px] font-bold text-indigo-400 flex items-center gap-2">
                                         <span className={`transition-transform duration-200 text-[8px] ${isCollapsed ? '' : 'rotate-90'}`}>▶</span>
@@ -174,25 +174,25 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                             key={matchId}
                                             id={`match-${match.homeTeam}-${match.awayTeam}`}
                                             className={`p-1.5 rounded-lg border transition-all flex items-center gap-2 ${isPlayed
-                                                ? 'bg-slate-950/50 border-slate-800/50'
+                                                ? 'bg-slate-50 dark:bg-slate-950/50 border-slate-200 dark:border-slate-800/50'
                                                 : currentScore
-                                                    ? 'bg-slate-800 border-indigo-500/50 shadow-md ring-1 ring-indigo-500/20'
-                                                    : 'bg-slate-800 border-slate-700 hover:border-slate-600'
+                                                    ? 'bg-slate-100 dark:bg-slate-800 border-indigo-500/50 shadow-md ring-1 ring-indigo-500/20'
+                                                    : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600'
                                                 }`}
                                         >
-                                            <div className="flex flex-col items-center justify-center min-w-[32px] shrink-0 border-r border-slate-700/50 pr-2 mr-1">
-                                                <span className="text-[10px] font-mono font-bold text-slate-300">
+                                            <div className="flex flex-col items-center justify-center min-w-[32px] shrink-0 border-r border-slate-200 dark:border-slate-700/50 pr-2 mr-1">
+                                                <span className="text-[10px] font-mono font-bold text-slate-500 dark:text-slate-300">
                                                     {matchTime || '--:--'}
                                                 </span>
                                             </div>
 
                                             <div className="flex-1 min-w-0">
                                                 <div className="flex items-center justify-between text-[10px] mb-1.5">
-                                                    <div className={`flex-1 text-right font-semibold truncate pr-2 flex items-center justify-end gap-1 ${currentScore && getScoreWinner(currentScore) === 'home' ? 'text-emerald-300' : 'text-slate-300'}`}>
-                                                        {isHomeRelegation && relegationSpots > 0 && <span className="bg-rose-500/30 text-rose-300 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.relegation')}</span>}
-                                                        {homeRank && homeRank <= 4 && !isHomeRelegation && <span className="bg-blue-500/30 text-blue-300 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.po')}</span>}
+                                                    <div className={`flex-1 text-right font-semibold truncate pr-2 flex items-center justify-end gap-1 ${currentScore && getScoreWinner(currentScore) === 'home' ? 'text-emerald-600 dark:text-emerald-300' : 'text-slate-700 dark:text-slate-300'}`}>
+                                                        {isHomeRelegation && relegationSpots > 0 && <span className="bg-rose-500/30 text-rose-700 dark:text-rose-300 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.relegation')}</span>}
+                                                        {homeRank && homeRank <= 4 && !isHomeRelegation && <span className="bg-blue-500/30 text-blue-700 dark:text-blue-300 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.po')}</span>}
                                                         {homeRank && (
-                                                            <span className={`text-[9px] px-1 rounded font-bold ${homeRank <= 2 ? 'bg-emerald-500/30 text-emerald-300' : homeRank <= 4 ? 'bg-blue-500/30 text-blue-300' : 'bg-slate-700 text-slate-400'}`}>
+                                                            <span className={`text-[9px] px-1 rounded font-bold ${homeRank <= 2 ? 'bg-emerald-500/30 text-emerald-700 dark:text-emerald-300' : homeRank <= 4 ? 'bg-blue-500/30 text-blue-700 dark:text-blue-300' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'}`}>
                                                                 {homeRank}.
                                                             </span>
                                                         )}
@@ -202,16 +202,16 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
 
                                                     <div className="text-[9px] text-slate-600 font-mono shrink-0 px-0.5">v</div>
 
-                                                    <div className={`flex-1 text-left font-semibold truncate pl-2 flex items-center gap-1 ${currentScore && getScoreWinner(currentScore) === 'away' ? 'text-emerald-300' : 'text-slate-300'}`}>
+                                                    <div className={`flex-1 text-left font-semibold truncate pl-2 flex items-center gap-1 ${currentScore && getScoreWinner(currentScore) === 'away' ? 'text-emerald-600 dark:text-emerald-300' : 'text-slate-700 dark:text-slate-300'}`}>
                                                         <TeamAvatar name={match.awayTeam} size="xs" />
                                                         <span className="truncate" title={match.awayTeam}>{match.awayTeam}</span>
                                                         {awayRank && (
-                                                            <span className={`text-[9px] px-1 rounded font-bold ${awayRank <= 2 ? 'bg-emerald-500/30 text-emerald-300' : awayRank <= 4 ? 'bg-blue-500/30 text-blue-300' : 'bg-slate-700 text-slate-400'}`}>
+                                                            <span className={`text-[9px] px-1 rounded font-bold ${awayRank <= 2 ? 'bg-emerald-500/30 text-emerald-700 dark:text-emerald-300' : awayRank <= 4 ? 'bg-blue-500/30 text-blue-700 dark:text-blue-300' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'}`}>
                                                                 {awayRank}.
                                                             </span>
                                                         )}
-                                                        {isAwayRelegation && relegationSpots > 0 && <span className="bg-rose-500/30 text-rose-300 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.relegation')}</span>}
-                                                        {awayRank && awayRank <= 4 && !isAwayRelegation && <span className="bg-blue-500/30 text-blue-300 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.po')}</span>}
+                                                        {isAwayRelegation && relegationSpots > 0 && <span className="bg-rose-500/30 text-rose-700 dark:text-rose-300 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.relegation')}</span>}
+                                                        {awayRank && awayRank <= 4 && !isAwayRelegation && <span className="bg-blue-500/30 text-blue-700 dark:text-blue-300 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.po')}</span>}
                                                     </div>
                                                 </div>
 
@@ -237,7 +237,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                                                         ? homeWin
                                                                             ? 'bg-emerald-700 border-emerald-600 text-white shadow-lg shadow-emerald-700/30 scale-110'
                                                                             : 'bg-rose-700 border-rose-600 text-white shadow-lg shadow-rose-700/30 scale-110'
-                                                                        : 'bg-slate-950 border-slate-700 text-slate-400 hover:bg-slate-800 hover:text-slate-300 hover:scale-105 active:scale-95'
+                                                                        : 'bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-300 hover:scale-105 active:scale-95'
                                                                         }`}
                                                                 >
                                                                     {score}
