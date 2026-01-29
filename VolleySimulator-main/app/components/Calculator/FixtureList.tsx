@@ -120,7 +120,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                     >
                         <span>📅</span>
                         <span>{t('fixture.upcoming')}</span>
-                        <span className="bg-white/20 px-1.5 py-0.5 rounded text-[9px]">{upcomingMatches.length}</span>
+                        <span className="bg-white/30 px-1.5 py-0.5 rounded text-[9px] text-slate-100">{upcomingMatches.length}</span>
                     </button>
                     <button
                         onClick={() => setActiveTab('past')}
@@ -131,7 +131,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                     >
                         <span>✅</span>
                         <span>{t('fixture.past')}</span>
-                        <span className="bg-white/20 px-1.5 py-0.5 rounded text-[10px]">{pastMatches.length}</span>
+                        <span className="bg-white/30 px-1.5 py-0.5 rounded text-[10px] text-slate-100">{pastMatches.length}</span>
                     </button>
                 </div>
             </div>
@@ -188,11 +188,11 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
 
                                             <div className="flex-1 min-w-0">
                                                 <div className="flex items-center justify-between text-[10px] mb-1.5">
-                                                    <div className={`flex-1 text-right font-semibold truncate pr-2 flex items-center justify-end gap-1 ${currentScore && getScoreWinner(currentScore) === 'home' ? 'text-emerald-400' : 'text-slate-300'}`}>
-                                                        {isHomeRelegation && relegationSpots > 0 && <span className="bg-rose-500/20 text-rose-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.relegation')}</span>}
-                                                        {homeRank && homeRank <= 4 && !isHomeRelegation && <span className="bg-blue-500/20 text-blue-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.po')}</span>}
+                                                    <div className={`flex-1 text-right font-semibold truncate pr-2 flex items-center justify-end gap-1 ${currentScore && getScoreWinner(currentScore) === 'home' ? 'text-emerald-300' : 'text-slate-300'}`}>
+                                                        {isHomeRelegation && relegationSpots > 0 && <span className="bg-rose-500/30 text-rose-300 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.relegation')}</span>}
+                                                        {homeRank && homeRank <= 4 && !isHomeRelegation && <span className="bg-blue-500/30 text-blue-300 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.po')}</span>}
                                                         {homeRank && (
-                                                            <span className={`text-[9px] px-1 rounded font-bold ${homeRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : homeRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-400'}`}>
+                                                            <span className={`text-[9px] px-1 rounded font-bold ${homeRank <= 2 ? 'bg-emerald-500/30 text-emerald-300' : homeRank <= 4 ? 'bg-blue-500/30 text-blue-300' : 'bg-slate-700 text-slate-400'}`}>
                                                                 {homeRank}.
                                                             </span>
                                                         )}
@@ -202,16 +202,16 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
 
                                                     <div className="text-[9px] text-slate-600 font-mono shrink-0 px-0.5">v</div>
 
-                                                    <div className={`flex-1 text-left font-semibold truncate pl-2 flex items-center gap-1 ${currentScore && getScoreWinner(currentScore) === 'away' ? 'text-emerald-400' : 'text-slate-300'}`}>
+                                                    <div className={`flex-1 text-left font-semibold truncate pl-2 flex items-center gap-1 ${currentScore && getScoreWinner(currentScore) === 'away' ? 'text-emerald-300' : 'text-slate-300'}`}>
                                                         <TeamAvatar name={match.awayTeam} size="xs" />
                                                         <span className="truncate" title={match.awayTeam}>{match.awayTeam}</span>
                                                         {awayRank && (
-                                                            <span className={`text-[9px] px-1 rounded font-bold ${awayRank <= 2 ? 'bg-emerald-500/20 text-emerald-400' : awayRank <= 4 ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-400'}`}>
+                                                            <span className={`text-[9px] px-1 rounded font-bold ${awayRank <= 2 ? 'bg-emerald-500/30 text-emerald-300' : awayRank <= 4 ? 'bg-blue-500/30 text-blue-300' : 'bg-slate-700 text-slate-400'}`}>
                                                                 {awayRank}.
                                                             </span>
                                                         )}
-                                                        {isAwayRelegation && relegationSpots > 0 && <span className="bg-rose-500/20 text-rose-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.relegation')}</span>}
-                                                        {awayRank && awayRank <= 4 && !isAwayRelegation && <span className="bg-blue-500/20 text-blue-400 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.po')}</span>}
+                                                        {isAwayRelegation && relegationSpots > 0 && <span className="bg-rose-500/30 text-rose-300 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.relegation')}</span>}
+                                                        {awayRank && awayRank <= 4 && !isAwayRelegation && <span className="bg-blue-500/30 text-blue-300 text-[8px] px-1 rounded font-bold whitespace-nowrap">{t('fixture.po')}</span>}
                                                     </div>
                                                 </div>
 
