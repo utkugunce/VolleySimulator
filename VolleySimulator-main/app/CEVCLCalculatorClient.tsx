@@ -264,7 +264,7 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
         <main className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 p-1 sm:p-2 font-sans transition-colors duration-300">
             <div className="w-full max-w-7xl mx-auto flex flex-col h-full gap-2">
                 {/* Header */}
-                <div className="bg-white dark:bg-gradient-to-r dark:from-blue-900/50 dark:to-indigo-900/50 border border-slate-200 dark:border-slate-800 rounded-xl p-3 shadow-sm dark:shadow-none transition-colors duration-300">
+                <div className="bg-slate-50 dark:bg-gradient-to-r dark:from-blue-900/50 dark:to-indigo-900/50 border border-slate-300 dark:border-slate-800 rounded-xl p-3 shadow-sm dark:shadow-none transition-colors duration-300">
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
                         <div className="flex items-center gap-3">
                             <div>
