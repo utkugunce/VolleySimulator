@@ -227,6 +227,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                                     <div className="flex justify-center gap-1.5 flex-wrap">
                                                         {SCORES.map(score => {
                                                             const isSelected = currentScore === score;
+                                                            const [h, a] = score.split('-').map(Number);
                                                             const homeWin = h > a;
                                                             return (
                                                                 <button
