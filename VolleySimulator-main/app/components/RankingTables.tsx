@@ -106,7 +106,7 @@ export default function RankingTables({ rankings }: RankingTablesProps) {
                                 </td>
                                 <td className={`${tdClass} text-slate-500 dark:text-slate-400`}>{entry.pld}</td>
                                 <td className={`${tdClass} text-emerald-600 dark:text-emerald-400 font-bold`}>{entry.w}</td>
-                                <td className={`${tdClass} text-amber-600 dark:text-amber-400 font-bold text-base`}>{entry.pts}</td>
+                                <td className={`${tdClass} text-amber-700 dark:text-amber-400 font-bold text-base`}>{entry.pts}</td>
                                 <td className={`${tdClass} text-slate-500 dark:text-slate-400 font-mono text-xs`}>
                                     {entry.sr.toFixed(2)}
                                 </td>
