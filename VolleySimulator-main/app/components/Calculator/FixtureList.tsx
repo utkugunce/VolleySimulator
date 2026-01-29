@@ -227,7 +227,6 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                                     <div className="flex justify-center gap-1.5 flex-wrap">
                                                         {SCORES.map(score => {
                                                             const isSelected = currentScore === score;
-                                                            const [h, a] = score.split('-').map(Number);
                                                             const homeWin = h > a;
                                                             return (
                                                                 <button
@@ -235,8 +234,8 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                                                     onClick={() => onScoreChange(matchId, isSelected ? '' : score)}
                                                                     className={`w-9 h-7 sm:w-8 sm:h-6 flex items-center justify-center rounded-md text-[11px] sm:text-[10px] font-bold transition-all border ${isSelected
                                                                         ? homeWin
-                                                                            ? 'bg-emerald-600 border-emerald-500 text-white shadow-lg shadow-emerald-600/30 scale-110'
-                                                                            : 'bg-rose-600 border-rose-500 text-white shadow-lg shadow-rose-600/30 scale-110'
+                                                                            ? 'bg-emerald-700 border-emerald-600 text-white shadow-lg shadow-emerald-700/30 scale-110'
+                                                                            : 'bg-rose-700 border-rose-600 text-white shadow-lg shadow-rose-700/30 scale-110'
                                                                         : 'bg-slate-950 border-slate-700 text-slate-400 hover:bg-slate-800 hover:text-slate-300 hover:scale-105 active:scale-95'
                                                                         }`}
                                                                 >

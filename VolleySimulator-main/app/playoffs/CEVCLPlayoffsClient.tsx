@@ -307,6 +307,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                                 <div className="flex flex-col items-center">
                                     <span className="text-[7px] text-slate-400 uppercase font-bold mb-0.5">{t('playoff.leg1')}</span>
                                     <select
+                                        aria-label={t('playoff.leg1')}
                                         className="bg-slate-950 text-[10px] border border-slate-800 rounded px-1 py-0.5 text-slate-300 focus:outline-none focus:border-blue-500 h-6 w-14 text-center"
                                         value={playoffOverrides[`${matchId}-m1`] || ""}
                                         onChange={(e) => handleScoreChange(`${matchId}-m1`, e.target.value)}
@@ -318,6 +319,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                                 <div className="flex flex-col items-center">
                                     <span className="text-[7px] text-slate-400 uppercase font-bold mb-0.5">{t('playoff.leg2')}</span>
                                     <select
+                                        aria-label={t('playoff.leg2')}
                                         className="bg-slate-950 text-[10px] border border-slate-800 rounded px-1 py-0.5 text-slate-300 focus:outline-none focus:border-blue-500 h-6 w-14 text-center"
                                         value={playoffOverrides[`${matchId}-m2`] || ""}
                                         onChange={(e) => handleScoreChange(`${matchId}-m2`, e.target.value)}
@@ -331,6 +333,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                             <div className="flex flex-col items-end w-full">
                                 <span className="text-[7px] text-slate-400 uppercase font-bold mb-0.5 mr-1">{t('playoff.score')}</span>
                                 <select
+                                    aria-label={t('playoff.score')}
                                     className="bg-slate-950 text-[10px] border border-slate-800 rounded px-1 py-0.5 text-slate-300 focus:outline-none focus:border-blue-500 h-6 w-14 text-center"
                                     value={playoffOverrides[`${matchId}-m1`] || ""}
                                     onChange={(e) => handleScoreChange(`${matchId}-m1`, e.target.value)}

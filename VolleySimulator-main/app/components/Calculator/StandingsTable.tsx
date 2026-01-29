@@ -144,7 +144,7 @@ export default function StandingsTable({
                                     <td className={`${rowClass} font-medium whitespace-nowrap`}>
                                         <div className="flex items-center gap-2">
                                             <TeamAvatar name={team.name} size={compact ? 'md' : 'lg'} priority={idx < 5} />
-                                            <span className={`block truncate max-w-[120px] sm:max-w-[200px] ${isPlayoff ? 'text-emerald-600 dark:text-emerald-400' : isSecondaryPlayoff ? 'text-amber-600 dark:text-amber-400' : isRelegation ? 'text-rose-600 dark:text-rose-400' : 'text-text-primary'}`}>{team.name}</span>
+                                            <span className={`block truncate max-w-[120px] sm:max-w-[200px] ${isPlayoff ? 'text-emerald-700 dark:text-emerald-300' : isSecondaryPlayoff ? 'text-amber-700 dark:text-amber-300' : isRelegation ? 'text-rose-700 dark:text-rose-300' : 'text-text-primary'}`}>{team.name}</span>
                                         </div>
                                     </td>
                                     <td className={`${rowClass} text-center text-text-secondary whitespace-nowrap`}>{team.played}</td>

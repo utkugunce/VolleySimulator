@@ -21,7 +21,7 @@ export default function TeamAvatar({ name, size = 'md', showName = false, positi
             hash = str.charCodeAt(i) + ((hash << 5) - hash);
         }
         const hue = hash % 360;
-        return `hsl(${hue}, 60%, 40%)`;
+        return `hsl(${hue}, 60%, 30%)`;
     };
 
     const getInitials = (teamName: string) => {
@@ -55,7 +55,7 @@ export default function TeamAvatar({ name, size = 'md', showName = false, positi
     return (
         <div className="flex items-center gap-2">
             <div
-                className={`${sizes[size]} rounded-full flex items-center justify-center font-bold text-white uppercase relative overflow-hidden ${hasError ? '' : 'bg-slate-800'} ${position ? positionColors[position] || '' : ''}`}
+                className={`${sizes[size]} rounded-full flex items-center justify-center font-bold text-white uppercase relative overflow-hidden drop-shadow-sm ${hasError ? '' : 'bg-slate-800'} ${position ? positionColors[position] || '' : ''}`}
                 style={hasError ? { backgroundColor: stringToColor(name) } : {}}
                 title={name}
                 role="img"
@@ -73,7 +73,7 @@ export default function TeamAvatar({ name, size = 'md', showName = false, positi
                         loading={priority ? "eager" : "lazy"}
                     />
                 ) : (
-                    <div className="w-full h-full flex items-center justify-center">
+                    <div className="w-full h-full flex items-center justify-center drop-shadow-md">
                         {getInitials(name)}
                     </div>
                 )}
