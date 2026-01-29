@@ -1,15 +1,20 @@
 @import "tailwindcss";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 :root {
   /* Light Theme - Premium Modern (Clean Slate) */
-  --background: #f8fafc; /* Slate 50 */
-  --foreground: #0f172a; /* Slate 900 */
-  
+  --background: #f8fafc;
+  /* Slate 50 */
+  --foreground: #0f172a;
+  /* Slate 900 */
+
   --surface-primary: #ffffff;
-  --surface-secondary: #f1f5f9; /* Slate 100 */
-  
-  --border-color: #e2e8f0; /* Slate 200 */
-  
+  --surface-secondary: #f1f5f9;
+  /* Slate 100 */
+
+  --border-color: #e2e8f0;
+  /* Slate 200 */
+
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --text-muted: #94a3b8;
@@ -19,11 +24,13 @@
   --border-subtle: #cbd5e1;
 
   /* Brand Colors - High Contrast for Light Mode */
-  --color-primary: #059669; /* Emerald 600 */
+  --color-primary: #059669;
+  /* Emerald 600 */
   --color-primary-light: #10b981;
   --color-primary-dark: #047857;
 
-  --color-accent: #d97706; /* Amber 600 */
+  --color-accent: #d97706;
+  /* Amber 600 */
   --color-accent-light: #f59e0b;
   --color-accent-dark: #b45309;
 
@@ -37,12 +44,12 @@
 [data-theme="dark"] {
   --background: #0f172a;
   --foreground: #f1f5f9;
-  
+
   --surface-primary: #1e293b;
   --surface-secondary: #334155;
-  
+
   --border-color: #475569;
-  
+
   --text-primary: #f1f5f9;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
