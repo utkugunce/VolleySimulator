@@ -264,7 +264,7 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
         <main className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 p-1 sm:p-2 font-sans transition-colors duration-300">
             <div className="w-full max-w-7xl mx-auto flex flex-col h-full gap-2">
                 {/* Header */}
-                <div className="bg-slate-50 dark:bg-gradient-to-r dark:from-blue-900/50 dark:to-indigo-900/50 border border-slate-300 dark:border-slate-800 rounded-xl p-3 shadow-sm dark:shadow-none transition-colors duration-300">
+                <div className="bg-white dark:bg-gradient-to-r dark:from-blue-900/50 dark:to-indigo-900/50 border border-slate-200 dark:border-slate-800 rounded-xl p-3 shadow-md dark:shadow-none transition-colors duration-300">
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
                         <div className="flex items-center gap-3">
                             <div>
@@ -282,13 +282,13 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                             </a>
                             <a
                                 href="/siralama"
-                                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700"
+                                className="px-3 py-1.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-200 dark:border-slate-700 shadow-sm dark:shadow-none"
                             >
                                 {t('nav.ranking')}
                             </a>
                             <a
                                 href="/playoffs"
-                                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700"
+                                className="px-3 py-1.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-200 dark:border-slate-700 shadow-sm dark:shadow-none"
                             >
                                 {t('nav.playoffs')}
                             </a>
@@ -306,14 +306,14 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                             </button>
 
                             {/* Language Toggle */}
-                            <div className="flex bg-slate-800 rounded-lg p-0.5 border border-slate-700">
+                            <div className="flex bg-slate-100 dark:bg-slate-800 rounded-lg p-0.5 border border-slate-200 dark:border-slate-700">
                                 <button
                                     onClick={() => setLanguage('tr')}
-                                    className={`px-2 py-1 text-[10px] font-bold rounded-md transition-all ${language === 'tr' ? 'bg-slate-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
+                                    className={`px-2 py-1 text-[10px] font-bold rounded-md transition-all ${language === 'tr' ? 'bg-white dark:bg-slate-600 text-slate-900 dark:text-white shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'}`}
                                 >TR</button>
                                 <button
                                     onClick={() => setLanguage('en')}
-                                    className={`px-2 py-1 text-[10px] font-bold rounded-md transition-all ${language === 'en' ? 'bg-slate-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
+                                    className={`px-2 py-1 text-[10px] font-bold rounded-md transition-all ${language === 'en' ? 'bg-white dark:bg-slate-600 text-slate-900 dark:text-white shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'}`}
                                 >EN</button>
                             </div>
 
@@ -324,7 +324,7 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                                     const isLight = root.getAttribute('data-theme') === 'light';
                                     root.setAttribute('data-theme', isLight ? 'dark' : 'light');
                                 }}
-                                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-700"
+                                className="px-3 py-1.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-xs font-bold rounded-lg transition-all border border-slate-200 dark:border-slate-700 shadow-sm dark:shadow-none"
                                 title="Tema Değiştir"
                             >
                                 🌙

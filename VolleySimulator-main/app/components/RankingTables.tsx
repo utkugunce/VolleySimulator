@@ -46,7 +46,7 @@ export default function RankingTables({ rankings }: RankingTablesProps) {
     const tdClass = "py-3 px-2 text-center whitespace-nowrap";
 
     return (
-        <div className="bg-white dark:bg-gradient-to-br dark:from-slate-800/95 dark:to-slate-900/95 rounded-xl border border-slate-200 dark:border-slate-700/50 overflow-hidden shadow-xl transition-colors duration-300">
+        <div className="bg-white dark:bg-gradient-to-br dark:from-slate-800/95 dark:to-slate-900/95 rounded-xl border border-slate-200 dark:border-slate-700/50 overflow-hidden shadow-lg dark:shadow-none transition-colors duration-300">
             {/* Tab Headers */}
             <div className="flex border-b border-slate-200 dark:border-slate-700/50 overflow-x-auto">
                 {tabs.map((tab) => (
@@ -68,7 +68,7 @@ export default function RankingTables({ rankings }: RankingTablesProps) {
             <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                     <thead>
-                        <tr className="bg-slate-50 dark:bg-slate-800/80 text-slate-500 dark:text-slate-400 text-xs uppercase font-bold tracking-wider">
+                        <tr className="bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 text-xs uppercase font-bold tracking-wider border-b border-slate-200 dark:border-slate-700">
                             <th className={`${thClass} w-10 text-slate-500`}>#</th>
                             <th className={`py-3 px-3 text-left w-full pl-4`}>{t('table.team')}</th>
                             <th className={thClass} title={t('group')}>{t('group')}</th>
@@ -85,7 +85,7 @@ export default function RankingTables({ rankings }: RankingTablesProps) {
                         {activeData.map((entry, index) => (
                             <tr
                                 key={entry.team}
-                                className={`group hover:bg-slate-50 dark:hover:bg-slate-700/40 transition-colors ${index < 3 ? "bg-slate-50/50 dark:bg-slate-800/20" : ""}`}
+                                className={`group hover:bg-slate-100 dark:hover:bg-slate-700/40 transition-colors ${index < 3 ? "bg-indigo-50/30 dark:bg-slate-800/30" : "even:bg-slate-50 dark:even:bg-slate-900/40"}`}
                             >
                                 <td className={tdClass}>
                                     <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${index === 0 ? "bg-amber-500 text-white shadow-lg shadow-amber-500/20" :

@@ -4,40 +4,51 @@
 :root {
   /* Light Theme - Premium Modern (Clean Slate) */
   --background: #f8fafc;
-  /* Slate 50 */
-  --foreground: #0f172a;
-  /* Slate 900 */
+  /* Slate 50 - The canvas */
+  --foreground: #334155;
+  /* Slate 700 - Softer body text than pure black */
 
   --surface-primary: #ffffff;
+  /* pure white cards */
   --surface-secondary: #f1f5f9;
-  /* Slate 100 */
+  /* Slate 100 - subtle contrast areas */
 
-  --border-color: #e2e8f0;
+  --border-color: #cbd5e1;
+  /* Slate 300 - clear but not harsh definition */
+  --border-subtle: #e2e8f0;
   /* Slate 200 */
 
   --text-primary: #0f172a;
-  --text-secondary: #475569;
+  /* Slate 900 - Headings */
+  --text-secondary: #64748b;
+  /* Slate 500 - Meta info */
   --text-muted: #94a3b8;
+  /* Slate 400 */
 
-  --surface-dark: rgba(255, 255, 255, 0.9);
-  --surface-glass: rgba(255, 255, 255, 0.7);
-  --border-subtle: #cbd5e1;
-
-  /* Brand Colors - High Contrast for Light Mode */
+  /* Brand Colors - Adjusted for Light Mode Readability */
   --color-primary: #059669;
-  /* Emerald 600 */
+  /* Emerald 600 - Darker for contrast on white */
   --color-primary-light: #10b981;
+  /* Emerald 500 */
   --color-primary-dark: #047857;
+  /* Emerald 700 */
 
   --color-accent: #d97706;
   /* Amber 600 */
   --color-accent-light: #f59e0b;
   --color-accent-dark: #b45309;
 
-  /* Glow Colors (Subtle for Light) */
-  --glow-primary: rgba(5, 150, 105, 0.2);
-  --glow-accent: rgba(217, 119, 6, 0.2);
-  --glow-blue: rgba(37, 99, 235, 0.2);
+  /* Shadows instead of Glows for Light Mode */
+  /* We use the variable names but map them to shadow values or subtle tints */
+  --glow-primary: rgba(5, 150, 105, 0.1);
+  /* Very subtle tint */
+  --glow-accent: rgba(217, 119, 6, 0.1);
+  --glow-blue: rgba(37, 99, 235, 0.1);
+
+  --surface-dark: #ffffff;
+  /* In light mode, 'dark surface' might just be white */
+  --surface-glass: rgba(255, 255, 255, 0.95);
+  /* High opacity for clarity */
 }
 
 /* Dark Theme (explicit) */

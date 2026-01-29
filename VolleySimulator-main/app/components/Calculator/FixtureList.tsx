@@ -108,7 +108,7 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
     };
 
     return (
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden shadow-xl flex flex-col h-full transition-colors duration-300">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden shadow-lg dark:shadow-none flex flex-col h-full transition-colors duration-300">
             <div className="bg-slate-50/50 dark:bg-slate-800/50 px-2 py-2 border-b border-slate-200 dark:border-slate-800 z-10 font-sans">
                 <div className="flex gap-1">
                     <button
@@ -176,8 +176,8 @@ export default function FixtureList({ matches, overrides, onScoreChange, teamRan
                                             className={`p-1.5 rounded-lg border transition-all flex items-center gap-2 ${isPlayed
                                                 ? 'bg-slate-50 dark:bg-slate-950/50 border-slate-200 dark:border-slate-800/50'
                                                 : currentScore
-                                                    ? 'bg-slate-100 dark:bg-slate-800 border-indigo-500/50 shadow-md ring-1 ring-indigo-500/20'
-                                                    : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600'
+                                                    ? 'bg-white dark:bg-slate-800 border-indigo-500 shadow-md ring-1 ring-indigo-500/10'
+                                                    : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 shadow-sm hover:shadow-md'
                                                 }`}
                                         >
                                             <div className="flex flex-col items-center justify-center min-w-[32px] shrink-0 border-r border-slate-200 dark:border-slate-700/50 pr-2 mr-1">

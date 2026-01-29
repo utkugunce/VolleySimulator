@@ -49,7 +49,7 @@ export default function StandingsTable({
     }
 
     return (
-        <div className={`bg-surface border border-border-main rounded-lg overflow-hidden shadow-sm flex flex-col h-full ${compact ? 'text-xs' : ''}`}>
+        <div className={`bg-surface border border-border-main rounded-lg overflow-hidden shadow-lg dark:shadow-sm flex flex-col h-full ${compact ? 'text-xs' : ''}`}>
             {!compact && (
                 <div className="bg-surface-secondary px-4 py-3 border-b border-border-main">
                     <h3 className="font-bold text-foreground flex items-center gap-2">
@@ -127,7 +127,7 @@ export default function StandingsTable({
                             }
 
                             return (
-                                <tr key={team.name} className={`hover:bg-surface-secondary/50 transition-colors ${isChampion ? 'bg-amber-500/10 dark:bg-amber-900/20' : isPlayoff ? 'bg-emerald-500/10 dark:bg-emerald-900/20' : isSecondaryPlayoff ? 'bg-amber-500/5 dark:bg-amber-900/10' : isRelegation ? 'bg-rose-500/10 dark:bg-rose-900/20' : ''}`}>
+                                <tr key={team.name} className={`hover:bg-surface-secondary/80 transition-colors ${isChampion ? 'bg-amber-500/10 dark:bg-amber-900/20' : isPlayoff ? 'bg-emerald-500/10 dark:bg-emerald-900/20' : isSecondaryPlayoff ? 'bg-amber-500/5 dark:bg-amber-900/10' : isRelegation ? 'bg-rose-500/10 dark:bg-rose-900/20' : 'even:bg-surface-secondary/40'}`}>
                                     <td className={`${rowClass} text-center font-mono whitespace-nowrap`}>
                                         <div className="flex items-center justify-start gap-1 pl-1">
                                             <div className={`${rankSize} flex-shrink-0 flex items-center justify-center rounded-full font-bold ${isChampion ? 'bg-gradient-to-b from-amber-400 to-amber-600 text-white shadow-lg' :
