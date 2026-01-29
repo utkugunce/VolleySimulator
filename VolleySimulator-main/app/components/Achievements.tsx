@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { Achievement } from "../types";
 import { useGameState, ACHIEVEMENTS } from "../utils/gameState";
 
@@ -46,11 +47,18 @@ interface AchievementsPanelProps {
 export function AchievementsPanel({ isOpen, onClose }: AchievementsPanelProps) {
     const { gameState, hasAchievement } = useGameState();
 
-    if (!isOpen) return null;
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+        return () => setMounted(false);
+    }, []);
+
+    if (!isOpen || !mounted) return null;
 
     const allAchievements = Object.values(ACHIEVEMENTS);
 
-    return (
+    return createPortal(
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm" onClick={onClose}>
             <div
                 className="bg-slate-900 rounded-2xl border border-slate-700 shadow-2xl max-w-lg w-full mx-4 max-h-[80vh] overflow-hidden"
@@ -113,7 +121,8 @@ export function AchievementsPanel({ isOpen, onClose }: AchievementsPanelProps) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 }
 

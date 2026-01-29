@@ -264,8 +264,8 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
         if (!isReady) {
             return (
                 <div className="w-56 h-20 bg-slate-900/40 rounded-lg border border-dashed border-slate-700/50 flex flex-col items-center justify-center text-slate-500 gap-1">
-                    <span className="text-[10px] font-mono uppercase tracking-widest opacity-50">{label}</span>
-                    <span className="text-xs">{t('playoff.waiting')}</span>
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400">{label}</span>
+                    <span className="text-xs text-slate-400">{t('playoff.waiting')}</span>
                 </div>
             )
         }
@@ -278,7 +278,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
             <div className={`w-56 bg-slate-900/90 border ${hWin || aWin ? 'border-emerald-500/30 shadow-[0_0_10px_-5px_rgba(16,185,129,0.2)]' : 'border-slate-700/60'} rounded-lg overflow-hidden backdrop-blur-md transition-all hover:border-slate-600 group relative`}>
                 <div className="px-2 py-1.5 bg-black/20 border-b border-white/5 flex justify-between items-center">
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider scale-90 origin-left">{label}</span>
-                    {isDoubleLeg ? <span className="text-[8px] px-1 py-0.5 bg-slate-800 rounded text-slate-500">{t('playoff.doubleLeg')}</span> : <span className="text-[8px] px-1 py-0.5 bg-purple-900/30 text-purple-400 rounded">{t('playoff.singleMatch')}</span>}
+                    {isDoubleLeg ? <span className="text-[8px] px-1 py-0.5 bg-slate-800 rounded text-slate-300">{t('playoff.doubleLeg')}</span> : <span className="text-[8px] px-1 py-0.5 bg-purple-900/30 text-purple-400 rounded">{t('playoff.singleMatch')}</span>}
                 </div>
 
                 <div className="p-2 space-y-1">
@@ -305,7 +305,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                         {isDoubleLeg ? (
                             <div className="flex w-full justify-between items-center gap-2">
                                 <div className="flex flex-col items-center">
-                                    <span className="text-[7px] text-slate-500 uppercase font-bold mb-0.5">{t('playoff.leg1')}</span>
+                                    <span className="text-[7px] text-slate-400 uppercase font-bold mb-0.5">{t('playoff.leg1')}</span>
                                     <select
                                         className="bg-slate-950 text-[10px] border border-slate-800 rounded px-1 py-0.5 text-slate-300 focus:outline-none focus:border-blue-500 h-6 w-14 text-center"
                                         value={playoffOverrides[`${matchId}-m1`] || ""}
@@ -316,7 +316,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                                     </select>
                                 </div>
                                 <div className="flex flex-col items-center">
-                                    <span className="text-[7px] text-slate-500 uppercase font-bold mb-0.5">{t('playoff.leg2')}</span>
+                                    <span className="text-[7px] text-slate-400 uppercase font-bold mb-0.5">{t('playoff.leg2')}</span>
                                     <select
                                         className="bg-slate-950 text-[10px] border border-slate-800 rounded px-1 py-0.5 text-slate-300 focus:outline-none focus:border-blue-500 h-6 w-14 text-center"
                                         value={playoffOverrides[`${matchId}-m2`] || ""}
@@ -329,7 +329,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                             </div>
                         ) : (
                             <div className="flex flex-col items-end w-full">
-                                <span className="text-[7px] text-slate-500 uppercase font-bold mb-0.5 mr-1">{t('playoff.score')}</span>
+                                <span className="text-[7px] text-slate-400 uppercase font-bold mb-0.5 mr-1">{t('playoff.score')}</span>
                                 <select
                                     className="bg-slate-950 text-[10px] border border-slate-800 rounded px-1 py-0.5 text-slate-300 focus:outline-none focus:border-blue-500 h-6 w-14 text-center"
                                     value={playoffOverrides[`${matchId}-m1`] || ""}
@@ -458,7 +458,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                                 <span className="w-1.5 h-6 bg-amber-500 rounded-full"></span>
                                 <div>
                                     <div className="text-xs font-bold text-white uppercase tracking-wider">{t('playoff.po6')}</div>
-                                    <div className="text-[9px] text-slate-500">{t('playoff.po6Desc')} • 28 Jan - 13 Feb</div>
+                                    <div className="text-[9px] text-slate-400">{t('playoff.po6Desc')} • 28 Jan - 13 Feb</div>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-4 justify-center h-full">
@@ -477,7 +477,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                                 <span className="w-1.5 h-6 bg-blue-500 rounded-full"></span>
                                 <div>
                                     <div className="text-xs font-bold text-white uppercase tracking-wider">{t('playoff.qf')}</div>
-                                    <div className="text-[9px] text-slate-500">{t('playoff.qfDesc')} • 25 Feb - 13 Mar</div>
+                                    <div className="text-[9px] text-slate-400">{t('playoff.qfDesc')} • 25 Feb - 13 Mar</div>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-10 justify-center h-full">
@@ -496,7 +496,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
                                 <span className="w-1.5 h-6 bg-purple-500 rounded-full shadow-[0_0_10px_purple]"></span>
                                 <div>
                                     <div className="text-xs font-bold text-white uppercase tracking-wider">{t('playoff.f4')}</div>
-                                    <div className="text-[9px] text-slate-500">{t('playoff.f4Desc')} • 17-18 May</div>
+                                    <div className="text-[9px] text-slate-400">{t('playoff.f4Desc')} • 17-18 May</div>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-20 justify-center h-full">

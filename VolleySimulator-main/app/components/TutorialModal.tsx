@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 
 interface TutorialStep {
@@ -150,9 +151,16 @@ export default function TutorialModal({ isOpen, onClose, onComplete }: TutorialM
         onClose();
     };
 
-    if (!isOpen) return null;
+    const [mounted, setMounted] = useState(false);
 
-    return (
+    useEffect(() => {
+        setMounted(true);
+        return () => setMounted(false);
+    }, []);
+
+    if (!isOpen || !mounted) return null;
+
+    return createPortal(
         <div className="fixed inset-0 z-[200] bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
             <div
                 className="bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-700 rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden animate-scale-in"
@@ -274,7 +282,8 @@ export default function TutorialModal({ isOpen, onClose, onComplete }: TutorialM
                     animation: scale-in 0.3s ease-out forwards;
                 }
             `}</style>
-        </div>
+        </div>,
+        document.body
     );
 }
 
