@@ -372,7 +372,7 @@ export default function CEVCLPlayoffsClient({ initialTeams, initialMatches }: CE
     return (
         <main className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-purple-500/30">
             {/* --- HEADER --- */}
-            <header className="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+            <header className="sticky top-0 left-0 w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
                 <div className="max-w-[1600px] mx-auto px-4 h-14 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center text-lg shadow-lg shadow-purple-900/20">🏆</div>

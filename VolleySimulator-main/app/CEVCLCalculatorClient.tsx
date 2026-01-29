@@ -405,7 +405,7 @@ export default function CEVCLCalculatorClient({ initialTeams, initialMatches, ra
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    <div className="flex flex-col gap-4 h-auto lg:h-[320px]">
+                    <div className="flex flex-col gap-4 h-auto lg:h-[320px] min-h-[300px]">
                         <div ref={standingsRef} className="h-full overflow-hidden">
                             <StandingsTable
                                 teams={liveStandings}
