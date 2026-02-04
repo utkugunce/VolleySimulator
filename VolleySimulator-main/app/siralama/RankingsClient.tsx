@@ -16,6 +16,7 @@ export default function RankingsClient({ initialTeams, initialMatches }: Ranking
 
     // Context & State
     const [overrides, setOverrides] = useState<Record<string, string>>({});
+    const [setScoreOverrides, setSetScoreOverrides] = useState<Record<string, string[]>>({});
     const [isLoaded, setIsLoaded] = useState(false);
 
     // Normalize data (Matching Calculator Logic)
@@ -39,6 +40,11 @@ export default function RankingsClient({ initialTeams, initialMatches }: Ranking
         if (saved) {
             try { setOverrides(JSON.parse(saved)); } catch (e) { console.error(e); }
         }
+
+        const savedSets = localStorage.getItem('cevclGroupSetScenarios');
+        if (savedSets) {
+            try { setSetScoreOverrides(JSON.parse(savedSets)); } catch (e) { console.error(e); }
+        }
         setIsLoaded(true);
     }, []);
 
@@ -52,7 +58,7 @@ export default function RankingsClient({ initialTeams, initialMatches }: Ranking
         pools.forEach(poolName => {
             const pTeams = normalizedTeams.filter(t => t.groupName === poolName);
             const pMatches = normalizedMatches.filter(m => m.groupName === poolName);
-            const standings = calculateLiveStandings(pTeams, pMatches, overrides);
+            const standings = calculateLiveStandings(pTeams, pMatches, overrides, setScoreOverrides);
 
             if (standings.length > 0) firstPlace.push({ ...standings[0], groupName: poolName });
             if (standings.length > 1) secondPlace.push({ ...standings[1], groupName: poolName });
@@ -92,7 +98,7 @@ export default function RankingsClient({ initialTeams, initialMatches }: Ranking
             secondPlace: [...secondPlace].sort(comparator).map(toEntry),
             thirdPlace: [...thirdPlace].sort(comparator).map(toEntry)
         };
-    }, [normalizedTeams, normalizedMatches, overrides, language]);
+    }, [normalizedTeams, normalizedMatches, overrides, setScoreOverrides, language]);
 
     if (!isLoaded) return <div className="min-h-screen bg-slate-950 flex items-center justify-center text-slate-500">{t('loading')}</div>;
 

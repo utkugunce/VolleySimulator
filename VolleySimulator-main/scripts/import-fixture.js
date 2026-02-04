@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const XLSX = require('xlsx');
+const XLSX = require('./excel-utils');
 
 const EXCEL_FILE = path.join(__dirname, '../2025-2026_genel_fikstur.xlsx');
 const DATA_FILE = path.join(__dirname, '../data/tvf-data.json');
@@ -29,7 +29,7 @@ function excelTimeToHHMM(decimal) {
 
 async function main() {
     console.log('Reading Excel file...');
-    const workbook = XLSX.readFile(EXCEL_FILE);
+    const workbook = await XLSX.readFile(EXCEL_FILE);
     const sheet = workbook.Sheets[workbook.SheetNames[0]];
     const data = XLSX.utils.sheet_to_json(sheet, { header: 1 });
 

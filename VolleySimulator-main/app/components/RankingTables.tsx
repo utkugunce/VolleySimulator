@@ -74,7 +74,10 @@ export default function RankingTables({ rankings }: RankingTablesProps) {
                             <th className={thClass} title={t('group')}>{t('group')}</th>
                             <th className={thClass} title={t('table.played')}>{t('table.played')}</th>
                             <th className={`${thClass} text-emerald-500`} title={t('table.won')}>{t('table.won')}</th>
+                            <th className={`${thClass} text-rose-500`} title={t('table.lost')}>{t('table.lost')}</th>
                             <th className={thClass} title={t('table.points')}>{t('table.points')}</th>
+                            <th className={thClass} title={t('table.setsWon')}>{t('table.setsWon')}</th>
+                            <th className={thClass} title={t('table.setsLost')}>{t('table.setsLost')}</th>
                             <th className={thClass} title="Set Ratio">{t('ranking.setRatio')}</th>
                             <th className={thClass} title={t('table.pointsWon')}>{t('table.pointsWon')}</th>
                             <th className={thClass} title={t('table.pointsLost')}>{t('table.pointsLost')}</th>
@@ -106,7 +109,10 @@ export default function RankingTables({ rankings }: RankingTablesProps) {
                                 </td>
                                 <td className={`${tdClass} text-slate-500 dark:text-slate-400`}>{entry.pld}</td>
                                 <td className={`${tdClass} text-emerald-600 dark:text-emerald-400 font-bold`}>{entry.w}</td>
+                                <td className={`${tdClass} text-rose-600 dark:text-rose-400 font-bold`}>{entry.l}</td>
                                 <td className={`${tdClass} text-amber-700 dark:text-amber-400 font-bold text-base`}>{entry.pts}</td>
+                                <td className={`${tdClass} text-slate-600 dark:text-slate-400 text-xs`}>{entry.sw}</td>
+                                <td className={`${tdClass} text-slate-600 dark:text-slate-400 text-xs`}>{entry.sl}</td>
                                 <td className={`${tdClass} text-slate-500 dark:text-slate-400 font-mono text-xs`}>
                                     {entry.sr.toFixed(2)}
                                 </td>

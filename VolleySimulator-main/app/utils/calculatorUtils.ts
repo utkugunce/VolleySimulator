@@ -48,7 +48,8 @@ export const normalizeTeamName = (name: string) => {
 export function calculateLiveStandings(
     initialTeams: TeamStats[],
     matches: Match[],
-    overrides: Record<string, string> // matchId -> "3-0"
+    overrides: Record<string, string>, // matchId -> "3-0"
+    setOverrides?: Record<string, string[]> // [NEW] matchId -> ["25-20", ...]
 ): TeamStats[] {
     // Deep clone teams to simulate changes, indexed by normalized name
     const teamsMap = new Map<string, TeamStats>();
@@ -67,26 +68,38 @@ export function calculateLiveStandings(
         const matchId2 = `${m.homeTeam}-${m.awayTeam}`;
         const overriddenScore = overrides[matchId1] || overrides[matchId2];
 
+        const home = teamsMap.get(homeKey);
+        const away = teamsMap.get(awayKey);
+
         if (overriddenScore && !m.isPlayed) {
             const outcome = getOutcomeFromScore(overriddenScore);
-            if (outcome) {
-                const home = teamsMap.get(homeKey);
-                const away = teamsMap.get(awayKey);
+            if (outcome && home && away) {
+                home.played += 1;
+                home.points += outcome.homePoints;
+                home.setsWon += outcome.homeSets;
+                home.setsLost += outcome.awaySets;
+                if (outcome.homeWin) home.wins += 1;
 
-                if (home && away) {
-                    home.played += 1;
-                    home.points += outcome.homePoints;
-                    home.setsWon += outcome.homeSets;
-                    home.setsLost += outcome.awaySets;
-                    if (outcome.homeWin) home.wins += 1;
-
-                    away.played += 1;
-                    away.points += outcome.awayPoints;
-                    away.setsWon += outcome.awaySets;
-                    away.setsLost += outcome.homeSets;
-                    if (!outcome.homeWin) away.wins += 1;
-                }
+                away.played += 1;
+                away.points += outcome.awayPoints;
+                away.setsWon += outcome.awaySets;
+                away.setsLost += outcome.homeSets;
+                if (!outcome.homeWin) away.wins += 1;
             }
+        }
+
+        // [NEW] Calculate Set Points from Set Overrides
+        const setScores = setOverrides?.[matchId1] || setOverrides?.[matchId2];
+        if (setScores && !m.isPlayed && home && away) {
+            setScores.forEach(s => {
+                const [h, a] = s.split('-').map(Number);
+                if (!isNaN(h) && !isNaN(a)) {
+                    home.setPointsWon += h;
+                    home.setPointsLost += a;
+                    away.setPointsWon += a;
+                    away.setPointsLost += h;
+                }
+            });
         }
     });
 

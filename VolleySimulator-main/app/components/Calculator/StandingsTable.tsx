@@ -1,6 +1,8 @@
 import { TeamStats } from "@/app/types";
 import TeamAvatar from "../TeamAvatar";
 import { useLanguage } from "../../context/LanguageContext";
+import { motion, AnimatePresence } from "framer-motion";
+import clsx from "clsx";
 
 interface TeamDiff {
     name: string;
@@ -17,6 +19,8 @@ interface StandingsTableProps {
     compact?: boolean;
     loading?: boolean;
     comparisonDiffs?: TeamDiff[];
+    highlightedTeam?: string | null;
+    onTeamHover?: (teamName: string | null) => void;
 }
 
 export default function StandingsTable({
@@ -27,7 +31,9 @@ export default function StandingsTable({
     initialRanks,
     compact = false,
     loading = false,
-    comparisonDiffs
+    comparisonDiffs,
+    highlightedTeam,
+    onTeamHover
 }: StandingsTableProps) {
     const { t } = useLanguage();
 
@@ -49,9 +55,9 @@ export default function StandingsTable({
     }
 
     return (
-        <div className={`bg-surface border border-border-main rounded-lg overflow-hidden shadow-lg dark:shadow-sm flex flex-col h-full ${compact ? 'text-xs' : ''}`}>
+        <div className={`bg-transparent flex flex-col h-full ${compact ? 'text-xs' : ''}`}>
             {!compact && (
-                <div className="bg-surface-secondary px-4 py-3 border-b border-border-main">
+                <div className="bg-surface-secondary/50 px-4 py-3 border-b border-border-main">
                     <h3 className="font-bold text-foreground flex items-center gap-2">
                         <span>📊</span> {t('table.title')}
                     </h3>
@@ -81,7 +87,7 @@ export default function StandingsTable({
 
             <div className="overflow-x-auto flex-1 custom-scrollbar pb-2">
                 <table className={`w-full text-left ${compact ? 'text-xs' : 'text-xs sm:text-sm'}`}>
-                    <thead className="bg-surface-secondary text-text-secondary tracking-wider font-semibold border-b border-border-main sticky top-0">
+                    <thead className="bg-surface-secondary/80 backdrop-blur-sm text-text-secondary tracking-wider font-semibold border-b border-border-main sticky top-0 z-10">
                         <tr>
                             <th scope="col" className={`${headClass} w-10 text-left pl-2 whitespace-nowrap`}>#</th>
                             <th scope="col" className={`${headClass} whitespace-nowrap`}>{t('table.team')}</th>
@@ -95,72 +101,104 @@ export default function StandingsTable({
                             <th scope="col" className={`${headClass} w-8 text-center hidden md:table-cell whitespace-nowrap`} title="Verilen Sayı">{t('table.pointsLost')}</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-border-subtle">
-                        {teams.map((team, idx) => {
-                            const currentRank = idx + 1;
-                            const isChampion = idx === 0;
-                            const isPlayoff = idx < playoffSpots;
-                            const isSecondaryPlayoff = secondaryPlayoffSpots > 0 && idx >= playoffSpots && idx < playoffSpots + secondaryPlayoffSpots;
-                            const isRelegation = relegationSpots > 0 && idx >= teams.length - relegationSpots;
-                            const losses = team.played - team.wins;
+                    <tbody className="divide-y divide-border-subtle relative">
+                        <AnimatePresence>
+                            {teams.map((team, idx) => {
+                                const currentRank = idx + 1;
+                                const isChampion = idx === 0;
+                                const isPlayoff = idx < playoffSpots;
+                                const isSecondaryPlayoff = secondaryPlayoffSpots > 0 && idx >= playoffSpots && idx < playoffSpots + secondaryPlayoffSpots;
+                                const isRelegation = relegationSpots > 0 && idx >= teams.length - relegationSpots;
+                                const losses = team.played - team.wins;
 
-                            let rankChangeIcon = null;
-                            let pointDiffIcon = null;
+                                // Highlight logic
+                                const isHighlighted = highlightedTeam === team.name;
+                                const isDimmed = highlightedTeam && !isHighlighted;
 
-                            if (comparisonDiffs) {
-                                const diff = comparisonDiffs.find(d => d.name === team.name);
-                                if (diff) {
-                                    if (diff.rankDiff > 0) rankChangeIcon = <span className="text-emerald-500 text-[10px] font-bold flex items-center gap-0.5">▲{diff.rankDiff}</span>;
-                                    else if (diff.rankDiff < 0) rankChangeIcon = <span className="text-rose-500 text-[10px] font-bold flex items-center gap-0.5">▼{Math.abs(diff.rankDiff)}</span>;
+                                let rankChangeIcon = null;
+                                let pointDiffIcon = null;
 
-                                    if (diff.pointDiff > 0) pointDiffIcon = <span className="text-emerald-500 text-[10px] ml-1">+{diff.pointDiff}</span>;
-                                    else if (diff.pointDiff < 0) pointDiffIcon = <span className="text-rose-500 text-[10px] ml-1">{diff.pointDiff}</span>;
+                                if (comparisonDiffs) {
+                                    const diff = comparisonDiffs.find(d => d.name === team.name);
+                                    if (diff) {
+                                        if (diff.rankDiff > 0) rankChangeIcon = <span className="text-emerald-500 text-[10px] font-bold flex items-center gap-0.5">▲{diff.rankDiff}</span>;
+                                        else if (diff.rankDiff < 0) rankChangeIcon = <span className="text-rose-500 text-[10px] font-bold flex items-center gap-0.5">▼{Math.abs(diff.rankDiff)}</span>;
+
+                                        if (diff.pointDiff > 0) pointDiffIcon = <span className="text-emerald-500 text-[10px] ml-1">+{diff.pointDiff}</span>;
+                                        else if (diff.pointDiff < 0) pointDiffIcon = <span className="text-rose-500 text-[10px] ml-1">{diff.pointDiff}</span>;
+                                    }
+                                } else if (initialRanks && initialRanks.has(team.name)) {
+                                    const oldRank = initialRanks.get(team.name)!;
+                                    const diff = oldRank - currentRank;
+                                    if (diff > 0) {
+                                        rankChangeIcon = <span className="text-emerald-500 text-[10px] font-bold flex items-center gap-0.5">▲{diff}</span>;
+                                    } else if (diff < 0) {
+                                        rankChangeIcon = <span className="text-rose-500 text-[10px] font-bold flex items-center gap-0.5">▼{Math.abs(diff)}</span>;
+                                    }
                                 }
-                            } else if (initialRanks && initialRanks.has(team.name)) {
-                                const oldRank = initialRanks.get(team.name)!;
-                                const diff = oldRank - currentRank;
-                                if (diff > 0) {
-                                    rankChangeIcon = <span className="text-emerald-500 text-[10px] font-bold flex items-center gap-0.5">▲{diff}</span>;
-                                } else if (diff < 0) {
-                                    rankChangeIcon = <span className="text-rose-500 text-[10px] font-bold flex items-center gap-0.5">▼{Math.abs(diff)}</span>;
-                                }
-                            }
 
-                            return (
-                                <tr key={team.name} className={`hover:bg-surface-secondary/80 transition-colors ${isChampion ? 'bg-amber-500/10 dark:bg-amber-900/20' : isPlayoff ? 'bg-emerald-500/10 dark:bg-emerald-900/20' : isSecondaryPlayoff ? 'bg-amber-500/5 dark:bg-amber-900/10' : isRelegation ? 'bg-rose-500/10 dark:bg-rose-900/20' : 'even:bg-surface-secondary/40'}`}>
-                                    <td className={`${rowClass} text-center font-mono whitespace-nowrap`}>
-                                        <div className="flex items-center justify-start gap-1 pl-1">
-                                            <div className={`${rankSize} flex-shrink-0 flex items-center justify-center rounded-full font-bold ${isChampion ? 'bg-gradient-to-b from-amber-400 to-amber-600 text-white shadow-lg' :
-                                                isPlayoff ? 'bg-emerald-500 text-white shadow-lg' :
-                                                    isSecondaryPlayoff ? 'bg-amber-500 text-white shadow-lg' :
-                                                        isRelegation ? 'bg-rose-500 text-white shadow-lg' :
-                                                            'bg-surface-secondary text-text-secondary'
-                                                }`}>
-                                                {isChampion ? '👑' : currentRank}
+                                return (
+                                    <motion.tr
+                                        layout
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{
+                                            opacity: isDimmed ? 0.3 : 1,
+                                            y: 0,
+                                            scale: isHighlighted ? 1.02 : 1,
+                                            backgroundColor: isHighlighted ? 'rgba(59, 130, 246, 0.1)' : 'transparent'
+                                        }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{
+                                            layout: { type: "spring", stiffness: 300, damping: 30 },
+                                            opacity: { duration: 0.2 }
+                                        }}
+                                        key={team.name}
+                                        onMouseEnter={() => onTeamHover?.(team.name)}
+                                        onMouseLeave={() => onTeamHover?.(null)}
+                                        className={clsx(
+                                            "transition-colors cursor-default relative z-0",
+                                            isHighlighted && "z-10 shadow-sm",
+                                            !isHighlighted && isChampion && 'bg-amber-500/10 dark:bg-amber-900/20',
+                                            !isHighlighted && isPlayoff && 'bg-emerald-500/10 dark:bg-emerald-900/20',
+                                            !isHighlighted && isSecondaryPlayoff && 'bg-amber-500/5 dark:bg-amber-900/10',
+                                            !isHighlighted && isRelegation && 'bg-rose-500/10 dark:bg-rose-900/20',
+                                            !isHighlighted && 'even:bg-surface-secondary/30 hover:bg-surface-secondary/60'
+                                        )}
+                                    >
+                                        <td className={`${rowClass} text-center font-mono whitespace-nowrap`}>
+                                            <div className="flex items-center justify-start gap-1 pl-1">
+                                                <div className={`${rankSize} flex-shrink-0 flex items-center justify-center rounded-full font-bold ${isChampion ? 'bg-gradient-to-b from-amber-400 to-amber-600 text-white shadow-lg' :
+                                                    isPlayoff ? 'bg-emerald-500 text-white shadow-lg' :
+                                                        isSecondaryPlayoff ? 'bg-amber-500 text-white shadow-lg' :
+                                                            isRelegation ? 'bg-rose-500 text-white shadow-lg' :
+                                                                'bg-surface-secondary text-text-secondary'
+                                                    }`}>
+                                                    {isChampion ? '👑' : currentRank}
+                                                </div>
+                                                {rankChangeIcon}
                                             </div>
-                                            {rankChangeIcon}
-                                        </div>
-                                    </td>
-                                    <td className={`${rowClass} font-medium whitespace-nowrap`}>
-                                        <div className="flex items-center gap-2">
-                                            <TeamAvatar name={team.name} size={compact ? 'md' : 'lg'} priority={idx < 5} />
-                                            <span className={`block truncate max-w-[120px] sm:max-w-[200px] ${isPlayoff ? 'text-emerald-700 dark:text-emerald-300' : isSecondaryPlayoff ? 'text-amber-700 dark:text-amber-300' : isRelegation ? 'text-rose-700 dark:text-rose-300' : 'text-text-primary'}`}>{team.name}</span>
-                                        </div>
-                                    </td>
-                                    <td className={`${rowClass} text-center text-text-secondary whitespace-nowrap`}>{team.played}</td>
-                                    <td className={`${rowClass} text-center text-emerald-500 font-medium whitespace-nowrap`}>{team.wins}</td>
-                                    <td className={`${rowClass} text-center text-rose-500 font-medium whitespace-nowrap`}>{losses}</td>
-                                    <td className={`${rowClass} text-center font-bold text-amber-500 bg-surface-secondary/30 whitespace-nowrap`}>
-                                        {team.points}
-                                        {pointDiffIcon}
-                                    </td>
-                                    <td className={`${rowClass} text-center text-text-secondary hidden sm:table-cell whitespace-nowrap`}>{team.setsWon}</td>
-                                    <td className={`${rowClass} text-center text-text-secondary hidden sm:table-cell whitespace-nowrap`}>{team.setsLost}</td>
-                                    <td className={`${rowClass} text-center text-text-secondary hidden md:table-cell whitespace-nowrap font-mono text-[10px]`}>{team.setPointsWon}</td>
-                                    <td className={`${rowClass} text-center text-text-secondary hidden md:table-cell whitespace-nowrap font-mono text-[10px]`}>{team.setPointsLost}</td>
-                                </tr>
-                            );
-                        })}
+                                        </td>
+                                        <td className={`${rowClass} font-medium whitespace-nowrap`}>
+                                            <div className="flex items-center gap-2">
+                                                <TeamAvatar name={team.name} size={compact ? 'md' : 'lg'} priority={idx < 5} />
+                                                <span className={`block truncate max-w-[120px] sm:max-w-[200px] ${isPlayoff ? 'text-emerald-700 dark:text-emerald-300' : isSecondaryPlayoff ? 'text-amber-700 dark:text-amber-300' : isRelegation ? 'text-rose-700 dark:text-rose-300' : 'text-text-primary'}`}>{team.name}</span>
+                                            </div>
+                                        </td>
+                                        <td className={`${rowClass} text-center text-text-secondary whitespace-nowrap`}>{team.played}</td>
+                                        <td className={`${rowClass} text-center text-emerald-500 font-medium whitespace-nowrap`}>{team.wins}</td>
+                                        <td className={`${rowClass} text-center text-rose-500 font-medium whitespace-nowrap`}>{losses}</td>
+                                        <td className={`${rowClass} text-center font-bold text-amber-500 bg-surface-secondary/30 whitespace-nowrap`}>
+                                            {team.points}
+                                            {pointDiffIcon}
+                                        </td>
+                                        <td className={`${rowClass} text-center text-text-secondary hidden sm:table-cell whitespace-nowrap`}>{team.setsWon}</td>
+                                        <td className={`${rowClass} text-center text-text-secondary hidden sm:table-cell whitespace-nowrap`}>{team.setsLost}</td>
+                                        <td className={`${rowClass} text-center text-text-secondary hidden md:table-cell whitespace-nowrap font-mono text-[10px]`}>{team.setPointsWon}</td>
+                                        <td className={`${rowClass} text-center text-text-secondary hidden md:table-cell whitespace-nowrap font-mono text-[10px]`}>{team.setPointsLost}</td>
+                                    </motion.tr>
+                                );
+                            })}
+                        </AnimatePresence>
                     </tbody>
                 </table>
             </div>

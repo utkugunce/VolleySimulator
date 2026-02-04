@@ -1,8 +1,7 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-// import { createClient } from "../utils/supabase";
-const createClient = () => null as any;
+const createClient = () => null;
 
 // Types
 export interface Prediction {

@@ -75,6 +75,7 @@ export interface MatchOverride {
   homeScore?: number;
   awayScore?: number;
   score?: string; // Alternative: "3-0" format
+  setScores?: string[]; // [NEW] e.g. ["25-20", "25-18", "20-25", "25-22"]
 }
 
 // Group scenarios storage format
